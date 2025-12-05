@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24.942" height="24.942" viewBox="0 0 24.942 24.942">
+  <defs>
+    <clipPath id="clip-path">
+      <path id="path1845" d="M0-682.665H24.942v24.942H0Z" transform="translate(-1.484 681.181)"/>
+    </clipPath>
+  </defs>
+  <g id="topo_login" transform="translate(1.484 684.149)">
+    <g id="g1841" transform="translate(0 -682.665)">
+      <g id="g1843" clip-path="url(#clip-path)">
+        <g id="g1849" transform="translate(0.645 0.645)">
+          <path id="path1851" d="M-310.977,0a10.361,10.361,0,0,1,10.355,10.355,10.361,10.361,0,0,1-10.355,10.355,10.361,10.361,0,0,1-10.355-10.355A10.361,10.361,0,0,1-310.977,0Z" transform="translate(321.333)" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="2"/>
+        </g>
+        <g id="g1853" transform="translate(7.548 4.096)">
+          <path id="path1855" d="M-207.318-103.66a3.452,3.452,0,0,0-1.011-2.441,3.452,3.452,0,0,0-2.441-1.011,3.452,3.452,0,0,0-2.441,1.011,3.452,3.452,0,0,0-1.011,2.441v1.381a3.452,3.452,0,0,0,1.011,2.441,3.452,3.452,0,0,0,2.441,1.011,3.452,3.452,0,0,0,2.441-1.011,3.452,3.452,0,0,0,1.011-2.441Z" transform="translate(214.222 107.112)" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="2"/>
+        </g>
+        <g id="g1857" transform="translate(3.608 15.142)">
+          <path id="path1859" d="M0-93.293A10.325,10.325,0,0,1,7.392-96.4a10.325,10.325,0,0,1,7.392,3.107,10.325,10.325,0,0,1-7.392,3.107A10.325,10.325,0,0,1,0-93.293Z" transform="translate(0 96.4)" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="2"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

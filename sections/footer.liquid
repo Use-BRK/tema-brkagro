@@ -1,0 +1,603 @@
+{% comment %}theme-check-disable UndefinedObject{% endcomment %}
+{{ 'section-footer.css' | asset_url | stylesheet_tag }}
+{{ 'component-newsletter.css' | asset_url | stylesheet_tag }}
+{{ 'component-list-menu.css' | asset_url | stylesheet_tag }}
+{{ 'component-list-payment.css' | asset_url | stylesheet_tag }}
+{{ 'component-list-social.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .footer {
+    margin-top: {{ section.settings.margin_top | times: 0.75 | round: 0 }}px;
+  }
+
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .footer {
+      margin-top: {{ section.settings.margin_top }}px;
+    }
+
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+<footer class="footer color-{{ section.settings.color_scheme }} gradient section-{{ section.id }}-padding">
+  {%- liquid
+    assign has_social_icons = true
+    if settings.social_facebook_link == blank and settings.social_instagram_link == blank and settings.social_youtube_link == blank and settings.social_tiktok_link == blank and settings.social_twitter_link == blank and settings.social_pinterest_link == blank and settings.social_snapchat_link == blank and settings.social_tumblr_link == blank and settings.social_vimeo_link == blank
+      assign has_social_icons = false
+    endif
+
+    if settings.brand_image == blank and settings.brand_headline == blank and settings.brand_description == blank
+      assign brand_empty = true
+    endif
+
+    if section.blocks.size == 1 and section.blocks[0].type == 'brand_information' and brand_empty and has_social_icons == false and section.settings.newsletter_enable == false and section.settings.enable_follow_on_shop == false
+      assign only_empty_brand = true
+    endif
+  -%}
+  {%- if section.blocks.size > 0
+    or section.settings.newsletter_enable
+    or section.settings.show_social
+    and has_social_icons == true
+    or section.settings.enable_follow_on_shop
+  -%}
+    {%- unless only_empty_brand -%}
+      <div class="footer__content-top page-width">
+        {%- if section.blocks.size > 0 -%}
+          {%- liquid
+            if section.blocks.size == 9
+              assign footer_grid_class = 'grid--3-col-tablet'
+            elsif section.blocks.size > 6
+              assign footer_grid_class = 'grid--5-col-desktop'
+            elsif section.blocks.size > 4
+              assign footer_grid_class = 'grid--5-col-desktop'
+            endif
+          -%}
+          <div
+            class="footer__blocks-wrapper grid grid--1-col grid--2-col grid--5-col-tablet {{ footer_grid_class }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+            {% if settings.animations_reveal_on_scroll %}
+              data-cascade
+            {% endif %}
+          >
+            {%- for block in section.blocks -%}
+              <div
+                class="footer-block grid__item{% if block.type == 'link_list' %} footer-block--menu{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+                {{ block.shopify_attributes }}
+                {% if settings.animations_reveal_on_scroll %}
+                  data-cascade
+                  style="--animation-order: {{ forloop.index }};"
+                {% endif %}
+              >
+                {%- if block.settings.heading != blank -%}
+                  <h2 class="footer-block__heading inline-richtext">{{- block.settings.heading -}}</h2>
+                {%- endif -%}
+
+                {%- case block.type -%}
+                  {%- when '@app' -%}
+                    {% render block %}
+                  {%- when 'text' -%}
+                    <div class="footer-block__details-content rte">
+                      {{ block.settings.subtext }}
+                    </div>
+                  {%- when 'link_list' -%}
+                    {%- if block.settings.menu != blank -%}
+                      <ul class="footer-block__details-content list-unstyled">
+                        {%- for link in block.settings.menu.links -%}
+                          <li>
+                            <a
+                              href="{{ link.url }}"
+                              class="link link--text list-menu__item list-menu__item--link{% if link.active %} list-menu__item--active{% endif %}"
+                            >
+                              {{ link.title | escape }}
+                            </a>
+                          </li>
+                        {%- endfor -%}
+                      </ul>
+                    {%- endif -%}
+                  {%- when 'brand_information' -%}
+                    <div class="footer-block__brand-info">
+                      {%- if settings.brand_image != blank -%}
+                        {%- assign brand_image_height = settings.brand_image_width
+                          | divided_by: settings.brand_image.aspect_ratio
+                        -%}
+                        <div
+                          class="footer-block__image-wrapper"
+                          style="max-width: min(100%, {{ settings.brand_image_width }}px);"
+                        >
+                          {{
+                            settings.brand_image
+                            | image_url: width: 1100
+                            | image_tag:
+                              loading: 'lazy',
+                              widths: '50, 100, 150, 200, 300, 400, 550, 800, 1100',
+                              height: brand_image_height,
+                              width: settings.brand_image_width
+                          }}
+                        </div>
+                      {%- endif -%}
+                      {%- if settings.brand_headline != blank -%}
+                        <h2 class="footer-block__heading rte">{{ settings.brand_headline }}</h2>
+                      {%- endif -%}
+                      {%- if settings.brand_description != blank -%}
+                        <div class="rte">{{ settings.brand_description }}</div>
+                      {%- endif -%}
+                      {%- if block.settings.show_social and has_social_icons -%}
+                        {%- render 'social-icons', class: 'footer__list-social' -%}
+                      {%- endif -%}
+                    </div>
+                  {%- when 'image' -%}
+                    <div class="footer-block__details-content footer-block-image {{ block.settings.alignment }}">
+                      {%- if block.settings.image != blank -%}
+                        {%- assign image_size_2x = block.settings.image_width | times: 2 | at_most: 5760 -%}
+                        <div
+                          class="footer-block__image-wrapper"
+                          style="max-width: min(100%, {{ block.settings.image_width }}px);"
+                        >
+                          <img
+                            srcset="{{ block.settings.image | image_url: width: block.settings.image_width }}, {{ block.settings.image | image_url: width: image_size_2x }} 2x"
+                            src="{{ block.settings.image | image_url: width: 760 }}"
+                            alt="{{ block.settings.image.alt | escape }}"
+                            loading="lazy"
+                            width="{{ block.settings.image.width }}"
+                            height="{{ block.settings.image.height }}"
+                          >
+                        </div>
+                      {%- else -%}
+                        {{ 'image' | placeholder_svg_tag: 'placeholder-svg placeholder' }}
+                      {%- endif -%}
+                    </div>
+                {%- endcase -%}
+              </div>
+            {%- endfor -%}
+
+            {%- if section.settings.payment_enable -%}
+              <div class="footer-block grid__item{% if block.type == 'link_list' %} footer-block--menu{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+                <h2 class="footer-block__heading inline-richtext">Formas de Pagamento</h2>
+                <div class="footer-block__details-content rte">
+                  <ul class="list list-payment" role="list">
+                    {%- for type in shop.enabled_payment_types -%}
+                      <li class="list-payment__item">
+                        {{ type | payment_type_svg_tag: class: 'icon icon--full-color' }}
+                      </li>
+                    {%- endfor -%}
+                  </ul>
+                </div>
+
+                <h2 class="footer-block__heading inline-richtext" style="margin-top: 30px;">Selos de Segurança</h2>
+                <div class="footer-block__details-content rte flex align-center">
+                  <a
+                    href="https://transparencyreport.google.com/safe-browsing/search?url=https://www.brkagro.com.br"
+                    target="_blank"
+                    ><img src="{{- 'googlesafe.png' | asset_url -}}"
+                  ></a>
+                  <div id="ra-verified-seal">
+                    <script
+                      async
+                      type="text/javascript"
+                      id="ra-embed-verified-seal"
+                      src="https://s3.amazonaws.com/raichu-beta/ra-verified/bundle.js"
+                      data-id="ZVBGaHZwa1cxQUJ6TXZ3OTpicmstZmlzaGluZw=="
+                      data-target="ra-verified-seal"
+                      data-model="2"
+                    ></script>
+                  </div>
+                </div>
+              </div>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+
+        <div
+          class="footer-block--newsletter{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+          {% if settings.animations_reveal_on_scroll %}
+            data-cascade
+          {% endif %}
+        >
+          {%- if section.settings.newsletter_enable -%}
+            <div class="footer-block__newsletter">
+              {%- if section.settings.newsletter_heading != blank -%}
+                <h2 class="footer-block__heading inline-richtext">{{ section.settings.newsletter_heading }}</h2>
+              {%- endif -%}
+              {%- form 'customer', id: 'ContactFooter', class: 'footer__newsletter newsletter-form' -%}
+                <input type="hidden" name="contact[tags]" value="newsletter">
+                <div class="newsletter-form__field-wrapper">
+                  <div class="field">
+                    <input
+                      id="NewsletterForm--{{ section.id }}"
+                      type="email"
+                      name="contact[email]"
+                      class="field__input"
+                      value="{{ form.email }}"
+                      aria-required="true"
+                      autocorrect="off"
+                      autocapitalize="off"
+                      autocomplete="email"
+                      {% if form.errors %}
+                        autofocus
+                        aria-invalid="true"
+                        aria-describedby="ContactFooter-error"
+                      {% elsif form.posted_successfully? %}
+                        aria-describedby="ContactFooter-success"
+                      {% endif %}
+                      placeholder="{{ 'newsletter.label' | t }}"
+                      required
+                    >
+                    <label class="field__label" for="NewsletterForm--{{ section.id }}">
+                      {{ 'newsletter.label' | t }}
+                    </label>
+                    <button
+                      type="submit"
+                      class="newsletter-form__button field__button"
+                      name="commit"
+                      id="Subscribe"
+                      aria-label="{{ 'newsletter.button_label' | t }}"
+                    >
+                      <span class="svg-wrapper">
+                        {{- 'icon-arrow.svg' | inline_asset_content -}}
+                      </span>
+                    </button>
+                  </div>
+                  {%- if form.errors -%}
+                    <small class="newsletter-form__message form__message" id="ContactFooter-error">
+                      <span class="svg-wrapper">
+                        {{- 'icon-error.svg' | inline_asset_content -}}
+                      </span>
+                      {{- form.errors.translated_fields.email | capitalize }}
+                      {{ form.errors.messages.email -}}
+                    </small>
+                  {%- endif -%}
+                </div>
+                {%- if form.posted_successfully? -%}
+                  <h3
+                    class="newsletter-form__message newsletter-form__message--success form__message"
+                    id="ContactFooter-success"
+                    tabindex="-1"
+                    autofocus
+                  >
+                    <span class="svg-wrapper">
+                      {{- 'icon-success.svg' | inline_asset_content -}}
+                    </span>
+                    {{- 'newsletter.success' | t }}
+                  </h3>
+                {%- endif -%}
+              {%- endform -%}
+            </div>
+          {%- endif -%}
+
+          {%- if shop.features.follow_on_shop? and section.settings.enable_follow_on_shop -%}
+            <div class="footer__follow-on-shop">
+              {{ shop | login_button: action: 'follow' }}
+            </div>
+          {%- endif -%}
+
+          {%- if section.settings.show_social and has_social_icons -%}
+            {%- render 'social-icons', class: 'footer__list-social' -%}
+          {%- endif -%}
+        </div>
+      </div>
+    {%- endunless -%}
+  {%- endif -%}
+
+  <div
+    class="footer__content-bottom{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+    {% if settings.animations_reveal_on_scroll %}
+      data-cascade
+    {% endif %}
+  >
+    <div class="footer__content-bottom-wrapper page-width">
+      <div class="footer__column footer__localization isolate">
+        {%- if section.settings.enable_country_selector and localization.available_countries.size > 1 -%}
+          <localization-form>
+            {%- form 'localization', id: 'FooterCountryForm', class: 'localization-form' -%}
+              <div>
+                <h2 class="caption-large text-body" id="FooterCountryLabel">{{ 'localization.country_label' | t }}</h2>
+                {%- render 'country-localization', localPosition: 'FooterCountry' -%}
+              </div>
+            {%- endform -%}
+          </localization-form>
+        {%- endif -%}
+
+        {%- if section.settings.enable_language_selector and localization.available_languages.size > 1 -%}
+          <localization-form>
+            {%- form 'localization', id: 'FooterLanguageForm', class: 'localization-form' -%}
+              <div>
+                <h2 class="caption-large text-body" id="FooterLanguageLabel">
+                  {{ 'localization.language_label' | t }}
+                </h2>
+                {%- render 'language-localization', localPosition: 'FooterLanguage' -%}
+              </div>
+            {%- endform -%}
+          </localization-form>
+        {%- endif -%}
+      </div>
+    </div>
+    <div class="footer__content-bottom-wrapper page-width{% if section.settings.enable_country_selector == false and section.settings.enable_language_selector == false %} footer__content-bottom-wrapper--center{% endif %}">
+      <div class="footer__copyright caption">
+        <small class="copyright__content"
+          >BRK AGRO. BRK INDUSTRIA DE VESTUÁRIO DE ALTA PERFORMANCE LTDA. 17.113.656/0002-02 - Rua Francisco Vieira de
+          Paiva, 49 Bairro Roosevelt (Sala 01 Piso Superior), Uberlândia/MG- Todos os direitos reservados 2024.
+        </small>
+        <small class="copyright__content">
+          <a href="https://atama.digital/" target="_blank">
+            <svg xmlns="http://www.w3.org/2000/svg" width="69.029" height="29.113" viewBox="0 0 69.029 29.113">
+              <g id="logo-atama" transform="translate(-36.87 -29.95)">
+                <g id="Grupo_988" data-name="Grupo 988" transform="translate(36.87 30.412)">
+                  <path id="Caminho_1576" data-name="Caminho 1576" d="M39.692,52.028a5.411,5.411,0,0,1-2.079-2.2,7.345,7.345,0,0,1,0-6.439,5.389,5.389,0,0,1,2.079-2.2,5.945,5.945,0,0,1,3.062-.781,6.165,6.165,0,0,1,2.5.493,4.732,4.732,0,0,1,1.826,1.356l.024-1.586h2.4V52.538H47.1l-.024-1.586a4.732,4.732,0,0,1-1.826,1.356,6.177,6.177,0,0,1-2.5.493A5.867,5.867,0,0,1,39.692,52.028Zm.877-2.716a3.8,3.8,0,0,0,5.234,0,4.119,4.119,0,0,0,0-5.4,3.8,3.8,0,0,0-5.234,0,4.119,4.119,0,0,0,0,5.4Z" transform="translate(-36.87 -37.29)" fill="#005aa6"/>
+                  <path id="Caminho_1577" data-name="Caminho 1577" d="M79.594,45.641a4.492,4.492,0,0,1-1.01-3.172v-5.5H76.35V34.687h2.233v-3.1l2.665-.288v3.387h3.411v2.281H81.248v5.5a2.055,2.055,0,0,0,.421,1.394,1.549,1.549,0,0,0,1.236.48,3.515,3.515,0,0,0,1.49-.36l.743,2.161a6.722,6.722,0,0,1-1.308.445,6.366,6.366,0,0,1-1.356.134A3.747,3.747,0,0,1,79.594,45.641Z" transform="translate(-62.828 -31.3)" fill="#005aa6"/>
+                  <path id="Caminho_1578" data-name="Caminho 1578" d="M104.2,52.028a5.411,5.411,0,0,1-2.079-2.2,7.345,7.345,0,0,1,0-6.439,5.389,5.389,0,0,1,2.079-2.2,5.945,5.945,0,0,1,3.062-.781,6.165,6.165,0,0,1,2.5.493,4.731,4.731,0,0,1,1.826,1.356l.024-1.586h2.4V52.538h-2.4l-.024-1.586a4.731,4.731,0,0,1-1.826,1.356,6.177,6.177,0,0,1-2.5.493A5.884,5.884,0,0,1,104.2,52.028Zm.877-2.716a3.8,3.8,0,0,0,5.234,0,4.119,4.119,0,0,0,0-5.4,3.8,3.8,0,0,0-5.234,0,4.119,4.119,0,0,0,0,5.4Z" transform="translate(-79.285 -37.29)" fill="#005aa6"/>
+                  <path id="Caminho_1579" data-name="Caminho 1579" d="M143.6,40.73H146l.024,1.394a4.2,4.2,0,0,1,3.507-1.634,4.719,4.719,0,0,1,2.271.551,3.864,3.864,0,0,1,1.572,1.538,5.379,5.379,0,0,1,7.854-.709,5.252,5.252,0,0,1,1.322,3.785V52.6h-2.689V45.871a3.338,3.338,0,0,0-.637-2.185,2.245,2.245,0,0,0-1.836-.767,2.825,2.825,0,0,0-2.137.853,3.113,3.113,0,0,0-.815,2.247V52.6h-2.689v-6.73a3.3,3.3,0,0,0-.647-2.185,2.278,2.278,0,0,0-1.85-.767,2.825,2.825,0,0,0-2.137.853,3.113,3.113,0,0,0-.815,2.247V52.6H143.61V40.73Z" transform="translate(-107.044 -37.342)" fill="#005aa6"/>
+                  <path id="Caminho_1580" data-name="Caminho 1580" d="M204.352,52.028a5.412,5.412,0,0,1-2.079-2.2,7.345,7.345,0,0,1,0-6.439,5.389,5.389,0,0,1,2.079-2.2,5.945,5.945,0,0,1,3.062-.781,6.165,6.165,0,0,1,2.5.493,4.731,4.731,0,0,1,1.826,1.356l.024-1.586h2.4V52.538h-2.4l-.024-1.586a4.731,4.731,0,0,1-1.826,1.356,6.177,6.177,0,0,1-2.5.493A5.867,5.867,0,0,1,204.352,52.028Zm.877-2.716a3.8,3.8,0,0,0,5.234,0,4.119,4.119,0,0,0,0-5.4,3.8,3.8,0,0,0-5.234,0,4.119,4.119,0,0,0,0,5.4Z" transform="translate(-145.132 -37.29)" fill="#005aa6"/>
+                </g>
+                <g id="Grupo_989" data-name="Grupo 989" transform="translate(73.334 46.613)">
+                  <path id="Caminho_1581" data-name="Caminho 1581" d="M149.149,82.683a2.636,2.636,0,0,0-1.069-1.175,3.36,3.36,0,0,0-3.257-.034,2.861,2.861,0,0,0-1.1,1.13,3.642,3.642,0,0,0,0,3.295,2.839,2.839,0,0,0,1.1,1.13,3.149,3.149,0,0,0,1.6.4A3.23,3.23,0,0,0,148.088,87a2.518,2.518,0,0,0,1.062-1.154v1.486h.373V78.6h-.373v4.083Zm-.349,3.052a2.475,2.475,0,0,1-.966.993,3,3,0,0,1-2.809,0,2.475,2.475,0,0,1-.966-.993,3.308,3.308,0,0,1,0-2.959,2.475,2.475,0,0,1,.966-.993,3,3,0,0,1,2.809,0,2.475,2.475,0,0,1,.966.993,3.308,3.308,0,0,1,0,2.959Z" transform="translate(-143.33 -78.6)" fill="#4a4a49"/>
+                  <rect id="Retângulo_2733" data-name="Retângulo 2733" width="0.373" height="6.165" transform="translate(8.066 2.572)" fill="#4a4a49"/>
+                  <path id="Caminho_1582" data-name="Caminho 1582" d="M178.237,89.4a2.938,2.938,0,0,0,.267-1.243,3.08,3.08,0,0,0-.192-1.141,3.814,3.814,0,0,0-.706-1.055l.8-.949-.274-.212-.788.935a3.022,3.022,0,0,0-.9-.4,3.835,3.835,0,0,0-1.062-.158,3.322,3.322,0,0,0-1.6.387,3.061,3.061,0,0,0-.692,4.775,3.2,3.2,0,0,0,2.3.8,3.425,3.425,0,0,1,1.949.5,1.553,1.553,0,0,1,.007,2.637,3.434,3.434,0,0,1-1.952.493,3.3,3.3,0,0,1-1.343-.264,2.237,2.237,0,0,1-.925-.719,1.724,1.724,0,0,1-.332-1.031h-.373a2.065,2.065,0,0,0,.38,1.216,2.517,2.517,0,0,0,1.062.849,3.709,3.709,0,0,0,1.528.3,4.335,4.335,0,0,0,1.593-.274,2.511,2.511,0,0,0,1.079-.767,1.867,1.867,0,0,0-.144-2.442,2.863,2.863,0,0,0-1.49-.736,2.42,2.42,0,0,0,1.069-.531A2.816,2.816,0,0,0,178.237,89.4Zm-1.469,1.028a2.778,2.778,0,0,1-1.384.349,2.833,2.833,0,0,1-2.035-.7,2.526,2.526,0,0,1-.736-1.921,2.6,2.6,0,0,1,.356-1.349,2.449,2.449,0,0,1,.986-.935,2.971,2.971,0,0,1,1.428-.336,3.067,3.067,0,0,1,1.435.325,2.308,2.308,0,0,1,.966.925,2.707,2.707,0,0,1,.343,1.373,2.46,2.46,0,0,1-.37,1.322A2.652,2.652,0,0,1,176.768,90.427Z" transform="translate(-162.338 -82.676)" fill="#4a4a49"/>
+                  <rect id="Retângulo_2734" data-name="Retângulo 2734" width="0.373" height="6.165" transform="translate(17.626 2.572)" fill="#4a4a49"/>
+                  <path id="Caminho_1583" data-name="Caminho 1583" d="M203.076,88.308a1.88,1.88,0,0,1-.531.092,1.06,1.06,0,0,1-.986-.394,2.326,2.326,0,0,1-.236-1.178V82.821h2.2v-.363h-2.2v-1.9l-.373.038v1.86H199.6v.363h1.349v4.007a2.448,2.448,0,0,0,.349,1.449,1.492,1.492,0,0,0,1.274.473,2.36,2.36,0,0,0,.613-.092,2.885,2.885,0,0,0,.637-.257l-.161-.312A4.585,4.585,0,0,1,203.076,88.308Z" transform="translate(-180.327 -79.889)" fill="#4a4a49"/>
+                  <path id="Caminho_1584" data-name="Caminho 1584" d="M219.229,87.434a2.591,2.591,0,0,0-1.069-1.185,3.36,3.36,0,0,0-3.257-.034,2.861,2.861,0,0,0-1.1,1.13,3.643,3.643,0,0,0,0,3.295,2.839,2.839,0,0,0,1.1,1.13,3.36,3.36,0,0,0,3.257-.034,2.642,2.642,0,0,0,1.069-1.161v1.5h.373V85.906h-.373Zm-.349,3.041a2.475,2.475,0,0,1-.966.993,3,3,0,0,1-2.809,0,2.475,2.475,0,0,1-.966-.993,3.308,3.308,0,0,1,0-2.959,2.475,2.475,0,0,1,.966-.993,3,3,0,0,1,2.809,0,2.475,2.475,0,0,1,.966.993,3.308,3.308,0,0,1,0,2.959Z" transform="translate(-189.407 -83.341)" fill="#4a4a49"/>
+                  <rect id="Retângulo_2735" data-name="Retângulo 2735" width="0.373" height="8.737" transform="translate(32.069 0)" fill="#4a4a49"/>
+                </g>
+                <path id="Caminho_1585" data-name="Caminho 1585" d="M112.84,31.3l1.942,1.415h1.713l-2.747-2.764h-1.761l-2.747,2.764H110.9Z" transform="translate(-47.583 0)" fill="#123251"/>
+              </g>
+            </svg>
+          </a>
+        </small>
+      </div>
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "t:sections.footer.name",
+  "blocks": [
+    {
+      "type": "@app"
+    },
+    {
+      "type": "link_list",
+      "name": "t:sections.footer.blocks.link_list.name",
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "heading",
+          "default": "t:sections.footer.blocks.link_list.settings.heading.default",
+          "label": "t:sections.footer.blocks.link_list.settings.heading.label"
+        },
+        {
+          "type": "link_list",
+          "id": "menu",
+          "default": "footer",
+          "label": "t:sections.footer.blocks.link_list.settings.menu.label",
+          "info": "t:sections.footer.blocks.link_list.settings.menu.info"
+        }
+      ]
+    },
+    {
+      "type": "brand_information",
+      "name": "t:sections.footer.blocks.brand_information.name",
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "t:sections.footer.blocks.brand_information.settings.paragraph.content"
+        },
+        {
+          "type": "header",
+          "content": "t:sections.footer.blocks.brand_information.settings.header__1.content"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_social",
+          "default": true,
+          "label": "t:sections.footer.blocks.brand_information.settings.show_social.label",
+          "info": "t:sections.footer.blocks.brand_information.settings.show_social.info"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "name": "t:sections.footer.blocks.text.name",
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "heading",
+          "default": "t:sections.footer.blocks.text.settings.heading.default",
+          "label": "t:sections.footer.blocks.text.settings.heading.label"
+        },
+        {
+          "type": "richtext",
+          "id": "subtext",
+          "default": "t:sections.footer.blocks.text.settings.subtext.default",
+          "label": "t:sections.footer.blocks.text.settings.subtext.label"
+        }
+      ]
+    },
+    {
+      "type": "image",
+      "name": "Image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "range",
+          "id": "image_width",
+          "min": 50,
+          "max": 550,
+          "step": 5,
+          "unit": "px",
+          "label": "Image width",
+          "default": 100
+        },
+        {
+          "type": "select",
+          "id": "alignment",
+          "label": "Image alignment on large screen",
+          "options": [
+            {
+              "value": "",
+              "label": "Left"
+            },
+            {
+              "value": "center",
+              "label": "Center"
+            },
+            {
+              "value": "right",
+              "label": "Right"
+            }
+          ],
+          "default": "center"
+        }
+      ]
+    }
+  ],
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.footer.settings.header__1.content",
+      "info": "t:sections.footer.settings.header__1.info"
+    },
+    {
+      "type": "checkbox",
+      "id": "newsletter_enable",
+      "default": true,
+      "label": "t:sections.footer.settings.newsletter_enable.label"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "newsletter_heading",
+      "default": "t:sections.footer.settings.newsletter_heading.default",
+      "label": "t:sections.footer.settings.newsletter_heading.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.footer.settings.header__9.content",
+      "info": "t:sections.footer.settings.header__9.info"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_follow_on_shop",
+      "default": true,
+      "label": "t:sections.footer.settings.enable_follow_on_shop.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.footer.settings.header__2.content",
+      "info": "t:sections.footer.settings.header__2.info"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_social",
+      "default": true,
+      "label": "t:sections.footer.settings.show_social.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.footer.settings.header__3.content",
+      "info": "t:sections.footer.settings.header__4.info"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_country_selector",
+      "default": true,
+      "label": "t:sections.footer.settings.enable_country_selector.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.footer.settings.header__5.content",
+      "info": "t:sections.footer.settings.header__6.info"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_language_selector",
+      "default": true,
+      "label": "t:sections.footer.settings.enable_language_selector.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.footer.settings.header__7.content"
+    },
+    {
+      "type": "checkbox",
+      "id": "payment_enable",
+      "default": true,
+      "label": "t:sections.footer.settings.payment_enable.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.footer.settings.header__8.content",
+      "info": "t:sections.footer.settings.header__8.info"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_policy",
+      "default": true,
+      "label": "t:sections.footer.settings.show_policy.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.spacing"
+    },
+    {
+      "type": "range",
+      "id": "margin_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.footer.settings.margin_top.label",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 36
+    }
+  ],
+  "default": {
+    "blocks": [
+      {
+        "type": "link_list"
+      },
+      {
+        "type": "text"
+      }
+    ]
+  }
+}
+{% endschema %}

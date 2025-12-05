@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="21.676" height="21.676" viewBox="0 0 21.676 21.676">
+  <defs>
+    <clipPath id="clip-path">
+      <path id="path105" d="M0-682.665H21.676v21.676H0Z" transform="translate(0 682.665)"/>
+    </clipPath>
+  </defs>
+  <g id="topo_sacola" transform="translate(0 -0.002)">
+    <g id="g99" transform="translate(0 0.002)">
+      <g id="g101" transform="translate(0 0)">
+        <g id="g103" clip-path="url(#clip-path)">
+          <g id="g109" transform="translate(2.625 6.393)">
+            <path id="path111" d="M-148.464,0h-4.869V12.743a1.693,1.693,0,0,0,1.693,1.693H-138.6a1.693,1.693,0,0,0,1.693-1.693V0h-9.017" transform="translate(153.333)" fill="none" stroke="#000" stroke-miterlimit="10" stroke-width="2"/>
+          </g>
+          <g id="g113" transform="translate(7.451 0.847)">
+            <path id="path115" d="M-206.559-287.892v-8.594l-.847-.847h-5.08l-.847.847v8.594" transform="translate(213.333 297.333)" fill="none" stroke="#000" stroke-miterlimit="10" stroke-width="2"/>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 35 35">
+  <g id="rodape-face" transform="translate(-315 -3708)">
+    <g id="Grupo_379" data-name="Grupo 379" transform="translate(2 -109)">
+      <g id="Elipse_21" data-name="Elipse 21" transform="translate(313 3817)" fill="#e2c224" stroke="#1a1818" stroke-width="1">
+        <circle cx="17.5" cy="17.5" r="17.5" stroke="none"/>
+        <circle cx="17.5" cy="17.5" r="17" fill="none"/>
+      </g>
+      <path id="facebook" d="M12.709,2.649h1.457V.112A18.81,18.81,0,0,0,12.044,0C9.943,0,8.5,1.321,8.5,3.749V5.984H6.187V8.82H8.5v7.136h2.842V8.82H13.57l.353-2.836H11.345V4.03c0-.82.221-1.381,1.364-1.381Z" transform="translate(320.324 3827)" fill="#1a1818"/>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="25.007" height="25.008" viewBox="0 0 25.007 25.008">
+  <defs>
+    <clipPath id="clip-path">
+      <path id="path3171" d="M0-682.665H25.007v25.008H0Z" transform="translate(-1.44 681.225)"/>
+    </clipPath>
+  </defs>
+  <g id="topo_favoritos" transform="translate(1.44 684.105)">
+    <g id="g3167" transform="translate(0 -682.665)">
+      <g id="g3169" clip-path="url(#clip-path)">
+        <g id="g3175" transform="translate(0.649 0.649)">
+          <path id="path3177" d="M-621.8-310.9a10.434,10.434,0,0,1-10.434,10.434A10.434,10.434,0,0,1-642.665-310.9a10.434,10.434,0,0,1,10.434-10.434A10.434,10.434,0,0,1-621.8-310.9Z" transform="translate(642.665 321.333)" fill="none" stroke="#000" stroke-miterlimit="10" stroke-width="2"/>
+        </g>
+        <g id="g3179" transform="translate(5.495 7.246)">
+          <path id="path3181" d="M-196.268-23.462l-1,1-1-1a2.689,2.689,0,0,0-3.8,0,2.689,2.689,0,0,0,0,3.8l4.784,4.818.017-.017,4.8-4.8a2.689,2.689,0,0,0,0-3.8A2.689,2.689,0,0,0-196.268-23.462Z" transform="translate(202.855 24.25)" fill="none" stroke="#000" stroke-miterlimit="10" stroke-width="2"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

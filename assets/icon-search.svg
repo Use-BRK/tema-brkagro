@@ -1,0 +1,22 @@
+<svg class="topo-lupa" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20" viewBox="0 0 20 20">
+  <defs>
+    <clipPath id="clip-path">
+      <path id="path1725" d="M0-682.665H20v20H0Z" transform="translate(0 682.665)" fill="#fffcf4"/>
+    </clipPath>
+  </defs>
+  <g id="topo_lupa" transform="translate(0 682.665)">
+    <g id="g1721" transform="translate(0 -682.665)">
+      <g id="g1723" clip-path="url(#clip-path)">
+        <g id="g1729" transform="translate(6.719 0.781)">
+          <path id="path1731" d="M-414.166-207.083a6.25,6.25,0,0,0-6.25-6.25,6.25,6.25,0,0,0-6.25,6.25,6.25,6.25,0,0,0,6.25,6.25A6.25,6.25,0,0,0-414.166-207.083Z" transform="translate(426.666 213.333)" fill="none" stroke="#fffcf4" stroke-linecap="square" stroke-miterlimit="10" stroke-width="2"/>
+        </g>
+        <g id="g1733" transform="translate(0.781 13.186)">
+          <path id="path1735" d="M-15.163-111.491a1.562,1.562,0,0,0,0,2.21,1.562,1.562,0,0,0,2.21,0l2.907-2.907a1.562,1.562,0,0,0,0-2.21h0a1.563,1.563,0,0,0-2.21,0Z" transform="translate(15.621 114.856)" fill="none" stroke="#fffcf4" stroke-linecap="square" stroke-miterlimit="10" stroke-width="2"/>
+        </g>
+        <g id="g1737" transform="translate(6.356 11.451)">
+          <path id="path1739" d="M-72.676,0l-2.193,2.193" transform="translate(74.869)" fill="none" stroke="#fffcf4" stroke-linecap="square" stroke-miterlimit="10" stroke-width="2"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,11 @@
+.list-payment {
+  display: flex;
+  flex-wrap: wrap;
+  padding-left: 0 !important;
+  gap: 10px;
+}
+
+.list-payment__item {
+  align-items: center;
+  display: flex;
+}
