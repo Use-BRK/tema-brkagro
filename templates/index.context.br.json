@@ -1,1 +1,1021 @@
-{"parent":"index.json","context":{"market":"br"},"sections":{"slideshow_HYW8U":{"type":"slideshow","disabled":false,"custom_css":[".slider-buttons {margin-top: -40px; padding-bottom: 0px;}","@media only screen and (max-width: 750px) {.slider-mobile-gutter {display: none; }}"],"settings":{"layout":"full_bleed","slide_height":"adapt_image","slider_visual":"dots","auto_rotate":true,"change_slides_speed":5,"header-0fc96d1aaf983d25e48f337b885979fe":null,"image_behavior":"none","header-6aa3e1c6581e0e41523eb1221b85e961":null,"show_text_below":false,"header-5f84ec7e8ba88536743ac26a1f7a0bdb":null,"accessibility_info":"Slideshow about our brand"},"blocks":{"slide_CfbXb":{"type":"slide","disabled":false,"settings":{"image":"shopify:\/\/shop_images\/LONGHORN_TEXAS.png","heading":"","heading_size":"h2","subheading":"","link":"shopify:\/\/collections\/agro-western","button_style_secondary":false,"box_align":"middle-center","show_text_box":false,"text_alignment":"center","image_overlay_opacity":0,"color_scheme":"scheme-1","header-0b80b3a939763aadc07ac61922698468":null,"text_alignment_mobile":"center"}},"slide_ATXDA":{"type":"slide","disabled":false,"settings":{"image":"shopify:\/\/shop_images\/Essenciais_mob.png","heading":"","heading_size":"h1","subheading":"","link":"shopify:\/\/collections\/essenciais-sem-estampa","button_style_secondary":true,"box_align":"bottom-right","show_text_box":false,"text_alignment":"center","image_overlay_opacity":0,"color_scheme":"","header-7ca38b04966c2010922ee92aca330c9d":null,"text_alignment_mobile":"center"}},"slide_88P9P":{"type":"slide","disabled":true,"settings":{"image":"shopify:\/\/shop_images\/FULLBANNER_EU_SOU_DO_AGRO_481aa331-48c3-48c8-9279-86b0299ca769.png","heading":"","heading_size":"h1","subheading":"","link":"shopify:\/\/collections\/eu-sou-do-agro","button_style_secondary":true,"box_align":"bottom-right","show_text_box":false,"text_alignment":"center","image_overlay_opacity":0,"color_scheme":"","header-c40c7461a148165323d598fbed6674b7":null,"text_alignment_mobile":"center"}}},"block_order":["slide_CfbXb","slide_ATXDA","slide_88P9P"],"name":"Fullbanner Desktop"},"slideshow_WLCXf":{"type":"slideshow","disabled":false,"custom_css":["@media only screen and (min-width: 750px) {.slider-mobile-gutter {display: none; }}",".slider-buttons {margin-top: -40px; padding-bottom: 0px; z-index: 1;}"],"settings":{"layout":"full_bleed","slide_height":"adapt_image","slider_visual":"dots","auto_rotate":true,"change_slides_speed":5,"header-e0340d1b991abd78f381ab409cf9c692":null,"image_behavior":"none","header-66761d83984468d138a754faffd70ed3":null,"show_text_below":false,"header-fe4f2c78890443b5c1444f9f6035fe73":null,"accessibility_info":"Apresentação de slides sobre nossa marca"},"blocks":{"slide_N9QhX":{"type":"slide","disabled":false,"settings":{"image":"shopify:\/\/shop_images\/LONGHORN_TEXAS_MOBILE.png","heading":"","heading_size":"h2","subheading":"","link":"https:\/\/www.brkagro.com.br\/search?q=long+horn&options%5Bprefix%5D=last&utm_source=direct&utm_content=%7C%7Cnemu_RfAhGqlt1y","button_style_secondary":false,"box_align":"middle-center","show_text_box":false,"text_alignment":"center","image_overlay_opacity":0,"color_scheme":"","header-7060985acd3b6950f8222064fedb23a8":null,"text_alignment_mobile":"center"}},"slide_eNRCf":{"type":"slide","disabled":false,"settings":{"image":"shopify:\/\/shop_images\/Essenciais_e0c1aeaf-ec3d-48da-8e1e-8ae5b3cef3f5.png","heading":"","heading_size":"h1","subheading":"","link":"shopify:\/\/collections\/essenciais-sem-estampa","button_style_secondary":false,"box_align":"middle-center","show_text_box":false,"text_alignment":"center","image_overlay_opacity":0,"color_scheme":"","header-7734f8c6fa8ec53b43b339c4fcacecc9":null,"text_alignment_mobile":"center"}},"slide_rebr4":{"type":"slide","disabled":true,"settings":{"image":"shopify:\/\/shop_images\/MOBILE_EU_SOU_DO_AGRO_b4c54e5d-b090-4765-8da9-cce4bfcd8dca.png","heading":"","heading_size":"h1","subheading":"","link":"shopify:\/\/collections\/eu-sou-do-agro","button_style_secondary":false,"box_align":"middle-center","show_text_box":false,"text_alignment":"center","image_overlay_opacity":0,"color_scheme":"","header-390842295c3ef52dfd14c539ea6017d0":null,"text_alignment_mobile":"center"}}},"block_order":["slide_N9QhX","slide_eNRCf","slide_rebr4"],"name":"Fullbanner Mobile"},"1760703598ee54c4b7":{"type":"apps","disabled":false,"settings":{"include_margins":false},"blocks":{"hextom_announce_bar_qab_custom_placement_Vy6DX":{"type":"shopify:\/\/apps\/hextom-announce-bar\/blocks\/qab-custom-placement\/9ac2a261-3b8b-42c8-9613-d34eb2e079d3","disabled":false,"settings":{}}},"block_order":["hextom_announce_bar_qab_custom_placement_Vy6DX"]},"rich_text_TrwrQ":{"type":"rich-text","disabled":true,"settings":{"desktop_content_position":"center","content_alignment":"center","color_scheme":"scheme-1","full_width":true,"header-37c4595f6a12600c7c97e8069c059962":null,"padding_top":0,"padding_bottom":0},"blocks":{"heading_CHTwJ":{"type":"heading","disabled":false,"settings":{"heading":"Campeãs de Vendas","heading_size":"h1"}}},"block_order":["heading_CHTwJ"],"name":"t:sections.rich-text.presets.name"},"featured_collection_Ecid7":{"type":"featured-collection","disabled":false,"custom_css":["@media only screen and (max-width: 750px) {.collection {display: none; }}"],"settings":{"title":"🚀 Envio FULL + BRINDE 🎁","heading_size":"h2","description":"","show_description":false,"description_style":"body","collection":"envio-imediato-camisas","products_to_show":10,"columns_desktop":5,"full_width":true,"show_view_all":true,"view_all_style":"solid","enable_desktop_slider":true,"color_scheme":"","header-4d898bd155868c52396ce9ea273a03a0":null,"image_ratio":"adapt","image_shape":"default","show_secondary_image":true,"show_vendor":false,"show_rating":false,"quick_add":"none","header-7d80f01a3530a94d6bea138338db1847":null,"columns_mobile":"2","swipe_on_mobile":true,"header-2752235006bc16c1e01ad81837b3f787":null,"padding_top":40,"padding_bottom":0},"blocks":{},"block_order":[],"name":"Envio FULL + BRINDE"},"featured_collection_cbWAQ":{"type":"featured-collection","disabled":false,"custom_css":["@media only screen and (min-width: 750px) {.collection {display: none; }}",".title {text-align: center; font-weight: 800; color: #204028;}",".card__information h3 {overflow: hidden; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2;}",".grid__item {width: calc(70% - var(--grid-mobile-horizontal-spacing) - 3rem);}",".botoes-produto {display: none;}"],"settings":{"title":"🚀 Envio FULL + BRINDE 🎁","heading_size":"h2","description":"","show_description":false,"description_style":"body","collection":"envio-imediato-camisas","products_to_show":15,"columns_desktop":4,"full_width":true,"show_view_all":true,"view_all_style":"solid","enable_desktop_slider":true,"color_scheme":"","header-883be8a872ba1159c78e96e19d83591d":null,"image_ratio":"adapt","image_shape":"default","show_secondary_image":false,"show_vendor":false,"show_rating":false,"quick_add":"none","header-ad10c577e64068ef94e6061933a8b822":null,"columns_mobile":"1","swipe_on_mobile":true,"header-989e914323068a40b2306684835dc811":null,"padding_top":24,"padding_bottom":0},"blocks":{},"block_order":[],"name":"Envio FULL + BRINDE (Mobile)"},"featured_collection_kz9kg":{"type":"featured-collection","disabled":false,"custom_css":["@media only screen and (min-width: 750px) {.collection {display: none; }}",".title {text-align: center; font-weight: 800; color: #204028;}",".card__information h3 {overflow: hidden; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2;}",".grid__item {width: calc(70% - var(--grid-mobile-horizontal-spacing) - 3rem);}",".botoes-produto {display: none;}"],"settings":{"title":"🥇 Sucesso de Vendas ✨","heading_size":"h2","description":"","show_description":false,"description_style":"body","collection":"mais-vendidos","products_to_show":15,"columns_desktop":4,"full_width":true,"show_view_all":true,"view_all_style":"solid","enable_desktop_slider":true,"color_scheme":"scheme-1","header-2672b7476bffab22ee079e06d9b040b8":null,"image_ratio":"adapt","image_shape":"default","show_secondary_image":false,"show_vendor":false,"show_rating":false,"quick_add":"none","header-f8f965f748d0285c8e32fbdd6283d4bb":null,"columns_mobile":"1","swipe_on_mobile":true,"header-ab74189ce8b25d9f3ca512d582660c43":null,"padding_top":24,"padding_bottom":24},"blocks":{},"block_order":[],"name":"Mais Vendidos (Mobile)"},"collage_banners_ywRGx":{"type":"collage-banners","disabled":false,"custom_css":["img {width: 100%; max-height: 100%; height: auto; display: block; object-fit: contain; border-radius: 20px;}",".collage-card {border: none; box-shadow: none;}","* {padding: 0 2px 0 2px;}"],"settings":{"heading":"","heading_size":"h1","desktop_layout":"right","mobile_layout":"column","card_styles":"none","color_scheme":"","header-7cfab418f62e67a29668c616778d13a3":null,"padding_top":0,"padding_bottom":20},"blocks":{"image_FTLpp":{"type":"image","disabled":false,"settings":{"image":"shopify:\/\/shop_images\/Mini_Banner_1.png","link":"https:\/\/www.brkagro.com.br\/collections\/envio-imediato?utm_source=direct&utm_content=%7C%7Cnemu_Kvdtqr7l4P"}},"image_qLHJf":{"type":"image","disabled":false,"settings":{"image":"shopify:\/\/shop_images\/Mini_Banner_2.png","link":"https:\/\/www.brkagro.com.br\/collections\/agro-kids?sort_by=created-descending"}},"image_AzPUM":{"type":"image","disabled":false,"settings":{"image":"shopify:\/\/shop_images\/Mini_Banner_3.png","link":"https:\/\/www.brkagro.com.br\/collections\/o-agro-e-delas?utm_source=direct&utm_content=%7C%7Cnemu_Kvdtqr7l4P"}}},"block_order":["image_FTLpp","image_qLHJf","image_AzPUM"]},"multicolumn_categorias_8Tyxk":{"type":"multicolumn-categorias","disabled":false,"custom_css":[],"settings":{"title":"<strong>Coleções do Agro<\/strong>","heading_size":"h0","image_width":"full","image_ratio":"square","columns_desktop":8,"column_alignment":"center","background_style":"primary","button_label":"","button_link":"","color_scheme":"scheme-bea3cc1b-3ac8-41f8-a50b-cb973759c80e","header-de2839d7c91a02b31c7188156ee9c6b0":null,"columns_mobile":"2","swipe_on_mobile":true,"header-0a7dc506210a3cbd761c45e352f0295c":null,"padding_top":16,"padding_bottom":16},"blocks":{"column_Xh9kx":{"type":"column","disabled":false,"settings":{"image":"shopify:\/\/shop_images\/TRATORES_ad5c7044-f00c-4a98-9ed4-97fca9461aa1.png","title":"","text":"","link_label":"Tratores","link":"shopify:\/\/collections\/tratores-e-maquinas"}},"column_8kthH":{"type":"column","disabled":false,"settings":{"image":"shopify:\/\/shop_images\/AGRI_4580ea19-2a45-4d5c-ac94-0207b383efd5.png","title":"","text":"","link_label":"Agricultura","link":"shopify:\/\/collections\/agricultura"}},"column_7NbrE":{"type":"column","disabled":false,"settings":{"image":"shopify:\/\/shop_images\/PECUARIA_ce8c0a30-ebb6-4787-9bcb-a97b20909334.png","title":"","text":"","link_label":"Pecuária","link":"shopify:\/\/collections\/pecuaria"}},"column_Emn7V":{"type":"column","disabled":false,"settings":{"image":"shopify:\/\/shop_images\/FEMININA_c9805955-cfc2-4a11-a108-db5a7847e212.png","title":"","text":"","link_label":"Feminina","link":"shopify:\/\/collections\/feminina"}},"column_3w9nT":{"type":"column","disabled":false,"settings":{"image":"shopify:\/\/shop_images\/BRASIL_3d50d8d8-14d7-4d4f-8598-75a5b9f92da6.png","title":"","text":"","link_label":"Brasil","link":"shopify:\/\/collections\/camisas-do-brasil"}},"column_x6Hyd":{"type":"column","disabled":false,"settings":{"image":"shopify:\/\/shop_images\/CAVALOS_aae1a228-0e71-4f1d-b173-101db5bf3aab.png","title":"","text":"","link_label":"Cavalos","link":"shopify:\/\/collections\/cavalos"}},"column_WQ6jG":{"type":"column","disabled":false,"settings":{"image":"shopify:\/\/shop_images\/PROFISSOES_9d0a4460-b0ea-4260-b407-98ca61b325d1.png","title":"","text":"","link_label":"Veterinária","link":"shopify:\/\/collections\/cursos-profissoes"}},"column_B3ydr":{"type":"column","disabled":false,"settings":{"image":"shopify:\/\/shop_images\/BASICAS_0bd1b7e1-9226-43ef-8908-21b3e852eec8.png","title":"","text":"","link_label":"Básicas","link":"shopify:\/\/collections\/essenciais-sem-estampa"}},"column_JUjT3":{"type":"column","disabled":false,"settings":{"image":"shopify:\/\/shop_images\/SAO_BENTO_4ff6b59c-cd83-45f4-9fe9-1e7ce49f59ac.png","title":"","text":"","link_label":"São Bento","link":"shopify:\/\/collections\/sao-bento"}}},"block_order":["column_Xh9kx","column_8kthH","column_7NbrE","column_Emn7V","column_3w9nT","column_x6Hyd","column_WQ6jG","column_B3ydr","column_JUjT3"]},"featured_collection_Wwh6y":{"type":"featured-collection","disabled":true,"custom_css":[".card__information h3 {overflow: hidden; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2;}",".grid__item {width: calc(70% - var(--grid-mobile-horizontal-spacing) - 3rem);}"],"settings":{"title":"Kit Camisetas de Algodão","heading_size":"h2","description":"","show_description":false,"description_style":"body","collection":"kit-algodao","products_to_show":10,"columns_desktop":5,"full_width":true,"show_view_all":false,"view_all_style":"solid","enable_desktop_slider":true,"color_scheme":"","header-0821cc0270419ce11b4e9301c50843c1":null,"image_ratio":"adapt","image_shape":"default","show_secondary_image":true,"show_vendor":false,"show_rating":false,"quick_add":"none","header-b499ca32d59b6949165953a5c11f4b21":null,"columns_mobile":"1","swipe_on_mobile":true,"header-bf22d361613bb26c4b80a27c865bef5f":null,"padding_top":36,"padding_bottom":36},"blocks":{},"block_order":[],"name":"Kit Camisetas de Algodão"},"multicolumn_pHwhL":{"type":"multicolumn","disabled":false,"custom_css":[".multicolumn-card {background: #fff;}",".multicolumn-card-spacing {padding: 0; margin: 0;}",".multicolumn-list {gap: 0; justify-content: center;}","@media screen and (max-width: 749px) {.multicolumn-list {max-height: 100%; }}"],"settings":{"title":"","heading_size":"h1","image_width":"full","image_ratio":"adapt","columns_desktop":3,"column_alignment":"left","background_style":"primary","button_link":"","color_scheme":"","header-09369053fe39cd4bdbc7a0f65ee2555c":null,"columns_mobile":"1","swipe_on_mobile":true,"header-04eb29b4e531e23fd048557ab267dd5a":null,"padding_top":0,"padding_bottom":36},"blocks":{"column_6CPdR":{"type":"column","disabled":false,"settings":{"image":"shopify:\/\/shop_images\/Minibanner_Lancamentos_Agro_V3.webp","title":"","text":"","link":"shopify:\/\/collections\/lancamentos"}},"column_xxiXt":{"type":"column","disabled":false,"settings":{"image":"shopify:\/\/shop_images\/Minibanner__Vendidas_Agro_V3.webp","title":"","text":"","link":"shopify:\/\/collections\/mais-vendidos"}},"column_8dVtx":{"type":"column","disabled":false,"settings":{"image":"shopify:\/\/shop_images\/Minibanner_Personalizacao_Maquianas_Video_V2_GIF.gif","title":"","text":"","link":"https:\/\/personalize.brkagro.com.br\/lp"}}},"block_order":["column_6CPdR","column_xxiXt","column_8dVtx"]},"featured_collection_with_image_eJb8i":{"type":"featured-collection-with-image","disabled":true,"custom_css":[".collection-with-image {padding-right: 20px; padding-left: 20px; align-items: center; justify-content: space-between;}",".collection-with-image .slider-component-desktop {width: calc(100% - 660px);}","@media screen and (max-width: 749px) {.collection-with-image {flex-wrap: wrap; } .multicolumn-card__image {max-width: 100%; object-fit: contain; height: 100%; } .slider-mobile-gutter {max-width: 100%; } .collection-with-image .slider-component-desktop {width: 100%; margin-top: 15px; }}"],"settings":{"title":"Kits Promocionais","heading_size":"h1","description":"","show_description":false,"description_style":"body","collection":"kits-promocionais","products_to_show":9,"columns_desktop":2,"full_width":true,"show_view_all":false,"view_all_style":"solid","enable_desktop_slider":true,"color_scheme":"scheme-5","header-9c74b0cc8f29e313cd82791bf6500518":null,"image_ratio":"adapt","image_shape":"default","show_secondary_image":true,"show_vendor":false,"show_rating":false,"quick_add":"none","header-81a2887d310756caecd9316e5a169cc7":null,"columns_mobile":"1","swipe_on_mobile":true,"header-f4eef4f5169803999fd81ba953f75379":null,"padding_top":36,"padding_bottom":40},"blocks":{"image_8kJTa":{"type":"image","disabled":false,"settings":{"image":"shopify:\/\/shop_images\/KITS-AGRO.png","link":"https:\/\/brkagro.myshopify.com\/"}}},"block_order":["image_8kJTa"]},"featured_collection_PwdAj":{"type":"featured-collection","disabled":false,"custom_css":[".card__information h3 {overflow: hidden; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2;}",".grid__item {width: calc(70% - var(--grid-mobile-horizontal-spacing) - 3rem);}"],"settings":{"title":"Bonés Brk Agro","heading_size":"h2","description":"","show_description":false,"description_style":"body","collection":"bones","products_to_show":10,"columns_desktop":5,"full_width":true,"show_view_all":false,"view_all_style":"solid","enable_desktop_slider":true,"color_scheme":"scheme-1","header-67c70195e8b16fb5532f75b484d12bed":null,"image_ratio":"adapt","image_shape":"default","show_secondary_image":true,"show_vendor":false,"show_rating":false,"quick_add":"none","header-9fef28738acbdc67310f4f2cdae180e3":null,"columns_mobile":"1","swipe_on_mobile":true,"header-3b1581a8ff0fb6ee61dbbfbeee79511b":null,"padding_top":28,"padding_bottom":28},"blocks":{},"block_order":[],"name":"Bonés"},"multicolumn_instagram_LR9H3":{"type":"multicolumn-instagram","disabled":false,"custom_css":[".multicolumn__title {justify-content: center; margin-top: 30px;}",".multicolumn-list {column-gap: 0; justify-content: center;}","h2 {font-weight: 800; text-align: center; color: #204028; font-size: 24px;}",".multicolumn-card__image-wrapper {margin: 0;}","img {max-width: 100%; max-height: 100%;}","@media only screen and (min-width: 750px) {h2 {font-size: 30px; }}","@media only screen and (max-width: 750px) {.isolate {padding-top: 20px; } .multicolumn-list {min-height: 175px; } .slider-buttons {display: none; }}"],"settings":{"title":"Siga no instagram <a href=\"https:\/\/www.instagram.com\/brkagro_ofc\/\" target=\"_blank\" title=\"https:\/\/www.instagram.com\/brkagro_ofc\/\">@brkagro_ofc<\/a>","heading_size":"h1","image_width":"full","image_ratio":"square","columns_desktop":6,"column_alignment":"left","background_style":"primary","color_scheme":"","header-c5775a30b9234ccd888245c7ffd48d99":null,"columns_mobile":"2","swipe_on_mobile":true,"header-721bdaf1a78ff26cab3706ad465396f3":null,"padding_top":0,"padding_bottom":20},"blocks":{"column_DMfVW":{"type":"column","disabled":false,"settings":{"image":"shopify:\/\/shop_images\/Prancheta_5_1__1_11zon.webp","link":"https:\/\/www.instagram.com\/brkagro_ofc\/"}},"column_A3aaa":{"type":"column","disabled":false,"settings":{"image":"shopify:\/\/shop_images\/Prancheta_7_1__3_11zon.webp","link":"https:\/\/www.instagram.com\/brkagro_ofc\/"}},"column_9NQPA":{"type":"column","disabled":false,"settings":{"image":"shopify:\/\/shop_images\/Prancheta_4_1__7_11zon.webp","link":"https:\/\/www.instagram.com\/brkagro_ofc\/"}},"column_BKXan":{"type":"column","disabled":false,"settings":{"image":"shopify:\/\/shop_images\/Prancheta_2_2__5_11zon.webp","link":"https:\/\/www.instagram.com\/brkagro_ofc\/"}},"column_dt9hU":{"type":"column","disabled":false,"settings":{"image":"shopify:\/\/shop_images\/Prancheta_3_2__6_11zon.webp","link":"https:\/\/www.instagram.com\/brkagro_ofc\/"}},"column_BHNTF":{"type":"column","disabled":false,"settings":{"image":"shopify:\/\/shop_images\/Prancheta_6_1__2_11zon.webp","link":"https:\/\/www.instagram.com\/brkagro_ofc\/"}}},"block_order":["column_DMfVW","column_A3aaa","column_9NQPA","column_BKXan","column_dt9hU","column_BHNTF"]},"multicolumn":{"disabled":true,"custom_css":[".multicolumn-card {display: flex; align-items: center; justify-content: center;}",".multicolumn-card__info {padding: 0;}","h3 {font-size: 12px; font-family: \"Poppins\"; font-weight: 700;}",".multicolumn-card__image-wrapper {width: 12%; margin-left: 0; margin-right: 5px;}",".multicolumn-list li {border-right: 1px solid #e8e8e8; max-width: 100%; width: auto; padding: 10px;}",".multicolumn-list li:last-of-type {border: none;}",".multicolumn-list.slider {column-gap: 0; justify-content: center;}",".slider-buttons {display: none;}"],"settings":{"heading_size":"h0","image_ratio":"adapt","columns_desktop":5,"column_alignment":"center","columns_mobile":"1","swipe_on_mobile":true,"padding_top":0,"padding_bottom":0},"blocks":{"column1":{"settings":{"image":"shopify:\/\/shop_images\/bannerregua_1.svg","title":"Não serviu? 1ª Troca Grátis","text":""}},"column_j6gGw":{"type":"column","disabled":false,"settings":{"image":null,"title":"Coluna","text":"<p>Combine um texto com uma imagem para destacar o produto, a coleção ou o post do blog escolhido. Adicione informações sobre disponibilidade, estilo ou até mesmo uma avaliação.<\/p>","link":""}},"column2":{"settings":{"image":"shopify:\/\/shop_images\/bannerregua_2.svg","title":"Frete Grátis, consulte as regras","text":""}},"column3":{"settings":{"image":"shopify:\/\/shop_images\/bannerregua_3.svg","title":"5% OFF pagando no PIX","text":""}},"column_B9QBT":{"type":"column","disabled":false,"settings":{"image":"shopify:\/\/shop_images\/bannerregua_4.svg","title":"Parcele em até 3x s\/ juros no cartão","text":"","link":""}},"column_NxrQJ":{"type":"column","disabled":false,"settings":{"image":"shopify:\/\/shop_images\/bannerregua_5.svg","title":"Site 100% Seguro, pode confiar!","text":"","link":""}}},"block_order":["column1","column_j6gGw","column2","column3","column_B9QBT","column_NxrQJ"]},"featured_collection":{"custom_css":["@media only screen and (max-width: 750px) {.collection {display: none; }}"],"settings":{"title":"🥇 Sucesso de Vendas ✨","collection":"mais-vendidos","products_to_show":10,"columns_desktop":5,"full_width":true,"show_view_all":true,"view_all_style":"solid","enable_desktop_slider":true,"image_ratio":"adapt","image_shape":"default","quick_add":"none","columns_mobile":"2","swipe_on_mobile":true,"padding_top":40,"padding_bottom":0},"blocks":{},"name":"Mais Vendidos"},"video":{"disabled":true,"settings":{"heading":"Brk Agro - A marca do Agro","heading_size":"h1","video_url":"https:\/\/www.youtube.com\/watch?v=lAkoS0_OUaU","cover_image":"shopify:\/\/shop_images\/Captura_de_tela_2024-10-24_160245.png","color_scheme":"scheme-5","padding_top":40,"padding_bottom":8},"blocks":{}}},"order":["multicolumn","slideshow_HYW8U","slideshow_WLCXf","1760703598ee54c4b7","rich_text_TrwrQ","featured_collection_Ecid7","featured_collection_cbWAQ","featured_collection","featured_collection_kz9kg","collage_banners_ywRGx","multicolumn_categorias_8Tyxk","featured_collection_Wwh6y","multicolumn_pHwhL","featured_collection_with_image_eJb8i","featured_collection_PwdAj","video","multicolumn_instagram_LR9H3"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "parent": "index.json",
+  "context": {
+    "market": "br"
+  },
+  "sections": {
+    "slideshow_HYW8U": {
+      "type": "slideshow",
+      "disabled": false,
+      "custom_css": [
+        ".slider-buttons {margin-top: -40px; padding-bottom: 0px;}",
+        "@media only screen and (max-width: 750px) {.slider-mobile-gutter {display: none; }}"
+      ],
+      "settings": {
+        "layout": "full_bleed",
+        "slide_height": "adapt_image",
+        "slider_visual": "dots",
+        "auto_rotate": true,
+        "change_slides_speed": 5,
+        "header-a75a6633323b7681ae12802b77c3b65a": null,
+        "image_behavior": "none",
+        "header-a56c7bb68736493488f560868824438a": null,
+        "show_text_below": false,
+        "header-84ed4e42c91348c80c07311d400cd561": null,
+        "accessibility_info": "Slideshow about our brand"
+      },
+      "blocks": {
+        "slide_CfbXb": {
+          "type": "slide",
+          "disabled": false,
+          "settings": {
+            "image": "shopify://shop_images/LONGHORN_TEXAS.png",
+            "heading": "",
+            "heading_size": "h2",
+            "subheading": "",
+            "link": "shopify://collections/agro-western",
+            "button_style_secondary": false,
+            "box_align": "middle-center",
+            "show_text_box": false,
+            "text_alignment": "center",
+            "image_overlay_opacity": 0,
+            "color_scheme": "scheme-1",
+            "header-ba090217ab417803f4b82a108a9f0df3": null,
+            "text_alignment_mobile": "center"
+          }
+        },
+        "slide_ATXDA": {
+          "type": "slide",
+          "disabled": false,
+          "settings": {
+            "image": "shopify://shop_images/Essenciais_mob.png",
+            "heading": "",
+            "heading_size": "h1",
+            "subheading": "",
+            "link": "shopify://collections/essenciais-sem-estampa",
+            "button_style_secondary": true,
+            "box_align": "bottom-right",
+            "show_text_box": false,
+            "text_alignment": "center",
+            "image_overlay_opacity": 0,
+            "color_scheme": "",
+            "header-b5f3ae61dcb2c90ad019a0792ea67cd4": null,
+            "text_alignment_mobile": "center"
+          }
+        },
+        "slide_88P9P": {
+          "type": "slide",
+          "disabled": true,
+          "settings": {
+            "image": "shopify://shop_images/FULLBANNER_EU_SOU_DO_AGRO_481aa331-48c3-48c8-9279-86b0299ca769.png",
+            "heading": "",
+            "heading_size": "h1",
+            "subheading": "",
+            "link": "shopify://collections/eu-sou-do-agro",
+            "button_style_secondary": true,
+            "box_align": "bottom-right",
+            "show_text_box": false,
+            "text_alignment": "center",
+            "image_overlay_opacity": 0,
+            "color_scheme": "",
+            "header-ea4881ab20d544214009577ec2500cc7": null,
+            "text_alignment_mobile": "center"
+          }
+        }
+      },
+      "block_order": [
+        "slide_CfbXb",
+        "slide_ATXDA",
+        "slide_88P9P"
+      ],
+      "name": "Fullbanner Desktop"
+    },
+    "slideshow_WLCXf": {
+      "type": "slideshow",
+      "disabled": false,
+      "custom_css": [
+        "@media only screen and (min-width: 750px) {.slider-mobile-gutter {display: none; }}",
+        ".slider-buttons {margin-top: -40px; padding-bottom: 0px; z-index: 1;}"
+      ],
+      "settings": {
+        "layout": "full_bleed",
+        "slide_height": "adapt_image",
+        "slider_visual": "dots",
+        "auto_rotate": true,
+        "change_slides_speed": 5,
+        "header-df074108157ac3664fefc01a2fd0b26c": null,
+        "image_behavior": "none",
+        "header-29a2886c5fe00c8edb83d605aa19dc3c": null,
+        "show_text_below": false,
+        "header-cf42ca5b47413bd84941dfa7a2967fc7": null,
+        "accessibility_info": "Apresentação de slides sobre nossa marca"
+      },
+      "blocks": {
+        "slide_N9QhX": {
+          "type": "slide",
+          "disabled": false,
+          "settings": {
+            "image": "shopify://shop_images/LONGHORN_TEXAS_MOBILE.png",
+            "heading": "",
+            "heading_size": "h2",
+            "subheading": "",
+            "link": "https://www.brkagro.com.br/search?q=long+horn&options%5Bprefix%5D=last&utm_source=direct&utm_content=%7C%7Cnemu_RfAhGqlt1y",
+            "button_style_secondary": false,
+            "box_align": "middle-center",
+            "show_text_box": false,
+            "text_alignment": "center",
+            "image_overlay_opacity": 0,
+            "color_scheme": "",
+            "header-a942dffc26936c28fcfe6bf023f3b12b": null,
+            "text_alignment_mobile": "center"
+          }
+        },
+        "slide_eNRCf": {
+          "type": "slide",
+          "disabled": false,
+          "settings": {
+            "image": "shopify://shop_images/Essenciais_e0c1aeaf-ec3d-48da-8e1e-8ae5b3cef3f5.png",
+            "heading": "",
+            "heading_size": "h1",
+            "subheading": "",
+            "link": "shopify://collections/essenciais-sem-estampa",
+            "button_style_secondary": false,
+            "box_align": "middle-center",
+            "show_text_box": false,
+            "text_alignment": "center",
+            "image_overlay_opacity": 0,
+            "color_scheme": "",
+            "header-b622e7a223db1d54b7f903206798c748": null,
+            "text_alignment_mobile": "center"
+          }
+        },
+        "slide_rebr4": {
+          "type": "slide",
+          "disabled": true,
+          "settings": {
+            "image": "shopify://shop_images/MOBILE_EU_SOU_DO_AGRO_b4c54e5d-b090-4765-8da9-cce4bfcd8dca.png",
+            "heading": "",
+            "heading_size": "h1",
+            "subheading": "",
+            "link": "shopify://collections/eu-sou-do-agro",
+            "button_style_secondary": false,
+            "box_align": "middle-center",
+            "show_text_box": false,
+            "text_alignment": "center",
+            "image_overlay_opacity": 0,
+            "color_scheme": "",
+            "header-b1fa5db551b6a258451c72faf7ab3285": null,
+            "text_alignment_mobile": "center"
+          }
+        }
+      },
+      "block_order": [
+        "slide_N9QhX",
+        "slide_eNRCf",
+        "slide_rebr4"
+      ],
+      "name": "Fullbanner Mobile"
+    },
+    "1760703598ee54c4b7": {
+      "type": "apps",
+      "disabled": false,
+      "settings": {
+        "include_margins": false
+      },
+      "blocks": {
+        "hextom_announce_bar_qab_custom_placement_Vy6DX": {
+          "type": "shopify://apps/hextom-announce-bar/blocks/qab-custom-placement/9ac2a261-3b8b-42c8-9613-d34eb2e079d3",
+          "disabled": false,
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "hextom_announce_bar_qab_custom_placement_Vy6DX"
+      ]
+    },
+    "rich_text_TrwrQ": {
+      "type": "rich-text",
+      "disabled": true,
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "scheme-1",
+        "full_width": true,
+        "header-e1a97b54cc7a8fa82df0c154dc9d4f8f": null,
+        "padding_top": 0,
+        "padding_bottom": 0
+      },
+      "blocks": {
+        "heading_CHTwJ": {
+          "type": "heading",
+          "disabled": false,
+          "settings": {
+            "heading": "Campeãs de Vendas",
+            "heading_size": "h1"
+          }
+        }
+      },
+      "block_order": [
+        "heading_CHTwJ"
+      ],
+      "name": "t:sections.rich-text.presets.name"
+    },
+    "featured_collection_Ecid7": {
+      "type": "featured-collection",
+      "disabled": false,
+      "custom_css": [
+        "@media only screen and (max-width: 750px) {.collection {display: none; }}"
+      ],
+      "settings": {
+        "title": "🚀 Envio FULL + BRINDE 🎁",
+        "heading_size": "h2",
+        "description": "",
+        "show_description": false,
+        "description_style": "body",
+        "collection": "envio-imediato-camisas",
+        "products_to_show": 10,
+        "columns_desktop": 5,
+        "full_width": true,
+        "show_view_all": true,
+        "view_all_style": "solid",
+        "enable_desktop_slider": true,
+        "color_scheme": "",
+        "header-e89408015f879236a0414dc237259b37": null,
+        "image_ratio": "adapt",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "quick_add": "none",
+        "header-755cc347f3307d61141dae3f4760856e": null,
+        "columns_mobile": "2",
+        "swipe_on_mobile": true,
+        "header-2b31aea56b556327a6c4b31541c6efdb": null,
+        "padding_top": 40,
+        "padding_bottom": 0
+      },
+      "blocks": {},
+      "block_order": [],
+      "name": "Envio FULL + BRINDE"
+    },
+    "featured_collection_cbWAQ": {
+      "type": "featured-collection",
+      "disabled": false,
+      "custom_css": [
+        "@media only screen and (min-width: 750px) {.collection {display: none; }}",
+        ".title {text-align: center; font-weight: 800; color: #204028;}",
+        ".card__information h3 {overflow: hidden; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2;}",
+        ".grid__item {width: calc(70% - var(--grid-mobile-horizontal-spacing) - 3rem);}",
+        ".botoes-produto {display: none;}"
+      ],
+      "settings": {
+        "title": "🚀 Envio FULL + BRINDE 🎁",
+        "heading_size": "h2",
+        "description": "",
+        "show_description": false,
+        "description_style": "body",
+        "collection": "envio-imediato-camisas",
+        "products_to_show": 15,
+        "columns_desktop": 4,
+        "full_width": true,
+        "show_view_all": true,
+        "view_all_style": "solid",
+        "enable_desktop_slider": true,
+        "color_scheme": "",
+        "header-87382c8f2bcd00d49c510b0fd3526f2f": null,
+        "image_ratio": "adapt",
+        "image_shape": "default",
+        "show_secondary_image": false,
+        "show_vendor": false,
+        "show_rating": false,
+        "quick_add": "none",
+        "header-f65125b6c8f0d33ece29f4ee9c9ea689": null,
+        "columns_mobile": "1",
+        "swipe_on_mobile": true,
+        "header-e04e486edf693dea565adfbaea2222b6": null,
+        "padding_top": 24,
+        "padding_bottom": 0
+      },
+      "blocks": {},
+      "block_order": [],
+      "name": "Envio FULL + BRINDE (Mobile)"
+    },
+    "featured_collection_kz9kg": {
+      "type": "featured-collection",
+      "disabled": false,
+      "custom_css": [
+        "@media only screen and (min-width: 750px) {.collection {display: none; }}",
+        ".title {text-align: center; font-weight: 800; color: #204028;}",
+        ".card__information h3 {overflow: hidden; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2;}",
+        ".grid__item {width: calc(70% - var(--grid-mobile-horizontal-spacing) - 3rem);}",
+        ".botoes-produto {display: none;}"
+      ],
+      "settings": {
+        "title": "🥇 Sucesso de Vendas ✨",
+        "heading_size": "h2",
+        "description": "",
+        "show_description": false,
+        "description_style": "body",
+        "collection": "mais-vendidos",
+        "products_to_show": 15,
+        "columns_desktop": 4,
+        "full_width": true,
+        "show_view_all": true,
+        "view_all_style": "solid",
+        "enable_desktop_slider": true,
+        "color_scheme": "scheme-1",
+        "header-2cd42757971c005d870edadb1bd1802d": null,
+        "image_ratio": "adapt",
+        "image_shape": "default",
+        "show_secondary_image": false,
+        "show_vendor": false,
+        "show_rating": false,
+        "quick_add": "none",
+        "header-32e2b7f114691d9fbb9dec8a2ab384e7": null,
+        "columns_mobile": "1",
+        "swipe_on_mobile": true,
+        "header-9083548088f7cb77bf1476619057aa1f": null,
+        "padding_top": 24,
+        "padding_bottom": 24
+      },
+      "blocks": {},
+      "block_order": [],
+      "name": "Mais Vendidos (Mobile)"
+    },
+    "collage_banners_ywRGx": {
+      "type": "collage-banners",
+      "disabled": false,
+      "custom_css": [
+        "img {width: 100%; max-height: 100%; height: auto; display: block; object-fit: contain; border-radius: 20px;}",
+        ".collage-card {border: none; box-shadow: none;}",
+        "* {padding: 0 2px 0 2px;}"
+      ],
+      "settings": {
+        "heading": "",
+        "heading_size": "h1",
+        "desktop_layout": "right",
+        "mobile_layout": "column",
+        "card_styles": "none",
+        "color_scheme": "",
+        "header-7ca1a5bb572bd7fbe0ed9368cb9c55ed": null,
+        "padding_top": 0,
+        "padding_bottom": 20
+      },
+      "blocks": {
+        "image_FTLpp": {
+          "type": "image",
+          "disabled": false,
+          "settings": {
+            "image": "shopify://shop_images/Mini_Banner_1.png",
+            "link": "https://www.brkagro.com.br/collections/envio-imediato?utm_source=direct&utm_content=%7C%7Cnemu_Kvdtqr7l4P"
+          }
+        },
+        "image_qLHJf": {
+          "type": "image",
+          "disabled": false,
+          "settings": {
+            "image": "shopify://shop_images/Mini_Banner_2.png",
+            "link": "https://www.brkagro.com.br/collections/agro-kids?sort_by=created-descending"
+          }
+        },
+        "image_AzPUM": {
+          "type": "image",
+          "disabled": false,
+          "settings": {
+            "image": "shopify://shop_images/Mini_Banner_3.png",
+            "link": "https://www.brkagro.com.br/collections/o-agro-e-delas?utm_source=direct&utm_content=%7C%7Cnemu_Kvdtqr7l4P"
+          }
+        }
+      },
+      "block_order": [
+        "image_FTLpp",
+        "image_qLHJf",
+        "image_AzPUM"
+      ]
+    },
+    "multicolumn_categorias_8Tyxk": {
+      "type": "multicolumn-categorias",
+      "disabled": false,
+      "custom_css": [],
+      "settings": {
+        "title": "<strong>Coleções do Agro</strong>",
+        "heading_size": "h0",
+        "image_width": "full",
+        "image_ratio": "square",
+        "columns_desktop": 8,
+        "column_alignment": "center",
+        "background_style": "primary",
+        "button_label": "",
+        "button_link": "",
+        "color_scheme": "scheme-bea3cc1b-3ac8-41f8-a50b-cb973759c80e",
+        "header-2461abef6a0c50fa3408486b78e72f3b": null,
+        "columns_mobile": "2",
+        "swipe_on_mobile": true,
+        "header-3869c4d64a136347a88f4e8daf8da9c8": null,
+        "padding_top": 16,
+        "padding_bottom": 16
+      },
+      "blocks": {
+        "column_Xh9kx": {
+          "type": "column",
+          "disabled": false,
+          "settings": {
+            "image": "shopify://shop_images/TRATORES_ad5c7044-f00c-4a98-9ed4-97fca9461aa1.png",
+            "title": "",
+            "text": "",
+            "link_label": "Tratores",
+            "link": "shopify://collections/tratores-e-maquinas"
+          }
+        },
+        "column_8kthH": {
+          "type": "column",
+          "disabled": false,
+          "settings": {
+            "image": "shopify://shop_images/AGRI_4580ea19-2a45-4d5c-ac94-0207b383efd5.png",
+            "title": "",
+            "text": "",
+            "link_label": "Agricultura",
+            "link": "shopify://collections/agricultura"
+          }
+        },
+        "column_7NbrE": {
+          "type": "column",
+          "disabled": false,
+          "settings": {
+            "image": "shopify://shop_images/PECUARIA_ce8c0a30-ebb6-4787-9bcb-a97b20909334.png",
+            "title": "",
+            "text": "",
+            "link_label": "Pecuária",
+            "link": "shopify://collections/pecuaria"
+          }
+        },
+        "column_Emn7V": {
+          "type": "column",
+          "disabled": false,
+          "settings": {
+            "image": "shopify://shop_images/FEMININA_c9805955-cfc2-4a11-a108-db5a7847e212.png",
+            "title": "",
+            "text": "",
+            "link_label": "Feminina",
+            "link": "shopify://collections/feminina"
+          }
+        },
+        "column_3w9nT": {
+          "type": "column",
+          "disabled": false,
+          "settings": {
+            "image": "shopify://shop_images/BRASIL_3d50d8d8-14d7-4d4f-8598-75a5b9f92da6.png",
+            "title": "",
+            "text": "",
+            "link_label": "Brasil",
+            "link": "shopify://collections/camisas-do-brasil"
+          }
+        },
+        "column_x6Hyd": {
+          "type": "column",
+          "disabled": false,
+          "settings": {
+            "image": "shopify://shop_images/CAVALOS_aae1a228-0e71-4f1d-b173-101db5bf3aab.png",
+            "title": "",
+            "text": "",
+            "link_label": "Cavalos",
+            "link": "shopify://collections/cavalos"
+          }
+        },
+        "column_WQ6jG": {
+          "type": "column",
+          "disabled": false,
+          "settings": {
+            "image": "shopify://shop_images/PROFISSOES_9d0a4460-b0ea-4260-b407-98ca61b325d1.png",
+            "title": "",
+            "text": "",
+            "link_label": "Veterinária",
+            "link": "shopify://collections/cursos-profissoes"
+          }
+        },
+        "column_B3ydr": {
+          "type": "column",
+          "disabled": false,
+          "settings": {
+            "image": "shopify://shop_images/BASICAS_0bd1b7e1-9226-43ef-8908-21b3e852eec8.png",
+            "title": "",
+            "text": "",
+            "link_label": "Básicas",
+            "link": "shopify://collections/essenciais-sem-estampa"
+          }
+        },
+        "column_JUjT3": {
+          "type": "column",
+          "disabled": false,
+          "settings": {
+            "image": "shopify://shop_images/SAO_BENTO_4ff6b59c-cd83-45f4-9fe9-1e7ce49f59ac.png",
+            "title": "",
+            "text": "",
+            "link_label": "São Bento",
+            "link": "shopify://collections/sao-bento"
+          }
+        }
+      },
+      "block_order": [
+        "column_Xh9kx",
+        "column_8kthH",
+        "column_7NbrE",
+        "column_Emn7V",
+        "column_3w9nT",
+        "column_x6Hyd",
+        "column_WQ6jG",
+        "column_B3ydr",
+        "column_JUjT3"
+      ]
+    },
+    "featured_collection_Wwh6y": {
+      "type": "featured-collection",
+      "disabled": true,
+      "custom_css": [
+        ".card__information h3 {overflow: hidden; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2;}",
+        ".grid__item {width: calc(70% - var(--grid-mobile-horizontal-spacing) - 3rem);}"
+      ],
+      "settings": {
+        "title": "Kit Camisetas de Algodão",
+        "heading_size": "h2",
+        "description": "",
+        "show_description": false,
+        "description_style": "body",
+        "collection": "kit-algodao",
+        "products_to_show": 10,
+        "columns_desktop": 5,
+        "full_width": true,
+        "show_view_all": false,
+        "view_all_style": "solid",
+        "enable_desktop_slider": true,
+        "color_scheme": "",
+        "header-a43d95616346a39c6766ae2efb851161": null,
+        "image_ratio": "adapt",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "quick_add": "none",
+        "header-c1c8fa5328d4a30ba6b7a63266bda94f": null,
+        "columns_mobile": "1",
+        "swipe_on_mobile": true,
+        "header-7b275f015aeedd095f3583d75671cfc8": null,
+        "padding_top": 36,
+        "padding_bottom": 36
+      },
+      "blocks": {},
+      "block_order": [],
+      "name": "Kit Camisetas de Algodão"
+    },
+    "multicolumn_pHwhL": {
+      "type": "multicolumn",
+      "disabled": false,
+      "custom_css": [
+        ".multicolumn-card {background: #fff;}",
+        ".multicolumn-card-spacing {padding: 0; margin: 0;}",
+        ".multicolumn-list {gap: 0; justify-content: center;}",
+        "@media screen and (max-width: 749px) {.multicolumn-list {max-height: 100%; }}"
+      ],
+      "settings": {
+        "title": "",
+        "heading_size": "h1",
+        "image_width": "full",
+        "image_ratio": "adapt",
+        "columns_desktop": 3,
+        "column_alignment": "left",
+        "background_style": "primary",
+        "button_link": "",
+        "color_scheme": "",
+        "header-04c1c4b32bb4de258dae946ba8065ef1": null,
+        "columns_mobile": "1",
+        "swipe_on_mobile": true,
+        "header-4b4411379ee213f70270ee79d856dd90": null,
+        "padding_top": 0,
+        "padding_bottom": 36
+      },
+      "blocks": {
+        "column_6CPdR": {
+          "type": "column",
+          "disabled": false,
+          "settings": {
+            "image": "shopify://shop_images/Minibanner_Lancamentos_Agro_V3.webp",
+            "title": "",
+            "text": "",
+            "link": "shopify://collections/lancamentos"
+          }
+        },
+        "column_xxiXt": {
+          "type": "column",
+          "disabled": false,
+          "settings": {
+            "image": "shopify://shop_images/Minibanner__Vendidas_Agro_V3.webp",
+            "title": "",
+            "text": "",
+            "link": "shopify://collections/mais-vendidos"
+          }
+        },
+        "column_8dVtx": {
+          "type": "column",
+          "disabled": false,
+          "settings": {
+            "image": "shopify://shop_images/Minibanner_Personalizacao_Maquianas_Video_V2_GIF.gif",
+            "title": "",
+            "text": "",
+            "link": "https://personalize.brkagro.com.br/lp"
+          }
+        }
+      },
+      "block_order": [
+        "column_6CPdR",
+        "column_xxiXt",
+        "column_8dVtx"
+      ]
+    },
+    "featured_collection_with_image_eJb8i": {
+      "type": "featured-collection-with-image",
+      "disabled": true,
+      "custom_css": [
+        ".collection-with-image {padding-right: 20px; padding-left: 20px; align-items: center; justify-content: space-between;}",
+        ".collection-with-image .slider-component-desktop {width: calc(100% - 660px);}",
+        "@media screen and (max-width: 749px) {.collection-with-image {flex-wrap: wrap; } .multicolumn-card__image {max-width: 100%; object-fit: contain; height: 100%; } .slider-mobile-gutter {max-width: 100%; } .collection-with-image .slider-component-desktop {width: 100%; margin-top: 15px; }}"
+      ],
+      "settings": {
+        "title": "Kits Promocionais",
+        "heading_size": "h1",
+        "description": "",
+        "show_description": false,
+        "description_style": "body",
+        "collection": "kits-promocionais",
+        "products_to_show": 9,
+        "columns_desktop": 2,
+        "full_width": true,
+        "show_view_all": false,
+        "view_all_style": "solid",
+        "enable_desktop_slider": true,
+        "color_scheme": "scheme-5",
+        "header-dfd0cd0d4035c1c0675ea3c2cc215dd5": null,
+        "image_ratio": "adapt",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "quick_add": "none",
+        "header-5621223608423f7ef657f3f255769f5f": null,
+        "columns_mobile": "1",
+        "swipe_on_mobile": true,
+        "header-f089e72ddf87edf720d317389116aca4": null,
+        "padding_top": 36,
+        "padding_bottom": 40
+      },
+      "blocks": {
+        "image_8kJTa": {
+          "type": "image",
+          "disabled": false,
+          "settings": {
+            "image": "shopify://shop_images/KITS-AGRO.png",
+            "link": "https://brkagro.myshopify.com/"
+          }
+        }
+      },
+      "block_order": [
+        "image_8kJTa"
+      ]
+    },
+    "featured_collection_PwdAj": {
+      "type": "featured-collection",
+      "disabled": false,
+      "custom_css": [
+        ".card__information h3 {overflow: hidden; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2;}",
+        ".grid__item {width: calc(70% - var(--grid-mobile-horizontal-spacing) - 3rem);}"
+      ],
+      "settings": {
+        "title": "Bonés Brk Agro",
+        "heading_size": "h2",
+        "description": "",
+        "show_description": false,
+        "description_style": "body",
+        "collection": "bones",
+        "products_to_show": 10,
+        "columns_desktop": 5,
+        "full_width": true,
+        "show_view_all": false,
+        "view_all_style": "solid",
+        "enable_desktop_slider": true,
+        "color_scheme": "scheme-1",
+        "header-cd6b1ba257658699e4d9e49a4f763547": null,
+        "image_ratio": "adapt",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "quick_add": "none",
+        "header-49baef03ecb3a798b64983a59caaeaa0": null,
+        "columns_mobile": "1",
+        "swipe_on_mobile": true,
+        "header-e5e985c4da8c82958815991c7c482f1d": null,
+        "padding_top": 28,
+        "padding_bottom": 28
+      },
+      "blocks": {},
+      "block_order": [],
+      "name": "Bonés"
+    },
+    "multicolumn_instagram_LR9H3": {
+      "type": "multicolumn-instagram",
+      "disabled": false,
+      "custom_css": [
+        ".multicolumn__title {justify-content: center; margin-top: 30px;}",
+        ".multicolumn-list {column-gap: 0; justify-content: center;}",
+        "h2 {font-weight: 800; text-align: center; color: #204028; font-size: 24px;}",
+        ".multicolumn-card__image-wrapper {margin: 0;}",
+        "img {max-width: 100%; max-height: 100%;}",
+        "@media only screen and (min-width: 750px) {h2 {font-size: 30px; }}",
+        "@media only screen and (max-width: 750px) {.isolate {padding-top: 20px; } .multicolumn-list {min-height: 175px; } .slider-buttons {display: none; }}"
+      ],
+      "settings": {
+        "title": "Siga no instagram <a href=\"https://www.instagram.com/brkagro_ofc/\" target=\"_blank\" title=\"https://www.instagram.com/brkagro_ofc/\">@brkagro_ofc</a>",
+        "heading_size": "h1",
+        "image_width": "full",
+        "image_ratio": "square",
+        "columns_desktop": 6,
+        "column_alignment": "left",
+        "background_style": "primary",
+        "color_scheme": "",
+        "header-29ae1eb63c6d827963e4ed170647c40d": null,
+        "columns_mobile": "2",
+        "swipe_on_mobile": true,
+        "header-68cf3ad822efeaa55310156c4987ab08": null,
+        "padding_top": 0,
+        "padding_bottom": 20
+      },
+      "blocks": {
+        "column_DMfVW": {
+          "type": "column",
+          "disabled": false,
+          "settings": {
+            "image": "shopify://shop_images/Prancheta_5_1__1_11zon.webp",
+            "link": "https://www.instagram.com/brkagro_ofc/"
+          }
+        },
+        "column_A3aaa": {
+          "type": "column",
+          "disabled": false,
+          "settings": {
+            "image": "shopify://shop_images/Prancheta_7_1__3_11zon.webp",
+            "link": "https://www.instagram.com/brkagro_ofc/"
+          }
+        },
+        "column_9NQPA": {
+          "type": "column",
+          "disabled": false,
+          "settings": {
+            "image": "shopify://shop_images/Prancheta_4_1__7_11zon.webp",
+            "link": "https://www.instagram.com/brkagro_ofc/"
+          }
+        },
+        "column_BKXan": {
+          "type": "column",
+          "disabled": false,
+          "settings": {
+            "image": "shopify://shop_images/Prancheta_2_2__5_11zon.webp",
+            "link": "https://www.instagram.com/brkagro_ofc/"
+          }
+        },
+        "column_dt9hU": {
+          "type": "column",
+          "disabled": false,
+          "settings": {
+            "image": "shopify://shop_images/Prancheta_3_2__6_11zon.webp",
+            "link": "https://www.instagram.com/brkagro_ofc/"
+          }
+        },
+        "column_BHNTF": {
+          "type": "column",
+          "disabled": false,
+          "settings": {
+            "image": "shopify://shop_images/Prancheta_6_1__2_11zon.webp",
+            "link": "https://www.instagram.com/brkagro_ofc/"
+          }
+        }
+      },
+      "block_order": [
+        "column_DMfVW",
+        "column_A3aaa",
+        "column_9NQPA",
+        "column_BKXan",
+        "column_dt9hU",
+        "column_BHNTF"
+      ]
+    },
+    "multicolumn": {
+      "disabled": true,
+      "custom_css": [
+        ".multicolumn-card {display: flex; align-items: center; justify-content: center;}",
+        ".multicolumn-card__info {padding: 0;}",
+        "h3 {font-size: 12px; font-family: \"Poppins\"; font-weight: 700;}",
+        ".multicolumn-card__image-wrapper {width: 12%; margin-left: 0; margin-right: 5px;}",
+        ".multicolumn-list li {border-right: 1px solid #e8e8e8; max-width: 100%; width: auto; padding: 10px;}",
+        ".multicolumn-list li:last-of-type {border: none;}",
+        ".multicolumn-list.slider {column-gap: 0; justify-content: center;}",
+        ".slider-buttons {display: none;}"
+      ],
+      "settings": {
+        "heading_size": "h0",
+        "image_ratio": "adapt",
+        "columns_desktop": 5,
+        "column_alignment": "center",
+        "columns_mobile": "1",
+        "swipe_on_mobile": true,
+        "padding_top": 0,
+        "padding_bottom": 0
+      },
+      "blocks": {
+        "column1": {
+          "settings": {
+            "image": "shopify://shop_images/bannerregua_1.svg",
+            "title": "Não serviu? 1ª Troca Grátis",
+            "text": ""
+          }
+        },
+        "column_j6gGw": {
+          "type": "column",
+          "disabled": false,
+          "settings": {
+            "image": null,
+            "title": "Coluna",
+            "text": "<p>Combine um texto com uma imagem para destacar o produto, a coleção ou o post do blog escolhido. Adicione informações sobre disponibilidade, estilo ou até mesmo uma avaliação.</p>",
+            "link": ""
+          }
+        },
+        "column2": {
+          "settings": {
+            "image": "shopify://shop_images/bannerregua_2.svg",
+            "title": "Frete Grátis, consulte as regras",
+            "text": ""
+          }
+        },
+        "column3": {
+          "settings": {
+            "image": "shopify://shop_images/bannerregua_3.svg",
+            "title": "5% OFF pagando no PIX",
+            "text": ""
+          }
+        },
+        "column_B9QBT": {
+          "type": "column",
+          "disabled": false,
+          "settings": {
+            "image": "shopify://shop_images/bannerregua_4.svg",
+            "title": "Parcele em até 3x s/ juros no cartão",
+            "text": "",
+            "link": ""
+          }
+        },
+        "column_NxrQJ": {
+          "type": "column",
+          "disabled": false,
+          "settings": {
+            "image": "shopify://shop_images/bannerregua_5.svg",
+            "title": "Site 100% Seguro, pode confiar!",
+            "text": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "column1",
+        "column_j6gGw",
+        "column2",
+        "column3",
+        "column_B9QBT",
+        "column_NxrQJ"
+      ]
+    },
+    "featured_collection": {
+      "custom_css": [
+        "@media only screen and (max-width: 750px) {.collection {display: none; }}"
+      ],
+      "settings": {
+        "title": "🥇 Sucesso de Vendas ✨",
+        "collection": "mais-vendidos",
+        "products_to_show": 10,
+        "columns_desktop": 5,
+        "full_width": true,
+        "show_view_all": true,
+        "view_all_style": "solid",
+        "enable_desktop_slider": true,
+        "image_ratio": "adapt",
+        "image_shape": "default",
+        "quick_add": "none",
+        "columns_mobile": "2",
+        "swipe_on_mobile": true,
+        "padding_top": 40,
+        "padding_bottom": 0
+      },
+      "blocks": {},
+      "name": "Mais Vendidos"
+    },
+    "video": {
+      "disabled": true,
+      "settings": {
+        "heading": "Brk Agro - A marca do Agro",
+        "heading_size": "h1",
+        "video_url": "https://www.youtube.com/watch?v=lAkoS0_OUaU",
+        "cover_image": "shopify://shop_images/Captura_de_tela_2024-10-24_160245.png",
+        "color_scheme": "scheme-5",
+        "padding_top": 40,
+        "padding_bottom": 8
+      },
+      "blocks": {}
+    },
+    "carousel_4hdM7": {
+      "type": "carousel",
+      "disabled": true,
+      "settings": {
+        "title": "",
+        "heading_size": "h1",
+        "padding_top": 36,
+        "padding_bottom": 36
+      },
+      "blocks": {
+        "image_Vz6x8": {
+          "type": "image",
+          "disabled": false,
+          "settings": {
+            "image": "shopify://shop_images/OFERTA_AGRO_05.webp",
+            "link": ""
+          }
+        },
+        "image_weBGV": {
+          "type": "image",
+          "disabled": false,
+          "settings": {
+            "image": "shopify://shop_images/OFERTA_AGRO_01.webp",
+            "link": ""
+          }
+        },
+        "image_LQeyc": {
+          "type": "image",
+          "disabled": false,
+          "settings": {
+            "image": "shopify://shop_images/OFERTA_AGRO_02.webp",
+            "link": ""
+          }
+        },
+        "image_EgrTF": {
+          "type": "image",
+          "disabled": false,
+          "settings": {
+            "image": "shopify://shop_images/OFERTA_AGRO_03.webp",
+            "link": ""
+          }
+        },
+        "image_gfF9X": {
+          "type": "image",
+          "disabled": false,
+          "settings": {
+            "image": "shopify://shop_images/OFERTA_AGRO_04.webp",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "image_Vz6x8",
+        "image_weBGV",
+        "image_LQeyc",
+        "image_EgrTF",
+        "image_gfF9X"
+      ],
+      "name": "Carrossel Swiper"
+    }
+  },
+  "order": [
+    "multicolumn",
+    "slideshow_HYW8U",
+    "slideshow_WLCXf",
+    "1760703598ee54c4b7",
+    "rich_text_TrwrQ",
+    "carousel_4hdM7",
+    "featured_collection_Ecid7",
+    "featured_collection_cbWAQ",
+    "featured_collection",
+    "featured_collection_kz9kg",
+    "collage_banners_ywRGx",
+    "multicolumn_categorias_8Tyxk",
+    "featured_collection_Wwh6y",
+    "multicolumn_pHwhL",
+    "featured_collection_with_image_eJb8i",
+    "featured_collection_PwdAj",
+    "video",
+    "multicolumn_instagram_LR9H3"
+  ]
+}
