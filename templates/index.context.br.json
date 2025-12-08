@@ -72,6 +72,25 @@
             "text_alignment_mobile": "center"
           }
         },
+        "slide_k7tW4": {
+          "type": "slide",
+          "disabled": false,
+          "settings": {
+            "image": "shopify://shop_images/BANNERS-AGRO.webp",
+            "heading": "",
+            "heading_size": "h1",
+            "subheading": "",
+            "link": "shopify://collections/envio-imediato",
+            "button_style_secondary": false,
+            "box_align": "middle-center",
+            "show_text_box": false,
+            "text_alignment": "center",
+            "image_overlay_opacity": 0,
+            "color_scheme": "scheme-1",
+            "header-75273aea2ea00e03fb559ba8a17ddd81": null,
+            "text_alignment_mobile": "center"
+          }
+        },
         "slide_88P9P": {
           "type": "slide",
           "disabled": true,
@@ -95,6 +114,7 @@
       "block_order": [
         "slide_CfbXb",
         "slide_ATXDA",
+        "slide_k7tW4",
         "slide_88P9P"
       ],
       "name": "Fullbanner Desktop"
