@@ -26,11 +26,11 @@
         "slider_visual": "dots",
         "auto_rotate": true,
         "change_slides_speed": 5,
-        "header-a75a6633323b7681ae12802b77c3b65a": null,
+        "header-34fc75b66b295f7aaefda52bbaa3f417": null,
         "image_behavior": "none",
-        "header-a56c7bb68736493488f560868824438a": null,
+        "header-8d8f5a6734b18b6309f9dc0ebb9d6593": null,
         "show_text_below": false,
-        "header-84ed4e42c91348c80c07311d400cd561": null,
+        "header-79fc2ba28013dda570754256b88a67cf": null,
         "accessibility_info": "Slideshow about our brand"
       },
       "blocks": {
@@ -49,7 +49,7 @@
             "text_alignment": "center",
             "image_overlay_opacity": 0,
             "color_scheme": "scheme-1",
-            "header-ba090217ab417803f4b82a108a9f0df3": null,
+            "header-ec902a59ac80083b3098bf516c306193": null,
             "text_alignment_mobile": "center"
           }
         },
@@ -68,7 +68,7 @@
             "text_alignment": "center",
             "image_overlay_opacity": 0,
             "color_scheme": "",
-            "header-b5f3ae61dcb2c90ad019a0792ea67cd4": null,
+            "header-21b983c39d8ca3f93590068291bef86d": null,
             "text_alignment_mobile": "center"
           }
         },
@@ -87,7 +87,7 @@
             "text_alignment": "center",
             "image_overlay_opacity": 0,
             "color_scheme": "",
-            "header-ea4881ab20d544214009577ec2500cc7": null,
+            "header-ad4021dbaf6ae7bb785bdaaf1fa4dc38": null,
             "text_alignment_mobile": "center"
           }
         }
@@ -112,11 +112,11 @@
         "slider_visual": "dots",
         "auto_rotate": true,
         "change_slides_speed": 5,
-        "header-df074108157ac3664fefc01a2fd0b26c": null,
+        "header-8469f3a58a24f8c0a6195ff9c160ca5c": null,
         "image_behavior": "none",
-        "header-29a2886c5fe00c8edb83d605aa19dc3c": null,
+        "header-ee53fec2bfd4c1e57bbdaedfd4f0ed9a": null,
         "show_text_below": false,
-        "header-cf42ca5b47413bd84941dfa7a2967fc7": null,
+        "header-3d6338e24f613958bbfa8c9088f09745": null,
         "accessibility_info": "Apresentação de slides sobre nossa marca"
       },
       "blocks": {
@@ -135,7 +135,7 @@
             "text_alignment": "center",
             "image_overlay_opacity": 0,
             "color_scheme": "",
-            "header-a942dffc26936c28fcfe6bf023f3b12b": null,
+            "header-635666dae210b2c0bd19a9c6b5590661": null,
             "text_alignment_mobile": "center"
           }
         },
@@ -154,7 +154,7 @@
             "text_alignment": "center",
             "image_overlay_opacity": 0,
             "color_scheme": "",
-            "header-b622e7a223db1d54b7f903206798c748": null,
+            "header-b8eff2479ebabe2a106b66be88e33632": null,
             "text_alignment_mobile": "center"
           }
         },
@@ -173,7 +173,7 @@
             "text_alignment": "center",
             "image_overlay_opacity": 0,
             "color_scheme": "",
-            "header-b1fa5db551b6a258451c72faf7ab3285": null,
+            "header-4478ba5f16de8a9db54775df39e2d2e2": null,
             "text_alignment_mobile": "center"
           }
         }
@@ -210,7 +210,7 @@
         "content_alignment": "center",
         "color_scheme": "scheme-1",
         "full_width": true,
-        "header-e1a97b54cc7a8fa82df0c154dc9d4f8f": null,
+        "header-1be571ba6b19b36e6b947ecaf9941e8c": null,
         "padding_top": 0,
         "padding_bottom": 0
       },
@@ -228,6 +228,66 @@
         "heading_CHTwJ"
       ],
       "name": "t:sections.rich-text.presets.name"
+    },
+    "carousel_4hdM7": {
+      "type": "carousel",
+      "disabled": false,
+      "settings": {
+        "title": "",
+        "heading_size": "h1",
+        "padding_top": 36,
+        "padding_bottom": 36
+      },
+      "blocks": {
+        "image_Vz6x8": {
+          "type": "image",
+          "disabled": false,
+          "settings": {
+            "image": "shopify://shop_images/OFERTA_AGRO_05.webp",
+            "link": "shopify://collections/cartao-presente"
+          }
+        },
+        "image_weBGV": {
+          "type": "image",
+          "disabled": false,
+          "settings": {
+            "image": "shopify://shop_images/OFERTA_AGRO_01.webp",
+            "link": "shopify://collections/ofertas-r-59"
+          }
+        },
+        "image_LQeyc": {
+          "type": "image",
+          "disabled": false,
+          "settings": {
+            "image": "shopify://shop_images/OFERTA_AGRO_02.webp",
+            "link": "shopify://collections/ofertas-99"
+          }
+        },
+        "image_EgrTF": {
+          "type": "image",
+          "disabled": false,
+          "settings": {
+            "image": "shopify://shop_images/OFERTA_AGRO_03.webp",
+            "link": "shopify://collections/ofertas-189"
+          }
+        },
+        "image_gfF9X": {
+          "type": "image",
+          "disabled": false,
+          "settings": {
+            "image": "shopify://shop_images/OFERTA_AGRO_04.webp",
+            "link": "shopify://collections/envio-imediato"
+          }
+        }
+      },
+      "block_order": [
+        "image_Vz6x8",
+        "image_weBGV",
+        "image_LQeyc",
+        "image_EgrTF",
+        "image_gfF9X"
+      ],
+      "name": "Carrossel Swiper"
     },
     "featured_collection_Ecid7": {
       "type": "featured-collection",
@@ -249,17 +309,17 @@
         "view_all_style": "solid",
         "enable_desktop_slider": true,
         "color_scheme": "",
-        "header-e89408015f879236a0414dc237259b37": null,
+        "header-d54ec5ffc67c8cfad9b26729789de603": null,
         "image_ratio": "adapt",
         "image_shape": "default",
         "show_secondary_image": true,
         "show_vendor": false,
         "show_rating": false,
         "quick_add": "none",
-        "header-755cc347f3307d61141dae3f4760856e": null,
+        "header-de6133a6b2881dde7e196eee16687d26": null,
         "columns_mobile": "2",
         "swipe_on_mobile": true,
-        "header-2b31aea56b556327a6c4b31541c6efdb": null,
+        "header-efdffc34e70b40c742bc5124b2ee4757": null,
         "padding_top": 40,
         "padding_bottom": 0
       },
@@ -291,17 +351,17 @@
         "view_all_style": "solid",
         "enable_desktop_slider": true,
         "color_scheme": "",
-        "header-87382c8f2bcd00d49c510b0fd3526f2f": null,
+        "header-ac4e182443e376df650bd024565bcfd4": null,
         "image_ratio": "adapt",
         "image_shape": "default",
         "show_secondary_image": false,
         "show_vendor": false,
         "show_rating": false,
         "quick_add": "none",
-        "header-f65125b6c8f0d33ece29f4ee9c9ea689": null,
+        "header-867657c861ea36d104abb52adae48c84": null,
         "columns_mobile": "1",
         "swipe_on_mobile": true,
-        "header-e04e486edf693dea565adfbaea2222b6": null,
+        "header-3fa84227dda1dc4b423d73028776165d": null,
         "padding_top": 24,
         "padding_bottom": 0
       },
@@ -333,17 +393,17 @@
         "view_all_style": "solid",
         "enable_desktop_slider": true,
         "color_scheme": "scheme-1",
-        "header-2cd42757971c005d870edadb1bd1802d": null,
+        "header-d81d071ab377048bb32b60a96a11753c": null,
         "image_ratio": "adapt",
         "image_shape": "default",
         "show_secondary_image": false,
         "show_vendor": false,
         "show_rating": false,
         "quick_add": "none",
-        "header-32e2b7f114691d9fbb9dec8a2ab384e7": null,
+        "header-a87120bb62fc2bf6d29ab8271a00f717": null,
         "columns_mobile": "1",
         "swipe_on_mobile": true,
-        "header-9083548088f7cb77bf1476619057aa1f": null,
+        "header-66d4cf04fd768fced70a52d0346ff01c": null,
         "padding_top": 24,
         "padding_bottom": 24
       },
@@ -366,7 +426,7 @@
         "mobile_layout": "column",
         "card_styles": "none",
         "color_scheme": "",
-        "header-7ca1a5bb572bd7fbe0ed9368cb9c55ed": null,
+        "header-23ae8437afd928c429bf50b9bd4c6df9": null,
         "padding_top": 0,
         "padding_bottom": 20
       },
@@ -417,10 +477,10 @@
         "button_label": "",
         "button_link": "",
         "color_scheme": "scheme-bea3cc1b-3ac8-41f8-a50b-cb973759c80e",
-        "header-2461abef6a0c50fa3408486b78e72f3b": null,
+        "header-0eee715210ee086111914207222a6af9": null,
         "columns_mobile": "2",
         "swipe_on_mobile": true,
-        "header-3869c4d64a136347a88f4e8daf8da9c8": null,
+        "header-abb9318111f5b5332d89a575af5ff387": null,
         "padding_top": 16,
         "padding_bottom": 16
       },
@@ -558,17 +618,17 @@
         "view_all_style": "solid",
         "enable_desktop_slider": true,
         "color_scheme": "",
-        "header-a43d95616346a39c6766ae2efb851161": null,
+        "header-412d0612d3d3541344e3839c64ecebbd": null,
         "image_ratio": "adapt",
         "image_shape": "default",
         "show_secondary_image": true,
         "show_vendor": false,
         "show_rating": false,
         "quick_add": "none",
-        "header-c1c8fa5328d4a30ba6b7a63266bda94f": null,
+        "header-4901b71194d73790aae52c0ab8851ee6": null,
         "columns_mobile": "1",
         "swipe_on_mobile": true,
-        "header-7b275f015aeedd095f3583d75671cfc8": null,
+        "header-e10cd209932bea54a06e676b678df28c": null,
         "padding_top": 36,
         "padding_bottom": 36
       },
@@ -595,10 +655,10 @@
         "background_style": "primary",
         "button_link": "",
         "color_scheme": "",
-        "header-04c1c4b32bb4de258dae946ba8065ef1": null,
+        "header-521155d4a0b478704720e9f91b530173": null,
         "columns_mobile": "1",
         "swipe_on_mobile": true,
-        "header-4b4411379ee213f70270ee79d856dd90": null,
+        "header-2374929b27fd459d51a49504e84595f9": null,
         "padding_top": 0,
         "padding_bottom": 36
       },
@@ -662,17 +722,17 @@
         "view_all_style": "solid",
         "enable_desktop_slider": true,
         "color_scheme": "scheme-5",
-        "header-dfd0cd0d4035c1c0675ea3c2cc215dd5": null,
+        "header-1c58f57a0d33e82e4b19aab00c8f9d1d": null,
         "image_ratio": "adapt",
         "image_shape": "default",
         "show_secondary_image": true,
         "show_vendor": false,
         "show_rating": false,
         "quick_add": "none",
-        "header-5621223608423f7ef657f3f255769f5f": null,
+        "header-dafb6a6f03e0994c7790d50064555ca4": null,
         "columns_mobile": "1",
         "swipe_on_mobile": true,
-        "header-f089e72ddf87edf720d317389116aca4": null,
+        "header-5a582b40c07636a96f949b81fd85a60e": null,
         "padding_top": 36,
         "padding_bottom": 40
       },
@@ -711,17 +771,17 @@
         "view_all_style": "solid",
         "enable_desktop_slider": true,
         "color_scheme": "scheme-1",
-        "header-cd6b1ba257658699e4d9e49a4f763547": null,
+        "header-6b779b7c4fc2c00a81d56672efe22aa2": null,
         "image_ratio": "adapt",
         "image_shape": "default",
         "show_secondary_image": true,
         "show_vendor": false,
         "show_rating": false,
         "quick_add": "none",
-        "header-49baef03ecb3a798b64983a59caaeaa0": null,
+        "header-b90c6a14e3ced55d3d5c6b959216ba63": null,
         "columns_mobile": "1",
         "swipe_on_mobile": true,
-        "header-e5e985c4da8c82958815991c7c482f1d": null,
+        "header-ee68425553e42311f1db0190de7d7d2d": null,
         "padding_top": 28,
         "padding_bottom": 28
       },
@@ -750,10 +810,10 @@
         "column_alignment": "left",
         "background_style": "primary",
         "color_scheme": "",
-        "header-29ae1eb63c6d827963e4ed170647c40d": null,
+        "header-cb6245b7db5fdc8f720dcd0531abb7ae": null,
         "columns_mobile": "2",
         "swipe_on_mobile": true,
-        "header-68cf3ad822efeaa55310156c4987ab08": null,
+        "header-a18934873724a9a563a36b4947112c4e": null,
         "padding_top": 0,
         "padding_bottom": 20
       },
@@ -936,66 +996,6 @@
         "padding_bottom": 8
       },
       "blocks": {}
-    },
-    "carousel_4hdM7": {
-      "type": "carousel",
-      "disabled": true,
-      "settings": {
-        "title": "",
-        "heading_size": "h1",
-        "padding_top": 36,
-        "padding_bottom": 36
-      },
-      "blocks": {
-        "image_Vz6x8": {
-          "type": "image",
-          "disabled": false,
-          "settings": {
-            "image": "shopify://shop_images/OFERTA_AGRO_05.webp",
-            "link": ""
-          }
-        },
-        "image_weBGV": {
-          "type": "image",
-          "disabled": false,
-          "settings": {
-            "image": "shopify://shop_images/OFERTA_AGRO_01.webp",
-            "link": ""
-          }
-        },
-        "image_LQeyc": {
-          "type": "image",
-          "disabled": false,
-          "settings": {
-            "image": "shopify://shop_images/OFERTA_AGRO_02.webp",
-            "link": ""
-          }
-        },
-        "image_EgrTF": {
-          "type": "image",
-          "disabled": false,
-          "settings": {
-            "image": "shopify://shop_images/OFERTA_AGRO_03.webp",
-            "link": ""
-          }
-        },
-        "image_gfF9X": {
-          "type": "image",
-          "disabled": false,
-          "settings": {
-            "image": "shopify://shop_images/OFERTA_AGRO_04.webp",
-            "link": ""
-          }
-        }
-      },
-      "block_order": [
-        "image_Vz6x8",
-        "image_weBGV",
-        "image_LQeyc",
-        "image_EgrTF",
-        "image_gfF9X"
-      ],
-      "name": "Carrossel Swiper"
     }
   },
   "order": [
