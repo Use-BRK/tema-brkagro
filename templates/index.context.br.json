@@ -140,6 +140,25 @@
         "accessibility_info": "Apresentação de slides sobre nossa marca"
       },
       "blocks": {
+        "slide_jBj8P": {
+          "type": "slide",
+          "disabled": false,
+          "settings": {
+            "image": "shopify://shop_images/MOBBANNERS-AGRO.webp",
+            "heading": "",
+            "heading_size": "h1",
+            "subheading": "",
+            "link": "shopify://collections/envio-imediato",
+            "button_style_secondary": false,
+            "box_align": "middle-center",
+            "show_text_box": false,
+            "text_alignment": "center",
+            "image_overlay_opacity": 0,
+            "color_scheme": "scheme-1",
+            "header-0bf39bf733ed5b48c2803c379c3de9d0": null,
+            "text_alignment_mobile": "center"
+          }
+        },
         "slide_N9QhX": {
           "type": "slide",
           "disabled": false,
@@ -199,6 +218,7 @@
         }
       },
       "block_order": [
+        "slide_jBj8P",
         "slide_N9QhX",
         "slide_eNRCf",
         "slide_rebr4"
