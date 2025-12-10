@@ -26,33 +26,14 @@
         "slider_visual": "dots",
         "auto_rotate": true,
         "change_slides_speed": 5,
-        "header-5791bb135ab975298f1d2c1c39525f47": null,
+        "header-e93990332e9819f03861fb449ca4d595": null,
         "image_behavior": "none",
-        "header-adbb9d2868235e553c026d93f70b7d0b": null,
+        "header-cd4ad87caf6dce8d3d7f477811ecd09c": null,
         "show_text_below": false,
-        "header-e7ad5ed0d275f52089a898ab15c193cd": null,
+        "header-cc98ccfdca8e94536ce454c97180762b": null,
         "accessibility_info": "Slideshow about our brand"
       },
       "blocks": {
-        "slide_HXHY7": {
-          "type": "slide",
-          "disabled": false,
-          "settings": {
-            "image": "shopify://shop_images/Prancheta_1.webp",
-            "heading": "",
-            "heading_size": "h2",
-            "subheading": "",
-            "link": "shopify://collections/agro-amazon-femininas",
-            "button_style_secondary": false,
-            "box_align": "middle-center",
-            "show_text_box": false,
-            "text_alignment": "center",
-            "image_overlay_opacity": 0,
-            "color_scheme": "scheme-1",
-            "header-5a87db16daf2cd38bb34b81bdcd01c48": null,
-            "text_alignment_mobile": "center"
-          }
-        },
         "slide_k7tW4": {
           "type": "slide",
           "disabled": false,
@@ -68,7 +49,26 @@
             "text_alignment": "center",
             "image_overlay_opacity": 0,
             "color_scheme": "scheme-1",
-            "header-864ab6d5d7121c3012fb40e569569688": null,
+            "header-afcbcfab07170b7ab8d60db01e4fc2ce": null,
+            "text_alignment_mobile": "center"
+          }
+        },
+        "slide_HXHY7": {
+          "type": "slide",
+          "disabled": false,
+          "settings": {
+            "image": "shopify://shop_images/Prancheta_1.webp",
+            "heading": "",
+            "heading_size": "h2",
+            "subheading": "",
+            "link": "shopify://collections/agro-amazon-femininas",
+            "button_style_secondary": false,
+            "box_align": "middle-center",
+            "show_text_box": false,
+            "text_alignment": "center",
+            "image_overlay_opacity": 0,
+            "color_scheme": "scheme-1",
+            "header-e9a50769dc15e09c2cabc4730f7c8b95": null,
             "text_alignment_mobile": "center"
           }
         },
@@ -87,7 +87,7 @@
             "text_alignment": "center",
             "image_overlay_opacity": 0,
             "color_scheme": "",
-            "header-dbfc8333fd40d3d4d4200f205e3822e7": null,
+            "header-a64f08ee6bbd57df38ab73aed999372d": null,
             "text_alignment_mobile": "center"
           }
         },
@@ -106,7 +106,7 @@
             "text_alignment": "center",
             "image_overlay_opacity": 0,
             "color_scheme": "scheme-1",
-            "header-ab2cbb43f3f674cccc068277a7da586f": null,
+            "header-b7fd818d8b7281f5dd95b666f1858cf8": null,
             "text_alignment_mobile": "center"
           }
         },
@@ -125,14 +125,14 @@
             "text_alignment": "center",
             "image_overlay_opacity": 0,
             "color_scheme": "",
-            "header-442709563d1e5199de6547ca9f66d49d": null,
+            "header-e7955cae0631193e65326c64c6572f7f": null,
             "text_alignment_mobile": "center"
           }
         }
       },
       "block_order": [
-        "slide_HXHY7",
         "slide_k7tW4",
+        "slide_HXHY7",
         "slide_ATXDA",
         "slide_CfbXb",
         "slide_88P9P"
@@ -152,33 +152,14 @@
         "slider_visual": "dots",
         "auto_rotate": true,
         "change_slides_speed": 5,
-        "header-6d1a84067204160f169f54b95f9fbc83": null,
+        "header-1a8a565f30890e0eeaf9292e605a9187": null,
         "image_behavior": "none",
-        "header-2868c672ed73e6edcd57c031bbb893e7": null,
+        "header-963c62bc319ee275684031bdc55e1d3e": null,
         "show_text_below": false,
-        "header-ab7a410d6d71112b9ae3f0d64aab0de8": null,
+        "header-7b08910e8115bf2a31b7969d6f45c675": null,
         "accessibility_info": "Apresentação de slides sobre nossa marca"
       },
       "blocks": {
-        "slide_9HexE": {
-          "type": "slide",
-          "disabled": false,
-          "settings": {
-            "image": "shopify://shop_images/Prancheta_2.webp",
-            "heading": "",
-            "heading_size": "h1",
-            "subheading": "",
-            "link": "shopify://collections/agro-amazon-femininas",
-            "button_style_secondary": false,
-            "box_align": "middle-center",
-            "show_text_box": false,
-            "text_alignment": "center",
-            "image_overlay_opacity": 0,
-            "color_scheme": "scheme-1",
-            "header-5a87db16daf2cd38bb34b81bdcd01c48": null,
-            "text_alignment_mobile": "center"
-          }
-        },
         "slide_jBj8P": {
           "type": "slide",
           "disabled": false,
@@ -194,7 +175,26 @@
             "text_alignment": "center",
             "image_overlay_opacity": 0,
             "color_scheme": "scheme-1",
-            "header-0aa7de86569f5d10d78521bafb8a21c6": null,
+            "header-d2dcc2fe31c501d59b10e17f06f6c6e0": null,
+            "text_alignment_mobile": "center"
+          }
+        },
+        "slide_9HexE": {
+          "type": "slide",
+          "disabled": false,
+          "settings": {
+            "image": "shopify://shop_images/Prancheta_2.webp",
+            "heading": "",
+            "heading_size": "h1",
+            "subheading": "",
+            "link": "shopify://collections/agro-amazon-femininas",
+            "button_style_secondary": false,
+            "box_align": "middle-center",
+            "show_text_box": false,
+            "text_alignment": "center",
+            "image_overlay_opacity": 0,
+            "color_scheme": "scheme-1",
+            "header-301f9d7497b28cc125b2223c3966c8e9": null,
             "text_alignment_mobile": "center"
           }
         },
@@ -213,7 +213,7 @@
             "text_alignment": "center",
             "image_overlay_opacity": 0,
             "color_scheme": "",
-            "header-9a4d919fc680a6905148f8c9498569c0": null,
+            "header-0f3726a493bb1c5ea16da3b83d3d2462": null,
             "text_alignment_mobile": "center"
           }
         },
@@ -232,7 +232,7 @@
             "text_alignment": "center",
             "image_overlay_opacity": 0,
             "color_scheme": "",
-            "header-e26957c5c813b599551296eb0147efd0": null,
+            "header-a5769bf9181f1ce554ec15a9eda4fd74": null,
             "text_alignment_mobile": "center"
           }
         },
@@ -251,14 +251,14 @@
             "text_alignment": "center",
             "image_overlay_opacity": 0,
             "color_scheme": "",
-            "header-3aa136e9ccc4047af3d60578c415c10e": null,
+            "header-a4354e2a7fa382e7f0f19f68d5375200": null,
             "text_alignment_mobile": "center"
           }
         }
       },
       "block_order": [
-        "slide_9HexE",
         "slide_jBj8P",
+        "slide_9HexE",
         "slide_N9QhX",
         "slide_eNRCf",
         "slide_rebr4"
@@ -290,7 +290,7 @@
         "content_alignment": "center",
         "color_scheme": "scheme-1",
         "full_width": true,
-        "header-47ca37a2262031e13db015e6c2cddaf3": null,
+        "header-0e5312b514e162a3a87270c0417dfb8e": null,
         "padding_top": 0,
         "padding_bottom": 0
       },
@@ -389,17 +389,17 @@
         "view_all_style": "solid",
         "enable_desktop_slider": true,
         "color_scheme": "",
-        "header-e0d41d22dffcead200494a305fe18871": null,
+        "header-ef0df7a6b09681a90f4b288784dc2ff3": null,
         "image_ratio": "adapt",
         "image_shape": "default",
         "show_secondary_image": true,
         "show_vendor": false,
         "show_rating": false,
         "quick_add": "none",
-        "header-c26bbc230738f33a4cbc8cace8deec72": null,
+        "header-9f4d899475aec1560d88e8d6107fd582": null,
         "columns_mobile": "2",
         "swipe_on_mobile": true,
-        "header-2b69f8e9bca88a660b88a01f44daf108": null,
+        "header-3cf2d4be20d02da3b433e199884ddf23": null,
         "padding_top": 40,
         "padding_bottom": 0
       },
@@ -431,17 +431,17 @@
         "view_all_style": "solid",
         "enable_desktop_slider": true,
         "color_scheme": "",
-        "header-dc6133230a4b77a3bb9331fac15bf834": null,
+        "header-b4ec494c52ee1ffe8fd6a0eeed534033": null,
         "image_ratio": "adapt",
         "image_shape": "default",
         "show_secondary_image": false,
         "show_vendor": false,
         "show_rating": false,
         "quick_add": "none",
-        "header-e0a0bb81b2d7843973c2a2064ae6617b": null,
+        "header-d19f5f294e1f3d2ce0edd85fb2a6dc11": null,
         "columns_mobile": "1",
         "swipe_on_mobile": true,
-        "header-8adc45987ed327db14f8280b585093b8": null,
+        "header-906c891583c580693527ed7df8ee0c55": null,
         "padding_top": 24,
         "padding_bottom": 0
       },
@@ -473,17 +473,17 @@
         "view_all_style": "solid",
         "enable_desktop_slider": true,
         "color_scheme": "scheme-1",
-        "header-98ad7a60603c2ab039d90804fac3763e": null,
+        "header-e50454fc3a50f9169257f3a188a23112": null,
         "image_ratio": "adapt",
         "image_shape": "default",
         "show_secondary_image": false,
         "show_vendor": false,
         "show_rating": false,
         "quick_add": "none",
-        "header-91eaf096817b6b6a985728e2ecd6d89f": null,
+        "header-015fdf82828ed9dc12d56d088d4dd2be": null,
         "columns_mobile": "1",
         "swipe_on_mobile": true,
-        "header-bbb4182955681fa6a40ad9e9206cc08c": null,
+        "header-de8af2ab719908d1fb308d26ceefce6f": null,
         "padding_top": 24,
         "padding_bottom": 24
       },
@@ -506,7 +506,7 @@
         "mobile_layout": "column",
         "card_styles": "none",
         "color_scheme": "",
-        "header-4c54fb744c6fc4204203d7762b74e4a8": null,
+        "header-8b98c237b96c05068ce2f1961ef2f3f4": null,
         "padding_top": 0,
         "padding_bottom": 20
       },
@@ -557,10 +557,10 @@
         "button_label": "",
         "button_link": "",
         "color_scheme": "scheme-bea3cc1b-3ac8-41f8-a50b-cb973759c80e",
-        "header-a04a4ee57df086be9d2b12945c30fc8b": null,
+        "header-a1c912c48bfbbf26b9fefad53c6598f2": null,
         "columns_mobile": "2",
         "swipe_on_mobile": true,
-        "header-f4a27fe7ebd7bd8ecd4618b64d6e60fd": null,
+        "header-bda44b31755215ef644a7e007769a6cf": null,
         "padding_top": 16,
         "padding_bottom": 16
       },
@@ -698,17 +698,17 @@
         "view_all_style": "solid",
         "enable_desktop_slider": true,
         "color_scheme": "",
-        "header-426c1ea34ab3d4989d09a9fc8534e653": null,
+        "header-edf2c9b22b834c8bd38e0a62a715f390": null,
         "image_ratio": "adapt",
         "image_shape": "default",
         "show_secondary_image": true,
         "show_vendor": false,
         "show_rating": false,
         "quick_add": "none",
-        "header-e4fd46e07942d11ac5a19a6c10ed9215": null,
+        "header-3472016fa1017caea941c1eef6f75a31": null,
         "columns_mobile": "1",
         "swipe_on_mobile": true,
-        "header-7c7c0c082ed97d2cb4d7b80a1d1ca84c": null,
+        "header-b320490e79434bbdfff353bbc8b5a901": null,
         "padding_top": 36,
         "padding_bottom": 36
       },
@@ -735,10 +735,10 @@
         "background_style": "primary",
         "button_link": "",
         "color_scheme": "",
-        "header-2df3dd819a029e9f2fb8ee34925fe83b": null,
+        "header-5c716a9c0a1eb0c36f2524a53e564e53": null,
         "columns_mobile": "1",
         "swipe_on_mobile": true,
-        "header-4fe5843d27eac6a357393606d6b4d260": null,
+        "header-54480aac57d359c458e145fc9565cd8b": null,
         "padding_top": 0,
         "padding_bottom": 36
       },
@@ -802,17 +802,17 @@
         "view_all_style": "solid",
         "enable_desktop_slider": true,
         "color_scheme": "scheme-5",
-        "header-559705ca47d977d2174a8007bb45e682": null,
+        "header-22d1e696a6e435d8baf9c589337ecc4a": null,
         "image_ratio": "adapt",
         "image_shape": "default",
         "show_secondary_image": true,
         "show_vendor": false,
         "show_rating": false,
         "quick_add": "none",
-        "header-8b597e282a64dd08b394b00bcad8515c": null,
+        "header-e8bd56bb7145992813ae15d3b1bb8347": null,
         "columns_mobile": "1",
         "swipe_on_mobile": true,
-        "header-3aedd4780c942f90ef8f4405b851d976": null,
+        "header-056b9b6fb16e866d8c0fb5cc0babe942": null,
         "padding_top": 36,
         "padding_bottom": 40
       },
@@ -851,17 +851,17 @@
         "view_all_style": "solid",
         "enable_desktop_slider": true,
         "color_scheme": "scheme-1",
-        "header-72b849f8fb9a0027cc8e9b69b63d6963": null,
+        "header-e22ed41bf338241331cd604fbb109e1b": null,
         "image_ratio": "adapt",
         "image_shape": "default",
         "show_secondary_image": true,
         "show_vendor": false,
         "show_rating": false,
         "quick_add": "none",
-        "header-34646021454de8bb903769d161584ccb": null,
+        "header-39fd261f33a47f9e100dfd88965b45a4": null,
         "columns_mobile": "1",
         "swipe_on_mobile": true,
-        "header-0f0154784d8fda2ce3b0ec23cc55c5c8": null,
+        "header-b8a06726b477f5a8d94d060ee5a54072": null,
         "padding_top": 28,
         "padding_bottom": 28
       },
@@ -890,10 +890,10 @@
         "column_alignment": "left",
         "background_style": "primary",
         "color_scheme": "",
-        "header-1182f0a5af008d0007c12b4149eaa9cd": null,
+        "header-4d92a82529a800ca1c46afc4c75145bb": null,
         "columns_mobile": "2",
         "swipe_on_mobile": true,
-        "header-555ac394170257fcae182f1c4a1948cc": null,
+        "header-b5ccd50bf0931da269d109ea72c6d2af": null,
         "padding_top": 0,
         "padding_bottom": 20
       },
