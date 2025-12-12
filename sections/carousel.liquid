@@ -54,6 +54,15 @@
     padding-top: {{ section.settings.padding_top }}px;
     padding-bottom: {{ section.settings.padding_bottom }}px;
   }
+
+  .mySwiper {
+    opacity: 0;
+    transition: opacity 0.4s ease-in-out;
+  }
+
+  .mySwiper.swiper-initialized {
+    opacity: 1;
+  }
 </style>
 
 <div class="section-carousel page-width">
