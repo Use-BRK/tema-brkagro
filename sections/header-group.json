@@ -94,19 +94,19 @@
             "promotion_link_newtab_2": true
           }
         },
-        "menu_promotion_xJdpmk": {
+        "menu_promotion_Pkxb3d": {
           "type": "menu_promotion",
           "settings": {
-            "text": "Sale",
+            "text": "FEMININO",
             "open-link-newtab": true,
-            "item_label": "hot",
-            "promotion_menu_column": 4,
-            "mega_custom_width": 1030,
+            "item_label": "unset",
+            "promotion_menu_column": 3,
+            "mega_custom_width": 1100,
             "center_submenu": true,
-            "full_width": true,
+            "full_width": false,
             "promotion_position": "right",
-            "promotion_image_width": 27,
-            "promotion_link_1": "",
+            "promotion_image_width": 31,
+            "promotion_link_1": "https://themeforest.net/item/glozin-multipurpose-shopify-theme-os-20/53006461?s_rank=1",
             "promotion_link_newtab_1": true,
             "promotion_link_2": "",
             "promotion_link_newtab_2": true
@@ -127,32 +127,13 @@
             "collection_2": "",
             "collection_3": ""
           }
-        },
-        "menu_promotion_rWzQL6": {
-          "type": "menu_promotion",
-          "settings": {
-            "text": "Products",
-            "open-link-newtab": true,
-            "item_label": "unset",
-            "promotion_menu_column": 4,
-            "mega_custom_width": 1030,
-            "center_submenu": true,
-            "full_width": true,
-            "promotion_position": "right",
-            "promotion_image_width": 34,
-            "promotion_link_1": "shopify://collections/activewear",
-            "promotion_link_newtab_1": true,
-            "promotion_link_2": "",
-            "promotion_link_newtab_2": true
-          }
         }
       },
       "block_order": [
         "menu_product_zAWFX7",
         "menu_promotion_EeqGGC",
-        "menu_promotion_xJdpmk",
-        "menu_collection_EkdGyG",
-        "menu_promotion_rWzQL6"
+        "menu_promotion_Pkxb3d",
+        "menu_collection_EkdGyG"
       ],
       "custom_css": [],
       "settings": {
