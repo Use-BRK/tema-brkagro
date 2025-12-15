@@ -48,7 +48,7 @@
           <a
             id="cart-icon-bubble-mobile"
             href="{{ routes.cart_url }}"
-            class="no-underline lh-normal inline-flex content-center flex-column text-center heading-color minicart__action {% if request.path == "/cart" %} active{% endif %}"
+            class="no-underline lh-normal inline-flex content-center flex-column text-center heading-color {% if request.path == "/cart" %} active{% endif %}"
             aria-label="{{ 'mobile_navbar.cart' | t }}"
           >
             <span class="relative inline-flex">

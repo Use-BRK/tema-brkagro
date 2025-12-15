@@ -126,15 +126,17 @@
                           assign image_alt = block.settings.image.alt
                         endif
                       -%}
-                      {% render 'responsive-image',
-                        type: 'banner',
-                        container: section_width,
-                        image: image,
-                        image_mobile: image_mobile,
-                        image_alt: image_alt,
-                        lazy_load: lazy_load,
-                        first: forloop.first
-                      %}
+                      <a href="{{ block_st.link_banner }}" target="_blank">
+                        {% render 'responsive-image',
+                          type: 'banner',
+                          container: section_width,
+                          image: image,
+                          image_mobile: image_mobile,
+                          image_alt: image_alt,
+                          lazy_load: lazy_load,
+                          first: forloop.first
+                        %}
+                      </a>  
                     {% endif %}
                   {%- else -%}
                     {%- render 'placeholder-render', class: 'absolute inset-0 w-full h-full object-fit-cover' -%}
@@ -646,6 +648,12 @@
           "id": "image_mobile",
           "label": "t:sections.all.image.mobile_image.label",
           "info": "t:sections.slideshow.blocks.slider_item.settings.image_mobile.info"
+        },
+        {
+          "type": "url",
+          "id": "link_banner",
+          "label": "Link do Banner",
+          "info": "Aceita: link, coleção, produto, páginas"
         },
         {
           "type": "video",
