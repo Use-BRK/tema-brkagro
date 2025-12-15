@@ -855,7 +855,7 @@
             "second_button_label": "",
             "second_button_link": "",
             "second_button_style": false,
-            "content_alignment": "left",
+            "content_alignment": "center",
             "content_position": "bottom-left",
             "content_width": "fluid_container",
             "content_max_width": 100,
@@ -864,7 +864,7 @@
             "show_content_background": true,
             "content_background": "#ffffff",
             "content_box_opacity": 100,
-            "content_alignment_mobile": "left"
+            "content_alignment_mobile": "center"
           }
         }
       },
@@ -874,9 +874,9 @@
       "name": "Lifestyle",
       "settings": {
         "section_width": "full_width",
-        "slide_height": "full_screen",
+        "slide_height": "adapt",
         "desktop_height": 800,
-        "mobile_height": 360,
+        "mobile_height": 350,
         "color_scheme": "",
         "slide_effect": "fade",
         "reveal_slideshow": false,
