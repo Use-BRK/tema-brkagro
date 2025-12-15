@@ -1,0 +1,15 @@
+@media (max-width: 640px) {
+  #formKokfyShipping .container-btn {
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 5px !important;
+  }
+}
+
+
+/* fallback: não deixe motion-element invisível se a classe de reveal não vier */
+motion-element { opacity: 1 !important; }
+
+/* e só aplique opacity:0 quando JS marcar que está animando */
+motion-element[data-motion-init="true"] { opacity: 0!important; }
+motion-element[data-motion-init="true"].is-visible { opacity: 1!important; }
