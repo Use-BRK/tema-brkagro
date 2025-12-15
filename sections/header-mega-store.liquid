@@ -40,15 +40,15 @@
             <div class="block hidden-1025">
               {%- render 'toggle-menu' -%}
             </div>
+            <div class="inline-flex align-center col-logo">
+              {%- render 'logo' -%}
+            </div>
             <div class="header-search header-search__mega color-default flex-1">
               {%- liquid
                 if top_search
                   render 'top-search-header' | type: 'header_mega'
                 endif
               -%}
-            </div>
-            <div class="inline-flex align-center col-logo">
-              {%- render 'logo' -%}
             </div>
             <div class="header__action flex flex-end align-center">
               <svg hidden>
