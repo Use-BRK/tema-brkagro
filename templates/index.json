@@ -1,1 +1,1104 @@
-{"sections":{"divider_WJrFxP":{"type":"divider","custom_css":[".sec__divider-inner {box-shadow: 0px 10px 15px -5px rgba(0, 0, 0, 0.4);}"],"name":"Divisor","settings":{"section_width":"full_width","border_height":10,"border_color":"#1e1e1e","reset_spacing":true}},"slideshow_8KKtNU":{"type":"slideshow","blocks":{"slider_item_ib6U7g":{"type":"slider_item","name":"Natal Agro","settings":{"image":"shopify:\/\/shop_images\/BANNERS-AGRO.webp","image_mobile":"shopify:\/\/shop_images\/MOBBANNERS-AGRO.webp","overlay_opacity":0,"slider_effect":"effect_fadeinup","subheading":"","heading":"","description":"","first_button_label":"","first_button_link":"","first_button_style":false,"second_button_label":"","second_button_link":"","second_button_style":false,"content_alignment":"center","content_position":"top-center","content_width":"full_width","content_max_width":100,"content_padding_block":60,"content_padding_inline":120,"show_content_background":false,"content_background":"#ffffff","content_box_opacity":100,"content_alignment_mobile":"center"}},"slider_item_YipJd4":{"type":"slider_item","name":"Amazon Femininas","settings":{"image":"shopify:\/\/shop_images\/Prancheta_1.webp","image_mobile":"shopify:\/\/shop_images\/Prancheta_2.webp","overlay_opacity":0,"slider_effect":"effect_fadeinup","subheading":"","heading":"","description":"","first_button_label":"","first_button_link":"","first_button_style":false,"second_button_label":"","second_button_link":"","second_button_style":false,"content_alignment":"center","content_position":"top-center","content_width":"full_width","content_max_width":100,"content_padding_block":60,"content_padding_inline":120,"show_content_background":false,"content_background":"#ffffff","content_box_opacity":100,"content_alignment_mobile":"center"}},"slider_item_mHFJwJ":{"type":"slider_item","name":"Longhorn","settings":{"image":"shopify:\/\/shop_images\/Prancheta_1.webp","image_mobile":"shopify:\/\/shop_images\/Prancheta_2.webp","overlay_opacity":0,"slider_effect":"effect_fadeinup","subheading":"","heading":"","description":"","first_button_label":"","first_button_link":"","first_button_style":false,"second_button_label":"","second_button_link":"","second_button_style":false,"content_alignment":"center","content_position":"top-center","content_width":"full_width","content_max_width":100,"content_padding_block":60,"content_padding_inline":120,"show_content_background":false,"content_background":"#ffffff","content_box_opacity":100,"content_alignment_mobile":"center"}},"slider_item_tBYL6H":{"type":"slider_item","name":"Essenciais","settings":{"image":"shopify:\/\/shop_images\/Essenciais_mob.png","image_mobile":"shopify:\/\/shop_images\/Essenciais_e0c1aeaf-ec3d-48da-8e1e-8ae5b3cef3f5.png","overlay_opacity":0,"slider_effect":"effect_fadeinup","subheading":"","heading":"","description":"","first_button_label":"","first_button_link":"","first_button_style":false,"second_button_label":"","second_button_link":"","second_button_style":false,"content_alignment":"center","content_position":"top-center","content_width":"full_width","content_max_width":100,"content_padding_block":60,"content_padding_inline":120,"show_content_background":false,"content_background":"#ffffff","content_box_opacity":100,"content_alignment_mobile":"center"}}},"block_order":["slider_item_ib6U7g","slider_item_YipJd4","slider_item_mHFJwJ","slider_item_tBYL6H"],"custom_css":[".h-full_screen {--height-topbar: 41px;}","@media (max-width: 767.988px) {.sec__content {align-items: end; padding-bottom: 30px; }}"],"name":"Fullbanner","settings":{"section_width":"full_width","slide_height":"adapt","desktop_height":800,"mobile_height":300,"color_scheme":"scheme-c4fa9b2e-e94e-477a-a1f0-ab1da4f2a676","slide_effect":"fade","reveal_slideshow":false,"show_arrow":true,"carousel_pagination":"show_dots","pagination_position":"center","autoplay":true,"autorotate_speed":5,"subheading_font_size":18,"subheading_font_weight":"subheading_weight","subheading_spacing_bottom":15,"heading_font_size":60,"heading_font_weight":"heading_weight","heading_uppercase":false,"heading_spacing_bottom":40,"des_font_size":19,"des_font_weight":"heading_weight","des_spacing_bottom":60,"content_below_image":false,"padding_top":0,"padding_bottom":0,"reset_spacing":true}},"scrolling_text_XAxGTr":{"type":"scrolling-text","blocks":{"scrolling_text_myQxMH":{"type":"scrolling_text","settings":{"content":"FRETE FIXO R$9,90"}},"scrolling_text_T9tPfp":{"type":"scrolling_text","settings":{"content":"FRETE FIXO R$9,90"}}},"block_order":["scrolling_text_myQxMH","scrolling_text_T9tPfp"],"name":"Rotativo","settings":{"section_width":"full_width","color_scheme":"scheme-bb1431b0-be4a-4b03-a450-f572c07e3904","direction":"left","icon_between_item":"dot","speed":11,"space_between_text":60,"font_size":16,"font_weight":"body_weight","uppercase":false,"use_heading_font":false,"padding_top":12,"padding_bottom":12,"reset_spacing":true}},"collection_list_DnBJyy":{"type":"collection-list","blocks":{"collection_afg8mP":{"type":"collection","settings":{"collection":"","collection_image":"shopify:\/\/shop_images\/OFERTA_AGRO_05.webp","collection_title":""}},"collection_EKPUGy":{"type":"collection","settings":{"collection":"","collection_image":"shopify:\/\/shop_images\/OFERTA_AGRO_01.webp","collection_title":""}},"collection_gEjEAi":{"type":"collection","settings":{"collection":"","collection_image":"shopify:\/\/shop_images\/OFERTA_AGRO_02.webp","collection_title":""}},"collection_XGJRwk":{"type":"collection","settings":{"collection":"","collection_image":"shopify:\/\/shop_images\/OFERTA_AGRO_03.webp","collection_title":""}},"collection_7niYEB":{"type":"collection","settings":{"collection":"","collection_image":"shopify:\/\/shop_images\/OFERTA_AGRO_04.webp","collection_title":""}}},"block_order":["collection_afg8mP","collection_EKPUGy","collection_gEjEAi","collection_XGJRwk","collection_7niYEB"],"custom_css":[".collection-item__name {display: none;}",".collection-item {width: 240px !important;}",".swiper-wrapper {justify-content: center;}"],"name":"Card de Ofertas","settings":{"section_width":"fluid_container","color_scheme":"default","heading":"","description":"","show_view_all_button":false,"header_size":"medium","header_alignment":"left","display_mode":"carousel","image_ratio":"adapt","custom_ratio":"1000:1516","items_per_row":4,"column_gap":30,"show_arrow":true,"carousel_pagination":"disable","infinite":false,"autoplay":true,"autorotate_speed":5,"reveal":false,"items_per_row_mobile":1.5,"design":"default","collection_information_position":"overlay_image","text_alignment":"center","show_product_count":false,"show_icon":false,"show_description":false,"font_size":12,"font_weight":"heading_weight","information_spacing":12,"rounded_image":false,"image_custom_width":false,"image_width":200,"padding_top":30,"padding_bottom":30,"reset_spacing":true}},"products_carousel_nUcUgz":{"type":"products-carousel","name":"Envio FULL + BRINDE","settings":{"section_width":"fluid_container","color_scheme":"","heading":"Envio FULL + BRINDE 🎁","description":"","show_view_all_button":true,"header_size":"small","header_alignment":"center","collection":"envio-imediato-camisas","items_to_show":25,"items_per_row":5,"column_gap":15,"show_banner":false,"sticky_banner":false,"banner_width":30,"position":"left","banner_link":"","banner_type":"image","video_url":"","video_autoplay":true,"show_arrow":true,"carousel_pagination":"disable","infinite":true,"autoplay":false,"autorotate_speed":5,"reveal":true,"items_per_row_mobile":1.5,"padding_top":20,"padding_bottom":20,"reset_spacing":true}},"collection_tab_XNDCTb":{"type":"collection-tab","blocks":{"collection_RikWXM":{"type":"collection","settings":{"collection":"mais-vendidos","collection_title":""}},"collection_HK34Cn":{"type":"collection","settings":{"collection":"lancamentos","collection_title":""}}},"block_order":["collection_RikWXM","collection_HK34Cn"],"custom_css":[".collection-tab__tab-item {font-size: clamp(1.105em, 2vw, 2.5rem);}",".btn_view-all {border-radius: 8px;}"],"name":"Mais Vendidos\/Lançamentos","settings":{"section_width":"fluid_container","color_scheme":"default","heading":"","description":"","show_view_all_button":true,"header_size":"medium","header_alignment":"center","tab_header_style":"horizontal","horizontal_tab_style":"underline","tab_header_postion":"default","display_mode":"grid","items_to_show":24,"items_per_row":5,"column_gap":10,"show_arrow":true,"carousel_pagination":"show_dots_on_mobile","infinite":true,"autoplay":false,"autorotate_speed":5,"reveal":false,"rows":2,"show_load_more_button":false,"button_label":"Load more","carousel_on_mobile":true,"items_per_row_mobile":1.5,"padding_top":0,"padding_bottom":10,"reset_spacing":true}},"banner_packery_txTyNt":{"type":"banner-packery","blocks":{"group_image_overlay_U7ykjm":{"type":"_group-image-overlay","settings":{"color_scheme":"","image":"shopify:\/\/shop_images\/Prancheta_1_5384cfdb-c1b7-4a7f-b280-8c04af208a4f.png","image_link":"shopify:\/\/collections\/feminina","overlay_opacity":0,"content_alignment":"start","content_position":"top-left","content_padding_block":30,"content_padding_inline":30},"blocks":{"subheading_zYHYfk":{"type":"subheading","settings":{"subheading":"","font_size":14,"font_weight":"subheading_weight","uppercase":false,"spacing_bottom":15},"blocks":{}},"heading_tLkTK3":{"type":"heading","disabled":true,"settings":{"heading":"Talk about your brand","font_size":36,"font_weight":"heading_weight","uppercase":false,"spacing_bottom":20},"blocks":{}},"button_gV4zRb":{"type":"button","disabled":true,"settings":{"show_full_width":false,"first_button_label":"","first_button_link":"","first_button_type":"primary","second_button_label":"","second_button_link":"","second_button_type":"primary","spacing_bottom":10},"blocks":{}}},"block_order":["subheading_zYHYfk","heading_tLkTK3","button_gV4zRb"]},"group_image_overlay_TXAXbr":{"type":"_group-image-overlay","settings":{"color_scheme":"","image":"shopify:\/\/shop_images\/Prancheta_2.png","image_link":"","overlay_opacity":0,"content_alignment":"start","content_position":"top-left","content_padding_block":23,"content_padding_inline":30},"blocks":{"subheading_zhFepj":{"type":"subheading","settings":{"subheading":"","font_size":14,"font_weight":"subheading_weight","uppercase":false,"spacing_bottom":15},"blocks":{}},"heading_UWL69x":{"type":"heading","settings":{"heading":"","font_size":36,"font_weight":"heading_weight","uppercase":false,"spacing_bottom":20},"blocks":{}},"button_rT9cLH":{"type":"button","disabled":true,"settings":{"show_full_width":false,"first_button_label":"","first_button_link":"","first_button_type":"primary","second_button_label":"","second_button_link":"","second_button_type":"primary","spacing_bottom":10},"blocks":{}}},"block_order":["subheading_zhFepj","heading_UWL69x","button_rT9cLH"]},"group_image_overlay_iimi4M":{"type":"_group-image-overlay","settings":{"color_scheme":"","image":"shopify:\/\/shop_images\/Prancheta_7.png","image_link":"","overlay_opacity":0,"content_alignment":"center","content_position":"top-center","content_padding_block":20,"content_padding_inline":26},"blocks":{"subheading_X3da6q":{"type":"subheading","settings":{"subheading":"","font_size":14,"font_weight":"subheading_weight","uppercase":false,"spacing_bottom":15},"blocks":{}},"heading_qmtcrj":{"type":"heading","settings":{"heading":"","font_size":36,"font_weight":"heading_weight","uppercase":false,"spacing_bottom":20},"blocks":{}},"button_UPqEQq":{"type":"button","disabled":true,"settings":{"show_full_width":false,"first_button_label":"","first_button_link":"","first_button_type":"primary","second_button_label":"","second_button_link":"","second_button_type":"primary","spacing_bottom":10},"blocks":{}}},"block_order":["subheading_X3da6q","heading_qmtcrj","button_UPqEQq"]}},"block_order":["group_image_overlay_U7ykjm","group_image_overlay_TXAXbr","group_image_overlay_iimi4M"],"name":"Banners de Venda","settings":{"section_width":"fluid_container","color_scheme":"","heading":"","description":"","show_view_all_button":false,"view_all_url":"","header_size":"medium","header_alignment":"left","column_gap":25,"padding_top":37,"padding_bottom":25,"reset_spacing":true}},"collection_list_TVMtme":{"type":"collection-list","blocks":{"collection_qVrNRi":{"type":"collection","settings":{"collection":"sao-bento","collection_image":"shopify:\/\/shop_images\/Sao_Bento_be0c76c8-0b54-4360-b575-385f84809c32.png","collection_title":"São Bento"}},"collection_rRd7j3":{"type":"collection","settings":{"collection":"agricultura","collection_image":"shopify:\/\/shop_images\/Agricultura_095c610b-6818-4621-bf59-bf4e2f8032cf.png","collection_title":"Agricultura"}},"collection_azLAja":{"type":"collection","settings":{"collection":"cursos-profissoes","collection_image":"shopify:\/\/shop_images\/Medicina_Veterinaria.png","collection_title":"Medicina Veterinária"}},"collection_ccBEnR":{"type":"collection","settings":{"collection":"camisas-do-brasil","collection_image":"shopify:\/\/shop_images\/Brasil_e_Agro_e11edcff-a064-4349-b9a5-981953272000.png","collection_title":"Brasil é Agro"}}},"block_order":["collection_qVrNRi","collection_rRd7j3","collection_azLAja","collection_ccBEnR"],"name":"Escolha Por Coleção","settings":{"section_width":"fluid_container","color_scheme":"","heading":"Escolha Por Coleção","description":"<p>Qual mais combina com você?<\/p>","show_view_all_button":false,"header_size":"medium","header_alignment":"center","display_mode":"carousel","image_ratio":"adapt","custom_ratio":"","items_per_row":4,"column_gap":30,"show_arrow":true,"carousel_pagination":"show_dots","infinite":true,"autoplay":false,"autorotate_speed":5,"reveal":false,"items_per_row_mobile":1.5,"design":"morden","collection_information_position":"below_image","text_alignment":"center","show_product_count":false,"show_icon":false,"show_description":false,"font_size":16,"font_weight":"heading_weight","information_spacing":8,"rounded_image":false,"image_custom_width":false,"image_width":200,"padding_top":25,"padding_bottom":25,"reset_spacing":true}},"brand_logo_XHpAXt":{"type":"brand-logo","blocks":{"brand_items_gn6UPf":{"type":"brand_items","settings":{"image":"shopify:\/\/shop_images\/SYNGENTA.jpg","link":""}},"brand_items_kRXd4a":{"type":"brand_items","settings":{"image":"shopify:\/\/shop_images\/BAYER.jpg","link":""}},"brand_items_R7yt8b":{"type":"brand_items","settings":{"image":"shopify:\/\/shop_images\/CARGILL.png","link":""}},"brand_items_kzMPPg":{"type":"brand_items","settings":{"image":"shopify:\/\/shop_images\/PIONEER.jpg","link":""}},"brand_items_bkrGRW":{"type":"brand_items","settings":{"image":"shopify:\/\/shop_images\/AGRIDRONES.jpg","link":""}},"brand_items_8eEHgE":{"type":"brand_items","settings":{"image":"shopify:\/\/shop_images\/GDM.jpg","link":""}},"brand_items_YqikJP":{"type":"brand_items","settings":{"image":"shopify:\/\/shop_images\/AURIVERDE.jpg","link":""}}},"block_order":["brand_items_gn6UPf","brand_items_kRXd4a","brand_items_R7yt8b","brand_items_kzMPPg","brand_items_bkrGRW","brand_items_8eEHgE","brand_items_YqikJP"],"name":"Marcas do Agro","settings":{"section_width":"fluid_container","color_scheme":"","heading":"Marcas que usam BRKAGRO","description":"<p>São mais de 14 anos de mercado, referência em vestuário de alta performance<br\/><\/p>","show_view_all_button":false,"view_all_button_link":"","header_size":"small","header_alignment":"center","image_ratio":"adapt","custom_ratio":"","img_width":155,"logo_opacity":100,"open_link_newtab":false,"framed":false,"items_per_row":6,"column_gap":30,"show_arrow":true,"carousel_pagination":"disable","infinite":true,"autoplay":true,"autorotate_speed":6,"reveal":false,"items_per_row_mobile":2.5,"padding_top":45,"padding_bottom":30,"reset_spacing":true}},"product_bundle_U4cMyL":{"type":"product-bundle","blocks":{"product_discount_BrTU77":{"type":"product_discount","name":"Produtos Descontos","settings":{"collection":"","products":["bone-trucker-agro-vaquejada","bone-trucker-brk-agro-camuflado-texas-longhorns","bone-trucker-brk-agro-cinza-e-verde-1"],"items_to_show":3,"items_per_row":3,"column_gap":30,"carousel_on_mobile":true,"items_per_row_mobile":2}},"your_bundle_Geyk6h":{"type":"your_bundle","name":"Kit","settings":{"heading":"KIT COM DESCONTO","description":"<p>Adicione <strong>3 Bonés<\/strong> para <strong>Ganhar 15% de Desconto!<\/strong><\/p>","heading_font_size":20,"heading_font_weight":"heading_weight","heading_uppercase":false,"heading_spacing_bottom":20,"des_font_size":15,"des_font_weight":"body_weight","des_spacing_bottom":30}}},"block_order":["product_discount_BrTU77","your_bundle_Geyk6h"],"name":"Monte seu Kit","settings":{"section_width":"fluid_container","color_scheme":"","heading":"Monte seu kit AGRO","description":"","header_size":"small","header_alignment":"left","minimum":2,"maximum":3,"enable_quantity":true,"padding_top":45,"padding_bottom":45,"reset_spacing":true}},"slideshow_GRzeY3":{"type":"slideshow","blocks":{"slider_item_QQfJEY":{"type":"slider_item","settings":{"overlay_opacity":0,"slider_effect":"effect_fadeindown","subheading":"Subheading","heading":"Image slide","description":"<p>Tell your brand's story through images<\/p>","first_button_label":"Button label","first_button_link":"","first_button_style":false,"second_button_label":"","second_button_link":"","second_button_style":false,"content_alignment":"left","content_position":"bottom-left","content_width":"container","content_max_width":100,"content_padding_block":60,"content_padding_inline":30,"show_content_background":false,"content_background":"#ffffff","content_box_opacity":100,"content_alignment_mobile":"left"}}},"block_order":["slider_item_QQfJEY"],"name":"Lifestyle","settings":{"section_width":"full_width","slide_height":"full_screen","desktop_height":800,"mobile_height":360,"color_scheme":"","slide_effect":"fade","reveal_slideshow":false,"show_arrow":false,"carousel_pagination":"disable","pagination_position":"center","autoplay":false,"autorotate_speed":6,"subheading_font_size":14,"subheading_font_weight":"body_weight","subheading_spacing_bottom":10,"heading_font_size":70,"heading_font_weight":"heading_weight","heading_uppercase":false,"heading_spacing_bottom":10,"des_font_size":14,"des_font_weight":"body_weight","des_spacing_bottom":40,"content_below_image":false,"padding_top":0,"padding_bottom":0,"reset_spacing":false}},"instagram_shop_X8AgdJ":{"type":"instagram-shop","blocks":{"instagram_manual_upload_Ynpbwc":{"type":"instagram_manual_upload","settings":{"more_info":"","instagram_post_name":"","link":"","product__1":"","offset_top__1":12,"offset_left__1":32,"product__2":"","offset_top__2":1,"offset_left__2":43,"product__3":"","offset_top__3":10,"offset_left__3":40,"product__4":"","offset_top__4":60,"offset_left__4":70,"product__5":"","offset_top__5":1,"offset_left__5":4}},"instagram_manual_upload_AMpdtd":{"type":"instagram_manual_upload","settings":{"more_info":"","instagram_post_name":"","link":"","product__1":"","offset_top__1":12,"offset_left__1":32,"product__2":"","offset_top__2":1,"offset_left__2":43,"product__3":"","offset_top__3":10,"offset_left__3":40,"product__4":"","offset_top__4":60,"offset_left__4":70,"product__5":"","offset_top__5":1,"offset_left__5":4}},"instagram_manual_upload_WC6NAd":{"type":"instagram_manual_upload","settings":{"more_info":"","instagram_post_name":"","link":"","product__1":"","offset_top__1":12,"offset_left__1":32,"product__2":"","offset_top__2":1,"offset_left__2":43,"product__3":"","offset_top__3":10,"offset_left__3":40,"product__4":"","offset_top__4":60,"offset_left__4":70,"product__5":"","offset_top__5":1,"offset_left__5":4}},"instagram_manual_upload_YjEdak":{"type":"instagram_manual_upload","settings":{"more_info":"","instagram_post_name":"","link":"","product__1":"","offset_top__1":12,"offset_left__1":32,"product__2":"","offset_top__2":1,"offset_left__2":43,"product__3":"","offset_top__3":10,"offset_left__3":40,"product__4":"","offset_top__4":60,"offset_left__4":70,"product__5":"","offset_top__5":1,"offset_left__5":4}}},"block_order":["instagram_manual_upload_Ynpbwc","instagram_manual_upload_AMpdtd","instagram_manual_upload_WC6NAd","instagram_manual_upload_YjEdak"],"name":"Momentos Reais","settings":{"section_width":"fluid_container","color_scheme":"","heading":"Momentos Reais #BRKAGRO","description":"<p>Mostre o seu orgulho Agro! Marque <strong>@BRKAGRO_OFC<\/strong> nas suas fotos e apareça na nossa galeria<\/p>","header_size":"medium","header_alignment":"center","image_ratio":"adapt","custom_ratio":"","hotspot_style":"plus","items_per_row":4,"column_gap":30,"show_arrow":false,"carousel_pagination":"disable","infinite":false,"autoplay":false,"autorotate_speed":5,"reveal":false,"items_per_row_mobile":2,"padding_top":0,"padding_bottom":0,"reset_spacing":false}},"icon_box_TRwJBD":{"type":"icon-box","blocks":{"icon_box_ACjiqA":{"type":"icon_box","settings":{"icon_svg":"free_shipping","custom_svg":"","heading":"FRETE GRÁTIS*","description":"<p>Para todas as compras acima de <strong>R$ 299<\/strong> de produtos da marca<\/p>"}},"icon_box_RLNr9a":{"type":"icon_box","settings":{"icon_svg":"check_badge","custom_svg":"","heading":"TROCA GRÁTIS","description":"<p>Não serviu? <strong>Primeira Troca Grátis<\/strong> nos primeiros 7 dias após recebimento do pedido<\/p>"}},"icon_box_tj4DJd":{"type":"icon_box","settings":{"icon_svg":"message_communications","custom_svg":"","heading":"SUPORTE ONLINE","description":"<p>Estamos disponíveis no <strong>WhatsAPP: <\/strong><a href=\"https:\/\/web.whatsapp.com\/send?phone=+553432194697&text=Oi,%20vim%20da%20loja%20BRK%20Agro.\" target=\"_blank\" title=\"https:\/\/web.whatsapp.com\/send?phone=+553432194697&text=Oi,%20vim%20da%20loja%20BRK%20Agro.\"><strong>(34) 3219-4697<\/strong><\/a><\/p>"}}},"block_order":["icon_box_ACjiqA","icon_box_RLNr9a","icon_box_tj4DJd"],"name":"Informações","settings":{"section_width":"fluid_container","color_scheme":"scheme-4faf0e4d-27f4-4d02-bc51-617383bab1a9","type":"default","column_gap":30,"icon_position":"top","icon_size":32,"spacing":11,"show_border":false,"enable_background":false,"background":"","content_alignment":"center","heading_font_size":16,"heading_font_weight":"heading_weight","heading_uppercase":false,"heading_spacing_bottom":10,"des_font_size":15,"des_font_weight":"body_weight","carousel_on_mobile":true,"items_per_row_mobile":"2","padding_top":30,"padding_bottom":30,"reset_spacing":true}}},"order":["divider_WJrFxP","slideshow_8KKtNU","scrolling_text_XAxGTr","collection_list_DnBJyy","products_carousel_nUcUgz","collection_tab_XNDCTb","banner_packery_txTyNt","collection_list_TVMtme","brand_logo_XHpAXt","product_bundle_U4cMyL","slideshow_GRzeY3","instagram_shop_X8AgdJ","icon_box_TRwJBD"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "divider_WJrFxP": {
+      "type": "divider",
+      "custom_css": [
+        ".sec__divider-inner {box-shadow: 0px 10px 15px -5px rgba(0, 0, 0, 0.4);}"
+      ],
+      "name": "Divisor",
+      "settings": {
+        "section_width": "full_width",
+        "border_height": 10,
+        "border_color": "#1e1e1e",
+        "reset_spacing": true
+      }
+    },
+    "slideshow_8KKtNU": {
+      "type": "slideshow",
+      "blocks": {
+        "slider_item_ib6U7g": {
+          "type": "slider_item",
+          "name": "Natal Agro",
+          "settings": {
+            "image": "shopify://shop_images/BANNERS-AGRO.webp",
+            "image_mobile": "shopify://shop_images/MOBBANNERS-AGRO.webp",
+            "overlay_opacity": 0,
+            "slider_effect": "effect_fadeinup",
+            "subheading": "",
+            "heading": "",
+            "description": "",
+            "first_button_label": "",
+            "first_button_link": "",
+            "first_button_style": false,
+            "second_button_label": "",
+            "second_button_link": "",
+            "second_button_style": false,
+            "content_alignment": "center",
+            "content_position": "top-center",
+            "content_width": "full_width",
+            "content_max_width": 100,
+            "content_padding_block": 60,
+            "content_padding_inline": 120,
+            "show_content_background": false,
+            "content_background": "#ffffff",
+            "content_box_opacity": 100,
+            "content_alignment_mobile": "center"
+          }
+        },
+        "slider_item_YipJd4": {
+          "type": "slider_item",
+          "name": "Amazon Femininas",
+          "settings": {
+            "image": "shopify://shop_images/Prancheta_1.webp",
+            "image_mobile": "shopify://shop_images/Prancheta_2.webp",
+            "overlay_opacity": 0,
+            "slider_effect": "effect_fadeinup",
+            "subheading": "",
+            "heading": "",
+            "description": "",
+            "first_button_label": "",
+            "first_button_link": "",
+            "first_button_style": false,
+            "second_button_label": "",
+            "second_button_link": "",
+            "second_button_style": false,
+            "content_alignment": "center",
+            "content_position": "top-center",
+            "content_width": "full_width",
+            "content_max_width": 100,
+            "content_padding_block": 60,
+            "content_padding_inline": 120,
+            "show_content_background": false,
+            "content_background": "#ffffff",
+            "content_box_opacity": 100,
+            "content_alignment_mobile": "center"
+          }
+        },
+        "slider_item_mHFJwJ": {
+          "type": "slider_item",
+          "name": "Longhorn",
+          "settings": {
+            "image": "shopify://shop_images/Prancheta_1.webp",
+            "image_mobile": "shopify://shop_images/Prancheta_2.webp",
+            "overlay_opacity": 0,
+            "slider_effect": "effect_fadeinup",
+            "subheading": "",
+            "heading": "",
+            "description": "",
+            "first_button_label": "",
+            "first_button_link": "",
+            "first_button_style": false,
+            "second_button_label": "",
+            "second_button_link": "",
+            "second_button_style": false,
+            "content_alignment": "center",
+            "content_position": "top-center",
+            "content_width": "full_width",
+            "content_max_width": 100,
+            "content_padding_block": 60,
+            "content_padding_inline": 120,
+            "show_content_background": false,
+            "content_background": "#ffffff",
+            "content_box_opacity": 100,
+            "content_alignment_mobile": "center"
+          }
+        },
+        "slider_item_tBYL6H": {
+          "type": "slider_item",
+          "name": "Essenciais",
+          "settings": {
+            "image": "shopify://shop_images/Essenciais_mob.png",
+            "image_mobile": "shopify://shop_images/Essenciais_e0c1aeaf-ec3d-48da-8e1e-8ae5b3cef3f5.png",
+            "overlay_opacity": 0,
+            "slider_effect": "effect_fadeinup",
+            "subheading": "",
+            "heading": "",
+            "description": "",
+            "first_button_label": "",
+            "first_button_link": "",
+            "first_button_style": false,
+            "second_button_label": "",
+            "second_button_link": "",
+            "second_button_style": false,
+            "content_alignment": "center",
+            "content_position": "top-center",
+            "content_width": "full_width",
+            "content_max_width": 100,
+            "content_padding_block": 60,
+            "content_padding_inline": 120,
+            "show_content_background": false,
+            "content_background": "#ffffff",
+            "content_box_opacity": 100,
+            "content_alignment_mobile": "center"
+          }
+        }
+      },
+      "block_order": [
+        "slider_item_ib6U7g",
+        "slider_item_YipJd4",
+        "slider_item_mHFJwJ",
+        "slider_item_tBYL6H"
+      ],
+      "custom_css": [
+        ".h-full_screen {--height-topbar: 41px;}",
+        "@media (max-width: 767.988px) {.sec__content {align-items: end; padding-bottom: 30px; }}"
+      ],
+      "name": "Fullbanner",
+      "settings": {
+        "section_width": "full_width",
+        "slide_height": "adapt",
+        "desktop_height": 800,
+        "mobile_height": 300,
+        "color_scheme": "scheme-c4fa9b2e-e94e-477a-a1f0-ab1da4f2a676",
+        "slide_effect": "fade",
+        "reveal_slideshow": false,
+        "show_arrow": true,
+        "carousel_pagination": "show_dots",
+        "pagination_position": "center",
+        "autoplay": true,
+        "autorotate_speed": 5,
+        "subheading_font_size": 18,
+        "subheading_font_weight": "subheading_weight",
+        "subheading_spacing_bottom": 15,
+        "heading_font_size": 60,
+        "heading_font_weight": "heading_weight",
+        "heading_uppercase": false,
+        "heading_spacing_bottom": 40,
+        "des_font_size": 19,
+        "des_font_weight": "heading_weight",
+        "des_spacing_bottom": 60,
+        "content_below_image": false,
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": true
+      }
+    },
+    "scrolling_text_XAxGTr": {
+      "type": "scrolling-text",
+      "blocks": {
+        "scrolling_text_myQxMH": {
+          "type": "scrolling_text",
+          "settings": {
+            "content": "FRETE FIXO R$9,90"
+          }
+        },
+        "scrolling_text_T9tPfp": {
+          "type": "scrolling_text",
+          "settings": {
+            "content": "FRETE FIXO R$9,90"
+          }
+        }
+      },
+      "block_order": [
+        "scrolling_text_myQxMH",
+        "scrolling_text_T9tPfp"
+      ],
+      "name": "Rotativo",
+      "settings": {
+        "section_width": "full_width",
+        "color_scheme": "scheme-bb1431b0-be4a-4b03-a450-f572c07e3904",
+        "direction": "left",
+        "icon_between_item": "dot",
+        "speed": 11,
+        "space_between_text": 60,
+        "font_size": 16,
+        "font_weight": "body_weight",
+        "uppercase": false,
+        "use_heading_font": false,
+        "padding_top": 12,
+        "padding_bottom": 12,
+        "reset_spacing": true
+      }
+    },
+    "collection_list_DnBJyy": {
+      "type": "collection-list",
+      "blocks": {
+        "collection_afg8mP": {
+          "type": "collection",
+          "settings": {
+            "collection": "",
+            "collection_image": "shopify://shop_images/OFERTA_AGRO_05.webp",
+            "collection_title": ""
+          }
+        },
+        "collection_EKPUGy": {
+          "type": "collection",
+          "settings": {
+            "collection": "",
+            "collection_image": "shopify://shop_images/OFERTA_AGRO_01.webp",
+            "collection_title": ""
+          }
+        },
+        "collection_gEjEAi": {
+          "type": "collection",
+          "settings": {
+            "collection": "",
+            "collection_image": "shopify://shop_images/OFERTA_AGRO_02.webp",
+            "collection_title": ""
+          }
+        },
+        "collection_XGJRwk": {
+          "type": "collection",
+          "settings": {
+            "collection": "",
+            "collection_image": "shopify://shop_images/OFERTA_AGRO_03.webp",
+            "collection_title": ""
+          }
+        },
+        "collection_7niYEB": {
+          "type": "collection",
+          "settings": {
+            "collection": "",
+            "collection_image": "shopify://shop_images/OFERTA_AGRO_04.webp",
+            "collection_title": ""
+          }
+        }
+      },
+      "block_order": [
+        "collection_afg8mP",
+        "collection_EKPUGy",
+        "collection_gEjEAi",
+        "collection_XGJRwk",
+        "collection_7niYEB"
+      ],
+      "custom_css": [
+        ".collection-item__name {display: none;}",
+        "@media (max-width: 750px) {.collection-item {width: 200px !important; }}",
+        "@media (min-width: 751px) {.collection-item {width: 280px !important; }}",
+        ".swiper-wrapper {justify-content: center;}"
+      ],
+      "name": "Card de Ofertas",
+      "settings": {
+        "section_width": "fluid_container",
+        "color_scheme": "default",
+        "heading": "",
+        "description": "",
+        "show_view_all_button": false,
+        "header_size": "medium",
+        "header_alignment": "left",
+        "display_mode": "carousel",
+        "image_ratio": "adapt",
+        "custom_ratio": "1000:1516",
+        "items_per_row": 4,
+        "column_gap": 30,
+        "show_arrow": true,
+        "carousel_pagination": "disable",
+        "infinite": true,
+        "autoplay": true,
+        "autorotate_speed": 5,
+        "reveal": false,
+        "items_per_row_mobile": 1.5,
+        "design": "default",
+        "collection_information_position": "overlay_image",
+        "text_alignment": "center",
+        "show_product_count": false,
+        "show_icon": false,
+        "show_description": false,
+        "font_size": 12,
+        "font_weight": "heading_weight",
+        "information_spacing": 12,
+        "rounded_image": false,
+        "image_custom_width": false,
+        "image_width": 200,
+        "padding_top": 30,
+        "padding_bottom": 30,
+        "reset_spacing": true
+      }
+    },
+    "products_carousel_nUcUgz": {
+      "type": "products-carousel",
+      "name": "Envio FULL + BRINDE",
+      "settings": {
+        "section_width": "fluid_container",
+        "color_scheme": "",
+        "heading": "Envio FULL + BRINDE 🎁",
+        "description": "",
+        "show_view_all_button": true,
+        "header_size": "small",
+        "header_alignment": "center",
+        "collection": "envio-imediato-camisas",
+        "items_to_show": 25,
+        "items_per_row": 5,
+        "column_gap": 15,
+        "show_banner": false,
+        "sticky_banner": false,
+        "banner_width": 30,
+        "position": "left",
+        "banner_link": "",
+        "banner_type": "image",
+        "video_url": "",
+        "video_autoplay": true,
+        "show_arrow": true,
+        "carousel_pagination": "disable",
+        "infinite": true,
+        "autoplay": false,
+        "autorotate_speed": 5,
+        "reveal": true,
+        "items_per_row_mobile": 1.5,
+        "padding_top": 20,
+        "padding_bottom": 20,
+        "reset_spacing": true
+      }
+    },
+    "collection_tab_XNDCTb": {
+      "type": "collection-tab",
+      "blocks": {
+        "collection_RikWXM": {
+          "type": "collection",
+          "settings": {
+            "collection": "mais-vendidos",
+            "collection_title": ""
+          }
+        },
+        "collection_HK34Cn": {
+          "type": "collection",
+          "settings": {
+            "collection": "lancamentos",
+            "collection_title": ""
+          }
+        }
+      },
+      "block_order": [
+        "collection_RikWXM",
+        "collection_HK34Cn"
+      ],
+      "custom_css": [
+        ".collection-tab__tab-item {font-size: clamp(1.105em, 2vw, 2.5rem);}",
+        ".btn_view-all {border-radius: 8px;}"
+      ],
+      "name": "Mais Vendidos/Lançamentos",
+      "settings": {
+        "section_width": "fluid_container",
+        "color_scheme": "default",
+        "heading": "",
+        "description": "",
+        "show_view_all_button": true,
+        "header_size": "medium",
+        "header_alignment": "center",
+        "tab_header_style": "horizontal",
+        "horizontal_tab_style": "underline",
+        "tab_header_postion": "default",
+        "display_mode": "grid",
+        "items_to_show": 24,
+        "items_per_row": 5,
+        "column_gap": 10,
+        "show_arrow": true,
+        "carousel_pagination": "show_dots_on_mobile",
+        "infinite": true,
+        "autoplay": false,
+        "autorotate_speed": 5,
+        "reveal": false,
+        "rows": 2,
+        "show_load_more_button": false,
+        "button_label": "Load more",
+        "carousel_on_mobile": true,
+        "items_per_row_mobile": 1.5,
+        "padding_top": 0,
+        "padding_bottom": 10,
+        "reset_spacing": true
+      }
+    },
+    "banner_packery_txTyNt": {
+      "type": "banner-packery",
+      "blocks": {
+        "group_image_overlay_U7ykjm": {
+          "type": "_group-image-overlay",
+          "settings": {
+            "color_scheme": "",
+            "image": "shopify://shop_images/Prancheta_1_5384cfdb-c1b7-4a7f-b280-8c04af208a4f.png",
+            "image_link": "shopify://collections/feminina",
+            "overlay_opacity": 0,
+            "content_alignment": "start",
+            "content_position": "top-left",
+            "content_padding_block": 30,
+            "content_padding_inline": 30
+          },
+          "blocks": {
+            "subheading_zYHYfk": {
+              "type": "subheading",
+              "settings": {
+                "subheading": "",
+                "font_size": 14,
+                "font_weight": "subheading_weight",
+                "uppercase": false,
+                "spacing_bottom": 15
+              },
+              "blocks": {}
+            },
+            "heading_tLkTK3": {
+              "type": "heading",
+              "disabled": true,
+              "settings": {
+                "heading": "Talk about your brand",
+                "font_size": 36,
+                "font_weight": "heading_weight",
+                "uppercase": false,
+                "spacing_bottom": 20
+              },
+              "blocks": {}
+            },
+            "button_gV4zRb": {
+              "type": "button",
+              "disabled": true,
+              "settings": {
+                "show_full_width": false,
+                "first_button_label": "",
+                "first_button_link": "",
+                "first_button_type": "primary",
+                "second_button_label": "",
+                "second_button_link": "",
+                "second_button_type": "primary",
+                "spacing_bottom": 10
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "subheading_zYHYfk",
+            "heading_tLkTK3",
+            "button_gV4zRb"
+          ]
+        },
+        "group_image_overlay_TXAXbr": {
+          "type": "_group-image-overlay",
+          "settings": {
+            "color_scheme": "",
+            "image": "shopify://shop_images/Prancheta_2.png",
+            "image_link": "",
+            "overlay_opacity": 0,
+            "content_alignment": "start",
+            "content_position": "top-left",
+            "content_padding_block": 23,
+            "content_padding_inline": 30
+          },
+          "blocks": {
+            "subheading_zhFepj": {
+              "type": "subheading",
+              "settings": {
+                "subheading": "",
+                "font_size": 14,
+                "font_weight": "subheading_weight",
+                "uppercase": false,
+                "spacing_bottom": 15
+              },
+              "blocks": {}
+            },
+            "heading_UWL69x": {
+              "type": "heading",
+              "settings": {
+                "heading": "",
+                "font_size": 36,
+                "font_weight": "heading_weight",
+                "uppercase": false,
+                "spacing_bottom": 20
+              },
+              "blocks": {}
+            },
+            "button_rT9cLH": {
+              "type": "button",
+              "disabled": true,
+              "settings": {
+                "show_full_width": false,
+                "first_button_label": "",
+                "first_button_link": "",
+                "first_button_type": "primary",
+                "second_button_label": "",
+                "second_button_link": "",
+                "second_button_type": "primary",
+                "spacing_bottom": 10
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "subheading_zhFepj",
+            "heading_UWL69x",
+            "button_rT9cLH"
+          ]
+        },
+        "group_image_overlay_iimi4M": {
+          "type": "_group-image-overlay",
+          "settings": {
+            "color_scheme": "",
+            "image": "shopify://shop_images/Prancheta_7.png",
+            "image_link": "",
+            "overlay_opacity": 0,
+            "content_alignment": "center",
+            "content_position": "top-center",
+            "content_padding_block": 20,
+            "content_padding_inline": 26
+          },
+          "blocks": {
+            "subheading_X3da6q": {
+              "type": "subheading",
+              "settings": {
+                "subheading": "",
+                "font_size": 14,
+                "font_weight": "subheading_weight",
+                "uppercase": false,
+                "spacing_bottom": 15
+              },
+              "blocks": {}
+            },
+            "heading_qmtcrj": {
+              "type": "heading",
+              "settings": {
+                "heading": "",
+                "font_size": 36,
+                "font_weight": "heading_weight",
+                "uppercase": false,
+                "spacing_bottom": 20
+              },
+              "blocks": {}
+            },
+            "button_UPqEQq": {
+              "type": "button",
+              "disabled": true,
+              "settings": {
+                "show_full_width": false,
+                "first_button_label": "",
+                "first_button_link": "",
+                "first_button_type": "primary",
+                "second_button_label": "",
+                "second_button_link": "",
+                "second_button_type": "primary",
+                "spacing_bottom": 10
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "subheading_X3da6q",
+            "heading_qmtcrj",
+            "button_UPqEQq"
+          ]
+        }
+      },
+      "block_order": [
+        "group_image_overlay_U7ykjm",
+        "group_image_overlay_TXAXbr",
+        "group_image_overlay_iimi4M"
+      ],
+      "name": "Banners de Venda",
+      "settings": {
+        "section_width": "fluid_container",
+        "color_scheme": "",
+        "heading": "",
+        "description": "",
+        "show_view_all_button": false,
+        "view_all_url": "",
+        "header_size": "medium",
+        "header_alignment": "left",
+        "column_gap": 25,
+        "padding_top": 37,
+        "padding_bottom": 25,
+        "reset_spacing": true
+      }
+    },
+    "collection_list_TVMtme": {
+      "type": "collection-list",
+      "blocks": {
+        "collection_qVrNRi": {
+          "type": "collection",
+          "settings": {
+            "collection": "sao-bento",
+            "collection_image": "shopify://shop_images/Sao_Bento_be0c76c8-0b54-4360-b575-385f84809c32.png",
+            "collection_title": "São Bento"
+          }
+        },
+        "collection_rRd7j3": {
+          "type": "collection",
+          "settings": {
+            "collection": "agricultura",
+            "collection_image": "shopify://shop_images/Agricultura_095c610b-6818-4621-bf59-bf4e2f8032cf.png",
+            "collection_title": "Agricultura"
+          }
+        },
+        "collection_azLAja": {
+          "type": "collection",
+          "settings": {
+            "collection": "cursos-profissoes",
+            "collection_image": "shopify://shop_images/Medicina_Veterinaria.png",
+            "collection_title": "Medicina Veterinária"
+          }
+        },
+        "collection_ccBEnR": {
+          "type": "collection",
+          "settings": {
+            "collection": "camisas-do-brasil",
+            "collection_image": "shopify://shop_images/Brasil_e_Agro_e11edcff-a064-4349-b9a5-981953272000.png",
+            "collection_title": "Brasil é Agro"
+          }
+        }
+      },
+      "block_order": [
+        "collection_qVrNRi",
+        "collection_rRd7j3",
+        "collection_azLAja",
+        "collection_ccBEnR"
+      ],
+      "name": "Escolha Por Coleção",
+      "settings": {
+        "section_width": "fluid_container",
+        "color_scheme": "",
+        "heading": "Escolha Por Coleção",
+        "description": "<p>Qual mais combina com você?</p>",
+        "show_view_all_button": false,
+        "header_size": "medium",
+        "header_alignment": "center",
+        "display_mode": "carousel",
+        "image_ratio": "adapt",
+        "custom_ratio": "",
+        "items_per_row": 4,
+        "column_gap": 30,
+        "show_arrow": true,
+        "carousel_pagination": "show_dots",
+        "infinite": true,
+        "autoplay": false,
+        "autorotate_speed": 5,
+        "reveal": false,
+        "items_per_row_mobile": 1.5,
+        "design": "morden",
+        "collection_information_position": "below_image",
+        "text_alignment": "center",
+        "show_product_count": false,
+        "show_icon": false,
+        "show_description": false,
+        "font_size": 16,
+        "font_weight": "heading_weight",
+        "information_spacing": 8,
+        "rounded_image": false,
+        "image_custom_width": false,
+        "image_width": 200,
+        "padding_top": 25,
+        "padding_bottom": 25,
+        "reset_spacing": true
+      }
+    },
+    "brand_logo_XHpAXt": {
+      "type": "brand-logo",
+      "blocks": {
+        "brand_items_gn6UPf": {
+          "type": "brand_items",
+          "settings": {
+            "image": "shopify://shop_images/SYNGENTA.jpg",
+            "link": ""
+          }
+        },
+        "brand_items_kRXd4a": {
+          "type": "brand_items",
+          "settings": {
+            "image": "shopify://shop_images/BAYER.jpg",
+            "link": ""
+          }
+        },
+        "brand_items_R7yt8b": {
+          "type": "brand_items",
+          "settings": {
+            "image": "shopify://shop_images/CARGILL.png",
+            "link": ""
+          }
+        },
+        "brand_items_kzMPPg": {
+          "type": "brand_items",
+          "settings": {
+            "image": "shopify://shop_images/PIONEER.jpg",
+            "link": ""
+          }
+        },
+        "brand_items_bkrGRW": {
+          "type": "brand_items",
+          "settings": {
+            "image": "shopify://shop_images/AGRIDRONES.jpg",
+            "link": ""
+          }
+        },
+        "brand_items_8eEHgE": {
+          "type": "brand_items",
+          "settings": {
+            "image": "shopify://shop_images/GDM.jpg",
+            "link": ""
+          }
+        },
+        "brand_items_YqikJP": {
+          "type": "brand_items",
+          "settings": {
+            "image": "shopify://shop_images/AURIVERDE.jpg",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "brand_items_gn6UPf",
+        "brand_items_kRXd4a",
+        "brand_items_R7yt8b",
+        "brand_items_kzMPPg",
+        "brand_items_bkrGRW",
+        "brand_items_8eEHgE",
+        "brand_items_YqikJP"
+      ],
+      "name": "Marcas do Agro",
+      "settings": {
+        "section_width": "fluid_container",
+        "color_scheme": "",
+        "heading": "Marcas que usam BRKAGRO",
+        "description": "<p>São mais de 14 anos de mercado, referência em vestuário de alta performance<br/></p>",
+        "show_view_all_button": false,
+        "view_all_button_link": "",
+        "header_size": "small",
+        "header_alignment": "center",
+        "image_ratio": "adapt",
+        "custom_ratio": "",
+        "img_width": 155,
+        "logo_opacity": 100,
+        "open_link_newtab": false,
+        "framed": false,
+        "items_per_row": 6,
+        "column_gap": 30,
+        "show_arrow": true,
+        "carousel_pagination": "disable",
+        "infinite": true,
+        "autoplay": true,
+        "autorotate_speed": 6,
+        "reveal": false,
+        "items_per_row_mobile": 2.5,
+        "padding_top": 45,
+        "padding_bottom": 30,
+        "reset_spacing": true
+      }
+    },
+    "product_bundle_U4cMyL": {
+      "type": "product-bundle",
+      "blocks": {
+        "product_discount_BrTU77": {
+          "type": "product_discount",
+          "name": "Produtos Descontos",
+          "settings": {
+            "collection": "",
+            "products": [
+              "bone-trucker-agro-vaquejada",
+              "bone-trucker-brk-agro-camuflado-texas-longhorns",
+              "bone-trucker-brk-agro-cinza-e-verde-1"
+            ],
+            "items_to_show": 3,
+            "items_per_row": 3,
+            "column_gap": 30,
+            "carousel_on_mobile": true,
+            "items_per_row_mobile": 2
+          }
+        },
+        "your_bundle_Geyk6h": {
+          "type": "your_bundle",
+          "name": "Kit",
+          "settings": {
+            "heading": "KIT COM DESCONTO",
+            "description": "<p>Adicione <strong>3 Bonés</strong> para <strong>Ganhar 15% de Desconto!</strong></p>",
+            "heading_font_size": 20,
+            "heading_font_weight": "heading_weight",
+            "heading_uppercase": false,
+            "heading_spacing_bottom": 20,
+            "des_font_size": 15,
+            "des_font_weight": "body_weight",
+            "des_spacing_bottom": 30
+          }
+        }
+      },
+      "block_order": [
+        "product_discount_BrTU77",
+        "your_bundle_Geyk6h"
+      ],
+      "name": "Monte seu Kit",
+      "settings": {
+        "section_width": "fluid_container",
+        "color_scheme": "",
+        "heading": "Monte seu kit AGRO",
+        "description": "",
+        "header_size": "small",
+        "header_alignment": "left",
+        "minimum": 2,
+        "maximum": 3,
+        "enable_quantity": true,
+        "padding_top": 45,
+        "padding_bottom": 45,
+        "reset_spacing": true
+      }
+    },
+    "slideshow_GRzeY3": {
+      "type": "slideshow",
+      "blocks": {
+        "slider_item_QQfJEY": {
+          "type": "slider_item",
+          "settings": {
+            "image": "shopify://shop_images/hellenottonelli_517194943_18522683608055493_3937428400731872563_n.png",
+            "overlay_opacity": 0,
+            "slider_effect": "effect_fadeindown",
+            "subheading": "",
+            "heading": "",
+            "description": "",
+            "first_button_label": "",
+            "first_button_link": "",
+            "first_button_style": false,
+            "second_button_label": "",
+            "second_button_link": "",
+            "second_button_style": false,
+            "content_alignment": "left",
+            "content_position": "bottom-left",
+            "content_width": "fluid_container",
+            "content_max_width": 100,
+            "content_padding_block": 60,
+            "content_padding_inline": 30,
+            "show_content_background": true,
+            "content_background": "#ffffff",
+            "content_box_opacity": 100,
+            "content_alignment_mobile": "left"
+          }
+        }
+      },
+      "block_order": [
+        "slider_item_QQfJEY"
+      ],
+      "name": "Lifestyle",
+      "settings": {
+        "section_width": "full_width",
+        "slide_height": "full_screen",
+        "desktop_height": 800,
+        "mobile_height": 360,
+        "color_scheme": "",
+        "slide_effect": "fade",
+        "reveal_slideshow": false,
+        "show_arrow": false,
+        "carousel_pagination": "disable",
+        "pagination_position": "center",
+        "autoplay": false,
+        "autorotate_speed": 6,
+        "subheading_font_size": 14,
+        "subheading_font_weight": "body_weight",
+        "subheading_spacing_bottom": 10,
+        "heading_font_size": 70,
+        "heading_font_weight": "heading_weight",
+        "heading_uppercase": false,
+        "heading_spacing_bottom": 10,
+        "des_font_size": 14,
+        "des_font_weight": "body_weight",
+        "des_spacing_bottom": 40,
+        "content_below_image": false,
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": false
+      }
+    },
+    "instagram_shop_X8AgdJ": {
+      "type": "instagram-shop",
+      "blocks": {
+        "instagram_manual_upload_Ynpbwc": {
+          "type": "instagram_manual_upload",
+          "settings": {
+            "more_info": "",
+            "instagram_post_name": "",
+            "link": "",
+            "product__1": "",
+            "offset_top__1": 12,
+            "offset_left__1": 32,
+            "product__2": "",
+            "offset_top__2": 1,
+            "offset_left__2": 43,
+            "product__3": "",
+            "offset_top__3": 10,
+            "offset_left__3": 40,
+            "product__4": "",
+            "offset_top__4": 60,
+            "offset_left__4": 70,
+            "product__5": "",
+            "offset_top__5": 1,
+            "offset_left__5": 4
+          }
+        },
+        "instagram_manual_upload_AMpdtd": {
+          "type": "instagram_manual_upload",
+          "settings": {
+            "more_info": "",
+            "instagram_post_name": "",
+            "link": "",
+            "product__1": "",
+            "offset_top__1": 12,
+            "offset_left__1": 32,
+            "product__2": "",
+            "offset_top__2": 1,
+            "offset_left__2": 43,
+            "product__3": "",
+            "offset_top__3": 10,
+            "offset_left__3": 40,
+            "product__4": "",
+            "offset_top__4": 60,
+            "offset_left__4": 70,
+            "product__5": "",
+            "offset_top__5": 1,
+            "offset_left__5": 4
+          }
+        },
+        "instagram_manual_upload_WC6NAd": {
+          "type": "instagram_manual_upload",
+          "settings": {
+            "more_info": "",
+            "instagram_post_name": "",
+            "link": "",
+            "product__1": "",
+            "offset_top__1": 12,
+            "offset_left__1": 32,
+            "product__2": "",
+            "offset_top__2": 1,
+            "offset_left__2": 43,
+            "product__3": "",
+            "offset_top__3": 10,
+            "offset_left__3": 40,
+            "product__4": "",
+            "offset_top__4": 60,
+            "offset_left__4": 70,
+            "product__5": "",
+            "offset_top__5": 1,
+            "offset_left__5": 4
+          }
+        },
+        "instagram_manual_upload_YjEdak": {
+          "type": "instagram_manual_upload",
+          "settings": {
+            "more_info": "",
+            "instagram_post_name": "",
+            "link": "",
+            "product__1": "",
+            "offset_top__1": 12,
+            "offset_left__1": 32,
+            "product__2": "",
+            "offset_top__2": 1,
+            "offset_left__2": 43,
+            "product__3": "",
+            "offset_top__3": 10,
+            "offset_left__3": 40,
+            "product__4": "",
+            "offset_top__4": 60,
+            "offset_left__4": 70,
+            "product__5": "",
+            "offset_top__5": 1,
+            "offset_left__5": 4
+          }
+        }
+      },
+      "block_order": [
+        "instagram_manual_upload_Ynpbwc",
+        "instagram_manual_upload_AMpdtd",
+        "instagram_manual_upload_WC6NAd",
+        "instagram_manual_upload_YjEdak"
+      ],
+      "name": "Momentos Reais",
+      "settings": {
+        "section_width": "fluid_container",
+        "color_scheme": "",
+        "heading": "Momentos Reais #BRKAGRO",
+        "description": "<p>Mostre o seu orgulho Agro! Marque <strong>@BRKAGRO_OFC</strong> nas suas fotos e apareça na nossa galeria</p>",
+        "header_size": "medium",
+        "header_alignment": "center",
+        "image_ratio": "adapt",
+        "custom_ratio": "",
+        "hotspot_style": "plus",
+        "items_per_row": 4,
+        "column_gap": 30,
+        "show_arrow": false,
+        "carousel_pagination": "disable",
+        "infinite": false,
+        "autoplay": false,
+        "autorotate_speed": 5,
+        "reveal": false,
+        "items_per_row_mobile": 2,
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": false
+      }
+    },
+    "icon_box_TRwJBD": {
+      "type": "icon-box",
+      "blocks": {
+        "icon_box_ACjiqA": {
+          "type": "icon_box",
+          "settings": {
+            "icon_svg": "free_shipping",
+            "custom_svg": "",
+            "heading": "FRETE GRÁTIS*",
+            "description": "<p>Para todas as compras acima de <strong>R$ 299</strong> de produtos da marca</p>"
+          }
+        },
+        "icon_box_RLNr9a": {
+          "type": "icon_box",
+          "settings": {
+            "icon_svg": "check_badge",
+            "custom_svg": "",
+            "heading": "TROCA GRÁTIS",
+            "description": "<p>Não serviu? <strong>Primeira Troca Grátis</strong> nos primeiros 7 dias após recebimento do pedido</p>"
+          }
+        },
+        "icon_box_tj4DJd": {
+          "type": "icon_box",
+          "settings": {
+            "icon_svg": "message_communications",
+            "custom_svg": "",
+            "heading": "SUPORTE ONLINE",
+            "description": "<p>Estamos disponíveis no <strong>WhatsAPP: </strong><a href=\"https://web.whatsapp.com/send?phone=+553432194697&text=Oi,%20vim%20da%20loja%20BRK%20Agro.\" target=\"_blank\" title=\"https://web.whatsapp.com/send?phone=+553432194697&text=Oi,%20vim%20da%20loja%20BRK%20Agro.\"><strong>(34) 3219-4697</strong></a></p>"
+          }
+        }
+      },
+      "block_order": [
+        "icon_box_ACjiqA",
+        "icon_box_RLNr9a",
+        "icon_box_tj4DJd"
+      ],
+      "name": "Informações",
+      "settings": {
+        "section_width": "fluid_container",
+        "color_scheme": "scheme-4faf0e4d-27f4-4d02-bc51-617383bab1a9",
+        "type": "default",
+        "column_gap": 30,
+        "icon_position": "top",
+        "icon_size": 32,
+        "spacing": 11,
+        "show_border": false,
+        "enable_background": false,
+        "background": "",
+        "content_alignment": "center",
+        "heading_font_size": 16,
+        "heading_font_weight": "heading_weight",
+        "heading_uppercase": false,
+        "heading_spacing_bottom": 10,
+        "des_font_size": 15,
+        "des_font_weight": "body_weight",
+        "carousel_on_mobile": true,
+        "items_per_row_mobile": "2",
+        "padding_top": 30,
+        "padding_bottom": 30,
+        "reset_spacing": true
+      }
+    }
+  },
+  "order": [
+    "divider_WJrFxP",
+    "slideshow_8KKtNU",
+    "scrolling_text_XAxGTr",
+    "collection_list_DnBJyy",
+    "products_carousel_nUcUgz",
+    "collection_tab_XNDCTb",
+    "banner_packery_txTyNt",
+    "collection_list_TVMtme",
+    "brand_logo_XHpAXt",
+    "product_bundle_U4cMyL",
+    "slideshow_GRzeY3",
+    "instagram_shop_X8AgdJ",
+    "icon_box_TRwJBD"
+  ]
+}
