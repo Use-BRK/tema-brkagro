@@ -838,12 +838,13 @@
         "slider_item_QQfJEY": {
           "type": "slider_item",
           "settings": {
+            "image": "shopify://shop_images/hellenottonelli_517194943_18522683608055493_3937428400731872563_n.png",
             "overlay_opacity": 0,
             "slider_effect": "effect_fadeindown",
-            "subheading": "Subheading",
-            "heading": "Image slide",
-            "description": "<p>Tell your brand's story through images</p>",
-            "first_button_label": "Button label",
+            "subheading": "",
+            "heading": "",
+            "description": "",
+            "first_button_label": "",
             "first_button_link": "",
             "first_button_style": false,
             "second_button_label": "",
