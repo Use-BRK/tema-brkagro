@@ -379,6 +379,7 @@ input.option-disabled+.product__item-option, .option-disabled .product__item-opt
 
 section[class*=main-product-section] .product-detail__title {
   margin-bottom: 0px !important;
+  font-size: clamp(21.5px, 3vw, 2.6rem);
 }
 
 
