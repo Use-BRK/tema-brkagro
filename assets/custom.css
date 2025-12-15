@@ -381,31 +381,7 @@ section[class*=main-product-section] .product-detail__title {
   margin-bottom: 0px !important;
 }
 
-/* Variant Swatch */
-fieldset .ident-size-block {
-  display: flex;
-  gap: 1.5rem !important;
-  flex-wrap: wrap;
-}
 
-@media screen and (max-width: 620px) { 
-    
-  /* 1. SELECIONA O BLOCO PRINCIPAL (DIV) APENAS DENTRO DO PRIMEIRO FIELDSET */
-  fieldset:first-of-type .ident-size-block {
-      display: flex;
-      width: 100%;
-      column-gap: 1.5rem;
-      flex-wrap: nowrap; /* Impede quebras de linha indesejadas */
-  }
-  
-  /* 2. SELECIONA AS LABELS APENAS DENTRO DO BLOCO PRINCIPAL */
-  fieldset:first-of-type .ident-size-block label {
-      width: -webkit-fill-available;
-      justify-content: center;
-      padding-inline: 0;
-  }
-  
-}
 
 
 
