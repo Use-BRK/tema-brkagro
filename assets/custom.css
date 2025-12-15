@@ -389,19 +389,20 @@ fieldset .ident-size-block {
 }
 
 @media screen and (max-width: 620px) { 
-
-  /* Custom Swatch Spa */
-  fieldset .ident-size-block {
-    display: flex;
-    width: 100%;
-    column-gap: 1.5rem;
-    flex-wrap:nowrap;
+    
+  /* 1. SELECIONA O BLOCO PRINCIPAL (DIV) APENAS DENTRO DO PRIMEIRO FIELDSET */
+  fieldset:first-of-type .ident-size-block {
+      display: flex;
+      width: 100%;
+      column-gap: 1.5rem;
+      flex-wrap: nowrap; /* Impede quebras de linha indesejadas */
   }
   
-  fieldset .ident-size-block label{
-    width: -webkit-fill-available;
-    justify-content: center;
-    padding-inline: 0;
+  /* 2. SELECIONA AS LABELS APENAS DENTRO DO BLOCO PRINCIPAL */
+  fieldset:first-of-type .ident-size-block label {
+      width: -webkit-fill-available;
+      justify-content: center;
+      padding-inline: 0;
   }
   
 }
