@@ -1,1 +1,452 @@
-{"current":{"purchase_code":"64513e3f-16d1-4159-9b2f-180b0ba29ec9","favicon":"shopify:\/\/shop_images\/tractor.svg","logo":"shopify:\/\/shop_images\/topo_logo.svg","logo_on_transparent":"shopify:\/\/shop_images\/topo_logo.svg","desktop_logo_width":250,"mobile_logo_width":190,"page_width":1800,"fluid_container_width":1800,"enable_rounded":true,"rounded_corner":10,"spacing_desktop":90,"space_mobile":50,"body_font_size":17,"body_font_weight":500,"font_body_heading_embed":"<link rel=\"preconnect\" href=\"https:\/\/fonts.googleapis.com\">\n<link rel=\"preconnect\" href=\"https:\/\/fonts.gstatic.com\" crossorigin>\n<link href=\"https:\/\/fonts.googleapis.com\/css2?family=BioRhyme:wdth,wght@100..125,200..800&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap\" rel=\"stylesheet\">","font_heading_google":"Poppins","heading_text_transform":"unset","heading_letter_spacing":"negative","menu_font":"heading_font","enable_browser_tab_notifications":false,"show_sale":true,"sale_color":"#fff","sale_background":"#D0473E","sale_badge_type":"percent","sale_badge_addons":"none","new_background":"#3456e6","new_badge_display_period":5,"pre_order_background":"#6a33d8","sold_out_background":"#666666","custom_badge_background":"#14854e","product_style":"standard","show_quick_view":false,"show_compare":false,"show_add_cart":true,"product_alignment":"center","product_size":15,"product_font_weight":"600","product_truncation_title":"2","price_size":12,"price_font_weight":"600","show_vendor":false,"show_short_description":false,"show_secondary_image":true,"product_image_ratio":"adapt","show_action_on_mobile":true,"swatch_item_type":"variant_images","size_trigger":"Size, Taglia, Tamanho","search_type":"drawer","search_result":"all","enable_search_suggestion":true,"popular_key_word":"camisa do brasil, longhorn, texas, bonés, botinas, uniformes pro campo","collection_suggestion":"barra-de-busca","show_search_price":true,"show_message_when_remove":true,"action_after_add_cart":"open_drawer","show_on_minicart_cart_page":false,"free_shipping_minimum":"150","show_duration_on_minicart_cart_page":false,"enable_cart_note":false,"enable_discount_code":true,"enable_gift_wrap":false,"choose_gift_wrap_product":"digital-gift-card","product_recommendations_heading":"🌱 Roupas do Agro","minicart_type":"disable","show_on_cart_page":false,"product_recommendations_type":"auto","select_product_recommendations":[],"show_estimate_shipping_rates":false,"show_delivery_day":false,"facebook":"https:\/\/pt-br.facebook.com\/brkagrobrasil","instagram":"https:\/\/www.instagram.com\/brkagro_ofc\/","twitter":"","youtube":"https:\/\/www.youtube.com\/@BrkAgro","tiktok":"","pinterest":"","vimeo":"","linkedin":"","whatsapp":"https:\/\/web.whatsapp.com\/send?phone=+553432194697&text=Oi,%20vim%20da%20loja%20BRK%20Agro.","enable_preload":true,"preload_page":"spin","zoom_image":false,"scroll_animation":"fade-in","store_phone":"(34) 3219-4697","store_email":"contato@usebrk.com.br","store_address":"R. Francisco Vieira de Paiva, 49 - B. Roosevelt, Uberlândia\/MG","store_page":"","heading_cookies":"","content_cookies":"<p>We use cookies to enhance your browsing experience, serve personalized ads or content, and analyze our traffics. By clicking \"<strong>Allow Cookies<\/strong>\" you consent to our use of cookie.<\/p>","label_allow":"Allow Cookies","label_refuse":"","show_check_box_in_cart":false,"show_checkbox_in_product_page":false,"show_check_box_in_quick_view":false,"text_terms_conditions":"<p>Eu concordo com os <a href=\"\/pages\/termos-de-uso\" title=\"Termos de Uso\">Termos de Uso<\/a><\/p>","page_terms_conditions":"term-and-conditions","rate_color":"#ea0606","sections":{"custom-colors":{"type":"custom-colors","blocks":{"color_Hmf4DW":{"type":"color","settings":{"heading":"Amarelo","color_code":"#ffff00"}},"color_CCA8Ah":{"type":"color","settings":{"heading":"Cinza","color_code":"#a9a9a9"}},"color_h7mKB7":{"type":"color","settings":{"heading":"Verde","color_code":"#3a9e35"}},"color_aQceXa":{"type":"color","settings":{"heading":"Preto","color_code":"#1e1e1e"}}},"block_order":["color_Hmf4DW","color_CCA8Ah","color_h7mKB7","color_aQceXa"],"settings":{}},"product-quickview":{"type":"product-quickview","blocks":{"badges_NhM4GM":{"type":"_product-badges","settings":{},"blocks":{}},"title_txJBrx":{"type":"_product-title","settings":{"show_vendor":false},"blocks":{}},"rate_QwRHyp":{"type":"_review-quickview","settings":{},"blocks":{}},"price_NNg9B8":{"type":"_product-price","settings":{},"blocks":{}},"description_pKXRJa":{"type":"_product-short-description","settings":{"excerpt_length":150},"blocks":{}},"variant_picker_MQYkTJ":{"type":"_product-variant-picker","settings":{"variant_type":"swatches","show_size_guide":false,"size_guide_label":"Guia de Medidas","size_guide_page":""},"blocks":{}},"buy_buttons_pDYNX9":{"type":"_product-buy-buttons","settings":{"show_dynamic_checkout":false,"show_gift_card_recipient":true,"show_wishlist":true,"show_compare":false},"blocks":{}}},"block_order":["badges_NhM4GM","title_txJBrx","rate_QwRHyp","price_NNg9B8","description_pKXRJa","variant_picker_MQYkTJ","buy_buttons_pDYNX9"],"settings":{}},"mobile-navigation-bar":{"type":"mobile-navigation-bar","settings":{}},"fake-order":{"type":"fake-order","settings":{"show_fake_order":false,"disable_mobile":false,"fake_product":["anime-t-shirt-printed-short-sleeve","balloon-sleeve-blouse-square-neck","basic-bright-green-rib-extreme-crop","braid-detailed-sleeveless-flow-top"],"fake_user":"Jonson (California) | Tony (Texas) | Bruno (New York) | Eren (Ohio) | Lauren (Washington) | Flortino (California) | Blue (Ohio)","text_verify":"Verify","delay_time":"5000","display_time":"6000"}},"top-search":{"type":"top-search","settings":{}}},"content_for_index":[],"blocks":{"17730292167556765394":{"type":"shopify:\/\/apps\/pagbrasil-app-companion\/blocks\/app_embedded_extra_info\/356201f0-7b27-4511-ac69-c1627db6da45","disabled":false,"settings":{}},"15184704725445319147":{"type":"shopify:\/\/apps\/pagbrasil-app-companion\/blocks\/app_embedded_pagshield\/356201f0-7b27-4511-ac69-c1627db6da45","disabled":false,"settings":{}},"15639742860725253803":{"type":"shopify:\/\/apps\/musbu-wa-chat\/blocks\/app-embed\/267d7a73-494b-4925-ba55-49fe70b0f09e","disabled":true,"settings":{}},"18228966181090706294":{"type":"shopify:\/\/apps\/selleasy\/blocks\/app-embed\/790c1a03-a71f-4bc1-9869-00dad526d3c2","disabled":false,"settings":{"storefrontAccessToken":""}},"4372474792694305445":{"type":"shopify:\/\/apps\/also-bought\/blocks\/app-embed-block\/b94b27b4-738d-4d92-9e60-43c22d1da3f2","disabled":false,"settings":{}},"16555213172727936593":{"type":"shopify:\/\/apps\/ns-discount-in-cart\/blocks\/discount_block\/0cbbbcdd-bf54-49df-885c-9ca3fd52a671","disabled":false,"settings":{}},"1530068250781986104":{"type":"shopify:\/\/apps\/fbp-fast-bundle\/blocks\/fast_bundle\/9e87fbe2-9041-4c23-acf5-322413994cef","disabled":false,"settings":{"home":true}},"848591003871763955":{"type":"shopify:\/\/apps\/shortly-affiliate-marketing\/blocks\/app-embed-block\/4c3d9aaa-3566-4200-9c43-34b476f6332a","disabled":false,"settings":{}}},"color_schemes":{"default":{"settings":{"background":"#ffffff","background_gradient":"","primary_color":"#3a9e35","text_color":"#444444","heading_color":"#1e1e1e","border_color":"#ebebeb","btn_primary_color":"#ffffff","btn_primary_background":"#3a9e35","btn_primary_gradient":"","btn_primary_hover_color":"#ffffff","btn_primary_hover_background":"#1e1e1e","btn_primary_hover_background_gradient":"","btn_outline_color":"#1e1e1e","btn_outline_border_color":"#1e1e1e","button_link_color":"#1e1e1e","button_link_hover_color":"#1e1e1e"}},"scheme-4faf0e4d-27f4-4d02-bc51-617383bab1a9":{"settings":{"background":"#3a9e35","background_gradient":"","primary_color":"#999999","text_color":"#ffffff","heading_color":"#ffffff","border_color":"#ebebeb","btn_primary_color":"#ffffff","btn_primary_background":"#111111","btn_primary_gradient":"","btn_primary_hover_color":"#111111","btn_primary_hover_background":"#ffffff","btn_primary_hover_background_gradient":"","btn_outline_color":"#111111","btn_outline_border_color":"#111111","button_link_color":"#111111","button_link_hover_color":"#111111"}},"scheme-bb1431b0-be4a-4b03-a450-f572c07e3904":{"settings":{"background":"#1e1e1e","background_gradient":"","primary_color":"#d0473e","text_color":"#ebebeb","heading_color":"#e2c224","border_color":"#ebebeb","btn_primary_color":"#ffffff","btn_primary_background":"#111111","btn_primary_gradient":"","btn_primary_hover_color":"#ffffff","btn_primary_hover_background":"#111111","btn_primary_hover_background_gradient":"","btn_outline_color":"#111111","btn_outline_border_color":"#111111","button_link_color":"#111111","button_link_hover_color":"#111111"}},"scheme-3d10de96-a479-49bd-819c-e044746b4f3e":{"settings":{"background":"#ffffff","background_gradient":"","primary_color":"#d0473e","text_color":"#ffffff","heading_color":"#ffffff","border_color":"#ebebeb","btn_primary_color":"#111111","btn_primary_background":"#ffffff","btn_primary_gradient":"","btn_primary_hover_color":"#ffffff","btn_primary_hover_background":"#111111","btn_primary_hover_background_gradient":"","btn_outline_color":"#111111","btn_outline_border_color":"#111111","button_link_color":"#111111","button_link_hover_color":"#111111"}},"scheme-2b5c6c91-201d-4fb1-aba3-e6d562656976":{"settings":{"background":"#f5f5f5","background_gradient":"","primary_color":"#d0473e","text_color":"#444444","heading_color":"#111111","border_color":"#ebebeb","btn_primary_color":"#ffffff","btn_primary_background":"#111111","btn_primary_gradient":"","btn_primary_hover_color":"#ffffff","btn_primary_hover_background":"#111111","btn_primary_hover_background_gradient":"","btn_outline_color":"#111111","btn_outline_border_color":"#111111","button_link_color":"#111111","button_link_hover_color":"#111111"}},"scheme-accf3b11-ba40-4a3e-bafb-243ece6683ec":{"settings":{"background":"#ffffff","background_gradient":"","primary_color":"#d0473e","text_color":"#111111","heading_color":"#111111","border_color":"#ebebeb","btn_primary_color":"#ffffff","btn_primary_background":"#111111","btn_primary_gradient":"","btn_primary_hover_color":"#ffffff","btn_primary_hover_background":"#111111","btn_primary_hover_background_gradient":"","btn_outline_color":"#111111","btn_outline_border_color":"#111111","button_link_color":"#111111","button_link_hover_color":"#111111"}},"scheme-c78bfb21-5aff-497b-be68-98f01962f564":{"settings":{"background":"#ffffff","background_gradient":"","primary_color":"#d0473e","text_color":"#111111","heading_color":"#111111","border_color":"#ebebeb","btn_primary_color":"#ffffff","btn_primary_background":"#111111","btn_primary_gradient":"","btn_primary_hover_color":"#ffffff","btn_primary_hover_background":"#111111","btn_primary_hover_background_gradient":"","btn_outline_color":"#111111","btn_outline_border_color":"#111111","button_link_color":"#111111","button_link_hover_color":"#111111"}},"scheme-082c4b8b-39f5-4a97-a98d-ff02df2a5b47":{"settings":{"background":"#ebebeb","background_gradient":"","primary_color":"#3a9e35","text_color":"#444444","heading_color":"#111111","border_color":"#ebebeb","btn_primary_color":"#ffffff","btn_primary_background":"#3a9e35","btn_primary_gradient":"","btn_primary_hover_color":"#ffffff","btn_primary_hover_background":"#111111","btn_primary_hover_background_gradient":"","btn_outline_color":"#111111","btn_outline_border_color":"#111111","button_link_color":"#111111","button_link_hover_color":"#111111"}}}},"presets":{"Default":{}}}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "current": {
+    "purchase_code": "64513e3f-16d1-4159-9b2f-180b0ba29ec9",
+    "favicon": "shopify://shop_images/tractor.svg",
+    "logo": "shopify://shop_images/topo_logo.svg",
+    "logo_on_transparent": "shopify://shop_images/topo_logo.svg",
+    "desktop_logo_width": 250,
+    "mobile_logo_width": 190,
+    "page_width": 1800,
+    "fluid_container_width": 1800,
+    "enable_rounded": true,
+    "rounded_corner": 10,
+    "spacing_desktop": 90,
+    "space_mobile": 50,
+    "body_font_size": 17,
+    "body_font_weight": 500,
+    "font_body_heading_embed": "<link rel=\"preconnect\" href=\"https://fonts.googleapis.com\">\n<link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin>\n<link href=\"https://fonts.googleapis.com/css2?family=BioRhyme:wdth,wght@100..125,200..800&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap\" rel=\"stylesheet\">",
+    "font_heading_google": "Poppins",
+    "heading_text_transform": "unset",
+    "heading_letter_spacing": "negative",
+    "menu_font": "heading_font",
+    "enable_browser_tab_notifications": false,
+    "show_sale": true,
+    "sale_color": "#fff",
+    "sale_background": "#D0473E",
+    "sale_badge_type": "percent",
+    "sale_badge_addons": "none",
+    "new_background": "#3456e6",
+    "new_badge_display_period": 5,
+    "pre_order_background": "#6a33d8",
+    "sold_out_background": "#666666",
+    "custom_badge_background": "#14854e",
+    "product_style": "standard",
+    "show_quick_view": false,
+    "show_compare": false,
+    "show_add_cart": true,
+    "product_alignment": "center",
+    "product_size": 15,
+    "product_font_weight": "600",
+    "product_truncation_title": "2",
+    "price_size": 12,
+    "price_font_weight": "600",
+    "show_vendor": false,
+    "show_short_description": false,
+    "show_secondary_image": true,
+    "product_image_ratio": "adapt",
+    "show_action_on_mobile": true,
+    "swatch_item_type": "variant_images",
+    "size_trigger": "Size, Taglia, Tamanho",
+    "search_type": "drawer",
+    "search_result": "all",
+    "enable_search_suggestion": true,
+    "popular_key_word": "camisa do brasil, longhorn, texas, bonés, botinas, uniformes pro campo",
+    "collection_suggestion": "barra-de-busca",
+    "show_search_price": true,
+    "show_message_when_remove": true,
+    "action_after_add_cart": "open_drawer",
+    "show_on_minicart_cart_page": false,
+    "free_shipping_minimum": "150",
+    "show_duration_on_minicart_cart_page": false,
+    "enable_cart_note": false,
+    "enable_discount_code": true,
+    "enable_gift_wrap": false,
+    "choose_gift_wrap_product": "digital-gift-card",
+    "product_recommendations_heading": "🌱 Roupas do Agro",
+    "minicart_type": "disable",
+    "show_on_cart_page": false,
+    "product_recommendations_type": "auto",
+    "select_product_recommendations": [],
+    "show_estimate_shipping_rates": false,
+    "show_delivery_day": false,
+    "facebook": "https://pt-br.facebook.com/brkagrobrasil",
+    "instagram": "https://www.instagram.com/brkagro_ofc/",
+    "twitter": "",
+    "youtube": "https://www.youtube.com/@BrkAgro",
+    "tiktok": "",
+    "pinterest": "",
+    "vimeo": "",
+    "linkedin": "",
+    "whatsapp": "https://web.whatsapp.com/send?phone=+553432194697&text=Oi,%20vim%20da%20loja%20BRK%20Agro.",
+    "enable_preload": true,
+    "preload_page": "spin",
+    "zoom_image": false,
+    "scroll_animation": "fade-in",
+    "store_phone": "(34) 3219-4697",
+    "store_email": "contato@usebrk.com.br",
+    "store_address": "R. Francisco Vieira de Paiva, 49 - B. Roosevelt, Uberlândia/MG",
+    "store_page": "",
+    "heading_cookies": "",
+    "content_cookies": "<p>We use cookies to enhance your browsing experience, serve personalized ads or content, and analyze our traffics. By clicking \"<strong>Allow Cookies</strong>\" you consent to our use of cookie.</p>",
+    "label_allow": "Allow Cookies",
+    "label_refuse": "",
+    "show_check_box_in_cart": false,
+    "show_checkbox_in_product_page": false,
+    "show_check_box_in_quick_view": false,
+    "text_terms_conditions": "<p>Eu concordo com os <a href=\"/pages/termos-de-uso\" title=\"Termos de Uso\">Termos de Uso</a></p>",
+    "page_terms_conditions": "term-and-conditions",
+    "rate_color": "#ea0606",
+    "sections": {
+      "custom-colors": {
+        "type": "custom-colors",
+        "blocks": {
+          "color_Hmf4DW": {
+            "type": "color",
+            "settings": {
+              "heading": "Amarelo",
+              "color_code": "#ffff00"
+            }
+          },
+          "color_CCA8Ah": {
+            "type": "color",
+            "settings": {
+              "heading": "Cinza",
+              "color_code": "#a9a9a9"
+            }
+          },
+          "color_h7mKB7": {
+            "type": "color",
+            "settings": {
+              "heading": "Verde",
+              "color_code": "#3a9e35"
+            }
+          },
+          "color_aQceXa": {
+            "type": "color",
+            "settings": {
+              "heading": "Preto",
+              "color_code": "#1e1e1e"
+            }
+          }
+        },
+        "block_order": [
+          "color_Hmf4DW",
+          "color_CCA8Ah",
+          "color_h7mKB7",
+          "color_aQceXa"
+        ],
+        "settings": {}
+      },
+      "product-quickview": {
+        "type": "product-quickview",
+        "blocks": {
+          "badges_NhM4GM": {
+            "type": "_product-badges",
+            "settings": {},
+            "blocks": {}
+          },
+          "title_txJBrx": {
+            "type": "_product-title",
+            "settings": {
+              "show_vendor": false
+            },
+            "blocks": {}
+          },
+          "rate_QwRHyp": {
+            "type": "_review-quickview",
+            "settings": {},
+            "blocks": {}
+          },
+          "price_NNg9B8": {
+            "type": "_product-price",
+            "settings": {},
+            "blocks": {}
+          },
+          "description_pKXRJa": {
+            "type": "_product-short-description",
+            "settings": {
+              "excerpt_length": 150
+            },
+            "blocks": {}
+          },
+          "variant_picker_MQYkTJ": {
+            "type": "_product-variant-picker",
+            "settings": {
+              "variant_type": "swatches",
+              "show_size_guide": false,
+              "size_guide_label": "Guia de Medidas",
+              "size_guide_page": ""
+            },
+            "blocks": {}
+          },
+          "buy_buttons_pDYNX9": {
+            "type": "_product-buy-buttons",
+            "settings": {
+              "show_dynamic_checkout": false,
+              "show_gift_card_recipient": true,
+              "show_wishlist": true,
+              "show_compare": false
+            },
+            "blocks": {}
+          }
+        },
+        "block_order": [
+          "badges_NhM4GM",
+          "title_txJBrx",
+          "rate_QwRHyp",
+          "price_NNg9B8",
+          "description_pKXRJa",
+          "variant_picker_MQYkTJ",
+          "buy_buttons_pDYNX9"
+        ],
+        "settings": {}
+      },
+      "mobile-navigation-bar": {
+        "type": "mobile-navigation-bar",
+        "settings": {}
+      },
+      "fake-order": {
+        "type": "fake-order",
+        "settings": {
+          "show_fake_order": false,
+          "disable_mobile": false,
+          "fake_product": [
+            "anime-t-shirt-printed-short-sleeve",
+            "balloon-sleeve-blouse-square-neck",
+            "basic-bright-green-rib-extreme-crop",
+            "braid-detailed-sleeveless-flow-top"
+          ],
+          "fake_user": "Jonson (California) | Tony (Texas) | Bruno (New York) | Eren (Ohio) | Lauren (Washington) | Flortino (California) | Blue (Ohio)",
+          "text_verify": "Verify",
+          "delay_time": "5000",
+          "display_time": "6000"
+        }
+      },
+      "top-search": {
+        "type": "top-search",
+        "settings": {}
+      }
+    },
+    "content_for_index": [],
+    "blocks": {
+      "17730292167556765394": {
+        "type": "shopify://apps/pagbrasil-app-companion/blocks/app_embedded_extra_info/356201f0-7b27-4511-ac69-c1627db6da45",
+        "disabled": false,
+        "settings": {}
+      },
+      "15184704725445319147": {
+        "type": "shopify://apps/pagbrasil-app-companion/blocks/app_embedded_pagshield/356201f0-7b27-4511-ac69-c1627db6da45",
+        "disabled": false,
+        "settings": {}
+      },
+      "15639742860725253803": {
+        "type": "shopify://apps/musbu-wa-chat/blocks/app-embed/267d7a73-494b-4925-ba55-49fe70b0f09e",
+        "disabled": true,
+        "settings": {}
+      },
+      "18228966181090706294": {
+        "type": "shopify://apps/selleasy/blocks/app-embed/790c1a03-a71f-4bc1-9869-00dad526d3c2",
+        "disabled": false,
+        "settings": {
+          "storefrontAccessToken": ""
+        }
+      },
+      "4372474792694305445": {
+        "type": "shopify://apps/also-bought/blocks/app-embed-block/b94b27b4-738d-4d92-9e60-43c22d1da3f2",
+        "disabled": false,
+        "settings": {}
+      },
+      "1530068250781986104": {
+        "type": "shopify://apps/fbp-fast-bundle/blocks/fast_bundle/9e87fbe2-9041-4c23-acf5-322413994cef",
+        "disabled": false,
+        "settings": {
+          "home": true
+        }
+      },
+      "848591003871763955": {
+        "type": "shopify://apps/shortly-affiliate-marketing/blocks/app-embed-block/4c3d9aaa-3566-4200-9c43-34b476f6332a",
+        "disabled": false,
+        "settings": {}
+      },
+      "16555213172727936593": {
+        "type": "shopify://apps/ns-discount-in-cart/blocks/discount_block/0cbbbcdd-bf54-49df-885c-9ca3fd52a671",
+        "disabled": true,
+        "settings": {}
+      }
+    },
+    "color_schemes": {
+      "default": {
+        "settings": {
+          "background": "#ffffff",
+          "background_gradient": "",
+          "primary_color": "#3a9e35",
+          "text_color": "#444444",
+          "heading_color": "#1e1e1e",
+          "border_color": "#ebebeb",
+          "btn_primary_color": "#ffffff",
+          "btn_primary_background": "#3a9e35",
+          "btn_primary_gradient": "",
+          "btn_primary_hover_color": "#ffffff",
+          "btn_primary_hover_background": "#1e1e1e",
+          "btn_primary_hover_background_gradient": "",
+          "btn_outline_color": "#1e1e1e",
+          "btn_outline_border_color": "#1e1e1e",
+          "button_link_color": "#1e1e1e",
+          "button_link_hover_color": "#1e1e1e"
+        }
+      },
+      "scheme-4faf0e4d-27f4-4d02-bc51-617383bab1a9": {
+        "settings": {
+          "background": "#3a9e35",
+          "background_gradient": "",
+          "primary_color": "#999999",
+          "text_color": "#ffffff",
+          "heading_color": "#ffffff",
+          "border_color": "#ebebeb",
+          "btn_primary_color": "#ffffff",
+          "btn_primary_background": "#111111",
+          "btn_primary_gradient": "",
+          "btn_primary_hover_color": "#111111",
+          "btn_primary_hover_background": "#ffffff",
+          "btn_primary_hover_background_gradient": "",
+          "btn_outline_color": "#111111",
+          "btn_outline_border_color": "#111111",
+          "button_link_color": "#111111",
+          "button_link_hover_color": "#111111"
+        }
+      },
+      "scheme-bb1431b0-be4a-4b03-a450-f572c07e3904": {
+        "settings": {
+          "background": "#1e1e1e",
+          "background_gradient": "",
+          "primary_color": "#d0473e",
+          "text_color": "#ebebeb",
+          "heading_color": "#e2c224",
+          "border_color": "#ebebeb",
+          "btn_primary_color": "#ffffff",
+          "btn_primary_background": "#111111",
+          "btn_primary_gradient": "",
+          "btn_primary_hover_color": "#ffffff",
+          "btn_primary_hover_background": "#111111",
+          "btn_primary_hover_background_gradient": "",
+          "btn_outline_color": "#111111",
+          "btn_outline_border_color": "#111111",
+          "button_link_color": "#111111",
+          "button_link_hover_color": "#111111"
+        }
+      },
+      "scheme-3d10de96-a479-49bd-819c-e044746b4f3e": {
+        "settings": {
+          "background": "#ffffff",
+          "background_gradient": "",
+          "primary_color": "#d0473e",
+          "text_color": "#ffffff",
+          "heading_color": "#ffffff",
+          "border_color": "#ebebeb",
+          "btn_primary_color": "#111111",
+          "btn_primary_background": "#ffffff",
+          "btn_primary_gradient": "",
+          "btn_primary_hover_color": "#ffffff",
+          "btn_primary_hover_background": "#111111",
+          "btn_primary_hover_background_gradient": "",
+          "btn_outline_color": "#111111",
+          "btn_outline_border_color": "#111111",
+          "button_link_color": "#111111",
+          "button_link_hover_color": "#111111"
+        }
+      },
+      "scheme-2b5c6c91-201d-4fb1-aba3-e6d562656976": {
+        "settings": {
+          "background": "#f5f5f5",
+          "background_gradient": "",
+          "primary_color": "#d0473e",
+          "text_color": "#444444",
+          "heading_color": "#111111",
+          "border_color": "#ebebeb",
+          "btn_primary_color": "#ffffff",
+          "btn_primary_background": "#111111",
+          "btn_primary_gradient": "",
+          "btn_primary_hover_color": "#ffffff",
+          "btn_primary_hover_background": "#111111",
+          "btn_primary_hover_background_gradient": "",
+          "btn_outline_color": "#111111",
+          "btn_outline_border_color": "#111111",
+          "button_link_color": "#111111",
+          "button_link_hover_color": "#111111"
+        }
+      },
+      "scheme-accf3b11-ba40-4a3e-bafb-243ece6683ec": {
+        "settings": {
+          "background": "#ffffff",
+          "background_gradient": "",
+          "primary_color": "#d0473e",
+          "text_color": "#111111",
+          "heading_color": "#111111",
+          "border_color": "#ebebeb",
+          "btn_primary_color": "#ffffff",
+          "btn_primary_background": "#111111",
+          "btn_primary_gradient": "",
+          "btn_primary_hover_color": "#ffffff",
+          "btn_primary_hover_background": "#111111",
+          "btn_primary_hover_background_gradient": "",
+          "btn_outline_color": "#111111",
+          "btn_outline_border_color": "#111111",
+          "button_link_color": "#111111",
+          "button_link_hover_color": "#111111"
+        }
+      },
+      "scheme-c78bfb21-5aff-497b-be68-98f01962f564": {
+        "settings": {
+          "background": "#ffffff",
+          "background_gradient": "",
+          "primary_color": "#d0473e",
+          "text_color": "#111111",
+          "heading_color": "#111111",
+          "border_color": "#ebebeb",
+          "btn_primary_color": "#ffffff",
+          "btn_primary_background": "#111111",
+          "btn_primary_gradient": "",
+          "btn_primary_hover_color": "#ffffff",
+          "btn_primary_hover_background": "#111111",
+          "btn_primary_hover_background_gradient": "",
+          "btn_outline_color": "#111111",
+          "btn_outline_border_color": "#111111",
+          "button_link_color": "#111111",
+          "button_link_hover_color": "#111111"
+        }
+      },
+      "scheme-082c4b8b-39f5-4a97-a98d-ff02df2a5b47": {
+        "settings": {
+          "background": "#ebebeb",
+          "background_gradient": "",
+          "primary_color": "#3a9e35",
+          "text_color": "#444444",
+          "heading_color": "#111111",
+          "border_color": "#ebebeb",
+          "btn_primary_color": "#ffffff",
+          "btn_primary_background": "#3a9e35",
+          "btn_primary_gradient": "",
+          "btn_primary_hover_color": "#ffffff",
+          "btn_primary_hover_background": "#111111",
+          "btn_primary_hover_background_gradient": "",
+          "btn_outline_color": "#111111",
+          "btn_outline_border_color": "#111111",
+          "button_link_color": "#111111",
+          "button_link_hover_color": "#111111"
+        }
+      }
+    }
+  },
+  "presets": {
+    "Default": {}
+  }
+}
