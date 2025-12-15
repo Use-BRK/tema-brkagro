@@ -820,6 +820,7 @@ section[class*=collection] .card-product-price .current-price{
 section[class*=collection] .card-product-price .installment-payment{
   order: 3;
   margin-top: 0.4rem;
+  width: max-content;
 }
 section[class*=collection] .card-product-price .current-price .price-item{
   color: #3a9e35a8;
