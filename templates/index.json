@@ -852,11 +852,11 @@
             "second_button_style": false,
             "content_alignment": "left",
             "content_position": "bottom-left",
-            "content_width": "full_width",
+            "content_width": "fluid_container",
             "content_max_width": 100,
             "content_padding_block": 60,
             "content_padding_inline": 30,
-            "show_content_background": false,
+            "show_content_background": true,
             "content_background": "#ffffff",
             "content_box_opacity": 100,
             "content_alignment_mobile": "left"
