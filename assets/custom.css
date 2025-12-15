@@ -987,3 +987,23 @@ section[class*=collection] grid-list .grid__item variant-radios {
 }
 
 /*******************************/
+
+/* Header Mobile - Search Icon next to Hamburger Menu */
+@media (max-width: 1024px) {
+  .header-mega-store .block.hidden-1025 {
+    order: 1;
+  }
+  .header-mega-store .header-search {
+    order: 2;
+    flex: unset !important;
+    margin-left: 10px; /* Optional: Adjust spacing if needed */
+  }
+  .header-mega-store .col-logo {
+    order: 3;
+    flex: 1;
+    justify-content: center;
+  }
+  .header-mega-store .header__action {
+    order: 4;
+  }
+}
