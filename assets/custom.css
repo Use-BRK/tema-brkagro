@@ -30,7 +30,7 @@ mobile-navigation-bar > svg {
   font-size: 11px !important;
 }
 
-@media (max-width: 750px) {
+@media screen and (max-width: 750px) {
   section[class*=main-product-section] .product__badges-inner {
     padding-block: 1px !important;
     padding-inline: 14px !important;
@@ -49,7 +49,7 @@ mobile-navigation-bar > svg {
 
 /* Mobile - Badge de Promoção ao lado Direito do Preço*/
 
-@media (max-width: 749px) {
+@media screen and (max-width: 749px) {
   .sale_badge--inside-price {
     margin-left: auto;
     flex-shrink: 0;
@@ -62,7 +62,7 @@ mobile-navigation-bar > svg {
 }
 
 /* DESKTOP */
-@media (min-width: 750px) {
+@media screen and (min-width: 750px) {
   .sale_badge--inside-price {
     display: none !important;
   }
@@ -72,7 +72,7 @@ mobile-navigation-bar > svg {
 
 /* Mobile - Título acima da Imagem*/
 
-@media (max-width: 749px) {
+@media screen and (max-width: 749px) {
   /* esconde o titulo desktop */
   .product-detail__information .product-detail__title {
     display: none !important;
@@ -86,7 +86,7 @@ mobile-navigation-bar > svg {
 }
 
 /* DESKTOP */
-@media (min-width: 750px) {
+@media screen and (min-width: 750px) {
   .product-title--mobile {
     display: none !important;
   }
@@ -97,7 +97,7 @@ mobile-navigation-bar > svg {
 
 
 /* Header Menor no Mobile */
-@media (max-width: 750px) {
+@media screen and (max-width: 750px) {
   .header {
     --section-pt: 3 !important;
     --section-pb: 3 !important;
@@ -371,7 +371,7 @@ input.option-disabled+.product__item-option, .option-disabled .product__item-opt
 }
 
 
-@media (max-width: 750px) {
+@media screen and (max-width: 750px) {
   #sku_titulo {
     display: none;
   }
@@ -381,8 +381,30 @@ section[class*=main-product-section] .product-detail__title {
   margin-bottom: 0px !important;
 }
 
+/* Variant Swatch */
+fieldset .ident-size-block {
+  display: flex;
+  gap: 1.5rem !important;
+  flex-wrap: wrap;
+}
 
+@media screen and (max-width: 620px) { 
 
+  /* Custom Swatch Spa */
+  fieldset .ident-size-block {
+    display: flex;
+    width: 100%;
+    column-gap: 1.5rem;
+    flex-wrap:nowrap;
+  }
+  
+  fieldset .ident-size-block label{
+    width: -webkit-fill-available;
+    justify-content: center;
+    padding-inline: 0;
+  }
+  
+}
 
 
 
