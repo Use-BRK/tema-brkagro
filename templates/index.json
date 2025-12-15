@@ -31,6 +31,7 @@
           "settings": {
             "image": "shopify://shop_images/BANNERS-AGRO.webp",
             "image_mobile": "shopify://shop_images/MOBBANNERS-AGRO.webp",
+            "link_banner": "shopify://collections/envio-imediato",
             "overlay_opacity": 0,
             "slider_effect": "effect_fadeinup",
             "subheading": "",
@@ -60,6 +61,7 @@
           "settings": {
             "image": "shopify://shop_images/Prancheta_1.webp",
             "image_mobile": "shopify://shop_images/Prancheta_2.webp",
+            "link_banner": "shopify://collections/agro-amazon-femininas",
             "overlay_opacity": 0,
             "slider_effect": "effect_fadeinup",
             "subheading": "",
@@ -89,6 +91,7 @@
           "settings": {
             "image": "shopify://shop_images/Prancheta_1.webp",
             "image_mobile": "shopify://shop_images/Prancheta_2.webp",
+            "link_banner": "shopify://collections/agro-western",
             "overlay_opacity": 0,
             "slider_effect": "effect_fadeinup",
             "subheading": "",
@@ -118,6 +121,7 @@
           "settings": {
             "image": "shopify://shop_images/Essenciais_mob.png",
             "image_mobile": "shopify://shop_images/Essenciais_e0c1aeaf-ec3d-48da-8e1e-8ae5b3cef3f5.png",
+            "link_banner": "shopify://collections/essenciais-sem-estampa",
             "overlay_opacity": 0,
             "slider_effect": "effect_fadeinup",
             "subheading": "",
@@ -295,7 +299,7 @@
         "infinite": true,
         "autoplay": true,
         "autorotate_speed": 5,
-        "reveal": false,
+        "reveal": true,
         "items_per_row_mobile": 1.5,
         "design": "default",
         "collection_information_position": "overlay_image",
@@ -839,6 +843,7 @@
           "type": "slider_item",
           "settings": {
             "image": "shopify://shop_images/hellenottonelli_517194943_18522683608055493_3937428400731872563_n.png",
+            "link_banner": "",
             "overlay_opacity": 0,
             "slider_effect": "effect_fadeindown",
             "subheading": "",
