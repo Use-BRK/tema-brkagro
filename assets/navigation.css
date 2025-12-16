@@ -167,7 +167,38 @@
   
   :is(.subchildmenu, .sub-children-menu ul, .horizontal-list) {
     max-height: 100%;
-    overflow: hidden; /* Changed from auto to hidden to avoid double scrolls */
+    overflow: hidden; 
+  }
+
+  /* Fix Gap */
+  .submenu .gap {
+    gap: 0 !important;
+  }
+  .submenu .subchildmenu .menu-link {
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+
+  /* Add Arrow Icon */
+  .submenu .menu-link > menu-item > a::before,
+  .submenu .sub-children-menu .menu-link > a::before {
+      content: "";
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      margin-right: 8px;
+      background-image: url("data:image/svg+xml,%3Csvg version='1.2' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' width='512' height='512'%3E%3Cstyle%3E.s0 %7B fill: %23000000 %7D%3C/style%3E%3Cpath fill-rule='evenodd' class='s0' d='m7 169.28v169.27h429.3l-147.48 147.6 25.09 25.02 190.91-190.96-190.91-190.96-25.09 25.02 147.63 147.6-394.43-0.01v-301.86h-35.02z'/%3E%3C/svg%3E");
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      flex-shrink: 0;
+  }
+  
+  /* Adjust nested icon color/opacity if needed */
+  .submenu .menu-link > menu-item > a,
+  .submenu .sub-children-menu .menu-link > a {
+      align-items: center;
+      display: flex;
   }
   .touch-target-mb {
     width: 30px;
