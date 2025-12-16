@@ -275,10 +275,7 @@
         "collection_7niYEB"
       ],
       "custom_css": [
-        ".collection-item__name {display: none;}",
-        "@media (max-width: 750px) {.collection-item {width: 200px !important; }}",
-        "@media (min-width: 751px) {.collection-item {width: 280px !important; }}",
-        ".swiper-wrapper {justify-content: center;}"
+        ".collection-item__name {display: none;}"
       ],
       "name": "Card de Ofertas",
       "settings": {
