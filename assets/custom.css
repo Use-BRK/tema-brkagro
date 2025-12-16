@@ -822,6 +822,11 @@ section[class*=collection] .card-product-price .installment-payment{
   margin-top: 0.4rem;
   width: max-content;
 }
+@media screen and (min-width: 750px) {
+  section[class*=collection] .card-product-price .installment-payment{
+    width: 100%;
+  }
+}
 section[class*=collection] .card-product-price .current-price .price-item{
   color: #3a9e35a8;
   font-size: 1em;
