@@ -1,7 +1,7 @@
 @media screen and (max-width: 767.98px) {
   .swiper-actions:not(.show-on-mobile) {
-    display: block;
-    margin: auto
+    display: block !important;
+    margin: auto !important;
   }
 }
 
