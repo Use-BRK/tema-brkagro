@@ -258,16 +258,26 @@
   }
 
   /* Full Width Link (except toggle) */
-  .navigation.mobile .level0 > menu-item > a {
-      flex: 1;
-      width: 100%;
-      display: flex !important; /* Override inline-flex */
-  }
-  
-  /* Remove padding level 0 */
-  .navigation.mobile .level0 > menu-item.px-15 {
-      padding-left: 0 !important;
-      padding-right: 0 !important;
+  @media (max-width: 1024.98px) {
+    .navigation.mobile .level0 > menu-item > a {
+        flex: 1;
+        width: 100%;
+        display: flex !important;
+    }
+    
+    /* Remove padding level 0 */
+    .navigation.mobile .level0 > menu-item.px-15 {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+
+    /* Icon Rotation */
+    .level0 .icon-down {
+        transition: transform 0.3s ease;
+    }
+    .is-open .icon-down {
+        transform: rotate(90deg);
+    }
   }
 
   /* Icon Plus Animation */
