@@ -1873,16 +1873,20 @@ class OpenChildrenToggle extends HTMLElement {
     e.preventDefault();
     const parent = this.closest("li");
     const submenu = parent.querySelector(".submenu");
+    console.log("OpenChildrenToggle clicked", { parent, submenu });
     if (submenu) {
       if (submenu.style.display === "block") {
            this.classList.remove("is-open");
       } else {
            this.classList.add("is-open");
       }
+      console.log("Calling slideAnime on", submenu);
       slideAnime({
         target: submenu,
         animeType: "slideToggle",
       });
+    } else {
+      console.warn("Submenu not found for", this);
     }
   }
 }
