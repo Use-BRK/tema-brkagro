@@ -333,7 +333,7 @@
         scroll-snap-type: y mandatory;
         overflow-x: hidden;
         overflow-y: auto;
-        height: calc(100% - 90px );
+        height: auto !important;
     }
 }
   
