@@ -144,15 +144,7 @@
           </a>
           {%- if child_link.links.size > 0 -%}
             <open-children-toggle class="inline-flex ms-5 flex-end align-center pointer{% if menu_type != 'dropdown' %} hidden-1025{% endif %}{% if enable_rtl %} left-0 left-1025-15{% else %} right-1025-15 right-0{% endif %}{% if section_st.redirect_to_link == blank %} absolute w-full w-1025-auto inset-y-0 static-1025{% else %} w-30 h-30 content-center{% endif %}">
-              {% if enable_rtl %}
-                <svg width="6" height="11" fill="none">
-                  <use href="#icon-back" />
-                </svg>
-              {% else %}
-                <svg width="6" height="11" fill="none">
-                  <use href="#icon-next" />
-                </svg>
-              {% endif %}
+              <span class="icon_plus-animation"></span>
             </open-children-toggle>
           {%- endif -%}
         </menu-item>

@@ -253,14 +253,35 @@
     margin: auto;
     border-top-color: transparent;
   }
-  .submenu :is(.stretch_width, .fluid_container, .full_width, .container) {
-    width: 100%;
-    padding: 0;
-    margin: 0;
+  .navigation.mobile .level-1 .sub-children-menu .menu-link {
+    padding-left: 20px; /* Indentation for 3rd level */
   }
-  .horizontal-list menu-item.px-15{
-    padding-left: 0;
-    padding-right: 0;
+
+  /* Icon Plus Animation */
+  .icon_plus-animation {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    position: relative;
+    vertical-align: middle;
+  }
+  .icon_plus-animation:before, 
+  .icon_plus-animation:after {
+      content: "";
+      width: 12px;
+      height: 1px;
+      background-color: currentColor;
+      position: absolute;
+      top: 50%;
+      left: 0;
+      transition: all .3s ease-out;
+  }
+  .icon_plus-animation:after {
+      transform: rotate(90deg);
+  }
+  
+  .is-open .icon_plus-animation:after {
+      transform: rotate(0deg);
   }
   footer .show-overlay:after{
     z-index: 11;
