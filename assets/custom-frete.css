@@ -17,7 +17,7 @@ motion-element[data-motion-init="true"].is-visible { opacity: 1!important; }
 
 @media screen and (max-width: 767.98px) {
   .swiper-actions:not(.show-on-mobile) {
-    display: block !important;
+    display: flex !important;
     margin: auto !important;
   }
 }
