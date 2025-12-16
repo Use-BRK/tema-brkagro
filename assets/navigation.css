@@ -154,12 +154,20 @@
   .submenu .grid-cols {
     --col-desktop: 1 !important;
   }
-  .subchildmenu {
-    --col-gap: 0 !important;
+  .submenu .subchildmenu,
+  .submenu .sub-children-menu ul,
+  .sub-children-menu {
+      padding-left: 0 !important;
+      padding-right: 0 !important;
   }
+  
+  .submenu .hidden-1025.grey-bg {
+      display: none !important;
+  }
+  
   :is(.subchildmenu, .sub-children-menu ul, .horizontal-list) {
     max-height: 100%;
-    overflow: auto;
+    overflow: hidden; /* Changed from auto to hidden to avoid double scrolls */
   }
   .touch-target-mb {
     width: 30px;

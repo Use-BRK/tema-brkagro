@@ -1872,7 +1872,7 @@ class OpenChildrenToggle extends HTMLElement {
   onToggle(e) {
     e.preventDefault();
     const parent = this.closest("li");
-    const submenu = parent.querySelector(".submenu");
+    const submenu = parent.querySelector(".submenu, .sub-children-menu");
     if (submenu) {
       if (submenu.style.display === "block") {
            this.classList.remove("is-open");
