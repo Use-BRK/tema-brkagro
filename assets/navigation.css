@@ -254,7 +254,16 @@
     border-top-color: transparent;
   }
   .navigation.mobile .level-1 .sub-children-menu .menu-link {
-    padding-left: 20px; /* Indentation for 3rd level */
+    padding-left: 15px; /* Indentation for 3rd level */
+  }
+
+  /* Full Width Link (except toggle) */
+  .navigation.mobile .menu-item-link,
+  .navigation.mobile a.nav-link, 
+  .navigation.mobile .menu-link > menu-item > a {
+      flex: 1;
+      width: auto;
+      display: flex; /* Ensure it's flex to align content if needed, though mostly for hit area */
   }
 
   /* Icon Plus Animation */

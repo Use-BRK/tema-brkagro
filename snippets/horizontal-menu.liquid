@@ -167,30 +167,28 @@
                             {% assign banner_count = banner_count | plus: 1 %}
                           {%- endif -%}
                         {% endfor %}
-                        {%- liquid             
-                          assign domain_access = "glozin-demo.myshopify.com,glozin-demo-v2.myshopify.com" | split: "," 
+                        {%- liquid
+                          assign domain_access = 'glozin-demo.myshopify.com,glozin-demo-v2.myshopify.com' | split: ','
                           assign only_for_glozin = false
                           if domain_access contains shop.domain and link.title == 'Home'
                             assign only_for_glozin = true
                           endif
-                        -%}                 
+                        -%}
                         <div
                           class="flex flex-column gap{% if block_st.promotion_position == "left" %} flex-1025-row-reverse{% else %} flex-1025-row{% endif %}"
                           style="--col-mega-width: {{ block_st.promotion_image_width }}%; --col-gap: 30px"
                         >
-                      
-       
                           {% if link.links.size > 0 %}
                             <div
                               class="menu-list"
                               style="--row-gap: 40px; --col-desktop:{{ block_st.promotion_menu_column }};"
                             >
-                              {%- render 'submenu-list' , link: link , only_for_domain: only_for_glozin -%}
+                              {%- render 'submenu-list', link: link, only_for_domain: only_for_glozin -%}
                             </div>
                           {% endif %}
                           {%- if block_st.promotion_image_1 != blank or block_st.promotion_image_2 != blank -%}
                             <div class="col-mega {% if only_for_glozin == true %} hidden block-1025 {% endif %}">
-                              <div  
+                              <div
                                 class="grid grid-cols gap-20 px-30 px-1025-0 {{ settings.hover_effect }}"
                                 style="--col-number: {{ banner_count }}"
                               >
@@ -410,15 +408,7 @@
                 </a>
                 {%- if link.links.size > 0 -%}
                   <open-children-toggle class="inline-flex flex-end align-center pointer ms-5{% if section_st.redirect_to_link == blank %} absolute inset-0 static-1025{% else %} touch-target-mb{% endif %}">
-                    {% if enable_rtl %}
-                      <svg class="icon-down block hidden-1025" width="6" height="11">
-                        <use href="#icon-back" />
-                      </svg>
-                    {% else %}
-                      <svg class="icon-down block hidden-1025" width="6" height="11">
-                        <use href="#icon-next" />
-                      </svg>
-                    {% endif %}
+                    <span class="icon_plus-animation"></span>
                   </open-children-toggle>
                 {%- endif -%}
               </menu-item>
@@ -585,7 +575,6 @@
           </a>
         {% endif %}
         {% if section_st.categories_menu != blank %}
-          
         {% endif %}
       </div>
       <ul
@@ -719,30 +708,28 @@
                             {% assign banner_count = banner_count | plus: 1 %}
                           {%- endif -%}
                         {% endfor %}
-                        {%- liquid             
-                          assign domain_access = "glozin-demo.myshopify.com,glozin-demo-v2.myshopify.com" | split: "," 
+                        {%- liquid
+                          assign domain_access = 'glozin-demo.myshopify.com,glozin-demo-v2.myshopify.com' | split: ','
                           assign only_for_glozin = false
                           if domain_access contains shop.domain and link.title == 'Home'
                             assign only_for_glozin = true
                           endif
-                        -%}                 
+                        -%}
                         <div
                           class="flex flex-column gap{% if block_st.promotion_position == "left" %} flex-1025-row-reverse{% else %} flex-1025-row{% endif %}"
                           style="--col-mega-width: {{ block_st.promotion_image_width }}%; --col-gap: 30px"
                         >
-                      
-       
                           {% if link.links.size > 0 %}
                             <div
                               class="menu-list"
                               style="--row-gap: 40px; --col-desktop:{{ block_st.promotion_menu_column }};"
                             >
-                              {%- render 'submenu-list' , link: link , only_for_domain: only_for_glozin -%}
+                              {%- render 'submenu-list', link: link, only_for_domain: only_for_glozin -%}
                             </div>
                           {% endif %}
                           {%- if block_st.promotion_image_1 != blank or block_st.promotion_image_2 != blank -%}
                             <div class="col-mega {% if only_for_glozin == true %} hidden block-1025 {% endif %}">
-                              <div  
+                              <div
                                 class="grid grid-cols gap-20 px-30 px-1025-0 {{ settings.hover_effect }}"
                                 style="--col-number: {{ banner_count }}"
                               >
@@ -1094,6 +1081,4 @@
       {% render 'country-switcher' %}
     </div>
   </nav>
-
-
-{%- endif  -%}
+{%- endif -%}
