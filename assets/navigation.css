@@ -493,3 +493,18 @@
   background: var(--btn-bg);
   border-color: var(--btn-border-color);
 }
+
+@media screen and (min-width: 1025px) {
+  /* Fix Desktop Regression: Force override of mobile styles */
+  .navigation.mobile .level0 > menu-item > a,
+  .level0 > menu-item > a {
+      width: auto !important;
+      flex: 0 0 auto !important;
+      display: inline-flex !important;
+  }
+  .navigation.mobile .level0 > menu-item.px-15,
+  .level0 > menu-item.px-15 {
+      padding-left: 15px !important;
+      padding-right: 15px !important;
+  }
+}
