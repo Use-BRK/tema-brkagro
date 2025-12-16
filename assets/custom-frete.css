@@ -15,9 +15,9 @@ motion-element[data-motion-init="true"] { opacity: 0!important; }
 motion-element[data-motion-init="true"].is-visible { opacity: 1!important; }
 
 
-/* @media screen and (max-width: 767.98px) {
+@media screen and (max-width: 767.98px) {
   .swiper-actions:not(.show-on-mobile) {
     display: flex !important;
     margin: auto !important;
   }
-} */
+}
