@@ -62,7 +62,8 @@
 }
 @media screen and (max-width: 1024.98px) {
   .slideshow .swiper-actions {
-    display: none;
+    display: block;
+    margin:auto;
   }
 }
 .slideshow .swiper-pagination-bullet:after {
