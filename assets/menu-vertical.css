@@ -291,8 +291,7 @@
     .verticalmenu-html>ul>li {
         padding: 1rem 0;
         min-height: 55px;
-        display: inline-flex;
-        align-items: center;
+        display: block;
         width: 100%;
     }
   
