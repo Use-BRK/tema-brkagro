@@ -299,7 +299,7 @@
         "infinite": true,
         "autoplay": true,
         "autorotate_speed": 5,
-        "reveal": true,
+        "reveal": false,
         "items_per_row_mobile": 1.5,
         "design": "default",
         "collection_information_position": "overlay_image",
