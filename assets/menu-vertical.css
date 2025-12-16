@@ -303,9 +303,15 @@
   
     .submenu-vertical,
     .verticalmenu-html .submenu {
-        position: fixed;
+        position: static !important;
         overflow-x: hidden;
-        visibility: hidden;
+        display: none;
+        width: 100%;
+        visibility: visible;
+        opacity: 1;
+        transform: none;
+        box-shadow: none;
+        border: none;
     }
   
     .vertical-menu .icon-down {

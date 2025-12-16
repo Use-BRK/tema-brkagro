@@ -1869,14 +1869,20 @@ class OpenChildrenToggle extends HTMLElement {
     super();
     this.addEventListener("click", this.onToggle.bind(this), false);
   }
-  onToggle() {
-    const parent = this.parentElement;
-    if (parent) {
-      if (!parent.classList.contains("is-open")) {
-        parent.classList.add("is-open");
+  onToggle(e) {
+    e.preventDefault();
+    const parent = this.closest("li");
+    const submenu = parent.querySelector(".submenu");
+    if (submenu) {
+      if (submenu.style.display === "block") {
+           this.classList.remove("is-open");
       } else {
-        parent.classList.remove("is-open");
+           this.classList.add("is-open");
       }
+      slideAnime({
+        target: submenu,
+        animeType: "slideToggle",
+      });
     }
   }
 }
