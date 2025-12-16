@@ -346,7 +346,7 @@
         "infinite": true,
         "autoplay": false,
         "autorotate_speed": 5,
-        "reveal": true,
+        "reveal": false,
         "items_per_row_mobile": 1.5,
         "padding_top": 20,
         "padding_bottom": 20,
