@@ -79,7 +79,9 @@
                     </a>
                     {%- if link.links.size > 0 -%}
                       <open-children-toggle class="inline-flex flex-end align-center pointer ms-5{% if section_st.redirect_to_link == blank %} absolute inset-0 static-1025{% else %} touch-target-mb{% endif %}">
-                        <span class="icon_plus-animation"></span>
+                        <svg class="icon-down hidden block-1025 no-hidden" width="12" height="8">
+                          <use href="#icon-next"></use>
+                        </svg>
                       </open-children-toggle>
                     {%- endif -%}
                   </menu-item>
