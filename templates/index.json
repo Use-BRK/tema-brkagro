@@ -89,8 +89,8 @@
           "type": "slider_item",
           "name": "Longhorn",
           "settings": {
-            "image": "shopify://shop_images/Prancheta_1.webp",
-            "image_mobile": "shopify://shop_images/Prancheta_2.webp",
+            "image": "shopify://shop_images/LONGHORN_TEXAS.png",
+            "image_mobile": "shopify://shop_images/LONGHORN_TEXAS_MOBILE.png",
             "link_banner": "shopify://collections/agro-western",
             "overlay_opacity": 0,
             "slider_effect": "effect_fadeinup",
