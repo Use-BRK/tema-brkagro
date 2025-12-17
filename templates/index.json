@@ -89,8 +89,8 @@
           "type": "slider_item",
           "name": "Longhorn",
           "settings": {
-            "image": "shopify://shop_images/LONGHORN_TEXAS.png",
-            "image_mobile": "shopify://shop_images/LONGHORN_TEXAS_MOBILE.png",
+            "image": "shopify://shop_images/LONGHORN_DESKTOP.webp",
+            "image_mobile": "shopify://shop_images/LONGHORN_MOBILE.webp",
             "link_banner": "shopify://collections/agro-western",
             "overlay_opacity": 0,
             "slider_effect": "effect_fadeinup",
@@ -119,8 +119,8 @@
           "type": "slider_item",
           "name": "Essenciais",
           "settings": {
-            "image": "shopify://shop_images/Essenciais_mob.png",
-            "image_mobile": "shopify://shop_images/Essenciais_e0c1aeaf-ec3d-48da-8e1e-8ae5b3cef3f5.png",
+            "image": "shopify://shop_images/ESSENCIAIS_DESKTOP.webp",
+            "image_mobile": "shopify://shop_images/ESSENCIAIS_MOBILE.webp",
             "link_banner": "shopify://collections/essenciais-sem-estampa",
             "overlay_opacity": 0,
             "slider_effect": "effect_fadeinup",
