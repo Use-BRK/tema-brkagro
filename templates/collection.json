@@ -12,7 +12,7 @@
     "banner": {
       "type": "main-collection-heading",
       "blocks": {
-        "breadcrumb_MJHLQb": {
+        "breadcrumb_tAe9LK": {
           "type": "breadcrumb",
           "settings": {}
         },
@@ -25,7 +25,7 @@
         }
       },
       "block_order": [
-        "breadcrumb_MJHLQb",
+        "breadcrumb_tAe9LK",
         "heading_fntt9G"
       ],
       "custom_css": [],
@@ -33,7 +33,7 @@
         "section_width": "stretch_width",
         "color_scheme": "scheme-4faf0e4d-27f4-4d02-bc51-617383bab1a9",
         "alignment": "center",
-        "show_collection_image": false,
+        "show_collection_image": true,
         "overlay_opacity": 0,
         "height": "adapt",
         "padding_top": 46,
