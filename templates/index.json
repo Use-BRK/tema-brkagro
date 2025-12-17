@@ -474,7 +474,7 @@
           "settings": {
             "color_scheme": "",
             "image": "shopify://shop_images/Prancheta_2.png",
-            "image_link": "",
+            "image_link": "shopify://collections/agro-kids",
             "overlay_opacity": 0,
             "content_alignment": "start",
             "content_position": "top-left",
@@ -531,7 +531,7 @@
           "settings": {
             "color_scheme": "",
             "image": "shopify://shop_images/Prancheta_7.png",
-            "image_link": "",
+            "image_link": "shopify://collections/botinas",
             "overlay_opacity": 0,
             "content_alignment": "center",
             "content_position": "top-center",
