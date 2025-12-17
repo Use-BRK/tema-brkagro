@@ -108,7 +108,7 @@
     --show-overlay-bg: rgba(255, 255, 255, 0.9);
     width: 100%;
     max-width: var(--menu-mobile-width);
-    overflow: hidden;
+    overflow: auto;
     transform: translateX(-101%);
     transition: var(--transition-popup);
     z-index: 12;
@@ -167,7 +167,7 @@
   
   :is(.subchildmenu, .sub-children-menu ul, .horizontal-list) {
     max-height: 100%;
-    overflow: hidden; 
+    overflow: auto; 
   }
 
   /* Fix Gap */
