@@ -365,7 +365,6 @@ input.option-disabled+.product__item-option, .option-disabled .product__item-opt
 #prazo_disponibilidade {
   display: flex;
   gap: 1.5rem;
-  justify-content: center;
   align-items: center;
   border-top: 0.5px solid hsl(0 0% 85%);
   border-bottom: 0.5px solid hsl(0 0% 85%);
