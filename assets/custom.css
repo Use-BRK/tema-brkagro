@@ -640,17 +640,17 @@ product-bunle-item .product-item__information a {
   overflow: hidden;
 }
 product-bunle-item.product-item__price {
-  justify-content: start;
-  align-items:start!important;
+  justify-content: center;
+  align-items:center!important;
 }
 product-bunle-item .product-item__price .price {
-  font-size: 1.3em;
-  font-weight: 900;
+  font-size: 1.3em !important;
+  font-weight: 900 !important;
   color: #3A9E35;
 }
 product-bunle-item .card-product-price {
-  align-items:start!important;
-  justify-content: start;
+  align-items:center!important;
+  justify-content: center;
   /* flex-direction: column; */
 }
 product-bunle-item .card-product-price .installment-payment p,
@@ -660,10 +660,10 @@ product-bunle-item .card-product-price .installment-payment p strong {
   text-align: center;
 }
 product-bunle-item .card-product-price .at-price{
-  order:1
+  order:1;
 }
 product-bunle-item .card-product-price .current-price{
-  order: 0
+  order: 0;
 }
 product-bunle-item .card-product-price .installment-payment{
   order: 3;
