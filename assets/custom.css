@@ -629,6 +629,57 @@ div[id=main-cart-items-cart-items] variant-radios {
   justify-content: center;
 }
 
+/* Custom Prices Style | Product Form Bundle */
+product-bunle-item .product-item__information a {
+  text-align: left;
+  margin-inline: auto;
+
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+product-bunle-item.product-item__price {
+  justify-content: start;
+  align-items:start!important;
+}
+product-bunle-item .product-item__price .price {
+  font-size: 1.3em;
+  font-weight: 900;
+  color: #3A9E35;
+}
+product-bunle-item .card-product-price {
+  align-items:start!important;
+  justify-content: start;
+  /* flex-direction: column; */
+}
+product-bunle-item .card-product-price .installment-payment p,
+product-bunle-item .card-product-price .installment-payment p strong {
+  margin: 0.3em;
+  color: rgb(4, 82, 27);
+  text-align: center;
+}
+product-bunle-item .card-product-price .at-price{
+  order:1
+}
+product-bunle-item .card-product-price .current-price{
+  order: 0
+}
+product-bunle-item .card-product-price .installment-payment{
+  order: 3;
+  margin-top: 0.4rem;
+  font-size: 0.875em;
+}
+product-bunle-item .card-product-price .current-price .price-item{
+  color: #3a9e35a8;
+  font-size: 1em;
+}
+product-bunle-item .product-item__price .price small {
+  font-size: 0.675em;
+  font-weight: 500;
+}
+
+
 /* Custom Prices Style | Recommended Products Inside the Sidebar Cart */
 cart-notification #minicart-form minicart-recommendations slide-section .product-item__information a {
   text-align: left;
