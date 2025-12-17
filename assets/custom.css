@@ -361,11 +361,25 @@ input.option-disabled+.product__item-option, .option-disabled .product__item-opt
   opacity: .4;
 }
 
-/* Product Meta */ 
-.product-detail__meta {
-  font-size: 0.9em;
-  opacity: 0.6;
-  color: #1e1e1e !important;
+/* Custom delivery message */
+#prazo_disponibilidade {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  align-items: center;
+  border-top: 0.5px solid hsl(0 0% 85%);
+  border-bottom: 0.5px solid hsl(0 0% 85%);
+  padding-block: 2rem;
+
+  span{
+    color: hsl(0 0% 5%)!important;
+    font-size: 1.3rem;
+
+    strong{
+      color: hsl(0 0% 5%)!important;
+      font-weight: 900;
+    }
+  }
 }
 
 /* SKU Mobile e Desktop - Abaixo do título */
@@ -1058,25 +1072,3 @@ section[class*=collection] grid-list .grid__item variant-radios {
 }
 
 /*******************************/
-
-
-/* Custom delivery message */
-#prazo_disponibilidade {
-  display: flex;
-  gap: 1.5rem;
-  justify-content: center;
-  align-items: center;
-  border-top: 0.5px solid hsl(0 0% 85%);
-  border-bottom: 0.5px solid hsl(0 0% 85%);
-  padding-block: 2rem;
-
-  span{
-    color: hsl(0 0% 5%)!important;
-    font-size: 1.3rem;
-
-    strong{
-      color: hsl(0 0% 5%)!important;
-      font-weight: 900;
-    }
-  }
-}
