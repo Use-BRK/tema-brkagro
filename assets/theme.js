@@ -4310,7 +4310,7 @@ class ButtonSubmitBundle extends HTMLElement {
     this.classList.remove("loading");
     this.removeAttribute("disabled");
     this.querySelector("span").textContent =
-      window.variantStrings?.addAllToCart || "Add all to cart";
+      window.variantStrings?.addAllToCart || "Desconto no Carrinho!";
     this.updateButtonStatus();
   }
 
