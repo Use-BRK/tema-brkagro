@@ -31,10 +31,16 @@ mobile-navigation-bar > svg {
 
 /* Badges */
 
-.product__badges-inner {
+.product__badges-custom {
   padding-block: 0.7px !important;
   padding-inline: 5px !important;
   font-size: 11px !important;
+}
+
+.product__badges-sale{
+  padding-block: 1.8px !important;
+  padding-inline: 6px !important;
+  font-size: 11.8px !important;
 }
 
 @media screen and (max-width: 750px) {
