@@ -611,7 +611,7 @@
         "collection_qVrNRi": {
           "type": "collection",
           "settings": {
-            "collection": "sao-bento-e-nossa-senhora",
+            "collection": "sao-bento-e-nossa-senhora-1",
             "collection_image": "shopify://shop_images/Sao_Bento_be0c76c8-0b54-4360-b575-385f84809c32.png",
             "collection_title": "São Bento"
           }
@@ -619,7 +619,7 @@
         "collection_rRd7j3": {
           "type": "collection",
           "settings": {
-            "collection": "agricultura",
+            "collection": "agricultura-1",
             "collection_image": "shopify://shop_images/Agricultura_095c610b-6818-4621-bf59-bf4e2f8032cf.png",
             "collection_title": "Agricultura"
           }
@@ -627,7 +627,7 @@
         "collection_azLAja": {
           "type": "collection",
           "settings": {
-            "collection": "cursos-profissoes",
+            "collection": "cursos-e-profissoes",
             "collection_image": "shopify://shop_images/Medicina_Veterinaria.png",
             "collection_title": "Medicina Veterinária"
           }
@@ -635,7 +635,7 @@
         "collection_ccBEnR": {
           "type": "collection",
           "settings": {
-            "collection": "camisas-do-brasil",
+            "collection": "colecao-brasil",
             "collection_image": "shopify://shop_images/Brasil_e_Agro_e11edcff-a064-4349-b9a5-981953272000.png",
             "collection_title": "Brasil é Agro"
           }
@@ -786,7 +786,7 @@
           "settings": {
             "collection": "",
             "products": [
-              "bone-trucker-agro-vaquejada",
+              "bone-trucker-brk-agro-yellowstone-dutton-rach",
               "bone-trucker-brk-agro-camuflado-texas-longhorns",
               "bone-trucker-brk-agro-cinza-e-verde-1"
             ],
@@ -801,8 +801,8 @@
           "type": "your_bundle",
           "name": "Kit",
           "settings": {
-            "heading": "KIT COM DESCONTO",
-            "description": "<p>Adicione <strong>3 Bonés</strong> para <strong>Ganhar 15% de Desconto!</strong></p>",
+            "heading": "3 Bonés com 20% OFF 🔥",
+            "description": "<p>Adicione <strong>3 Bonés</strong> para <strong>Ganhar 30% de Desconto!</strong></p>",
             "heading_font_size": 20,
             "heading_font_weight": "heading_weight",
             "heading_uppercase": false,
@@ -821,8 +821,8 @@
       "settings": {
         "section_width": "fluid_container",
         "color_scheme": "",
-        "heading": "Monte seu kit AGRO",
-        "description": "",
+        "heading": "3 Bonés com 20% OFF 🔥",
+        "description": "<h6>VÁLIDO ATÉ 31/12</h6>",
         "header_size": "small",
         "header_alignment": "left",
         "minimum": 2,
