@@ -558,9 +558,9 @@
           "custom_image": "Imagem personalizada"
         },
         "add_to_bundle": {
-          "label_bundle": "Adicione ao pacote",
+          "label_bundle": "Adicionar",
           "label_bundle_added": "Adicionado ao pacote",
-          "label_add_all": "Adicione tudo ao carrinho"
+          "label_add_all": "Desconto no Carrinho!"
         }
       },
       "bought_together": {
