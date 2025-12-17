@@ -31,7 +31,7 @@
     "enable_browser_tab_notifications": false,
     "show_sale": true,
     "sale_color": "#fff",
-    "sale_background": "#D0473E",
+    "sale_background": "#3a9e35",
     "sale_badge_type": "percent",
     "sale_badge_addons": "none",
     "new_background": "#3456e6",
