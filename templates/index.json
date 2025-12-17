@@ -415,7 +415,7 @@
           "type": "_group-image-overlay",
           "settings": {
             "color_scheme": "",
-            "image": "shopify://shop_images/Prancheta_1_5384cfdb-c1b7-4a7f-b280-8c04af208a4f.png",
+            "image": "shopify://shop_images/O_AGRO_E_DELAS.webp",
             "image_link": "shopify://collections/feminina",
             "overlay_opacity": 0,
             "content_alignment": "start",
@@ -473,7 +473,7 @@
           "type": "_group-image-overlay",
           "settings": {
             "color_scheme": "",
-            "image": "shopify://shop_images/Prancheta_2.png",
+            "image": "shopify://shop_images/COLECAO_KIDS.webp",
             "image_link": "shopify://collections/agro-kids",
             "overlay_opacity": 0,
             "content_alignment": "start",
@@ -530,7 +530,7 @@
           "type": "_group-image-overlay",
           "settings": {
             "color_scheme": "",
-            "image": "shopify://shop_images/Prancheta_7.png",
+            "image": "shopify://shop_images/COLECAO_BOTINAS.webp",
             "image_link": "shopify://collections/botinas",
             "overlay_opacity": 0,
             "content_alignment": "center",
