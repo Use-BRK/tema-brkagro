@@ -31,7 +31,7 @@ mobile-navigation-bar > svg {
 
 /* Badges */
 
-.product__badges-inner {
+.product__badges-custom .product__badges-inner {
   padding-block: 0.7px !important;
   padding-inline: 5px !important;
   font-size: 11px !important;
