@@ -110,7 +110,7 @@
                 {%- endif -%}
               </a>
               {%- if link.links.size > 0 -%}
-                <open-children-toggle class="inline-flex flex-end align-center pointer ms-5{% if section_st.redirect_to_link == blank %} absolute inset-0 static-1025{% else %} touch-target-mb{% endif %}">
+                <open-children-toggle class="inline-flex flex-end align-center pointer ms-5 hidden-1025{% if section_st.redirect_to_link == blank %} absolute inset-0{% else %} touch-target-mb{% endif %}">
                   {% if enable_rtl %}
                     <svg class="icon-down block hidden-1025" width="6" height="11">
                       <use href="#icon-back" />
@@ -407,7 +407,7 @@
                   {%- endif -%}
                 </a>
                 {%- if link.links.size > 0 -%}
-                  <open-children-toggle class="inline-flex flex-end align-center pointer ms-5{% if section_st.redirect_to_link == blank %} absolute inset-0 static-1025{% else %} touch-target-mb{% endif %}">
+                  <open-children-toggle class="inline-flex flex-end align-center pointer ms-5 hidden-1025{% if section_st.redirect_to_link == blank %} absolute inset-0{% else %} touch-target-mb{% endif %}">
                     <span class="icon_plus-animation block hidden-1025"></span>
                   </open-children-toggle>
                 {%- endif -%}
