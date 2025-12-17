@@ -109,6 +109,27 @@
       "custom-colors": {
         "type": "custom-colors",
         "blocks": {
+          "color_akbXRM": {
+            "type": "color",
+            "settings": {
+              "heading": "Verde Camuflada",
+              "color_code": "#14854e"
+            }
+          },
+          "color_hqQxHE": {
+            "type": "color",
+            "settings": {
+              "heading": "Verde Camuflado",
+              "color_code": "#14854e"
+            }
+          },
+          "color_WFn9eH": {
+            "type": "color",
+            "settings": {
+              "heading": "Azul",
+              "color_code": "#3456e6"
+            }
+          },
           "color_Hmf4DW": {
             "type": "color",
             "settings": {
@@ -139,6 +160,9 @@
           }
         },
         "block_order": [
+          "color_akbXRM",
+          "color_hqQxHE",
+          "color_WFn9eH",
           "color_Hmf4DW",
           "color_CCA8Ah",
           "color_h7mKB7",
