@@ -357,14 +357,14 @@
           "type": "collection",
           "settings": {
             "collection": "mais-vendidos",
-            "collection_title": ""
+            "collection_title": "Mais Vendidos"
           }
         },
         "collection_HK34Cn": {
           "type": "collection",
           "settings": {
             "collection": "lancamentos",
-            "collection_title": ""
+            "collection_title": "Lançamentos"
           }
         }
       },
