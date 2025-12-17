@@ -64,7 +64,7 @@
           "type": "menu_product",
           "settings": {
             "text": "🎄 OFERTAS DE NATAL",
-            "open-link-newtab": true,
+            "open-link-newtab": false,
             "item_label": "hot",
             "product_menu_column": 2,
             "mega_custom_width": 890,
@@ -80,7 +80,7 @@
           "type": "menu_promotion",
           "settings": {
             "text": "MASCULINO",
-            "open-link-newtab": true,
+            "open-link-newtab": false,
             "item_label": "unset",
             "promotion_menu_column": 3,
             "mega_custom_width": 1100,
@@ -99,7 +99,7 @@
           "type": "menu_promotion",
           "settings": {
             "text": "FEMININO",
-            "open-link-newtab": true,
+            "open-link-newtab": false,
             "item_label": "unset",
             "promotion_menu_column": 3,
             "mega_custom_width": 1100,
@@ -116,9 +116,10 @@
         },
         "menu_collection_EkdGyG": {
           "type": "menu_collection",
+          "disabled": true,
           "settings": {
             "text": "",
-            "open-link-newtab": true,
+            "open-link-newtab": false,
             "item_label": "unset",
             "collection_menu_column": 3,
             "mega_custom_width": 1030,
@@ -164,7 +165,7 @@
         "popular": "Popular",
         "label_color_popular": "#ffffff",
         "label_background_popular": "#14854e",
-        "redirect_to_link": true,
+        "redirect_to_link": false,
         "menu_tab": "custom-collections",
         "collection_list": [],
         "menu_mobile_color": "#ffffff",
