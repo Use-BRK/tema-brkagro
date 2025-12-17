@@ -642,6 +642,7 @@ product-bunle-item .product-item__information a {
 product-bunle-item.product-item__price {
   justify-content: center;
   align-items:center!important;
+  --font-size: 1.3em !important;
 }
 product-bunle-item .product-item__price .price {
   font-size: 1.3em !important;
