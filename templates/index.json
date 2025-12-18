@@ -229,7 +229,7 @@
         "collection_afg8mP": {
           "type": "collection",
           "settings": {
-            "collection": "",
+            "collection": "cartao-presente",
             "collection_image": "shopify://shop_images/OFERTA_AGRO_05.webp",
             "collection_title": ""
           }
@@ -237,7 +237,7 @@
         "collection_EKPUGy": {
           "type": "collection",
           "settings": {
-            "collection": "",
+            "collection": "ofertas-r-59",
             "collection_image": "shopify://shop_images/OFERTA_AGRO_01.webp",
             "collection_title": ""
           }
@@ -245,7 +245,7 @@
         "collection_gEjEAi": {
           "type": "collection",
           "settings": {
-            "collection": "",
+            "collection": "ofertas-99",
             "collection_image": "shopify://shop_images/OFERTA_AGRO_02.webp",
             "collection_title": ""
           }
@@ -253,7 +253,7 @@
         "collection_XGJRwk": {
           "type": "collection",
           "settings": {
-            "collection": "",
+            "collection": "ofertas-189",
             "collection_image": "shopify://shop_images/OFERTA_AGRO_03.webp",
             "collection_title": ""
           }
@@ -261,7 +261,7 @@
         "collection_7niYEB": {
           "type": "collection",
           "settings": {
-            "collection": "",
+            "collection": "envio-imediato",
             "collection_image": "shopify://shop_images/OFERTA_AGRO_04.webp",
             "collection_title": ""
           }
