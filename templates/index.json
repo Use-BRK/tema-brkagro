@@ -55,13 +55,13 @@
             "content_alignment_mobile": "center"
           }
         },
-        "slider_item_YipJd4": {
+        "slider_item_tBYL6H": {
           "type": "slider_item",
-          "name": "Amazon Femininas",
+          "name": "Essenciais",
           "settings": {
-            "image": "shopify://shop_images/Prancheta_1.webp",
-            "image_mobile": "shopify://shop_images/Prancheta_2.webp",
-            "link_banner": "shopify://collections/agro-amazon-femininas",
+            "image": "shopify://shop_images/ESSENCIAIS_DESKTOP.webp",
+            "image_mobile": "shopify://shop_images/ESSENCIAIS_MOBILE.webp",
+            "link_banner": "shopify://collections/essenciais-sem-estampa",
             "overlay_opacity": 0,
             "slider_effect": "effect_fadeinup",
             "subheading": "",
@@ -115,13 +115,13 @@
             "content_alignment_mobile": "center"
           }
         },
-        "slider_item_tBYL6H": {
+        "slider_item_YipJd4": {
           "type": "slider_item",
-          "name": "Essenciais",
+          "name": "Amazon Femininas",
           "settings": {
-            "image": "shopify://shop_images/ESSENCIAIS_DESKTOP.webp",
-            "image_mobile": "shopify://shop_images/ESSENCIAIS_MOBILE.webp",
-            "link_banner": "shopify://collections/essenciais-sem-estampa",
+            "image": "shopify://shop_images/Prancheta_1.webp",
+            "image_mobile": "shopify://shop_images/Prancheta_2.webp",
+            "link_banner": "shopify://collections/agro-amazon-femininas",
             "overlay_opacity": 0,
             "slider_effect": "effect_fadeinup",
             "subheading": "",
@@ -148,9 +148,9 @@
       },
       "block_order": [
         "slider_item_ib6U7g",
-        "slider_item_YipJd4",
+        "slider_item_tBYL6H",
         "slider_item_mHFJwJ",
-        "slider_item_tBYL6H"
+        "slider_item_YipJd4"
       ],
       "custom_css": [
         ".h-full_screen {--height-topbar: 41px;}",
