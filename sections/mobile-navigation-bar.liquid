@@ -35,6 +35,7 @@
             <span class="block fs-small heading-style">
               {{- 'mobile_navbar.whatsapp' | t -}}
             </span>
+          </a>  
         {% when 'shop' %}
           <a
             href="{{ collections.all.url }}"
@@ -187,6 +188,9 @@
       "blocks": [
         {
           "type": "homepage"
+        },
+        {
+          "type": "whatsapp-contact"
         },
         {
           "type": "shop"
