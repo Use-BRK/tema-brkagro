@@ -1,1 +1,428 @@
-{"sections":{"main":{"type":"main-product","blocks":{"sku_prazo_jWBgfN":{"type":"sku_prazo","settings":{}},"title":{"type":"title","settings":{}},"price":{"type":"price","settings":{}},"popup_xcckGa":{"type":"popup","settings":{"text":"Tabela de Medidas","page":"{{ product.metafields.custom.tabela_medidas.value }}"}},"variant_picker":{"type":"variant_picker","settings":{"picker_type":"button","swatch_shape":"circle"}},"quantity_selector":{"type":"quantity_selector","settings":{}},"buy_buttons":{"type":"buy_buttons","settings":{"show_dynamic_checkout":true,"show_gift_card_recipient":true}},"calculo_frete_no_produto_shipping_calc_b3Vdeb":{"type":"shopify:\/\/apps\/frete-no-produto\/blocks\/shipping_calc\/86063d43-a133-4046-bbed-b9bfb712ccba","settings":{"shipping_calculator":true,"show_localization":true,"background_color_container":"#f8f8f8","background_header":"#d9dbd7","background_local":"#fafafa","btnshipping":"#204028","color_text":"#ffffff","color_shipping":"#204028","padding_inner":20,"padding_external":0,"space_top":0,"height_input":45,"border_radius":6,"text_btn":"OK","text_title":"CALCULAR O FRETE","placeholder":"00000-000","pickup":"","dont_show_products":[]}},"reelup_shoppable_videos_reels_reelup_product_slider_yhxwjj":{"type":"shopify:\/\/apps\/reelup-shoppable-videos-reels\/blocks\/reelup_product_slider\/a8ec9e4d-d192-44f7-9c23-595f9ee7dd5b","settings":{}}},"block_order":["sku_prazo_jWBgfN","title","price","popup_xcckGa","variant_picker","quantity_selector","buy_buttons","calculo_frete_no_produto_shipping_calc_b3Vdeb","reelup_shoppable_videos_reels_reelup_product_slider_yhxwjj"],"custom_css":[".product__description {margin-top: 20px;}",".product-form__submit {background-color: #00bf34; border-color: #00bf34; height: 55px; \/* margin-left: 15px; *\/ font-size: 20px; text-transform: uppercase; min-width: 350px;}",".product-form__submit:after {box-shadow: none;}",".price__regular .price-item--regular {font-size: 31px;}","@media screen and (max-width: 750px) {.product-form__submit {min-width: 100%; margin-left: 0; }}","@media (max-width: 400px) {#formKokfyShipping .container-btn {flex-direction: row !important; }}"],"settings":{"enable_sticky_info":true,"color_scheme":"scheme-1","media_size":"large","constrain_to_viewport":true,"media_fit":"contain","gallery_layout":"thumbnail_slider","media_position":"left","image_zoom":"lightbox","mobile_thumbnails":"hide","hide_variants":true,"enable_video_looping":false,"padding_top":36,"padding_bottom":12}},"related-products":{"type":"related-products","custom_css":["h2 {text-align: center; margin-top: 4rem; margin-bottom: 10rem; color: #204028;}"],"settings":{"heading":"Coleção em destaque","heading_size":"h1","products_to_show":4,"columns_desktop":4,"color_scheme":"scheme-1","image_ratio":"square","image_shape":"default","show_secondary_image":true,"show_vendor":false,"show_rating":false,"columns_mobile":"2","padding_top":36,"padding_bottom":28}}},"order":["main","related-products"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "breadcrumb": {
+      "type": "breadcrumb",
+      "settings": {
+        "section_width": "container",
+        "color_scheme": "",
+        "next_prev": true
+      }
+    },
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "title_G6tU8U": {
+          "type": "_product-title",
+          "settings": {
+            "show_vendor": false
+          },
+          "blocks": {}
+        },
+        "badges_RwfTMp": {
+          "type": "_product-badges",
+          "settings": {},
+          "blocks": {}
+        },
+        "price_VJ4N8m": {
+          "type": "_product-price",
+          "settings": {},
+          "blocks": {}
+        },
+        "product_meta_Bh3Lr7": {
+          "type": "_product-meta",
+          "name": "t:blocks.product.product_meta.name",
+          "settings": {
+            "show_barcode": false,
+            "show_sku": true,
+            "producao": "9",
+            "algodao": "1",
+            "imediato": "0",
+            "show_available": false,
+            "show_tags": false,
+            "show_type": false,
+            "show_collections": false
+          },
+          "blocks": {}
+        },
+        "delivery_return_iJHeMD": {
+          "type": "_product-delivery-return",
+          "disabled": true,
+          "settings": {
+            "delivery_design": "vertical",
+            "delivery_content_icon": "truck",
+            "delivery_content": "<p>Estimate delivery times:<strong> 3-5 days International.</strong></p>",
+            "discount_content_icon": "discount",
+            "discount_content": "<p>Use code \"<strong>WELCOME15</strong>\" for discount 15% on your first order.</p>",
+            "return_content_icon": "free_shipping",
+            "return_content": "<p>Free shipping & returns: <strong>On all orders over $150.</strong></p>"
+          },
+          "blocks": {}
+        },
+        "variant_picker_tcCihG": {
+          "type": "_product-variant-picker",
+          "settings": {
+            "variant_type": "swatches",
+            "show_size_guide": true,
+            "size_guide_label": "Tabela de Medidas",
+            "size_guide_page": "{{ product.metafields.custom.tabela_medidas.value }}"
+          },
+          "blocks": {}
+        },
+        "stock_countdown_JNK9zi": {
+          "type": "_product-stock-countdown",
+          "settings": {
+            "message": "Corre que só tem [count] em estoque!",
+            "stock_items": 5
+          },
+          "blocks": {}
+        },
+        "buy_buttons_LcQGtR": {
+          "type": "_product-buy-buttons",
+          "settings": {
+            "show_dynamic_checkout": false,
+            "show_gift_card_recipient": true,
+            "show_wishlist": false,
+            "show_compare": false
+          },
+          "blocks": {}
+        },
+        "frete_no_produto_shipping_calc_rwYMRw": {
+          "type": "shopify://apps/frete-no-produto/blocks/shipping_calc/86063d43-a133-4046-bbed-b9bfb712ccba",
+          "settings": {
+            "shipping_calculator": true,
+            "show_localization": true,
+            "background_color_container": "rgba(0,0,0,0)",
+            "background_header": "#fafafa",
+            "background_local": "#fafafa",
+            "btnshipping": "#3a9e35",
+            "color_text": "#ffffff",
+            "color_shipping": "#51a559",
+            "color_ship_name": "#000000",
+            "color_shipping_date": "#000000",
+            "padding_inner": 0,
+            "padding_external": 39,
+            "space_top": 0,
+            "height_input": 45,
+            "border_radius": 100,
+            "text_btn": "CONSULTAR",
+            "text_title": "Calcule o Frete",
+            "placeholder": "Digite seu CEP",
+            "pickup": "",
+            "dont_show_products": []
+          }
+        },
+        "product_grouped_6epkNf": {
+          "type": "_product-grouped",
+          "settings": {
+            "heading": ""
+          },
+          "blocks": {}
+        },
+        "more_colors_3zmxGq": {
+          "type": "_product-more-colors",
+          "settings": {
+            "heading": "",
+            "image_width": 40
+          },
+          "blocks": {}
+        },
+        "trust_badge_qKXhpg": {
+          "type": "_product-trust-badge",
+          "disabled": true,
+          "settings": {
+            "message": "BRKAGRO — Com tecnologia exclusiva XTech Pro ®",
+            "trust_badge_image": "shopify://shop_images/XTECH-LOGO-PRETO.svg",
+            "image_width": 100
+          },
+          "blocks": {}
+        },
+        "collapsible_row_eLaQpR": {
+          "type": "_product-collapsible-row",
+          "disabled": true,
+          "settings": {
+            "heading": "PRAZO DE FABRICAÇÃO",
+            "content": "",
+            "use_product_description": false,
+            "open": true
+          },
+          "blocks": {}
+        },
+        "collapsible_row_m3g6f8": {
+          "type": "_product-collapsible-row",
+          "settings": {
+            "heading": "MAIS DETALHES",
+            "content": "",
+            "use_product_description": true,
+            "open": false
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "title_G6tU8U",
+        "badges_RwfTMp",
+        "price_VJ4N8m",
+        "product_meta_Bh3Lr7",
+        "delivery_return_iJHeMD",
+        "variant_picker_tcCihG",
+        "stock_countdown_JNK9zi",
+        "buy_buttons_LcQGtR",
+        "frete_no_produto_shipping_calc_rwYMRw",
+        "product_grouped_6epkNf",
+        "more_colors_3zmxGq",
+        "trust_badge_qKXhpg",
+        "collapsible_row_eLaQpR",
+        "collapsible_row_m3g6f8"
+      ],
+      "name": "Informações do Produto",
+      "settings": {
+        "section_width": "container",
+        "color_scheme": "default",
+        "enable_sticky_content_on_desktop": true,
+        "enable_skeleton_loading": false,
+        "desktop_media_width": 50,
+        "desktop_layout": "thumbnail_bottom",
+        "image_zoom": "open_lightbox",
+        "enable_video_looping": true,
+        "enable_video_autoplay": true,
+        "enable_frequently_bought_together": false,
+        "enable_on_desktop": true,
+        "enable_on_mobile": true,
+        "mobile_options": "show_thumbnails",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": false
+      }
+    },
+    "divider_E3r6ih": {
+      "type": "divider",
+      "settings": {
+        "section_width": "full_width",
+        "border_height": 1,
+        "border_color": "#ebebeb",
+        "reset_spacing": true
+      }
+    },
+    "product-set": {
+      "type": "product-set",
+      "settings": {
+        "section_width": "container",
+        "color_scheme": "",
+        "heading": "Combination Styles",
+        "description": "",
+        "header_size": "medium",
+        "header_alignment": "left",
+        "items_per_row": 2,
+        "column_gap": 30,
+        "show_arrow": false,
+        "carousel_pagination": "show_dots",
+        "infinite": false,
+        "autoplay": true,
+        "autorotate_speed": 5,
+        "reveal": false,
+        "items_per_row_mobile": 1,
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": false
+      }
+    },
+    "1765374451200c6240": {
+      "type": "apps",
+      "blocks": {
+        "also_bought_product_page_app_block_CwMyz9": {
+          "type": "shopify://apps/also-bought/blocks/product-page-app-block/b94b27b4-738d-4d92-9e60-43c22d1da3f2",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "also_bought_product_page_app_block_CwMyz9"
+      ],
+      "settings": {}
+    },
+    "scrolling_text_b38KNQ": {
+      "type": "scrolling-text",
+      "blocks": {
+        "scrolling_text_dEP8jr": {
+          "type": "scrolling_text",
+          "settings": {
+            "content": "ENTREGA RÁPIDA"
+          }
+        },
+        "scrolling_text_bPAypi": {
+          "type": "scrolling_text",
+          "settings": {
+            "content": "FRETE FIXO R$9,90"
+          }
+        }
+      },
+      "block_order": [
+        "scrolling_text_dEP8jr",
+        "scrolling_text_bPAypi"
+      ],
+      "custom_css": [],
+      "name": "Faixa Rotativa",
+      "settings": {
+        "section_width": "full_width",
+        "color_scheme": "scheme-bb1431b0-be4a-4b03-a450-f572c07e3904",
+        "direction": "left",
+        "icon_between_item": "dot",
+        "speed": 10,
+        "space_between_text": 65,
+        "font_size": 20,
+        "font_weight": "subheading_weight",
+        "uppercase": false,
+        "use_heading_font": false,
+        "padding_top": 15,
+        "padding_bottom": 15,
+        "reset_spacing": true
+      }
+    },
+    "divider_TKLM6L": {
+      "type": "divider",
+      "settings": {
+        "section_width": "container",
+        "border_height": 1,
+        "border_color": "#ebebeb",
+        "reset_spacing": true
+      }
+    },
+    "shopable_video_Wfb7nq": {
+      "type": "shopable-video",
+      "blocks": {
+        "video_jqb887": {
+          "type": "video",
+          "settings": {
+            "product": "",
+            "local_video": "shopify://files/videos/760968420251001194206.mp4"
+          }
+        },
+        "video_cYXzMz": {
+          "type": "video",
+          "settings": {
+            "product": "",
+            "local_video": "shopify://files/videos/909931620251001194157.mp4"
+          }
+        },
+        "video_tyGReM": {
+          "type": "video",
+          "settings": {
+            "product": "",
+            "local_video": "shopify://files/videos/766730120251001191044.mp4"
+          }
+        },
+        "video_7qpp8D": {
+          "type": "video",
+          "settings": {
+            "product": "",
+            "local_video": "shopify://files/videos/reelup_3xj7ce4uaae1759257734256_original.mp4"
+          }
+        }
+      },
+      "block_order": [
+        "video_jqb887",
+        "video_cYXzMz",
+        "video_tyGReM",
+        "video_7qpp8D"
+      ],
+      "name": "Video Prova Social",
+      "settings": {
+        "section_width": "fluid_container",
+        "color_scheme": "",
+        "heading": "",
+        "description": "",
+        "header_size": "medium",
+        "header_alignment": "left",
+        "image_ratio": "adapt",
+        "custom_ratio": "",
+        "video_autoplay": true,
+        "items_per_row": 4,
+        "column_gap": 30,
+        "show_arrow": false,
+        "carousel_pagination": "disable",
+        "infinite": false,
+        "autoplay": false,
+        "autorotate_speed": 5,
+        "reveal": false,
+        "items_per_row_mobile": 1.5,
+        "padding_top": 30,
+        "padding_bottom": 30,
+        "reset_spacing": true
+      }
+    },
+    "related_products": {
+      "type": "related-products",
+      "name": "Produtos Semelhantes",
+      "settings": {
+        "section_width": "container",
+        "color_scheme": "",
+        "heading": "Produtos Semelhantes",
+        "description": "",
+        "header_size": "medium",
+        "header_alignment": "center",
+        "items_to_show": 4,
+        "items_per_row": 4,
+        "column_gap": 30,
+        "items_per_row_mobile": 2,
+        "padding_top": 25,
+        "padding_bottom": 25,
+        "reset_spacing": true
+      }
+    },
+    "divider_HtLXd3": {
+      "type": "divider",
+      "settings": {
+        "section_width": "container",
+        "border_height": 1,
+        "border_color": "#ebebeb",
+        "reset_spacing": true
+      }
+    },
+    "products_recently_viewed_GdCNUL": {
+      "type": "products-recently-viewed",
+      "name": "Produtos Vistos Recentemente",
+      "settings": {
+        "section_width": "container",
+        "color_scheme": "",
+        "heading": "Vistos Recentemente",
+        "description": "",
+        "header_size": "medium",
+        "header_alignment": "center",
+        "items_to_show": 8,
+        "items_per_row": 4,
+        "column_gap": 30,
+        "show_arrow": true,
+        "carousel_pagination": "show_dots",
+        "infinite": true,
+        "autoplay": false,
+        "autorotate_speed": 5,
+        "reveal": false,
+        "items_per_row_mobile": 2,
+        "padding_top": 25,
+        "padding_bottom": 25,
+        "reset_spacing": false
+      }
+    }
+  },
+  "order": [
+    "breadcrumb",
+    "main",
+    "divider_E3r6ih",
+    "product-set",
+    "1765374451200c6240",
+    "scrolling_text_b38KNQ",
+    "divider_TKLM6L",
+    "shopable_video_Wfb7nq",
+    "related_products",
+    "divider_HtLXd3",
+    "products_recently_viewed_GdCNUL"
+  ]
+}
