@@ -33,7 +33,7 @@
         "section_width": "stretch_width",
         "color_scheme": "scheme-4faf0e4d-27f4-4d02-bc51-617383bab1a9",
         "alignment": "center",
-        "show_collection_image": true,
+        "show_collection_image": false,
         "overlay_opacity": 0,
         "height": "adapt",
         "padding_top": 46,
