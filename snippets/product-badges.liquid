@@ -259,7 +259,7 @@
           {{- 'products.product.label.subscription' | t -}}
         </div>
       {% endif %}
-      {% if card_product.tags contains 'Envio Imediato' %}
+      {% if card_product.tags contains 'Envio Imediato' or card_product.tags contains 'prazo_imediato'%}
         <div
           class="product__badges-custom subscription product__badges-inner align-self-start px-15 pre-order inline-flex content-center subheading_weight text-center lh-normal"
           style="--badges-color: #FFF;--badges-bg: #1E1E1E;"
