@@ -24,24 +24,15 @@
         </svg>
 
         {% if product.tags contains 'prazo_imediato' %}
-          <span>Esse produto possui <strong> Envio Imediato</strong></span>.
+          <span>Esse produto possui <strong> Envio Imediato</strong></span
+          >.
         {% else %}
           <span>
-            Esse produto possui um <strong>prazo de produção</strong>
-            {% if product.tags contains 'prazo_producao' %}
-                de até {{ block_st.producao }} <strong>
-                {% if block_st.producao == '1' %} Dia Útil{% else %} Dias Úteis{% endif -%}
-              </strong>
-            {% elsif product.tags contains 'prazo_algodao' %}
-                de até {{ block_st.algodao }} <strong>
-                {% if block_st.algodao == '1' %} Dia Útil{% else %} Dias Úteis{% endif -%}
-              </strong>
-            {% else %}
-                de até {{ block_st.producao }} <strong>
-                {% if block_st.producao == '1' %} Dia Útil{% else %} Dias Úteis{% endif -%}
-              </strong>
+            {% if product.tags contains 'prazo_producao' or product.tags contains 'prazo_algodao' %}
+              {% assign prazo = product.tags contains 'prazo_producao' ? block_st.producao : block_st.algodao %}
+              Esse produto possui um <strong>prazo de produção</strong> de até <strong>{{ prazo }}</strong>
+              {% if prazo == '1' %} Dia Útil{% else %} Dias Úteis.{% endif %}
             {% endif %}
-            .
           </span>
         {% endif %}
       </div>
