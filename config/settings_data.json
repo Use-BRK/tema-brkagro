@@ -305,6 +305,11 @@
         "type": "shopify://apps/ns-discount-in-cart/blocks/discount_block/0cbbbcdd-bf54-49df-885c-9ca3fd52a671",
         "disabled": true,
         "settings": {}
+      },
+      "pagefly-page-builder": {
+        "type": "shopify://apps/pagefly-page-builder/blocks/app-embed/83e179f7-59a0-4589-8c66-c0dddf959200",
+        "disabled": false,
+        "settings": {}
       }
     },
     "color_schemes": {
