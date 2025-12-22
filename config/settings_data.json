@@ -55,7 +55,7 @@
     "product_image_ratio": "adapt",
     "show_action_on_mobile": true,
     "swatch_item_type": "variant_images",
-    "size_trigger": "Size, Taglia, Tamanho",
+    "size_trigger": "Size, Taglia, Tamanho, Tamanho Baby Look, Tamanho Infantil",
     "search_type": "drawer",
     "search_result": "all",
     "enable_search_suggestion": true,
