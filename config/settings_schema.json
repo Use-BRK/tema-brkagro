@@ -1710,7 +1710,7 @@
         "id": "whatsapp_button_bottom",
         "min": 0,
         "max": 200,
-        "step": 3,
+        "step": 5,
         "unit": "px",
         "label": "Bottom Position",
         "default": 20
@@ -1720,7 +1720,7 @@
         "id": "whatsapp_button_right",
         "min": 0,
         "max": 200,
-        "step": 3,
+        "step": 5,
         "unit": "px",
         "label": "Right Position",
         "default": 20
