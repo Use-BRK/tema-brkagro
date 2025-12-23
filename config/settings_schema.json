@@ -1697,6 +1697,37 @@
     ]
   },
   {
+    "name": "Whatsapp Button",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "enable_whatsapp_button",
+        "label": "Whatsapp Button",
+        "default": false
+      },
+      {
+        "type": "range",
+        "id": "whatsapp_button_bottom",
+        "min": 0,
+        "max": 200,
+        "step": 3,
+        "unit": "px",
+        "label": "Bottom Position",
+        "default": 20
+      },
+      {
+        "type": "range",
+        "id": "whatsapp_button_right",
+        "min": 0,
+        "max": 200,
+        "step": 3,
+        "unit": "px",
+        "label": "Right Position",
+        "default": 20
+      }
+    ]
+  },
+  {
     "name": "t:settings_schema.terms_conditions.name",
     "settings": [
       {
