@@ -29,7 +29,8 @@ jobs:
           SHOPIFY_CLI_THEME_TOKEN: ${{ secrets.SHOPIFY_CLI_THEME_TOKEN }}
         run: |
           echo "Checando erros para o deploy..."
-          shopify theme check
+          shopify theme check \
+          --fail-level="error"
 
       - name: Deploy to Shopify
         env:
@@ -38,5 +39,4 @@ jobs:
           shopify theme push \
             --store ${{ secrets.SHOPIFY_STORE_DOMAIN }} \
             --theme ${{ secrets.SHOPIFY_THEME_ID }} \
-            --allow-live \
-            --verbose
+            --allow-live
