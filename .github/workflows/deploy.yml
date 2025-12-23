@@ -27,9 +27,9 @@ jobs:
       - name: Checa erros e Para
         env:
           SHOPIFY_CLI_THEME_TOKEN: ${{ secrets.SHOPIFY_CLI_THEME_TOKEN }}
-        RUN: |
+        run: |
           echo "Checando erros para o deploy..."
-          shopify theme check    
+          shopify theme check
 
       - name: Deploy to Shopify
         env:
