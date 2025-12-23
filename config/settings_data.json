@@ -62,7 +62,7 @@
     "popular_key_word": "camisa do brasil, longhorn, texas, bonés, botinas, uniformes pro campo",
     "collection_suggestion": "barra-de-busca",
     "show_search_price": true,
-    "show_message_when_remove": true,
+    "show_message_when_remove": false,
     "action_after_add_cart": "open_drawer",
     "show_on_minicart_cart_page": false,
     "free_shipping_minimum": "150",
