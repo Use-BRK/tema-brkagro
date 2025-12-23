@@ -1,0 +1,27 @@
+name: Deploy para Shopify (theme push)
+
+on:
+  push:
+    branches:
+      - main # O deploy acontece quando você faz push ou merge na main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18"
+
+      - name: Install Shopify CLI
+        run: npm install -g @shopify/cli@latest
+
+      - name: Deploy to Shopify
+        env:
+          SHOPIFY_CLI_THEME_TOKEN: ${{ secrets.SHOPIFY_CLI_THEME_TOKEN }}
+        run: |
+          shopify theme push --store ${{ secrets.SHOPIFY_STORE_DOMAIN }} --theme ${{ secrets.SHOPIFY_THEME_ID }} --allow-live
