@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Política de Frete</title>
+  </head>
+  <body>
+    <style>
+      .shipping-policy-container {
+        font-family: inherit;
+        max-width: 750px;
+        margin-inline: auto;
+        padding-inline: 1.5rem;
+        margin-top: 6rem;
+      }
+
+      .shipping-policy-container p {
+        line-height: 1.3;
+      }
+
+      .shipping-policy-container .shipping-policy-content {
+        margin-bottom: 4rem;
+      }
+
+      .shipping-policy-container h2 {
+        margin-bottom: 20px;
+        font-size: 2rem;
+        text-transform: uppercase;
+        font-weight: 900;
+      }
+
+      .screenshot-area img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+        margin: 15px 0;
+        border: 1px solid #e0e0e0;
+        border-radius: 4px;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 4px;
+        flex-wrap: nowrap;
+        margin-bottom: 30px;
+      }
+
+      .nav-btn {
+        text-decoration: none;
+        background-color: #f4f4f4;
+        color: #333;
+        padding: 8px 10px;
+        border-radius: 20px;
+        font-size: 0.9em;
+        border: 1px solid #ccc;
+        transition: 0.2s;
+        cursor: pointer;
+      }
+
+      .nav-btn:hover {
+        background-color: #e2e6ea;
+        border-color: #999;
+      }
+
+      details {
+        border-bottom: 1px solid #e0e0e0;
+        margin-bottom: 10px;
+      }
+      details a {
+        display: block;
+        margin-bottom: 1.5rem;
+      }
+      details ol {
+        padding-left: 1rem;
+      }
+      summary {
+        cursor: pointer;
+        padding: 15px 0;
+        font-weight: bold;
+        list-style: none;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        outline: none;
+      }
+
+      summary::-webkit-details-marker {
+        display: none;
+      }
+      summary::after {
+        content: "+";
+        font-size: 1.5em;
+        color: #666;
+        font-weight: normal;
+      }
+
+      details[open] summary::after {
+        content: "-";
+      }
+      details[open] div {
+        animation: fadeIn 0.5s ease;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(-10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    </style>
+    <div class="shipping-policy-container">
+      <div class="shipping-policy-content">
+        <h2>Sobre o envio - Transportadoras</h2>
+        <p>
+          Acompanhe sua entrega: Após o despacho,
+          <strong
+            >a própria transportadora envia os dados de rastreio (Ex: código ou
+            nota fiscal) para o seu e-mail</strong
+          >
+          ou outro contato cadastrado. Verifique qual empresa está realizando o
+          transporte na mensagem recebida e
+          <strong>siga as instruções abaixo.</strong>
+        </p>
+        <div class="nav-menu">
+          <p>Ir direto para:</p>
+          <div class="nav-links">
+            <a class="nav-btn" href="#correios">Correios</a>
+            <a class="nav-btn" href="#jadlog">Jadlog</a>
+            <a class="nav-btn" href="#total">Total Express</a>
+            <a class="nav-btn" href="#braspress">Braspress</a>
+          </div>
+        </div>
+        <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0" />
+        <details name="transportadoras" id="correios">
+          <summary>1. Correios</summary>
+          <div>
+            <ol>
+              <li>Acesse o link abaixo.</li>
+              <li>
+                Digite o <strong>código de rastreio</strong>,
+                <strong>CNPJ</strong> ou <strong>CPF</strong>.
+              </li>
+              <li>
+                Preencha o captcha e clique no botão para
+                <strong>'Consultar'</strong>.
+              </li>
+            </ol>
+            <a
+              href="https://rastreamento.correios.com.br/app/index.php"
+              target="_blank"
+              >Rastrear pedido Correios</a
+            >
+          </div>
+        </details>
+        <details name="transportadoras" id="jadlog">
+          <summary>2. Jadlog</summary>
+          <div>
+            <ol>
+              <li>Acesse o link abaixo.</li>
+              <li>Digite o <strong>CNPJ</strong> ou <strong>CPF</strong>.</li>
+              <li>Clique no botão para <strong>'Procurar'</strong>.</li>
+            </ol>
+            <a href="https://www.jadlog.com.br/jadlog/home" target="_blank"
+              >Rastrear pedido Jadlog</a
+            >
+            <br /><br />
+          </div>
+        </details>
+        <details name="transportadoras" id="total">
+          <summary>3. Total Express</summary>
+          <div>
+            <ol>
+              <li>Acesso link abaixo.</li>
+              <li>Informe o <strong>o código de rastreio</strong>.</li>
+              <li>Clique no botão para <strong>'Buscar encomenda'</strong>.</li>
+            </ol>
+            <a
+              href="https://totalconecta.totalexpress.com.br/rastreamento?codigo&amp;language=pt-br&amp;protect_form_flood_control=protect_form_flood_control"
+              target="_blank"
+              >Rastrear pedido Total Express</a
+            >
+            <br /><br />
+          </div>
+        </details>
+        <details name="transportadoras" id="braspress">
+          <summary>4. Braspress</summary>
+          <div>
+            <ol>
+              <li>Acesse link abaixo.</li>
+              <li>Digite o <strong>CNPJ</strong> ou <strong>CPF</strong>.</li>
+              <li>Clique na imagem da <strong>lupa</strong>.</li>
+            </ol>
+            <a href="https://www.braspress.com/" target="_blank"
+              >Rastrear Braspress</a
+            >
+            <br /><br />
+          </div>
+        </details>
+      </div>
+
+      <div
+        class="content-for-layout focus-none focus-visible"
+        role="main"
+        data-focus-visible-added=""
+        tabindex="-1"
+      >
+        <div class="shopify-policy__container">
+          <div class="shopify-policy__body">
+            <div class="rte">
+              <h2>Sobre o processo de Produção</h2>
+              <div
+                style="
+                  border-left: 3px solid hsl(0, 0%, 5%);
+                  border-radius: 6px;
+                  padding: 1rem;
+                  background-color: hsl(0, 0%, 99%);
+                "
+              >
+                <p>
+                  Produtos que possuem selo de <strong>envio FULL</strong>,
+                  podem ser enviados em até <strong>2 dias úteis</strong>. Os
+                  <strong>demais produtos</strong> possuem um
+                  <strong>prazo de produção</strong> informado na
+                  <strong>página do produto</strong>, conforme a imagem de
+                  exemplo abaixo.
+                </p>
+                <div class="screenshot-area">
+                  <img
+                    alt="Exemplo Prazo Agro"
+                    src="https://use-brk-images-s3.s3.us-east-1.amazonaws.com/1766584837928-prazo-agro.png"
+                  />
+                </div>
+                <p>
+                  <strong>O prazo total de entrega será calculado em:</strong>
+                </p>
+                <p>
+                  Somando <strong>dias úteis para Produção</strong> +
+                  <strong>dias calculados pela transportadora</strong>.
+                </p>
+                <p>
+                  <small
+                    ><strong>Exemplo:</strong> 5 dias úteis para Produção + 3
+                    dias calculados pela transportadora = 8 dias úteis</small
+                  >
+                </p>
+              </div>
+              <p>
+                <strong
+                  >Compras com cartões de crédito são autorizadas em até 24
+                  horas.</strong
+                >
+                Somente após a <strong>confirmação do pagamento</strong> de sua
+                compra é
+                <strong
+                  >iniciado o processo de preparação/produção e envio</strong
+                >.
+              </p>
+              <p>
+                Quando o <strong>pagamento é aprovado</strong>, você
+                <strong>receberá um e-mail de confirmação</strong> e será
+                informado que sua encomenda já está em
+                <strong>processo de preparação/produção</strong>.
+              </p>
+              <p>
+                <span
+                  >A <strong>entrega</strong> é de
+                  <strong>responsabilidade da transportadora</strong> escolhida
+                  na hora da compra, portanto o rastreio do pedido pode ser
+                  feito pelos canais disponibilizados pelas próprias empresas:
+                  <strong>Correios, Jadlog, Total Express ou Braspress</strong
+                  >.</span
+                >
+              </p>
+              <p>
+                Reforçamos que <strong>o número de dias</strong> informados no
+                <strong>calculo de frete</strong> é uma
+                <strong>previsão</strong> com base nos processos de cada empresa
+                transportadora, e pode variar para mais ou menos dias.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
