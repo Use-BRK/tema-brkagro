@@ -36,6 +36,7 @@
         },
         "whatsapp_contact_8RBihn": {
           "type": "whatsapp-contact",
+          "disabled": true,
           "settings": {}
         },
         "account_6ynFFp": {
