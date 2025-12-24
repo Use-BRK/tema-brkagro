@@ -1,1 +1,79 @@
-{"name":"t:sections.footer.name","type":"footer","sections":{"footer":{"type":"footer","blocks":{"store_info_tUhcyD":{"type":"store_info","settings":{"image_width":70,"store_heading":"Dúvidas? Fale conosco!","store_description":"<p>Atendimento Segunda à Sexta das 08 às 17h<\/p>","store_address":true,"store_phone":true,"store_email":true,"content_width":"33.333%"}},"link_list_jiBLFz":{"type":"link_list","settings":{"heading":"Institucional","menu":"footer","content_width":"33.333%"}},"newsletter_Rk8BD6":{"type":"newsletter","settings":{"heading":"Inscreva-se e receba as ofertas e descontos BRK AGRO!","description":"Receba em primeira mão nossas novidades, cupons de desconto exclusivos, lançamentos e conteúdos feitos especialmente pra você.","email_placeholder":"Digite seu e-mail...","button_label":"Inscrever","note":"***Ao inscrever-se você concorda com os <a href=\"\/pages\/termos-de-uso\" title=\"Termos de Uso\"><strong>termos e condições<\/strong><\/a>","content_width":"33.333%"}}},"block_order":["store_info_tUhcyD","link_list_jiBLFz","newsletter_Rk8BD6"],"custom_css":[],"settings":{"section_width":"fluid_container","color_scheme":"scheme-bb1431b0-be4a-4b03-a450-f572c07e3904","enable_back_top":true,"separator_line":"unset","enable_country_selector":false,"enable_language_selector":false,"enable_follow_on_shop":false,"menu_store_policies":"","show_social":true,"payment_enable":true,"payment_image":"shopify:\/\/shop_images\/bandeiras-cartoes-credito.png","payment_width":400,"copyright_text":"BRK INDUSTRIA DE VESTUARIO DE ALTA PERFORMANCE LTDA. CNPJ 17.113.656\/0002-02 - Todos os direitos reservados 2025.","footer_heading_size":16,"padding_top":0,"padding_bottom":45,"reset_spacing_on_homepage":true}}},"order":["footer"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "name": "t:sections.footer.name",
+  "type": "footer",
+  "sections": {
+    "footer": {
+      "type": "footer",
+      "blocks": {
+        "store_info_tUhcyD": {
+          "type": "store_info",
+          "settings": {
+            "image_width": 70,
+            "store_heading": "Dúvidas? Fale conosco!",
+            "store_description": "<p>Atendimento Segunda à Sexta das 08 às 17h</p>",
+            "store_address": true,
+            "store_phone": true,
+            "store_email": true,
+            "content_width": "33.333%"
+          }
+        },
+        "link_list_jiBLFz": {
+          "type": "link_list",
+          "settings": {
+            "heading": "Institucional",
+            "menu": "footer",
+            "content_width": "33.333%"
+          }
+        },
+        "newsletter_Rk8BD6": {
+          "type": "newsletter",
+          "settings": {
+            "heading": "Inscreva-se e receba as ofertas e descontos BRK AGRO!",
+            "description": "Receba em primeira mão nossas novidades, cupons de desconto exclusivos, lançamentos e conteúdos feitos especialmente pra você.",
+            "email_placeholder": "Digite seu e-mail...",
+            "button_label": "Inscrever",
+            "note": "***Ao inscrever-se você concorda com os <a href=\"/pages/termos-de-uso\" title=\"Termos de Uso\"><strong>termos e condições</strong></a>",
+            "content_width": "33.333%"
+          }
+        }
+      },
+      "block_order": [
+        "store_info_tUhcyD",
+        "link_list_jiBLFz",
+        "newsletter_Rk8BD6"
+      ],
+      "custom_css": [],
+      "settings": {
+        "section_width": "fluid_container",
+        "color_scheme": "scheme-bb1431b0-be4a-4b03-a450-f572c07e3904",
+        "enable_back_top": false,
+        "separator_line": "unset",
+        "enable_country_selector": false,
+        "enable_language_selector": false,
+        "enable_follow_on_shop": false,
+        "menu_store_policies": "",
+        "show_social": true,
+        "payment_enable": true,
+        "payment_image": "shopify://shop_images/bandeiras-cartoes-credito.png",
+        "payment_width": 400,
+        "copyright_text": "BRK INDUSTRIA DE VESTUARIO DE ALTA PERFORMANCE LTDA. CNPJ 17.113.656/0002-02 - Todos os direitos reservados 2025.",
+        "footer_heading_size": 16,
+        "padding_top": 0,
+        "padding_bottom": 45,
+        "reset_spacing_on_homepage": true
+      }
+    }
+  },
+  "order": [
+    "footer"
+  ]
+}
