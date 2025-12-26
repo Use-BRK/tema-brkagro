@@ -898,8 +898,8 @@
           "type": "instagram_manual_upload",
           "settings": {
             "image": "shopify://shop_images/acamiladoagro_582086708_18369567415083015_2496868503357147839_n.jpg",
-            "more_info": "",
-            "instagram_post_name": "",
+            "more_info": "<p>Siga nossa influencer no Instagram para ficar por dentro das novidades do Agro!</p>",
+            "instagram_post_name": "acamiladoagro",
             "link": "https://www.instagram.com/acamiladoagro/p/DSVIN2llv55/",
             "product__1": "camisa-agro-feminina-brk-mescla-verde-com-protecao-solar-uv50-2",
             "offset_top__1": 67,
@@ -922,8 +922,8 @@
           "type": "instagram_manual_upload",
           "settings": {
             "image": "shopify://shop_images/micaiashenrique__584651368_18093144223894691_5497816485889688329_n.jpg",
-            "more_info": "",
-            "instagram_post_name": "",
+            "more_info": "<p>Siga nosso influencer no Instagram para ficar por dentro das novidades do Agro!</p>",
+            "instagram_post_name": "_micaiashenrique_",
             "link": "https://www.instagram.com/_micaiashenrique_/p/DRGA5y_EdPa/",
             "product__1": "camisa-agro-brk-agronomia-real-tree-com-uv50",
             "offset_top__1": 39,
@@ -946,8 +946,8 @@
           "type": "instagram_manual_upload",
           "settings": {
             "image": "shopify://shop_images/alissonmataruco_568032654_18538089442042552_4251419722937825964_n.jpg",
-            "more_info": "",
-            "instagram_post_name": "",
+            "more_info": "<p>Siga nosso influencer no Instagram para ficar por dentro das novidades do Agro!</p>",
+            "instagram_post_name": "alissonmataruco",
             "link": "https://www.instagram.com/alissonmataruco/p/DP93zoskktZ/",
             "product__1": "camisa-uv50-agro-brk-eu-sou-do-agro-amarela-colheitadeira",
             "offset_top__1": 45,
@@ -970,8 +970,8 @@
           "type": "instagram_manual_upload",
           "settings": {
             "image": "shopify://shop_images/ledianesalake_557429738_18360056017085262_2922419135991812323_n.jpg",
-            "more_info": "",
-            "instagram_post_name": "",
+            "more_info": "<p>Siga nosso influencer no Instagram para ficar por dentro das novidades do Agro!</p>",
+            "instagram_post_name": "ledianesalake",
             "link": "https://www.instagram.com/ledianesalake/p/DPT5qqUDCdw/",
             "product__1": "camisa-agro-feminina-brk-preta-brasil-com-protecao-solar-uv50-3",
             "offset_top__1": 54,
@@ -994,8 +994,8 @@
           "type": "instagram_manual_upload",
           "settings": {
             "image": "shopify://shop_images/abigail_santss_528605313_18053829350414738_2333328130503575612_n.jpg",
-            "more_info": "",
-            "instagram_post_name": "",
+            "more_info": "<p>Siga nosso influencer no Instagram para ficar por dentro das novidades do Agro!</p>",
+            "instagram_post_name": "abigail_santss",
             "link": "https://www.instagram.com/abigail_santss/p/DNEgsidPX6k/",
             "product__1": "camisa-agro-feminina-brk-brasil-com-protecao-solar-uv50-4",
             "offset_top__1": 67,
@@ -1018,8 +1018,8 @@
           "type": "instagram_manual_upload",
           "settings": {
             "image": "shopify://shop_images/lucasdanielleite_587465193_18031516925732495_7503912019238201385_n.jpg",
-            "more_info": "",
-            "instagram_post_name": "",
+            "more_info": "<p>Siga nosso influencer no Instagram para ficar por dentro das novidades do Agro!</p>",
+            "instagram_post_name": "eomarcosantonio_",
             "link": "https://www.instagram.com/p/DOtHugxje4i",
             "product__1": "camisa-agro-brk-skull-longhorn-com-protecao-uv50-1",
             "offset_top__1": 54,
@@ -1046,6 +1046,9 @@
         "instagram_manual_upload_AMpdtd",
         "instagram_manual_upload_WC6NAd",
         "instagram_manual_upload_YjEdak"
+      ],
+      "custom_css": [
+        "lookbook-item {display: none !important;}"
       ],
       "name": "Momentos Reais",
       "settings": {
