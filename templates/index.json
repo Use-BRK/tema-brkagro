@@ -1057,7 +1057,7 @@
         "header_alignment": "center",
         "image_ratio": "adapt",
         "custom_ratio": "",
-        "hotspot_style": "plus",
+        "hotspot_style": "dot",
         "items_per_row": 4,
         "column_gap": 30,
         "show_arrow": true,

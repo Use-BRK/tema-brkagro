@@ -333,6 +333,9 @@
         "video_tyGReM",
         "video_7qpp8D"
       ],
+      "custom_css": [
+        ".video-item__product {display: none;}"
+      ],
       "name": "Video Prova Social",
       "settings": {
         "section_width": "fluid_container",
