@@ -227,14 +227,6 @@
     "collection_list_DnBJyy": {
       "type": "collection-list",
       "blocks": {
-        "collection_afg8mP": {
-          "type": "collection",
-          "settings": {
-            "collection": "cartao-presente",
-            "collection_image": "shopify://shop_images/OFERTA_AGRO_05.webp",
-            "collection_title": ""
-          }
-        },
         "collection_EKPUGy": {
           "type": "collection",
           "settings": {
@@ -269,7 +261,6 @@
         }
       },
       "block_order": [
-        "collection_afg8mP",
         "collection_EKPUGy",
         "collection_gEjEAi",
         "collection_XGJRwk",
