@@ -14,6 +14,7 @@
       "blocks": {
         "breadcrumb_tAe9LK": {
           "type": "breadcrumb",
+          "disabled": true,
           "settings": {}
         },
         "heading_fntt9G": {
@@ -36,12 +37,50 @@
         "show_collection_image": false,
         "overlay_opacity": 0,
         "height": "adapt",
-        "padding_top": 46,
-        "padding_bottom": 46
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "scrolling_text_L4EgPy": {
+      "type": "scrolling-text",
+      "blocks": {
+        "scrolling_text_Y3pj8N": {
+          "type": "scrolling_text",
+          "settings": {
+            "content": "<strong>FRETE FIXO R$0,26</strong>"
+          }
+        },
+        "scrolling_text_7MqMwU": {
+          "type": "scrolling_text",
+          "settings": {
+            "content": "<strong>FRETE FIXO R$0,26</strong>"
+          }
+        }
+      },
+      "block_order": [
+        "scrolling_text_Y3pj8N",
+        "scrolling_text_7MqMwU"
+      ],
+      "name": "t:sections.scrolling_text.name",
+      "settings": {
+        "section_width": "full_width",
+        "color_scheme": "scheme-bb1431b0-be4a-4b03-a450-f572c07e3904",
+        "direction": "right",
+        "icon_between_item": "star",
+        "speed": 8,
+        "space_between_text": 60,
+        "font_size": 16,
+        "font_weight": "heading_weight",
+        "uppercase": true,
+        "use_heading_font": true,
+        "padding_top": 15,
+        "padding_bottom": 15,
+        "reset_spacing": false
       }
     },
     "subcollection": {
       "type": "subcollection-list",
+      "disabled": true,
       "settings": {
         "section_width": "fluid_container",
         "color_scheme": "",
@@ -139,6 +178,7 @@
   },
   "order": [
     "banner",
+    "scrolling_text_L4EgPy",
     "subcollection",
     "main"
   ]
