@@ -1,6 +1,474 @@
+{% doc %}
+  @prompt
+    Gere um bloco que contenha o seguinte:
+    - Um botão escrito "Filtrar Tamanhos", quando eu apertar o mesmo ele vai ter o comportamento de expandir botões que puxem a informação no product option name dos produtos que contenha "Tamanho" e traga o valor
+    
+    Por exemplo, uma camisa tem o product option name "Tamanho Baby Look", vai puxar os values dessa option, ou seja "G", "GG", etc
+    
+     
+{% enddoc %}
+```liquid
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-size-filter-{{ ai_gen_id }} {
+    display: block;
+    width: 100%;
+  }
+
+  .ai-size-filter-container-{{ ai_gen_id }} {
+    width: {{ block.settings.desktop_width_percent }}%;
+    margin: 0 auto;
+  }
+
+  .ai-size-filter-toggle-{{ ai_gen_id }} {
+    width: 100%;
+    padding: {{ block.settings.button_padding }}px {{ block.settings.button_padding | times: 1.5 }}px;
+    background-color: {{ block.settings.button_background }};
+    color: {{ block.settings.button_text_color }};
+    border: {{ block.settings.button_border_width }}px solid {{ block.settings.button_border_color }};
+    border-radius: {{ block.settings.button_border_radius }}px;
+    font-size: {{ block.settings.button_font_size }}px;
+    font-weight: {{ block.settings.button_font_weight }};
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: all 0.3s ease;
+  }
+
+  .ai-size-filter-toggle-{{ ai_gen_id }}:hover {
+    background-color: {{ block.settings.button_hover_background }};
+    color: {{ block.settings.button_hover_text_color }};
+  }
+
+  .ai-size-filter-toggle-icon-{{ ai_gen_id }} {
+    width: 16px;
+    height: 16px;
+    transition: transform 0.3s ease;
+  }
+
+  .ai-size-filter-toggle-{{ ai_gen_id }}.active .ai-size-filter-toggle-icon-{{ ai_gen_id }} {
+    transform: rotate(180deg);
+  }
+
+  .ai-size-filter-content-{{ ai_gen_id }} {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    margin-top: 0;
+  }
+
+  .ai-size-filter-content-{{ ai_gen_id }}.active {
+    max-height: 500px;
+    margin-top: {{ block.settings.content_spacing }}px;
+  }
+
+  .ai-size-filter-sizes-{{ ai_gen_id }} {
+    display: flex;
+    flex-wrap: wrap;
+    gap: {{ block.settings.size_button_gap }}px;
+  }
+
+  .ai-size-filter-size-button-{{ ai_gen_id }} {
+    padding: {{ block.settings.size_button_padding }}px {{ block.settings.size_button_padding | times: 1.5 }}px;
+    background-color: {{ block.settings.size_button_background }};
+    color: {{ block.settings.size_button_text_color }};
+    border: {{ block.settings.size_button_border_width }}px solid {{ block.settings.size_button_border_color }};
+    border-radius: {{ block.settings.size_button_border_radius }}px;
+    font-size: {{ block.settings.size_button_font_size }}px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  .ai-size-filter-size-button-{{ ai_gen_id }}:hover {
+    background-color: {{ block.settings.size_button_hover_background }};
+    color: {{ block.settings.size_button_hover_text_color }};
+    border-color: {{ block.settings.size_button_hover_border_color }};
+  }
+
+  .ai-size-filter-size-button-{{ ai_gen_id }}.active {
+    background-color: {{ block.settings.size_button_active_background }};
+    color: {{ block.settings.size_button_active_text_color }};
+    border-color: {{ block.settings.size_button_active_border_color }};
+  }
+
+  .ai-size-filter-empty-{{ ai_gen_id }} {
+    padding: 20px;
+    text-align: center;
+    color: #999;
+    font-style: italic;
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-size-filter-container-{{ ai_gen_id }} {
+      width: 100%;
+    }
+  }
+{% endstyle %}
+
+<size-filter-{{ ai_gen_id }}
+  class="ai-size-filter-{{ ai_gen_id }}"
+  {{ block.shopify_attributes }}
+>
+  <div class="ai-size-filter-container-{{ ai_gen_id }}">
+    <button
+      class="ai-size-filter-toggle-{{ ai_gen_id }}"
+      aria-expanded="false"
+      aria-controls="ai-size-filter-content-{{ ai_gen_id }}"
+    >
+      <span>{{ block.settings.button_text }}</span>
+      <svg
+        class="ai-size-filter-toggle-icon-{{ ai_gen_id }}"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <polyline points="6 9 12 15 18 9"></polyline>
+      </svg>
+    </button>
+
+    <div
+      id="ai-size-filter-content-{{ ai_gen_id }}"
+      class="ai-size-filter-content-{{ ai_gen_id }}"
+    >
+      <div class="ai-size-filter-sizes-{{ ai_gen_id }}">
+        {% if collection %}
+          {% assign size_values = '' | split: ',' %}
+          {% assign size_option_found = false %}
+
+          {% for product in collection.products %}
+            {% for option in product.options_with_values %}
+              {% assign option_name_lower = option.name | downcase %}
+              {% if option_name_lower contains 'tamanho' %}
+                {% assign size_option_found = true %}
+                {% for value in option.values %}
+                  {% unless size_values contains value %}
+                    {% assign size_values = size_values | append: value | append: ',' | split: ',' %}
+                  {% endunless %}
+                {% endfor %}
+              {% endif %}
+            {% endfor %}
+          {% endfor %}
+
+          {% if size_option_found and size_values.size > 0 %}
+            {% for size in size_values %}
+              {% if size != blank %}
+                <a
+                  href="{{ collection.url }}?filter.v.option.tamanho={{ size | url_encode }}"
+                  class="ai-size-filter-size-button-{{ ai_gen_id }}"
+                  data-size="{{ size | escape }}"
+                >
+                  {{ size }}
+                </a>
+              {% endif %}
+            {% endfor %}
+          {% else %}
+            <div class="ai-size-filter-empty-{{ ai_gen_id }}">
+              Nenhum tamanho disponível nesta coleção
+            </div>
+          {% endif %}
+        {% else %}
+          <div class="ai-size-filter-empty-{{ ai_gen_id }}">
+            Este bloco funciona apenas em páginas de coleção
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</size-filter-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class SizeFilter{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+      }
+
+      connectedCallback() {
+        this.toggleButton = this.querySelector('.ai-size-filter-toggle-{{ ai_gen_id }}');
+        this.content = this.querySelector('.ai-size-filter-content-{{ ai_gen_id }}');
+        this.sizeButtons = this.querySelectorAll('.ai-size-filter-size-button-{{ ai_gen_id }}');
+
+        this.setupEventListeners();
+        this.checkActiveSize();
+      }
+
+      setupEventListeners() {
+        this.toggleButton.addEventListener('click', () => {
+          const isActive = this.content.classList.contains('active');
+          this.content.classList.toggle('active');
+          this.toggleButton.classList.toggle('active');
+          this.toggleButton.setAttribute('aria-expanded', !isActive);
+        });
+
+        this.sizeButtons.forEach(button => {
+          button.addEventListener('click', (e) => {
+            this.sizeButtons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+          });
+        });
+      }
+
+      checkActiveSize() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const sizeParam = urlParams.get('filter.v.option.tamanho');
+
+        if (sizeParam) {
+          this.sizeButtons.forEach(button => {
+            if (button.dataset.size === sizeParam) {
+              button.classList.add('active');
+            }
+          });
+        }
+      }
+    }
+
+    customElements.define('size-filter-{{ ai_gen_id }}', SizeFilter{{ ai_gen_id }});
+  })();
+</script>
+
 {% schema %}
- {
-   "name": "AI_Block",
-   "tag": "shopify-ai-generated-block"
- }
+{
+  "name": "Filtrar tamanhos",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Botão principal"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Texto do botão",
+      "default": "Filtrar Tamanhos"
+    },
+    {
+      "type": "range",
+      "id": "button_font_size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Tamanho da fonte",
+      "default": 16
+    },
+    {
+      "type": "select",
+      "id": "button_font_weight",
+      "label": "Peso da fonte",
+      "options": [
+        { "value": "400", "label": "Normal" },
+        { "value": "500", "label": "Médio" },
+        { "value": "600", "label": "Semi-negrito" },
+        { "value": "700", "label": "Negrito" }
+      ],
+      "default": "600"
+    },
+    {
+      "type": "range",
+      "id": "button_padding",
+      "min": 8,
+      "max": 24,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "button_border_radius",
+      "min": 0,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "label": "Arredondamento",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "button_border_width",
+      "min": 0,
+      "max": 4,
+      "step": 1,
+      "unit": "px",
+      "label": "Largura da borda",
+      "default": 1
+    },
+    {
+      "type": "color",
+      "id": "button_background",
+      "label": "Cor de fundo",
+      "default": "#3a9e35"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Cor do texto",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "button_border_color",
+      "label": "Cor da borda",
+      "default": "#3a9e35"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_background",
+      "label": "Cor de fundo (hover)",
+      "default": "#1e1e1e"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_text_color",
+      "label": "Cor do texto (hover)",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Botões de tamanho"
+    },
+    {
+      "type": "range",
+      "id": "content_spacing",
+      "min": 8,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "label": "Espaçamento do conteúdo",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "size_button_gap",
+      "min": 4,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "label": "Espaço entre botões",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "size_button_font_size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Tamanho da fonte",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "size_button_padding",
+      "min": 6,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "size_button_border_radius",
+      "min": 0,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "label": "Arredondamento",
+      "default": 6
+    },
+    {
+      "type": "range",
+      "id": "size_button_border_width",
+      "min": 0,
+      "max": 4,
+      "step": 1,
+      "unit": "px",
+      "label": "Largura da borda",
+      "default": 1
+    },
+    {
+      "type": "color",
+      "id": "size_button_background",
+      "label": "Cor de fundo",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "size_button_text_color",
+      "label": "Cor do texto",
+      "default": "#1e1e1e"
+    },
+    {
+      "type": "color",
+      "id": "size_button_border_color",
+      "label": "Cor da borda",
+      "default": "#ebebeb"
+    },
+    {
+      "type": "color",
+      "id": "size_button_hover_background",
+      "label": "Cor de fundo (hover)",
+      "default": "#f5f5f5"
+    },
+    {
+      "type": "color",
+      "id": "size_button_hover_text_color",
+      "label": "Cor do texto (hover)",
+      "default": "#1e1e1e"
+    },
+    {
+      "type": "color",
+      "id": "size_button_hover_border_color",
+      "label": "Cor da borda (hover)",
+      "default": "#3a9e35"
+    },
+    {
+      "type": "color",
+      "id": "size_button_active_background",
+      "label": "Cor de fundo (ativo)",
+      "default": "#3a9e35"
+    },
+    {
+      "type": "color",
+      "id": "size_button_active_text_color",
+      "label": "Cor do texto (ativo)",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "size_button_active_border_color",
+      "label": "Cor da borda (ativo)",
+      "default": "#3a9e35"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "desktop_width_percent",
+      "label": "Largura no desktop",
+      "min": 50,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 100
+    }
+  ],
+  "presets": [
+    {
+      "name": "Filtrar tamanhos"
+    }
+  ]
+}
 {% endschema %}
+```
