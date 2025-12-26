@@ -260,7 +260,7 @@
         "scrolling_text_bPAypi": {
           "type": "scrolling_text",
           "settings": {
-            "content": "FRETE FIXO R$9,90"
+            "content": "FRETE FIXO R$0,26"
           }
         }
       },
@@ -273,10 +273,10 @@
       "settings": {
         "section_width": "full_width",
         "color_scheme": "scheme-bb1431b0-be4a-4b03-a450-f572c07e3904",
-        "direction": "left",
-        "icon_between_item": "dot",
-        "speed": 10,
-        "space_between_text": 65,
+        "direction": "right",
+        "icon_between_item": "star",
+        "speed": 11,
+        "space_between_text": 60,
         "font_size": 20,
         "font_weight": "subheading_weight",
         "uppercase": false,
