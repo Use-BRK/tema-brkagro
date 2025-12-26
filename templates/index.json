@@ -211,8 +211,8 @@
       "settings": {
         "section_width": "full_width",
         "color_scheme": "scheme-bb1431b0-be4a-4b03-a450-f572c07e3904",
-        "direction": "left",
-        "icon_between_item": "dot",
+        "direction": "right",
+        "icon_between_item": "star",
         "speed": 11,
         "space_between_text": 60,
         "font_size": 16,
