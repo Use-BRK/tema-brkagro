@@ -27,10 +27,10 @@
       "blocks": {
         "slider_item_ib6U7g": {
           "type": "slider_item",
-          "name": "Natal Agro",
+          "name": "Virada 26",
           "settings": {
-            "image": "shopify://shop_images/BANNERS-AGRO.webp",
-            "image_mobile": "shopify://shop_images/MOBBANNERS-AGRO.webp",
+            "image": "shopify://shop_images/VIRADA_DESKTOP_AGRO.webp",
+            "image_mobile": "shopify://shop_images/VIRADA_MOBILE_AGRO.webp",
             "link_banner": "shopify://collections/envio-imediato",
             "overlay_opacity": 0,
             "slider_effect": "effect_fadeinup",
@@ -192,13 +192,13 @@
         "scrolling_text_myQxMH": {
           "type": "scrolling_text",
           "settings": {
-            "content": "FRETE FIXO R$9,90"
+            "content": "FRETE FIXO R$0,26"
           }
         },
         "scrolling_text_T9tPfp": {
           "type": "scrolling_text",
           "settings": {
-            "content": "FRETE FIXO R$9,90"
+            "content": "FRETE FIXO R$0,26"
           }
         }
       },
@@ -206,6 +206,7 @@
         "scrolling_text_myQxMH",
         "scrolling_text_T9tPfp"
       ],
+      "custom_css": [],
       "name": "Rotativo",
       "settings": {
         "section_width": "full_width",
