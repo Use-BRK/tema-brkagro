@@ -29,7 +29,9 @@
         "breadcrumb_tAe9LK",
         "heading_fntt9G"
       ],
-      "custom_css": [],
+      "custom_css": [
+        "* {margin-bottom: 0 !important;}"
+      ],
       "settings": {
         "section_width": "stretch_width",
         "color_scheme": "scheme-4faf0e4d-27f4-4d02-bc51-617383bab1a9",
