@@ -2,6 +2,7 @@
   Size Filter Block
   Filtro de tamanho customizado para páginas de coleção
   Permite valores de filtros diferentes e adiciona sufixos (Baby Look, Infantil) visualmente.
+  Versão corregida para evitar duplicações de processamento.
 {%- endcomment -%}
 
 {%- liquid
@@ -29,12 +30,13 @@
 
         comment
           Determinar sufixo visual baseado no nome do filtro
+          Prioridade: Infantil > Baby Look (caso o nome contenha ambos)
         endcomment
         assign visual_suffix = ''
-        if filter_label_down contains 'baby look'
-          assign visual_suffix = ' (Baby Look)'
-        elsif filter_label_down contains 'infantil'
+        if filter_label_down contains 'infantil'
           assign visual_suffix = ' (Infantil)'
+        elsif filter_label_down contains 'baby look'
+          assign visual_suffix = ' (Baby Look)'
         endif
 
         for value in filter.values
@@ -46,6 +48,12 @@
             assign all_size_values = all_size_values | append: value_data
           endif
         endfor
+
+        comment
+          IMPORTANTE: Break para evitar que o mesmo filtro seja processado novamente por outro trigger
+          Ex: "Tamanho Baby Look" dar match em "Tamanho" e depois em "Tamanho Baby Look".
+        endcomment
+        break
       endif
     endfor
   endfor
