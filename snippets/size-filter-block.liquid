@@ -117,4 +117,25 @@
       </div>
     </collapsible-block>
   </div>
+{%- else -%}
+  <div class="size-filter-block debug-mode" style="border: 2px solid red; padding: 10px; margin-bottom: 20px;">
+    <h4 style="color: red;">DEBUG MODE: Size Filter</h4>
+    <p>O bloco está ativo, mas nenhum filtro correspondente foi encontrado nesta coleção.</p>
+    <p><strong>Filtros procurados (Size Triggers):</strong> {{ size_triggers | join: ', ' }}</p>
+    <p><strong>Filtros disponíveis na coleção (collection.filters):</strong></p>
+    <ul>
+      {% for f in collection.filters %}
+        <li>
+          <strong>Label:</strong> "{{ f.label }}" ({{ f.type }}) <br>
+          Values count: {{ f.values.size }}
+        </li>
+      {% else %}
+        <li>
+          Nenhum filtro retornado por <code>collection.filters</code>. <br>
+          Por favor, vá em <strong>Online Store > Navigation > Collection and search filters</strong> e certifique-se de
+          que os filtros estão ativos.
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
 {%- endif -%}

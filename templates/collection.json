@@ -120,7 +120,7 @@
       "blocks": {
         "size_filter_pR4gjQ": {
           "type": "size_filter",
-          "disabled": true,
+          "disabled": false,
           "settings": {
             "title": "Filtre por Tamanho",
             "start_open": true
