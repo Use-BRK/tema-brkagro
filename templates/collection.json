@@ -122,7 +122,7 @@
           "type": "size_filter",
           "settings": {
             "title": "Filtre por Tamanho",
-            "start_open": true
+            "start_open": false
           }
         },
         "categories_LYDr6p": {
@@ -145,6 +145,7 @@
         "filter_giBtHK": {
           "type": "filter",
           "name": "Filtros",
+          "disabled": true,
           "settings": {}
         },
         "image_banner_UUJxtT": {
