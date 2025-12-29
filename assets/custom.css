@@ -1071,3 +1071,162 @@ section[class*=collection] grid-list .grid__item variant-radios {
 }
 
 /*******************************/
+
+
+
+/* ============================================
+   SIZE FILTER BLOCK - Filtro de Tamanho
+   ============================================ */
+
+.size-filter-block {
+  padding: 15px;
+  margin-bottom: 20px;
+  background: #fff;
+  border-radius: 8px;
+  border: 1px solid #e5e5e5;
+}
+
+.size-filter-collapsible {
+  display: block;
+}
+
+.size-filter-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0;
+  padding: 10px 0;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  color: var(--heading-color, #333);
+}
+
+.size-filter-heading .open-children-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.size-filter-content {
+  padding-top: 15px;
+}
+
+.size-filter-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.size-filter-item {
+  min-width: 48px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 14px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background: #fff;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+  transition: all 0.2s ease;
+  user-select: none;
+}
+
+.size-filter-item:hover {
+  border-color: #3a9e35;
+  color: #3a9e35;
+}
+
+.size-filter-item.current-filter {
+  background: #3a9e35;
+  color: #fff;
+  border-color: #3a9e35;
+}
+
+.size-filter-item.current-filter:hover {
+  background: #2d7a29;
+  border-color: #2d7a29;
+}
+
+.size-filter-item.disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.size-filter-label {
+  white-space: nowrap;
+}
+
+.size-filter-clear {
+  margin-top: 15px;
+  padding-top: 12px;
+  border-top: 1px solid #eee;
+}
+
+.size-filter-clear-btn {
+  font-size: 13px;
+  color: #666;
+  text-decoration: underline;
+  transition: color 0.2s ease;
+}
+
+.size-filter-clear-btn:hover {
+  color: #3a9e35;
+}
+
+/* Mobile Responsivo */
+@media screen and (max-width: 768px) {
+  .size-filter-block {
+    padding: 12px;
+    margin-bottom: 15px;
+    border-radius: 6px;
+  }
+
+  .size-filter-heading {
+    font-size: 15px;
+    padding: 8px 0;
+  }
+
+  .size-filter-grid {
+    gap: 6px;
+  }
+
+  .size-filter-item {
+    min-width: 42px;
+    height: 40px;
+    padding: 6px 10px;
+    font-size: 13px;
+    border-radius: 5px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .size-filter-item {
+    min-width: 38px;
+    height: 36px;
+    padding: 5px 8px;
+    font-size: 12px;
+  }
+
+  .size-filter-grid {
+    gap: 5px;
+  }
+}
+
+/* ============================================ */
+
+.size-filter-item-wide {
+  width: auto !important;
+  min-width: 36px;
+  padding: 0 10px !important;
+  font-size: 12px !important;
+}
+
+.size-filter-item-wide .size-filter-label {
+  white-space: nowrap;
+}

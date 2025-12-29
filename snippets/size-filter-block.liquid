@@ -1,0 +1,239 @@
+{%- comment -%}
+  Size Filter Block
+  Filtro de tamanho customizado para páginas de coleção
+  Ordenação Específica: Padrão (PP-G3) -> Baby Look -> Infantil -> Numérico
+  Comportamento: Single Select (Selecionar um remove os outros de tamanho, mesmo de filtros diferentes)
+{%- endcomment -%}
+
+{%- liquid
+  assign block_st = block.settings
+  assign filter_title = block_st.title | default: 'Filtre por Tamanho'
+  assign start_open = block_st.start_open
+
+  assign size_triggers = settings.size_trigger | split: ','
+
+  assign has_size_filters = false
+
+  comment
+    Arrays para segurar os valores separados por grupo
+  endcomment
+  assign group_standard = ''
+  assign group_babylook = ''
+  assign group_infantil = ''
+  assign group_numeric = ''
+
+  comment
+    Lista de parâmetros ativos de tamanho para remoção (implementação de Single Select)
+  endcomment
+  assign active_size_params = ''
+
+  comment
+    Mapa de pesos para ordenação (simplificado na lógica abaixo)
+  endcomment
+
+  for filter in collection.filters
+    for trigger in size_triggers
+      assign trigger_clean = trigger | strip | downcase
+      assign filter_label_down = filter.label | downcase
+
+      if filter_label_down contains trigger_clean
+        assign has_size_filters = true
+
+        assign filter_suffix = ''
+        if filter_label_down contains 'baby look'
+          assign filter_suffix = ' (Baby Look)'
+        elsif filter_label_down contains 'infantil'
+          assign filter_suffix = ' (Infantil)'
+        endif
+
+        for value in filter.values
+          if value.active
+            assign encoded_val = value.value | url_encode
+            assign param_str = value.param_name | append: '=' | append: encoded_val
+            assign active_size_params = active_size_params | append: param_str | append: '|||'
+          endif
+
+          if value.count > 0 or value.active
+            assign val_label = value.label
+            assign val_label_down = val_label | downcase
+
+            assign target_group = 'standard'
+
+            assign numeric_check = val_label | times: 1
+            if numeric_check > 0 or val_label == '0'
+              assign target_group = 'numeric'
+            endif
+
+            if val_label_down contains 'baby look' or filter_label_down contains 'baby look'
+              assign target_group = 'babylook'
+            elsif val_label_down contains 'infantil' or filter_label_down contains 'infantil'
+              assign target_group = 'infantil'
+            endif
+
+            assign sort_weight = '99'
+            if val_label_down == 'pp' or val_label_down contains 'pp ' or val_label_down contains ' pp'
+              assign sort_weight = '01'
+            elsif val_label_down == 'p' or val_label_down contains 'p ' or val_label_down contains ' p'
+              assign sort_weight = '02'
+            elsif val_label_down == 'm' or val_label_down contains 'm ' or val_label_down contains ' m'
+              assign sort_weight = '03'
+            elsif val_label_down == 'g' or val_label_down contains 'g ' or val_label_down contains ' g'
+              assign sort_weight = '04'
+            elsif val_label_down == 'gg' or val_label_down contains 'gg ' or val_label_down contains ' gg'
+              assign sort_weight = '05'
+            elsif val_label_down == 'xg'
+              assign sort_weight = '06'
+            elsif val_label_down contains 'g1'
+              assign sort_weight = '07'
+            elsif val_label_down contains 'g2'
+              assign sort_weight = '08'
+            elsif val_label_down contains 'g3'
+              assign sort_weight = '09'
+            elsif val_label_down contains 'g4'
+              assign sort_weight = '10'
+            endif
+
+            if target_group == 'numeric'
+              if numeric_check < 10
+                assign sort_weight = '000' | append: numeric_check
+              elsif numeric_check < 100
+                assign sort_weight = '00' | append: numeric_check
+              else
+                assign sort_weight = '0' | append: numeric_check
+              endif
+            endif
+
+            comment
+              Prepare Data String:
+              SortKey:::Label:::UrlAdd:::UrlRemove:::Active:::Count:::SourceLabel:::Suffix:::ParamName:::ValueProp|||
+            endcomment
+            assign data_node = sort_weight | append: ':::' | append: val_label | append: ':::' | append: value.url_to_add | append: ':::' | append: value.url_to_remove | append: ':::' | append: value.active | append: ':::' | append: value.count | append: ':::' | append: filter.label | append: ':::' | append: filter_suffix | append: ':::' | append: value.param_name | append: ':::' | append: value.value | append: '|||'
+
+            if target_group == 'standard'
+              assign group_standard = group_standard | append: data_node
+            elsif target_group == 'babylook'
+              assign group_babylook = group_babylook | append: data_node
+            elsif target_group == 'infantil'
+              assign group_infantil = group_infantil | append: data_node
+            elsif target_group == 'numeric'
+              assign group_numeric = group_numeric | append: data_node
+            endif
+          endif
+        endfor
+
+        break
+      endif
+    endfor
+  endfor
+
+  assign group_standard_sorted = group_standard | split: '|||' | sort
+  assign group_babylook_sorted = group_babylook | split: '|||' | sort
+  assign group_infantil_sorted = group_infantil | split: '|||' | sort
+  assign group_numeric_sorted = group_numeric | split: '|||' | sort
+-%}
+
+{%- if has_size_filters
+  and group_standard != ''
+  or group_babylook != ''
+  or group_infantil != ''
+  or group_numeric != ''
+-%}
+  <div class="size-filter-block" {{ block.shopify_attributes }}>
+    <collapsible-block class="size-filter-collapsible{% if start_open %} active{% endif %}">
+      <h3 class="size-filter-heading collapsible-heading">
+        <span>{{ filter_title }}</span>
+        <span class="open-children-toggle pointer">
+          <span class="icon_plus-animation"></span>
+        </span>
+      </h3>
+      <div
+        class="size-filter-content collapsible-content"
+        {% unless start_open %}
+          style="display: none"
+        {% endunless %}
+      >
+        <div class="size-filter-grid">
+          {%- liquid
+            assign all_groups = group_standard_sorted | concat: group_babylook_sorted | concat: group_infantil_sorted | concat: group_numeric_sorted
+            assign active_params_arr = active_size_params | split: '|||'
+          -%}
+
+          {%- for node in all_groups -%}
+            {%- if node != blank -%}
+              {%- assign node_parts = node | split: ':::' -%}
+              {%- assign label = node_parts[1] -%}
+              {%- assign is_active = node_parts[4] -%}
+              {%- assign count = node_parts[5] -%}
+              {%- assign source_label = node_parts[6] -%}
+              {%- assign suffix = node_parts[7] -%}
+
+              {%- assign display_label = label | append: suffix -%}
+
+              {%- comment -%}
+                Logica Single Select:
+                Se inativo, pega url_add e remove TODOS os params de tamanho ativos.
+                Assim, ao clicar, ele adiciona o novo e remove os velhos (troca).
+                node_parts[2] = url_add
+                node_parts[3] = url_remove
+              {%- endcomment -%}
+              {%- assign final_href = node_parts[2] -%}
+
+              {%- if is_active == 'true' -%}
+                {%- assign final_href = node_parts[3] -%}
+              {%- else -%}
+                {%- for active_param_str in active_params_arr -%}
+                  {%- if active_param_str != blank -%}
+                    {%- comment -%} Remove &param=val {%- endcomment -%}
+                    {%- assign term_amp = '&' | append: active_param_str -%}
+                    {%- assign final_href = final_href | remove: term_amp -%}
+
+                    {%- comment -%} Remove ?param=val (case first param){%- endcomment -%}
+                    {%- assign term_quest = '?' | append: active_param_str -%}
+                    {%- assign final_href = final_href | replace: term_quest, '?' -%}
+                  {%- endif -%}
+                {%- endfor -%}
+
+                {%- comment -%} Cleanup URLs like ?& or && {%- endcomment -%}
+                {%- assign final_href = final_href | replace: '?&', '?' | replace: '&&', '&' -%}
+              {%- endif -%}
+
+              <filter-item
+                data-href="{{ final_href }}"
+                class="size-filter-item{% if is_active == 'true' %} current-filter{% endif %}{% if count == '0' and is_active != 'true' %} disabled{% endif %}{% if suffix != '' or label.size > 3 %} size-filter-item-wide{% endif %}"
+                title="{{ source_label }}: {{ label }}"
+                {% if count == '0' and is_active != 'true' %}
+                  aria-disabled="true"
+                {% endif %}
+              >
+                <span class="size-filter-label">{{ display_label }}</span>
+              </filter-item>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+
+        {%- comment -%} Limpa Tudo {%- endcomment -%}
+        {%- assign has_active = false -%}
+        {%- for node in all_groups -%}
+          {%- if node != blank -%}
+            {%- assign node_parts = node | split: ':::' -%}
+            {%- if node_parts[4] == 'true' -%}
+              {%- assign has_active = true -%}
+              {%- break -%}
+            {%- endif -%}
+          {%- endif -%}
+        {%- endfor -%}
+
+        {%- if has_active -%}
+          <div class="size-filter-clear mt-15">
+            <facet-clear-all
+              class="size-filter-clear-btn pointer"
+              data-href="{{ collection.url }}"
+            >
+              {{ 'collections.sidebar.clear_all' | t }}
+            </facet-clear-all>
+          </div>
+        {%- endif -%}
+      </div>
+    </collapsible-block>
+  </div>
+{%- endif -%}

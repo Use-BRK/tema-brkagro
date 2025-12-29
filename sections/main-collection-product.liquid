@@ -85,6 +85,13 @@
         class="w-full {% if enable_filtering and filter_layout == 'vertical' %}col-1025-remaining{% endif %}"
       >
         {% if enable_filtering and filter_layout == 'vertical' %}<div class="sticky-1025 top-30">{% endif %}
+        {%- comment -%} Size Filter Block - Renderizado acima dos filtros {%- endcomment -%}
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'size_filter' -%}
+          {%- render 'size-filter-block', block: block -%}
+          {%- endif -%}
+        {%- endfor -%} 
+
         {%- if enable_filtering and filter_layout == 'horizontal' -%}
           {%- render 'collection-sidebar',
             section_st: section_st,
@@ -540,6 +547,29 @@
     }
   ],
   "blocks": [
+    {
+      "type": "size_filter",
+      "name": "Filtro de Tamanho",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Título do filtro",
+          "default": "Filtre por Tamanho"
+        },
+        {
+          "type": "checkbox",
+          "id": "start_open",
+          "label": "Iniciar expandido",
+          "default": true
+        },
+        {
+          "type": "paragraph",
+          "content": "Este filtro exibe opções de tamanho baseadas nos product options configurados em 'Color swatches > Size trigger' nas configurações do tema."
+        }
+      ]
+    },
     {
       "type": "categories",
       "name": "t:sections.collection-main.blocks.categories.name",
