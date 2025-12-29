@@ -120,7 +120,6 @@
       "blocks": {
         "size_filter_pR4gjQ": {
           "type": "size_filter",
-          "disabled": false,
           "settings": {
             "title": "Filtre por Tamanho",
             "start_open": true
@@ -168,7 +167,7 @@
         "section_width": "fluid_container",
         "enable_filtering": true,
         "show_filter_counts": true,
-        "default_filter": "first_open",
+        "default_filter": "close_all",
         "filter_layout": "horizontal",
         "vertical_posion": "left",
         "number_products_per_page": true,
