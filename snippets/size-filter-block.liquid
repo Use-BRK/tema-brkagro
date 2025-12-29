@@ -2,6 +2,7 @@
   Size Filter Block
   Filtro de tamanho customizado para páginas de coleção
   Ordenação Específica: Padrão (PP-G3) -> Baby Look -> Infantil -> Numérico
+  Comportamento: Single Select (Selecionar um remove os outros de tamanho, mesmo de filtros diferentes)
 {%- endcomment -%}
 
 {%- liquid
@@ -22,9 +23,12 @@
   assign group_numeric = ''
 
   comment
-    Mapa de pesos para ordenação de tamanhos não-numéricos
-    (PP=01, P=02, M=03, G=04, GG=05, XG=06, G1=07, G2=08, G3=09, G4=10)
-    Usaremos isso para prepend um 'peso' na string de sort
+    Lista de parâmetros ativos de tamanho para remoção (implementação de Single Select)
+  endcomment
+  assign active_size_params = ''
+
+  comment
+    Mapa de pesos para ordenação (simplificado na lógica abaixo)
   endcomment
 
   for filter in collection.filters
@@ -35,10 +39,6 @@
       if filter_label_down contains trigger_clean
         assign has_size_filters = true
 
-        comment
-          Identificar sufixo do filtro em si (Baby Look option name vs Infantil option name)
-          Mas agora temos que considerar o option VALUE também.
-        endcomment
         assign filter_suffix = ''
         if filter_label_down contains 'baby look'
           assign filter_suffix = ' (Baby Look)'
@@ -47,43 +47,29 @@
         endif
 
         for value in filter.values
+          if value.active
+            assign encoded_val = value.value | url_encode
+            assign param_str = value.param_name | append: '=' | append: encoded_val
+            assign active_size_params = active_size_params | append: param_str | append: '|||'
+          endif
+
           if value.count > 0 or value.active
             assign val_label = value.label
             assign val_label_down = val_label | downcase
 
-            comment
-              Determinar a qual grupo este valor pertence
-            endcomment
             assign target_group = 'standard'
 
-            comment
-              Verificar se é numérico
-              (Hack no Liquid: multiplicar por 1 mantem igual se for numero, vira 0 se string.
-              Mas '0' é numero. Melhor checar caracteres ou range)
-              O valor '39' * 1 = 39. 'PP' * 1 = 0. '0' * 1 = 0.
-              Se o label for diferente de '0' e a multiplicacao der 0, não é numero.
-            endcomment
             assign numeric_check = val_label | times: 1
             if numeric_check > 0 or val_label == '0'
               assign target_group = 'numeric'
             endif
 
-            comment
-              Verificar palavras chave no Label ou no Title do Filtro
-            endcomment
             if val_label_down contains 'baby look' or filter_label_down contains 'baby look'
               assign target_group = 'babylook'
             elsif val_label_down contains 'infantil' or filter_label_down contains 'infantil'
               assign target_group = 'infantil'
             endif
 
-            comment
-              Calcular Peso de Ordenação (Sort Key)
-              Prefixamos com 00_ para numéricos ficarem na ordem correta se usarmos sort natural?
-              Não, queremos ordem especifica de renderização dos grupos.
-              Dentro do grupo, queremos ordenar.
-              Sort key manual para letras:
-            endcomment
             assign sort_weight = '99'
             if val_label_down == 'pp' or val_label_down contains 'pp ' or val_label_down contains ' pp'
               assign sort_weight = '01'
@@ -108,10 +94,6 @@
             endif
 
             if target_group == 'numeric'
-              comment
-                Para numeros ficarem na ordem (1, 2, 10), precisamos de padding zeros.
-                Ex: 39 -> 0039.
-              endcomment
               if numeric_check < 10
                 assign sort_weight = '000' | append: numeric_check
               elsif numeric_check < 100
@@ -122,10 +104,10 @@
             endif
 
             comment
-              Prepare Data String com Sort Key no inicio para ordenar facil
-              SortKey:::Label:::...
+              Prepare Data String:
+              SortKey:::Label:::UrlAdd:::UrlRemove:::Active:::Count:::SourceLabel:::Suffix:::ParamName:::ValueProp|||
             endcomment
-            assign data_node = sort_weight | append: ':::' | append: val_label | append: ':::' | append: value.url_to_add | append: ':::' | append: value.url_to_remove | append: ':::' | append: value.active | append: ':::' | append: value.count | append: ':::' | append: filter.label | append: ':::' | append: filter_suffix | append: '|||'
+            assign data_node = sort_weight | append: ':::' | append: val_label | append: ':::' | append: value.url_to_add | append: ':::' | append: value.url_to_remove | append: ':::' | append: value.active | append: ':::' | append: value.count | append: ':::' | append: filter.label | append: ':::' | append: filter_suffix | append: ':::' | append: value.param_name | append: ':::' | append: value.value | append: '|||'
 
             if target_group == 'standard'
               assign group_standard = group_standard | append: data_node
@@ -139,20 +121,11 @@
           endif
         endfor
 
-        comment
-          Removed break to allow checking other filters if needed,
-          BUT user issue earlier was duplication.
-          Since we categorize by value now, duplication risk reduces if we dedupe carefully.
-          But lets keep break if we trust that one filter matches only one trigger.
-        endcomment
         break
       endif
     endfor
   endfor
 
-  comment
-    Agora ordenar cada array e concatenar na ordem final: Standard, Baby, Infantil, Numeric
-  endcomment
   assign group_standard_sorted = group_standard | split: '|||' | sort
   assign group_babylook_sorted = group_babylook | split: '|||' | sort
   assign group_infantil_sorted = group_infantil | split: '|||' | sort
@@ -182,14 +155,13 @@
         <div class="size-filter-grid">
           {%- liquid
             assign all_groups = group_standard_sorted | concat: group_babylook_sorted | concat: group_infantil_sorted | concat: group_numeric_sorted
+            assign active_params_arr = active_size_params | split: '|||'
           -%}
 
           {%- for node in all_groups -%}
             {%- if node != blank -%}
               {%- assign node_parts = node | split: ':::' -%}
               {%- assign label = node_parts[1] -%}
-              {%- assign url_add = node_parts[2] -%}
-              {%- assign url_remove = node_parts[3] -%}
               {%- assign is_active = node_parts[4] -%}
               {%- assign count = node_parts[5] -%}
               {%- assign source_label = node_parts[6] -%}
@@ -197,8 +169,36 @@
 
               {%- assign display_label = label | append: suffix -%}
 
+              {%- comment -%}
+                Logica Single Select:
+                Se inativo, pega url_add e remove TODOS os params de tamanho ativos.
+                Assim, ao clicar, ele adiciona o novo e remove os velhos (troca).
+                node_parts[2] = url_add
+                node_parts[3] = url_remove
+              {%- endcomment -%}
+              {%- assign final_href = node_parts[2] -%}
+
+              {%- if is_active == 'true' -%}
+                {%- assign final_href = node_parts[3] -%}
+              {%- else -%}
+                {%- for active_param_str in active_params_arr -%}
+                  {%- if active_param_str != blank -%}
+                    {%- comment -%} Remove &param=val {%- endcomment -%}
+                    {%- assign term_amp = '&' | append: active_param_str -%}
+                    {%- assign final_href = final_href | remove: term_amp -%}
+
+                    {%- comment -%} Remove ?param=val (case first param){%- endcomment -%}
+                    {%- assign term_quest = '?' | append: active_param_str -%}
+                    {%- assign final_href = final_href | replace: term_quest, '?' -%}
+                  {%- endif -%}
+                {%- endfor -%}
+
+                {%- comment -%} Cleanup URLs like ?& or && {%- endcomment -%}
+                {%- assign final_href = final_href | replace: '?&', '?' | replace: '&&', '&' -%}
+              {%- endif -%}
+
               <filter-item
-                data-href="{% if is_active == 'true' %}{{ url_remove }}{% else %}{{ url_add }}{% endif %}"
+                data-href="{{ final_href }}"
                 class="size-filter-item{% if is_active == 'true' %} current-filter{% endif %}{% if count == '0' and is_active != 'true' %} disabled{% endif %}{% if suffix != '' or label.size > 3 %} size-filter-item-wide{% endif %}"
                 title="{{ source_label }}: {{ label }}"
                 {% if count == '0' and is_active != 'true' %}
@@ -211,13 +211,12 @@
           {%- endfor -%}
         </div>
 
-        {%- comment -%} Limpa Tudo e restante UI mantidos iguais {%- endcomment -%}
+        {%- comment -%} Limpa Tudo {%- endcomment -%}
         {%- assign has_active = false -%}
         {%- for node in all_groups -%}
           {%- if node != blank -%}
             {%- assign node_parts = node | split: ':::' -%}
-            {%- assign active_status = node_parts[4] -%}
-            {%- if active_status == 'true' -%}
+            {%- if node_parts[4] == 'true' -%}
               {%- assign has_active = true -%}
               {%- break -%}
             {%- endif -%}
