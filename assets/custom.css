@@ -1217,3 +1217,14 @@ section[class*=collection] grid-list .grid__item variant-radios {
 }
 
 /* ============================================ */
+
+.size-filter-item-wide {
+  width: auto !important;
+  min-width: 36px;
+  padding: 0 10px !important;
+  font-size: 12px !important;
+}
+
+.size-filter-item-wide .size-filter-label {
+  white-space: nowrap;
+}

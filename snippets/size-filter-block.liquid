@@ -1,8 +1,7 @@
 {%- comment -%}
   Size Filter Block
   Filtro de tamanho customizado para páginas de coleção
-  Permite valores de filtros diferentes (ex: Tamanho vs Baby Look) com valores iguais (P, M).
-  Adiciona tooltip para distinguir a origem.
+  Permite valores de filtros diferentes e adiciona sufixos (Baby Look, Infantil) visualmente.
 {%- endcomment -%}
 
 {%- liquid
@@ -27,12 +26,23 @@
       assign filter_label_down = filter.label | downcase
       if filter_label_down contains trigger_clean
         assign has_size_filters = true
+
+        comment
+          Determinar sufixo visual baseado no nome do filtro
+        endcomment
+        assign visual_suffix = ''
+        if filter_label_down contains 'baby look'
+          assign visual_suffix = ' (Baby Look)'
+        elsif filter_label_down contains 'infantil'
+          assign visual_suffix = ' (Infantil)'
+        endif
+
         for value in filter.values
           if value.count > 0 or value.active
             comment
-              Data Structure: label :: url_add :: url_remove :: active :: count :: filter_origem_label ||
+              Data Structure: label :: url_add :: url_remove :: active :: count :: filter_origem_label :: visual_suffix ||
             endcomment
-            assign value_data = value.label | append: '::' | append: value.url_to_add | append: '::' | append: value.url_to_remove | append: '::' | append: value.active | append: '::' | append: value.count | append: '::' | append: filter.label | append: '||'
+            assign value_data = value.label | append: '::' | append: value.url_to_add | append: '::' | append: value.url_to_remove | append: '::' | append: value.active | append: '::' | append: value.count | append: '::' | append: filter.label | append: '::' | append: visual_suffix | append: '||'
             assign all_size_values = all_size_values | append: value_data
           endif
         endfor
@@ -59,12 +69,6 @@
         <div class="size-filter-grid">
           {%- assign size_values_array = all_size_values | split: '||' -%}
 
-          {%- comment -%}
-            Renderiza todos os valores encontrados. Duplicatas visuais (ex: dois botões "P")
-            são mantidas intencionalmente pois referem-se a filtros diferentes (Tamanho vs Baby Look).
-            Unificar em um botão causaria lógica AND (zero resultados).
-          {%- endcomment -%}
-
           {%- for size_data in size_values_array -%}
             {%- if size_data != '' -%}
               {%- assign parts = size_data | split: '::' -%}
@@ -74,16 +78,19 @@
               {%- assign is_active = parts[3] -%}
               {%- assign count = parts[4] -%}
               {%- assign source_label = parts[5] -%}
+              {%- assign suffix = parts[6] -%}
+
+              {%- assign display_label = label | append: suffix -%}
 
               <filter-item
                 data-href="{% if is_active == 'true' %}{{ url_remove }}{% else %}{{ url_add }}{% endif %}"
-                class="size-filter-item{% if is_active == 'true' %} current-filter{% endif %}{% if count == '0' and is_active != 'true' %} disabled{% endif %}"
+                class="size-filter-item{% if is_active == 'true' %} current-filter{% endif %}{% if count == '0' and is_active != 'true' %} disabled{% endif %}{% if suffix != '' %} size-filter-item-wide{% endif %}"
                 title="{{ source_label }}: {{ label }}"
                 {% if count == '0' and is_active != 'true' %}
                   aria-disabled="true"
                 {% endif %}
               >
-                <span class="size-filter-label">{{ label }}</span>
+                <span class="size-filter-label">{{ display_label }}</span>
               </filter-item>
             {%- endif -%}
           {%- endfor -%}
