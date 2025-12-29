@@ -1,8 +1,7 @@
 {%- comment -%}
   Size Filter Block
   Filtro de tamanho customizado para páginas de coleção
-  Permite valores de filtros diferentes e adiciona sufixos (Baby Look, Infantil) visualmente.
-  Versão corregida para evitar duplicações de processamento.
+  Ordenação Específica: Padrão (PP-G3) -> Baby Look -> Infantil -> Numérico
 {%- endcomment -%}
 
 {%- liquid
@@ -10,56 +9,162 @@
   assign filter_title = block_st.title | default: 'Filtre por Tamanho'
   assign start_open = block_st.start_open
 
-  comment
-    Pegar os triggers de tamanho das configurações globais
-  endcomment
   assign size_triggers = settings.size_trigger | split: ','
 
-  comment
-    Coletar todos os filtros de tamanho e seus valores
-  endcomment
   assign has_size_filters = false
-  assign all_size_values = ''
+
+  comment
+    Arrays para segurar os valores separados por grupo
+  endcomment
+  assign group_standard = ''
+  assign group_babylook = ''
+  assign group_infantil = ''
+  assign group_numeric = ''
+
+  comment
+    Mapa de pesos para ordenação de tamanhos não-numéricos
+    (PP=01, P=02, M=03, G=04, GG=05, XG=06, G1=07, G2=08, G3=09, G4=10)
+    Usaremos isso para prepend um 'peso' na string de sort
+  endcomment
 
   for filter in collection.filters
     for trigger in size_triggers
       assign trigger_clean = trigger | strip | downcase
       assign filter_label_down = filter.label | downcase
+
       if filter_label_down contains trigger_clean
         assign has_size_filters = true
 
         comment
-          Determinar sufixo visual baseado no nome do filtro
-          Prioridade: Infantil > Baby Look (caso o nome contenha ambos)
+          Identificar sufixo do filtro em si (Baby Look option name vs Infantil option name)
+          Mas agora temos que considerar o option VALUE também.
         endcomment
-        assign visual_suffix = ''
-        if filter_label_down contains 'infantil'
-          assign visual_suffix = ' (Infantil)'
-        elsif filter_label_down contains 'baby look'
-          assign visual_suffix = ' (Baby Look)'
+        assign filter_suffix = ''
+        if filter_label_down contains 'baby look'
+          assign filter_suffix = ' (Baby Look)'
+        elsif filter_label_down contains 'infantil'
+          assign filter_suffix = ' (Infantil)'
         endif
 
         for value in filter.values
           if value.count > 0 or value.active
+            assign val_label = value.label
+            assign val_label_down = val_label | downcase
+
             comment
-              Data Structure: label :: url_add :: url_remove :: active :: count :: filter_origem_label :: visual_suffix ||
+              Determinar a qual grupo este valor pertence
             endcomment
-            assign value_data = value.label | append: '::' | append: value.url_to_add | append: '::' | append: value.url_to_remove | append: '::' | append: value.active | append: '::' | append: value.count | append: '::' | append: filter.label | append: '::' | append: visual_suffix | append: '||'
-            assign all_size_values = all_size_values | append: value_data
+            assign target_group = 'standard'
+
+            comment
+              Verificar se é numérico
+              (Hack no Liquid: multiplicar por 1 mantem igual se for numero, vira 0 se string.
+              Mas '0' é numero. Melhor checar caracteres ou range)
+              O valor '39' * 1 = 39. 'PP' * 1 = 0. '0' * 1 = 0.
+              Se o label for diferente de '0' e a multiplicacao der 0, não é numero.
+            endcomment
+            assign numeric_check = val_label | times: 1
+            if numeric_check > 0 or val_label == '0'
+              assign target_group = 'numeric'
+            endif
+
+            comment
+              Verificar palavras chave no Label ou no Title do Filtro
+            endcomment
+            if val_label_down contains 'baby look' or filter_label_down contains 'baby look'
+              assign target_group = 'babylook'
+            elsif val_label_down contains 'infantil' or filter_label_down contains 'infantil'
+              assign target_group = 'infantil'
+            endif
+
+            comment
+              Calcular Peso de Ordenação (Sort Key)
+              Prefixamos com 00_ para numéricos ficarem na ordem correta se usarmos sort natural?
+              Não, queremos ordem especifica de renderização dos grupos.
+              Dentro do grupo, queremos ordenar.
+              Sort key manual para letras:
+            endcomment
+            assign sort_weight = '99'
+            if val_label_down == 'pp' or val_label_down contains 'pp ' or val_label_down contains ' pp'
+              assign sort_weight = '01'
+            elsif val_label_down == 'p' or val_label_down contains 'p ' or val_label_down contains ' p'
+              assign sort_weight = '02'
+            elsif val_label_down == 'm' or val_label_down contains 'm ' or val_label_down contains ' m'
+              assign sort_weight = '03'
+            elsif val_label_down == 'g' or val_label_down contains 'g ' or val_label_down contains ' g'
+              assign sort_weight = '04'
+            elsif val_label_down == 'gg' or val_label_down contains 'gg ' or val_label_down contains ' gg'
+              assign sort_weight = '05'
+            elsif val_label_down == 'xg'
+              assign sort_weight = '06'
+            elsif val_label_down contains 'g1'
+              assign sort_weight = '07'
+            elsif val_label_down contains 'g2'
+              assign sort_weight = '08'
+            elsif val_label_down contains 'g3'
+              assign sort_weight = '09'
+            elsif val_label_down contains 'g4'
+              assign sort_weight = '10'
+            endif
+
+            if target_group == 'numeric'
+              comment
+                Para numeros ficarem na ordem (1, 2, 10), precisamos de padding zeros.
+                Ex: 39 -> 0039.
+              endcomment
+              if numeric_check < 10
+                assign sort_weight = '000' | append: numeric_check
+              elsif numeric_check < 100
+                assign sort_weight = '00' | append: numeric_check
+              else
+                assign sort_weight = '0' | append: numeric_check
+              endif
+            endif
+
+            comment
+              Prepare Data String com Sort Key no inicio para ordenar facil
+              SortKey:::Label:::...
+            endcomment
+            assign data_node = sort_weight | append: ':::' | append: val_label | append: ':::' | append: value.url_to_add | append: ':::' | append: value.url_to_remove | append: ':::' | append: value.active | append: ':::' | append: value.count | append: ':::' | append: filter.label | append: ':::' | append: filter_suffix | append: '|||'
+
+            if target_group == 'standard'
+              assign group_standard = group_standard | append: data_node
+            elsif target_group == 'babylook'
+              assign group_babylook = group_babylook | append: data_node
+            elsif target_group == 'infantil'
+              assign group_infantil = group_infantil | append: data_node
+            elsif target_group == 'numeric'
+              assign group_numeric = group_numeric | append: data_node
+            endif
           endif
         endfor
 
         comment
-          IMPORTANTE: Break para evitar que o mesmo filtro seja processado novamente por outro trigger
-          Ex: "Tamanho Baby Look" dar match em "Tamanho" e depois em "Tamanho Baby Look".
+          Removed break to allow checking other filters if needed,
+          BUT user issue earlier was duplication.
+          Since we categorize by value now, duplication risk reduces if we dedupe carefully.
+          But lets keep break if we trust that one filter matches only one trigger.
         endcomment
         break
       endif
     endfor
   endfor
+
+  comment
+    Agora ordenar cada array e concatenar na ordem final: Standard, Baby, Infantil, Numeric
+  endcomment
+  assign group_standard_sorted = group_standard | split: '|||' | sort
+  assign group_babylook_sorted = group_babylook | split: '|||' | sort
+  assign group_infantil_sorted = group_infantil | split: '|||' | sort
+  assign group_numeric_sorted = group_numeric | split: '|||' | sort
 -%}
 
-{%- if has_size_filters and all_size_values != '' -%}
+{%- if has_size_filters
+  and group_standard != ''
+  or group_babylook != ''
+  or group_infantil != ''
+  or group_numeric != ''
+-%}
   <div class="size-filter-block" {{ block.shopify_attributes }}>
     <collapsible-block class="size-filter-collapsible{% if start_open %} active{% endif %}">
       <h3 class="size-filter-heading collapsible-heading">
@@ -75,24 +180,26 @@
         {% endunless %}
       >
         <div class="size-filter-grid">
-          {%- assign size_values_array = all_size_values | split: '||' -%}
+          {%- liquid
+            assign all_groups = group_standard_sorted | concat: group_babylook_sorted | concat: group_infantil_sorted | concat: group_numeric_sorted
+          -%}
 
-          {%- for size_data in size_values_array -%}
-            {%- if size_data != '' -%}
-              {%- assign parts = size_data | split: '::' -%}
-              {%- assign label = parts[0] -%}
-              {%- assign url_add = parts[1] -%}
-              {%- assign url_remove = parts[2] -%}
-              {%- assign is_active = parts[3] -%}
-              {%- assign count = parts[4] -%}
-              {%- assign source_label = parts[5] -%}
-              {%- assign suffix = parts[6] -%}
+          {%- for node in all_groups -%}
+            {%- if node != blank -%}
+              {%- assign node_parts = node | split: ':::' -%}
+              {%- assign label = node_parts[1] -%}
+              {%- assign url_add = node_parts[2] -%}
+              {%- assign url_remove = node_parts[3] -%}
+              {%- assign is_active = node_parts[4] -%}
+              {%- assign count = node_parts[5] -%}
+              {%- assign source_label = node_parts[6] -%}
+              {%- assign suffix = node_parts[7] -%}
 
               {%- assign display_label = label | append: suffix -%}
 
               <filter-item
                 data-href="{% if is_active == 'true' %}{{ url_remove }}{% else %}{{ url_add }}{% endif %}"
-                class="size-filter-item{% if is_active == 'true' %} current-filter{% endif %}{% if count == '0' and is_active != 'true' %} disabled{% endif %}{% if suffix != '' %} size-filter-item-wide{% endif %}"
+                class="size-filter-item{% if is_active == 'true' %} current-filter{% endif %}{% if count == '0' and is_active != 'true' %} disabled{% endif %}{% if suffix != '' or label.size > 3 %} size-filter-item-wide{% endif %}"
                 title="{{ source_label }}: {{ label }}"
                 {% if count == '0' and is_active != 'true' %}
                   aria-disabled="true"
@@ -104,12 +211,13 @@
           {%- endfor -%}
         </div>
 
-        {%- comment -%} Verificar se há filtros ativos para mostrar botão de limpar {%- endcomment -%}
+        {%- comment -%} Limpa Tudo e restante UI mantidos iguais {%- endcomment -%}
         {%- assign has_active = false -%}
-        {%- for size_data in size_values_array -%}
-          {%- if size_data != '' -%}
-            {%- assign parts = size_data | split: '::' -%}
-            {%- if parts[3] == 'true' -%}
+        {%- for node in all_groups -%}
+          {%- if node != blank -%}
+            {%- assign node_parts = node | split: ':::' -%}
+            {%- assign active_status = node_parts[4] -%}
+            {%- if active_status == 'true' -%}
               {%- assign has_active = true -%}
               {%- break -%}
             {%- endif -%}
