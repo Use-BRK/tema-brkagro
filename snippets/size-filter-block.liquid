@@ -1,0 +1,113 @@
+{%- comment -%}
+  Size Filter Block
+  Filtro de tamanho customizado para páginas de coleção
+  Utiliza os filtros nativos do Shopify com UI de quadrados compactos
+{%- endcomment -%}
+
+{%- liquid
+  assign block_st = block.settings
+  assign filter_title = block_st.title | default: 'Filtre por Tamanho'
+  assign start_open = block_st.start_open
+
+  comment
+    Pegar os triggers de tamanho das configurações globais
+  endcomment
+  assign size_triggers = settings.size_trigger | split: ','
+
+  comment
+    Coletar todos os filtros de tamanho e seus valores
+  endcomment
+  assign has_size_filters = false
+  assign all_size_values = ''
+
+  for filter in collection.filters
+    for trigger in size_triggers
+      assign trigger_clean = trigger | strip
+      if filter.label contains trigger_clean
+        assign has_size_filters = true
+        for value in filter.values
+          if value.count > 0 or value.active
+            comment
+              Criar um objeto com label, url e status
+            endcomment
+            assign value_data = value.label | append: '::' | append: value.url_to_add | append: '::' | append: value.url_to_remove | append: '::' | append: value.active | append: '::' | append: value.count | append: '||'
+            assign all_size_values = all_size_values | append: value_data
+          endif
+        endfor
+      endif
+    endfor
+  endfor
+-%}
+
+{%- if has_size_filters and all_size_values != '' -%}
+  <div class="size-filter-block" {{ block.shopify_attributes }}>
+    <collapsible-block class="size-filter-collapsible{% if start_open %} active{% endif %}">
+      <h3 class="size-filter-heading collapsible-heading">
+        <span>{{ filter_title }}</span>
+        <span class="open-children-toggle pointer">
+          <span class="icon_plus-animation"></span>
+        </span>
+      </h3>
+      <div
+        class="size-filter-content collapsible-content"
+        {% unless start_open %}
+          style="display: none"
+        {% endunless %}
+      >
+        <div class="size-filter-grid">
+          {%- assign size_values_array = all_size_values | split: '||' -%}
+          {%- assign rendered_labels = '' -%}
+
+          {%- for size_data in size_values_array -%}
+            {%- if size_data != '' -%}
+              {%- assign parts = size_data | split: '::' -%}
+              {%- assign label = parts[0] -%}
+              {%- assign url_add = parts[1] -%}
+              {%- assign url_remove = parts[2] -%}
+              {%- assign is_active = parts[3] -%}
+              {%- assign count = parts[4] -%}
+
+              {%- comment -%} Evitar duplicatas de label {%- endcomment -%}
+              {%- unless rendered_labels contains label -%}
+                {%- assign rendered_labels = rendered_labels | append: label | append: ',' -%}
+
+                <filter-item
+                  data-href="{% if is_active == 'true' %}{{ url_remove }}{% else %}{{ url_add }}{% endif %}"
+                  class="size-filter-item{% if is_active == 'true' %} current-filter{% endif %}{% if count == '0' and is_active != 'true' %} disabled{% endif %}"
+                  {% if count == '0' and is_active != 'true' %}
+                    aria-disabled="true"
+                  {% endif %}
+                >
+                  <span class="size-filter-label">{{ label }}</span>
+                </filter-item>
+              {%- endunless -%}
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+
+        {%- comment -%} Verificar se há filtros ativos para mostrar botão de limpar {%- endcomment -%}
+        {%- assign has_active = false -%}
+        {%- for size_data in size_values_array -%}
+          {%- if size_data != '' -%}
+            {%- assign parts = size_data | split: '::' -%}
+            {%- if parts[3] == 'true' -%}
+              {%- assign has_active = true -%}
+              {%- break -%}
+            {%- endif -%}
+          {%- endif -%}
+        {%- endfor -%}
+
+        {%- if has_active -%}
+          <div class="size-filter-clear mt-15">
+            <facet-clear-all
+              class="size-filter-clear-btn pointer"
+              data-href="{{ collection.url }}"
+            >
+              {{ 'collections.sidebar.clear_all' | t }}
+            </facet-clear-all>
+          </div>
+        {%- endif -%}
+      </div>
+    </collapsible-block>
+  </div>
+{%- endif -%}
