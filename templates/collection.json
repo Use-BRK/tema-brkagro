@@ -118,6 +118,13 @@
     "main": {
       "type": "main-collection-product",
       "blocks": {
+        "size_filter_beBB4b": {
+          "type": "size_filter",
+          "settings": {
+            "title": "Filtre por Tamanho",
+            "start_open": true
+          }
+        },
         "categories_LYDr6p": {
           "type": "categories",
           "disabled": true,
@@ -150,6 +157,7 @@
         }
       },
       "block_order": [
+        "size_filter_beBB4b",
         "categories_LYDr6p",
         "popular_product_Xwjqcf",
         "filter_giBtHK",
