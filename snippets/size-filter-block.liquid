@@ -22,8 +22,9 @@
 
   for filter in collection.filters
     for trigger in size_triggers
-      assign trigger_clean = trigger | strip
-      if filter.label contains trigger_clean
+      assign trigger_clean = trigger | strip | downcase
+      assign filter_label_down = filter.label | downcase
+      if filter_label_down contains trigger_clean
         assign has_size_filters = true
         for value in filter.values
           if value.count > 0 or value.active
@@ -40,6 +41,12 @@
 -%}
 
 {%- if has_size_filters and all_size_values != '' -%}
+  <!--
+    Debug Size Filter:
+    Triggers: {{ size_triggers | join: ', ' }}
+    Has Size Filters: {{ has_size_filters }}
+    All Size Values: {{ all_size_values }}
+  -->
   <div class="size-filter-block" {{ block.shopify_attributes }}>
     <collapsible-block class="size-filter-collapsible{% if start_open %} active{% endif %}">
       <h3 class="size-filter-heading collapsible-heading">
