@@ -129,10 +129,27 @@
         <div class="nav-menu">
           <p>Ir direto para:</p>
           <div class="nav-links">
-            <a class="nav-btn" href="#correios">Correios</a>
-            <a class="nav-btn" href="#jadlog">Jadlog</a>
-            <a class="nav-btn" href="#total">Total Express</a>
-            <a class="nav-btn" href="#braspress">Braspress</a>
+            <a
+              class="nav-btn"
+              href="https://rastreamento.correios.com.br/app/index.php"
+              target="_blank"
+              >Correios</a
+            >
+            <a
+              class="nav-btn"
+              href="https://www.jadlog.com.br/jadlog/home"
+              target="_blank"
+              >Jadlog</a
+            >
+            <a
+              class="nav-btn"
+              href="https://totalconecta.totalexpress.com.br/rastreamento?codigo&amp;language=pt-br&amp;protect_form_flood_control=protect_form_flood_control"
+              target="_blank"
+              >Total Express</a
+            >
+            <a class="nav-btn" href="https://www.braspress.com/" target="_blank"
+              >Braspress</a
+            >
           </div>
         </div>
         <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0" />
