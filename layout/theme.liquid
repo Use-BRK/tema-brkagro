@@ -14,6 +14,7 @@
 <!doctype html>
 <html class="no-js" lang="{{ request.locale.iso_code }}">
   <head>
+{% include 'booster-seo' %}
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -22,14 +23,14 @@
     {%- if settings.favicon != blank -%}
       <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
     {%- endif -%}
-    <title>
+    {% comment %}<title>
       {{ page_title }}
       {%- if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif -%}
       {%- if current_page != 1 %} &ndash; Page {{ current_page }}{% endif -%}
       {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
-    </title>
+    </title>{% endcomment %}
     {% if page_description %}
-      <meta name="description" content="{{ page_description | escape }}">
+      {% comment %}<meta name="description" content="{{ page_description | escape }}">{% endcomment %}
     {% endif %}
     {% render 'meta-tags' %}
     {{ content_for_header }}
