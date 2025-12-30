@@ -193,6 +193,7 @@
           },
           "rate_QwRHyp": {
             "type": "_review-quickview",
+            "disabled": true,
             "settings": {},
             "blocks": {}
           },
@@ -203,6 +204,7 @@
           },
           "description_pKXRJa": {
             "type": "_product-short-description",
+            "disabled": true,
             "settings": {
               "excerpt_length": 150
             },
