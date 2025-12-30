@@ -67,7 +67,7 @@
               {%- endcase -%}
               {%- capture menu_level_0 -%}
                   <menu-item class="menu-item__first relative static-1025 flex align-center flex-1">
-                    <a class="no-underline flex align-center nav-link" href="{{ link.url }}">
+                    <a class="no-underline flex align-center nav-link flex-1" href="{{ link.url }}">
                       {% if has_icon %}
                         {{ icon_html }}
                       {% else %}
@@ -78,7 +78,7 @@
                       <span class="menu-text inline-flex">{{ link_title }}</span>  
                     </a>
                     {%- if link.links.size > 0 -%}
-                      <open-children-toggle class="inline-flex flex-end align-center pointer ms-5{% if section_st.redirect_to_link == blank %} absolute inset-0 static-1025{% else %} touch-target-mb{% endif %}">
+                      <open-children-toggle class="inline-flex flex-end align-center pointer{% if section_st.redirect_to_link == blank %} absolute inset-0 static-1025{% else %} touch-target-mb{% endif %}">
                         <svg class="icon-down hidden block-1025 no-hidden" width="12" height="8">
                           <use href="#icon-next"></use>
                         </svg>
@@ -248,7 +248,7 @@
                 {{ block.shopify_attributes }}
               >
                 <menu-item class="menu-item__first relative static-1025 flex align-center flex-1">
-                  <a class="no-underline flex align-center nav-link" href="{{ link.url }}">
+                  <a class="no-underline flex align-center nav-link flex-1" href="{{ link.url }}">
                     {% if has_icon %}
                       {{ icon_html }}
                     {% else %}
@@ -259,7 +259,7 @@
                     <span class="menu-text inline-flex">{{ link_title }}</span>
                   </a>
                   {%- if link.links.size > 0 -%}
-                    <open-children-toggle class="inline-flex flex-end align-center ms-5{% if section_st.redirect_to_link == blank %} absolute inset-0 static-1025{% else %} touch-target-mb{% endif %}">
+                    <open-children-toggle class="inline-flex flex-end align-center{% if section_st.redirect_to_link == blank %} absolute inset-0 static-1025{% else %} touch-target-mb{% endif %}">
                       <span class="icon_plus-animation"></span>
                     </open-children-toggle>
                   {%- endif -%}
