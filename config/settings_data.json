@@ -278,11 +278,6 @@
         "disabled": false,
         "settings": {}
       },
-      "15639742860725253803": {
-        "type": "shopify://apps/musbu-wa-chat/blocks/app-embed/267d7a73-494b-4925-ba55-49fe70b0f09e",
-        "disabled": true,
-        "settings": {}
-      },
       "18228966181090706294": {
         "type": "shopify://apps/selleasy/blocks/app-embed/790c1a03-a71f-4bc1-9869-00dad526d3c2",
         "disabled": false,

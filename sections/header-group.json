@@ -35,7 +35,7 @@
         "text_NFgeiz": {
           "type": "text",
           "settings": {
-            "text": "<a href=\"https://minha-conta.brkagro.com.br/?locale=pt-BR&region_country=BR\" title=\"https://minha-conta.brkagro.com.br/?locale=pt-BR&region_country=BR\">Minha Conta</a>",
+            "text": "<a href=\"https://www.brkagro.com.br/pages/politica-de-frete\" target=\"_blank\" title=\"Rastrear Pedido\">Rastrear Pedido</a>",
             "hidden_on_mobile": true
           }
         }
