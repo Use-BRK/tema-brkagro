@@ -831,8 +831,8 @@
         "slider_item_QQfJEY": {
           "type": "slider_item",
           "settings": {
-            "image": "shopify://shop_images/hellenottonelli_517194943_18522683608055493_3937428400731872563_n.png",
-            "image_mobile": "shopify://shop_images/MOBILE_ALGODAO.jpg",
+            "image": "shopify://shop_images/DESKTOP_ALGODAO.webp",
+            "image_mobile": "shopify://shop_images/MOBILE_ALGODAO.webp",
             "link_banner": "",
             "overlay_opacity": 0,
             "slider_effect": "effect_fadeindown",

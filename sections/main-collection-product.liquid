@@ -88,9 +88,9 @@
         {%- comment -%} Size Filter Block - Renderizado acima dos filtros {%- endcomment -%}
         {%- for block in section.blocks -%}
           {%- if block.type == 'size_filter' -%}
-            {%- render 'size-filter-block', block: block -%}
+          {%- render 'size-filter-block', block: block -%}
           {%- endif -%}
-        {%- endfor -%}
+        {%- endfor -%} 
 
         {%- if enable_filtering and filter_layout == 'horizontal' -%}
           {%- render 'collection-sidebar',

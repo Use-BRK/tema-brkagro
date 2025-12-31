@@ -193,6 +193,7 @@
           },
           "rate_QwRHyp": {
             "type": "_review-quickview",
+            "disabled": true,
             "settings": {},
             "blocks": {}
           },
@@ -203,6 +204,7 @@
           },
           "description_pKXRJa": {
             "type": "_product-short-description",
+            "disabled": true,
             "settings": {
               "excerpt_length": 150
             },
@@ -276,11 +278,6 @@
       "15184704725445319147": {
         "type": "shopify://apps/pagbrasil-app-companion/blocks/app_embedded_pagshield/356201f0-7b27-4511-ac69-c1627db6da45",
         "disabled": false,
-        "settings": {}
-      },
-      "15639742860725253803": {
-        "type": "shopify://apps/musbu-wa-chat/blocks/app-embed/267d7a73-494b-4925-ba55-49fe70b0f09e",
-        "disabled": true,
         "settings": {}
       },
       "18228966181090706294": {

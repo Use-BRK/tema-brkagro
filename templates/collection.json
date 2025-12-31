@@ -118,11 +118,11 @@
     "main": {
       "type": "main-collection-product",
       "blocks": {
-        "size_filter_pR4gjQ": {
+        "size_filter_beBB4b": {
           "type": "size_filter",
           "settings": {
             "title": "Filtre por Tamanho",
-            "start_open": true
+            "start_open": false
           }
         },
         "categories_LYDr6p": {
@@ -145,6 +145,7 @@
         "filter_giBtHK": {
           "type": "filter",
           "name": "Filtros",
+          "disabled": true,
           "settings": {}
         },
         "image_banner_UUJxtT": {
@@ -157,7 +158,7 @@
         }
       },
       "block_order": [
-        "size_filter_pR4gjQ",
+        "size_filter_beBB4b",
         "categories_LYDr6p",
         "popular_product_Xwjqcf",
         "filter_giBtHK",

@@ -35,7 +35,7 @@
         "text_NFgeiz": {
           "type": "text",
           "settings": {
-            "text": "<a href=\"/pages/politica-de-frete-e-envio\" target=\"_blank\" title=\"Política de Frete e Envio\">Rastrear pedido</a>",
+            "text": "<a href=\"https://www.brkagro.com.br/pages/politica-de-frete\" target=\"_blank\" title=\"Rastrear Pedido\">Rastrear Pedido</a>",
             "hidden_on_mobile": true
           }
         }
@@ -63,7 +63,7 @@
         "menu_product_zAWFX7": {
           "type": "menu_product",
           "settings": {
-            "text": "🎆 OFERTAS DA VIRADA",
+            "text": "✨ OFERTAS DA VIRADA",
             "open-link-newtab": false,
             "item_label": "hot",
             "product_menu_column": 2,
