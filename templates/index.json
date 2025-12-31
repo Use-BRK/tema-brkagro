@@ -25,6 +25,36 @@
     "slideshow_8KKtNU": {
       "type": "slideshow",
       "blocks": {
+        "slider_item_AfbLC4": {
+          "type": "slider_item",
+          "name": "01 de Janeiro",
+          "settings": {
+            "image": "shopify://shop_images/VIRADAOFERTA_DESK.webp",
+            "image_mobile": "shopify://shop_images/VIRADAOFERTA_MOB.webp",
+            "link_banner": "shopify://collections/envio-imediato-camisas",
+            "overlay_opacity": 0,
+            "slider_effect": "effect_fadeinup",
+            "subheading": "",
+            "heading": "",
+            "description": "",
+            "first_button_label": "",
+            "first_button_link": "",
+            "first_button_style": false,
+            "second_button_label": "",
+            "second_button_link": "",
+            "second_button_style": false,
+            "content_alignment": "center",
+            "content_position": "top-center",
+            "content_width": "full_width",
+            "content_max_width": 100,
+            "content_padding_block": 60,
+            "content_padding_inline": 120,
+            "show_content_background": false,
+            "content_background": "#ffffff",
+            "content_box_opacity": 100,
+            "content_alignment_mobile": "center"
+          }
+        },
         "slider_item_ib6U7g": {
           "type": "slider_item",
           "name": "Virada 26",
@@ -147,6 +177,7 @@
         }
       },
       "block_order": [
+        "slider_item_AfbLC4",
         "slider_item_ib6U7g",
         "slider_item_tBYL6H",
         "slider_item_mHFJwJ",
@@ -168,7 +199,7 @@
         "show_arrow": true,
         "carousel_pagination": "show_dots",
         "pagination_position": "center",
-        "autoplay": true,
+        "autoplay": false,
         "autorotate_speed": 5,
         "subheading_font_size": 18,
         "subheading_font_weight": "subheading_weight",
