@@ -31,7 +31,7 @@
           "settings": {
             "image": "shopify://shop_images/VIRADAOFERTA_DESK.webp",
             "image_mobile": "shopify://shop_images/VIRADAOFERTA_MOB.webp",
-            "link_banner": "shopify://collections/mais-vendidos-1",
+            "link_banner": "shopify://collections/envio-imediato-camisas",
             "overlay_opacity": 0,
             "slider_effect": "effect_fadeinup",
             "subheading": "",
