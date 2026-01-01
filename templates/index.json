@@ -28,7 +28,6 @@
         "slider_item_UA8n7H": {
           "type": "slider_item",
           "name": "01 de Janeiro",
-          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/VIRADAOFERTA_DESK.webp",
             "image_mobile": "shopify://shop_images/VIRADAOFERTA_MOB.webp",
@@ -59,6 +58,7 @@
         "slider_item_ib6U7g": {
           "type": "slider_item",
           "name": "Virada 26",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/VIRADA_DESKTOP_AGRO.webp",
             "image_mobile": "shopify://shop_images/VIRADA_MOBILE_AGRO.webp",
