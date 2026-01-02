@@ -45,13 +45,14 @@
         "text_slider_LFaC38",
         "text_NFgeiz"
       ],
+      "custom_css": [],
       "settings": {
         "section_width": "stretch_width",
         "color_scheme": "scheme-bb1431b0-be4a-4b03-a450-f572c07e3904",
         "show_mobile": true,
         "show_separator_line": false,
         "uppercase": false,
-        "font_size": 14,
+        "font_size": 13,
         "font_weight": "heading_weight",
         "padding_top": 8,
         "padding_bottom": 8
