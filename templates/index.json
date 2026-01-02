@@ -299,6 +299,7 @@
         "collection_XGJRwk",
         "collection_7niYEB"
       ],
+      "disabled": true,
       "custom_css": [
         ".collection-item__name {display: none;}"
       ],
@@ -1211,11 +1212,11 @@
     "divider_WJrFxP",
     "slideshow_8KKtNU",
     "scrolling_text_XAxGTr",
+    "collection_list_TVMtme",
     "collection_list_DnBJyy",
     "products_carousel_nUcUgz",
     "collection_tab_XNDCTb",
     "banner_packery_txTyNt",
-    "collection_list_TVMtme",
     "brand_logo_XHpAXt",
     "product_bundle_U4cMyL",
     "slideshow_GRzeY3",
