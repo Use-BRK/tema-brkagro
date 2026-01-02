@@ -225,13 +225,13 @@
         "scrolling_text_myQxMH": {
           "type": "scrolling_text",
           "settings": {
-            "content": "FRETE FIXO R$0,26"
+            "content": "FRETE FIXO R$9,90"
           }
         },
         "scrolling_text_T9tPfp": {
           "type": "scrolling_text",
           "settings": {
-            "content": "FRETE FIXO R$0,26"
+            "content": "FRETE FIXO R$9,90"
           }
         }
       },
@@ -633,11 +633,19 @@
     "collection_list_TVMtme": {
       "type": "collection-list",
       "blocks": {
+        "collection_ccBEnR": {
+          "type": "collection",
+          "settings": {
+            "collection": "colecao-brasil",
+            "collection_image": "shopify://shop_images/BRASIL_AGRO.webp",
+            "collection_title": "Brasil é Agro"
+          }
+        },
         "collection_qVrNRi": {
           "type": "collection",
           "settings": {
             "collection": "sao-bento-e-nossa-senhora-1",
-            "collection_image": "shopify://shop_images/Sao_Bento_be0c76c8-0b54-4360-b575-385f84809c32.png",
+            "collection_image": "shopify://shop_images/SAO_BENTO_E_NOSSA_SENHORA.webp",
             "collection_title": "São Bento"
           }
         },
@@ -645,7 +653,7 @@
           "type": "collection",
           "settings": {
             "collection": "agricultura-1",
-            "collection_image": "shopify://shop_images/Agricultura_095c610b-6818-4621-bf59-bf4e2f8032cf.png",
+            "collection_image": "shopify://shop_images/AGRICULTURA.webp",
             "collection_title": "Agricultura"
           }
         },
@@ -653,24 +661,52 @@
           "type": "collection",
           "settings": {
             "collection": "cursos-e-profissoes",
-            "collection_image": "shopify://shop_images/Medicina_Veterinaria.png",
+            "collection_image": "shopify://shop_images/CURSOS_PROFISSOES.webp",
             "collection_title": "Medicina Veterinária"
           }
         },
-        "collection_ccBEnR": {
+        "collection_W8AhUx": {
           "type": "collection",
           "settings": {
-            "collection": "colecao-brasil",
-            "collection_image": "shopify://shop_images/Brasil_e_Agro_e11edcff-a064-4349-b9a5-981953272000.png",
-            "collection_title": "Brasil é Agro"
+            "collection": "camuflado-e-caca",
+            "collection_image": "shopify://shop_images/CAMUFLADAS_77a42d7c-e8d1-49d9-bad6-9a3af284f675.webp",
+            "collection_title": "Camufladas"
+          }
+        },
+        "collection_XMbNzT": {
+          "type": "collection",
+          "settings": {
+            "collection": "pecuaria",
+            "collection_image": "shopify://shop_images/PECUARIA.webp",
+            "collection_title": "Pecuária"
+          }
+        },
+        "collection_eNdVfw": {
+          "type": "collection",
+          "settings": {
+            "collection": "texas-e-usa",
+            "collection_image": "shopify://shop_images/Texas_e_USA.webp",
+            "collection_title": "Texas & USA"
+          }
+        },
+        "collection_gTWVCq": {
+          "type": "collection",
+          "settings": {
+            "collection": "cavalos",
+            "collection_image": "shopify://shop_images/CAVALOS_RODEIOS.webp",
+            "collection_title": "Cavalos e Rodeios"
           }
         }
       },
       "block_order": [
+        "collection_ccBEnR",
         "collection_qVrNRi",
         "collection_rRd7j3",
         "collection_azLAja",
-        "collection_ccBEnR"
+        "collection_W8AhUx",
+        "collection_XMbNzT",
+        "collection_eNdVfw",
+        "collection_gTWVCq"
       ],
       "name": "Escolha Por Coleção",
       "settings": {
