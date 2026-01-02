@@ -25,9 +25,10 @@
     "slideshow_8KKtNU": {
       "type": "slideshow",
       "blocks": {
-        "slider_item_AfbLC4": {
+        "slider_item_UA8n7H": {
           "type": "slider_item",
           "name": "01 de Janeiro",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/VIRADAOFERTA_DESK.webp",
             "image_mobile": "shopify://shop_images/VIRADAOFERTA_MOB.webp",
@@ -58,6 +59,7 @@
         "slider_item_ib6U7g": {
           "type": "slider_item",
           "name": "Virada 26",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/VIRADA_DESKTOP_AGRO.webp",
             "image_mobile": "shopify://shop_images/VIRADA_MOBILE_AGRO.webp",
@@ -177,7 +179,11 @@
         }
       },
       "block_order": [
+<<<<<<< HEAD
         "slider_item_AfbLC4",
+=======
+        "slider_item_UA8n7H",
+>>>>>>> main
         "slider_item_ib6U7g",
         "slider_item_tBYL6H",
         "slider_item_mHFJwJ",
@@ -223,13 +229,13 @@
         "scrolling_text_myQxMH": {
           "type": "scrolling_text",
           "settings": {
-            "content": "FRETE FIXO R$0,26"
+            "content": "FRETE FIXO R$9,90"
           }
         },
         "scrolling_text_T9tPfp": {
           "type": "scrolling_text",
           "settings": {
-            "content": "FRETE FIXO R$0,26"
+            "content": "FRETE FIXO R$9,90"
           }
         }
       },
@@ -252,6 +258,131 @@
         "use_heading_font": false,
         "padding_top": 12,
         "padding_bottom": 12,
+        "reset_spacing": true
+      }
+    },
+    "collection_list_TVMtme": {
+      "type": "collection-list",
+      "blocks": {
+        "collection_ccBEnR": {
+          "type": "collection",
+          "settings": {
+            "collection": "colecao-brasil",
+            "collection_image": "shopify://shop_images/BRASIL_AGRO.webp",
+            "collection_title": "Brasil é Agro"
+          }
+        },
+        "collection_qVrNRi": {
+          "type": "collection",
+          "settings": {
+            "collection": "sao-bento-e-nossa-senhora-1",
+            "collection_image": "shopify://shop_images/SAO_BENTO_E_NOSSA_SENHORA.webp",
+            "collection_title": "São Bento"
+          }
+        },
+        "collection_rRd7j3": {
+          "type": "collection",
+          "settings": {
+            "collection": "agricultura-1",
+            "collection_image": "shopify://shop_images/AGRICULTURA.webp",
+            "collection_title": "Agricultura"
+          }
+        },
+        "collection_azLAja": {
+          "type": "collection",
+          "settings": {
+            "collection": "cursos-e-profissoes",
+            "collection_image": "shopify://shop_images/CURSOS_PROFISSOES.webp",
+            "collection_title": "Medicina Veterinária"
+          }
+        },
+        "collection_W8AhUx": {
+          "type": "collection",
+          "settings": {
+            "collection": "camuflado-e-caca",
+            "collection_image": "shopify://shop_images/CAMUFLADAS_77a42d7c-e8d1-49d9-bad6-9a3af284f675.webp",
+            "collection_title": "Camufladas"
+          }
+        },
+        "collection_XMbNzT": {
+          "type": "collection",
+          "settings": {
+            "collection": "pecuaria",
+            "collection_image": "shopify://shop_images/PECUARIA.webp",
+            "collection_title": "Pecuária"
+          }
+        },
+        "collection_eNdVfw": {
+          "type": "collection",
+          "settings": {
+            "collection": "texas-e-usa",
+            "collection_image": "shopify://shop_images/Texas_e_USA.webp",
+            "collection_title": "Texas & USA"
+          }
+        },
+        "collection_gTWVCq": {
+          "type": "collection",
+          "settings": {
+            "collection": "cavalos",
+            "collection_image": "shopify://shop_images/CAVALOS_RODEIOS.webp",
+            "collection_title": "Cavalos e Rodeios"
+          }
+        },
+        "collection_h667Dx": {
+          "type": "collection",
+          "settings": {
+            "collection": "nossa-senhora-aparecida",
+            "collection_image": "shopify://shop_images/NOSSA_SENHORA.webp",
+            "collection_title": "Nossa Senhora"
+          }
+        }
+      },
+      "block_order": [
+        "collection_ccBEnR",
+        "collection_qVrNRi",
+        "collection_rRd7j3",
+        "collection_azLAja",
+        "collection_W8AhUx",
+        "collection_XMbNzT",
+        "collection_eNdVfw",
+        "collection_gTWVCq",
+        "collection_h667Dx"
+      ],
+      "name": "Escolha Por Coleção",
+      "settings": {
+        "section_width": "fluid_container",
+        "color_scheme": "",
+        "heading": "Escolha Por Coleção",
+        "description": "<p>Qual mais combina com você?</p>",
+        "show_view_all_button": false,
+        "header_size": "medium",
+        "header_alignment": "center",
+        "display_mode": "carousel",
+        "image_ratio": "adapt",
+        "custom_ratio": "",
+        "items_per_row": 4,
+        "column_gap": 30,
+        "show_arrow": true,
+        "carousel_pagination": "show_dots",
+        "infinite": true,
+        "autoplay": false,
+        "autorotate_speed": 5,
+        "reveal": false,
+        "items_per_row_mobile": 1.5,
+        "design": "morden",
+        "collection_information_position": "below_image",
+        "text_alignment": "center",
+        "show_product_count": false,
+        "show_icon": false,
+        "show_description": false,
+        "font_size": 16,
+        "font_weight": "heading_weight",
+        "information_spacing": 8,
+        "rounded_image": false,
+        "image_custom_width": false,
+        "image_width": 200,
+        "padding_top": 25,
+        "padding_bottom": 25,
         "reset_spacing": true
       }
     },
@@ -297,6 +428,7 @@
         "collection_XGJRwk",
         "collection_7niYEB"
       ],
+      "disabled": true,
       "custom_css": [
         ".collection-item__name {display: none;}"
       ],
@@ -628,86 +760,6 @@
         "reset_spacing": true
       }
     },
-    "collection_list_TVMtme": {
-      "type": "collection-list",
-      "blocks": {
-        "collection_qVrNRi": {
-          "type": "collection",
-          "settings": {
-            "collection": "sao-bento-e-nossa-senhora-1",
-            "collection_image": "shopify://shop_images/Sao_Bento_be0c76c8-0b54-4360-b575-385f84809c32.png",
-            "collection_title": "São Bento"
-          }
-        },
-        "collection_rRd7j3": {
-          "type": "collection",
-          "settings": {
-            "collection": "agricultura-1",
-            "collection_image": "shopify://shop_images/Agricultura_095c610b-6818-4621-bf59-bf4e2f8032cf.png",
-            "collection_title": "Agricultura"
-          }
-        },
-        "collection_azLAja": {
-          "type": "collection",
-          "settings": {
-            "collection": "cursos-e-profissoes",
-            "collection_image": "shopify://shop_images/Medicina_Veterinaria.png",
-            "collection_title": "Medicina Veterinária"
-          }
-        },
-        "collection_ccBEnR": {
-          "type": "collection",
-          "settings": {
-            "collection": "colecao-brasil",
-            "collection_image": "shopify://shop_images/Brasil_e_Agro_e11edcff-a064-4349-b9a5-981953272000.png",
-            "collection_title": "Brasil é Agro"
-          }
-        }
-      },
-      "block_order": [
-        "collection_qVrNRi",
-        "collection_rRd7j3",
-        "collection_azLAja",
-        "collection_ccBEnR"
-      ],
-      "name": "Escolha Por Coleção",
-      "settings": {
-        "section_width": "fluid_container",
-        "color_scheme": "",
-        "heading": "Escolha Por Coleção",
-        "description": "<p>Qual mais combina com você?</p>",
-        "show_view_all_button": false,
-        "header_size": "medium",
-        "header_alignment": "center",
-        "display_mode": "carousel",
-        "image_ratio": "adapt",
-        "custom_ratio": "",
-        "items_per_row": 4,
-        "column_gap": 30,
-        "show_arrow": true,
-        "carousel_pagination": "show_dots",
-        "infinite": true,
-        "autoplay": false,
-        "autorotate_speed": 5,
-        "reveal": false,
-        "items_per_row_mobile": 1.5,
-        "design": "morden",
-        "collection_information_position": "below_image",
-        "text_alignment": "center",
-        "show_product_count": false,
-        "show_icon": false,
-        "show_description": false,
-        "font_size": 16,
-        "font_weight": "heading_weight",
-        "information_spacing": 8,
-        "rounded_image": false,
-        "image_custom_width": false,
-        "image_width": 200,
-        "padding_top": 25,
-        "padding_bottom": 25,
-        "reset_spacing": true
-      }
-    },
     "brand_logo_XHpAXt": {
       "type": "brand-logo",
       "blocks": {
@@ -825,7 +877,7 @@
           "name": "Kit",
           "settings": {
             "heading": "3 Bonés com 20% OFF 🔥",
-            "description": "<p>Adicione <strong>3 Bonés</strong> para <strong>Ganhar 30% de Desconto!</strong></p>",
+            "description": "<p>Adicione <strong>3 Bonés</strong> para <strong>Ganhar 20% de Desconto!</strong></p>",
             "heading_font_size": 20,
             "heading_font_weight": "heading_weight",
             "heading_uppercase": false,
@@ -845,7 +897,7 @@
         "section_width": "fluid_container",
         "color_scheme": "",
         "heading": "3 Bonés com 20% OFF 🔥",
-        "description": "<h6>VÁLIDO ATÉ 31/12</h6>",
+        "description": "<h6>ATÉ ACABAR OS ESTOQUES!</h6>",
         "header_size": "small",
         "header_alignment": "left",
         "minimum": 2,
@@ -1173,11 +1225,11 @@
     "divider_WJrFxP",
     "slideshow_8KKtNU",
     "scrolling_text_XAxGTr",
+    "collection_list_TVMtme",
     "collection_list_DnBJyy",
     "products_carousel_nUcUgz",
     "collection_tab_XNDCTb",
     "banner_packery_txTyNt",
-    "collection_list_TVMtme",
     "brand_logo_XHpAXt",
     "product_bundle_U4cMyL",
     "slideshow_GRzeY3",

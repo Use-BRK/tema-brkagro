@@ -49,13 +49,13 @@
         "scrolling_text_Y3pj8N": {
           "type": "scrolling_text",
           "settings": {
-            "content": "<strong>FRETE FIXO R$0,26</strong>"
+            "content": "<strong>FRETE FIXO R$9,90</strong>"
           }
         },
         "scrolling_text_7MqMwU": {
           "type": "scrolling_text",
           "settings": {
-            "content": "<strong>ATÉ 01/JAN</strong>"
+            "content": "<strong>FRETE FIXO R$9,90</strong>"
           }
         }
       },
