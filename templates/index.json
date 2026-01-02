@@ -28,6 +28,7 @@
         "slider_item_UA8n7H": {
           "type": "slider_item",
           "name": "01 de Janeiro",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/VIRADAOFERTA_DESK.webp",
             "image_mobile": "shopify://shop_images/VIRADAOFERTA_MOB.webp",
