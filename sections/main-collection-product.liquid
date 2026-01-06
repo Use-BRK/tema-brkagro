@@ -88,9 +88,22 @@
         {%- comment -%} Size Filter Block - Renderizado acima dos filtros {%- endcomment -%}
         {%- for block in section.blocks -%}
           {%- if block.type == 'size_filter' -%}
-          {%- render 'size-filter-block', block: block -%}
+            {%- assign show_size_filter = false -%}
+            {%- if block.settings.filter_collection_list == blank -%}
+              {%- assign show_size_filter = true -%}
+            {%- else -%}
+              {%- for col in block.settings.filter_collection_list -%}
+                {%- if col.handle == collection.handle -%}
+                  {%- assign show_size_filter = true -%}
+                  {%- break -%}
+                {%- endif -%}
+              {%- endfor -%}
+            {%- endif -%}
+            {%- if show_size_filter -%}
+              {%- render 'size-filter-block', block: block -%}
+            {%- endif -%}
           {%- endif -%}
-        {%- endfor -%} 
+        {%- endfor -%}
 
         {%- if enable_filtering and filter_layout == 'horizontal' -%}
           {%- render 'collection-sidebar',
@@ -567,6 +580,12 @@
         {
           "type": "paragraph",
           "content": "Este filtro exibe opções de tamanho baseadas nos product options configurados em 'Color swatches > Size trigger' nas configurações do tema."
+        },
+        {
+          "type": "collection_list",
+          "id": "filter_collection_list",
+          "label": "Collections",
+          "info": "Selecione as coleções onde este filtro deve aparecer. Se vazio, aparecerá em todas."
         }
       ]
     },
