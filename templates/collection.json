@@ -123,8 +123,7 @@
           "settings": {
             "title": "Filtre por Tamanho",
             "start_open": true,
-            "collection_list": [
-              "acessorios",
+            "filter_collection_list": [
               "envio-imediato",
               "envio-imediato-camisas",
               "envio-imediato-femininas",
