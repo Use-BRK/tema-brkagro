@@ -89,10 +89,10 @@
         {%- for block in section.blocks -%}
           {%- if block.type == 'size_filter' -%}
             {%- assign show_size_filter = false -%}
-            {%- if block.settings.collection_list == blank -%}
+            {%- if block.settings.filter_collection_list == blank -%}
               {%- assign show_size_filter = true -%}
             {%- else -%}
-              {%- for col in block.settings.collection_list -%}
+              {%- for col in block.settings.filter_collection_list -%}
                 {%- if col.handle == collection.handle -%}
                   {%- assign show_size_filter = true -%}
                   {%- break -%}
@@ -583,7 +583,7 @@
         },
         {
           "type": "collection_list",
-          "id": "collection_list",
+          "id": "filter_collection_list",
           "label": "Collections",
           "info": "Selecione as coleções onde este filtro deve aparecer. Se vazio, aparecerá em todas."
         }
