@@ -122,7 +122,13 @@
           "type": "size_filter",
           "settings": {
             "title": "Filtre por Tamanho",
-            "start_open": true
+            "start_open": true,
+            "filter_collection_list": [
+              "envio-imediato",
+              "envio-imediato-camisas",
+              "envio-imediato-femininas",
+              "colecao-camisa-infantil-revista-para-colorir-e-envio-full"
+            ]
           }
         },
         "categories_LYDr6p": {
