@@ -287,11 +287,6 @@
           "storefrontAccessToken": ""
         }
       },
-      "4372474792694305445": {
-        "type": "shopify://apps/also-bought/blocks/app-embed-block/b94b27b4-738d-4d92-9e60-43c22d1da3f2",
-        "disabled": false,
-        "settings": {}
-      },
       "1530068250781986104": {
         "type": "shopify://apps/fbp-fast-bundle/blocks/fast_bundle/9e87fbe2-9041-4c23-acf5-322413994cef",
         "disabled": false,
@@ -309,11 +304,6 @@
         "disabled": true,
         "settings": {}
       },
-      "pagefly-page-builder": {
-        "type": "shopify://apps/pagefly-page-builder/blocks/app-embed/83e179f7-59a0-4589-8c66-c0dddf959200",
-        "disabled": false,
-        "settings": {}
-      },
       "2567389343055140935": {
         "type": "shopify://apps/microsoft-clarity/blocks/clarity_js/31c3d126-8116-4b4a-8ba1-baeda7c4aeea",
         "disabled": false,
@@ -322,6 +312,26 @@
       "2200952712151285029": {
         "type": "shopify://apps/microsoft-clarity/blocks/brandAgents_js/31c3d126-8116-4b4a-8ba1-baeda7c4aeea",
         "disabled": false,
+        "settings": {}
+      },
+      "12334822184266723110": {
+        "type": "shopify://apps/sa-variants/blocks/variant-king-combined-listing/ff68b20f-8c8f-491e-92bf-3e5b8f17ef88",
+        "disabled": false,
+        "settings": {
+          "alignment": "center",
+          "swatch_location": "After image",
+          "switch_on_hover": true,
+          "preselect_variant": false
+        }
+      },
+      "4372474792694305445": {
+        "type": "shopify://apps/also-bought/blocks/app-embed-block/b94b27b4-738d-4d92-9e60-43c22d1da3f2",
+        "disabled": true,
+        "settings": {}
+      },
+      "pagefly-page-builder": {
+        "type": "shopify://apps/pagefly-page-builder/blocks/app-embed/83e179f7-59a0-4589-8c66-c0dddf959200",
+        "disabled": true,
         "settings": {}
       }
     },
