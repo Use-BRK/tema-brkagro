@@ -122,7 +122,7 @@
           "type": "size_filter",
           "settings": {
             "title": "Filtre por Tamanho",
-            "start_open": true,
+            "start_open": false,
             "filter_collection_list": [
               "envio-imediato",
               "envio-imediato-camisas",
