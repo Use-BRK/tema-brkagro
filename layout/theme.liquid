@@ -1,3 +1,7 @@
+{%- comment %}<locksmith:2c89>{% endcomment -%}
+  {%- include 'locksmith' -%}
+{%- comment %}</locksmith:2c89>{% endcomment -%}
+
 {% liquid
   assign enable_rtl = settings.rtl
   assign iso_code = request.locale.iso_code
@@ -14,6 +18,7 @@
 <!doctype html>
 <html class="no-js" lang="{{ request.locale.iso_code }}">
   <head>
+{{ locksmith_initializations }}
 {% include 'booster-seo' %}
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -30,7 +35,7 @@
       {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
     </title>{% endcomment %}
     {% if page_description %}
-      {% comment %}<meta name="description" content="{{ page_description | escape }}">{% endcomment %}
+      {% comment %}{%- comment %}<locksmith:84fb>{% endcomment -%}{%- capture var %}{% render 'locksmith-variables', variable: 'transparent', hiding_scope: 'resource' %}{% endcapture %}{% if var == 'true' %}<meta name="description" content="{{ page_description | escape }}">{% endif -%}{%- comment %}original: <meta name="description" content="{{ page_description | escape }}">{%- endcomment %}{%- comment %}</locksmith:84fb>{% endcomment -%}{% endcomment %}
     {% endif %}
     {% render 'meta-tags' %}
     {{ content_for_header }}

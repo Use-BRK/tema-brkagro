@@ -212,9 +212,15 @@ Title and Description
   {%- assign booster_desc = booster_desc | replace : "[author]", [baType].author -%}
   {%- assign booster_desc = booster_desc | strip_html | truncate: 250  -%}
   {%- assign booster_desc = booster_desc | replace : "[shopify_seo_description]", page_description | strip | strip_newlines | escape_once -%}
-  <meta name="description" content="{{ booster_desc | strip | strip_newlines | escape_once }}" />
+  {%- comment %}<locksmith:8c53>{% endcomment -%}
+    {%- capture var %}{% render 'locksmith-variables', variable: 'transparent', hiding_scope: 'resource' %}{% endcapture %}{% if var == 'true' %}<meta name="description" content="{{ booster_desc | strip | strip_newlines | escape_once }}" />{% endif -%}
+    {%- comment %}original: <meta name="description" content="{{ booster_desc | strip | strip_newlines | escape_once }}" />{%- endcomment %}
+  {%- comment %}</locksmith:8c53>{% endcomment -%}
 {%- else -%}
-  <meta name="description" content="{{ page_description | strip | strip_newlines | escape_once }}" />
+  {%- comment %}<locksmith:4709>{% endcomment -%}
+    {%- capture var %}{% render 'locksmith-variables', variable: 'transparent', hiding_scope: 'resource' %}{% endcapture %}{% if var == 'true' %}<meta name="description" content="{{ page_description | strip | strip_newlines | escape_once }}" />{% endif -%}
+    {%- comment %}original: <meta name="description" content="{{ page_description | strip | strip_newlines | escape_once }}" />{%- endcomment %}
+  {%- comment %}</locksmith:4709>{% endcomment -%}
 {%- endunless -%}
 
 {%- if item_config and item_config.block_via_noindex == true -%}
