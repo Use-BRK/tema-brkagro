@@ -26,11 +26,11 @@
             {%- endfor -%}
           </ul>
         {% endif %}
-        <div class="form-group mb-20 flex flex-column first-name form-floating">         
+        <div class="form-group mb-20 flex flex-column first-name form-floating">
           <input
             type="text"
             id="first-name"
-             class="form-control"
+            class="form-control"
             placeholder="{{ 'customer.register.first_name' | t }}"
             name="customer[first_name]"
             required
@@ -39,7 +39,7 @@
             {{- 'customer.register.first_name' | t -}}
           </label>
         </div>
-        <div class="form-group mb-20 flex flex-column last-name form-floating"> 
+        <div class="form-group mb-20 flex flex-column last-name form-floating">
           <input
             type="text"
             id="last-name"
@@ -48,7 +48,7 @@
             placeholder="{{ 'customer.register.last_name' | t }}"
             required
           >
-        <label class="form-label pb-5" for="last-name">{{ 'customer.register.last_name' | t }}</label>
+          <label class="form-label pb-5" for="last-name">{{ 'customer.register.last_name' | t }}</label>
         </div>
         <div class="form-group mb-20 flex flex-column email form-floating">
           <input
@@ -57,7 +57,7 @@
             placeholder="{{ 'customer.login_page.placeholder_email' | t }}"
             required
             id="email"
-             class="form-control"
+            class="form-control"
           >
           <label class="pb-5" for="email">
             {{- 'customer.register.email' | t -}}
@@ -71,12 +71,12 @@
             placeholder="{{ 'customer.login_page.placeholder_pass' | t }}"
             required
             id="password"
-             class="form-control"
+            class="form-control"
           >
           <label class="form-label pb-5" for="password">
             {{- 'customer.register.password' | t -}}
             <span class="required">*</span></label
-          > 
+          >
         </div>
         <p>
           {% assign policy = shop.privacy_policy.url %}
