@@ -25,14 +25,15 @@
     "slideshow_8KKtNU": {
       "type": "slideshow",
       "blocks": {
-        "slider_item_NxQc7Y": {
+        "slider_item_prjH68": {
           "type": "slider_item",
+          "name": "Envio FULL",
           "settings": {
             "image": "shopify://shop_images/FULLBANNER_783bf757-cc72-48fe-a076-4ca1d3f7ca96.png",
             "image_mobile": "shopify://shop_images/MOB_BANNER_37fa94a5-24b9-43e4-af6a-12134a1f4fad.png",
-            "link_banner": "https://www.brkagro.com.br/collections/envio-imediato",
+            "link_banner": "shopify://collections/envio-imediato",
             "overlay_opacity": 0,
-            "slider_effect": "effect_fadeindown",
+            "slider_effect": "effect_fadeinup",
             "subheading": "",
             "heading": "",
             "description": "",
@@ -42,16 +43,16 @@
             "second_button_label": "",
             "second_button_link": "",
             "second_button_style": false,
-            "content_alignment": "left",
-            "content_position": "bottom-left",
-            "content_width": "container",
+            "content_alignment": "center",
+            "content_position": "top-center",
+            "content_width": "full_width",
             "content_max_width": 100,
             "content_padding_block": 60,
-            "content_padding_inline": 30,
+            "content_padding_inline": 120,
             "show_content_background": false,
             "content_background": "#ffffff",
             "content_box_opacity": 100,
-            "content_alignment_mobile": "left"
+            "content_alignment_mobile": "center"
           }
         },
         "slider_item_mHFJwJ": {
@@ -116,7 +117,7 @@
         }
       },
       "block_order": [
-        "slider_item_NxQc7Y",
+        "slider_item_prjH68",
         "slider_item_mHFJwJ",
         "slider_item_tBYL6H"
       ],
