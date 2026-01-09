@@ -121,6 +121,22 @@
               </button>
             </div>
           {%- endform -%}
+          <script>
+            document.addEventListener('DOMContentLoaded', function () {
+              const form = document.querySelector('#contact_form');
+              if (form) {
+                form.addEventListener('submit', function (e) {
+                  const emailInput = form.querySelector('input[name="contact[email]"]');
+                  if (emailInput && window._edrone) {
+                    _edrone.email = emailInput.value;
+                    _edrone.action_type = 'subscribe';
+                    _edrone.init();
+                  }
+                });
+              }
+            });
+          </script>
+
           {%- if section_st.note != blank -%}
             <div class="sec_newsletter_note newsletter-note mt-12 mx-auto fs-12">{{ section.settings.note }}</div>
           {% endif %}

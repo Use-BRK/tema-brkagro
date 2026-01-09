@@ -139,6 +139,22 @@
                     {% endif %}
                   </div>
                 {% endform %}
+                <script>
+                  document.addEventListener('DOMContentLoaded', function () {
+                    const popupForm = document.getElementById('newsletter-form');
+                    if (popupForm) {
+                      popupForm.addEventListener('submit', function (e) {
+                        const emailInput = popupForm.querySelector('input[name="contact[email]"]');
+                        if (emailInput && window._edrone) {
+                          _edrone.email = emailInput.value;
+                          _edrone.action_type = 'subscribe';
+                          _edrone.init();
+                        }
+                      });
+                    }
+                  });
+                </script>
+
                 <div
                   class="newsletter-popup__dont-show dont-show mt-10 fs-small pointer rich__text-mt-0 light-dark-grey lh-small"
                   tabindex="0"
