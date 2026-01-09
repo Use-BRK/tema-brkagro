@@ -141,15 +141,23 @@
                 {% endform %}
                 <script>
                   document.addEventListener('DOMContentLoaded', function () {
-                    const popupForm = document.getElementById('newsletter-form');
+                    var popupForm = document.getElementById('newsletter-form');
                     if (popupForm) {
                       popupForm.addEventListener('submit', function (e) {
-                        const emailInput = popupForm.querySelector('input[name="contact[email]"]');
+                        if (popupForm.getAttribute('data-edrone-submitted')) return;
+                        e.preventDefault();
+
+                        var emailInput = popupForm.querySelector('input[name="contact[email]"]');
                         if (emailInput && window._edrone) {
                           _edrone.email = emailInput.value;
                           _edrone.action_type = 'subscribe';
                           _edrone.init();
                         }
+
+                        setTimeout(function () {
+                          popupForm.setAttribute('data-edrone-submitted', 'true');
+                          popupForm.submit();
+                        }, 500);
                       });
                     }
                   });

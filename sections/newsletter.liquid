@@ -123,15 +123,23 @@
           {%- endform -%}
           <script>
             document.addEventListener('DOMContentLoaded', function () {
-              const form = document.querySelector('#contact_form');
+              var form = document.querySelector('.subscribe-form');
               if (form) {
                 form.addEventListener('submit', function (e) {
-                  const emailInput = form.querySelector('input[name="contact[email]"]');
+                  if (form.getAttribute('data-edrone-submitted')) return;
+                  e.preventDefault();
+
+                  var emailInput = form.querySelector('input[name="contact[email]"]');
                   if (emailInput && window._edrone) {
                     _edrone.email = emailInput.value;
                     _edrone.action_type = 'subscribe';
                     _edrone.init();
                   }
+
+                  setTimeout(function () {
+                    form.setAttribute('data-edrone-submitted', 'true');
+                    form.submit();
+                  }, 500);
                 });
               }
             });
