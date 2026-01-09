@@ -89,6 +89,32 @@
           </a>
         </div>
       {% endform %}
+      <script>
+        document.addEventListener('DOMContentLoaded', function () {
+          var form = document.querySelector('.custormer-register-form');
+          if (form) {
+            form.addEventListener('submit', function (e) {
+              if (form.getAttribute('data-edrone-submitted')) return;
+              e.preventDefault();
+
+              var emailInput = form.querySelector('input[name="customer[email]"]');
+              var nameInput = form.querySelector('input[name="customer[first_name]"]');
+
+              if (emailInput && window._edrone) {
+                _edrone.email = emailInput.value;
+                if (nameInput) _edrone.first_name = nameInput.value;
+                _edrone.action_type = 'register'; // User requested specific action type
+                _edrone.init();
+              }
+
+              setTimeout(function () {
+                form.setAttribute('data-edrone-submitted', 'true');
+                form.submit();
+              }, 500);
+            });
+          }
+        });
+      </script>
     </div>
   </div>
 </div>

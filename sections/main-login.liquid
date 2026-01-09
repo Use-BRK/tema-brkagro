@@ -95,7 +95,6 @@
             </p>
           {% endif %}
           <div class="form-group mb-15 flex flex-column form-field form-floating">
-            
             <input
               type="email"
               name="customer[email]"
@@ -111,7 +110,6 @@
           </div>
           {%- if form.password_needed -%}
             <div class="form-group mb-20 flex flex-column  form-field form-floating">
-              
               <input
                 type="password"
                 name="customer[password]"
@@ -137,6 +135,29 @@
             >
           </div>
         {%- endform -%}
+        <script>
+          document.addEventListener('DOMContentLoaded', function () {
+            var form = document.querySelector('.customer-login-form');
+            if (form) {
+              form.addEventListener('submit', function (e) {
+                if (form.getAttribute('data-edrone-submitted')) return;
+                e.preventDefault();
+
+                var emailInput = form.querySelector('input[name="customer[email]"]');
+                if (emailInput && window._edrone) {
+                  _edrone.email = emailInput.value;
+                  _edrone.action_type = 'signin'; // User requested specific action type
+                  _edrone.init();
+                }
+
+                setTimeout(function () {
+                  form.setAttribute('data-edrone-submitted', 'true');
+                  form.submit();
+                }, 500);
+              });
+            }
+          });
+        </script>
       </div>
       <div class="content-register">
         <h3 class="title-customer mt-0">
