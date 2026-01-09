@@ -94,7 +94,7 @@
         "section_width": "full_width",
         "color_scheme": "",
         "image": "shopify://shop_images/DESCONTOS-BANNER-MOB.png",
-        "image_mobile": "shopify://shop_images/DESCONTOS-BANNER.png",
+        "image_mobile": "shopify://shop_images/DESCONTOS-BANNER-MOB.png",
         "image_behavior": "none",
         "overlay_opacity": 0,
         "image_height": "adapt",
