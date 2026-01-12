@@ -45,6 +45,13 @@
           "disabled": true,
           "settings": {}
         },
+        "navbar_collection_xFxBLk": {
+          "type": "navbar-collection",
+          "settings": {
+            "collection": "outlet-camisetas-de-algodao",
+            "title": "Outlet Camisetas"
+          }
+        },
         "shop_MUxUGE": {
           "type": "shop",
           "settings": {}
@@ -52,6 +59,7 @@
         "wishlist_DHxNDy": {
           "type": "wishlist",
           "name": "Favoritos/Wishlist",
+          "disabled": true,
           "settings": {}
         },
         "cart_8xqQBb": {
@@ -64,6 +72,7 @@
         "homepage_xiQ8UP",
         "whatsapp_contact_8RBihn",
         "account_6ynFFp",
+        "navbar_collection_xFxBLk",
         "shop_MUxUGE",
         "wishlist_DHxNDy",
         "cart_8xqQBb"
