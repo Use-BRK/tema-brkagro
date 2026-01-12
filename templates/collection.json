@@ -19,7 +19,6 @@
         },
         "heading_fntt9G": {
           "type": "heading",
-          "disabled": true,
           "settings": {
             "page_title": "",
             "header_size": "default"
@@ -30,7 +29,6 @@
         "breadcrumb_tAe9LK",
         "heading_fntt9G"
       ],
-      "disabled": true,
       "custom_css": [
         "* {margin-bottom: 0 !important;}"
       ],
@@ -228,8 +226,8 @@
   },
   "order": [
     "banner",
-    "image_with_text_overlay_yUNLiX",
     "scrolling_text_L4EgPy",
+    "image_with_text_overlay_yUNLiX",
     "subcollection",
     "main"
   ]
