@@ -205,19 +205,17 @@
     </script>
     {% include 'pagefly-app-header' %}
     <script type="text/javascript">
-      (function (srcjs) {
-          window._edrone = window._edrone || {};
-          _edrone.app_id = '683e3756683f1';
-          _edrone.version = '1.0.0';
-          _edrone.platform_version = '1.0.0';
-          _edrone.platform = 'custom';
-          var doc = document.createElement('script');
-          doc.type = 'text/javascript';
-          doc.async = true;
-          doc.src = ('https:' == document.location.protocol ? 'https:' : 'http:') + srcjs;
-          var s = document.getElementsByTagName('script')[0];
-          s.parentNode.insertBefore(doc, s);
-      })(`//d3bo67muzbfgtl.cloudfront.net/edrone_2_0.js?app_id=${_edrone.app_id}`);
+    (function (appId) {
+        window._edrone = window._edrone || {};
+        _edrone.app_id = appId;
+        _edrone.platform = 'custom';
+        var doc = document.createElement('script');
+        doc.type = 'text/javascript';
+        doc.async = true;
+        doc.src = "https://d3bo67muzbfgtl.cloudfront.net/edrone_2_0.js?app_id=" + appId;
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(doc, s);
+    })("683e3756683f1");
     </script>
   </head>
   <body
