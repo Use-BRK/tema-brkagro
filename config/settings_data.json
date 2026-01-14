@@ -103,7 +103,7 @@
     "label_allow": "Allow Cookies",
     "label_refuse": "",
     "enable_whatsapp_button": true,
-    "whatsapp_button_bottom": 85,
+    "whatsapp_button_bottom": 145,
     "whatsapp_button_right": 15,
     "show_check_box_in_cart": false,
     "show_checkbox_in_product_page": false,
@@ -265,6 +265,14 @@
       },
       "top-search": {
         "type": "top-search",
+        "settings": {}
+      },
+      "main-register": {
+        "type": "main-register",
+        "settings": {}
+      },
+      "main-login": {
+        "type": "main-login",
         "settings": {}
       }
     },
