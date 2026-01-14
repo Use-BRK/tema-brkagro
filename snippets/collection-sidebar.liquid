@@ -95,9 +95,6 @@
                     >
                       <ul class="list-unstyled custom-scrollbar">
                         {%- for link in block_st.menu.links -%}
-                          {%- comment %}<locksmith:b12a>{% endcomment -%}
-                            {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: link, subject_parent: block_st.menu, variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% else %}{% continue %}{% endif -%}
-                          {%- comment %}</locksmith:b12a>{% endcomment -%}
                           <li class="pb-8">
                             <a
                               href="{{ link.url }}"
@@ -491,9 +488,6 @@
                     style="--rounded-radius: 5px;"
                   >
                     {%- for product in collection.products limit: block_st.items_to_show -%}
-                      {%- comment %}<locksmith:4a9d>{% endcomment -%}
-                        {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: product, subject_parent: collection, variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% else %}{% continue %}{% endif -%}
-                      {%- comment %}</locksmith:4a9d>{% endcomment -%}
                       {% render 'product-item',
                         card_product: product,
                         template_enable_price: true,

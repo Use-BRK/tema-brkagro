@@ -107,9 +107,6 @@
                             >
                               {%- assign sizes = '(min-width: 1200px) calc((1200px -  30px * 3) * 0.2), (min-width: 768px) calc( (100vw - 30px - 30px * 2 ) * 0.33), 80px' -%}
                               {%- for product in collection.products limit: 5 -%}
-                                {%- comment %}<locksmith:d10e>{% endcomment -%}
-                                  {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: product, subject_parent: collection, variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% else %}{% continue %}{% endif -%}
-                                {%- comment %}</locksmith:d10e>{% endcomment -%}
                                 {% render 'product-item',
                                   card_product: product,
                                   section_id: section.id,

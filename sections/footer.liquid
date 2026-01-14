@@ -220,9 +220,6 @@
                         <div class="footer-block collapsible-content mb-12 mb-md-0">
                           <ul class="list-unstyled">
                             {%- for link in block_st.menu.links -%}
-                              {%- comment %}<locksmith:ddec>{% endcomment -%}
-                                {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: link, subject_parent: block_st.menu, variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% else %}{% continue %}{% endif -%}
-                              {%- comment %}</locksmith:ddec>{% endcomment -%}
                               <li class="pb-8">
                                 <a
                                   href="{{ link.url }}"
@@ -395,9 +392,6 @@
               <div class="menu__policies">
                 <ul class="menu__policies-list flex flex-wrap justify-center justify-end-1025 gap-10 gap-lg-20 list-unstyled">
                   {%- for link in section.settings.menu_store_policies.links -%}
-                    {%- comment %}<locksmith:3616>{% endcomment -%}
-                      {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: link, subject_parent: section.settings.menu_store_policies, variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% else %}{% continue %}{% endif -%}
-                    {%- comment %}</locksmith:3616>{% endcomment -%}
                     <li>
                       <a
                         href="{{ link.url }}"

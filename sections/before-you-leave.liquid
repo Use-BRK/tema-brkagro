@@ -108,9 +108,6 @@
       {% endif %}
       <div class="before-product-content">
         {% for product in collection.products limit: 3 %}
-          {%- comment %}<locksmith:a2ce>{% endcomment -%}
-            {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: product, subject_parent: collection, variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% else %}{% continue %}{% endif -%}
-          {%- comment %}</locksmith:a2ce>{% endcomment -%}
           <div class="product-before-items" style="--rounded-radius: 5px;">
             {% render 'product-item',
               card_product: product,

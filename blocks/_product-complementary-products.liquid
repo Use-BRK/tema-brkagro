@@ -22,9 +22,6 @@
   {%- if recommendations.performed and recommendations.products_count > 0 -%}
     <div class="swiper-wrapper">
       {%- for product in recommendations.products limit: block_st.product_list_limit %}
-        {%- comment %}<locksmith:21f0>{% endcomment -%}
-          {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: product, subject_parent: recommendations, variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% else %}{% continue %}{% endif -%}
-        {%- comment %}</locksmith:21f0>{% endcomment -%}
         {% render 'product-item',
           card_product: product,
           section_id: section.id,
