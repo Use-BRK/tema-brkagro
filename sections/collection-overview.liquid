@@ -15,6 +15,19 @@
   assign show_image = section_st.show_image
 
   for block in section.blocks
+    comment
+      <locksmith:26f0> Code added automatically by the Locksmith app. Do not modify or remove.
+    endcomment
+    capture var
+      render 'locksmith-variables', scope: 'subject', subject: block.settings.collection, subject_parent: section, variable: 'transparent'
+    endcapture
+    if var == "true"
+    else
+      continue
+    endif
+    comment
+      </locksmith:26f0> End Locksmith code block.
+    endcomment
     if block.settings.collection_image != blank
       assign collection_image = block.settings.collection_image
       break

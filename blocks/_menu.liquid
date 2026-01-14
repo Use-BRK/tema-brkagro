@@ -17,6 +17,9 @@
         <div class="footer-block collapsible-content text-left mb-12 mb-md-0">
           <ul class="list-unstyled">
             {%- for link in block.settings.menu.links -%}
+              {%- comment %}<locksmith:ecd2>{% endcomment -%}
+                {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: link, subject_parent: block.settings.menu, variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% else %}{% continue %}{% endif -%}
+              {%- comment %}</locksmith:ecd2>{% endcomment -%}
               <li class="pb-8">
                 <a
                   href="{{ link.url }}"
