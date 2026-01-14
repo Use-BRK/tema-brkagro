@@ -182,9 +182,6 @@
                 {%- if block_st.menu_link != blank -%}
                   <ul class="linklist list-unstyled flex flex-wrap gap-10 gap-lg-25">
                     {%- for link in block_st.menu_link.links -%}
-                      {%- comment %}<locksmith:2138>{% endcomment -%}
-                        {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: link, subject_parent: block_st.menu_link, variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% else %}{% continue %}{% endif -%}
-                      {%- comment %}</locksmith:2138>{% endcomment -%}
                       <li>
                         <a class="no-underline block" href="{{ link.url }}" aria-label="{{ link.title }}">
                           {{- link.title -}}

@@ -175,19 +175,6 @@
                   assign product_collections = product.collections
                   assign collection_size_chart = ''
                   for productCollection in product_collections
-                    comment
-                      <locksmith:e50b> Code added automatically by the Locksmith app. Do not modify or remove.
-                    endcomment
-                    capture var
-                      render 'locksmith-variables', scope: 'subject', subject: productCollection, variable: 'transparent'
-                    endcapture
-                    if var == "true"
-                    else
-                      continue
-                    endif
-                    comment
-                      </locksmith:e50b> End Locksmith code block.
-                    endcomment
                     if productCollection.metafields.custom.size_chart != blank
                       assign collection_size_chart = productCollection.metafields.custom.size_chart
                     endif
@@ -279,19 +266,6 @@
                   assign product_collections = product.collections
                   assign collection_size_chart = ''
                   for productCollection in product_collections
-                    comment
-                      <locksmith:f6ed> Code added automatically by the Locksmith app. Do not modify or remove.
-                    endcomment
-                    capture var
-                      render 'locksmith-variables', scope: 'subject', subject: productCollection, variable: 'transparent'
-                    endcapture
-                    if var == "true"
-                    else
-                      continue
-                    endif
-                    comment
-                      </locksmith:f6ed> End Locksmith code block.
-                    endcomment
                     if productCollection.metafields.custom.size_chart != blank
                       assign collection_size_chart = productCollection.metafields.custom.size_chart
                     endif
@@ -379,19 +353,6 @@
                   assign product_collections = product.collections
                   assign collection_size_chart = ''
                   for productCollection in product_collections
-                    comment
-                      <locksmith:ef9e> Code added automatically by the Locksmith app. Do not modify or remove.
-                    endcomment
-                    capture var
-                      render 'locksmith-variables', scope: 'subject', subject: productCollection, variable: 'transparent'
-                    endcapture
-                    if var == "true"
-                    else
-                      continue
-                    endif
-                    comment
-                      </locksmith:ef9e> End Locksmith code block.
-                    endcomment
                     if productCollection.metafields.custom.size_chart != blank
                       assign collection_size_chart = productCollection.metafields.custom.size_chart
                     endif

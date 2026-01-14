@@ -109,58 +109,10 @@
           assign previous_product = null
           assign next_product = null
           assign last = collections[collection_list_product].products_count
-          comment
-            <locksmith:4c03> Code added automatically by the Locksmith app. Do not modify or remove.
-          endcomment
-          assign locksmith_cc0f_forloop__size = 0
           for p in collections[collection_list_product].products
-            capture var
-              render 'locksmith-variables', scope: 'subject', subject: p, subject_parent: collections[collection_list_product], variable: 'transparent'
-            endcapture
-            if var == 'true'
-              assign locksmith_cc0f_forloop__size = locksmith_cc0f_forloop__size | plus: 1
-            endif
-          endfor
-          assign locksmith_cc0f_forloop__index = nil
-          comment
-            </locksmith:4c03> End Locksmith code block.
-          endcomment
-          for p in collections[collection_list_product].products
-            comment
-              <locksmith:5a41> Code added automatically by the Locksmith app. Do not modify or remove.
-            endcomment
-            capture var
-              render 'locksmith-variables', scope: 'subject', subject: p, subject_parent: collections[collection_list_product], variable: 'transparent'
-            endcapture
-            if var == "true"
-              if locksmith_cc0f_forloop__index == nil
-                assign locksmith_cc0f_forloop__index = 1
-                assign locksmith_cc0f_forloop__index0 = 0
-              else
-                assign locksmith_cc0f_forloop__index = locksmith_cc0f_forloop__index | plus: 1
-                assign locksmith_cc0f_forloop__index0 = locksmith_cc0f_forloop__index0 | plus: 1
-              endif
-              if locksmith_cc0f_forloop__index == 1
-                assign locksmith_cc0f_forloop__first = true
-              else
-                assign locksmith_cc0f_forloop__first = false
-              endif
-              if locksmith_cc0f_forloop__index == locksmith_cc0f_forloop__size
-                assign locksmith_cc0f_forloop__last = true
-              else
-                assign locksmith_cc0f_forloop__last = false
-              endif
-              assign locksmith_cc0f_forloop__rindex = locksmith_cc0f_forloop__size | minus: locksmith_cc0f_forloop__index | minus: 1
-              assign locksmith_cc0f_forloop__rindex0 = locksmith_cc0f_forloop__size | minus: locksmith_cc0f_forloop__index0 | minus: 1
-            else
-              continue
-            endif
-            comment
-              </locksmith:5a41> End Locksmith code block.
-            endcomment
             if p.handle == product.handle
-              assign prev = locksmith_cc0f_forloop__index | minus: 2
-              assign next = locksmith_cc0f_forloop__index
+              assign prev = forloop.index | minus: 2
+              assign next = forloop.index
               if prev >= 0
                 assign previous_product = collections[collection_list_product].products[prev]
               endif
