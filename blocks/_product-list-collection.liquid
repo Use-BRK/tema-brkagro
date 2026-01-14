@@ -18,9 +18,6 @@
   <div class="products-list__column-items flex flex-column gap-30">
     {% if block.settings.collection.products.size > 0 %}
       {% for product in block.settings.collection.products limit: items_per_row %}
-        {%- comment %}<locksmith:40eb>{% endcomment -%}
-          {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: product, subject_parent: block.settings.collection, variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% else %}{% continue %}{% endif -%}
-        {%- comment %}</locksmith:40eb>{% endcomment -%}
         <div class="product-list__column-block-item {% if section_st.framed %} border p-15 rounded{% endif %}">
           {% render 'product-item',
             card_product: product,

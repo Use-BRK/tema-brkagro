@@ -1,9 +1,6 @@
 {%- if recommendations.products_count > 0 -%}
   <div class="swiper-wrapper">
     {%- for product in recommendations.products -%}
-      {%- comment %}<locksmith:3584>{% endcomment -%}
-        {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: product, subject_parent: recommendations, variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% else %}{% continue %}{% endif -%}
-      {%- comment %}</locksmith:3584>{% endcomment -%}
       <div
         class="swiper-slide"
       >
@@ -23,9 +20,6 @@
   </div>
   <div class="cart-upsell-wrapper">
     {%- for product in recommendations.products -%}
-      {%- comment %}<locksmith:a66e>{% endcomment -%}
-        {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: product, subject_parent: recommendations, variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% else %}{% continue %}{% endif -%}
-      {%- comment %}</locksmith:a66e>{% endcomment -%}
       <div
         class="cart-upsell-item w-full"
       >
