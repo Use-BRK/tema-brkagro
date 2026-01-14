@@ -32,13 +32,7 @@
               --col-gap-desktop: 30px;
             "
           >
-            {%- comment %}<locksmith:1991>{% endcomment -%}
-              {%- assign locksmith_30a1_forloop__size = 0 %}{%- for product in search.results -%}{% capture var %}{% render 'locksmith-variables', scope: 'subject', subject: product, subject_parent: search, variable: 'transparent' %}{% endcapture %}{% if var == 'true' %}{% assign locksmith_30a1_forloop__size = locksmith_30a1_forloop__size | plus: 1 %}{% endif %}{% endfor %}{% assign locksmith_30a1_forloop__index = nil -%}
-            {%- comment %}</locksmith:1991>{% endcomment -%}
             {%- for product in search.results -%}
-              {%- comment %}<locksmith:b214>{% endcomment -%}
-                {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: product, subject_parent: search, variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% if locksmith_30a1_forloop__index == nil %}{% assign locksmith_30a1_forloop__index = 1 %}{% assign locksmith_30a1_forloop__index0 = 0 %}{% else %}{% assign locksmith_30a1_forloop__index = locksmith_30a1_forloop__index | plus: 1 %}{% assign locksmith_30a1_forloop__index0 = locksmith_30a1_forloop__index0 | plus: 1 %}{% endif %}{% if locksmith_30a1_forloop__index == 1 %}{% assign locksmith_30a1_forloop__first = true %}{% else %}{% assign locksmith_30a1_forloop__first = false %}{% endif %}{% if locksmith_30a1_forloop__index == locksmith_30a1_forloop__size %}{% assign locksmith_30a1_forloop__last = true %}{% else %}{% assign locksmith_30a1_forloop__last = false %}{% endif %}{% assign locksmith_30a1_forloop__rindex = locksmith_30a1_forloop__size | minus: locksmith_30a1_forloop__index | minus: 1 %}{% assign locksmith_30a1_forloop__rindex0 = locksmith_30a1_forloop__size | minus: locksmith_30a1_forloop__index0 | minus: 1 %}{% else %}{% continue %}{% endif -%}
-              {%- comment %}</locksmith:b214>{% endcomment -%}
               <div
                 class="col-6 col-md-4 col-lg-3 product-load product-preload-js"
                 data-product-handle="{{ product.handle }}"
@@ -56,7 +50,7 @@
                   type: 'gird',
                   template_enable_product_badges: true,
                   scroll_animation: scroll_animation,
-                  indexFor: locksmith_30a1_forloop__index
+                  indexFor: forloop.index
                 %}
               </div>
             {%- endfor -%}

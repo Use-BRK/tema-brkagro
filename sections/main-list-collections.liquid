@@ -49,9 +49,6 @@
             style="{{ col_style | strip | strip_newlines }}"
           >
             {% for collection in collections %}
-              {%- comment %}<locksmith:5d5e>{% endcomment -%}
-                {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: collection, variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% else %}{% continue %}{% endif -%}
-              {%- comment %}</locksmith:5d5e>{% endcomment -%}
               <div class="collection-items relative motion-item product-item align-self-start{% if pagination == 'load_more_button' or pagination == 'infinit_scrolling' %} loadmore-item{% endif %}">
                 <div
                   class="collection-item grid-custom-item {{ settings.hover_effect }}"
