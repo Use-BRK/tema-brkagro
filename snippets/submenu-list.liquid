@@ -20,7 +20,13 @@
   >
     {% if only_for_domain == true %}
       {% for child_link in link.links %}
+        {%- comment %}<locksmith:f91c>{% endcomment -%}
+          {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: child_link, subject_parent: link, variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% else %}{% continue %}{% endif -%}
+        {%- comment %}</locksmith:f91c>{% endcomment -%}
         {% for grandchild_link in child_link.links %}
+          {%- comment %}<locksmith:45e3>{% endcomment -%}
+            {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: grandchild_link, subject_parent: child_link, variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% else %}{% continue %}{% endif -%}
+          {%- comment %}</locksmith:45e3>{% endcomment -%}
           <li class="menu-link level-1 {% if only_for_domain == true %} block hidden-1025 {% endif %}">
             <menu-item class="relative static-1025 flex justify-between align-center border-bottom border-bottom-1025-0">
               <a
@@ -85,6 +91,9 @@
     {% endif %}
 
     {% for child_link in link.links %}
+      {%- comment %}<locksmith:0ab5>{% endcomment -%}
+        {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: child_link, subject_parent: link, variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% else %}{% continue %}{% endif -%}
+      {%- comment %}</locksmith:0ab5>{% endcomment -%}
       <li class="menu-link level-1 {% if only_for_domain == true %} hidden block-1025 {% endif %}">
         <menu-item class="relative static-1025 flex justify-between align-center border-bottom border-bottom-1025-0">
           <a
@@ -184,6 +193,9 @@
             </li>
             <ul class="list-unstyled px-30 px-1025-0 gradient">
               {% for grandchild_link in child_link.links %}
+                {%- comment %}<locksmith:d889>{% endcomment -%}
+                  {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: grandchild_link, subject_parent: child_link, variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% else %}{% continue %}{% endif -%}
+                {%- comment %}</locksmith:d889>{% endcomment -%}
                 <li class="menu-link level-2 border-bottom border-bottom-1025-0">
                   {% liquid
                     assign label_setting = ''

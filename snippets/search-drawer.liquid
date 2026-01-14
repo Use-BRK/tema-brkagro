@@ -151,6 +151,9 @@
                     style="{% if search_type == 'default' or search_type == 'popup' %}--col-number: 1;--col-tablet: 1;--col-desktop-small:3;--col-desktop: 5;{% endif %}"
                   >
                     {%- for product in collection.products limit: 5 -%}
+                      {%- comment %}<locksmith:a685>{% endcomment -%}
+                        {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: product, subject_parent: collection, variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% else %}{% continue %}{% endif -%}
+                      {%- comment %}</locksmith:a685>{% endcomment -%}
                       {% render 'product-item',
                         card_product: product,
                         section_id: section.id,

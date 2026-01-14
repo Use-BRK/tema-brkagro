@@ -45,6 +45,9 @@
           </symbol>
         </svg>
         {%- for link in section_st.mega_menu.links -%}
+          {%- comment %}<locksmith:4f12>{% endcomment -%}
+            {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: link, subject_parent: section_st.mega_menu, variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% else %}{% continue %}{% endif -%}
+          {%- comment %}</locksmith:4f12>{% endcomment -%}
           {%- liquid
             assign last_block = null
             assign title = link.title | downcase
@@ -586,6 +589,9 @@
           </symbol>
         </svg>
         {%- for link in section_st.mega_menu.links -%}
+          {%- comment %}<locksmith:9e3a>{% endcomment -%}
+            {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: link, subject_parent: section_st.mega_menu, variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% else %}{% continue %}{% endif -%}
+          {%- comment %}</locksmith:9e3a>{% endcomment -%}
           {%- liquid
             assign last_block = null
             assign title = link.title | downcase

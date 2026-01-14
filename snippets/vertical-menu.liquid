@@ -23,6 +23,9 @@
       <div class="verticalmenu-html">
         <ul class="list-none verticalmenu-list">
           {%- for link in section_st.categories_menu.links -%}
+            {%- comment %}<locksmith:bbb9>{% endcomment -%}
+              {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: link, subject_parent: section_st.categories_menu, variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% else %}{% continue %}{% endif -%}
+            {%- comment %}</locksmith:bbb9>{% endcomment -%}
             {%- liquid
               assign last_block = null
               assign link_title_checked = link.title | downcase
@@ -237,6 +240,19 @@
               {% liquid
                 assign has_children = false
                 for child_link in link.links
+                  comment
+                    <locksmith:a98e> Code added automatically by the Locksmith app. Do not modify or remove.
+                  endcomment
+                  capture var
+                    render 'locksmith-variables', scope: 'subject', subject: child_link, subject_parent: link, variable: 'transparent'
+                  endcapture
+                  if var == "true"
+                  else
+                    continue
+                  endif
+                  comment
+                    </locksmith:a98e> End Locksmith code block.
+                  endcomment
                   if child_link.links.size > 0
                     assign has_children = true
                   endif
