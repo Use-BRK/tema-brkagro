@@ -7,6 +7,9 @@
     style="{{ style | strip | strip_newlines }}"
   >
     {% for block in section.blocks %}
+      {%- comment %}<locksmith:1d9a>{% endcomment -%}
+        {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: block.settings.collection, subject_parent: section, variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% else %}{% continue %}{% endif -%}
+      {%- comment %}</locksmith:1d9a>{% endcomment -%}
       {% case block.type %}
         {% when 'homepage' %}
           <a

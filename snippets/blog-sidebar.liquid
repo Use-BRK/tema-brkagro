@@ -13,6 +13,9 @@
               {%- if linklists[block_st.menu].links.size > 0 -%}
                 <ul class="blogSidebar-items-categories list-none p-0 m-0">
                   {%- for link in block_st.menu.links -%}
+                    {%- comment %}<locksmith:9718>{% endcomment -%}
+                      {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: link, subject_parent: block_st.menu, variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% else %}{% continue %}{% endif -%}
+                    {%- comment %}</locksmith:9718>{% endcomment -%}
                     <li class="pb-8 last-0">
                       <a
                         href="{{ link.url }}"

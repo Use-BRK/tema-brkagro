@@ -149,7 +149,13 @@
           {%- render 'swiper-navigation' -%}
         {% endif %}
         <div class="swiper-wrapper">
+          {%- comment %}<locksmith:085b>{% endcomment -%}
+            {%- assign locksmith_3f3e_forloop__size = 0 %}{% for product in section_st.collection.products limit: items_to_show %}{% capture var %}{% render 'locksmith-variables', scope: 'subject', subject: product, subject_parent: section_st.collection, variable: 'transparent' %}{% endcapture %}{% if var == 'true' %}{% assign locksmith_3f3e_forloop__size = locksmith_3f3e_forloop__size | plus: 1 %}{% endif %}{% endfor %}{% assign locksmith_3f3e_forloop__index = nil -%}
+          {%- comment %}</locksmith:085b>{% endcomment -%}
           {% for product in section_st.collection.products limit: items_to_show %}
+            {%- comment %}<locksmith:e2ba>{% endcomment -%}
+              {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: product, subject_parent: section_st.collection, variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% if locksmith_3f3e_forloop__index == nil %}{% assign locksmith_3f3e_forloop__index = 1 %}{% assign locksmith_3f3e_forloop__index0 = 0 %}{% else %}{% assign locksmith_3f3e_forloop__index = locksmith_3f3e_forloop__index | plus: 1 %}{% assign locksmith_3f3e_forloop__index0 = locksmith_3f3e_forloop__index0 | plus: 1 %}{% endif %}{% if locksmith_3f3e_forloop__index == 1 %}{% assign locksmith_3f3e_forloop__first = true %}{% else %}{% assign locksmith_3f3e_forloop__first = false %}{% endif %}{% if locksmith_3f3e_forloop__index == locksmith_3f3e_forloop__size %}{% assign locksmith_3f3e_forloop__last = true %}{% else %}{% assign locksmith_3f3e_forloop__last = false %}{% endif %}{% assign locksmith_3f3e_forloop__rindex = locksmith_3f3e_forloop__size | minus: locksmith_3f3e_forloop__index | minus: 1 %}{% assign locksmith_3f3e_forloop__rindex0 = locksmith_3f3e_forloop__size | minus: locksmith_3f3e_forloop__index0 | minus: 1 %}{% else %}{% continue %}{% endif -%}
+            {%- comment %}</locksmith:e2ba>{% endcomment -%}
             {% render 'product-item',
               card_product: product,
               section_id: section.id,
@@ -166,7 +172,7 @@
               template_enable_price: true,
               template_enable_add_cart: true,
               scroll_animation: scroll_animation,
-              indexFor: forloop.index,
+              indexFor: locksmith_3f3e_forloop__index,
               template_enable_product_badges: true
             %}
           {% endfor %}

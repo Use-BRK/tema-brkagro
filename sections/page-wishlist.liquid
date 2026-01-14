@@ -21,7 +21,13 @@
       {%- if search.results != blank -%}
         {% paginate search.results by 50 %}
           <div class="wishlist-list-items grid grid-cols gap fadeIn">
+            {%- comment %}<locksmith:5a72>{% endcomment -%}
+              {%- assign locksmith_69ac_forloop__size = 0 %}{%- for product in search.results -%}{% capture var %}{% render 'locksmith-variables', scope: 'subject', subject: product, subject_parent: search, variable: 'transparent' %}{% endcapture %}{% if var == 'true' %}{% assign locksmith_69ac_forloop__size = locksmith_69ac_forloop__size | plus: 1 %}{% endif %}{% endfor %}{% assign locksmith_69ac_forloop__index = nil -%}
+            {%- comment %}</locksmith:5a72>{% endcomment -%}
             {%- for product in search.results -%}
+              {%- comment %}<locksmith:0486>{% endcomment -%}
+                {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: product, subject_parent: search, variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% if locksmith_69ac_forloop__index == nil %}{% assign locksmith_69ac_forloop__index = 1 %}{% assign locksmith_69ac_forloop__index0 = 0 %}{% else %}{% assign locksmith_69ac_forloop__index = locksmith_69ac_forloop__index | plus: 1 %}{% assign locksmith_69ac_forloop__index0 = locksmith_69ac_forloop__index0 | plus: 1 %}{% endif %}{% if locksmith_69ac_forloop__index == 1 %}{% assign locksmith_69ac_forloop__first = true %}{% else %}{% assign locksmith_69ac_forloop__first = false %}{% endif %}{% if locksmith_69ac_forloop__index == locksmith_69ac_forloop__size %}{% assign locksmith_69ac_forloop__last = true %}{% else %}{% assign locksmith_69ac_forloop__last = false %}{% endif %}{% assign locksmith_69ac_forloop__rindex = locksmith_69ac_forloop__size | minus: locksmith_69ac_forloop__index | minus: 1 %}{% assign locksmith_69ac_forloop__rindex0 = locksmith_69ac_forloop__size | minus: locksmith_69ac_forloop__index0 | minus: 1 %}{% else %}{% continue %}{% endif -%}
+              {%- comment %}</locksmith:0486>{% endcomment -%}
               <div
                 class="col-6 col-md-4 col-lg-3 product-load wl-product-js product-preload-js wishlist-list"
                 data-product-handle="{{ product.handle }}"
@@ -39,7 +45,7 @@
                   template_enable_remove_in_wishlist_page: true,
                   type: 'gird',
                   scroll_animation: scroll_animation,
-                  indexFor: forloop.index
+                  indexFor: locksmith_69ac_forloop__index
                 %}
               </div>
             {%- endfor -%}

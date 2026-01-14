@@ -183,7 +183,13 @@
                 style="--row-gap: 3rem;--col-desktop: {{ products_column }};--col-tablet: 3;--col-desktop-small: 3;--col-number: {{ items_per_row_mobile }};{% if section_st.column_gap < 15 %}--col-gap: {{ section_st.column_gap }}px;--col-gap-desktop: {{  section_st.column_gap }}px;{% else %}--col-gap: 15px;--col-gap-desktop: {{  section_st.column_gap }}px;{% endif %};"
                 data-view-mode="{{ products_column }}"
               >
+                {%- comment %}<locksmith:3515>{% endcomment -%}
+                  {%- assign locksmith_4768_forloop__size = 0 %}{%- for product in search.results -%}{% capture var %}{% render 'locksmith-variables', scope: 'subject', subject: product, subject_parent: search, variable: 'transparent' %}{% endcapture %}{% if var == 'true' %}{% assign locksmith_4768_forloop__size = locksmith_4768_forloop__size | plus: 1 %}{% endif %}{% endfor %}{% assign locksmith_4768_forloop__index = nil -%}
+                {%- comment %}</locksmith:3515>{% endcomment -%}
                 {%- for product in search.results -%}
+                  {%- comment %}<locksmith:6bfc>{% endcomment -%}
+                    {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: product, subject_parent: search, variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% if locksmith_4768_forloop__index == nil %}{% assign locksmith_4768_forloop__index = 1 %}{% assign locksmith_4768_forloop__index0 = 0 %}{% else %}{% assign locksmith_4768_forloop__index = locksmith_4768_forloop__index | plus: 1 %}{% assign locksmith_4768_forloop__index0 = locksmith_4768_forloop__index0 | plus: 1 %}{% endif %}{% if locksmith_4768_forloop__index == 1 %}{% assign locksmith_4768_forloop__first = true %}{% else %}{% assign locksmith_4768_forloop__first = false %}{% endif %}{% if locksmith_4768_forloop__index == locksmith_4768_forloop__size %}{% assign locksmith_4768_forloop__last = true %}{% else %}{% assign locksmith_4768_forloop__last = false %}{% endif %}{% assign locksmith_4768_forloop__rindex = locksmith_4768_forloop__size | minus: locksmith_4768_forloop__index | minus: 1 %}{% assign locksmith_4768_forloop__rindex0 = locksmith_4768_forloop__size | minus: locksmith_4768_forloop__index0 | minus: 1 %}{% else %}{% continue %}{% endif -%}
+                  {%- comment %}</locksmith:6bfc>{% endcomment -%}
                   {%- case product.object_type -%}
                     {%- when 'product' -%}
                       <div
@@ -191,7 +197,7 @@
                       >
                         {% render 'product-item',
                           scroll_animation: scroll_animation,
-                          indexFor: forloop.index,
+                          indexFor: locksmith_4768_forloop__index,
                           card_product: product,
                           section_id: section.id,
                           template_enable_action: true,
@@ -213,7 +219,7 @@
                         >
                           {%- render 'article-card',
                             scroll_animation: scroll_animation,
-                            indexFor: forloop.index,
+                            indexFor: locksmith_4768_forloop__index,
                             article: product,
                             show_category: false,
                             show_date: true,

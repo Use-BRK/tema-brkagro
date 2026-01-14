@@ -144,6 +144,9 @@
                 assign compare_at_price = 0
               -%}
               {%- for product in search.results -%}
+                {%- comment %}<locksmith:30b9>{% endcomment -%}
+                  {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: product, subject_parent: search, variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% else %}{% continue %}{% endif -%}
+                {%- comment %}</locksmith:30b9>{% endcomment -%}
                 {%- liquid
                   assign product_available = product.variants | where: 'available'
                   assign current_variant = product.selected_or_first_available_variant

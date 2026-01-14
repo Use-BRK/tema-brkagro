@@ -102,7 +102,13 @@
           {%- render 'swiper-navigation' -%}
         {% endif %}
         <div class="swiper-wrapper">
+          {%- comment %}<locksmith:9aa8>{% endcomment -%}
+            {%- assign locksmith_c921_forloop__size = 0 %}{% for item in search.results %}{% capture var %}{% render 'locksmith-variables', scope: 'subject', subject: item, subject_parent: search, variable: 'transparent' %}{% endcapture %}{% if var == 'true' %}{% assign locksmith_c921_forloop__size = locksmith_c921_forloop__size | plus: 1 %}{% endif %}{% endfor %}{% assign locksmith_c921_forloop__index = nil -%}
+          {%- comment %}</locksmith:9aa8>{% endcomment -%}
           {% for item in search.results %}
+            {%- comment %}<locksmith:d524>{% endcomment -%}
+              {%- capture var %}{% render 'locksmith-variables', scope: 'subject', subject: item, subject_parent: search, variable: 'transparent' %}{% endcapture %}{% if var == "true" %}{% if locksmith_c921_forloop__index == nil %}{% assign locksmith_c921_forloop__index = 1 %}{% assign locksmith_c921_forloop__index0 = 0 %}{% else %}{% assign locksmith_c921_forloop__index = locksmith_c921_forloop__index | plus: 1 %}{% assign locksmith_c921_forloop__index0 = locksmith_c921_forloop__index0 | plus: 1 %}{% endif %}{% if locksmith_c921_forloop__index == 1 %}{% assign locksmith_c921_forloop__first = true %}{% else %}{% assign locksmith_c921_forloop__first = false %}{% endif %}{% if locksmith_c921_forloop__index == locksmith_c921_forloop__size %}{% assign locksmith_c921_forloop__last = true %}{% else %}{% assign locksmith_c921_forloop__last = false %}{% endif %}{% assign locksmith_c921_forloop__rindex = locksmith_c921_forloop__size | minus: locksmith_c921_forloop__index | minus: 1 %}{% assign locksmith_c921_forloop__rindex0 = locksmith_c921_forloop__size | minus: locksmith_c921_forloop__index0 | minus: 1 %}{% else %}{% continue %}{% endif -%}
+            {%- comment %}</locksmith:d524>{% endcomment -%}
             {% render 'product-item',
               card_product: item,
               section_id: section.id,
@@ -116,7 +122,7 @@
               template_enable_product_badges: true,
               template_enable_add_cart: true,
               scroll_animation: scroll_animation,
-              indexFor: forloop.index
+              indexFor: locksmith_c921_forloop__index
             %}
           {% endfor %}
         </div>
