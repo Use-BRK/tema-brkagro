@@ -249,6 +249,7 @@
     },
     "divider_E3r6ih": {
       "type": "divider",
+      "disabled": true,
       "settings": {
         "section_width": "full_width",
         "border_height": 1,
@@ -258,6 +259,7 @@
     },
     "product-set": {
       "type": "product-set",
+      "disabled": true,
       "settings": {
         "section_width": "container",
         "color_scheme": "",
@@ -290,10 +292,12 @@
       "block_order": [
         "also_bought_product_page_app_block_CwMyz9"
       ],
+      "disabled": true,
       "settings": {}
     },
     "divider_TKLM6L": {
       "type": "divider",
+      "disabled": true,
       "settings": {
         "section_width": "container",
         "border_height": 1,
@@ -345,7 +349,7 @@
       "name": "Video Prova Social",
       "settings": {
         "section_width": "fluid_container",
-        "color_scheme": "",
+        "color_scheme": "scheme-bb1431b0-be4a-4b03-a450-f572c07e3904",
         "heading": "",
         "description": "",
         "header_size": "medium",
@@ -419,6 +423,50 @@
         "padding_bottom": 25,
         "reset_spacing": false
       }
+    },
+    "faq_Lp4kjg": {
+      "type": "faq",
+      "blocks": {
+        "faq_items_Td8haf": {
+          "type": "faq-items",
+          "settings": {
+            "faq_title": "Frequently Asked Questions?",
+            "faq_content": "Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore."
+          }
+        },
+        "faq_items_gyereb": {
+          "type": "faq-items",
+          "settings": {
+            "faq_title": "Frequently Asked Questions?",
+            "faq_content": "Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore."
+          }
+        },
+        "faq_items_JpQzzp": {
+          "type": "faq-items",
+          "settings": {
+            "faq_title": "Frequently Asked Questions?",
+            "faq_content": "Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore."
+          }
+        }
+      },
+      "block_order": [
+        "faq_items_Td8haf",
+        "faq_items_gyereb",
+        "faq_items_JpQzzp"
+      ],
+      "disabled": true,
+      "name": "t:sections.faq.presets.name",
+      "settings": {
+        "section_width": "container",
+        "color_scheme": "",
+        "heading": "FAQ",
+        "description": "",
+        "header_size": "medium",
+        "header_alignment": "center",
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": false
+      }
     }
   },
   "order": [
@@ -432,6 +480,7 @@
     "shopable_video_Wfb7nq",
     "related_products",
     "divider_HtLXd3",
-    "products_recently_viewed_GdCNUL"
+    "products_recently_viewed_GdCNUL",
+    "faq_Lp4kjg"
   ]
 }
