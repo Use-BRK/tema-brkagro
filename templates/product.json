@@ -68,6 +68,10 @@
           },
           "blocks": {}
         },
+        "sa_variants_product_swatch_block_DY8gfq": {
+          "type": "shopify://apps/sa-variants/blocks/product-swatch-block/ff68b20f-8c8f-491e-92bf-3e5b8f17ef88",
+          "settings": {}
+        },
         "variant_picker_tcCihG": {
           "type": "_product-variant-picker",
           "settings": {
@@ -166,10 +170,6 @@
             "open": false
           },
           "blocks": {}
-        },
-        "sa_variants_product_swatch_block_DY8gfq": {
-          "type": "shopify://apps/sa-variants/blocks/product-swatch-block/ff68b20f-8c8f-491e-92bf-3e5b8f17ef88",
-          "settings": {}
         }
       },
       "block_order": [
@@ -178,6 +178,7 @@
         "price_VJ4N8m",
         "product_meta_Bh3Lr7",
         "delivery_return_iJHeMD",
+        "sa_variants_product_swatch_block_DY8gfq",
         "variant_picker_tcCihG",
         "stock_countdown_JNK9zi",
         "buy_buttons_LcQGtR",
@@ -186,8 +187,7 @@
         "more_colors_3zmxGq",
         "trust_badge_qKXhpg",
         "collapsible_row_eLaQpR",
-        "collapsible_row_m3g6f8",
-        "sa_variants_product_swatch_block_DY8gfq"
+        "collapsible_row_m3g6f8"
       ],
       "name": "Informações do Produto",
       "settings": {

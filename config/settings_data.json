@@ -334,7 +334,7 @@
       },
       "12334822184266723110": {
         "type": "shopify://apps/sa-variants/blocks/variant-king-combined-listing/ff68b20f-8c8f-491e-92bf-3e5b8f17ef88",
-        "disabled": true,
+        "disabled": false,
         "settings": {
           "alignment": "center",
           "swatch_location": "After image",
