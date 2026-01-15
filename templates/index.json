@@ -25,6 +25,36 @@
     "slideshow_8KKtNU": {
       "type": "slideshow",
       "blocks": {
+        "slider_item_VYnwCQ": {
+          "type": "slider_item",
+          "name": "Safra 2025/2026",
+          "settings": {
+            "image": "shopify://shop_images/FULLBANNER_LANCAMENTO_SAFRA.webp",
+            "image_mobile": "shopify://shop_images/FULLBANNER_MOBILE_LANCAMENTO_SAFRA.webp",
+            "link_banner": "shopify://collections/lancamentos-1",
+            "overlay_opacity": 0,
+            "slider_effect": "effect_fadeinup",
+            "subheading": "",
+            "heading": "",
+            "description": "",
+            "first_button_label": "",
+            "first_button_link": "",
+            "first_button_style": false,
+            "second_button_label": "",
+            "second_button_link": "",
+            "second_button_style": false,
+            "content_alignment": "center",
+            "content_position": "top-center",
+            "content_width": "full_width",
+            "content_max_width": 100,
+            "content_padding_block": 60,
+            "content_padding_inline": 120,
+            "show_content_background": false,
+            "content_background": "#ffffff",
+            "content_box_opacity": 100,
+            "content_alignment_mobile": "center"
+          }
+        },
         "slider_item_prjH68": {
           "type": "slider_item",
           "name": "Envio FULL",
@@ -117,6 +147,7 @@
         }
       },
       "block_order": [
+        "slider_item_VYnwCQ",
         "slider_item_prjH68",
         "slider_item_mHFJwJ",
         "slider_item_tBYL6H"
