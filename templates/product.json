@@ -189,6 +189,9 @@
         "collapsible_row_eLaQpR",
         "collapsible_row_m3g6f8"
       ],
+      "custom_css": [
+        "variant-king-combined-listing+variant-king-combined-listing{display:none;}"
+      ],
       "name": "Informações do Produto",
       "settings": {
         "section_width": "container",
