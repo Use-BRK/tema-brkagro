@@ -226,21 +226,7 @@
     {%- render 'content-bottom' -%}
     {%- render 'whatsapp-button' -%}
     {% comment %} Script Teste ChatWoot {% endcomment %}
-    <script>
-      (function(d,t) {
-        var BASE_URL="https://n8n-chatwoot.pqcilq.easypanel.host";
-        var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
-        g.src=BASE_URL+"/packs/js/sdk.js";
-        g.async = true;
-        s.parentNode.insertBefore(g,s);
-        g.onload=function(){
-          window.chatwootSDK.run({
-            websiteToken: 'gMjZm1k65JfcSdvkL4WLgdif',
-            baseUrl: BASE_URL
-          })
-        }
-      })(document,"script");
-    </script>
+    <script src="https://beka-assistent-ia-chatbot.vercel.app/embed.js" async></script>
   </body>
   {{ 'custom-frete.css' | asset_url | stylesheet_tag }}
 </html>
