@@ -228,17 +228,22 @@
     {% comment %} Script Teste ChatWoot {% endcomment %}
      <script 
         src="https://beka-assistent-ia-chatbot.vercel.app/embed.js" 
-        async 
-        style="position: fixed; 
-              bottom: 0px; 
-              right: 0px; 
-              border: none; 
-              z-index: 666; 
-              width: 100dvw; 
-              height: 650px; 
-              justify-content: center; 
-              align-items: center; 
-              background-color: transparent;"></script>
+        async>
+      </script>
+      <style>
+        #beka-chat-widget-iframe{
+          position: fixed; 
+          bottom: 0px; 
+          right: 0px; 
+          border: none; 
+          z-index: 666; 
+          width: 100dvw; 
+          height: 650px; 
+          justify-content: center; 
+          align-items: center; 
+          background-color: transparent;
+        }
+      </style>
   </body>
   {{ 'custom-frete.css' | asset_url | stylesheet_tag }}
 </html>
