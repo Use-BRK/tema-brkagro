@@ -29,9 +29,9 @@
           "type": "slider_item",
           "name": "Safra 2025/2026",
           "settings": {
-            "image": "shopify://shop_images/FULLBANNER_LANCAMENTO_SAFRA.webp",
-            "image_mobile": "shopify://shop_images/FULLBANNER_MOBILE_LANCAMENTO_SAFRA.webp",
-            "link_banner": "shopify://collections/lancamentos-1",
+            "image": "shopify://shop_images/Prancheta_1_59e3a0a1-c56a-4419-a17e-8e87779c011e.png",
+            "image_mobile": "shopify://shop_images/Prancheta_2_725fdfc6-3ecf-49c8-91d9-bd2e1ed3b8a7.png",
+            "link_banner": "shopify://collections/brasil-e-agro-2026",
             "overlay_opacity": 0,
             "slider_effect": "effect_fadeinup",
             "subheading": "",
