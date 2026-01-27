@@ -241,13 +241,35 @@
   // Prepara dados do usuário
   window.shopifyUserContext = null;
 
+  // --- PARTE DO LIQUID (Server-Side) ---
+  window.shopifyUserContext = null;
+
   {% if customer %}
     window.shopifyUserContext = {
       customerId: "{{ customer.id }}",
       email: "{{ customer.email }}",
       name: "{{ customer.name }}",
+      
+      // Telefone direto do cadastro da conta
+      phone: "{{ customer.phone }}", 
+
+      // Dados do Endereço Padrão (Se existir)
+      {% if customer.default_address %}
+        address: {
+          address1: "{{ customer.default_address.address1 }}", // Rua/Número
+          address2: "{{ customer.default_address.address2 }}", // Complemento
+          city: "{{ customer.default_address.city }}",
+          province: "{{ customer.default_address.province }}", // Estado
+          zip: "{{ customer.default_address.zip }}", // CEP
+          country: "{{ customer.default_address.country }}",
+          phone: "{{ customer.default_address.phone }}" // Telefone vinculado ao endereço (as vezes é diferente do cadastro)
+        }
+      {% else %}
+        address: null
+      {% endif %}
     };
   {% endif %}
+  // -------------------------------------
 
   // 2. O Truque do Monitoramento de Foco
   window.addEventListener('blur', function() {
@@ -258,7 +280,6 @@
 
           // Verifica se quem roubou o foco foi o nosso iframe e se já não disparou antes
           if (elementoAtivo === iframeChat && !jaDisparou) {
-              console.log("--> [DETECTADO] Usuário clicou no Iframe do Chat!");
               jaDisparou = true; // Bloqueia disparos repetidos na mesma sessão
               
               dispararWebhook();
@@ -279,8 +300,6 @@
           user: userData,
           timestamp: new Date().toISOString()
       };
-
-      console.log("--> Enviando Webhook para n8n...");
 
       fetch(WEBHOOK_URL, {
           method: 'POST',
