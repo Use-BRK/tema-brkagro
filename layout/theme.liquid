@@ -229,75 +229,61 @@
 
 
 
-
-
 <script>
+  // 1. Configuração
   const WEBHOOK_URL = 'https://n8n.usebrk.com.br/webhook/fb2528ad-1605-4cd3-b9d3-11101da4a85e';
   const IFRAME_ID = 'beka-chat-widget-iframe';
-  
-  // Variável para não disparar 100 vezes se o usuário clicar várias vezes no chat
   let jaDisparou = false;
-
-  // Prepara dados do usuário
-  window.shopifyUserContext = null;
 
   // --- PARTE DO LIQUID (Server-Side) ---
   window.shopifyUserContext = null;
 
   {% if customer %}
     window.shopifyUserContext = {
-      customerId: "{{ customer.id }}",
-      email: "{{ customer.email }}",
-      name: "{{ customer.name }}",
-      
-      // Telefone direto do cadastro da conta
-      phone: "{{ customer.phone }}", 
-
-      // Dados do Endereço Padrão (Se existir)
-      {% if customer.default_address %}
-        address: {
-          address1: "{{ customer.default_address.address1 }}", // Rua/Número
-          address2: "{{ customer.default_address.address2 }}", // Complemento
-          city: "{{ customer.default_address.city }}",
-          province: "{{ customer.default_address.province }}", // Estado
-          zip: "{{ customer.default_address.zip }}", // CEP
-          country: "{{ customer.default_address.country }}",
-          phone: "{{ customer.default_address.phone }}" // Telefone vinculado ao endereço (as vezes é diferente do cadastro)
-        }
-      {% else %}
-        address: null
-      {% endif %}
+      customerId: {{ customer.id | json }},
+      email: {{ customer.email | json }},
+      name: {{ customer.name | json }},
+      phone: {{ customer.phone | json }},
+      address: null
     };
+
+    {% if customer.default_address %}
+      window.shopifyUserContext.address = {
+        address1: {{ customer.default_address.address1 | json }},
+        address2: {{ customer.default_address.address2 | json }},
+        city: {{ customer.default_address.city | json }},
+        province: {{ customer.default_address.province | json }},
+        zip: {{ customer.default_address.zip | json }},
+        country: {{ customer.default_address.country | json }},
+        phone: {{ customer.default_address.phone | json }}
+      };
+    {% endif %}
   {% endif %}
   // -------------------------------------
 
-  // 2. O Truque do Monitoramento de Foco
+  // 2. Monitoramento de Foco
   window.addEventListener('blur', function() {
-      // Pequeno delay para o navegador atualizar qual elemento está ativo
       setTimeout(function() {
           const elementoAtivo = document.activeElement;
           const iframeChat = document.getElementById(IFRAME_ID);
 
-          // Verifica se quem roubou o foco foi o nosso iframe e se já não disparou antes
           if (elementoAtivo === iframeChat && !jaDisparou) {
-              jaDisparou = true; // Bloqueia disparos repetidos na mesma sessão
+              jaDisparou = true; 
               
               dispararWebhook();
               
-              // (Opcional) Reseta o bloqueio depois de 1 minuto, caso queira permitir novo disparo
+              // Evita disparos repetidos por 60 segundos
               setTimeout(() => { jaDisparou = false; }, 60000);
           }
       }, 0);
   });
 
-  // 3. Função de Envio
+  // 3. Função de Envio Silenciosa
   function dispararWebhook() {
-      const userData = window.shopifyUserContext;
-      
       const payload = {
-          event: 'chat_click_detected', // Mudei o nome do evento para ficar claro
+          event: 'chat_click_detected',
           shopUrl: window.location.hostname,
-          user: userData,
+          user: window.shopifyUserContext,
           timestamp: new Date().toISOString()
       };
 
@@ -305,14 +291,12 @@
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(payload)
-      })
-      .then(res => {
-          if(res.ok) console.log("--> Webhook Enviado com Sucesso!");
-          else console.error("--> Erro no envio:", res.status);
-      })
-      .catch(err => console.error("--> Erro de Conexão:", err));
+      }).catch(() => {
+        // Silêncio total em caso de erro
+      });
   }
-</script>
+</script>    
+
 
 <script src="https://beka-assistent-ia-chatbot.vercel.app/embed.js" async></script>
       <style>
