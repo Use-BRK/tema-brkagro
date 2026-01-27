@@ -232,7 +232,6 @@
 
 
 <script>
-  // 1. Configuração
   const WEBHOOK_URL = 'https://n8n.usebrk.com.br/webhook/fb2528ad-1605-4cd3-b9d3-11101da4a85e';
   const IFRAME_ID = 'beka-chat-widget-iframe';
   
@@ -241,6 +240,7 @@
 
   // Prepara dados do usuário
   window.shopifyUserContext = null;
+
   {% if customer %}
     window.shopifyUserContext = {
       customerId: "{{ customer.id }}",
@@ -271,7 +271,7 @@
 
   // 3. Função de Envio
   function dispararWebhook() {
-      const userData = window.shopifyUserContext || { type: 'guest', name: 'Visitante' };
+      const userData = window.shopifyUserContext;
       
       const payload = {
           event: 'chat_click_detected', // Mudei o nome do evento para ficar claro
