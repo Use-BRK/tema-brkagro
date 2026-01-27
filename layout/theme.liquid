@@ -230,75 +230,23 @@
 
 
 <script>
-  // 1. Configuração
-  const WEBHOOK_URL = 'https://n8n.usebrk.com.br/webhook/beka_assistent_api_chatwoot';
-  const IFRAME_ID = 'beka-chat-widget-iframe';
-  let jaDisparou = false;
-
-  // --- PARTE DO LIQUID (Server-Side) ---
-  window.shopifyUserContext = null;
-
-  {% if customer %}
-    window.shopifyUserContext = {
-      customerId: {{ customer.id | json }},
-      email: {{ customer.email | json }},
-      name: {{ customer.name | json }},
-      phone: {{ customer.phone | json }},
-      address: null
-    };
-
-    {% if customer.default_address %}
-      window.shopifyUserContext.address = {
-        address1: {{ customer.default_address.address1 | json }},
-        address2: {{ customer.default_address.address2 | json }},
-        city: {{ customer.default_address.city | json }},
-        province: {{ customer.default_address.province | json }},
-        zip: {{ customer.default_address.zip | json }},
-        country: {{ customer.default_address.country | json }},
-        phone: {{ customer.default_address.phone | json }}
-      };
-    {% endif %}
-  {% endif %}
-  // -------------------------------------
-
-  // 2. Monitoramento de Foco
-  window.addEventListener('blur', function() {
-      setTimeout(function() {
-          const elementoAtivo = document.activeElement;
-          const iframeChat = document.getElementById(IFRAME_ID);
-
-          if (elementoAtivo === iframeChat && !jaDisparou) {
-              jaDisparou = true; 
-              
-              dispararWebhook();
-              
-              // Evita disparos repetidos por 60 segundos
-              setTimeout(() => { jaDisparou = false; }, 60000);
-          }
-      }, 0);
-  });
-
-  // 3. Função de Envio Silenciosa
-  function dispararWebhook() {
-      const payload = {
-          event: 'chat_click_detected',
-          shopUrl: window.location.hostname,
-          user: window.shopifyUserContext,
-          timestamp: new Date().toISOString()
-      };
-
-      fetch(WEBHOOK_URL, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload)
-      }).catch(() => {
-        // Silêncio total em caso de erro
-      });
-  }
-</script>    
+  // Criamos um objeto global com os dados da Shopify
+  window.BekaAppData = {
+    shop: "{{ shop.permanent_domain }}",
+    customer: {
+      id: {{ customer.id | json | default: 'null' }},
+      name: {{ customer.first_name | json | default: '"Visitante"' }},
+      email: {{ customer.email | json | default: 'null' }}
+    },
+    cart: {{ cart | json }},
+    product: {% if product %}{{ product | json }}{% else %}null{% endif %}
+  };
+</script>
 
 
-<div id="customer-infos-chat" data-user-name="Felipe Costa" data-email="felipestscosta@gmail.com.br" data-user-phone="(34)99143-3824"></div>
+
+<script src="https://beka-assistent-ia-chatbot.vercel.app/embed.js" async></script>
+
 <script src="https://beka-assistent-ia-chatbot.vercel.app/embed.js" async></script>
       <style>
         #customer-infos-chat{
