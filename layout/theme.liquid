@@ -229,8 +229,17 @@
 
 
 
+
+
 <script>
-  // 1. Prepara dados do usuário
+  // 1. Configuração
+  const WEBHOOK_URL = 'https://n8n.usebrk.com.br/webhook/fb2528ad-1605-4cd3-b9d3-11101da4a85e';
+  const IFRAME_ID = 'beka-chat-widget-iframe';
+  
+  // Variável para não disparar 100 vezes se o usuário clicar várias vezes no chat
+  let jaDisparou = false;
+
+  // Prepara dados do usuário
   window.shopifyUserContext = null;
   {% if customer %}
     window.shopifyUserContext = {
@@ -240,57 +249,53 @@
     };
   {% endif %}
 
-  document.addEventListener('DOMContentLoaded', () => {
-    console.log("--> Script Beka carregado. Procurando botão...");
+  // 2. O Truque do Monitoramento de Foco
+  window.addEventListener('blur', function() {
+      // Pequeno delay para o navegador atualizar qual elemento está ativo
+      setTimeout(function() {
+          const elementoAtivo = document.activeElement;
+          const iframeChat = document.getElementById(IFRAME_ID);
 
-    const chatButton = document.getElementById('beka-assistent-btn');
-
-    if (chatButton) {
-        console.log("--> Botão ENCONTRADO! O ouvinte de clique será adicionado.");
-
-        chatButton.addEventListener('click', function(e) {
-            e.preventDefault(); 
-            console.log("--> Clique detectado! Preparando envio...");
-
-            const userData = window.shopifyUserContext || { type: 'guest', name: 'Visitante' };
-
-            const payload = {
-                event: 'chat_start',
-                shopUrl: window.location.hostname,
-                user: userData
-            };
-
-            // URL DO SEU WEBHOOK
-            const webhookUrl = 'https://n8n.usebrk.com.br/webhook/fb2528ad-1605-4cd3-b9d3-11101da4a85e';
-
-            fetch(webhookUrl, {
-                method: 'POST', // O n8n DEVE estar configurado como POST
-                headers: { 
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(payload)
-            })
-            .then(response => {
-                if (response.ok) {
-                    console.log('--> SUCESSO: Webhook recebeu os dados (Status 200).');
-                } else {
-                    console.error('--> ERRO NO SERVIDOR: O n8n respondeu com erro.', response.status);
-                }
-            })
-            .catch(err => {
-                console.error('--> ERRO DE REDE/CORS: ', err);
-                alert("Erro ao conectar com o assistente. Verifique o console (F12).");
-            });
-        });
-    } else {
-        console.error("--> ERRO CRÍTICO: O botão com id='beka-assistent-btn' NÃO foi encontrado no HTML.");
-    }
+          // Verifica se quem roubou o foco foi o nosso iframe e se já não disparou antes
+          if (elementoAtivo === iframeChat && !jaDisparou) {
+              console.log("--> [DETECTADO] Usuário clicou no Iframe do Chat!");
+              jaDisparou = true; // Bloqueia disparos repetidos na mesma sessão
+              
+              dispararWebhook();
+              
+              // (Opcional) Reseta o bloqueio depois de 1 minuto, caso queira permitir novo disparo
+              setTimeout(() => { jaDisparou = false; }, 60000);
+          }
+      }, 0);
   });
+
+  // 3. Função de Envio
+  function dispararWebhook() {
+      const userData = window.shopifyUserContext || { type: 'guest', name: 'Visitante' };
+      
+      const payload = {
+          event: 'chat_click_detected', // Mudei o nome do evento para ficar claro
+          shopUrl: window.location.hostname,
+          user: userData,
+          timestamp: new Date().toISOString()
+      };
+
+      console.log("--> Enviando Webhook para n8n...");
+
+      fetch(WEBHOOK_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+      })
+      .then(res => {
+          if(res.ok) console.log("--> Webhook Enviado com Sucesso!");
+          else console.error("--> Erro no envio:", res.status);
+      })
+      .catch(err => console.error("--> Erro de Conexão:", err));
+  }
 </script>
 
-
-
-
+<script src="https://beka-assistent-ia-chatbot.vercel.app/embed.js" async></script>
 
 
 
