@@ -226,59 +226,76 @@
     {%- render 'content-bottom' -%}
     {% comment %} {%- render 'whatsapp-button' -%} {% endcomment %}
     {% comment %} Script Teste ChatWoot {% endcomment %}
-<script>
-  // PARTE 1: Pega os dados do Shopify (Liquid)
-  // O servidor preenche isso antes da página carregar
-  window.shopifyUserContext = null;
 
+
+
+<script>
+  // 1. Prepara dados do usuário
+  window.shopifyUserContext = null;
   {% if customer %}
     window.shopifyUserContext = {
       customerId: "{{ customer.id }}",
       email: "{{ customer.email }}",
       name: "{{ customer.name }}",
-      ordersCount: {{ customer.orders_count | default: 0 }},
-      totalSpent: "{{ customer.total_spent | money_without_currency }}" 
     };
   {% endif %}
 
-  // PARTE 2: O Gatilho do Botão (JavaScript)
   document.addEventListener('DOMContentLoaded', () => {
-    // Procura o botão pelo ID que você definiu
+    console.log("--> Script Beka carregado. Procurando botão...");
+
     const chatButton = document.getElementById('beka-assistent-btn');
 
     if (chatButton) {
-        console.log("Botão do assistente encontrado!"); // Log para teste
+        console.log("--> Botão ENCONTRADO! O ouvinte de clique será adicionado.");
 
         chatButton.addEventListener('click', function(e) {
-            e.preventDefault(); // Evita recarregar a página se for um link
-            
-            // Pega os dados que criamos na Parte 1
+            e.preventDefault(); 
+            console.log("--> Clique detectado! Preparando envio...");
+
             const userData = window.shopifyUserContext || { type: 'guest', name: 'Visitante' };
 
-            // Prepara o pacote para o Webhook
             const payload = {
                 event: 'chat_start',
-                timestamp: new Date().toISOString(),
                 shopUrl: window.location.hostname,
                 user: userData
             };
 
-            console.log("Enviando dados:", payload); // Para você ver no console
+            // URL DO SEU WEBHOOK
+            const webhookUrl = 'https://n8n.usebrk.com.br/webhook/fb2528ad-1605-4cd3-b9d3-11101da4a85e';
 
-            // ATENÇÃO: Troque a URL abaixo pelo seu Webhook do n8n/Make
-            fetch('https://n8n.usebrk.com.br/webhook/fb2528ad-1605-4cd3-b9d3-11101da4a85e', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+            fetch(webhookUrl, {
+                method: 'POST', // O n8n DEVE estar configurado como POST
+                headers: { 
+                    'Content-Type': 'application/json'
+                },
                 body: JSON.stringify(payload)
             })
-            .then(res => console.log('Webhook disparado com sucesso!'))
-            .catch(err => console.error('Erro no disparo:', err));
+            .then(response => {
+                if (response.ok) {
+                    console.log('--> SUCESSO: Webhook recebeu os dados (Status 200).');
+                } else {
+                    console.error('--> ERRO NO SERVIDOR: O n8n respondeu com erro.', response.status);
+                }
+            })
+            .catch(err => {
+                console.error('--> ERRO DE REDE/CORS: ', err);
+                alert("Erro ao conectar com o assistente. Verifique o console (F12).");
+            });
         });
     } else {
-        console.log("Botão 'beka-assistent-btn' não foi encontrado nesta página.");
+        console.error("--> ERRO CRÍTICO: O botão com id='beka-assistent-btn' NÃO foi encontrado no HTML.");
     }
   });
 </script>
+
+
+
+
+
+
+
+
+
      <script 
         src="https://beka-assistent-ia-chatbot.vercel.app/embed.js" 
         async>
