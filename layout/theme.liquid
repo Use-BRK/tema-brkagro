@@ -231,23 +231,20 @@
 
 <script>
   window.BekaAppData = {
-    shop: {{ shop.permanent_domain | json }},
     customer: {% if customer %}
       {
-        {% comment %} Busca Nome: Perfil > Endereço Padrão > null {% endcomment %}
+        {% comment %} Nome: Perfil > Endereço Padrão > null {% endcomment %}
         name: {{ customer.first_name | default: customer.default_address.first_name | json | default: 'null' }},
         
-        {% comment %} Busca Email: Perfil (Sempre existe no login) > null {% endcomment %}
+        {% comment %} E-mail: Perfil > null {% endcomment %}
         email: {{ customer.email | json | default: 'null' }},
         
-        {% comment %} Busca Telefone: Perfil > Endereço Padrão > null {% endcomment %}
+        {% comment %} Telefone: Perfil > Endereço Padrão > null {% endcomment %}
         phone: {{ customer.phone | default: customer.default_address.phone | json | default: 'null' }}
       }
     {% else %}
       null
-    {% endif %},
-    cart: {{ cart | json }},
-    product: {% if product %}{{ product | json }}{% else %}null{% endif %}
+    {% endif %}
   };
 </script>
 
