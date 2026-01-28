@@ -233,13 +233,8 @@
   window.BekaAppData = {
     customer: {% if customer %}
       {
-        {% comment %} Nome: Perfil > Endereço Padrão > null {% endcomment %}
         name: {{ customer.first_name | default: customer.default_address.first_name | json | default: 'null' }},
-        
-        {% comment %} E-mail: Perfil > null {% endcomment %}
         email: {{ customer.email | json | default: 'null' }},
-        
-        {% comment %} Telefone: Perfil > Endereço Padrão > null {% endcomment %}
         phone: {{ customer.phone | default: customer.default_address.phone | json | default: 'null' }}
       }
     {% else %}
