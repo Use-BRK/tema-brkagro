@@ -234,37 +234,20 @@
     shop: {{ shop.permanent_domain | json }},
     customer: {% if customer %}
       {
-        id: {{ customer.id | json }},
-        firstName: {{ customer.first_name | json }},
-        lastName: {{ customer.last_name | json }},
-        fullName: {{ customer.name | json }},
-        email: {{ customer.email | json }},
-        phone: {{ customer.phone | json }},
-        ordersCount: {{ customer.orders_count | json }},
-        totalSpent: {{ customer.total_spent | json }},
-        tags: {{ customer.tags | json }},
-        {%- if customer.default_address -%}
-          address: {
-            street: {{ customer.default_address.address1 | json }},
-            complement: {{ customer.default_address.address2 | json }},
-            city: {{ customer.default_address.city | json }},
-            province: {{ customer.default_address.province | json }},
-            provinceCode: {{ customer.default_address.province_code | json }},
-            zip: {{ customer.default_address.zip | json }},
-            country: {{ customer.default_address.country | json }},
-            countryCode: {{ customer.default_address.country_code | json }},
-            phone: {{ customer.default_address.phone | json }}
-          }
-        {%- else -%}
-          address: null
-        {%- endif -%}
+        {% comment %} Busca Nome: Perfil > Endereço Padrão > null {% endcomment %}
+        name: {{ customer.first_name | default: customer.default_address.first_name | json | default: 'null' }},
+        
+        {% comment %} Busca Email: Perfil (Sempre existe no login) > null {% endcomment %}
+        email: {{ customer.email | json | default: 'null' }},
+        
+        {% comment %} Busca Telefone: Perfil > Endereço Padrão > null {% endcomment %}
+        phone: {{ customer.phone | default: customer.default_address.phone | json | default: 'null' }}
       }
     {% else %}
       null
     {% endif %},
     cart: {{ cart | json }},
-    product: {% if product %}{{ product | json }}{% else %}null{% endif %},
-    template: {{ template.name | json }}
+    product: {% if product %}{{ product | json }}{% else %}null{% endif %}
   };
 </script>
 
