@@ -230,7 +230,19 @@
 
 
 <script>
+  {%- assign current_url = canonical_url | downcase -%}
+  {%- assign store_id = "DEFAULT" -%}
+
+  {%- if current_url contains 'brkagro' -%}
+    {%- assign store_id = "AGRO" -%}
+  {%- elsif current_url contains 'brkfishing' -%}
+    {%- assign store_id = "FISHING" -%}
+  {%- elsif current_url contains 'brkmotors' -%}
+    {%- assign store_id = "MOTORS" -%}
+  {%- endif -%}
+
   window.BekaAppData = {
+    store: {{ store_id | json }},
     customer: {% if customer %}
       {
         name: {{ customer.name | json }},
@@ -244,7 +256,6 @@
     {% endif %}
   };
 </script>
-
 
 
 <script src="https://beka-assistent-ia-chatbot.vercel.app/embed.js" async></script>
