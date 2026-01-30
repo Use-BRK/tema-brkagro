@@ -14,7 +14,7 @@
 <!doctype html>
 <html class="no-js" lang="{{ request.locale.iso_code }}">
   <head>
-{% include 'booster-seo' %}
+    {% include 'booster-seo' %}
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -23,12 +23,14 @@
     {%- if settings.favicon != blank -%}
       <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
     {%- endif -%}
-    {% comment %}<title>
-      {{ page_title }}
-      {%- if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif -%}
-      {%- if current_page != 1 %} &ndash; Page {{ current_page }}{% endif -%}
-      {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
-    </title>{% endcomment %}
+    {% comment %}
+      <title>
+        {{ page_title }}
+        {%- if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif -%}
+        {%- if current_page != 1 %} &ndash; Page {{ current_page }}{% endif -%}
+        {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
+      </title>
+    {% endcomment %}
     {% if page_description %}
       {% comment %}<meta name="description" content="{{ page_description | escape }}">{% endcomment %}
     {% endif %}
@@ -227,44 +229,50 @@
     {% comment %} {%- render 'whatsapp-button' -%} {% endcomment %}
     {% comment %} Script Teste ChatWoot {% endcomment %}
 
+    <script>
+      window.BekaAppData = {
+        customer: {% if customer %}
+          {
+            name: {{ customer.first_name | default: customer.default_address.first_name | json | default: 'null' }},
+            email: {{ customer.email | json | default: 'null' }},
+            phone: {{ customer.phone | default: customer.default_address.phone | json | default: 'null' }}
+          }
+        {% else %}
+          null
+        {% endif %}
+      };
+    </script>
 
-
-<script>
-  window.BekaAppData = {
-    customer: {% if customer %}
-      {
-        name: {{ customer.first_name | default: customer.default_address.first_name | json | default: 'null' }},
-        email: {{ customer.email | json | default: 'null' }},
-        phone: {{ customer.phone | default: customer.default_address.phone | json | default: 'null' }}
+    <script src="https://beka-assistent-ia-chatbot.vercel.app/embed.js" async></script>
+    <style>
+      #customer-infos-chat {
+        display: none;
       }
-    {% else %}
-      null
-    {% endif %}
-  };
-</script>
 
+      #beka-chat-widget-iframe {
+        position: fixed !important;
+        bottom: 0px !important;
+        right: 0px !important;
+        border: none !important;
+        z-index: 666 !important;
+        /* Ajuste abaixo: */
+        width: 100px !important; /* Largura pequena para não cobrir a tela */
+        height: 100px !important; /* Altura pequena para o botão */
+        background-color: transparent !important;
+        overflow: hidden !important;
+        transition: width 0.3s, height 0.3s; /* Suaviza a abertura */
+      }
 
+      /* Esta classe geralmente é adicionada pelo script do chat quando ele abre */
+      /* Se o seu app mudar o tamanho via JS, o código acima já resolve o bloqueio */
 
+      /* DICA DE OURO: Se o iframe precisar ser grande, use: */
+      #beka-chat-widget-iframe {
+        pointer-events: none !important; /* Ignora cliques na área transparente */
+      }
 
-<script src="https://beka-assistent-ia-chatbot.vercel.app/embed.js" async></script>
-      <style>
-        #customer-infos-chat{
-          display:none;
-        }
-
-        #beka-chat-widget-iframe{
-          position: fixed!important; 
-          bottom: 0px!important; 
-          right: 0px!important; 
-          border: none!important; 
-          z-index: 666!important; 
-          width: 100dvw!important; 
-          height: 650px!important; 
-          justify-content: center!important; 
-          align-items: center!important; 
-          background-color: transparent!important;
-        }
-      </style>
+      /* E dentro do iframe (pelo script do app), os elementos internos devem ter pointer-events: auto */
+    </style>
   </body>
   {{ 'custom-frete.css' | asset_url | stylesheet_tag }}
 </html>
