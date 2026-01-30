@@ -14,7 +14,7 @@
 <!doctype html>
 <html class="no-js" lang="{{ request.locale.iso_code }}">
   <head>
-    {% include 'booster-seo' %}
+{% include 'booster-seo' %}
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -23,14 +23,12 @@
     {%- if settings.favicon != blank -%}
       <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
     {%- endif -%}
-    {% comment %}
-      <title>
-        {{ page_title }}
-        {%- if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif -%}
-        {%- if current_page != 1 %} &ndash; Page {{ current_page }}{% endif -%}
-        {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
-      </title>
-    {% endcomment %}
+    {% comment %}<title>
+      {{ page_title }}
+      {%- if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif -%}
+      {%- if current_page != 1 %} &ndash; Page {{ current_page }}{% endif -%}
+      {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
+    </title>{% endcomment %}
     {% if page_description %}
       {% comment %}<meta name="description" content="{{ page_description | escape }}">{% endcomment %}
     {% endif %}
@@ -229,42 +227,47 @@
     {% comment %} {%- render 'whatsapp-button' -%} {% endcomment %}
     {% comment %} Script Teste ChatWoot {% endcomment %}
 
-    <script>
-      window.BekaAppData = {
-        customer: {% if customer %}
-          {
-            name: {{ customer.first_name | default: customer.default_address.first_name | json | default: 'null' }},
-            email: {{ customer.email | json | default: 'null' }},
-            phone: {{ customer.phone | default: customer.default_address.phone | json | default: 'null' }}
-          }
-        {% else %}
-          null
-        {% endif %}
-      };
-    </script>
 
-    <script src="https://beka-assistent-ia-chatbot.vercel.app/embed.js" async></script>
-    <style>
-              #customer-infos-chat{
-                display:none;
-              }
 
-              #beka-chat-widget-iframe{
-                position: fixed!important;
-                bottom: 0px!important;
-                right: 0px!important;
-                border: none!important;
-                z-index: 666!important;
+<script>
+  window.BekaAppData = {
+    customer: {% if customer %}
+      {
+        name: {{ customer.first_name | default: customer.default_address.first_name | json | default: 'null' }},
+        email: {{ customer.email | json | default: 'null' }},
+        phone: {{ customer.phone | default: customer.default_address.phone | json | default: 'null' }}
+      }
+    {% else %}
+      null
+    {% endif %}
+  };
+</script>
 
-                width: 400px!important; /* Em vez de 100dvw */
-                height: 100px!important; /* Comece com um valor baixo e veja se o botão aparece */
 
-                justify-content: center!important;
-                align-items: center!important;
-                background-color: transparent!important;
 
-              }
-    </style>
+
+<script src="https://beka-assistent-ia-chatbot.vercel.app/embed.js" async></script>
+      <style>
+        #customer-infos-chat{
+          display:none;
+        }
+
+        #beka-chat-widget-iframe{
+          position: fixed!important; 
+          bottom: 0px!important; 
+          right: 0px!important; 
+          border: none!important; 
+          z-index: 666!important; 
+
+                    width: 400px!important; /* Em vez de 100dvw */
+height: 100px!important; /* Comece com um valor baixo e veja se o botão aparece */
+
+          justify-content: center!important; 
+          align-items: center!important; 
+          background-color: transparent!important;
+
+        }
+      </style>
   </body>
   {{ 'custom-frete.css' | asset_url | stylesheet_tag }}
 </html>
