@@ -233,16 +233,17 @@
   window.BekaAppData = {
     customer: {% if customer %}
       {
-        name: {{ customer.first_name | default: customer.default_address.first_name | json | default: 'null' }},
-        email: {{ customer.email | json | default: 'null' }},
-        phone: {{ customer.phone | default: customer.default_address.phone | json | default: 'null' }}
+        name: {{ customer.name | json }},
+        first_name: {{ customer.first_name | default: customer.default_address.first_name | json }},
+        last_name: {{ customer.last_name | default: customer.default_address.last_name | json }},
+        email: {{ customer.email | json }},
+        phone: {{ customer.phone | default: customer.default_address.phone | json }}
       }
     {% else %}
       null
     {% endif %}
   };
 </script>
-
 
 
 
