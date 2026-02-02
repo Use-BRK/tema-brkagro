@@ -27,7 +27,7 @@
       "blocks": {
         "slider_item_VYnwCQ": {
           "type": "slider_item",
-          "name": "Safra 2025/2026",
+          "name": "2.2",
           "settings": {
             "image": "shopify://shop_images/FULL-BANNER.png",
             "image_mobile": "shopify://shop_images/MOBBANNER.png",
@@ -88,6 +88,7 @@
         "slider_item_prjH68": {
           "type": "slider_item",
           "name": "Envio FULL",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/FULLBANNER_783bf757-cc72-48fe-a076-4ca1d3f7ca96.png",
             "image_mobile": "shopify://shop_images/MOB_BANNER_37fa94a5-24b9-43e4-af6a-12134a1f4fad.png",
