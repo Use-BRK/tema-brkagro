@@ -27,10 +27,10 @@
       "blocks": {
         "slider_item_VYnwCQ": {
           "type": "slider_item",
-          "name": "2.2",
+          "name": "Campanha 2.2",
           "settings": {
-            "image": "shopify://shop_images/FULL-BANNER.png",
-            "image_mobile": "shopify://shop_images/MOBBANNER.png",
+            "image": "shopify://shop_images/DESKTOP_CAMPANHA.webp",
+            "image_mobile": "shopify://shop_images/MOB_CAMPANHA.webp",
             "link_banner": "shopify://collections/envio-imediato",
             "overlay_opacity": 0,
             "slider_effect": "effect_fadeinup",
@@ -57,10 +57,10 @@
         },
         "slider_item_gUEYbD": {
           "type": "slider_item",
-          "name": "Safra 2025/2026",
+          "name": "Brasil é Agro",
           "settings": {
-            "image": "shopify://shop_images/Prancheta_1_59e3a0a1-c56a-4419-a17e-8e87779c011e.png",
-            "image_mobile": "shopify://shop_images/Prancheta_2_725fdfc6-3ecf-49c8-91d9-bd2e1ed3b8a7.png",
+            "image": "shopify://shop_images/DESKTOP_BRASIL_E_AGRO.webp",
+            "image_mobile": "shopify://shop_images/MOBILE_BRASIL_E_AGRO.webp",
             "link_banner": "shopify://collections/brasil-e-agro-2026",
             "overlay_opacity": 0,
             "slider_effect": "effect_fadeinup",
