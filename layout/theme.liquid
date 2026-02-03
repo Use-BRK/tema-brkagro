@@ -258,18 +258,19 @@
 
 <script src="https://beka-assistent-ia-chatbot.vercel.app/embed.js" async></script>
       <style>
+        @media (max-width: 640px)
         #customer-infos-chat{
           display:none;
         }
 
-        #beka-chat-widget-iframe{
+        iframe#beka-chat-widget-iframe{
           position: fixed!important; 
           bottom: 0px!important; 
           right: 0px!important; 
           border: none!important; 
           z-index: 666!important; 
 
-          width: 110.25dvw!important; /* Em vez de 100dvw */
+          width: 430px!important; /* Em vez de 100dvw */
           height: 679px!important; /* Comece com um valor baixo e veja se o botão aparece */
 
           justify-content: center!important; 
