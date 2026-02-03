@@ -14,7 +14,7 @@
 <!doctype html>
 <html class="no-js" lang="{{ request.locale.iso_code }}">
   <head>
-{% include 'booster-seo' %}
+    {% include 'booster-seo' %}
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -23,12 +23,14 @@
     {%- if settings.favicon != blank -%}
       <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
     {%- endif -%}
-    {% comment %}<title>
-      {{ page_title }}
-      {%- if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif -%}
-      {%- if current_page != 1 %} &ndash; Page {{ current_page }}{% endif -%}
-      {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
-    </title>{% endcomment %}
+    {% comment %}
+      <title>
+        {{ page_title }}
+        {%- if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif -%}
+        {%- if current_page != 1 %} &ndash; Page {{ current_page }}{% endif -%}
+        {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
+      </title>
+    {% endcomment %}
     {% if page_description %}
       {% comment %}<meta name="description" content="{{ page_description | escape }}">{% endcomment %}
     {% endif %}
@@ -224,66 +226,86 @@
     {%- render 'scripts-tag' -%}
     {%- render 'sprite-svg' -%}
     {%- render 'content-bottom' -%}
+
+    {% comment %} {%- render 'whatsapp-button' -%} {% endcomment %}
+    {% comment %} Script Teste ChatWoot {% endcomment %}
+    <script>
+      {%- assign current_url = canonical_url | downcase -%}
+      {%- assign store_id = "DEFAULT" -%}
+
+      {%- if current_url contains 'brkagro' -%}
+        {%- assign store_id = "AGRO" -%}
+      {%- elsif current_url contains 'brkfishing' -%}
+        {%- assign store_id = "FISHING" -%}
+      {%- elsif current_url contains 'brkmotors' -%}
+        {%- assign store_id = "MOTORS" -%}
+      {%- endif -%}
+
+      window.BekaAppData = {
+        store: {{ store_id | json }},
+        customer: {% if customer %}
+          {
+            name: {{ customer.name | json }},
+            first_name: {{ customer.first_name | default: customer.default_address.first_name | json }},
+            last_name: {{ customer.last_name | default: customer.default_address.last_name | json }},
+            email: {{ customer.email | json }},
+            phone: {{ customer.phone | default: customer.default_address.phone | json }}
+          }
+        {% else %}
+          null
+        {% endif %}
+      };
+    </script>
+
+    <script src="https://beka-assistent-ia-chatbot.vercel.app/embed.js" async></script>
+    <style>
+     /* Reset básico para o iframe no Shopify */
+#beka-chat-widget-iframe {
+    position: fixed !important;
+    bottom: 20px !important; /* Distância do fundo */
+    right: 20px !important;  /* Distância da direita */
+    border: none !important;
+    z-index: 2147483647 !important; /* Valor máximo de z-index */
+    background-color: transparent !important;
+    transition: width 0.3s ease, height 0.3s ease, bottom 0.3s ease, right 0.3s ease !important;
     
-{% comment %} {%- render 'whatsapp-button' -%} {% endcomment %}
-{% comment %} Script Teste ChatWoot {% endcomment %}
-<script>
-  {%- assign current_url = canonical_url | downcase -%}
-  {%- assign store_id = "DEFAULT" -%}
+    /* ESTADO FECHADO (Launcher) */
+    width: 90px !important; 
+    height: 90px !important;
+}
 
-  {%- if current_url contains 'brkagro' -%}
-    {%- assign store_id = "AGRO" -%}
-  {%- elsif current_url contains 'brkfishing' -%}
-    {%- assign store_id = "FISHING" -%}
-  {%- elsif current_url contains 'brkmotors' -%}
-    {%- assign store_id = "MOTORS" -%}
-  {%- endif -%}
+/* ESTADO ABERTO - DESKTOP (Telas maiores que 640px) */
+@media (min-width: 641px) {
+    #beka-chat-widget-iframe.beka-open {
+        width: 400px !important;
+        height: 650px !important;
+        max-height: 80vh !important;
+    }
+}
 
-  window.BekaAppData = {
-    store: {{ store_id | json }},
-    customer: {% if customer %}
-      {
-        name: {{ customer.name | json }},
-        first_name: {{ customer.first_name | default: customer.default_address.first_name | json }},
-        last_name: {{ customer.last_name | default: customer.default_address.last_name | json }},
-        email: {{ customer.email | json }},
-        phone: {{ customer.phone | default: customer.default_address.phone | json }}
-      }
-    {% else %}
-      null
-    {% endif %}
-  };
-</script>
+/* ESTADO ABERTO - MOBILE (Telas menores que 640px) */
+@media (max-width: 640px) {
+    #beka-chat-widget-iframe {
+        bottom: 10px !important;
+        right: 10px !important;
+        width: 80px !important;
+        height: 80px !important;
+    }
 
+    #beka-chat-widget-iframe.beka-open {
+        width: 100% !important;
+        height: 100% !important;
+        bottom: 0 !important;
+        right: 0 !important;
+        border-radius: 0 !important;
+    }
+}
 
-<script src="https://beka-assistent-ia-chatbot.vercel.app/embed.js" async></script>
-      <style>
-        @media (max-width: 640px){
-           #customer-infos-chat{
-          display:none;
-        }
-
-        iframe#beka-chat-widget-iframe{
-          position: fixed!important; 
-          bottom: 0px!important; 
-          right: 0px!important; 
-          border: none!important; 
-          z-index: 666!important; 
-
-          width: 100dvw!important; /* Em vez de 100dvw */
-          height: 100dvh!important; /* Comece com um valor baixo e veja se o botão aparece */
-
-          justify-content: center!important; 
-          align-items: center!important; 
-          background-color: transparent!important;
-
-        }
-        }
-       
-      </style>
-
-
-    
+/* Esconder o seu elemento de infos no chat se necessário */
+#customer-infos-chat {
+    display: none;
+}
+    </style>
   </body>
   {{ 'custom-frete.css' | asset_url | stylesheet_tag }}
 </html>
