@@ -145,20 +145,18 @@
         spans.forEach((span) => {
           const textoOriginal = span.innerText;
 
-          // REGRA: Deve conter "dias" E não pode ter o atributo de controle
-          if (textoOriginal.toLowerCase().includes('dias') && !span.hasAttribute('data-prazo-aplicado')) {
+          // REGRA: Deve conter "dia" (pega singular e plural) E não pode já ter o texto injetado
+          // Usamos 'includes(textoInjetar)' para garantir que se o app resetar o texto, nós inserimos de novo.
+          if (textoOriginal.toLowerCase().includes('dia') && !textoOriginal.includes(textoInjetar)) {
             // Inserimos o texto
             span.innerText = textoOriginal + textoInjetar;
-
-            // Marcamos este span como "processado" para evitar duplicidade no próximo loop
-            span.setAttribute('data-prazo-aplicado', 'true');
           }
         });
       }
     }, 500);
 
-    // Limpeza de memória após 2 minutos de página aberta
-    setTimeout(() => clearInterval(checkFreteBrk), 120000);
+    // Limpeza de memória após 10 minutos de página aberta (para nao parar se o user ficar testando)
+    setTimeout(() => clearInterval(checkFreteBrk), 600000);
   })();
 </script>
 
