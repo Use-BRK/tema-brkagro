@@ -11,6 +11,7 @@
   "sections": {
     "divider_WJrFxP": {
       "type": "divider",
+      "disabled": true,
       "custom_css": [
         ".sec__divider-inner {box-shadow: 0px 10px 15px -5px rgba(0, 0, 0, 0.4);}"
       ],
@@ -25,36 +26,6 @@
     "slideshow_8KKtNU": {
       "type": "slideshow",
       "blocks": {
-        "slider_item_VYnwCQ": {
-          "type": "slider_item",
-          "name": "Campanha 2.2",
-          "settings": {
-            "image": "shopify://shop_images/DESKTOP_CAMPANHA.webp",
-            "image_mobile": "shopify://shop_images/MOB_CAMPANHA.webp",
-            "link_banner": "shopify://collections/envio-imediato",
-            "overlay_opacity": 0,
-            "slider_effect": "effect_fadeinup",
-            "subheading": "",
-            "heading": "",
-            "description": "",
-            "first_button_label": "",
-            "first_button_link": "",
-            "first_button_style": false,
-            "second_button_label": "",
-            "second_button_link": "",
-            "second_button_style": false,
-            "content_alignment": "center",
-            "content_position": "top-center",
-            "content_width": "full_width",
-            "content_max_width": 100,
-            "content_padding_block": 60,
-            "content_padding_inline": 120,
-            "show_content_background": false,
-            "content_background": "#ffffff",
-            "content_box_opacity": 100,
-            "content_alignment_mobile": "center"
-          }
-        },
         "slider_item_gUEYbD": {
           "type": "slider_item",
           "name": "Brasil é Agro",
@@ -85,14 +56,13 @@
             "content_alignment_mobile": "center"
           }
         },
-        "slider_item_prjH68": {
+        "slider_item_tBYL6H": {
           "type": "slider_item",
-          "name": "Envio FULL",
-          "disabled": true,
+          "name": "Essenciais",
           "settings": {
-            "image": "shopify://shop_images/FULLBANNER_783bf757-cc72-48fe-a076-4ca1d3f7ca96.png",
-            "image_mobile": "shopify://shop_images/MOB_BANNER_37fa94a5-24b9-43e4-af6a-12134a1f4fad.png",
-            "link_banner": "shopify://collections/envio-imediato",
+            "image": "shopify://shop_images/ESSENCIAIS_DESKTOP.webp",
+            "image_mobile": "shopify://shop_images/ESSENCIAIS_MOBILE.webp",
+            "link_banner": "shopify://collections/essenciais-sem-estampa",
             "overlay_opacity": 0,
             "slider_effect": "effect_fadeinup",
             "subheading": "",
@@ -146,13 +116,14 @@
             "content_alignment_mobile": "center"
           }
         },
-        "slider_item_tBYL6H": {
+        "slider_item_prjH68": {
           "type": "slider_item",
-          "name": "Essenciais",
+          "name": "Envio FULL",
+          "disabled": true,
           "settings": {
-            "image": "shopify://shop_images/ESSENCIAIS_DESKTOP.webp",
-            "image_mobile": "shopify://shop_images/ESSENCIAIS_MOBILE.webp",
-            "link_banner": "shopify://collections/essenciais-sem-estampa",
+            "image": "shopify://shop_images/FULLBANNER_783bf757-cc72-48fe-a076-4ca1d3f7ca96.png",
+            "image_mobile": "shopify://shop_images/MOB_BANNER_37fa94a5-24b9-43e4-af6a-12134a1f4fad.png",
+            "link_banner": "shopify://collections/envio-imediato",
             "overlay_opacity": 0,
             "slider_effect": "effect_fadeinup",
             "subheading": "",
@@ -178,11 +149,10 @@
         }
       },
       "block_order": [
-        "slider_item_VYnwCQ",
         "slider_item_gUEYbD",
-        "slider_item_prjH68",
+        "slider_item_tBYL6H",
         "slider_item_mHFJwJ",
-        "slider_item_tBYL6H"
+        "slider_item_prjH68"
       ],
       "custom_css": [
         ".h-full_screen {--height-topbar: 41px;}",
