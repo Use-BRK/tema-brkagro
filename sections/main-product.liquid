@@ -690,9 +690,11 @@
 
 <script>
   (function() {
-    // 1. Defina o número de dias que quer somar
-    const diasAdicionais = 8;
+    // 1. Defina aqui o valor fixo para o teste
+    const prazoBrk = 8; 
+    const textoExtra = ` + ${prazoBrk} dias úteis de produção`;
 
+    // 2. Função que monitora a div de frete
     const checkFrete = setInterval(function() {
       const container = document.getElementById('calc-carrier');
       
@@ -702,28 +704,20 @@
         spans.forEach(span => {
           const textoOriginal = span.innerText;
 
-          // Verifica se tem a palavra "dias" e se ainda não fizemos a soma
-          if (textoOriginal.includes('dias') && !span.hasAttribute('data-somado')) {
+          // Verifica se o span contém "dias" e se ainda não injetamos o texto extra
+          if (textoOriginal.toLowerCase().includes('dias') && !textoOriginal.includes(textoExtra)) {
             
-            // Extrai o número (ex: "9" de "9 dias úteis")
-            const numeroEncontrado = textoOriginal.match(/\d+/);
+            // Adiciona o seu prazo na frente do prazo da transportadora
+            span.innerText = textoOriginal + textoExtra;
             
-            if (numeroEncontrado) {
-              const prazoTransportadora = parseInt(numeroEncontrado[0]);
-              const novoTotal = prazoTransportadora + diasAdicionais;
-              
-              // Substitui o número antigo pelo somado
-              span.innerText = textoOriginal.replace(numeroEncontrado[0], novoTotal);
-              
-              // Marca o span para não somar de novo no próximo ciclo do setInterval
-              span.setAttribute('data-somado', 'true');
-            }
+            // Opcional: Se quiser dar destaque ao seu prazo via código:
+            // span.style.fontWeight = "bold"; 
           }
         });
       }
     }, 500);
 
-    // Para de rodar após 60 segundos para não pesar o site
+    // Para de procurar após 60 segundos para poupar memória
     setTimeout(() => clearInterval(checkFrete), 60000);
   })();
 </script>
