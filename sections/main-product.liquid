@@ -679,15 +679,6 @@
 }
 {% endschema %}
 
-
-{%- comment -%} Lógica para definir o prazo de acordo com as Tags {%- endcomment -%}
-{%- assign prazo_final = block_st.producao | default: 0 -%}
-{%- if product.tags contains 'prazo_algodao' -%}
-  {%- assign prazo_final = block_st.algodao -%}
-{%- elsif product.tags contains 'prazo_imediato' -%}
-  {%- assign prazo_final = 0 -%}
-{%- endif -%}
-
 <script>
   (function() {
     // 1. Defina aqui o valor fixo para o teste
