@@ -680,30 +680,50 @@
 {% endschema %}
 
 
+{%- comment -%} Lógica para definir o prazo de acordo com as Tags {%- endcomment -%}
+{%- assign prazo_final = block_st.producao | default: 0 -%}
+{%- if product.tags contains 'prazo_algodao' -%}
+  {%- assign prazo_final = block_st.algodao -%}
+{%- elsif product.tags contains 'prazo_imediato' -%}
+  {%- assign prazo_final = 0 -%}
+{%- endif -%}
+
 <script>
   (function() {
-    // 1. Defina aqui o seu prazo (vindo do Liquid ou fixo para teste)
-    const textoExtra = " + 8 dias úteis de produção";
+    const prazoAdicional = parseInt("{{ prazo_final }}") || 0;
+    if (prazoAdicional === 0) return;
 
-    // 2. Função que tenta inserir o texto
-    const checkFrete = setInterval(function() {
+    const checkFreteBrk = setInterval(function() {
       const container = document.getElementById('calc-carrier');
       
       if (container) {
-        // Busca os spans que o app injetou com o prazo
         const spans = container.querySelectorAll('span');
         
         spans.forEach(span => {
-          // Se o span tem "dias" e ainda não adicionamos nosso texto
-          if (span.innerText.includes('dias') && !span.innerText.includes(textoExtra)) {
-            span.innerText += textoExtra;
+          const textoOriginal = span.innerText;
+          
+          // Verifica se o span tem "dias" e se ainda NÃO fizemos a soma (marcador via atributo)
+          if (textoOriginal.toLowerCase().includes('dias') && !span.getAttribute('data-prazo-somado')) {
+            
+            // 1. Extrai apenas o primeiro número que encontrar (ex: "9" de "9 dias úteis")
+            const match = textoOriginal.match(/\d+/);
+            
+            if (match) {
+              const prazoTransportadora = parseInt(match[0]);
+              const novoPrazoTotal = prazoTransportadora + prazoAdicional;
+              
+              // 2. Substitui o número antigo pelo novo e mantém o resto do texto
+              // Ex: "9 dias úteis" vira "17 dias úteis"
+              span.innerText = textoOriginal.replace(match[0], novoPrazoTotal);
+              
+              // 3. Marca o span para o script não somar de novo no próximo ciclo do intervalo
+              span.setAttribute('data-prazo-somado', 'true');
+            }
           }
         });
-        
-        // Opcional: Se quiser que ele pare de procurar após achar os primeiros, 
-        // mas como o usuário pode trocar o CEP, é melhor deixar rodando ou 
-        // limpar após alguns segundos.
       }
-    }, 500); // Tenta a cada 500ms
+    }, 500);
+
+    setTimeout(() => clearInterval(checkFreteBrk), 60000);
   })();
 </script>
