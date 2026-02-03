@@ -382,6 +382,12 @@ input.option-disabled+.product__item-option, .option-disabled .product__item-opt
   }
 }
 
+#prazo_disponibilidade span::after {
+  content: "*não incluso prazo da transportadora";
+  display: block;
+  font-size: 12px;
+}
+
 /* SKU Mobile e Desktop - Abaixo do título */
 
 #sku_titulo, 
