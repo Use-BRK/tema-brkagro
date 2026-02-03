@@ -326,12 +326,12 @@
       });
     });
   </script>
-  
+
   <script>
     (function() {
-      {% assign prazo_final = block_st.producao %}
+      {% assign prazo_final = 0 %}
       {% if product.tags contains 'prazo_algodao' %}
-        {% assign prazo_final = block_st.algodao %}
+        {% assign prazo_final = 8 %}
       {% endif %}
     
       const prazoProducao = parseInt("{{ prazo_final }}") || 0;
