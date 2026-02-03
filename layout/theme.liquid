@@ -257,9 +257,15 @@
 
 
 <script src="https://beka-assistent-ia-chatbot.vercel.app/embed.js" async></script>
-
-
-
+<style>
+   /* Mobile: tela cheia quando aberto */
+   @media only screen and (max-width: 600px) {
+      #beka-chat-widget-iframe {
+         /* O embed.js controla o tamanho automaticamente */
+         /* Adicione apenas se quiser forçar tela cheia quando aberto */
+      }
+   }
+</style>
     
   </body>
   {{ 'custom-frete.css' | asset_url | stylesheet_tag }}
