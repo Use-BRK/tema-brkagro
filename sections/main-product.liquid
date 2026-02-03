@@ -327,47 +327,6 @@
     });
   </script>
 
-  <script>
-  (function() {
-    const prazoProducao = 8; // Valor de teste
-    if (prazoProducao === 0) return;
-
-    const unit = prazoProducao === 1 ? "dia útil" : "dias úteis";
-    const htmlExtra = ` + <span id="prazo-brk" style="font-weight:bold; color: #000;">${prazoProducao} ${unit} de produção</span>`;
-
-    const observer = new MutationObserver((mutations) => {
-      // 1. Desconecta o observador temporariamente para evitar o loop
-      observer.disconnect();
-
-      const containerFrete = document.getElementById('calc-carrier');
-      
-      if (containerFrete) {
-        // 2. Procuramos os spans que contêm o prazo
-        const spans = containerFrete.getElementsByTagName('span');
-        
-        for (let span of spans) {
-          // Verifica se é o span do prazo e se já não adicionamos o nosso ID
-          if (span.textContent.toLowerCase().includes('dias') && !span.querySelector('#prazo-brk')) {
-            span.insertAdjacentHTML('beforeend', htmlExtra);
-          }
-        }
-      }
-
-      // 3. Reconecta o observador após a modificação
-      startObserving();
-    });
-
-    function startObserving() {
-      observer.observe(document.body, {
-        childList: true,
-        subtree: true
-      });
-    }
-
-    startObserving();
-  })();
-  </script>
-
   {%- if first_3_d_model -%}
     <script type="application/json" id="ProductJSON-{{ product.id }}">
       {{ product.media | where: 'media_type', 'model' | json }}
