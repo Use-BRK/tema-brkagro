@@ -258,8 +258,8 @@
 
 <script src="https://beka-assistent-ia-chatbot.vercel.app/embed.js" async></script>
       <style>
-        @media (max-width: 640px)
-        #customer-infos-chat{
+        @media (max-width: 640px){
+           #customer-infos-chat{
           display:none;
         }
 
@@ -270,7 +270,7 @@
           border: none!important; 
           z-index: 666!important; 
 
-          width: 430px!important; /* Em vez de 100dvw */
+          width: 100dvw!important; /* Em vez de 100dvw */
           height: 679px!important; /* Comece com um valor baixo e veja se o botão aparece */
 
           justify-content: center!important; 
@@ -278,6 +278,8 @@
           background-color: transparent!important;
 
         }
+        }
+       
       </style>
   </body>
   {{ 'custom-frete.css' | asset_url | stylesheet_tag }}
