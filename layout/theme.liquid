@@ -259,38 +259,52 @@
 
     <script src="https://beka-assistent-ia-chatbot.vercel.app/embed.js" async></script>
     <style>
-      /* Estilo base para o iframe */
-      #beka-chat-widget-iframe {
-        position: fixed !important;
+     /* Reset básico para o iframe no Shopify */
+#beka-chat-widget-iframe {
+    position: fixed !important;
+    bottom: 20px !important; /* Distância do fundo */
+    right: 20px !important;  /* Distância da direita */
+    border: none !important;
+    z-index: 2147483647 !important; /* Valor máximo de z-index */
+    background-color: transparent !important;
+    transition: width 0.3s ease, height 0.3s ease, bottom 0.3s ease, right 0.3s ease !important;
+    
+    /* ESTADO FECHADO (Launcher) */
+    width: 90px !important; 
+    height: 90px !important;
+}
+
+/* ESTADO ABERTO - DESKTOP (Telas maiores que 640px) */
+@media (min-width: 641px) {
+    #beka-chat-widget-iframe.beka-open {
+        width: 400px !important;
+        height: 650px !important;
+        max-height: 80vh !important;
+    }
+}
+
+/* ESTADO ABERTO - MOBILE (Telas menores que 640px) */
+@media (max-width: 640px) {
+    #beka-chat-widget-iframe {
+        bottom: 10px !important;
+        right: 10px !important;
+        width: 80px !important;
+        height: 80px !important;
+    }
+
+    #beka-chat-widget-iframe.beka-open {
+        width: 100% !important;
+        height: 100% !important;
         bottom: 0 !important;
         right: 0 !important;
-        border: none !important;
-        z-index: 999999 !important;
-        background-color: transparent !important;
-        transition: width 0.3s ease, height 0.3s ease, transform 0.3s ease;
-        /* Impede que o iframe bloqueie cliques quando for maior que o botão mas estiver 'vazio' */
-        pointer-events: auto;
-      }
+        border-radius: 0 !important;
+    }
+}
 
-      @media (max-width: 640px) {
-        /* Quando fechado no mobile (apenas o botão) */
-        #beka-chat-widget-iframe {
-          width: 80px !important;
-          height: 80px !important;
-        }
-
-        /* Quando aberto no mobile (tela cheia) */
-        #beka-chat-widget-iframe.beka-open {
-          width: 100vw !important;
-          height: 100vh !important;
-          /* Se quiser usar o novo padrão de altura mobile para evitar barra de endereço: */
-          height: 100dvh !important;
-        }
-
-        #customer-infos-chat {
-          display: none;
-        }
-      }
+/* Esconder o seu elemento de infos no chat se necessário */
+#customer-infos-chat {
+    display: none;
+}
     </style>
   </body>
   {{ 'custom-frete.css' | asset_url | stylesheet_tag }}
