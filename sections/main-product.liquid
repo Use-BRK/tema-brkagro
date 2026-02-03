@@ -678,3 +678,32 @@
   ]
 }
 {% endschema %}
+
+
+<script>
+  (function() {
+    // 1. Defina aqui o seu prazo (vindo do Liquid ou fixo para teste)
+    const textoExtra = " + 8 dias úteis de produção";
+
+    // 2. Função que tenta inserir o texto
+    const checkFrete = setInterval(function() {
+      const container = document.getElementById('calc-carrier');
+      
+      if (container) {
+        // Busca os spans que o app injetou com o prazo
+        const spans = container.querySelectorAll('span');
+        
+        spans.forEach(span => {
+          // Se o span tem "dias" e ainda não adicionamos nosso texto
+          if (span.innerText.includes('dias') && !span.innerText.includes(textoExtra)) {
+            span.innerText += textoExtra;
+          }
+        });
+        
+        // Opcional: Se quiser que ele pare de procurar após achar os primeiros, 
+        // mas como o usuário pode trocar o CEP, é melhor deixar rodando ou 
+        // limpar após alguns segundos.
+      }
+    }, 500); // Tenta a cada 500ms
+  })();
+</script>
