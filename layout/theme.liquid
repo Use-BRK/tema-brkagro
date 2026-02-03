@@ -259,15 +259,35 @@
 <script src="https://beka-assistent-ia-chatbot.vercel.app/embed.js" async></script>
    <style>
    #beka-chat-widget-iframe {
+      position: fixed!important; 
+      border: none!important; 
+      z-index: 666!important; 
+      background-color: transparent!important;
+      
+
       width: 450px!important;  
+      
       height: 650px!important; 
+      max-height: 80vh!important; 
+
    }
 
+   /* --- Configuração Específica para Mobile (Celular) --- */
    @media only screen and (max-width: 600px) {
       #beka-chat-widget-iframe {
+         bottom: 0px!important; 
+         right: 0px!important; 
+         left: 0px!important; /* Força ficar centralizado na largura */
+         
+         /* No celular, ocupamos a largura total para facilitar a digitação */
          width: 100%!important; 
-         height: 100vh!important; 
-         padding-bottom: 10px;
+         
+         /* Ajuste de altura no mobile */
+         /* CUIDADO: Se colocar 100vh aqui, bloqueia o celular todo.
+            Recomendo um valor percentual que deixe o topo do site visível */
+         height: 80vh!important; 
+         
+         border-radius: 12px 12px 0 0!important; /* Arredonda só em cima no mobile */
       }
    }
 </style>
