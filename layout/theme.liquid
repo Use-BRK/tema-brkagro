@@ -257,46 +257,32 @@
 
 
 <script src="https://beka-assistent-ia-chatbot.vercel.app/embed.js" async></script>
-     <style>
-  /* Configuração Geral (Desktop) */
-  #beka-chat-widget-iframe {
-    position: fixed !important;
-    bottom: 20px !important; /* Margem do fundo */
-    right: 20px !important;  /* Margem da direita */
-    border: none !important;
-    z-index: 999999 !important; /* Garante que fique acima de tudo */
-    background-color: transparent !important;
-    
-    /* Dimensões para Desktop */
-    width: 400px !important;
-    height: 600px !important;
-    max-width: 90vw !important; /* Segurança para telas menores */
-    max-height: 80vh !important;
-    
-    /* Transição suave ao carregar */
-    transition: transform 0.3s ease;
-  }
+      <style>
+        @media (max-width: 640px){
+           #customer-infos-chat{
+          display:none;
+        }
 
-  /* Configuração para Mobile (Celulares) */
-  @media (max-width: 640px) {
-    #customer-infos-chat {
-      display: none !important;
-    }
+        iframe#beka-chat-widget-iframe{
+          position: fixed!important; 
+          bottom: 0px!important; 
+          right: 0px!important; 
+          border: none!important; 
+          z-index: 666!important; 
 
-    #beka-chat-widget-iframe {
-      bottom: 10px !important;
-      right: 10px !important;
-      
-      /* O segredo da responsividade: */
-      width: 90vw !important;   /* Ocupa 90% da largura da tela */
-      max-width: 350px !important; /* Não deixa ficar exagerado em celulares grandes */
-      height: 70dvh !important;  /* Usa altura dinâmica do viewport */
-      
-      /* Melhora a performance mobile */
-      will-change: transform;
-    }
-  }
-</style>
+          width: 50vw!important; /* Em vez de 100dvw */
+          height: 100vh!important; /* Comece com um valor baixo e veja se o botão aparece */
+
+          justify-content: center!important; 
+          align-items: center!important; 
+          background-color: transparent!important;
+
+        }
+        }
+       
+      </style>
+
+    
   </body>
   {{ 'custom-frete.css' | asset_url | stylesheet_tag }}
 </html>
