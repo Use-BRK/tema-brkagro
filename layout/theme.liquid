@@ -261,61 +261,18 @@
    #beka-chat-widget-iframe {
       width: 450px!important;  
       height: 650px!important; 
-
    }
 
    @media only screen and (max-width: 600px) {
       #beka-chat-widget-iframe {
          width: 100%!important; 
          height: 100vh!important; 
+         padding-bottom: 10px;
       }
    }
 </style>
 
 
-<script>
-  (function() {
-    const targetId = 'beka-assistent-btn';
-
-    const startObserving = (element) => {
-      const observer = new MutationObserver((mutationsList) => {
-        for (const mutation of mutationsList) {
-          if (mutation.attributeName === 'class') {
-            const classes = element.className;
-            
-            // Verifica se o botão "sumiu" (Classe 2)
-            if (classes.includes('scale-0') || classes.includes('opacity-0')) {
-              console.log("Detectado: O Chatbot foi minimizado/escondido.");
-              
-              // --- COLOQUE SUA AÇÃO AQUI ---
-              // Exemplo: document.body.classList.add('chat-is-hidden');
-              
-            } else {
-              console.log("Detectado: O Chatbot está visível.");
-              // Ação opcional quando ele voltar ao normal
-            }
-          }
-        }
-      });
-
-      observer.observe(element, { attributes: true, attributeFilter: ['class'] });
-    };
-
-    // Tenta encontrar o botão. Se não achar (carregamento lento), espera 2 segundos.
-    const btn = document.getElementById(targetId);
-    if (btn) {
-      startObserving(btn);
-    } else {
-      const retryFind = setInterval(() => {
-        const lateBtn = document.getElementById(targetId);
-        if (lateBtn) {
-          startObserving(lateBtn);
-          clearInterval(retryFind);
-        }
-      }, 2000);
-    }
-  })();
-</script>
     
   </body>
   {{ 'custom-frete.css' | asset_url | stylesheet_tag }}
