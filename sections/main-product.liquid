@@ -690,10 +690,10 @@
 
 <script>
   (function() {
-    const prazoAdicional = parseInt("{{ prazo_final }}") || 0;
-    if (prazoAdicional === 0) return;
+    // 1. Defina o número de dias que quer somar
+    const diasAdicionais = 8;
 
-    const checkFreteBrk = setInterval(function() {
+    const checkFrete = setInterval(function() {
       const container = document.getElementById('calc-carrier');
       
       if (container) {
@@ -701,29 +701,29 @@
         
         spans.forEach(span => {
           const textoOriginal = span.innerText;
-          
-          // Verifica se o span tem "dias" e se ainda NÃO fizemos a soma (marcador via atributo)
-          if (textoOriginal.toLowerCase().includes('dias') && !span.getAttribute('data-prazo-somado')) {
+
+          // Verifica se tem a palavra "dias" e se ainda não fizemos a soma
+          if (textoOriginal.includes('dias') && !span.hasAttribute('data-somado')) {
             
-            // 1. Extrai apenas o primeiro número que encontrar (ex: "9" de "9 dias úteis")
-            const match = textoOriginal.match(/\d+/);
+            // Extrai o número (ex: "9" de "9 dias úteis")
+            const numeroEncontrado = textoOriginal.match(/\d+/);
             
-            if (match) {
-              const prazoTransportadora = parseInt(match[0]);
-              const novoPrazoTotal = prazoTransportadora + prazoAdicional;
+            if (numeroEncontrado) {
+              const prazoTransportadora = parseInt(numeroEncontrado[0]);
+              const novoTotal = prazoTransportadora + diasAdicionais;
               
-              // 2. Substitui o número antigo pelo novo e mantém o resto do texto
-              // Ex: "9 dias úteis" vira "17 dias úteis"
-              span.innerText = textoOriginal.replace(match[0], novoPrazoTotal);
+              // Substitui o número antigo pelo somado
+              span.innerText = textoOriginal.replace(numeroEncontrado[0], novoTotal);
               
-              // 3. Marca o span para o script não somar de novo no próximo ciclo do intervalo
-              span.setAttribute('data-prazo-somado', 'true');
+              // Marca o span para não somar de novo no próximo ciclo do setInterval
+              span.setAttribute('data-somado', 'true');
             }
           }
         });
       }
     }, 500);
 
-    setTimeout(() => clearInterval(checkFreteBrk), 60000);
+    // Para de rodar após 60 segundos para não pesar o site
+    setTimeout(() => clearInterval(checkFrete), 60000);
   })();
 </script>
