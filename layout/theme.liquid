@@ -266,6 +266,38 @@
       }
    }
 </style>
+
+<script>
+  (function() {
+    {% assign prazo_final = block_st.producao %}
+    {% if product.tags contains 'prazo_algodao' %}
+      {% assign prazo_final = block_st.algodao %}
+    {% endif %}
+  
+    const prazoProducao = parseInt("{{ prazo_final }}") || 0;
+    if (prazoProducao === 0) return;
+    const unit = prazoProducao === 1 ? "dia útil" : "dias úteis";
+    const htmlExtra = ` + <span id="prazo-brk" style="font-weight:bold; color: #000;">${prazoProducao} ${unit} de produção</span>`;
+
+    const observer = new MutationObserver((mutations) => {
+      const containerFrete = document.getElementById('calc-carrier');
+      
+      if (containerFrete) {
+        const spansFrete = containerFrete.querySelectorAll('span[style*="font-size:12px"]');
+        
+        spansFrete.forEach(span => {
+          if (span.textContent.toLowerCase().includes('dias') && !span.querySelector('#prazo-brk')) {
+            span.insertAdjacentHTML('beforeend', htmlExtra);
+          }
+        });
+      }
+    });
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true
+    });
+  })();
+</script>
     
   </body>
   {{ 'custom-frete.css' | asset_url | stylesheet_tag }}
