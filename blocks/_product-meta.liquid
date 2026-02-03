@@ -112,6 +112,52 @@
     </li>
   {% endif %}
 </ul>
+
+
+{% comment %} começa estrutura para adicionar prazo no cálculo de frete {% endcomment %}
+{%- assign prazo_final = 0 -%}
+
+{%- if product.tags contains 'prazo_producao' -%}
+  {%- assign prazo_final = block_st.producao | plus: 0 -%}
+{%- elsif product.tags contains 'prazo_algodao' -%}
+  {%- assign prazo_final = block_st.algodao | plus: 0 -%}
+{%- elsif product.tags contains 'prazo_imediato' -%}
+  {%- assign prazo_final = 0 -%}
+{%- else -%}
+  {%- assign prazo_final = product.metafields.custom.disponibilidade | plus: 0 -%}
+{%- endif -%}
+
+<script>
+  (function () {
+    const prazoBrk = parseInt('{{ prazo_final }}') || 0;
+
+    if (prazoBrk <= 0) return;
+
+    const unit = prazoBrk === 1 ? 'dia útil' : 'dias úteis';
+    const textoInjetar = ` + ${prazoBrk} ${unit} de produção`;
+
+    const checkFreteBrk = setInterval(function () {
+      const container = document.getElementById('calc-carrier');
+
+      if (container) {
+        const spans = container.querySelectorAll('span');
+
+        spans.forEach((span) => {
+          const textoOriginal = span.innerText;
+
+          if (textoOriginal.toLowerCase().includes('dia') && !textoOriginal.includes(textoInjetar)) {
+            span.innerText = textoOriginal + textoInjetar;
+          }
+        });
+      }
+    }, 500);
+
+    setTimeout(() => clearInterval(checkFreteBrk), 600000);
+  })();
+</script>
+
+{% comment %} ---------------- FIM da lógica de inserir prazo no cálculo ---------------- {% endcomment %}
+
 {% schema %}
 {
   "name": "t:blocks.product.product_meta.name",
