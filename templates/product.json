@@ -190,7 +190,7 @@
         "collapsible_row_m3g6f8"
       ],
       "custom_css": [
-        "variant-king-combined-listing+variant-king-combined-listing{display:none;}"
+        "variant-king-combined-listing + variant-king-combined-listing {display: none;}"
       ],
       "name": "Informações do Produto",
       "settings": {
@@ -430,39 +430,69 @@
     "faq_Lp4kjg": {
       "type": "faq",
       "blocks": {
+        "faq_items_UzT8b8": {
+          "type": "faq-items",
+          "name": "Proteção UV50",
+          "settings": {
+            "faq_title": "Os produtos da BRK possuem proteção solar real?",
+            "faq_content": "Sim. Nossas camisas contam com a tecnologia <strong>UV50+</strong>, que bloqueia até 98% dos raios UVA e UVB. Essa proteção é aplicada diretamente nas fibras do tecido, o que garante que a eficácia não saia nas lavagens, mantendo você seguro durante toda a vida útil da peça."
+          }
+        },
         "faq_items_Td8haf": {
           "type": "faq-items",
+          "name": "Tecidos das Camisas",
           "settings": {
-            "faq_title": "Frequently Asked Questions?",
-            "faq_content": "Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore."
+            "faq_title": "Qual é o diferencial do tecido das camisas BRK?",
+            "faq_content": "Utilizamos tecidos de alta tecnologia, que permite a rápida evaporação do suor, mantendo o corpo seco e em temperatura agradável, mesmo em atividades sob sol intenso ou práticas esportivas."
           }
         },
         "faq_items_gyereb": {
           "type": "faq-items",
+          "name": "Tamanho Ideal",
           "settings": {
-            "faq_title": "Frequently Asked Questions?",
-            "faq_content": "Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore."
+            "faq_title": "Como escolher o tamanho ideal para mim?",
+            "faq_content": "Em cada página de produto, disponibilizamos uma <strong>Tabela de Medidas</strong>. Recomendamos comparar as medidas de uma peça que você já usa com os nossos valores."
           }
         },
         "faq_items_JpQzzp": {
           "type": "faq-items",
+          "name": "Cores das Camisas",
           "settings": {
-            "faq_title": "Frequently Asked Questions?",
-            "faq_content": "Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore."
+            "faq_title": "As cores das camisas desbotam com o tempo?",
+            "faq_content": "Não. Utilizamos um processo de sublimação de alta definição. Isso garante que as estampas e cores permaneçam vivas e vibrantes mesmo após diversas lavagens e exposição prolongada ao sol."
+          }
+        },
+        "faq_items_8zJiEq": {
+          "type": "faq-items",
+          "name": "Formas de Pagamento e Entrega",
+          "settings": {
+            "faq_title": "Quais são as formas de pagamento e prazos de entrega?",
+            "faq_content": "Aceitamos as principais bandeiras de cartão de crédito (com parcelamento), boleto bancário e PIX. O prazo de entrega varia de acordo com a sua região e a modalidade de frete escolhida no carrinho."
+          }
+        },
+        "faq_items_iwUj3j": {
+          "type": "faq-items",
+          "name": "Formas de Pagamento e Entrega",
+          "settings": {
+            "faq_title": "Posso trocar o produto se não servir?",
+            "faq_content": "Se você recebeu um produto e não ficou satisfeito ou ele simplesmente não serviu, é possível fazer a solicitação devolução para estorno <strong>em até 7 dias corridos após a entrega</strong>. Para isso, o produto deverá estar em sua embalagem original, sem indícios de uso e com todos os itens e acessórios recebidos. Para os casos de insatisfação com o produto adquirido, solicite a troca, através do nosso Portal de Trocas e Devoluções, pelo endereço <a href=\"https://brkagro.troque.app.br/\" target=\"_blank\">https://brkagro.troque.app.br/</a>"
           }
         }
       },
       "block_order": [
+        "faq_items_UzT8b8",
         "faq_items_Td8haf",
         "faq_items_gyereb",
-        "faq_items_JpQzzp"
+        "faq_items_JpQzzp",
+        "faq_items_8zJiEq",
+        "faq_items_iwUj3j"
       ],
-      "disabled": true,
+      "custom_css": [],
       "name": "t:sections.faq.presets.name",
       "settings": {
         "section_width": "container",
         "color_scheme": "",
-        "heading": "FAQ",
+        "heading": "Perguntas Frequentes",
         "description": "",
         "header_size": "medium",
         "header_alignment": "center",
