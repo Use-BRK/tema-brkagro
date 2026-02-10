@@ -25,7 +25,7 @@
   </style>
 {%- endif -%}
 {%- capture style -%}
-  --section-pt: {{ section_st.padding_top }}; --section-pb: {{ section_st.padding_bottom }};{%- if image_bg != blank and height == 'adapt' -%}--aspect-ratio: {{ image_bg.aspect_ratio }}{% endif %};--overlay-opacity: {{ section_st.overlay_opacity }}%;
+  --section-pt: {{ section_st.padding_top }}; --section-pb: {{ section_st.padding_bottom }};{%- if image_bg != blank %}{% if height == 'adapt' or height == 'contain' %}--aspect-ratio: {{ image_bg.aspect_ratio }}{% endif %}{% endif %};--overlay-opacity: {{ section_st.overlay_opacity }}%;
 {%- endcapture -%}
 {%- if section.blocks.size > 0 -%}
   <div
