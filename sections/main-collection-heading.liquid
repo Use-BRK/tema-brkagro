@@ -12,7 +12,18 @@
   assign alt = image_bg.alt | default: collection.title | escape
   assign height = section_st.height
   assign scroll_animation = settings.scroll_animation
+  assign object_fit = 'object-fit-cover'
+  if height == 'contain'
+    assign object_fit = 'object-fit-contain'
+  endif
 -%}
+{%- if height == 'contain' -%}
+  <style>
+    .object-fit-contain {
+      object-fit: contain !important;
+    }
+  </style>
+{%- endif -%}
 {%- capture style -%}
   --section-pt: {{ section_st.padding_top }}; --section-pb: {{ section_st.padding_bottom }};{%- if image_bg != blank and height == 'adapt' -%}--aspect-ratio: {{ image_bg.aspect_ratio }}{% endif %};--overlay-opacity: {{ section_st.overlay_opacity }}%;
 {%- endcapture -%}
@@ -24,12 +35,15 @@
     {% if show_collection_image or background_image != blank %}
       <div class="overlay-bg">
         {%- if image_bg != blank -%}
+          {%- assign image_class = 'background-heading absolute inset-0 z--1 pointer-none w-full h-full object-position-center '
+            | append: object_fit
+          -%}
           {% render 'responsive-image',
             type: 'banner',
             container: section_width,
             image: image_bg,
             image_alt: alt,
-            class: 'background-heading absolute inset-0 z--1 pointer-none w-full h-full object-position-center object-fit-cover'
+            class: image_class
           %}
         {%- else -%}
           {% comment %} {% render 'placeholder-render' | type: "collection", class: 'background-heading absolute inset-0 z--1 pointer-none w-full h-full object-position-center object-fit-cover' %} {% endcomment %}
@@ -58,14 +72,14 @@
                 data-motion-delay="{{ forloop.index0 | times: 50 }}"
                 class="block"
               >
-              <h1 class="heading-title heading-letter-spacing h2 mt-8 mb-0 {{ header_size }}">
-                {%- if block_st.page_title != blank -%}
-                  {{ block_st.page_title }}
-                {%- else -%}
-                  {{ collection.title }}
-                {% endif %}
-              </h1>
-            </motion-element>
+                <h1 class="heading-title heading-letter-spacing h2 mt-8 mb-0 {{ header_size }}">
+                  {%- if block_st.page_title != blank -%}
+                    {{ block_st.page_title }}
+                  {%- else -%}
+                    {{ collection.title }}
+                  {% endif %}
+                </h1>
+              </motion-element>
             {%- when 'description' -%}
               {% if collection.description != blank %}
                 <motion-element
@@ -73,8 +87,9 @@
                   {% if scroll_animation == 'none' %}
                     hold
                   {% endif %}
-                  data-motion-delay="{{ forloop.index0 | times: 50 }}"                             
-                  class="heading-description mt-10 block rich__text-m0">
+                  data-motion-delay="{{ forloop.index0 | times: 50 }}"
+                  class="heading-description mt-10 block rich__text-m0"
+                >
                   {{ collection.description }}
                 </motion-element>
               {% endif %}
@@ -86,11 +101,11 @@
                 {% endif %}
                 data-motion-delay="{{ forloop.index0 | times: 50 }}"
                 class="block"
-               >
-              <div class="page-title-breadcrumb">
-                {%- render 'breadcrumbs' -%}
-              </div>
-            </motion-element>
+              >
+                <div class="page-title-breadcrumb">
+                  {%- render 'breadcrumbs' -%}
+                </div>
+              </motion-element>
           {%- endcase -%}
         {%- endfor -%}
       </div>
@@ -190,6 +205,10 @@
         {
           "value": "based_on_content",
           "label": "t:sections.all.page_heading.height.option__2"
+        },
+        {
+          "value": "contain",
+          "label": "Contain"
         }
       ],
       "default": "adapt",
