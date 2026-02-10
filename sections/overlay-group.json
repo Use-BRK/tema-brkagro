@@ -78,7 +78,7 @@
         "cart_8xqQBb"
       ],
       "custom_css": [
-        "mobile-navigation-bar {backdrop-filter: blur(10px); background: #ffffffcf; transition: opacity 0.3s, transform 0.3s; opacity: 1; transform: translateY(0px); padding: 8px;}",
+        "mobile-navigation-bar {backdrop-filter: blur(10px); background: #ffffffcf; transition: opacity 0.3s, transform 0.3s; opacity: 1; transform: translateY(0px); padding: 3px;}",
         "span {font-size: 12px;}",
         "svg {transform: scale(0.8); transform-origin: center; transition: transform 0.3s ease;}"
       ],
