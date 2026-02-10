@@ -26,6 +26,17 @@ mobile-navigation-bar > svg {
   transition: transform 0.3s ease;
 }
 
+/* Mobile Navbar feedback tátil */
+mobile-navigation-bar a {
+  -webkit-tap-highlight-color: transparent;
+  border-radius: 12px;
+  transition: background-color 0.2s ease;
+}
+
+mobile-navigation-bar a:active {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
 
 
 
