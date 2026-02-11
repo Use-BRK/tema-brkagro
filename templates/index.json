@@ -504,24 +504,24 @@
     "collection_tab_XNDCTb": {
       "type": "collection-tab",
       "blocks": {
+        "collection_HK34Cn": {
+          "type": "collection",
+          "settings": {
+            "collection": "lancamentos-1",
+            "collection_title": "Lançamentos"
+          }
+        },
         "collection_RikWXM": {
           "type": "collection",
           "settings": {
             "collection": "mais-vendidos",
             "collection_title": "Mais Vendidos"
           }
-        },
-        "collection_HK34Cn": {
-          "type": "collection",
-          "settings": {
-            "collection": "lancamentos",
-            "collection_title": "Lançamentos"
-          }
         }
       },
       "block_order": [
-        "collection_RikWXM",
-        "collection_HK34Cn"
+        "collection_HK34Cn",
+        "collection_RikWXM"
       ],
       "custom_css": [
         ".collection-tab__tab-item {font-size: clamp(1.105em, 2vw, 2.5rem);}",
@@ -1221,10 +1221,10 @@
     "divider_WJrFxP",
     "slideshow_8KKtNU",
     "scrolling_text_XAxGTr",
+    "collection_tab_XNDCTb",
     "collection_list_TVMtme",
     "collection_list_DnBJyy",
     "products_carousel_nUcUgz",
-    "collection_tab_XNDCTb",
     "banner_packery_txTyNt",
     "brand_logo_XHpAXt",
     "product_bundle_U4cMyL",
