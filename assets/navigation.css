@@ -104,10 +104,10 @@
   }
   .navigation.mobile {
     background: var(--color-background);
-    --menu-mobile-width: 43rem;
-    --show-overlay-bg: rgba(255, 255, 255, 0.9);
-    width: 100%;
-    max-width: var(--menu-mobile-width);
+    --menu-mobile-width: 75%;
+    --show-overlay-bg: rgba(0, 0, 0, 0.5);
+    width: var(--menu-mobile-width);
+    max-width: 30rem;
     overflow: auto;
     transform: translateX(-101%);
     transition: var(--transition-popup);
@@ -307,9 +307,20 @@
   .is-open .icon_plus-animation:after {
       transform: rotate(0deg);
   }
-  footer .show-overlay:after{
+  /* Menu mobile: itens mais à esquerda */
+  .navigation.mobile .menu-mobile-title {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+  .navigation.mobile .horizontal-list {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  footer .show-overlay:after,
+  .nav-open .overlay::after {
     z-index: 11;
-    background-color: var(--overlay-bg);
+    background-color: rgba(0, 0, 0, 0.5) !important; /* Visualizar o site atrás */
   }
 }
 @media screen and (min-width: 1025px) {
