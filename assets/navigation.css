@@ -104,15 +104,31 @@
   }
   .navigation.mobile {
     background: var(--color-background);
-    --menu-mobile-width: 43rem;
-    --show-overlay-bg: rgba(255, 255, 255, 0.9);
-    width: 100%;
-    max-width: var(--menu-mobile-width);
+    --menu-mobile-width: 75%;
+    --show-overlay-bg: rgba(0, 0, 0, 0.5);
+    width: var(--menu-mobile-width);
+    max-width: 33rem;
     overflow: auto;
     transform: translateX(-101%);
     transition: var(--transition-popup);
     z-index: 12;
   }
+
+  .navigation.mobile .menu-mobile-title {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+  .navigation.mobile .horizontal-list {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  footer .show-overlay:after,
+  .nav-open .overlay::after {
+    z-index: 11;
+    background-color: rgba(0, 0, 0, 0.5) !important; /* Visualizar o site atrás */
+  }  
+
   .navigation.mobile open-children-toggle {
     color: var(--color-heading);
   }
