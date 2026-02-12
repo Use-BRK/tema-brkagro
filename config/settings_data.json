@@ -44,6 +44,7 @@
     "custom_badge_background": "#14854e",
     "product_style": "standard",
     "show_quick_view": false,
+    "show_wishlist": false,
     "show_compare": false,
     "show_add_cart": true,
     "product_alignment": "center",
