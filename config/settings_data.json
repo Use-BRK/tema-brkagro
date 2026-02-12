@@ -102,7 +102,7 @@
     "content_cookies": "<p>We use cookies to enhance your browsing experience, serve personalized ads or content, and analyze our traffics. By clicking \"<strong>Allow Cookies</strong>\" you consent to our use of cookie.</p>",
     "label_allow": "Allow Cookies",
     "label_refuse": "",
-    "enable_whatsapp_button": true,
+    "enable_whatsapp_button": false,
     "whatsapp_button_bottom": 145,
     "whatsapp_button_right": 15,
     "show_check_box_in_cart": false,
