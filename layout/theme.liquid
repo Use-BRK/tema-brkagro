@@ -1,6 +1,6 @@
-{%- comment %}<locksmith:2c89>{% endcomment -%}
-  {%- include 'locksmith' -%}
-{%- comment %}</locksmith:2c89>{% endcomment -%}
+{%- comment %}<locksmith:2c89>{%- endcomment %}
+{%- include 'locksmith' -%}
+{%- comment %}</locksmith:2c89>{%- endcomment %}
 
 {% liquid
   assign enable_rtl = settings.rtl
@@ -18,8 +18,8 @@
 <!doctype html>
 <html class="no-js" lang="{{ request.locale.iso_code }}">
   <head>
-{{ locksmith_initializations }}
-{% include 'booster-seo' %}
+    {{ locksmith_initializations }}
+    {% include 'booster-seo' %}
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -28,12 +28,14 @@
     {%- if settings.favicon != blank -%}
       <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
     {%- endif -%}
-    {% comment %}<title>
-      {{ page_title }}
-      {%- if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif -%}
-      {%- if current_page != 1 %} &ndash; Page {{ current_page }}{% endif -%}
-      {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
-    </title>{% endcomment %}
+    {% comment %}
+      <title>
+        {{ page_title }}
+        {%- if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif -%}
+        {%- if current_page != 1 %} &ndash; Page {{ current_page }}{% endif -%}
+        {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
+      </title>
+    {% endcomment %}
     {% if page_description %}
       {% comment %}{%- comment %}<locksmith:84fb>{% endcomment -%}{%- capture var %}{% render 'locksmith-variables', variable: 'transparent', hiding_scope: 'resource' %}{% endcapture %}{% if var == 'true' %}<meta name="description" content="{{ page_description | escape }}">{% endif -%}{%- comment %}original: <meta name="description" content="{{ page_description | escape }}">{%- endcomment %}{%- comment %}</locksmith:84fb>{% endcomment -%}{% endcomment %}
     {% endif %}
@@ -205,17 +207,17 @@
     </script>
     {% include 'pagefly-app-header' %}
     <script type="text/javascript">
-    (function (appId) {
+      (function (appId) {
         window._edrone = window._edrone || {};
         _edrone.app_id = appId;
         _edrone.platform = 'custom';
         var doc = document.createElement('script');
         doc.type = 'text/javascript';
         doc.async = true;
-        doc.src = "https://d3bo67muzbfgtl.cloudfront.net/edrone_2_0.js?app_id=" + appId;
+        doc.src = 'https://d3bo67muzbfgtl.cloudfront.net/edrone_2_0.js?app_id=' + appId;
         var s = document.getElementsByTagName('script')[0];
         s.parentNode.insertBefore(doc, s);
-    })("683e3756683f1");
+      })('683e3756683f1');
     </script>
   </head>
   <body
@@ -243,6 +245,48 @@
     {%- render 'sprite-svg' -%}
     {%- render 'content-bottom' -%}
     {%- render 'whatsapp-button' -%}
+
+    
+    <script>
+      /* BEKA SHOPIFY INTEGRATION. */
+      {%- assign current_url = canonical_url | downcase -%}
+      {%- assign store_id = "DEFAULT" -%}
+
+      {%- if current_url contains 'brkagro' -%}
+        {%- assign store_id = "AGRO" -%}
+      {%- elsif current_url contains 'brkfishing' -%}
+        {%- assign store_id = "FISHING" -%}
+      {%- elsif current_url contains 'brkmotors' -%}
+        {%- assign store_id = "MOTORS" -%}
+      {%- endif -%}
+
+      window.BekaAppData = {
+        store: {{ store_id | json }},
+        url: window.location.origin+window.location.pathname, // Agora acessível via window.BekaAppData.url
+        customer: {% if customer %}
+          {
+            name: {{ customer.name | json }},
+            first_name: {{ customer.first_name | default: customer.default_address.first_name | json }},
+            last_name: {{ customer.last_name | default: customer.default_address.last_name | json }},
+            email: {{ customer.email | json }},
+            phone: {{ customer.phone | default: customer.default_address.phone | json }}
+          }
+        {% else %}
+          null
+        {% endif %}
+      };
+    </script>
+
+    <script src="https://n8n-beka-assistent-ia-chatbot.pqcilq.easypanel.host//embed.js" async></script>
+    <style>
+      /* Mobile: tela cheia quando aberto */
+      @media only screen and (max-width: 600px) {
+         #beka-chat-widget-iframe {
+            /* O embed.js controla o tamanho automaticamente */
+            /* Adicione apenas se quiser forçar tela cheia quando aberto */
+         }
+      }
+    </style>
   </body>
   {{ 'custom-frete.css' | asset_url | stylesheet_tag }}
 </html>
