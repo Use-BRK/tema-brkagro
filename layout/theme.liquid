@@ -247,46 +247,48 @@
     {%- render 'whatsapp-button' -%}
 
     
-    <script>
-      /* BEKA SHOPIFY INTEGRATION. */
-      {%- assign current_url = canonical_url | downcase -%}
-      {%- assign store_id = "DEFAULT" -%}
+ {% comment %} {%- render 'whatsapp-button' -%} {% endcomment %}
+{% comment %} Script Teste ChatWoot {% endcomment %}
+<script>
+  {%- assign current_url = canonical_url | downcase -%}
+  {%- assign store_id = "DEFAULT" -%}
 
-      {%- if current_url contains 'brkagro' -%}
-        {%- assign store_id = "AGRO" -%}
-      {%- elsif current_url contains 'brkfishing' -%}
-        {%- assign store_id = "FISHING" -%}
-      {%- elsif current_url contains 'brkmotors' -%}
-        {%- assign store_id = "MOTORS" -%}
-      {%- endif -%}
+  {%- if current_url contains 'brkagro' -%}
+    {%- assign store_id = "AGRO" -%}
+  {%- elsif current_url contains 'brkfishing' -%}
+    {%- assign store_id = "FISHING" -%}
+  {%- elsif current_url contains 'brkmotors' -%}
+    {%- assign store_id = "MOTORS" -%}
+  {%- endif -%}
 
-      window.BekaAppData = {
-        store: {{ store_id | json }},
-        url: current_url, // Agora acessível via window.BekaAppData.url
-        customer: {% if customer %}
-          {
-            name: {{ customer.name | json }},
-            first_name: {{ customer.first_name | default: customer.default_address.first_name | json }},
-            last_name: {{ customer.last_name | default: customer.default_address.last_name | json }},
-            email: {{ customer.email | json }},
-            phone: {{ customer.phone | default: customer.default_address.phone | json }}
-          }
-        {% else %}
-          null
-        {% endif %}
-      };
-    </script>
-
-    <script src="https://n8n-beka-assistent-ia-chatbot.pqcilq.easypanel.host//embed.js" async></script>
-    <style>
-      /* Mobile: tela cheia quando aberto */
-      @media only screen and (max-width: 600px) {
-         #beka-chat-widget-iframe {
-            /* O embed.js controla o tamanho automaticamente */
-            /* Adicione apenas se quiser forçar tela cheia quando aberto */
-         }
+  window.BekaAppData = {
+    store: {{ store_id | json }},
+    url: current_url, // Agora acessível via window.BekaAppData.url
+    customer: {% if customer %}
+      {
+        name: {{ customer.name | json }},
+        first_name: {{ customer.first_name | default: customer.default_address.first_name | json }},
+        last_name: {{ customer.last_name | default: customer.default_address.last_name | json }},
+        email: {{ customer.email | json }},
+        phone: {{ customer.phone | default: customer.default_address.phone | json }}
       }
-    </style>
+    {% else %}
+      null
+    {% endif %}
+  };
+</script>
+
+
+<script src="https://n8n-beka-assistent-ia-chatbot.pqcilq.easypanel.host//embed.js" async></script>
+<style>
+   /* Mobile: tela cheia quando aberto */
+   @media only screen and (max-width: 600px) {
+      #beka-chat-widget-iframe {
+         /* O embed.js controla o tamanho automaticamente */
+         /* Adicione apenas se quiser forçar tela cheia quando aberto */
+      }
+   }
+</style>
   </body>
   {{ 'custom-frete.css' | asset_url | stylesheet_tag }}
 </html>
