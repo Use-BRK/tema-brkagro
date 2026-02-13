@@ -262,7 +262,7 @@
 
       window.BekaAppData = {
         store: {{ store_id | json }},
-        url: window.location.origin+window.location.pathname, // Agora acessível via window.BekaAppData.url
+        url: current_url, // Agora acessível via window.BekaAppData.url
         customer: {% if customer %}
           {
             name: {{ customer.name | json }},
