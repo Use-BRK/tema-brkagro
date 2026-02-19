@@ -1249,8 +1249,7 @@ section[class*=collection] grid-list .grid__item variant-radios {
   white-space: nowrap;
 }
 
-.lb-addon-cont {
-  margin-left: 2rem;
-  --upsell-width: 300px;
-  width: var(--upsell-width);
+
+.drawer-bottom {
+  padding: 5px !important;
 }
