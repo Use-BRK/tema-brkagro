@@ -1248,3 +1248,8 @@ section[class*=collection] grid-list .grid__item variant-radios {
 .size-filter-item-wide .size-filter-label {
   white-space: nowrap;
 }
+
+.lb-addon-cont {
+  --upsell-width: 300px;
+  width: var(--upsell-width);
+}
