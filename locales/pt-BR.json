@@ -849,6 +849,11 @@
       "marketing": {
         "accept_marketing_checkbox_label": "Quero receber descontos por e-mail",
         "post_accept_marketing_checkbox_label": "Você se inscreveu para receber descontos e ofertas por e-mail"
+      },
+      "order_summary": {
+        "discount_discovery": {
+          "add_code": "Usar meu cupom"
+        }
       }
     }
   }
