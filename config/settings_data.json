@@ -72,7 +72,7 @@
     "free_shipping_minimum": "150",
     "show_duration_on_minicart_cart_page": false,
     "enable_cart_note": false,
-    "enable_discount_code": false,
+    "enable_discount_code": true,
     "enable_gift_wrap": false,
     "choose_gift_wrap_product": "digital-gift-card",
     "product_recommendations_heading": "🌱 Roupas do Agro",
