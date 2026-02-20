@@ -1238,6 +1238,7 @@ section[class*=collection] grid-list .grid__item variant-radios {
 
 /* ============================================ */
 
+/* regula filtro de tamanho da página de envio full */
 .size-filter-item-wide {
   width: auto !important;
   min-width: 36px;
@@ -1249,6 +1250,7 @@ section[class*=collection] grid-list .grid__item variant-radios {
   white-space: nowrap;
 }
 
+/* diminui caixa de subtotal do cart drawer */
 
 .drawer-bottom {
   padding: 10px !important;
@@ -1256,4 +1258,12 @@ section[class*=collection] grid-list .grid__item variant-radios {
 
 .minicart__header {
   padding: 10px;
+}
+
+  /* ============================
+  retira bloco de cupom de desconto (APENAS QUANDO NS DISCOUNT ESTIVER ATIVO) 
+  =============================== */ 
+
+.mini_cart_coupon {
+  display: none;
 }
