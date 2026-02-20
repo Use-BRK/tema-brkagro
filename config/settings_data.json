@@ -308,11 +308,6 @@
         "disabled": false,
         "settings": {}
       },
-      "16555213172727936593": {
-        "type": "shopify://apps/ns-discount-in-cart/blocks/discount_block/0cbbbcdd-bf54-49df-885c-9ca3fd52a671",
-        "disabled": true,
-        "settings": {}
-      },
       "2567389343055140935": {
         "type": "shopify://apps/microsoft-clarity/blocks/clarity_js/31c3d126-8116-4b4a-8ba1-baeda7c4aeea",
         "disabled": false,
@@ -342,6 +337,11 @@
           "switch_on_hover": false,
           "preselect_variant": false
         }
+      },
+      "16555213172727936593": {
+        "type": "shopify://apps/ns-discount-in-cart/blocks/discount_block/0cbbbcdd-bf54-49df-885c-9ca3fd52a671",
+        "disabled": false,
+        "settings": {}
       }
     },
     "color_schemes": {
