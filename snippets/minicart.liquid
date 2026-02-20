@@ -29,7 +29,7 @@
     endif
   endif
 %}
-{% if template != 'cart' and action_after_add_cart != 'go_to_cart_page' %}
+{% if action_after_add_cart != 'go_to_cart_page' %}
   <cart-notification id="minicart_wrapper" class="minicart {{ action_after_add_cart }} bls-image-js">
     <div class="minicart__wrapper flex flex-column color-default {% if action_after_add_cart == 'open_drawer' %} bls__drawer fixed z-15 inset-y-0 h-full transition-popup{% if enable_rtl %} right left-0{% else %} left right-0{% endif %}{% endif %}{% if action_after_add_cart == 'show_popup' %} popup_cart invisible absolute z-10 transition-popup right-0 rounded shadow{% endif %}{% if settings.option_show_minicart == 'beside' %} minicart-beside{% endif %}">
       {% if action_after_add_cart == 'show_popup' %}
@@ -342,12 +342,12 @@
                 </terms-conditions>
               {%- endif -%}
               {%- if settings.enable_catalog_mode == false -%}
-                <a
+                {% comment %} <a
                   class="action block mb-10 btn-outline w-full text-center no-underline viewcart"
                   href="{{ routes.cart_url }}"
                 >
                   <span>{{ 'general.cart.viewcart' | t }}</span>
-                </a>
+                </a> {% endcomment %}
                 <button
                   type="submit"
                   class="btn-primary w-full btn-checkout"

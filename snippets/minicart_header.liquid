@@ -7,9 +7,9 @@
     >
       <a
         id="cart-icon-bubble"
-        href="{{ routes.cart_url }}"
+        href="#"
         arial-label="{{ 'general.cart.label' | t }}"
-        class="no-underline {% if template != 'cart' and action_after_add_cart != 'go_to_cart_page' %}minicart__action{% endif %} header-icon header-color w-44 h-44 inline-flex content-center  {% if action_after_add_cart == 'show_popup' %}show-overlay{% else %}overlayminicart{% endif %}"
+        class="no-underline minicart__action header-icon header-color w-44 h-44 inline-flex content-center  {% if action_after_add_cart == 'show_popup' %}show-overlay{% else %}overlayminicart{% endif %}"
       >
         <h-count class="relative lh-1 fs-0">
           {% if type != 'header_mega' %}
