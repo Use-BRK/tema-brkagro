@@ -26,13 +26,13 @@
     "slideshow_8KKtNU": {
       "type": "slideshow",
       "blocks": {
-        "slider_item_HcRjdG": {
+        "slider_item_6JAGp3": {
           "type": "slider_item",
-          "name": "Femininas 2026",
+          "name": "Bolsa Térmica",
           "settings": {
-            "image": "shopify://shop_images/DESKTOP_FEMININAS2026.webp",
-            "image_mobile": "shopify://shop_images/MOBILE_FEMININAS2026.webp",
-            "link_banner": "shopify://collections/colecao-femininas-2026",
+            "image": "shopify://shop_images/DESKTOP_BOLSATERMICA.webp",
+            "image_mobile": "shopify://shop_images/MOBILE_BOLSATERMICA.webp",
+            "link_banner": "shopify://collections/envio-imediato",
             "overlay_opacity": 0,
             "slider_effect": "effect_fadeinup",
             "subheading": "",
@@ -56,13 +56,13 @@
             "content_alignment_mobile": "center"
           }
         },
-        "slider_item_6JAGp3": {
+        "slider_item_HcRjdG": {
           "type": "slider_item",
-          "name": "Bolsa Térmica",
+          "name": "Femininas 2026",
           "settings": {
-            "image": "shopify://shop_images/DESKTOP_BOLSATERMICA.webp",
-            "image_mobile": "shopify://shop_images/MOBILE_BOLSATERMICA.webp",
-            "link_banner": "shopify://collections/envio-imediato",
+            "image": "shopify://shop_images/DESKTOP_FEMININAS2026.webp",
+            "image_mobile": "shopify://shop_images/MOBILE_FEMININAS2026.webp",
+            "link_banner": "shopify://collections/colecao-femininas-2026",
             "overlay_opacity": 0,
             "slider_effect": "effect_fadeinup",
             "subheading": "",
@@ -178,8 +178,8 @@
         }
       },
       "block_order": [
-        "slider_item_HcRjdG",
         "slider_item_6JAGp3",
+        "slider_item_HcRjdG",
         "slider_item_gUEYbD",
         "slider_item_tBYL6H",
         "slider_item_mHFJwJ"
