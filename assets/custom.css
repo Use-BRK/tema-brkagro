@@ -1267,3 +1267,24 @@ section[class*=collection] grid-list .grid__item variant-radios {
 .mini_cart_coupon {
   display: none;
 }
+
+/* diminuir textos no minicart no mobile */
+
+@media screen and (max-width: 768px) {
+  .minicart-body {
+    padding: 10px !important;
+  }
+
+  .minicart__product-name, 
+  .minicart__item-price {
+    font-size: 14px !important;
+  }
+
+  button .btn-primary {
+    padding: 10px !important;
+  }
+
+  .drawer-bottom {
+    padding: 5px !important;
+  }
+}
