@@ -215,7 +215,7 @@
         "items_to_show": 16,
         "items_per_row": 5,
         "column_gap": 10,
-        "pagination": "default",
+        "pagination": "infinit_scrolling",
         "button_show_more": "Ver mais",
         "promotion_link": "",
         "promotion_postion": 6,
