@@ -11,11 +11,10 @@
   "sections": {
     "breadcrumb": {
       "type": "breadcrumb",
-      "disabled": true,
       "settings": {
         "section_width": "container",
         "color_scheme": "",
-        "next_prev": true
+        "next_prev": false
       }
     },
     "main": {
@@ -122,7 +121,9 @@
             "text_title": "Calcule o Frete",
             "placeholder": "Digite seu CEP",
             "pickup": "",
-            "dont_show_products": []
+            "dont_show_products": [],
+            "show_dont_know_cep": false,
+            "dont_know_cep_text": "Não sei meu CEP"
           }
         },
         "product_grouped_6epkNf": {
