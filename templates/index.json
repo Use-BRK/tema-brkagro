@@ -29,6 +29,7 @@
         "slider_item_6JAGp3": {
           "type": "slider_item",
           "name": "Bolsa Térmica",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/DESKTOP_BOLSATERMICA.webp",
             "image_mobile": "shopify://shop_images/MOBILE_BOLSATERMICA.webp",
@@ -60,8 +61,8 @@
           "type": "slider_item",
           "name": "Femininas 2026",
           "settings": {
-            "image": "shopify://shop_images/DESKTOP_FEMININAS2026.webp",
-            "image_mobile": "shopify://shop_images/MOBILE_FEMININAS2026.webp",
+            "image": "shopify://shop_images/Desktop.webp",
+            "image_mobile": "shopify://shop_images/Mobile.webp",
             "link_banner": "shopify://collections/colecao-femininas-2026",
             "overlay_opacity": 0,
             "slider_effect": "effect_fadeinup",
