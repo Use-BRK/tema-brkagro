@@ -61,7 +61,7 @@
           "type": "slider_item",
           "name": "Femininas 2026",
           "settings": {
-            "image": "shopify://shop_images/Desktop.webp",
+            "image": "shopify://shop_images/Semana_da_Mulher.png",
             "image_mobile": "shopify://shop_images/lencobanner.png",
             "link_banner": "shopify://collections/colecao-femininas-2026",
             "overlay_opacity": 0,
