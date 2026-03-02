@@ -62,7 +62,7 @@
           "name": "Femininas 2026",
           "settings": {
             "image": "shopify://shop_images/Desktop.webp",
-            "image_mobile": "shopify://shop_images/Mobile.webp",
+            "image_mobile": "shopify://shop_images/lencobanner.png",
             "link_banner": "shopify://collections/colecao-femininas-2026",
             "overlay_opacity": 0,
             "slider_effect": "effect_fadeinup",
