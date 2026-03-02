@@ -25,8 +25,8 @@
         "text_slider_LFaC38": {
           "type": "text_slider",
           "settings": {
-            "text1": "BAIXE O APP E GANHE <strong>R$30 DESCONTO</strong>",
-            "text2": "FRETE FIXO <strong>R$9,90</strong>",
+            "text1": "FRETE FIXO <strong>R$9,90</strong>",
+            "text2": "",
             "text3": "",
             "change_every": 4,
             "hidden_on_mobile": false
