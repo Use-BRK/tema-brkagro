@@ -252,6 +252,20 @@
         var PLACEHOLDER = 'INSIRA UM CUPOM';
         var BUTTON_TEXT = 'OK';
 
+        // Mapa de traduções para mensagens de erro do NS Discount
+        var ERROR_TRANSLATIONS = {
+          'Coupon code is not valid!': 'Cupom inválido',
+          'Coupon code is not valid': 'Cupom inválido',
+          'Discount code is not valid!': 'Cupom inválido',
+          'Discount code is not valid': 'Cupom inválido',
+          'Coupon code has expired!': 'Cupom expirado',
+          'Coupon code has expired': 'Cupom expirado',
+          'Coupon code usage limit reached!': 'Limite de uso do cupom atingido!',
+          'Coupon code usage limit reached': 'Limite de uso do cupom atingido!',
+          'Minimum purchase amount not met!': 'Valor mínimo de compra não atingido!',
+          'Minimum purchase amount not met': 'Valor mínimo de compra não atingido!',
+        };
+
         function forceDiscountTexts() {
           var blocks = document.querySelectorAll('discount-block');
           blocks.forEach(function (block) {
@@ -262,6 +276,24 @@
             }
             if (button && button.textContent.trim() !== BUTTON_TEXT) {
               button.textContent = BUTTON_TEXT;
+            }
+
+            // Traduzir mensagens de erro do NS Discount
+            var errorMessages = block.querySelectorAll('.dmp_error-message');
+            errorMessages.forEach(function (errorSpan) {
+              var originalText = errorSpan.textContent.trim();
+              if (ERROR_TRANSLATIONS[originalText]) {
+                errorSpan.textContent = ERROR_TRANSLATIONS[originalText];
+              }
+            });
+          });
+
+          // Também buscar fora dos discount-block (caso o erro seja injetado em outro lugar)
+          var globalErrors = document.querySelectorAll('.dmp_error-message');
+          globalErrors.forEach(function (errorSpan) {
+            var originalText = errorSpan.textContent.trim();
+            if (ERROR_TRANSLATIONS[originalText]) {
+              errorSpan.textContent = ERROR_TRANSLATIONS[originalText];
             }
           });
         }
