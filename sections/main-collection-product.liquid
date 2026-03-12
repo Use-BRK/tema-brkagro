@@ -192,6 +192,9 @@
                   assign found = false
                 -%}
                 {%- for product in collection.products -%}
+                  {%- if product.tags contains 'VIP' -%}
+                    {%- continue -%}
+                  {%- endif -%}
                   {%- liquid
                     assign index = forloop.index0 | plus: 1 | plus: midnum
                     assign item_int = banner_positions | plus: 0

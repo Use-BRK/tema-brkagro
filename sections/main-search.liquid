@@ -186,6 +186,7 @@
                 {%- for product in search.results -%}
                   {%- case product.object_type -%}
                     {%- when 'product' -%}
+                      {%- if product.tags contains 'VIP' -%}{%- continue -%}{%- endif -%}
                       <div
                         class="grid__item{% if pagination == 'load_more_button' or pagination == 'infinit_scrolling' %} loadmore-item{% endif %}"
                       >
