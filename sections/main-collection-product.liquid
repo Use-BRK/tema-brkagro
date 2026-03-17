@@ -1,4 +1,74 @@
 {{ 'collection-page.css' | asset_url | stylesheet_tag }}
+
+{%- comment -%} Gender Filter Block - Verificação de coleção {%- endcomment -%}
+{%- assign show_gender_filter = false -%}
+{%- for block in section.blocks -%}
+  {%- if block.type == 'gender_filter' -%}
+    {%- assign gender_block = block -%}
+    {%- if block.settings.filter_collection_list == blank -%}
+      {%- assign show_gender_filter = true -%}
+    {%- else -%}
+      {%- for col in block.settings.filter_collection_list -%}
+        {%- if col.handle == collection.handle -%}
+          {%- assign show_gender_filter = true -%}
+          {%- break -%}
+        {%- endif -%}
+      {%- endfor -%}
+    {%- endif -%}
+  {%- endif -%}
+{%- endfor -%}
+
+{%- if show_gender_filter -%}
+<style>
+  .gender-filter-bar {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    padding: 20px 15px;
+    margin-bottom: 10px;
+  }
+  .gender-filter-btn {
+    position: relative;
+    padding: 12px 36px;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    border: 2px solid var(--color-heading, #222);
+    background: transparent;
+    color: var(--color-heading, #222);
+    cursor: pointer;
+    transition: all 0.25s ease;
+    border-radius: 0;
+    min-width: 160px;
+    text-align: center;
+  }
+  .gender-filter-btn:hover,
+  .gender-filter-btn.active {
+    background: var(--color-heading, #222);
+    color: var(--color-background, #fff);
+  }
+  @media (max-width: 749px) {
+    .gender-filter-bar {
+      gap: 8px;
+      padding: 15px 10px;
+    }
+    .gender-filter-btn {
+      flex: 1;
+      min-width: 0;
+      padding: 11px 10px;
+      font-size: 13px;
+      letter-spacing: 1px;
+    }
+  }
+  .gender-filter-wrapper.filter-masculino .grid__item[data-sku-bl='true'] {
+    display: none !important;
+  }
+  .gender-filter-wrapper.filter-feminino .grid__item[data-sku-bl='false'] {
+    display: none !important;
+  }
+</style>
+{%- endif -%}
 {% # theme-check-disable ContentForHeaderModification %}
 {%- capture content_for_query_string -%}
   {{ content_for_header }}
@@ -47,6 +117,7 @@
 {%- capture style -%}
 {% if enable_filtering and filter_layout == 'vertical' %}--col-width: 27rem;--col-gap: 3rem;{% endif %} {% if enable_filtering and filter_layout == 'vertical' and section_width != 'default' %}--col-gap-desktop: 6rem;{% endif %}{% if enable_filtering and filter_layout == 'vertical' and section_width == 'default' %}--col-gap: 3rem;{% endif %}  --section-pt: {{ section_st.padding_top }}; --section-pb: {{ section_st.padding_bottom }};
 {%- endcapture -%}
+{%- if show_gender_filter -%}<div class="gender-filter-wrapper">{%- endif -%}
 <section
   class="section{% if section_st.padding_top < 30 %} pt-min{% endif %}{% if section_st.padding_bottom < 30 %} pb-min{% endif %} sec__collection-main {{ scroll_animation }} bls-image-js"
   data-section-id="{{ section.id }}"
@@ -124,6 +195,13 @@
         {%- if enable_filtering and filter_layout -%}
           {%- render 'filter-current', class: 'mb-30' -%}
         {% endif %}
+
+        {%- if show_gender_filter -%}
+          <div class="gender-filter-bar" id="gender-filter-bar" {{ gender_block.shopify_attributes }}>
+            <button class="gender-filter-btn{% if gender_block.settings.default_gender == 'masculino' %} active{% endif %}" data-gender="masculino" type="button">{{ gender_block.settings.label_masculino }}</button>
+            <button class="gender-filter-btn{% if gender_block.settings.default_gender == 'feminino' %} active{% endif %}" data-gender="feminino" type="button">{{ gender_block.settings.label_feminino }}</button>
+          </div>
+        {%- endif -%}
 
         <div
           class="product-grid-container relative"
@@ -232,8 +310,18 @@
                       </div>
                     {% endif %}
                   {% endif %}
+                  {%- if show_gender_filter -%}
+                    {%- assign has_bl_sku = false -%}
+                    {%- for variant in product.variants -%}
+                      {%- if variant.sku contains 'BL' -%}
+                        {%- assign has_bl_sku = true -%}
+                        {%- break -%}
+                      {%- endif -%}
+                    {%- endfor -%}
+                  {%- endif -%}
                   <div
                     class="grid__item{% if pagination == 'load_more_button' or pagination == 'infinit_scrolling' %} loadmore-item{% endif %}"
+                    {% if show_gender_filter %}data-sku-bl="{{ has_bl_sku }}"{% endif %}
                   >
                     {%- if view == 'list' -%}
                       {% render 'product-item',
@@ -309,6 +397,38 @@
     </motion-items-effect>
   {% endif %}
 </section>
+{%- if show_gender_filter -%}</div>{%- endif -%}
+
+{%- if show_gender_filter -%}
+<script>
+  (function () {
+    var filterBar = document.getElementById('gender-filter-bar');
+    if (!filterBar) return;
+
+    var buttons = filterBar.querySelectorAll('.gender-filter-btn');
+    var wrapper = filterBar.closest('.gender-filter-wrapper');
+    var defaultGender = '{{ gender_block.settings.default_gender }}';
+
+    function applyGenderFilter(gender) {
+      if (!wrapper) return;
+      wrapper.classList.remove('filter-masculino', 'filter-feminino');
+      wrapper.classList.add('filter-' + gender);
+      window.dispatchEvent(new Event('resize'));
+      window.dispatchEvent(new Event('scroll'));
+    }
+
+    buttons.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        buttons.forEach(function (b) { b.classList.remove('active'); });
+        btn.classList.add('active');
+        applyGenderFilter(btn.getAttribute('data-gender'));
+      });
+    });
+
+    applyGenderFilter(defaultGender);
+  })();
+</script>
+{%- endif -%}
 
 {% schema %}
 {
@@ -563,6 +683,47 @@
     }
   ],
   "blocks": [
+    {
+      "type": "gender_filter",
+      "name": "Filtro de Gênero",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "label_masculino",
+          "label": "Label botão masculino",
+          "default": "Masculino"
+        },
+        {
+          "type": "text",
+          "id": "label_feminino",
+          "label": "Label botão feminino",
+          "default": "Feminino"
+        },
+        {
+          "type": "select",
+          "id": "default_gender",
+          "label": "Filtro padrão ao carregar",
+          "default": "masculino",
+          "options": [
+            {
+              "value": "masculino",
+              "label": "Masculino"
+            },
+            {
+              "value": "feminino",
+              "label": "Feminino"
+            }
+          ]
+        },
+        {
+          "type": "collection_list",
+          "id": "filter_collection_list",
+          "label": "Coleções",
+          "info": "Selecione as coleções onde este filtro deve aparecer. Se vazio, aparecerá em todas."
+        }
+      ]
+    },
     {
       "type": "size_filter",
       "name": "Filtro de Tamanho",
