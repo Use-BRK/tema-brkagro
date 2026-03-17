@@ -256,6 +256,41 @@
         "reset_spacing": true
       }
     },
+    "products_carousel_GdfTjJ": {
+      "type": "products-carousel",
+      "name": "Lançamento Força do Agro V2",
+      "settings": {
+        "section_width": "fluid_container",
+        "color_scheme": "",
+        "heading": "🔥 LANÇAMENTO • A Força do Agro",
+        "description": "",
+        "show_view_all_button": true,
+        "header_size": "small",
+        "header_alignment": "center",
+        "collection": "forca-do-agro-v2",
+        "items_to_show": 25,
+        "items_per_row": 5,
+        "column_gap": 15,
+        "show_banner": false,
+        "sticky_banner": false,
+        "banner_width": 30,
+        "position": "left",
+        "banner_link": "",
+        "banner_type": "image",
+        "video_url": "",
+        "video_autoplay": false,
+        "show_arrow": true,
+        "carousel_pagination": "disable",
+        "infinite": false,
+        "autoplay": false,
+        "autorotate_speed": 5,
+        "reveal": false,
+        "items_per_row_mobile": 1.5,
+        "padding_top": 20,
+        "padding_bottom": 20,
+        "reset_spacing": true
+      }
+    },
     "collection_tab_DPbHcm": {
       "type": "collection-tab",
       "blocks": {
@@ -1279,6 +1314,7 @@
     "divider_WJrFxP",
     "slideshow_8KKtNU",
     "scrolling_text_XAxGTr",
+    "products_carousel_GdfTjJ",
     "collection_tab_DPbHcm",
     "collection_tab_XNDCTb",
     "collection_list_TVMtme",
