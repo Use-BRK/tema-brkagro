@@ -379,7 +379,7 @@
                   </div>
                 {%- endfor -%}
               </div>
-              {%- if paginate.pages > 1 -%}
+              {%- if paginate.pages > 1 and show_gender_filter == false -%}
                 {% render 'pagination',
                   paginate: paginate,
                   section_st: section_st,
