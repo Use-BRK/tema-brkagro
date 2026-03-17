@@ -260,7 +260,7 @@
               <div
                 id="product-grid"
                 data-id="{{ section.id }}"
-                class="{% if view == 'list' %}list product-type-list flex flex-column {% else %}grid grid-cols row-gap-custom product-grid grid-columns-{{ products_column }} {% endif %}gap container-products-switch{% if pagination == 'load_more_button' or pagination == 'infinit_scrolling' %} loadmore-lists{% endif %}"
+                class="{% if view == 'list' %}list product-type-list flex flex-column {% else %}grid grid-cols row-gap-custom product-grid grid-columns-{{ products_column }} {% endif %}gap container-products-switch{% if show_gender_filter == false and pagination == 'load_more_button' or show_gender_filter == false and pagination == 'infinit_scrolling' %} loadmore-lists{% endif %}"
                 {% if view == 'list' %}
                   style="--gap: 3rem;"
                 {% else %}
@@ -325,7 +325,7 @@
                     {%- endfor -%}
                   {%- endif -%}
                   <div
-                    class="grid__item{% if pagination == 'load_more_button' or pagination == 'infinit_scrolling' %} loadmore-item{% endif %}"
+                    class="grid__item{% if show_gender_filter == false %}{% if pagination == 'load_more_button' or pagination == 'infinit_scrolling' %} loadmore-item{% endif %}{% endif %}"
                     {% if show_gender_filter %}data-sku-bl="{{ has_bl_sku }}"{% endif %}
                   >
                     {%- if view == 'list' -%}
