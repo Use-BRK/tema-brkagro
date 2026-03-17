@@ -150,6 +150,17 @@
     "main": {
       "type": "main-collection-product",
       "blocks": {
+        "gender_filter_WjhFKQ": {
+          "type": "gender_filter",
+          "settings": {
+            "label_masculino": "Masculino",
+            "label_feminino": "Feminino",
+            "default_gender": "masculino",
+            "filter_collection_list": [
+              "forca-do-agro-v2"
+            ]
+          }
+        },
         "size_filter_beBB4b": {
           "type": "size_filter",
           "settings": {
@@ -196,6 +207,7 @@
         }
       },
       "block_order": [
+        "gender_filter_WjhFKQ",
         "size_filter_beBB4b",
         "categories_LYDr6p",
         "popular_product_Xwjqcf",
