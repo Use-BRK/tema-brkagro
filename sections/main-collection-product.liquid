@@ -206,7 +206,12 @@
         <div
           class="product-grid-container relative"
         >
-          {%- paginate collection.products by number_products -%}
+          {%- if show_gender_filter -%}
+            {%- assign gender_paginate_count = number_products | times: 2 -%}
+          {%- else -%}
+            {%- assign gender_paginate_count = number_products -%}
+          {%- endif -%}
+          {%- paginate collection.products by gender_paginate_count -%}
             {%- if collection.products.size == 0 -%}
               <div
                 class="collection collection--empty page-width"
