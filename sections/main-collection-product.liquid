@@ -69,6 +69,7 @@
   }
 </style>
 {%- endif -%}
+
 {% # theme-check-disable ContentForHeaderModification %}
 {%- capture content_for_query_string -%}
   {{ content_for_header }}
@@ -117,6 +118,7 @@
 {%- capture style -%}
 {% if enable_filtering and filter_layout == 'vertical' %}--col-width: 27rem;--col-gap: 3rem;{% endif %} {% if enable_filtering and filter_layout == 'vertical' and section_width != 'default' %}--col-gap-desktop: 6rem;{% endif %}{% if enable_filtering and filter_layout == 'vertical' and section_width == 'default' %}--col-gap: 3rem;{% endif %}  --section-pt: {{ section_st.padding_top }}; --section-pb: {{ section_st.padding_bottom }};
 {%- endcapture -%}
+
 {%- if show_gender_filter -%}<div class="gender-filter-wrapper">{%- endif -%}
 <section
   class="section{% if section_st.padding_top < 30 %} pt-min{% endif %}{% if section_st.padding_bottom < 30 %} pb-min{% endif %} sec__collection-main {{ scroll_animation }} bls-image-js"
@@ -206,12 +208,7 @@
         <div
           class="product-grid-container relative"
         >
-          {%- if show_gender_filter -%}
-            {%- assign gender_paginate_count = 50 -%}
-          {%- else -%}
-            {%- assign gender_paginate_count = number_products -%}
-          {%- endif -%}
-          {%- paginate collection.products by gender_paginate_count -%}
+          {%- paginate collection.products by number_products -%}
             {%- if collection.products.size == 0 -%}
               <div
                 class="collection collection--empty page-width"
@@ -260,7 +257,7 @@
               <div
                 id="product-grid"
                 data-id="{{ section.id }}"
-                class="{% if view == 'list' %}list product-type-list flex flex-column {% else %}grid grid-cols row-gap-custom product-grid grid-columns-{{ products_column }} {% endif %}gap container-products-switch{% if show_gender_filter == false and pagination == 'load_more_button' or show_gender_filter == false and pagination == 'infinit_scrolling' %} loadmore-lists{% endif %}"
+                class="{% if view == 'list' %}list product-type-list flex flex-column {% else %}grid grid-cols row-gap-custom product-grid grid-columns-{{ products_column }} {% endif %}gap container-products-switch{% if pagination == 'load_more_button' or pagination == 'infinit_scrolling' %} loadmore-lists{% endif %}"
                 {% if view == 'list' %}
                   style="--gap: 3rem;"
                 {% else %}
@@ -315,17 +312,19 @@
                       </div>
                     {% endif %}
                   {% endif %}
-                  {%- if show_gender_filter -%}
-                    {%- assign has_bl_sku = false -%}
-                    {%- for variant in product.variants -%}
-                      {%- if variant.sku contains 'BL' -%}
-                        {%- assign has_bl_sku = true -%}
-                        {%- break -%}
-                      {%- endif -%}
-                    {%- endfor -%}
-                  {%- endif -%}
+                  {%- liquid
+                    if show_gender_filter
+                      assign has_bl_sku = false
+                      for variant in product.variants
+                        if variant.sku contains 'BL'
+                          assign has_bl_sku = true
+                          break
+                        endif
+                      endfor
+                    endif
+                  -%}
                   <div
-                    class="grid__item{% if show_gender_filter == false %}{% if pagination == 'load_more_button' or pagination == 'infinit_scrolling' %} loadmore-item{% endif %}{% endif %}"
+                    class="grid__item{% if pagination == 'load_more_button' or pagination == 'infinit_scrolling' %} loadmore-item{% endif %}"
                     {% if show_gender_filter %}data-sku-bl="{{ has_bl_sku }}"{% endif %}
                   >
                     {%- if view == 'list' -%}
@@ -379,7 +378,7 @@
                   </div>
                 {%- endfor -%}
               </div>
-              {%- if paginate.pages > 1 and show_gender_filter == false -%}
+              {%- if paginate.pages > 1 -%}
                 {% render 'pagination',
                   paginate: paginate,
                   section_st: section_st,
