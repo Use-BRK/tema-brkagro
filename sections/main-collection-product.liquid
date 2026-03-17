@@ -207,7 +207,7 @@
           class="product-grid-container relative"
         >
           {%- if show_gender_filter -%}
-            {%- assign gender_paginate_count = number_products | times: 2 -%}
+            {%- assign gender_paginate_count = 50 -%}
           {%- else -%}
             {%- assign gender_paginate_count = number_products -%}
           {%- endif -%}
