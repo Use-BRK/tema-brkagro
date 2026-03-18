@@ -9,10 +9,7 @@
     assign enable_video_looping = section_st.enable_video_looping
     assign enable_video_autoplay = section_st.enable_video_autoplay
   endif
-  assign lazy_product = true
-  if type == 'quickview'
-    assign lazy_product = false
-  endif
+  assign lazy_product = false
 %}
 {% for image in images %}
   {% if image.alt == 'image-360' and image.media_type == 'image' %}

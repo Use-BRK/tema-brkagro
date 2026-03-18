@@ -258,9 +258,31 @@ class SkeletonPage extends HTMLElement {
     this.init();
   }
   init() {
+    const images = this.querySelectorAll("img");
+    if (images.length === 0) {
+      this.classList.remove("skeleton");
+      return;
+    }
+    let loaded = 0;
+    const total = images.length;
+    const done = () => {
+      loaded++;
+      if (loaded >= total) {
+        this.classList.remove("skeleton");
+      }
+    };
+    images.forEach((img) => {
+      if (img.complete) {
+        done();
+      } else {
+        img.addEventListener("load", done, { once: true });
+        img.addEventListener("error", done, { once: true });
+      }
+    });
+    // Fallback máximo de 3s caso algo trave
     window.setTimeout(() => {
       this.classList.remove("skeleton");
-    }, 1500);
+    }, 3000);
   }
 }
 customElements.define("skeleton-page", SkeletonPage);
