@@ -185,7 +185,7 @@
         {% if wishlist == empty %}
           {% assign action_when_click_added_wishlist = 'remove' %}
         {% endif %}
-        <button-wishlist
+        {% comment %} <button-wishlist
           tabindex="0"
           class="product-item__button pointer hidden-md product-item__button-wishlist tooltip relative btn-hover transition btn-hover transition bg-white rounded-50 border w-50 h-50 inline-flex content-center skeleton-loading"
           data-product-id="{{ product.id }}"
@@ -200,7 +200,7 @@
           <span class="tooltip-content invisible rounded-3 absolute pointer-none">
             {{- 'products.product.actions.wishlist.add' | t -}}
           </span>
-        </button-wishlist>
+        </button-wishlist> {% endcomment %}
       </div>
     {% endif %}
     {% comment %} Product infomration {% endcomment %}
