@@ -46,6 +46,10 @@
         "padding_bottom": 0
       }
     },
+    "17719577145b7a3cf6": {
+      "type": "apps",
+      "settings": {}
+    },
     "cart-items": {
       "type": "main-cart-items",
       "settings": {
@@ -75,26 +79,18 @@
     "alireviews-section-dee47fb0-de47-4321-b713-a7ba7412ef32": {
       "type": "apps",
       "blocks": {
+        "selleasy_lb_upsell_widget_cpac_z8JJHK": {
+          "type": "shopify://apps/selleasy/blocks/lb-upsell-widget-cpac/790c1a03-a71f-4bc1-9869-00dad526d3c2",
+          "settings": {}
+        },
         "selleasy_lb_upsell_widget_icuc_NhptPp": {
           "type": "shopify://apps/selleasy/blocks/lb-upsell-widget-icuc/790c1a03-a71f-4bc1-9869-00dad526d3c2",
           "settings": {}
         }
       },
       "block_order": [
+        "selleasy_lb_upsell_widget_cpac_z8JJHK",
         "selleasy_lb_upsell_widget_icuc_NhptPp"
-      ],
-      "settings": {}
-    },
-    "17719577145b7a3cf6": {
-      "type": "apps",
-      "blocks": {
-        "dealeasy_cvg_progress_bar_ykQJzp": {
-          "type": "shopify://apps/dealeasy/blocks/cvg-progress-bar/e47a8634-0496-480d-9e46-6f7fafd34b30",
-          "settings": {}
-        }
-      },
-      "block_order": [
-        "dealeasy_cvg_progress_bar_ykQJzp"
       ],
       "settings": {}
     }
