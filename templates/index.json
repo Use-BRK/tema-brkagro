@@ -350,65 +350,6 @@
         "reset_spacing": true
       }
     },
-    "collection_tab_XNDCTb": {
-      "type": "collection-tab",
-      "blocks": {
-        "collection_HK34Cn": {
-          "type": "collection",
-          "settings": {
-            "collection": "lancamentos-1",
-            "collection_title": "Lançamentos"
-          }
-        },
-        "collection_RikWXM": {
-          "type": "collection",
-          "settings": {
-            "collection": "mais-vendidos",
-            "collection_title": "Mais Vendidos"
-          }
-        }
-      },
-      "block_order": [
-        "collection_HK34Cn",
-        "collection_RikWXM"
-      ],
-      "disabled": true,
-      "custom_css": [
-        ".collection-tab__tab-item {font-size: clamp(1.105em, 2vw, 2.5rem);}",
-        ".btn_view-all {border-radius: 8px;}"
-      ],
-      "name": "Mais Vendidos/Lançamentos",
-      "settings": {
-        "section_width": "fluid_container",
-        "color_scheme": "default",
-        "heading": "",
-        "description": "",
-        "show_view_all_button": true,
-        "header_size": "medium",
-        "header_alignment": "center",
-        "tab_header_style": "horizontal",
-        "horizontal_tab_style": "underline",
-        "tab_header_postion": "default",
-        "display_mode": "grid",
-        "items_to_show": 24,
-        "items_per_row": 5,
-        "column_gap": 10,
-        "show_arrow": true,
-        "carousel_pagination": "show_dots_on_mobile",
-        "infinite": true,
-        "autoplay": false,
-        "autorotate_speed": 5,
-        "reveal": false,
-        "rows": 2,
-        "show_load_more_button": false,
-        "button_label": "Load more",
-        "carousel_on_mobile": true,
-        "items_per_row_mobile": 1.5,
-        "padding_top": 0,
-        "padding_bottom": 10,
-        "reset_spacing": true
-      }
-    },
     "collection_list_TVMtme": {
       "type": "collection-list",
       "blocks": {
@@ -534,6 +475,100 @@
         "reset_spacing": true
       }
     },
+    "products_carousel_nUcUgz": {
+      "type": "products-carousel",
+      "name": "Envio FULL + BRINDE",
+      "settings": {
+        "section_width": "fluid_container",
+        "color_scheme": "",
+        "heading": "Envio FULL + BRINDE 🎁",
+        "description": "",
+        "show_view_all_button": true,
+        "header_size": "small",
+        "header_alignment": "center",
+        "collection": "envio-imediato-camisas",
+        "items_to_show": 25,
+        "items_per_row": 5,
+        "column_gap": 15,
+        "show_banner": false,
+        "sticky_banner": false,
+        "banner_width": 30,
+        "position": "left",
+        "banner_link": "",
+        "banner_type": "image",
+        "video_url": "",
+        "video_autoplay": true,
+        "show_arrow": true,
+        "carousel_pagination": "disable",
+        "infinite": true,
+        "autoplay": false,
+        "autorotate_speed": 5,
+        "reveal": false,
+        "items_per_row_mobile": 1.5,
+        "padding_top": 20,
+        "padding_bottom": 20,
+        "reset_spacing": true
+      }
+    },
+    "collection_tab_XNDCTb": {
+      "type": "collection-tab",
+      "blocks": {
+        "collection_HK34Cn": {
+          "type": "collection",
+          "settings": {
+            "collection": "lancamentos-1",
+            "collection_title": "Lançamentos"
+          }
+        },
+        "collection_RikWXM": {
+          "type": "collection",
+          "settings": {
+            "collection": "mais-vendidos",
+            "collection_title": "Mais Vendidos"
+          }
+        }
+      },
+      "block_order": [
+        "collection_HK34Cn",
+        "collection_RikWXM"
+      ],
+      "disabled": true,
+      "custom_css": [
+        ".collection-tab__tab-item {font-size: clamp(1.105em, 2vw, 2.5rem);}",
+        ".btn_view-all {border-radius: 8px;}"
+      ],
+      "name": "Mais Vendidos/Lançamentos",
+      "settings": {
+        "section_width": "fluid_container",
+        "color_scheme": "default",
+        "heading": "",
+        "description": "",
+        "show_view_all_button": true,
+        "header_size": "medium",
+        "header_alignment": "center",
+        "tab_header_style": "horizontal",
+        "horizontal_tab_style": "underline",
+        "tab_header_postion": "default",
+        "display_mode": "grid",
+        "items_to_show": 24,
+        "items_per_row": 5,
+        "column_gap": 10,
+        "show_arrow": true,
+        "carousel_pagination": "show_dots_on_mobile",
+        "infinite": true,
+        "autoplay": false,
+        "autorotate_speed": 5,
+        "reveal": false,
+        "rows": 2,
+        "show_load_more_button": false,
+        "button_label": "Load more",
+        "carousel_on_mobile": true,
+        "items_per_row_mobile": 1.5,
+        "padding_top": 0,
+        "padding_bottom": 10,
+        "reset_spacing": true
+      }
+    },
     "collection_list_DnBJyy": {
       "type": "collection-list",
       "blocks": {
@@ -615,41 +650,6 @@
         "image_width": 200,
         "padding_top": 30,
         "padding_bottom": 30,
-        "reset_spacing": true
-      }
-    },
-    "products_carousel_nUcUgz": {
-      "type": "products-carousel",
-      "name": "Envio FULL + BRINDE",
-      "settings": {
-        "section_width": "fluid_container",
-        "color_scheme": "",
-        "heading": "Envio FULL + BRINDE 🎁",
-        "description": "",
-        "show_view_all_button": true,
-        "header_size": "small",
-        "header_alignment": "center",
-        "collection": "envio-imediato-camisas",
-        "items_to_show": 25,
-        "items_per_row": 5,
-        "column_gap": 15,
-        "show_banner": false,
-        "sticky_banner": false,
-        "banner_width": 30,
-        "position": "left",
-        "banner_link": "",
-        "banner_type": "image",
-        "video_url": "",
-        "video_autoplay": true,
-        "show_arrow": true,
-        "carousel_pagination": "disable",
-        "infinite": true,
-        "autoplay": false,
-        "autorotate_speed": 5,
-        "reveal": false,
-        "items_per_row_mobile": 1.5,
-        "padding_top": 20,
-        "padding_bottom": 20,
         "reset_spacing": true
       }
     },
@@ -982,6 +982,7 @@
         "product_discount_BrTU77",
         "your_bundle_Geyk6h"
       ],
+      "disabled": true,
       "name": "Monte seu Kit",
       "settings": {
         "section_width": "fluid_container",
@@ -1317,9 +1318,9 @@
     "scrolling_text_XAxGTr",
     "products_carousel_GdfTjJ",
     "collection_tab_DPbHcm",
+    "collection_list_TVMtme",
     "products_carousel_nUcUgz",
     "collection_tab_XNDCTb",
-    "collection_list_TVMtme",
     "collection_list_DnBJyy",
     "banner_packery_txTyNt",
     "brand_logo_XHpAXt",
