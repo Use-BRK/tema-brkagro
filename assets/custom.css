@@ -367,9 +367,13 @@ header {
   box-shadow: 0 5px 10px -5px rgba(0, 0, 0, 0.2) !important;
 }
 
-/* Custom Detail Product */
-input.option-disabled+.product__item-option, .option-disabled .product__item-option{
-  opacity: .4;
+/* Esconder variantes esgotadas (sold out) */
+input.option-disabled,
+input.option-disabled + label,
+input.option-disabled + .product__item-option,
+input.option-disabled + .product__color-swatch,
+swatch-dropdown-item:has(input.option-disabled) {
+  display: none !important;
 }
 
 /* Custom delivery message */
