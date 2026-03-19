@@ -279,10 +279,9 @@ class SkeletonPage extends HTMLElement {
         img.addEventListener("error", done, { once: true });
       }
     });
-    // Fallback máximo de 3s caso algo trave
     window.setTimeout(() => {
       this.classList.remove("skeleton");
-    }, 3000);
+    }, 5000);
   }
 }
 customElements.define("skeleton-page", SkeletonPage);
