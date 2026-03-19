@@ -258,6 +258,7 @@
     },
     "products_carousel_GdfTjJ": {
       "type": "products-carousel",
+      "disabled": true,
       "name": "Lançamento Força do Agro V2",
       "settings": {
         "section_width": "fluid_container",
@@ -1316,10 +1317,10 @@
     "scrolling_text_XAxGTr",
     "products_carousel_GdfTjJ",
     "collection_tab_DPbHcm",
+    "products_carousel_nUcUgz",
     "collection_tab_XNDCTb",
     "collection_list_TVMtme",
     "collection_list_DnBJyy",
-    "products_carousel_nUcUgz",
     "banner_packery_txTyNt",
     "brand_logo_XHpAXt",
     "product_bundle_U4cMyL",
