@@ -471,7 +471,7 @@ class CartNotification extends HTMLElement {
       cartRecommend.classList.remove("open");
     }
     const cart_free_ship = document.querySelector("free-ship-progress-bar");
-    fetch(`${routes?.cart_change_url}`, { ...fetchConfig(), ...{ body } })
+    fetch(`${routes?.cart_change_url}.js`, { ...fetchConfig(), ...{ body } })
       .then((response) => {
         return response.text();
       })

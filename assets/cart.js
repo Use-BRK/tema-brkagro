@@ -281,7 +281,7 @@ class CartItems extends HTMLElement {
       sections_url: window.location.pathname,
     });
 
-    fetch(`${routes.cart_change_url}`, { ...fetchConfig(), ...{ body } })
+    fetch(`${routes.cart_change_url}.js`, { ...fetchConfig(), ...{ body } })
       .then((response) => response.text())
       .then((state) => {
         const parsedState = JSON.parse(state);
@@ -964,7 +964,7 @@ if (!customElements.get("product-form-quick-edit")) {
           id,
           quantity,
         });
-        fetch(`${routes?.cart_change_url}`, config_change)
+        fetch(`${routes?.cart_change_url}.js`, config_change)
           .then((response) => {
             return response.text();
           })
