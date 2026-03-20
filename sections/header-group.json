@@ -64,7 +64,7 @@
         "menu_product_zAWFX7": {
           "type": "menu_product",
           "settings": {
-            "text": "🌱 FORÇA DO AGRO",
+            "text": "✨ MÊS DA MULHER",
             "open-link-newtab": false,
             "item_label": "hot",
             "product_menu_column": 2,
@@ -154,7 +154,7 @@
         "mega_menu": "menu",
         "dropdowns_animation": "down-to-up",
         "uppercase_first": true,
-        "hot": "NOVO",
+        "hot": "+BRINDE",
         "label_color_hot": "#ffffff",
         "label_background_hot": "#d0473e",
         "new": "New",
