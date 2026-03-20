@@ -295,24 +295,24 @@
     "collection_tab_DPbHcm": {
       "type": "collection-tab",
       "blocks": {
-        "collection_kjTne6": {
-          "type": "collection",
-          "settings": {
-            "collection": "mais-vendidos",
-            "collection_title": "Masculinas"
-          }
-        },
         "collection_DP8drE": {
           "type": "collection",
           "settings": {
             "collection": "lancamentos-femininos",
             "collection_title": "Femininas"
           }
+        },
+        "collection_kjTne6": {
+          "type": "collection",
+          "settings": {
+            "collection": "mais-vendidos",
+            "collection_title": "Masculinas"
+          }
         }
       },
       "block_order": [
-        "collection_kjTne6",
-        "collection_DP8drE"
+        "collection_DP8drE",
+        "collection_kjTne6"
       ],
       "custom_css": [
         ".collection-tab__tab-item {font-size: clamp(1.105em, 2vw, 2.5rem);}",
