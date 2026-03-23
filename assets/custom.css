@@ -1268,9 +1268,9 @@ section[class*=collection] grid-list .grid__item variant-radios {
   retira bloco de cupom de desconto (APENAS QUANDO NS DISCOUNT ESTIVER ATIVO) 
   =============================== */ 
 
-.mini_cart_coupon {
+/* .mini_cart_coupon {
   display: none;
-}
+} */
 
 /* diminuir textos no minicart no mobile */
 
