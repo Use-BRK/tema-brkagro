@@ -40,6 +40,19 @@ class MinicartDiscount extends HTMLElement {
    * @returns {Promise<Object>} - Cart update response
    */
   async #updateCartDiscount(discountCodes, abortController) {
+    if (discountCodes.length > 0) {
+      try {
+        const urlToFetch = `${window.shopUrl || ''}/discount/${discountCodes[discountCodes.length - 1]}`;
+        await fetch(urlToFetch, { signal: abortController.signal });
+      } catch (e) {
+        console.warn("Failed to pre-apply discount via /discount/ endpoint", e);
+      }
+    } else {
+      try {
+        await fetch(`${window.shopUrl || ''}/discount/CLEAR`, { signal: abortController.signal });
+      } catch (e) {}
+    }
+
     const body = JSON.stringify({
       discount: discountCodes.join(","),
       sections: this.getSectionsToRender().map((section) => section.section),
@@ -188,16 +201,9 @@ class MinicartDiscount extends HTMLElement {
         abortController
       );
 
-      if (
-        data.discount_codes.find(
-          (/** @type {{ code: string; applicable: boolean; }} */ discount) => {
-            return (
-              discount.code === discountCodeValue &&
-              discount.applicable === false
-            );
-          }
-        )
-      ) {
+      const appliedDiscount = data.discount_codes ? data.discount_codes.find((d) => d.code.toLowerCase() === discountCodeValue.toLowerCase()) : null;
+
+      if (!appliedDiscount || appliedDiscount.applicable === false) {
         this.#handleDiscountError();
         return;
       }
