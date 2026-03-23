@@ -660,7 +660,7 @@
           "type": "_group-image-overlay",
           "settings": {
             "color_scheme": "",
-            "image": "shopify://shop_images/O_AGRO_E_DELAS.webp",
+            "image": "shopify://shop_images/AGRO_DELAS.webp",
             "image_link": "shopify://collections/feminina",
             "overlay_opacity": 0,
             "content_alignment": "start",
@@ -718,7 +718,7 @@
           "type": "_group-image-overlay",
           "settings": {
             "color_scheme": "",
-            "image": "shopify://shop_images/COLECAO_KIDS.webp",
+            "image": "shopify://shop_images/COLECAO_KIDS_88fa5f2a-7de0-4034-a13b-1ed41ab87329.webp",
             "image_link": "shopify://collections/agro-kids",
             "overlay_opacity": 0,
             "content_alignment": "start",
