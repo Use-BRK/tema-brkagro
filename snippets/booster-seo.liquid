@@ -197,7 +197,7 @@ Title and Description
 {%- endunless -%}
 
 {%- unless booster_config.google_verification_meta_tag == blank -%}
-  <meta name="google-site-verification" content="{{ booster_config.google_verification_meta_tag }}" />
+  <meta name="google-site-verification" content="{{ booster_config.google_verification_meta_tag | escape }}" />
 {%- endunless -%}
 
 {%- unless booster_desc == blank -%}
