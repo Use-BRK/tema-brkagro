@@ -197,7 +197,11 @@ Title and Description
 {%- endunless -%}
 
 {%- unless booster_config.google_verification_meta_tag == blank -%}
-  <meta name="google-site-verification" content="{{ booster_config.google_verification_meta_tag }}" />
+  {%- if booster_config.google_verification_meta_tag contains '<meta' -%}
+    {{ booster_config.google_verification_meta_tag }}
+  {%- else -%}
+    <meta name="google-site-verification" content="{{ booster_config.google_verification_meta_tag }}" />
+  {%- endif -%}
 {%- endunless -%}
 
 {%- unless booster_desc == blank -%}
@@ -212,15 +216,9 @@ Title and Description
   {%- assign booster_desc = booster_desc | replace : "[author]", [baType].author -%}
   {%- assign booster_desc = booster_desc | strip_html | truncate: 250  -%}
   {%- assign booster_desc = booster_desc | replace : "[shopify_seo_description]", page_description | strip | strip_newlines | escape_once -%}
-  {%- comment %}<locksmith:8c53>{% endcomment -%}
-    {%- capture var %}{% render 'locksmith-variables', variable: 'transparent', hiding_scope: 'resource' %}{% endcapture %}{% if var == 'true' %}<meta name="description" content="{{ booster_desc | strip | strip_newlines | escape_once }}" />{% endif -%}
-    {%- comment %}original: <meta name="description" content="{{ booster_desc | strip | strip_newlines | escape_once }}" />{%- endcomment %}
-  {%- comment %}</locksmith:8c53>{% endcomment -%}
+  <meta name="description" content="{{ booster_desc | strip | strip_newlines | escape_once }}" />
 {%- else -%}
-  {%- comment %}<locksmith:4709>{% endcomment -%}
-    {%- capture var %}{% render 'locksmith-variables', variable: 'transparent', hiding_scope: 'resource' %}{% endcapture %}{% if var == 'true' %}<meta name="description" content="{{ page_description | strip | strip_newlines | escape_once }}" />{% endif -%}
-    {%- comment %}original: <meta name="description" content="{{ page_description | strip | strip_newlines | escape_once }}" />{%- endcomment %}
-  {%- comment %}</locksmith:4709>{% endcomment -%}
+  <meta name="description" content="{{ page_description | strip | strip_newlines | escape_once }}" />
 {%- endunless -%}
 
 {%- if item_config and item_config.block_via_noindex == true -%}
@@ -319,7 +317,30 @@ Organization and Website Schema Markup
           "gtin13": "{{ variant.barcode }}"
         {%- else -%}
           "gtin14": "{{ variant.barcode }}"
-        {%- endif -%}}
+        {%- endif -%}
+{%- if shop.policies.refund_policy.url != blank -%}
+          ,"hasMerchantReturnPolicy": {
+            "@type": "MerchantReturnPolicy",
+            "applicableCountry": "{{ shop.address.country_code }}",
+            "returnPolicyCountry": "{{ shop.address.country_code }}",
+            "merchantReturnLink": "{{ shop.policies.refund_policy.url }}"
+          }
+{%- endif -%}
+{%- if shop.policies.shipping_policy.url != blank -%}
+          ,"shippingDetails": {
+            "@type": "OfferShippingDetails",
+            "shippingSettingsLink": "{{ shop.policies.shipping_policy.url }}",
+            "shippingDestination": {
+              "@type": "DefinedRegion",
+              "addressCountry": "{{ shop.address.country_code }}"
+            }
+          }
+{%- endif -%}
+          ,"seller": {
+            "@type": "Organization",
+            "name": {{ shop.name | json }}
+          }
+}
         {%- if forloop.index < product.variants.size -%},{%- endif -%}
       {%- endfor -%}
     ]
