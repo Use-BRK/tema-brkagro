@@ -30,4 +30,5 @@ jobs:
         run: |
           shopify theme push \
           --store ${{ secrets.SHOPIFY_STORE_DOMAIN }} \
-          --theme 181596750121 \
+          --theme ${{ secrets.SHOPIFY_DEVELOPMENT_THEME_ID }} \
+          --allow-live
