@@ -3,10 +3,10 @@ name: Deploy para Shopify (theme push)
 on:
   push:
     branches:
-      - main
+      - develop
 
 concurrency:
-  group: production-deploy
+  group: develop-deploy
   cancel-in-progress: true
 
 jobs:
@@ -30,5 +30,4 @@ jobs:
         run: |
           shopify theme push \
           --store ${{ secrets.SHOPIFY_STORE_DOMAIN }} \
-          --theme ${{ secrets.SHOPIFY_THEME_ID }} \
-          --allow-live
+          --theme 181596750121 \
