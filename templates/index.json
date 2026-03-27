@@ -258,7 +258,6 @@
     },
     "products_carousel_GdfTjJ": {
       "type": "products-carousel",
-      "disabled": true,
       "name": "Lançamento Força do Agro V2",
       "settings": {
         "section_width": "fluid_container",
