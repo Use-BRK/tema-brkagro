@@ -60,8 +60,8 @@
           "type": "slider_item",
           "name": "Copos Térmicos",
           "settings": {
-            "image": "shopify://shop_images/DESKTOP_COPOS.png",
-            "image_mobile": "shopify://shop_images/MOBILE_COPOS.png",
+            "image": "shopify://shop_images/DESKTOP_COPOS.webp",
+            "image_mobile": "shopify://shop_images/MOBILE_COPOS.webp",
             "link_banner": "shopify://collections/copos-e-garrafas-termicas",
             "overlay_opacity": 0,
             "slider_effect": "effect_fadeinup",
