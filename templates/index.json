@@ -26,13 +26,13 @@
     "slideshow_8KKtNU": {
       "type": "slideshow",
       "blocks": {
-        "slider_item_4iUGiw": {
+        "slider_item_PjqRQy": {
           "type": "slider_item",
-          "name": "Força do Agro V2",
+          "name": "Copos Térmicos",
           "settings": {
-            "image": "shopify://shop_images/DESKTOP_FORCADOAGRO.webp",
-            "image_mobile": "shopify://shop_images/MOBILE_FORCADOAGRO.webp",
-            "link_banner": "shopify://collections/forca-do-agro-v2",
+            "image": "shopify://shop_images/DESKTOP_COPOS.webp",
+            "image_mobile": "shopify://shop_images/MOBILE_COPOS.webp",
+            "link_banner": "shopify://collections/copos-e-garrafas-termicas",
             "overlay_opacity": 0,
             "slider_effect": "effect_fadeinup",
             "subheading": "",
@@ -56,13 +56,13 @@
             "content_alignment_mobile": "center"
           }
         },
-        "slider_item_PjqRQy": {
+        "slider_item_4iUGiw": {
           "type": "slider_item",
-          "name": "Copos Térmicos",
+          "name": "Força do Agro V2",
           "settings": {
-            "image": "shopify://shop_images/DESKTOP_COPOS.webp",
-            "image_mobile": "shopify://shop_images/MOBILE_COPOS.webp",
-            "link_banner": "shopify://collections/copos-e-garrafas-termicas",
+            "image": "shopify://shop_images/DESKTOP_FORCADOAGRO.webp",
+            "image_mobile": "shopify://shop_images/MOBILE_FORCADOAGRO.webp",
+            "link_banner": "shopify://collections/forca-do-agro-v2",
             "overlay_opacity": 0,
             "slider_effect": "effect_fadeinup",
             "subheading": "",
@@ -178,8 +178,8 @@
         }
       },
       "block_order": [
-        "slider_item_4iUGiw",
         "slider_item_PjqRQy",
+        "slider_item_4iUGiw",
         "slider_item_gUEYbD",
         "slider_item_tBYL6H",
         "slider_item_mHFJwJ"
