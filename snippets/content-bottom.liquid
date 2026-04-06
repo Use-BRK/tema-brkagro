@@ -5,6 +5,9 @@
     assign money_format = shop.money_with_currency_format | strip_html
   endif
 -%}
+{% if settings.enable_discount_code %}
+  <script src="{{ 'cart-discount.js' | asset_url }}" defer="defer"></script>
+{% endif %}
 {% liquid
   assign enable_rtl = settings.rtl
   assign iso_code = request.locale.iso_code

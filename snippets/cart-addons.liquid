@@ -26,9 +26,6 @@
   endfor
   assign discount_codes = discount_codes | uniq
 %}
-{% if enable_discount_code %}
-  <script src="{{ 'cart-discount.js' | asset_url }}" defer="defer"></script>
-{% endif %}
 <div class="cart-addons flex justify-center border-top">
   {%- if cart_note -%}
     <div data-id="not" class="mini_cart_note">
