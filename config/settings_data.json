@@ -80,7 +80,7 @@
     "show_on_cart_page": false,
     "product_recommendations_type": "auto",
     "select_product_recommendations": [],
-    "show_estimate_shipping_rates": false,
+    "show_estimate_shipping_rates": true,
     "show_delivery_day": false,
     "facebook": "https://pt-br.facebook.com/brkagrobrasil",
     "instagram": "https://www.instagram.com/brkagro_ofc/",

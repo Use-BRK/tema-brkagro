@@ -26,6 +26,96 @@
     "slideshow_8KKtNU": {
       "type": "slideshow",
       "blocks": {
+        "slider_item_mHFJwJ": {
+          "type": "slider_item",
+          "name": "Longhorn",
+          "settings": {
+            "image": "shopify://shop_images/LONGHORN_DESKTOP.webp",
+            "image_mobile": "shopify://shop_images/LONGHORN_MOBILE.webp",
+            "link_banner": "shopify://collections/agro-western",
+            "overlay_opacity": 0,
+            "slider_effect": "effect_fadeinup",
+            "subheading": "",
+            "heading": "",
+            "description": "",
+            "first_button_label": "",
+            "first_button_link": "",
+            "first_button_style": false,
+            "second_button_label": "",
+            "second_button_link": "",
+            "second_button_style": false,
+            "content_alignment": "center",
+            "content_position": "top-center",
+            "content_width": "full_width",
+            "content_max_width": 100,
+            "content_padding_block": 60,
+            "content_padding_inline": 120,
+            "show_content_background": false,
+            "content_background": "#ffffff",
+            "content_box_opacity": 100,
+            "content_alignment_mobile": "center"
+          }
+        },
+        "slider_item_tBYL6H": {
+          "type": "slider_item",
+          "name": "Essenciais",
+          "settings": {
+            "image": "shopify://shop_images/ESSENCIAIS_DESKTOP.webp",
+            "image_mobile": "shopify://shop_images/ESSENCIAIS_MOBILE.webp",
+            "link_banner": "shopify://collections/essenciais-sem-estampa",
+            "overlay_opacity": 0,
+            "slider_effect": "effect_fadeinup",
+            "subheading": "",
+            "heading": "",
+            "description": "",
+            "first_button_label": "",
+            "first_button_link": "",
+            "first_button_style": false,
+            "second_button_label": "",
+            "second_button_link": "",
+            "second_button_style": false,
+            "content_alignment": "center",
+            "content_position": "top-center",
+            "content_width": "full_width",
+            "content_max_width": 100,
+            "content_padding_block": 60,
+            "content_padding_inline": 120,
+            "show_content_background": false,
+            "content_background": "#ffffff",
+            "content_box_opacity": 100,
+            "content_alignment_mobile": "center"
+          }
+        },
+        "slider_item_gUEYbD": {
+          "type": "slider_item",
+          "name": "Brasil é Agro",
+          "settings": {
+            "image": "shopify://shop_images/DESKTOP_BRASIL_E_AGRO.webp",
+            "image_mobile": "shopify://shop_images/MOBILE_BRASIL_E_AGRO.webp",
+            "link_banner": "shopify://collections/brasil-e-agro-2026",
+            "overlay_opacity": 0,
+            "slider_effect": "effect_fadeinup",
+            "subheading": "",
+            "heading": "",
+            "description": "",
+            "first_button_label": "",
+            "first_button_link": "",
+            "first_button_style": false,
+            "second_button_label": "",
+            "second_button_link": "",
+            "second_button_style": false,
+            "content_alignment": "center",
+            "content_position": "top-center",
+            "content_width": "full_width",
+            "content_max_width": 100,
+            "content_padding_block": 60,
+            "content_padding_inline": 120,
+            "show_content_background": false,
+            "content_background": "#ffffff",
+            "content_box_opacity": 100,
+            "content_alignment_mobile": "center"
+          }
+        },
         "slider_item_73BmRw": {
           "type": "slider_item",
           "name": "Óculos de Sol 2026",
@@ -85,104 +175,14 @@
             "content_box_opacity": 100,
             "content_alignment_mobile": "center"
           }
-        },
-        "slider_item_gUEYbD": {
-          "type": "slider_item",
-          "name": "Brasil é Agro",
-          "settings": {
-            "image": "shopify://shop_images/DESKTOP_BRASIL_E_AGRO.webp",
-            "image_mobile": "shopify://shop_images/MOBILE_BRASIL_E_AGRO.webp",
-            "link_banner": "shopify://collections/brasil-e-agro-2026",
-            "overlay_opacity": 0,
-            "slider_effect": "effect_fadeinup",
-            "subheading": "",
-            "heading": "",
-            "description": "",
-            "first_button_label": "",
-            "first_button_link": "",
-            "first_button_style": false,
-            "second_button_label": "",
-            "second_button_link": "",
-            "second_button_style": false,
-            "content_alignment": "center",
-            "content_position": "top-center",
-            "content_width": "full_width",
-            "content_max_width": 100,
-            "content_padding_block": 60,
-            "content_padding_inline": 120,
-            "show_content_background": false,
-            "content_background": "#ffffff",
-            "content_box_opacity": 100,
-            "content_alignment_mobile": "center"
-          }
-        },
-        "slider_item_tBYL6H": {
-          "type": "slider_item",
-          "name": "Essenciais",
-          "settings": {
-            "image": "shopify://shop_images/ESSENCIAIS_DESKTOP.webp",
-            "image_mobile": "shopify://shop_images/ESSENCIAIS_MOBILE.webp",
-            "link_banner": "shopify://collections/essenciais-sem-estampa",
-            "overlay_opacity": 0,
-            "slider_effect": "effect_fadeinup",
-            "subheading": "",
-            "heading": "",
-            "description": "",
-            "first_button_label": "",
-            "first_button_link": "",
-            "first_button_style": false,
-            "second_button_label": "",
-            "second_button_link": "",
-            "second_button_style": false,
-            "content_alignment": "center",
-            "content_position": "top-center",
-            "content_width": "full_width",
-            "content_max_width": 100,
-            "content_padding_block": 60,
-            "content_padding_inline": 120,
-            "show_content_background": false,
-            "content_background": "#ffffff",
-            "content_box_opacity": 100,
-            "content_alignment_mobile": "center"
-          }
-        },
-        "slider_item_mHFJwJ": {
-          "type": "slider_item",
-          "name": "Longhorn",
-          "settings": {
-            "image": "shopify://shop_images/LONGHORN_DESKTOP.webp",
-            "image_mobile": "shopify://shop_images/LONGHORN_MOBILE.webp",
-            "link_banner": "shopify://collections/agro-western",
-            "overlay_opacity": 0,
-            "slider_effect": "effect_fadeinup",
-            "subheading": "",
-            "heading": "",
-            "description": "",
-            "first_button_label": "",
-            "first_button_link": "",
-            "first_button_style": false,
-            "second_button_label": "",
-            "second_button_link": "",
-            "second_button_style": false,
-            "content_alignment": "center",
-            "content_position": "top-center",
-            "content_width": "full_width",
-            "content_max_width": 100,
-            "content_padding_block": 60,
-            "content_padding_inline": 120,
-            "show_content_background": false,
-            "content_background": "#ffffff",
-            "content_box_opacity": 100,
-            "content_alignment_mobile": "center"
-          }
         }
       },
       "block_order": [
-        "slider_item_73BmRw",
-        "slider_item_PjqRQy",
-        "slider_item_gUEYbD",
+        "slider_item_mHFJwJ",
         "slider_item_tBYL6H",
-        "slider_item_mHFJwJ"
+        "slider_item_gUEYbD",
+        "slider_item_73BmRw",
+        "slider_item_PjqRQy"
       ],
       "custom_css": [
         ".h-full_screen {--height-topbar: 41px;}",
@@ -256,62 +256,27 @@
         "reset_spacing": true
       }
     },
-    "products_carousel_GdfTjJ": {
-      "type": "products-carousel",
-      "name": "Lançamento Força do Agro V2",
-      "settings": {
-        "section_width": "fluid_container",
-        "color_scheme": "",
-        "heading": "🔥 LANÇAMENTO • A Força do Agro",
-        "description": "",
-        "show_view_all_button": true,
-        "header_size": "small",
-        "header_alignment": "center",
-        "collection": "forca-do-agro-v2",
-        "items_to_show": 25,
-        "items_per_row": 5,
-        "column_gap": 15,
-        "show_banner": false,
-        "sticky_banner": false,
-        "banner_width": 30,
-        "position": "left",
-        "banner_link": "",
-        "banner_type": "image",
-        "video_url": "",
-        "video_autoplay": false,
-        "show_arrow": true,
-        "carousel_pagination": "disable",
-        "infinite": false,
-        "autoplay": false,
-        "autorotate_speed": 5,
-        "reveal": false,
-        "items_per_row_mobile": 1.5,
-        "padding_top": 20,
-        "padding_bottom": 20,
-        "reset_spacing": true
-      }
-    },
     "collection_tab_DPbHcm": {
       "type": "collection-tab",
       "blocks": {
-        "collection_DP8drE": {
-          "type": "collection",
-          "settings": {
-            "collection": "lancamentos-femininos",
-            "collection_title": "Femininas"
-          }
-        },
         "collection_kjTne6": {
           "type": "collection",
           "settings": {
             "collection": "mais-vendidos",
             "collection_title": "Masculinas"
           }
+        },
+        "collection_DP8drE": {
+          "type": "collection",
+          "settings": {
+            "collection": "lancamentos-femininos",
+            "collection_title": "Femininas"
+          }
         }
       },
       "block_order": [
-        "collection_DP8drE",
-        "collection_kjTne6"
+        "collection_kjTne6",
+        "collection_DP8drE"
       ],
       "custom_css": [
         ".collection-tab__tab-item {font-size: clamp(1.105em, 2vw, 2.5rem);}",
@@ -346,6 +311,41 @@
         "items_per_row_mobile": 1.5,
         "padding_top": 0,
         "padding_bottom": 10,
+        "reset_spacing": true
+      }
+    },
+    "products_carousel_GdfTjJ": {
+      "type": "products-carousel",
+      "name": "Lançamento Força do Agro V2",
+      "settings": {
+        "section_width": "fluid_container",
+        "color_scheme": "",
+        "heading": "🔥 LANÇAMENTO • A Força do Agro",
+        "description": "",
+        "show_view_all_button": true,
+        "header_size": "small",
+        "header_alignment": "center",
+        "collection": "forca-do-agro-v2",
+        "items_to_show": 25,
+        "items_per_row": 5,
+        "column_gap": 15,
+        "show_banner": false,
+        "sticky_banner": false,
+        "banner_width": 30,
+        "position": "left",
+        "banner_link": "",
+        "banner_type": "image",
+        "video_url": "",
+        "video_autoplay": false,
+        "show_arrow": true,
+        "carousel_pagination": "disable",
+        "infinite": false,
+        "autoplay": false,
+        "autorotate_speed": 5,
+        "reveal": false,
+        "items_per_row_mobile": 1.5,
+        "padding_top": 20,
+        "padding_bottom": 20,
         "reset_spacing": true
       }
     },
@@ -1315,8 +1315,8 @@
     "divider_WJrFxP",
     "slideshow_8KKtNU",
     "scrolling_text_XAxGTr",
-    "products_carousel_GdfTjJ",
     "collection_tab_DPbHcm",
+    "products_carousel_GdfTjJ",
     "collection_list_TVMtme",
     "products_carousel_nUcUgz",
     "collection_tab_XNDCTb",
