@@ -43,6 +43,61 @@
         justify-content: center;
       }
     }
+    .topbar-copy-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: rgba(255,255,255,0.2);
+      border: 1px solid rgba(255,255,255,0.4);
+      color: inherit;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      padding: 2px 8px;
+      margin-left: 8px;
+      border-radius: 3px;
+      cursor: pointer;
+      line-height: 1.4;
+      vertical-align: middle;
+      transition: opacity 0.3s, transform 0.3s;
+      white-space: nowrap;
+    }
+    .topbar-copy-btn:hover {
+      background: rgba(255,255,255,0.35);
+      border-color: rgba(255,255,255,0.6);
+    }
+    .topbar-copy-btn.is-copied {
+      opacity: 0;
+      transform: scale(0.8);
+      pointer-events: none;
+    }
+    .topbar-copied-msg {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      margin-left: 8px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      vertical-align: middle;
+      opacity: 0;
+      transform: scale(0.8);
+      transition: opacity 0.3s, transform 0.3s;
+      white-space: nowrap;
+    }
+    .topbar-copied-msg.is-visible {
+      opacity: 1;
+      transform: scale(1);
+    }
+    .topbar-copied-msg svg {
+      width: 12px;
+      height: 12px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
   {%- endstyle -%}
   {%- capture style -%}
     --section-pt: {{ section_st.padding_top }}; --section-pb: {{ section_st.padding_bottom }};--swiper-navigation-color: var(--color-text);
@@ -157,6 +212,9 @@
                       <div class="swiper-slide flex align-center text-center text-lg-start lh-normal">
                         <div class="px-15">
                           {{- block_st.text1 -}}
+                          {%- if block_st.coupon1_enabled and block_st.coupon1 != blank -%}
+                            <button class="topbar-copy-btn" type="button" data-coupon="{{ block_st.coupon1 | escape }}" aria-label="Copiar cupom {{ block_st.coupon1 | escape }}">COPIAR</button>
+                          {%- endif -%}
                         </div>
                       </div>
                     {% endif %}
@@ -164,6 +222,9 @@
                       <div class="swiper-slide flex align-center text-center text-lg-start lh-normal">
                         <div class="px-15">
                           {{- block_st.text2 -}}
+                          {%- if block_st.coupon2_enabled and block_st.coupon2 != blank -%}
+                            <button class="topbar-copy-btn" type="button" data-coupon="{{ block_st.coupon2 | escape }}" aria-label="Copiar cupom {{ block_st.coupon2 | escape }}">COPIAR</button>
+                          {%- endif -%}
                         </div>
                       </div>
                     {% endif %}
@@ -171,6 +232,9 @@
                       <div class="swiper-slide flex align-center text-center text-lg-start lh-normal">
                         <div class="px-15">
                           {{- block_st.text3 -}}
+                          {%- if block_st.coupon3_enabled and block_st.coupon3 != blank -%}
+                            <button class="topbar-copy-btn" type="button" data-coupon="{{ block_st.coupon3 | escape }}" aria-label="Copiar cupom {{ block_st.coupon3 | escape }}">COPIAR</button>
+                          {%- endif -%}
                         </div>
                       </div>
                     {% endif %}
@@ -220,6 +284,36 @@
   let top_bar = document.querySelector('.section-top-bar')?.clientHeight || 0;
   const body = document.querySelector('body');
   body.style.setProperty('--height-topbar', `${top_bar}px`);
+
+  document.querySelectorAll('#topbar .topbar-copy-btn').forEach(function(btn) {
+    btn.addEventListener('click', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      var coupon = btn.getAttribute('data-coupon');
+      if (!coupon) return;
+
+      navigator.clipboard.writeText(coupon).then(function() {
+        btn.classList.add('is-copied');
+
+        var msg = document.createElement('span');
+        msg.className = 'topbar-copied-msg';
+        msg.innerHTML = '<svg viewBox="0 0 16 16"><polyline points="3.5 8.5 6.5 11.5 12.5 4.5"></polyline></svg> COPIADO!';
+        btn.insertAdjacentElement('afterend', msg);
+
+        requestAnimationFrame(function() {
+          requestAnimationFrame(function() {
+            msg.classList.add('is-visible');
+          });
+        });
+
+        setTimeout(function() {
+          msg.classList.remove('is-visible');
+          btn.classList.remove('is-copied');
+          setTimeout(function() { msg.remove(); }, 300);
+        }, 2500);
+      });
+    });
+  });
 {% endjavascript %}
 {% schema %}
 {
@@ -413,16 +507,52 @@
           "default": "Sign up for 10% off your first order. Sign Up"
         },
         {
+          "type": "text",
+          "id": "coupon1",
+          "label": "Cupom do Texto 1",
+          "info": "Insira o código do cupom para exibir o botão COPIAR"
+        },
+        {
+          "type": "checkbox",
+          "id": "coupon1_enabled",
+          "label": "Ativar botão de copiar cupom (Texto 1)",
+          "default": false
+        },
+        {
           "type": "inline_richtext",
           "id": "text2",
           "label": "t:sections.top-bar.blocks.text_slider.settings.text_2.label",
           "default": "100% secure online payment"
         },
         {
+          "type": "text",
+          "id": "coupon2",
+          "label": "Cupom do Texto 2",
+          "info": "Insira o código do cupom para exibir o botão COPIAR"
+        },
+        {
+          "type": "checkbox",
+          "id": "coupon2_enabled",
+          "label": "Ativar botão de copiar cupom (Texto 2)",
+          "default": false
+        },
+        {
           "type": "inline_richtext",
           "id": "text3",
           "label": "t:sections.top-bar.blocks.text_slider.settings.text_3.label",
           "default": "Free Shipping for all order over $99"
+        },
+        {
+          "type": "text",
+          "id": "coupon3",
+          "label": "Cupom do Texto 3",
+          "info": "Insira o código do cupom para exibir o botão COPIAR"
+        },
+        {
+          "type": "checkbox",
+          "id": "coupon3_enabled",
+          "label": "Ativar botão de copiar cupom (Texto 3)",
+          "default": false
         },
         {
           "type": "range",
