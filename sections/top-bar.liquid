@@ -43,21 +43,23 @@
         justify-content: center;
       }
     }
+    #topbar .px-15 {
+      display: inline;
+      white-space: nowrap;
+    }
     .topbar-copy-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
+      display: inline;
       background: rgba(255,255,255,0.2);
       border: 1px solid rgba(255,255,255,0.4);
       color: inherit;
-      font-size: 10px;
+      font-size: 0.75em;
       font-weight: 700;
       letter-spacing: 0.5px;
-      padding: 2px 8px;
-      margin-left: 8px;
+      padding: 1px 6px;
+      margin-left: 6px;
       border-radius: 3px;
       cursor: pointer;
-      line-height: 1.4;
+      line-height: 1;
       vertical-align: middle;
       transition: opacity 0.3s, transform 0.3s;
       white-space: nowrap;
@@ -67,36 +69,31 @@
       border-color: rgba(255,255,255,0.6);
     }
     .topbar-copy-btn.is-copied {
-      opacity: 0;
-      transform: scale(0.8);
-      pointer-events: none;
+      display: none;
     }
     .topbar-copied-msg {
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      margin-left: 8px;
-      font-size: 10px;
+      display: inline;
+      margin-left: 6px;
+      font-size: 0.75em;
       font-weight: 700;
       letter-spacing: 0.5px;
       vertical-align: middle;
       opacity: 0;
-      transform: scale(0.8);
-      transition: opacity 0.3s, transform 0.3s;
+      transition: opacity 0.3s;
       white-space: nowrap;
     }
     .topbar-copied-msg.is-visible {
       opacity: 1;
-      transform: scale(1);
     }
     .topbar-copied-msg svg {
-      width: 12px;
-      height: 12px;
+      width: 10px;
+      height: 10px;
       fill: none;
       stroke: currentColor;
       stroke-width: 2.5;
       stroke-linecap: round;
       stroke-linejoin: round;
+      vertical-align: middle;
     }
   {%- endstyle -%}
   {%- capture style -%}
