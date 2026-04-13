@@ -406,30 +406,38 @@
 {%- if show_gender_filter -%}
 <script>
   (function () {
+    var STORAGE_KEY = 'brkagro-gender-filter';
+
+    function applyGenderFilter(gender) {
+      var wrapper = document.querySelector('.gender-filter-wrapper');
+      if (!wrapper) return;
+      wrapper.classList.remove('filter-masculino', 'filter-feminino');
+      wrapper.classList.add('filter-' + gender);
+    }
+
     var filterBar = document.getElementById('gender-filter-bar');
     if (!filterBar) return;
 
     var buttons = filterBar.querySelectorAll('.gender-filter-btn');
-    var wrapper = filterBar.closest('.gender-filter-wrapper');
     var defaultGender = '{{ gender_block.settings.default_gender }}';
+    var activeGender = defaultGender;
+    try { activeGender = sessionStorage.getItem(STORAGE_KEY) || defaultGender; } catch (e) {}
 
-    function applyGenderFilter(gender) {
-      if (!wrapper) return;
-      wrapper.classList.remove('filter-masculino', 'filter-feminino');
-      wrapper.classList.add('filter-' + gender);
-      window.dispatchEvent(new Event('resize'));
-      window.dispatchEvent(new Event('scroll'));
-    }
+    buttons.forEach(function (btn) {
+      btn.classList.toggle('active', btn.getAttribute('data-gender') === activeGender);
+    });
 
     buttons.forEach(function (btn) {
       btn.addEventListener('click', function () {
+        var gender = btn.getAttribute('data-gender');
         buttons.forEach(function (b) { b.classList.remove('active'); });
         btn.classList.add('active');
-        applyGenderFilter(btn.getAttribute('data-gender'));
+        try { sessionStorage.setItem(STORAGE_KEY, gender); } catch (e) {}
+        applyGenderFilter(gender);
       });
     });
 
-    applyGenderFilter(defaultGender);
+    applyGenderFilter(activeGender);
   })();
 </script>
 {%- endif -%}
