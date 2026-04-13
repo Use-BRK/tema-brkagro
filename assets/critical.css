@@ -3121,7 +3121,7 @@ cookie-bar {
   z-index: 10;
 }
 .bls-image-js .bls-loading-image {
-  filter: blur(10px);
+  /* filter: blur(10px); */
   transition: filter 0.3s ease-out;
 }
 .bls-image-js .bls-loading-image > img.secondary-image {
