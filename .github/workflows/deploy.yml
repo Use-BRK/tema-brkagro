@@ -1,12 +1,12 @@
-name: Deploy para Shopify Production Theme
+name: Deploy para Shopify Development Theme
 
 on:
   push:
     branches:
-      - main
+      - dev
 
 concurrency:
-  group: production-deploy
+  group: development-deploy
   cancel-in-progress: true
 
 jobs:
@@ -24,11 +24,11 @@ jobs:
       - name: Install Shopify CLI
         run: npm install -g @shopify/cli@latest
 
-      - name: Deploy to Shopify Production Theme
+      - name: Deploy to Shopify Development Theme
         env:
           SHOPIFY_CLI_THEME_TOKEN: ${{ secrets.SHOPIFY_CLI_THEME_TOKEN }}
         run: |
           shopify theme push \
           --store ${{ secrets.SHOPIFY_STORE_DOMAIN }} \
-          --theme ${{ secrets.SHOPIFY_THEME_ID }} \
+          --theme ${{ secrets.SHOPIFY_DEVELOPMENT_THEME_ID }} \
           --allow-live
