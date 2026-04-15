@@ -61,12 +61,6 @@
       letter-spacing: 1px;
     }
   }
-  .gender-filter-wrapper.filter-masculino .grid__item[data-genero="feminino"] {
-    display: none !important;
-  }
-  .gender-filter-wrapper.filter-feminino .grid__item[data-genero="masculino"] {
-    display: none !important;
-  }
 </style>
 {%- endif -%}
 
@@ -119,7 +113,6 @@
 {% if enable_filtering and filter_layout == 'vertical' %}--col-width: 27rem;--col-gap: 3rem;{% endif %} {% if enable_filtering and filter_layout == 'vertical' and section_width != 'default' %}--col-gap-desktop: 6rem;{% endif %}{% if enable_filtering and filter_layout == 'vertical' and section_width == 'default' %}--col-gap: 3rem;{% endif %}  --section-pt: {{ section_st.padding_top }}; --section-pb: {{ section_st.padding_bottom }};
 {%- endcapture -%}
 
-{%- if show_gender_filter -%}<div class="gender-filter-wrapper">{%- endif -%}
 <section
   class="section{% if section_st.padding_top < 30 %} pt-min{% endif %}{% if section_st.padding_bottom < 30 %} pb-min{% endif %} sec__collection-main {{ scroll_animation }} bls-image-js"
   data-section-id="{{ section.id }}"
@@ -199,9 +192,35 @@
         {% endif %}
 
         {%- if show_gender_filter -%}
+          {%- assign masc_active = false -%}
+          {%- assign fem_active = false -%}
+          {%- assign masc_url = '' -%}
+          {%- assign fem_url = '' -%}
+          {%- for filter in collection.filters -%}
+            {%- if filter.param_name == 'filter.p.m.custom.genero' -%}
+              {%- for value in filter.values -%}
+                {%- assign value_down = value.label | downcase -%}
+                {%- if value_down == 'masculino' -%}
+                  {%- if value.active -%}
+                    {%- assign masc_active = true -%}
+                    {%- assign masc_url = value.url_to_remove -%}
+                  {%- else -%}
+                    {%- assign masc_url = value.url_to_add -%}
+                  {%- endif -%}
+                {%- elsif value_down == 'feminino' -%}
+                  {%- if value.active -%}
+                    {%- assign fem_active = true -%}
+                    {%- assign fem_url = value.url_to_remove -%}
+                  {%- else -%}
+                    {%- assign fem_url = value.url_to_add -%}
+                  {%- endif -%}
+                {%- endif -%}
+              {%- endfor -%}
+            {%- endif -%}
+          {%- endfor -%}
           <div class="gender-filter-bar" id="gender-filter-bar" {{ gender_block.shopify_attributes }}>
-            <button class="gender-filter-btn{% if gender_block.settings.default_gender == 'masculino' %} active{% endif %}" data-gender="masculino" type="button">{{ gender_block.settings.label_masculino }}</button>
-            <button class="gender-filter-btn{% if gender_block.settings.default_gender == 'feminino' %} active{% endif %}" data-gender="feminino" type="button">{{ gender_block.settings.label_feminino }}</button>
+            <button class="gender-filter-btn{% if masc_active %} active{% endif %}" data-href="{{ masc_url }}" type="button">{{ gender_block.settings.label_masculino }}</button>
+            <button class="gender-filter-btn{% if fem_active %} active{% endif %}" data-href="{{ fem_url }}" type="button">{{ gender_block.settings.label_feminino }}</button>
           </div>
         {%- endif -%}
 
@@ -312,14 +331,8 @@
                       </div>
                     {% endif %}
                   {% endif %}
-                  {%- liquid
-                    if show_gender_filter
-                      assign product_genero = product.metafields.custom.genero.value | downcase | default: ''
-                    endif
-                  -%}
                   <div
                     class="grid__item{% if pagination == 'load_more_button' or pagination == 'infinit_scrolling' %} loadmore-item{% endif %}"
-                    {% if show_gender_filter and product_genero != '' %}data-genero="{{ product_genero }}"{% endif %}
                   >
                     {%- if view == 'list' -%}
                       {% render 'product-item',
@@ -395,43 +408,19 @@
     </motion-items-effect>
   {% endif %}
 </section>
-{%- if show_gender_filter -%}</div>{%- endif -%}
-
 {%- if show_gender_filter -%}
 <script>
   (function () {
-    var STORAGE_KEY = 'brkagro-gender-filter';
-
-    function applyGenderFilter(gender) {
-      var wrapper = document.querySelector('.gender-filter-wrapper');
-      if (!wrapper) return;
-      wrapper.classList.remove('filter-masculino', 'filter-feminino');
-      wrapper.classList.add('filter-' + gender);
-    }
-
     var filterBar = document.getElementById('gender-filter-bar');
     if (!filterBar) return;
-
-    var buttons = filterBar.querySelectorAll('.gender-filter-btn');
-    var defaultGender = '{{ gender_block.settings.default_gender }}';
-    var activeGender = defaultGender;
-    try { activeGender = sessionStorage.getItem(STORAGE_KEY) || defaultGender; } catch (e) {}
-
-    buttons.forEach(function (btn) {
-      btn.classList.toggle('active', btn.getAttribute('data-gender') === activeGender);
-    });
-
-    buttons.forEach(function (btn) {
+    filterBar.querySelectorAll('.gender-filter-btn').forEach(function (btn) {
       btn.addEventListener('click', function () {
-        var gender = btn.getAttribute('data-gender');
-        buttons.forEach(function (b) { b.classList.remove('active'); });
-        btn.classList.add('active');
-        try { sessionStorage.setItem(STORAGE_KEY, gender); } catch (e) {}
-        applyGenderFilter(gender);
+        var url = btn.getAttribute('data-href');
+        if (url && typeof eventCollectionShopify !== 'undefined') {
+          eventCollectionShopify.renderSectionFilter(url);
+        }
       });
     });
-
-    applyGenderFilter(activeGender);
   })();
 </script>
 {%- endif -%}
@@ -705,22 +694,6 @@
           "id": "label_feminino",
           "label": "Label botão feminino",
           "default": "Feminino"
-        },
-        {
-          "type": "select",
-          "id": "default_gender",
-          "label": "Filtro padrão ao carregar",
-          "default": "masculino",
-          "options": [
-            {
-              "value": "masculino",
-              "label": "Masculino"
-            },
-            {
-              "value": "feminino",
-              "label": "Feminino"
-            }
-          ]
         },
         {
           "type": "collection_list",
