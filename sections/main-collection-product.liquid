@@ -419,8 +419,14 @@
       }
 
       var searchParams = params.toString();
-      var url = eventCollectionShopify.renderUrl(searchParams);
-      eventCollectionShopify.renderSectionFilter(url, searchParams);
+      var newPath = window.location.pathname + (searchParams ? '?' + searchParams : '');
+
+      if (typeof eventCollectionShopify !== 'undefined') {
+        var url = eventCollectionShopify.renderUrl(searchParams);
+        eventCollectionShopify.renderSectionFilter(url, searchParams);
+      } else {
+        window.location.href = newPath;
+      }
     });
   })();
 </script>
