@@ -262,7 +262,7 @@
         "collection_kjTne6": {
           "type": "collection",
           "settings": {
-            "collection": "mais-vendidos",
+            "collection": "mais-vendidos-masculinas",
             "collection_title": "Masculinas"
           }
         },
@@ -522,7 +522,7 @@
         "collection_RikWXM": {
           "type": "collection",
           "settings": {
-            "collection": "mais-vendidos",
+            "collection": "mais-vendidos-masculinas",
             "collection_title": "Mais Vendidos"
           }
         }
