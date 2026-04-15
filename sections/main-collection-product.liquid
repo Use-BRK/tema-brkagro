@@ -194,34 +194,26 @@
         {%- if show_gender_filter -%}
           {%- assign masc_active = false -%}
           {%- assign fem_active = false -%}
-          {%- assign masc_url = '' -%}
-          {%- assign fem_url = '' -%}
+          {%- assign masc_value = '' -%}
+          {%- assign fem_value = '' -%}
           {%- for filter in collection.filters -%}
             {%- if filter.param_name == 'filter.p.m.custom.genero' -%}
               {%- for value in filter.values -%}
                 {%- assign value_down = value.label | downcase -%}
                 {%- if value_down == 'masculino' -%}
-                  {%- if value.active -%}
-                    {%- assign masc_active = true -%}
-                    {%- assign masc_url = value.url_to_remove -%}
-                  {%- else -%}
-                    {%- assign masc_url = value.url_to_add -%}
-                  {%- endif -%}
+                  {%- assign masc_active = value.active -%}
+                  {%- assign masc_value = value.label -%}
                 {%- elsif value_down == 'feminino' -%}
-                  {%- if value.active -%}
-                    {%- assign fem_active = true -%}
-                    {%- assign fem_url = value.url_to_remove -%}
-                  {%- else -%}
-                    {%- assign fem_url = value.url_to_add -%}
-                  {%- endif -%}
+                  {%- assign fem_active = value.active -%}
+                  {%- assign fem_value = value.label -%}
                 {%- endif -%}
               {%- endfor -%}
             {%- endif -%}
           {%- endfor -%}
 
           <div class="gender-filter-bar" id="gender-filter-bar" {{ gender_block.shopify_attributes }}>
-            <button class="gender-filter-btn{% if masc_active %} active{% endif %}" data-href="{{ masc_url }}" type="button">{{ gender_block.settings.label_masculino }}</button>
-            <button class="gender-filter-btn{% if fem_active %} active{% endif %}" data-href="{{ fem_url }}" type="button">{{ gender_block.settings.label_feminino }}</button>
+            <button class="gender-filter-btn{% if masc_active %} active{% endif %}" data-filter-value="{{ masc_value }}" type="button">{{ gender_block.settings.label_masculino }}</button>
+            <button class="gender-filter-btn{% if fem_active %} active{% endif %}" data-filter-value="{{ fem_value }}" type="button">{{ gender_block.settings.label_feminino }}</button>
           </div>
         {%- endif -%}
 
@@ -414,11 +406,21 @@
   (function () {
     document.addEventListener('click', function (e) {
       var btn = e.target.closest('.gender-filter-btn');
-      if (!btn) return;
-      var url = btn.getAttribute('data-href');
-      if (url && typeof eventCollectionShopify !== 'undefined') {
-        eventCollectionShopify.renderSectionFilter(url);
+      if (!btn || typeof eventCollectionShopify === 'undefined') return;
+
+      var isActive = btn.classList.contains('active');
+      var filterValue = btn.getAttribute('data-filter-value');
+
+      var params = new URLSearchParams(window.location.search);
+      params.delete('filter.p.m.custom.genero');
+
+      if (!isActive && filterValue) {
+        params.set('filter.p.m.custom.genero', filterValue);
       }
+
+      var searchParams = params.toString();
+      var url = eventCollectionShopify.renderUrl(searchParams);
+      eventCollectionShopify.renderSectionFilter(url, searchParams);
     });
   })();
 </script>
