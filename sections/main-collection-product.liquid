@@ -218,6 +218,7 @@
               {%- endfor -%}
             {%- endif -%}
           {%- endfor -%}
+
           <div class="gender-filter-bar" id="gender-filter-bar" {{ gender_block.shopify_attributes }}>
             <button class="gender-filter-btn{% if masc_active %} active{% endif %}" data-href="{{ masc_url }}" type="button">{{ gender_block.settings.label_masculino }}</button>
             <button class="gender-filter-btn{% if fem_active %} active{% endif %}" data-href="{{ fem_url }}" type="button">{{ gender_block.settings.label_feminino }}</button>
@@ -411,15 +412,13 @@
 {%- if show_gender_filter -%}
 <script>
   (function () {
-    var filterBar = document.getElementById('gender-filter-bar');
-    if (!filterBar) return;
-    filterBar.querySelectorAll('.gender-filter-btn').forEach(function (btn) {
-      btn.addEventListener('click', function () {
-        var url = btn.getAttribute('data-href');
-        if (url && typeof eventCollectionShopify !== 'undefined') {
-          eventCollectionShopify.renderSectionFilter(url);
-        }
-      });
+    document.addEventListener('click', function (e) {
+      var btn = e.target.closest('.gender-filter-btn');
+      if (!btn) return;
+      var url = btn.getAttribute('data-href');
+      if (url && typeof eventCollectionShopify !== 'undefined') {
+        eventCollectionShopify.renderSectionFilter(url);
+      }
     });
   })();
 </script>
