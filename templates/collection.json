@@ -155,7 +155,6 @@
           "settings": {
             "label_masculino": "Masculino",
             "label_feminino": "Feminino",
-            "default_gender": "masculino",
             "filter_collection_list": [
               "forca-do-agro-v2",
               "mais-vendidos-1"
