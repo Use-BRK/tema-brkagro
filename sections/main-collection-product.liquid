@@ -404,29 +404,54 @@
 {%- if show_gender_filter -%}
 <script>
   (function () {
-    document.addEventListener('click', function (e) {
-      var btn = e.target.closest('.gender-filter-btn');
-      if (!btn || typeof eventCollectionShopify === 'undefined') return;
+    var sectionSelector = '.sec__collection-main';
 
+    function genderFilter(btn) {
       var isActive = btn.classList.contains('active');
       var filterValue = btn.getAttribute('data-filter-value');
 
       var params = new URLSearchParams(window.location.search);
       params.delete('filter.p.m.custom.genero');
-
       if (!isActive && filterValue) {
         params.set('filter.p.m.custom.genero', filterValue);
       }
 
       var searchParams = params.toString();
-      var newPath = window.location.pathname + (searchParams ? '?' + searchParams : '');
+      var section = document.querySelector(sectionSelector);
+      var sectionId = section ? section.dataset.sectionId : '';
+      var fetchUrl = window.location.pathname + '?section_id=' + sectionId + (searchParams ? '&' + searchParams : '');
+      var browserUrl = window.location.pathname + (searchParams ? '?' + searchParams : '');
 
-      if (typeof eventCollectionShopify !== 'undefined') {
-        var url = eventCollectionShopify.renderUrl(searchParams);
-        eventCollectionShopify.renderSectionFilter(url, searchParams);
-      } else {
-        window.location.href = newPath;
-      }
+      document.body.classList.add('start', 'loading');
+
+      fetch(fetchUrl)
+        .then(function (r) { return r.text(); })
+        .then(function (html) {
+          var doc = new DOMParser().parseFromString(html, 'text/html');
+          if (window.innerWidth <= 1024) {
+            var newGrid = doc.querySelector('#productgridcontainer');
+            var newFilters = doc.querySelector('.filter-blocks');
+            if (newGrid) document.querySelector('#productgridcontainer').innerHTML = newGrid.innerHTML;
+            if (newFilters) document.querySelector('.filter-blocks').innerHTML = newFilters.innerHTML;
+          } else {
+            var newSection = doc.querySelector(sectionSelector);
+            if (newSection) document.querySelector(sectionSelector).replaceWith(newSection);
+          }
+          window.history.pushState({ url: browserUrl }, '', browserUrl);
+        })
+        .catch(function () {
+          window.location.href = browserUrl;
+        })
+        .finally(function () {
+          document.body.classList.remove('start', 'loading', 'finish');
+          if (typeof initLazyloadItem !== 'undefined') initLazyloadItem();
+          if (typeof BlsLazyloadImg !== 'undefined') BlsLazyloadImg.init();
+        });
+    }
+
+    document.addEventListener('click', function (e) {
+      var btn = e.target.closest('.gender-filter-btn');
+      if (btn) genderFilter(btn);
     });
   })();
 </script>
