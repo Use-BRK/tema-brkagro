@@ -166,7 +166,7 @@
         "collapsible_row_m3g6f8": {
           "type": "_product-collapsible-row",
           "settings": {
-            "heading": "MAIS DETALHES",
+            "heading": "DESCRIÇÃO",
             "content": "",
             "use_product_description": true,
             "open": false
@@ -289,15 +289,6 @@
     },
     "1765374451200c6240": {
       "type": "apps",
-      "blocks": {
-        "also_bought_product_page_app_block_CwMyz9": {
-          "type": "shopify://apps/also-bought/blocks/product-page-app-block/b94b27b4-738d-4d92-9e60-43c22d1da3f2",
-          "settings": {}
-        }
-      },
-      "block_order": [
-        "also_bought_product_page_app_block_CwMyz9"
-      ],
       "disabled": true,
       "settings": {}
     },
@@ -355,11 +346,11 @@
       "name": "Video Prova Social",
       "settings": {
         "section_width": "fluid_container",
-        "color_scheme": "scheme-bb1431b0-be4a-4b03-a450-f572c07e3904",
-        "heading": "",
-        "description": "",
+        "color_scheme": "default",
+        "heading": "Vista o Agro!",
+        "description": "<p>Nossos parceiros já vestem o Agro, e você? </p>",
         "header_size": "medium",
-        "header_alignment": "left",
+        "header_alignment": "center",
         "image_ratio": "adapt",
         "custom_ratio": "",
         "video_autoplay": true,
