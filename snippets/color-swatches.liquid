@@ -294,14 +294,21 @@
               {%- endif -%}
             {%- endif -%}
           </div>
-          <div class="ident-size-block">
+          {%- liquid
+            assign has_miniatura = false
+            if product.tags contains 'Miniatura'
+              assign has_miniatura = true
+            endif
+          -%}
+          <div class="ident-size-block{% if has_miniatura %} ident-size-block--miniatura{% endif %}">
           {% render 'product-variant-options',
             product: product,
             option: option,
             isColorOption: is_color_option,
             option_name: option_name,
             swatch_item_type: swatch_item_type,
-            variant_type: 'swatches'
+            variant_type: 'swatches',
+            has_miniatura: has_miniatura
           %}
         </div>
         </fieldset>

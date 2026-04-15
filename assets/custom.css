@@ -1292,3 +1292,72 @@ section[class*=collection] grid-list .grid__item variant-radios {
     padding: 5px !important;
   }
 }
+
+/* Miniatura Variant Options */
+.ident-size-block--miniatura {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px !important;
+}
+
+.miniatura-swatch {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 91px;
+  cursor: pointer;
+  border: 2px solid #d9d9d9;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #fff;
+  transition: border-color 0.2s ease;
+}
+
+.miniatura-swatch:hover {
+  border-color: #999;
+}
+
+input:checked + .miniatura-swatch {
+  border-color: #2c6ecb;
+  box-shadow: 0 0 0 1px #2c6ecb;
+}
+
+input.option-disabled + .miniatura-swatch {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.miniatura-swatch__image {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background-size: cover;
+  background-position: top center;
+  background-repeat: no-repeat;
+}
+
+.miniatura-swatch__image--empty {
+  background-color: #f0f0f0;
+}
+
+.miniatura-swatch__label {
+  width: 100%;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 2px;
+  margin: 0;
+  line-height: 1.3;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media screen and (max-width: 750px) {
+  .miniatura-swatch {
+    width: 80px;
+  }
+
+  .miniatura-swatch__label {
+    font-size: 11px;
+  }
+}

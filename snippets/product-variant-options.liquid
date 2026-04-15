@@ -78,7 +78,33 @@
       {% endif %}
       class="{% if option_disabled -%}option-disabled {%- endif %} visually-hidden"
     >
-    {%- if isColorOption != true or settings.enable_color_swatches == false -%}
+    {%- if has_miniatura -%}
+      {%- liquid
+        assign op = 'option' | append: option.position
+        assign variant = product.variants | where: op, value
+        assign miniatura_img = ''
+        for i in variant
+          if i.featured_image.src
+            assign miniatura_img = i.featured_image.src
+            break
+          endif
+        endfor
+      -%}
+      <label
+        class="miniatura-swatch pointer product__color-swatches--js transition relative"
+        for="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}"
+        {% if miniatura_img != blank %}
+          data-image="{{ miniatura_img | image_url }}"
+        {% endif %}
+      >
+        {%- if miniatura_img != blank -%}
+          <div class="miniatura-swatch__image" style="background-image: url({{ miniatura_img | image_url: width: 180, height: 180, crop: 'top' }});"></div>
+        {%- else -%}
+          <div class="miniatura-swatch__image miniatura-swatch__image--empty"></div>
+        {%- endif -%}
+        <p class="miniatura-swatch__label uppercase-first-letter">{{ value }}</p>
+      </label>
+    {%- elsif isColorOption != true or settings.enable_color_swatches == false -%}
       <label
         class="tooltip pointer product__color-swatches--js product__item-option inline-flex align-center border rounded-3 subheading_weight btn-hover lh-normal px-20 py-10 transition relative"
         for="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}"
