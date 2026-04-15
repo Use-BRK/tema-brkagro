@@ -61,10 +61,10 @@
       letter-spacing: 1px;
     }
   }
-  .gender-filter-wrapper.filter-masculino .grid__item[data-sku-bl='true'] {
+  .gender-filter-wrapper.filter-masculino .grid__item[data-genero="feminino"] {
     display: none !important;
   }
-  .gender-filter-wrapper.filter-feminino .grid__item[data-sku-bl='false'] {
+  .gender-filter-wrapper.filter-feminino .grid__item[data-genero="masculino"] {
     display: none !important;
   }
 </style>
@@ -314,18 +314,12 @@
                   {% endif %}
                   {%- liquid
                     if show_gender_filter
-                      assign has_bl_sku = false
-                      for variant in product.variants
-                        if variant.sku contains 'BL'
-                          assign has_bl_sku = true
-                          break
-                        endif
-                      endfor
+                      assign product_genero = product.metafields.custom.genero.value | downcase | default: ''
                     endif
                   -%}
                   <div
                     class="grid__item{% if pagination == 'load_more_button' or pagination == 'infinit_scrolling' %} loadmore-item{% endif %}"
-                    {% if show_gender_filter %}data-sku-bl="{{ has_bl_sku }}"{% endif %}
+                    {% if show_gender_filter and product_genero != '' %}data-genero="{{ product_genero }}"{% endif %}
                   >
                     {%- if view == 'list' -%}
                       {% render 'product-item',
