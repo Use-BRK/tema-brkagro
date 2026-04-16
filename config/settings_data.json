@@ -277,6 +277,11 @@
         "type": "shopify://apps/ns-discount-in-cart/blocks/discount_block/0cbbbcdd-bf54-49df-885c-9ca3fd52a671",
         "disabled": true,
         "settings": {}
+      },
+      "14128864853162945516": {
+        "type": "shopify://apps/brk-apps-agro/blocks/app-embed/019d97af-ac2d-7e63-88fd-9b16e0f434c2",
+        "disabled": false,
+        "settings": {}
       }
     },
     "color_schemes": {
