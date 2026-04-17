@@ -43,9 +43,9 @@
 <div
   id="minicart__product-{{ item.key }}"
   product-handle="{{ item.product.handle }}"
-  class="cart-item flex mb-20 pb-20 gap-15 border-bottom-dashed"
+  class="cart-item flex mb-12 pb-12 gap-10 border-bottom-dashed"
 >
-  <div class="minicart__product__image global-media-settings w-custom fs-0 relative" style="--custom-width: 9rem">
+  <div class="minicart__product__image global-media-settings w-custom fs-0 relative" style="--custom-width: 7rem">
     <a href="{{- item.url -}}" class="rounded-5 fs-0 " aria-label="{{ item.product.title | escape }}" style="--aspect-ratio: {{ ratio }};">
       {%- if item.image != blank -%}
         {%- assign image_alt = item.image.alt | default: item.product.title | escape -%}

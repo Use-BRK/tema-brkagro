@@ -524,7 +524,7 @@ input[type='checkbox']:checked + .checkmark:before {
   opacity: 0;
   z-index: 12;
   cursor: url(cursor-close.png), pointer;
-  transition: 0.6s cubic-bezier(0.7, 0, 0.2, 1);
+  transition: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
   transition-property: opacity, visibility, background-color;
 }
 :is(.open-drawer, .nav-open, .open-sidebar) .open.overlay::after {
