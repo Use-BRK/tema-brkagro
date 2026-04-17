@@ -1,5 +1,4 @@
 "use-strict";
-import "./cart-components.js";
 
 function initComparisons() {
   var x, i;
