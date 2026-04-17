@@ -2,7 +2,7 @@
   var form = document.querySelector('form[action*="/cart/add"]');
   if (!form) return;
 
-  var TIMEOUT = 5000;
+  var TIMEOUT = 2000;
 
   window.addEventListener('DOMContentLoaded', function() {
     setTimeout(function() {
