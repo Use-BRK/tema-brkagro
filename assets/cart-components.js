@@ -477,6 +477,35 @@ class CartNotification extends HTMLElement {
       })
       .then((state) => {
         const parsedState = JSON.parse(state);
+        if (parsedState.status === 'bad_request') {
+          return fetch('/cart.json')
+            .then((r) => r.json())
+            .then((cart) => {
+              const variantId = id.includes(':') ? id.split(':')[0] : id;
+              const lineIndex = cart.items.findIndex(
+                (item) => String(item.variant_id) === String(variantId) || item.key === id
+              );
+              if (lineIndex === -1) {
+                return JSON.stringify(cart);
+              }
+              const retryBody = JSON.stringify({
+                line: lineIndex + 1,
+                quantity,
+                sections: this.getSectionsToRender().map((section) => section.id),
+                sections_url: window.location.pathname,
+              });
+              return fetch(`${routes?.cart_change_url}.js`, { ...this.fetchConfig(), body: retryBody })
+                .then((r) => r.text());
+            })
+            .then((retryState) => {
+              const retryParsed = typeof retryState === 'string' ? JSON.parse(retryState) : retryState;
+              return retryParsed;
+            });
+        }
+        return parsedState;
+      })
+      .then((parsedState) => {
+        if (!parsedState || parsedState.status === 'bad_request') return;
         if (parsedState.errors) {
           this.updateMessageErrors(id, parsedState.errors, _this);
           return;
