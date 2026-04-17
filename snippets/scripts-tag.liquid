@@ -13,6 +13,7 @@
   {%- when 'collection' and collection.handle -%}
     <script src="{{ 'collection.js' | asset_url }}" defer="defer"></script>
   {%- when 'product' -%}
+    <script src="{{ 'product-form-safety.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'main-product.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'js-cloudimage-360-view.min.js' | asset_url }}" defer="defer"></script>
   {%- when 'search' -%}
