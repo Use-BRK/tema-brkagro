@@ -278,14 +278,14 @@
         "disabled": true,
         "settings": {}
       },
-      "14128864853162945516": {
-        "type": "shopify://apps/brk-apps-agro/blocks/app-embed/019d97af-ac2d-7e63-88fd-9b16e0f434c2",
-        "disabled": false,
-        "settings": {}
-      },
       "1505163441232620700": {
         "type": "shopify://apps/intelipost/blocks/core/167fd468-2ada-45e2-9d34-34022af59729",
         "disabled": false,
+        "settings": {}
+      },
+      "14128864853162945516": {
+        "type": "shopify://apps/brk-apps-agro/blocks/app-embed/019d97af-ac2d-7e63-88fd-9b16e0f434c2",
+        "disabled": true,
         "settings": {}
       }
     },
