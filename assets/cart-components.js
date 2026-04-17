@@ -483,10 +483,10 @@ class CartNotification extends HTMLElement {
             .then((cart) => {
               const variantId = id.includes(':') ? id.split(':')[0] : id;
               const lineIndex = cart.items.findIndex(
-                (item) => String(item.variant_id) === String(variantId) || item.key === id
+                (item) => String(item.variant_id) === String(variantId)
               );
               if (lineIndex === -1) {
-                return JSON.stringify(cart);
+                return this.refreshMinicartSection();
               }
               const retryBody = JSON.stringify({
                 line: lineIndex + 1,
@@ -494,12 +494,12 @@ class CartNotification extends HTMLElement {
                 sections: this.getSectionsToRender().map((section) => section.id),
                 sections_url: window.location.pathname,
               });
-              return fetch(`${routes?.cart_change_url}.js`, { ...this.fetchConfig(), body: retryBody })
-                .then((r) => r.text());
+              return fetch(`${routes?.cart_change_url}.js`, { ...fetchConfig(), body: retryBody })
+                .then((r) => r.text())
+                .then((text) => JSON.parse(text));
             })
-            .then((retryState) => {
-              const retryParsed = typeof retryState === 'string' ? JSON.parse(retryState) : retryState;
-              return retryParsed;
+            .catch(() => {
+              return this.refreshMinicartSection();
             });
         }
         return parsedState;
@@ -614,6 +614,41 @@ class CartNotification extends HTMLElement {
           }
         }
       });
+  }
+
+  refreshMinicartSection() {
+    return fetch(`${window.location.pathname}?section_id=minicart-form`)
+      .then((r) => r.text())
+      .then((html) => {
+        const parsed = new DOMParser().parseFromString(html, 'text/html');
+        const fresh = parsed.querySelector('#minicart-form');
+        const target = document.getElementById('minicart-form');
+        if (fresh && target) {
+          target.innerHTML = fresh.innerHTML;
+        }
+        // Atualizar cart count e totais
+        return fetch('/cart.json').then((r) => r.json());
+      })
+      .then((cart) => {
+        if (cart && cart.item_count != undefined) {
+          document.querySelectorAll('.cart-count').forEach((el) => {
+            if (el.classList.contains('cart-count-drawer')) {
+              el.innerHTML = `(${cart.item_count})`;
+            } else {
+              el.innerHTML = cart.item_count > 100 ? '~' : cart.item_count;
+            }
+          });
+          if (document.querySelector('header-total-price')) {
+            document.querySelector('header-total-price').updateTotal(cart);
+          }
+          const freeShip = document.querySelector('free-ship-progress-bar');
+          if (freeShip) freeShip.init(cart.items_subtotal_price);
+        }
+        this.cartAction();
+        BlsLazyloadImg.init();
+        return null; // sinaliza que o refresh já aconteceu
+      })
+      .catch(() => null);
   }
 
   updateMessageErrors(line, message, target) {
