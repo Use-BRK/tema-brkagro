@@ -374,6 +374,7 @@
         endif
       endif
       assign media_position = media_position | default: 0 | plus: 1
+      assign is_first_image = forloop.first
     %}
     {%- case image.media_type -%}
       {%- when 'external_video' -%}
@@ -575,13 +576,25 @@
           {% endif %}
           {% if zoom_type != 'no_zoom' %}
             {%- assign image_alt = image.alt | default: 'product' | escape -%}
-            {% render 'responsive-image',
-              type: 'product',
-              image: image.preview_image,
-              image_alt: image_alt,
-              class: 'drift-trigger',
-              lazy_product: lazy_product
-            %}
+            {% if is_first_image %}
+              {% render 'responsive-image',
+                type: 'product',
+                image: image.preview_image,
+                image_alt: image_alt,
+                class: 'drift-trigger',
+                lazy_load: true,
+                lazy_product: false,
+                fetchpriority: 'high'
+              %}
+            {% else %}
+              {% render 'responsive-image',
+                type: 'product',
+                image: image.preview_image,
+                image_alt: image_alt,
+                class: 'drift-trigger',
+                lazy_product: lazy_product
+              %}
+            {% endif %}
             {% if zoom_type == 'open_lightbox' %}
               {% liquid
                 assign loop_zoom = false
@@ -606,12 +619,23 @@
                 lazy_product: lazy_product
               %}
             {% else %}
-              {% render 'responsive-image',
-                type: 'product',
-                image: image.preview_image,
-                image_alt: image_alt,
-                lazy_product: lazy_product
-              %}
+              {% if is_first_image %}
+                {% render 'responsive-image',
+                  type: 'product',
+                  image: image.preview_image,
+                  image_alt: image_alt,
+                  lazy_load: true,
+                  lazy_product: false,
+                  fetchpriority: 'high'
+                %}
+              {% else %}
+                {% render 'responsive-image',
+                  type: 'product',
+                  image: image.preview_image,
+                  image_alt: image_alt,
+                  lazy_product: lazy_product
+                %}
+              {% endif %}
             {% endif %}
           {% endif %}
           {% if zoom_type != 'no_zoom' %}
