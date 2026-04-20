@@ -107,7 +107,19 @@ class SlideSection extends HTMLElement {
         if (this.classList.contains("lazy-loading-swiper-before")) {
           this.initSlide();
         } else {
-          this.classList.add("lazy-loading-swiper-after");
+          if ('IntersectionObserver' in window) {
+            const observer = new IntersectionObserver((entries) => {
+              entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                  observer.disconnect();
+                  this.initSlide();
+                }
+              });
+            }, { rootMargin: '200px 0px' });
+            observer.observe(this);
+          } else {
+            this.classList.add("lazy-loading-swiper-after");
+          }
         }
       }
     } else {

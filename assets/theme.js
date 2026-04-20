@@ -978,9 +978,11 @@ let BlsMainMenuShopify = (function () {
     },
 
     setupHeaderAttributes: function () {
-      let headerpage = document.querySelector("header")?.clientHeight || 0;
-      const body = document.querySelector("body");
-      body.style.setProperty('--height-header', `${headerpage}px`);
+      requestAnimationFrame(() => {
+        let headerpage = document.querySelector("header")?.clientHeight || 0;
+        const body = document.querySelector("body");
+        body.style.setProperty('--height-header', `${headerpage}px`);
+      });
     },
 
     initStickyHeader: function (header) {
