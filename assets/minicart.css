@@ -421,6 +421,33 @@ body .dmp_discount-form input {
   padding-bottom: 0;
 }
 
+/* ── V4 line-item loading state (CSS-only via :has) ─── */
+.cart-item--v4:has(mini-cart-remove-button.loading) {
+  pointer-events: none;
+}
+.cart-item--v4:has(mini-cart-remove-button.loading) .cart-item__info,
+.cart-item--v4:has(mini-cart-remove-button.loading) .cart-item__link {
+  opacity: 0.4;
+}
+.cart-item--v4 .cart-item__spinner {
+  display: none;
+  position: absolute;
+  inset: 0;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+.cart-item--v4:has(mini-cart-remove-button.loading) .cart-item__spinner {
+  display: flex;
+}
+.cart-item__spinner svg {
+  animation: cart-spin 0.7s linear infinite;
+  color: var(--color-heading, #1a1410);
+}
+@keyframes cart-spin {
+  to { transform: rotate(360deg); }
+}
+
 /* ── Image ─────────────────────────────────────────────── */
 .cart-item--v4 .cart-item__link {
   width: 50px;
