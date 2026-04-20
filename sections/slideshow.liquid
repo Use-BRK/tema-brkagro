@@ -83,9 +83,11 @@
                 assign ratio_mb = '2/3'
               endif
               assign animate = ' animate-delay'
+              assign slide_fetchpriority = nil
               if forloop.first
                 assign lazy_load = true
                 assign animate = ''
+                assign slide_fetchpriority = 'high'
               endif
             %}
             <div {{ block.shopify_attributes }} class="swiper-slide">
@@ -134,6 +136,7 @@
                           image_mobile: image_mobile,
                           image_alt: image_alt,
                           lazy_load: lazy_load,
+                          fetchpriority: slide_fetchpriority,
                           first: forloop.first
                         %}
                       </a>  

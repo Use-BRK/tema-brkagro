@@ -307,7 +307,9 @@
             image: featured_media.preview_image,
             image_alt: image_alt,
             class: 'drift-trigger',
-            lazy_product: lazy_product
+            lazy_load: true,
+            lazy_product: false,
+            fetchpriority: 'high'
           %}
           {% if zoom_type == 'open_lightbox' %}
             <button class="zoom_light_box">
@@ -323,7 +325,9 @@
               image_alt: image_alt,
               class: 'nn',
               no_animate: true,
-              lazy_product: lazy_product
+              lazy_load: true,
+              lazy_product: false,
+              fetchpriority: 'high'
             %}
           {% else %}
             {% render 'responsive-image',
