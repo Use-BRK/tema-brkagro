@@ -590,6 +590,23 @@
             "info": "Use round numbers. Exclude currency, symbols, and letters."
           }
         },
+        "gift_bar": {
+          "label": "Gift bar",
+          "show": {
+            "label": "Show gift bar"
+          },
+          "minimum": {
+            "label": "Gift minimum amount",
+            "info": "Use round numbers. Exclude currency, symbols, and letters."
+          },
+          "unavailable_text": {
+            "label": "Text before threshold",
+            "info": "Use {{ amount }} to display the remaining amount needed."
+          },
+          "available_text": {
+            "label": "Text after threshold (gift unlocked)"
+          }
+        },
         "cart_count_down": {
           "label": "Cart count down",
           "duration": {

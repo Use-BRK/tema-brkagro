@@ -1333,6 +1333,35 @@
       },
       {
         "type": "header",
+        "content": "t:settings_schema.cart.settings.gift_bar.label"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_gift_bar",
+        "label": "t:settings_schema.cart.settings.gift_bar.show.label",
+        "default": false
+      },
+      {
+        "type": "text",
+        "id": "gift_bar_minimum",
+        "label": "t:settings_schema.cart.settings.gift_bar.minimum.label",
+        "info": "t:settings_schema.cart.settings.gift_bar.minimum.info"
+      },
+      {
+        "type": "text",
+        "id": "gift_bar_unavailable_text",
+        "label": "t:settings_schema.cart.settings.gift_bar.unavailable_text.label",
+        "info": "t:settings_schema.cart.settings.gift_bar.unavailable_text.info",
+        "default": "Faltam {{ amount }} para ganhar um brinde!"
+      },
+      {
+        "type": "text",
+        "id": "gift_bar_available_text",
+        "label": "t:settings_schema.cart.settings.gift_bar.available_text.label",
+        "default": "Parabéns! Você ganhou um brinde!"
+      },
+      {
+        "type": "header",
         "content": "t:settings_schema.cart.settings.cart_count_down.label"
       },
       {

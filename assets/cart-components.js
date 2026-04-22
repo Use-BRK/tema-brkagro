@@ -413,6 +413,10 @@ class CartNotification extends HTMLElement {
               if (cart_free_ship) {
                 cart_free_ship.init(cart.items_subtotal_price);
               }
+              const cart_gift_bar = document.querySelector("gift-progress-bar");
+              if (cart_gift_bar) {
+                cart_gift_bar.init(cart.items_subtotal_price);
+              }
             }
           })
           .catch((error) => {
@@ -471,6 +475,7 @@ class CartNotification extends HTMLElement {
       cartRecommend.classList.remove("open");
     }
     const cart_free_ship = document.querySelector("free-ship-progress-bar");
+    const cart_gift_bar = document.querySelector("gift-progress-bar");
     fetch(`${routes?.cart_change_url}.js`, { ...fetchConfig(), ...{ body } })
       .then((response) => {
         return response.text();
@@ -572,6 +577,9 @@ class CartNotification extends HTMLElement {
             if (cart_free_ship) {
               cart_free_ship.init(parsedState.items_subtotal_price);
             }
+            if (cart_gift_bar) {
+              cart_gift_bar.init(parsedState.items_subtotal_price);
+            }
           });
         }
         this.cartAction();
@@ -643,6 +651,8 @@ class CartNotification extends HTMLElement {
           }
           const freeShip = document.querySelector('free-ship-progress-bar');
           if (freeShip) freeShip.init(cart.items_subtotal_price);
+          const giftBar = document.querySelector('gift-progress-bar');
+          if (giftBar) giftBar.init(cart.items_subtotal_price);
         }
         this.cartAction();
         BlsLazyloadImg.init();

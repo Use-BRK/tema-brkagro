@@ -46,6 +46,15 @@ html:has(.header__minicart.show_popup).open-minicart .tingle-enabled {
 .cart_shipping_free.cart_shipping * {
   animation: flash 0.8s linear 0.8s 2 both;
 }
+.cart_gift_unlocked .cart_bar_w span svg {
+  right: 1.5rem;
+}
+.cart_gift_unlocked .primary-color {
+  --color-primary: #14854e;
+}
+.cart_gift_unlocked.cart_gift * {
+  animation: flash 0.8s linear 0.8s 2 both;
+}
 .mini_cart_addon_btn.show-overlay {
   padding-inline: clamp(3rem, 2vw, 5rem);
   min-height: 5rem;

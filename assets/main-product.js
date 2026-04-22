@@ -547,6 +547,10 @@ class ProductGrouped extends HTMLElement {
               if (cart_free_ship) {
                 cart_free_ship.init(cart.items_subtotal_price);
               }
+              const cart_gift_bar = document.querySelector("gift-progress-bar");
+              if (cart_gift_bar) {
+                cart_gift_bar.init(cart.items_subtotal_price);
+              }
             }
           })
           .catch((error) => {
@@ -909,6 +913,10 @@ class ProductBoughtTogether extends HTMLElement {
               );
               if (cart_free_ship) {
                 cart_free_ship.init(cart.items_subtotal_price);
+              }
+              const cart_gift_bar = document.querySelector("gift-progress-bar");
+              if (cart_gift_bar) {
+                cart_gift_bar.init(cart.items_subtotal_price);
               }
             }
           })

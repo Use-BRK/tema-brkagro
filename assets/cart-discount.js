@@ -127,6 +127,10 @@ class MinicartDiscount extends HTMLElement {
     if (cart_free_ship) {
       cart_free_ship.init(data.items_subtotal_price);
     }
+    const cart_gift_bar = document.querySelector("gift-progress-bar");
+    if (cart_gift_bar) {
+      cart_gift_bar.init(data.items_subtotal_price);
+    }
   }
 
   /**

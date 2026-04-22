@@ -1865,6 +1865,56 @@ class ProgressBar extends HTMLElement {
 }
 customElements.define("free-ship-progress-bar", ProgressBar);
 
+class GiftProgressBar extends HTMLElement {
+  constructor() {
+    super();
+    this.init(this.dataset.order);
+  }
+  init(orders) {
+    const fe_unavaiable = this.dataset.feUnavaiable;
+    const fe_avaiable = this.dataset.feAvaiable;
+    const rate = Number(Shopify.currency.rate);
+    const min = Number(this.dataset.feAmount);
+    if (!min || !rate) return;
+    const order = Number(orders) / 100;
+    const min_by_currency = min * rate;
+    if (order == undefined) return;
+    if ((order / min_by_currency) * 100 > 100) {
+      this.setProgressBar(100);
+    } else {
+      this.setProgressBar((order / min_by_currency) * 100);
+    }
+    this.setProgressBarTitle(order, min_by_currency, fe_unavaiable, fe_avaiable);
+  }
+  setProgressBarTitle(order, min_by_currency, fe_unavaiable, fe_avaiable) {
+    const title = this.querySelector(".gift-bar-message");
+    if (!title) return;
+    title.classList.remove("opacity-0");
+    if (order >= min_by_currency) {
+      title.innerHTML = fe_avaiable;
+    } else {
+      const ammount = "{{ amount }}";
+      title.innerHTML = fe_unavaiable.replace(
+        ammount.trim(),
+        Shopify.formatMoney(
+          (min_by_currency - order) * 100,
+          cartStrings.money_format
+        )
+      );
+    }
+  }
+  setProgressBar(progress) {
+    const p = this.querySelector(".progress");
+    p.style.width = progress + "%";
+    if (progress === 100) {
+      this.classList.add("cart_gift_unlocked");
+    } else {
+      this.classList.remove("cart_gift_unlocked");
+    }
+  }
+}
+customElements.define("gift-progress-bar", GiftProgressBar);
+
 class OpenChildrenToggle extends HTMLElement {
   constructor() {
     super();
@@ -4217,6 +4267,10 @@ class ButtonSubmitBundle extends HTMLElement {
           if (cartFreeShip) {
             cartFreeShip.init(cart.items_subtotal_price);
           }
+          const cartGiftBar = document.querySelector("gift-progress-bar");
+          if (cartGiftBar) {
+            cartGiftBar.init(cart.items_subtotal_price);
+          }
         }
       })
       .catch((error) => {
@@ -4467,6 +4521,10 @@ if (!customElements.get("product-form-quick-edit")) {
                   );
                   if (cart_free_ship) {
                     cart_free_ship.init(cart.items_subtotal_price);
+                  }
+                  const cart_gift_bar = document.querySelector("gift-progress-bar");
+                  if (cart_gift_bar) {
+                    cart_gift_bar.init(cart.items_subtotal_price);
                   }
                 }
               })
@@ -7194,6 +7252,10 @@ if (!customElements.get("product-form")) {
                   );
                   if (cart_free_ship) {
                     cart_free_ship.init(cart.items_subtotal_price);
+                  }
+                  const cart_gift_bar = document.querySelector("gift-progress-bar");
+                  if (cart_gift_bar) {
+                    cart_gift_bar.init(cart.items_subtotal_price);
                   }
                 }
               })

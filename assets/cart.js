@@ -44,6 +44,10 @@ class CartUtils {
     if (cartFreeShip) {
       cartFreeShip.init(subtotalPrice);
     }
+    const cartGiftBar = document.querySelector("gift-progress-bar");
+    if (cartGiftBar) {
+      cartGiftBar.init(subtotalPrice);
+    }
   }
 
   /**
