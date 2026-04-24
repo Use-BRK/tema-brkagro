@@ -115,7 +115,7 @@ class SlideSection extends HTMLElement {
                   this.initSlide();
                 }
               });
-            }, { rootMargin: '200px 0px' });
+            }, { rootMargin: '400px 0px' });
             observer.observe(this);
           } else {
             this.classList.add("lazy-loading-swiper-after");
@@ -187,6 +187,9 @@ class SlideSection extends HTMLElement {
       watchSlidesVisibility: true,
       centeredSlides: false,
       grabCursor: true,
+      touchReleaseOnEdges: true,
+      threshold: 2,
+      longSwipesRatio: 0.3,
       grid: {
         rows: row,
         fill: "row",
@@ -734,6 +737,9 @@ class SlideLazyLoad {
       speed: speed,
       watchSlidesProgress: true,
       watchSlidesVisibility: true,
+      touchReleaseOnEdges: true,
+      threshold: 2,
+      longSwipesRatio: 0.3,
       grid: {
         rows: row,
         fill: "row",

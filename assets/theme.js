@@ -8144,6 +8144,9 @@ class SlideWithThumbs extends HTMLElement {
       speed: speed,
       watchSlidesProgress: true,
       watchSlidesVisibility: true,
+      touchReleaseOnEdges: true,
+      threshold: 2,
+      longSwipesRatio: 0.3,
       navigation: {
         nextEl: container?.querySelector(".swiper-button-next"),
         prevEl: container?.querySelector(".swiper-button-prev"),

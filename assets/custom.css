@@ -1361,3 +1361,8 @@ input.option-disabled + .miniatura-swatch {
     font-size: 11px;
   }
 }
+
+/* Swiper performance: pre-allocate GPU compositing layer for smooth swipe on mobile */
+.swiper-initialized .swiper-wrapper {
+  will-change: transform;
+}
