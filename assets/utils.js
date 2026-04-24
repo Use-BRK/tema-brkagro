@@ -291,7 +291,7 @@ initLazyloadItem();
 function initLazyload() {
   window.addEventListener("scroll", () => {
     scrollLazyload();
-  });
+  }, { passive: true });
   let pos = window.pageYOffset;
   if (pos > 40) {
     scrollLazyload();

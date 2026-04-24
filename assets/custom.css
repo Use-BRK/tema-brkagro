@@ -231,7 +231,7 @@ mobile-navigation-bar a:active {
   linear-gradient(166deg,rgba(11, 137, 49, 0.19) 10%, rgba(30, 145, 24, 0.03) 51%, rgba(7, 135, 0, 0.14) 93%) border-box;
   padding-bottom: 2.5rem;
   overflow: hidden;
-  transition: all ease-in-out .4s;
+  transition: box-shadow 0.4s ease-in-out;
 }
 
 .grid__item:hover {
@@ -259,7 +259,7 @@ mobile-navigation-bar a:active {
   linear-gradient(166deg,rgba(11, 137, 49, 0.19) 10%, rgba(30, 145, 24, 0.03) 51%, rgba(7, 135, 0, 0.14) 93%) border-box;
   padding-bottom: 2.5rem;
   overflow: hidden;
-  transition: all ease-in-out .4s;
+  transition: box-shadow 0.4s ease-in-out;
 }
 
 .tab-content .product-item:hover {
@@ -287,7 +287,7 @@ slide-section .swiper-wrapper .product-item__wrapper {
   linear-gradient(166deg,rgba(11, 137, 49, 0.19) 10%, rgba(30, 145, 24, 0.03) 51%, rgba(7, 135, 0, 0.14) 93%) border-box;
   padding-bottom: 2.5rem;
   overflow: hidden;
-  transition: all ease-in-out .4s;
+  transition: box-shadow 0.4s ease-in-out;
 }
 
 slide-section .swiper-wrapper .product-item__wrapper:hover {
@@ -316,7 +316,7 @@ product-recommendations .product-item {
   linear-gradient(166deg,rgba(11, 137, 49, 0.19) 10%, rgba(30, 145, 24, 0.03) 51%, rgba(7, 135, 0, 0.14) 93%) border-box;
   padding-bottom: 2.5rem;
   overflow: hidden;
-  transition: all ease-in-out .4s;
+  transition: box-shadow 0.4s ease-in-out;
 }
 
 product-recommendations .product-item:hover {
@@ -344,7 +344,7 @@ recently-viewed-products .product-item {
   linear-gradient(166deg,rgba(11, 137, 49, 0.19) 10%, rgba(30, 145, 24, 0.03) 51%, rgba(7, 135, 0, 0.14) 93%) border-box;
   padding-bottom: 2.5rem;
   overflow: hidden;
-  transition: all ease-in-out .4s;
+  transition: box-shadow 0.4s ease-in-out;
 }
 
 recently-viewed-products .product-item:hover {
@@ -1362,7 +1362,20 @@ input.option-disabled + .miniatura-swatch {
   }
 }
 
-/* Swiper performance: pre-allocate GPU compositing layer for smooth swipe on mobile */
-.swiper-initialized .swiper-wrapper {
-  will-change: transform;
+/* Swiper performance: CSS containment isolates layout recalculations to inside
+   the swiper, preventing propagation to external elements. */
+.swiper {
+  contain: layout style;
 }
+
+/* content-visibility: auto — o browser PULA cálculo de estilo/layout para seções
+   fora da tela. Reduz de 4214 elementos para ~500 em cada style recalculation.
+   As duas primeiras seções (announcement bar + hero/slideshow) ficam de fora
+   pois estão acima do fold e devem sempre renderizar.
+   contain-intrinsic-size reserva espaço estimado para o scroll bar não pular. */
+#MainContent .shopify-section:nth-child(n+3) {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 600px;
+}
+
+/* GPU compositing layer is handled by Swiper's translate3d — no will-change needed */

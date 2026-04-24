@@ -1012,7 +1012,7 @@ let BlsMainMenuShopify = (function () {
       window.addEventListener("scroll", () => {
         if (header.classList.contains("open-submenu")) return;
         this.updateStickyHeader(sec_header, sticky, headerh);
-      });
+      }, { passive: true });
     },
 
     updateStickyHeader: function (sec_header, sticky, headerh) {
@@ -1967,7 +1967,7 @@ class ReviewProduct extends HTMLElement {
       this.fetchDataReviewProduct();
       window.addEventListener("scroll", () => {
         this.fetchDataReviewProduct();
-      });
+      }, { passive: true });
       let pos = window.pageYOffset;
       if (pos > 0 || document.body.classList.contains("review-lazy")) {
         this.fetchDataReviewProduct();
@@ -2092,7 +2092,7 @@ class BackToTop extends HTMLElement {
   }
 
   connectedCallback() {
-    window.addEventListener("scroll", this.updateScrollPercentage.bind(this));
+    window.addEventListener("scroll", this.updateScrollPercentage.bind(this), { passive: true });
   }
 
   backToTop() {
@@ -2624,7 +2624,7 @@ class TiktokVideo extends HTMLElement {
       if (wpy > 0) {
         this.scrollLazyloadVideo();
       }
-    });
+    }, { passive: true });
     let pos = window.pageYOffset;
     if (pos > 40) {
       this.scrollLazyloadVideo();
@@ -8143,7 +8143,7 @@ class SlideWithThumbs extends HTMLElement {
       effect: effect,
       speed: speed,
       watchSlidesProgress: true,
-      watchSlidesVisibility: true,
+      cssMode: effect === 'slide' && !loop,
       touchReleaseOnEdges: true,
       threshold: 2,
       longSwipesRatio: 0.3,
