@@ -1868,246 +1868,49 @@ customElements.define("free-ship-progress-bar", ProgressBar);
 class GiftProgressBar extends HTMLElement {
   constructor() {
     super();
-    this._cartItems = [];
-    this._thresholds = this._buildThresholds();
     this.init(this.dataset.order);
   }
-
-  _buildThresholds() {
-    const result = [];
-    for (let i = 1; i <= 3; i++) {
-      const amount = Number(this.dataset[`threshold${i}Amount`]);
-      const variantId = this.dataset[`threshold${i}Variant`];
-      if (amount && variantId) {
-        result.push({
-          index: i,
-          amount,
-          variantId,
-          title: this.dataset[`threshold${i}Title`] || '',
-          price: Number(this.dataset[`threshold${i}Price`]) || 0,
-          image: this.dataset[`threshold${i}Image`] || '',
-        });
-      }
-    }
-    return result.sort((a, b) => a.amount - b.amount);
-  }
-
-  init(orderInCents) {
-    if (!this._thresholds.length) return;
-    const rate = Number(Shopify.currency.rate) || 1;
-    const orderValue = Number(orderInCents) / 100;
-
-    const unlocked = this._thresholds.filter(t => orderValue >= t.amount * rate);
-    const next = this._thresholds.find(t => orderValue < t.amount * rate);
-
-    // Update progress bar towards next threshold
-    if (next) {
-      const prev = unlocked[unlocked.length - 1];
-      const prevAmt = prev ? prev.amount * rate : 0;
-      const nextAmt = next.amount * rate;
-      const pct = Math.max(0, Math.min(99, ((orderValue - prevAmt) / (nextAmt - prevAmt)) * 100));
-      this._setProgressBar(pct);
+  init(orders) {
+    const fe_unavaiable = this.dataset.feUnavaiable;
+    const fe_avaiable = this.dataset.feAvaiable;
+    const rate = Number(Shopify.currency.rate);
+    const min = Number(this.dataset.feAmount);
+    if (!min || !rate) return;
+    const order = Number(orders) / 100;
+    const min_by_currency = min * rate;
+    if (order == undefined) return;
+    if ((order / min_by_currency) * 100 > 100) {
+      this.setProgressBar(100);
     } else {
-      this._setProgressBar(100);
+      this.setProgressBar((order / min_by_currency) * 100);
     }
-
-    // Update message
-    this._setMessage(orderValue, next, rate);
-
-    // Update claim buttons (async – needs cart state)
-    this._syncCartAndButtons(orderValue, rate, unlocked);
+    this.setProgressBarTitle(order, min_by_currency, fe_unavaiable, fe_avaiable);
   }
-
-  _setProgressBar(pct) {
-    const bar = this.querySelector('.progress');
-    if (!bar) return;
-    bar.style.width = pct + '%';
-    if (pct >= 100) {
-      this.classList.add('cart_gift_unlocked');
+  setProgressBarTitle(order, min_by_currency, fe_unavaiable, fe_avaiable) {
+    const title = this.querySelector(".gift-bar-message");
+    if (!title) return;
+    title.classList.remove("opacity-0");
+    if (order >= min_by_currency) {
+      title.innerHTML = fe_avaiable;
     } else {
-      this.classList.remove('cart_gift_unlocked');
+      const ammount = "{{ amount }}";
+      title.innerHTML = fe_unavaiable.replace(
+        ammount.trim(),
+        Shopify.formatMoney(
+          (min_by_currency - order) * 100,
+          cartStrings.money_format
+        )
+      );
     }
   }
-
-  _setMessage(orderValue, nextThreshold, rate) {
-    const el = this.querySelector('.gift-bar-message');
-    if (!el) return;
-    el.classList.remove('opacity-0');
-    if (!nextThreshold) {
-      el.textContent = 'Parabéns! Você ganhou todos os brindes!';
-      return;
-    }
-    const remaining = (nextThreshold.amount * rate - orderValue) * 100;
-    const template = this.dataset.feUnavaiable || 'Faltam {{ amount }} para ganhar um brinde!';
-    el.innerHTML = template.replace(
-      '{{ amount }}',
-      Shopify.formatMoney(remaining, cartStrings.money_format)
-    );
-  }
-
-  async _syncCartAndButtons(orderValue, rate, unlockedThresholds) {
-    try {
-      const resp = await fetch('/cart.json');
-      const cart = await resp.json();
-      this._cartItems = cart.items || [];
-    } catch (_) {
-      this._cartItems = [];
-    }
-    this._renderClaimButtons(unlockedThresholds);
-  }
-
-  _renderClaimButtons(unlockedThresholds) {
-    const container = this.querySelector('.gift-claim-buttons');
-    if (!container) return;
-    container.innerHTML = '';
-
-    if (!unlockedThresholds.length) return;
-
-    const addedVariantIds = this._cartItems
-      .filter(item => item.properties && item.properties['_is_brinde'] === 'true')
-      .map(item => String(item.variant_id));
-
-    const allAdded = unlockedThresholds.every(t => addedVariantIds.includes(String(t.variantId)));
-
-    const btn = document.createElement('button');
-    btn.className = 'gift-claim-btn';
-    btn.type = 'button';
-
-    if (allAdded) {
-      btn.innerHTML = '<span>✓ Brinde(s) adicionado(s)</span>';
-      btn.classList.add('gift-claim-btn--added');
+  setProgressBar(progress) {
+    const p = this.querySelector(".progress");
+    p.style.width = progress + "%";
+    if (progress === 100) {
+      this.classList.add("cart_gift_unlocked");
     } else {
-      const count = unlockedThresholds.length;
-      btn.innerHTML = `<span>🎁 Resgatar Brinde${count > 1 ? 's' : ''}</span>`;
+      this.classList.remove("cart_gift_unlocked");
     }
-
-    btn.addEventListener('click', () => this._openModal(unlockedThresholds));
-    container.appendChild(btn);
-  }
-
-  _openModal(unlockedThresholds) {
-    const addedVariantIds = this._cartItems
-      .filter(item => item.properties && item.properties['_is_brinde'] === 'true')
-      .map(item => String(item.variant_id));
-
-    const items = unlockedThresholds.map(t => {
-      const isAdded = addedVariantIds.includes(String(t.variantId));
-      const imgTag = t.image
-        ? `<img src="${t.image}" alt="${t.title}" class="gift-modal__img">`
-        : '<div class="gift-modal__img gift-modal__img--placeholder"></div>';
-      const priceFormatted = Shopify.formatMoney(t.price, cartStrings.money_format);
-      return `
-        <div class="gift-modal__item">
-          ${imgTag}
-          <div class="gift-modal__info">
-            <p class="gift-modal__title">${t.title}</p>
-            <p class="gift-modal__price"><s>${priceFormatted}</s>&nbsp;<strong class="gift-modal__free">GRÁTIS</strong></p>
-          </div>
-          <button
-            type="button"
-            class="gift-modal__btn${isAdded ? ' gift-modal__btn--remove' : ''}"
-            data-variant-id="${t.variantId}"
-            data-threshold-amount="${t.amount}"
-            data-action="${isAdded ? 'remove' : 'add'}"
-          >${isAdded ? 'Remover' : 'Adicionar'}</button>
-        </div>`;
-    }).join('');
-
-    const html = `
-      <div class="gift-reward-modal">
-        <h3 class="gift-reward-modal__heading">🎁 Seus Brindes</h3>
-        <p class="gift-reward-modal__sub">Você desbloqueou brindes exclusivos! Adicione-os ao carrinho.</p>
-        <div class="gift-reward-modal__list">${items}</div>
-      </div>`;
-
-    const modal = new tingle.modal({
-      footer: false,
-      stickyFooter: false,
-      closeMethods: ['overlay', 'button', 'escape'],
-      closeLabel: 'Fechar',
-      cssClass: ['gift-reward-modal-wrap'],
-    });
-
-    modal.setContent(html);
-    modal.open();
-
-    modal.modal.querySelectorAll('.gift-modal__btn').forEach(btn => {
-      btn.addEventListener('click', async () => {
-        btn.disabled = true;
-        btn.textContent = '...';
-        const variantId = btn.dataset.variantId;
-        const action = btn.dataset.action;
-        const thresholdAmount = btn.dataset.thresholdAmount;
-
-        if (action === 'remove') {
-          const cartItem = this._cartItems.find(
-            item => String(item.variant_id) === variantId && item.properties && item.properties['_is_brinde'] === 'true'
-          );
-          if (cartItem) await this._removeGift(cartItem.key);
-        } else {
-          await this._addGift(variantId, thresholdAmount);
-        }
-
-        modal.close();
-        await this._refreshMinicart();
-      });
-    });
-  }
-
-  async _addGift(variantId, thresholdAmount) {
-    try {
-      await fetch('/cart/add.js', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify({
-          id: variantId,
-          quantity: 1,
-          properties: { '_is_brinde': 'true', '_threshold_amount': String(thresholdAmount) },
-        }),
-      });
-    } catch (e) {
-      console.error('[GiftBar] Error adding gift:', e);
-    }
-  }
-
-  async _removeGift(lineKey) {
-    try {
-      await fetch('/cart/change.js', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify({ id: lineKey, quantity: 0 }),
-      });
-    } catch (e) {
-      console.error('[GiftBar] Error removing gift:', e);
-    }
-  }
-
-  async _refreshMinicart() {
-    try {
-      const sectionId = document.getElementById('minicart-form') ? 'minicart-form' : null;
-      if (sectionId) {
-        const html = await fetch(`${window.location.pathname}?section_id=${sectionId}`).then(r => r.text());
-        const parsed = new DOMParser().parseFromString(html, 'text/html');
-        const fresh = parsed.querySelector('#minicart-form');
-        const target = document.getElementById('minicart-form');
-        if (fresh && target) target.innerHTML = fresh.innerHTML;
-      }
-    } catch (_) {}
-    try {
-      const cart = await fetch('/cart.json').then(r => r.json());
-      this.dataset.order = cart.items_subtotal_price;
-      this.init(cart.items_subtotal_price);
-      if (document.querySelector('header-total-price')) {
-        document.querySelector('header-total-price').updateTotal(cart);
-      }
-      document.querySelectorAll('.cart-count').forEach(el => {
-        if (el.classList.contains('cart-count-drawer')) {
-          el.innerHTML = `(${cart.item_count})`;
-        } else {
-          el.innerHTML = cart.item_count > 100 ? '~' : cart.item_count;
-        }
-      });
-    } catch (_) {}
   }
 }
 customElements.define("gift-progress-bar", GiftProgressBar);

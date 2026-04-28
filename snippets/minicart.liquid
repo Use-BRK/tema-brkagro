@@ -96,54 +96,15 @@
       {%- endif -%}
       {%- liquid
         assign gift_bar_enabled = settings.show_gift_bar
-        assign gift_t1 = settings.gift_threshold_1 | times: 1 | default: 0
-        assign gift_p1 = all_products[settings.gift_product_1]
-        assign gift_t2 = settings.gift_threshold_2 | times: 1 | default: 0
-        assign gift_p2 = all_products[settings.gift_product_2]
-        assign gift_t3 = settings.gift_threshold_3 | times: 1 | default: 0
-        assign gift_p3 = all_products[settings.gift_product_3]
-        assign gift_has_any = false
-        if gift_t1 > 0 and gift_p1 != blank
-          assign gift_has_any = true
-        endif
-        if gift_t2 > 0 and gift_p2 != blank
-          assign gift_has_any = true
-        endif
-        if gift_t3 > 0 and gift_p3 != blank
-          assign gift_has_any = true
-        endif
+        assign gift_rate = settings.gift_bar_minimum | times: 1 | default: 0
       -%}
-      {%- if gift_bar_enabled and gift_has_any -%}
-        {%- liquid
-          assign gift_v1 = gift_p1.selected_or_first_available_variant
-          assign gift_v2 = gift_p2.selected_or_first_available_variant
-          assign gift_v3 = gift_p3.selected_or_first_available_variant
-        -%}
+      {%- if gift_bar_enabled and gift_rate > 0 -%}
         <gift-progress-bar
           data-order="{{ cart.items_subtotal_price }}"
-          data-fe-unavaiable="{{ settings.gift_bar_unavailable_text | escape }}"
-          {%- if gift_t1 > 0 and gift_p1 != blank %}
-          data-threshold-1-amount="{{ gift_t1 }}"
-          data-threshold-1-variant="{{ gift_v1.id }}"
-          data-threshold-1-title="{{ gift_p1.title | escape }}"
-          data-threshold-1-price="{{ gift_v1.price }}"
-          data-threshold-1-image="{{ gift_p1.featured_image | image_url: width: 120 }}"
-          {%- endif -%}
-          {%- if gift_t2 > 0 and gift_p2 != blank %}
-          data-threshold-2-amount="{{ gift_t2 }}"
-          data-threshold-2-variant="{{ gift_v2.id }}"
-          data-threshold-2-title="{{ gift_p2.title | escape }}"
-          data-threshold-2-price="{{ gift_v2.price }}"
-          data-threshold-2-image="{{ gift_p2.featured_image | image_url: width: 120 }}"
-          {%- endif -%}
-          {%- if gift_t3 > 0 and gift_p3 != blank %}
-          data-threshold-3-amount="{{ gift_t3 }}"
-          data-threshold-3-variant="{{ gift_v3.id }}"
-          data-threshold-3-title="{{ gift_p3.title | escape }}"
-          data-threshold-3-price="{{ gift_v3.price }}"
-          data-threshold-3-image="{{ gift_p3.featured_image | image_url: width: 120 }}"
-          {%- endif %}
-          class="block cart_gift cart_threshold{% if action_after_add_cart == 'open_drawer' %} grey-bg{% endif %} border-bottom{% if action_after_add_cart != 'show_popup' %} border-top{% endif %} px-30 pt-33 pb-15"
+          data-fe-amount="{{ gift_rate }}"
+          data-fe-unavaiable="{{ settings.gift_bar_unavailable_text }}"
+          data-fe-avaiable="{{ settings.gift_bar_available_text }}"
+          class="block cart_gift cart_threshold{% if action_after_add_cart == 'open_drawer' %} grey-bg{% endif %} border-bottom{% if action_after_add_cart != 'show_popup' %} border-top{% endif %} px-30 pt-33 pb-15{% if cart.items.size > 0 and cart.items_subtotal_price >= gift_rate %} cart_gift_unlocked{% endif %}"
         >
           <div class="progress-bar cart_bar_w relative rounded-10">
             <span
@@ -158,7 +119,6 @@
             </span>
           </div>
           <div class="gift-bar-message mt-17 cart-thres cart_thres_1 opacity-0"></div>
-          <div class="gift-claim-buttons"></div>
         </gift-progress-bar>
       {%- endif -%}
       {%- if cart_duration_show and cart.items.size > 0 -%}
