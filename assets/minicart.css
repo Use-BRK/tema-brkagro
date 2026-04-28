@@ -678,6 +678,115 @@ body .dmp_discount-form input {
   padding: 1.5rem;
 }
 
+/* ── Gift reward bar: claim buttons ──────────────────── */
+.gift-claim-buttons {
+  margin-top: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.gift-claim-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-size: 1.3rem;
+  color: var(--color-primary, #3a9e35);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  font-weight: 600;
+  transition: opacity 0.2s;
+}
+.gift-claim-btn:hover { opacity: 0.75; }
+.gift-claim-btn--added {
+  color: #14854e;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+/* ── Gift reward modal ───────────────────────────────── */
+.gift-reward-modal-wrap .tingle-modal-box {
+  border-radius: 12px;
+  max-width: 420px;
+  width: 92vw;
+  padding: 0;
+  overflow: hidden;
+}
+.gift-reward-modal {
+  padding: 24px 20px 20px;
+}
+.gift-reward-modal__heading {
+  margin: 0 0 4px;
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+.gift-reward-modal__sub {
+  margin: 0 0 16px;
+  font-size: 1.3rem;
+  color: #666;
+}
+.gift-reward-modal__list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.gift-modal__item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px;
+  border: 1px solid #eee;
+  border-radius: 8px;
+}
+.gift-modal__img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 6px;
+  flex-shrink: 0;
+}
+.gift-modal__img--placeholder {
+  background: #f5f5f5;
+}
+.gift-modal__info {
+  flex: 1;
+  min-width: 0;
+}
+.gift-modal__title {
+  margin: 0 0 4px;
+  font-size: 1.3rem;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.gift-modal__price {
+  margin: 0;
+  font-size: 1.2rem;
+  color: #888;
+}
+.gift-modal__free {
+  color: #14854e;
+}
+.gift-modal__btn {
+  flex-shrink: 0;
+  border: none;
+  border-radius: 6px;
+  padding: 7px 14px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+  background: var(--color-primary, #3a9e35);
+  color: #fff;
+  transition: opacity 0.2s;
+}
+.gift-modal__btn:hover { opacity: 0.85; }
+.gift-modal__btn:disabled { opacity: 0.5; cursor: default; }
+.gift-modal__btn--remove {
+  background: #f5f5f5;
+  color: #333;
+}
+
 /* ── SVG symbols: add these once to minicart-form.liquid if missing ──
 <svg hidden>
   <symbol id="icon-edit" viewBox="0 0 14 14">

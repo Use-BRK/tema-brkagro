@@ -591,20 +591,29 @@
           }
         },
         "gift_bar": {
-          "label": "Gift bar",
+          "label": "Gift bar (multi-threshold)",
           "show": {
             "label": "Show gift bar"
-          },
-          "minimum": {
-            "label": "Gift minimum amount",
-            "info": "Use round numbers. Exclude currency, symbols, and letters."
           },
           "unavailable_text": {
             "label": "Text before threshold",
             "info": "Use {{ amount }} to display the remaining amount needed."
           },
-          "available_text": {
-            "label": "Text after threshold (gift unlocked)"
+          "threshold_1": {
+            "label": "— Brinde 1"
+          },
+          "threshold_2": {
+            "label": "— Brinde 2"
+          },
+          "threshold_3": {
+            "label": "— Brinde 3"
+          },
+          "threshold_amount": {
+            "label": "Minimum amount (R$)",
+            "info": "Use round numbers only. E.g.: 100"
+          },
+          "threshold_product": {
+            "label": "Gift product"
           }
         },
         "cart_count_down": {
