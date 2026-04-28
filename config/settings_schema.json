@@ -1163,7 +1163,7 @@
             "value": "6",
             "label": "t:settings_schema.color_swatches.settings.limit_color.6"
           }
-        ],
+        ]
       },
       {
         "type": "select",
@@ -1343,9 +1343,58 @@
       },
       {
         "type": "text",
-        "id": "gift_bar_minimum",
-        "label": "t:settings_schema.cart.settings.gift_bar.minimum.label",
-        "info": "t:settings_schema.cart.settings.gift_bar.minimum.info"
+        "id": "gift_threshold_1",
+        "label": "Brinde 1 - valor minimo",
+        "info": "Valor em reais, sem simbolo. Ex.: 100"
+      },
+      {
+        "type": "product",
+        "id": "gift_product_1",
+        "label": "Brinde 1 - produto"
+      },
+      {
+        "type": "text",
+        "id": "gift_threshold_2",
+        "label": "Brinde 2 - valor minimo",
+        "info": "Valor em reais, sem simbolo. Ex.: 200"
+      },
+      {
+        "type": "product",
+        "id": "gift_product_2",
+        "label": "Brinde 2 - produto"
+      },
+      {
+        "type": "text",
+        "id": "gift_threshold_3",
+        "label": "Brinde 3 - valor minimo",
+        "info": "Valor em reais, sem simbolo. Ex.: 300"
+      },
+      {
+        "type": "product",
+        "id": "gift_product_3",
+        "label": "Brinde 3 - produto"
+      },
+      {
+        "type": "text",
+        "id": "gift_threshold_4",
+        "label": "Brinde 4 - valor minimo",
+        "info": "Valor em reais, sem simbolo. Ex.: 400"
+      },
+      {
+        "type": "product",
+        "id": "gift_product_4",
+        "label": "Brinde 4 - produto"
+      },
+      {
+        "type": "text",
+        "id": "gift_threshold_5",
+        "label": "Brinde 5 - valor minimo",
+        "info": "Valor em reais, sem simbolo. Ex.: 500"
+      },
+      {
+        "type": "product",
+        "id": "gift_product_5",
+        "label": "Brinde 5 - produto"
       },
       {
         "type": "text",
@@ -1578,7 +1627,7 @@
           {
             "value": "background",
             "label": "t:settings_schema.colors.settings.header.background"
-          },
+          }
         ]
       }
     ]

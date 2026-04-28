@@ -1,0 +1,90 @@
+{%- liquid
+  assign gift_bar_enabled = settings.show_gift_bar
+  assign show_currency_code = settings.show_currency_code
+  assign action_after_add_cart = settings.action_after_add_cart
+  assign gift_bar_context = context | default: 'minicart'
+  assign gift_qualifying_subtotal = 0
+
+  for cart_line in cart.items
+    assign line_is_gift = false
+    for property in cart_line.properties
+      if property.first == '_brk_gift_progress' and property.last == 'true'
+        assign line_is_gift = true
+      endif
+    endfor
+    unless line_is_gift
+      assign gift_qualifying_subtotal = gift_qualifying_subtotal | plus: cart_line.final_line_price
+    endunless
+  endfor
+-%}
+
+{%- capture gift_tiers_json -%}
+  {%- for tier_index in (1..5) -%}
+    {%- liquid
+      assign threshold_key = 'gift_threshold_' | append: tier_index
+      assign product_key = 'gift_product_' | append: tier_index
+      assign gift_threshold = settings[threshold_key] | times: 1
+      assign gift_product_handle = settings[product_key]
+      assign gift_product = all_products[gift_product_handle]
+      assign gift_variant = gift_product.selected_or_first_available_variant
+    -%}
+    {%- if gift_threshold > 0 and gift_product != blank and gift_variant != blank -%}
+      {%- liquid
+        assign gift_price = gift_variant.price | money
+        if show_currency_code
+          assign gift_price = gift_variant.price | money_with_currency
+        endif
+      -%}
+      {
+        "tier": {{ tier_index | json }},
+        "threshold": {{ gift_threshold | json }},
+        "productId": {{ gift_product.id | json }},
+        "variantId": {{ gift_variant.id | json }},
+        "handle": {{ gift_product.handle | json }},
+        "title": {{ gift_product.title | json }},
+        "url": {{ gift_product.url | json }},
+        "image": {%- if gift_product.featured_image != blank -%}{{ gift_product.featured_image | image_url: width: 180 | json }}{%- else -%}""{%- endif -%},
+        "price": {{ gift_price | strip_html | json }},
+        "available": {{ gift_variant.available | json }}
+      }
+    {%- else -%}
+      null
+    {%- endif -%}
+    {%- unless forloop.last -%},{%- endunless -%}
+  {%- endfor -%}
+{%- endcapture -%}
+
+{%- if gift_bar_enabled and gift_tiers_json contains 'variantId' -%}
+  <gift-progress-bar
+    data-order="{{ gift_qualifying_subtotal }}"
+    data-fe-unavaiable="{{ settings.gift_bar_unavailable_text | escape }}"
+    data-fe-avaiable="{{ settings.gift_bar_available_text | escape }}"
+    data-redeem-label="Resgatar Brinde"
+    data-modal-title="Escolha seu brinde"
+    data-modal-empty="Nenhum brinde disponivel para o subtotal atual."
+    class="block cart_gift cart_threshold{% if gift_bar_context == 'cart-page' %} border-0 border-bottom mt-15 pb-25{% else %}{% if action_after_add_cart == 'open_drawer' %} grey-bg{% endif %} border-bottom{% if action_after_add_cart != 'show_popup' %} border-top{% endif %} px-30 pt-33 pb-15{% endif %}"
+  >
+    <div class="progress-bar cart_bar_w relative rounded-10">
+      <span
+        class="progress percent_shipping_bar transition relative primary-color rounded-10"
+        style="width: 0%;"
+      >
+        <svg viewBox="0 0 30 30" width="30" height="30" class="absolute" aria-hidden="true">
+          <circle cx="15" cy="15" r="14.5" fill="#fff" stroke="currentColor"/>
+          <path fill="currentColor" d="M14.3 18.9c0-.4.3-.7.7-.7s.7.3.7.7v3.1c0 .4-.3.7-.7.7s-.7-.3-.7-.7v-3.1Z"/>
+          <path fill="currentColor" fill-rule="evenodd" d="M8.5 13.5h13c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2h-2.1c.2-.4.3-.8.3-1.3C19.7 5.2 18.5 4 17 4c-.8 0-1.5.3-2 .9-.5-.6-1.2-.9-2-.9-1.5 0-2.7 1.2-2.7 2.7 0 .5.1.9.3 1.3H8.5c-1.1 0-2 .9-2 2v1.5c0 1.1.9 2 2 2Zm8.5-8.2c.8 0 1.4.6 1.4 1.4S17.8 8.1 17 8.1h-1.4V6.7c0-.8.6-1.4 1.4-1.4Zm-4 0c.8 0 1.4.6 1.4 1.4v1.4H13c-.8 0-1.4-.6-1.4-1.4s.6-1.4 1.4-1.4ZM8.5 9.4h5.9v1.1c0 .4.3.7.7.7s.7-.3.7-.7V9.4h5.8c.3 0 .6.3.6.6v1.5c0 .3-.3.6-.6.6h-13c-.3 0-.6-.3-.6-.6V10c-.1-.3.2-.6.5-.6Z" clip-rule="evenodd"/>
+          <path fill="currentColor" d="M9.5 15.1c-.4 0-.7.3-.7.7v4.6c0 1.8 1.5 3.3 3.3 3.3h5.8c1.8 0 3.3-1.5 3.3-3.3v-4.6c0-.4-.3-.7-.7-.7s-.7.3-.7.7v4.6c0 1-.8 1.9-1.9 1.9h-5.8c-1 0-1.9-.8-1.9-1.9v-4.6c0-.4-.3-.7-.7-.7Z"/>
+        </svg>
+      </span>
+    </div>
+    <div class="gift-bar-message mt-17 cart-thres cart_thres_1 opacity-0"></div>
+    <div class="gift-bar-actions mt-8 hidden">
+      <button type="button" class="gift-bar-redeem btn-reset pointer" data-gift-redeem>
+        Resgatar Brinde
+      </button>
+    </div>
+    <script type="application/json" class="gift-progress-bar-data">
+      [{{ gift_tiers_json | strip }}]
+    </script>
+  </gift-progress-bar>
+{%- endif -%}
