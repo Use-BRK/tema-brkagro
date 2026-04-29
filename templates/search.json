@@ -13,9 +13,9 @@
       "type": "main-search",
       "settings": {
         "section_width": "stretch_width",
-        "enable_filtering": true,
+        "enable_filtering": false,
         "show_filter_counts": true,
-        "default_filter": "open_all",
+        "default_filter": "close_all",
         "filter_layout": "horizontal",
         "vertical_posion": "left",
         "number_products_per_page": true,
