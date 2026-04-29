@@ -14,6 +14,12 @@ motion-element { opacity: 1 !important; }
 motion-element[data-motion-init="true"] { opacity: 0!important; }
 motion-element[data-motion-init="true"].is-visible { opacity: 1!important; }
 
+/* Produto: info e botão de comprar SEMPRE visíveis (sem esperar animação) */
+motion-element.product-detail__information,
+motion-element.product-detail__information[data-motion-init="true"] {
+  opacity: 1 !important;
+}
+
 
 @media screen and (max-width: 767.98px) {
   .swiper-actions:not(.show-on-mobile) {

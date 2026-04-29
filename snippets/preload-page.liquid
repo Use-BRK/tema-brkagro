@@ -24,20 +24,13 @@
 <script>
   function PreloadPage() {
     const preload = document.querySelector('preload-page');
+    if (!preload) return;
     window.addEventListener('DOMContentLoaded', () => {
-      if (preload) {
-        Motion.animate(
-          preload,
-          {
-            opacity: [1, 0],
-            visibility: ['visible', 'hidden'],
-          },
-          {
-            ease: [0.7, 0, 0.2, 1],
-            duration: 1,
-          }
-        );
-      }
+      preload.style.transition = 'opacity .2s ease, visibility .2s ease';
+      preload.style.opacity = '0';
+      preload.style.visibility = 'hidden';
+      preload.style.pointerEvents = 'none';
+      setTimeout(() => { preload.remove(); }, 250);
     });
   }
   PreloadPage();

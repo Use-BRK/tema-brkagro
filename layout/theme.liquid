@@ -44,9 +44,18 @@
     {{ 'critical.css' | asset_url | stylesheet_tag }}
     {{ 'custom.css' | asset_url | stylesheet_tag }}
     {% if enable_rtl %}{{ 'rtl.css' | asset_url | stylesheet_tag: preload: true }}{% endif %}
-    {{ 'product-card.css' | asset_url | stylesheet_tag }}
-    {{ 'swiper-bundle.min.css' | asset_url | stylesheet_tag }}
-    {{ 'judgeme-reviews.css' | asset_url | stylesheet_tag }}
+    {%- comment -%} Async non-critical CSS - não bloqueia render {%- endcomment -%}
+    <link rel="stylesheet" href="{{ 'product-card.css' | asset_url }}" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="{{ 'swiper-bundle.min.css' | asset_url }}" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="{{ 'judgeme-reviews.css' | asset_url }}" media="print" onload="this.media='all'">
+    {%- comment -%} Preload product image e CSS para página de produto {%- endcomment -%}
+    {%- if request.page_type == 'product' -%}
+      {%- assign _lcp_image = product.selected_or_first_available_variant.featured_media | default: product.featured_media -%}
+      {%- if _lcp_image -%}
+        <link rel="preload" as="image" href="{{ _lcp_image | image_url: width: 800 }}" fetchpriority="high">
+      {%- endif -%}
+      <link rel="preload" as="style" href="{{ 'main-product.css' | asset_url }}" onload="this.rel='stylesheet'">
+    {%- endif -%}
     {% render 'font-variables' %}
     {% if request.design_mode %}
       {{ 'design-mode.css' | asset_url | stylesheet_tag: preload: true }}
@@ -206,17 +215,23 @@
       }
     </script>
     {% include 'pagefly-app-header' %}
-    <script type="text/javascript">
-      (function (appId) {
-        window._edrone = window._edrone || {};
-        _edrone.app_id = appId;
-        _edrone.platform = 'custom';
-        var doc = document.createElement('script');
-        doc.type = 'text/javascript';
-        doc.async = true;
-        doc.src = 'https://d3bo67muzbfgtl.cloudfront.net/edrone_2_0.js?app_id=' + appId;
-        var s = document.getElementsByTagName('script')[0];
-        s.parentNode.insertBefore(doc, s);
+    <script>
+      {%- comment -%} edrone deferred - carrega após página interativa {%- endcomment -%}
+      (function(appId){
+        function loadEdrone(){
+          window._edrone = window._edrone || {};
+          _edrone.app_id = appId;
+          _edrone.platform = 'custom';
+          var d = document.createElement('script');
+          d.async = true;
+          d.src = 'https://d3bo67muzbfgtl.cloudfront.net/edrone_2_0.js?app_id=' + appId;
+          document.body.appendChild(d);
+        }
+        if ('requestIdleCallback' in window) {
+          requestIdleCallback(loadEdrone, {timeout: 3000});
+        } else {
+          window.addEventListener('load', function(){ setTimeout(loadEdrone, 1500); });
+        }
       })('683e3756683f1');
     </script>
   </head>
@@ -246,13 +261,12 @@
     {%- render 'content-bottom' -%}
     {%- render 'whatsapp-button' -%}
 
-    <!-- Forçar textos customizados no discount-block do app -->
+    <link rel="stylesheet" href="{{ 'custom-frete.css' | asset_url }}" media="print" onload="this.media='all'">
+    <!-- Forçar textos customizados no discount-block do app (debounced) -->
     <script>
       (function () {
         var PLACEHOLDER = 'INSIRA UM CUPOM';
         var BUTTON_TEXT = 'OK';
-
-        // Mapa de traduções para mensagens de erro do NS Discount
         var ERROR_TRANSLATIONS = {
           'Coupon code is not valid!': 'Cupom inválido',
           'Coupon code is not valid': 'Cupom inválido',
@@ -265,52 +279,30 @@
           'Minimum purchase amount not met!': 'Valor mínimo de compra não atingido!',
           'Minimum purchase amount not met': 'Valor mínimo de compra não atingido!',
         };
-
+        var _t;
         function forceDiscountTexts() {
-          var blocks = document.querySelectorAll('discount-block');
-          blocks.forEach(function (block) {
+          document.querySelectorAll('discount-block').forEach(function (block) {
             var input = block.querySelector('.dmp_discount-form input[type="text"]');
             var button = block.querySelector('.dmp_discount-form button');
-            if (input && input.placeholder !== PLACEHOLDER) {
-              input.placeholder = PLACEHOLDER;
-            }
-            if (button && button.textContent.trim() !== BUTTON_TEXT) {
-              button.textContent = BUTTON_TEXT;
-            }
-
-            // Traduzir mensagens de erro do NS Discount
-            var errorMessages = block.querySelectorAll('.dmp_error-message');
-            errorMessages.forEach(function (errorSpan) {
-              var originalText = errorSpan.textContent.trim();
-              if (ERROR_TRANSLATIONS[originalText]) {
-                errorSpan.textContent = ERROR_TRANSLATIONS[originalText];
-              }
+            if (input && input.placeholder !== PLACEHOLDER) input.placeholder = PLACEHOLDER;
+            if (button && button.textContent.trim() !== BUTTON_TEXT) button.textContent = BUTTON_TEXT;
+            block.querySelectorAll('.dmp_error-message').forEach(function (el) {
+              var t = el.textContent.trim();
+              if (ERROR_TRANSLATIONS[t]) el.textContent = ERROR_TRANSLATIONS[t];
             });
           });
-
-          // Também buscar fora dos discount-block (caso o erro seja injetado em outro lugar)
-          var globalErrors = document.querySelectorAll('.dmp_error-message');
-          globalErrors.forEach(function (errorSpan) {
-            var originalText = errorSpan.textContent.trim();
-            if (ERROR_TRANSLATIONS[originalText]) {
-              errorSpan.textContent = ERROR_TRANSLATIONS[originalText];
-            }
+          document.querySelectorAll('.dmp_error-message').forEach(function (el) {
+            var t = el.textContent.trim();
+            if (ERROR_TRANSLATIONS[t]) el.textContent = ERROR_TRANSLATIONS[t];
           });
         }
-
-        // Executar imediatamente e a cada mudança no DOM
-        forceDiscountTexts();
-        var observer = new MutationObserver(forceDiscountTexts);
-        observer.observe(document.body, { childList: true, subtree: true });
-
-        // Fallback: rodar novamente após carregamento completo
+        function debouncedForce() { clearTimeout(_t); _t = setTimeout(forceDiscountTexts, 150); }
         window.addEventListener('load', function () {
           forceDiscountTexts();
-          setTimeout(forceDiscountTexts, 2000);
-          setTimeout(forceDiscountTexts, 5000);
+          var obs = new MutationObserver(debouncedForce);
+          obs.observe(document.body, { childList: true, subtree: true });
         });
       })();
     </script>
   </body>
-  {{ 'custom-frete.css' | asset_url | stylesheet_tag }}
 </html>
