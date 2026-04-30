@@ -70,7 +70,7 @@
     "action_after_add_cart": "open_drawer",
     "show_on_minicart_cart_page": false,
     "free_shipping_minimum": "150",
-    "show_gift_bar": true,
+    "show_gift_bar": false,
     "gift_threshold_1": "200",
     "gift_product_1": "pulseira-de-silicone-brk-eu-sou-do-agro-brinde",
     "gift_threshold_2": "600",
