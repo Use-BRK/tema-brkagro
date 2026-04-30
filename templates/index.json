@@ -26,9 +26,40 @@
     "slideshow_8KKtNU": {
       "type": "slideshow",
       "blocks": {
+        "slider_item_HhyAH6": {
+          "type": "slider_item",
+          "name": "Campanha Dia do Trabalho",
+          "settings": {
+            "image": "shopify://shop_images/AGRO.webp",
+            "image_mobile": "shopify://shop_images/MOB_AGRO.webp",
+            "link_banner": "https://www.brkagro.com.br/collections/lancamentos-1?&sort_by=best-selling",
+            "overlay_opacity": 0,
+            "slider_effect": "effect_fadeinup",
+            "subheading": "",
+            "heading": "",
+            "description": "",
+            "first_button_label": "",
+            "first_button_link": "",
+            "first_button_style": false,
+            "second_button_label": "",
+            "second_button_link": "",
+            "second_button_style": false,
+            "content_alignment": "center",
+            "content_position": "top-center",
+            "content_width": "full_width",
+            "content_max_width": 100,
+            "content_padding_block": 60,
+            "content_padding_inline": 120,
+            "show_content_background": false,
+            "content_background": "#ffffff",
+            "content_box_opacity": 100,
+            "content_alignment_mobile": "center"
+          }
+        },
         "slider_item_qKtECH": {
           "type": "slider_item",
           "name": "Campanha Pulseira",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/BANNER-DESK02_bf1acf80-cf06-4055-8450-be63be17a401.webp",
             "image_mobile": "shopify://shop_images/SAFRA-VANT.-MOBILE_caa54921-e0a1-4229-bc8f-1ee84e7dee64.webp",
@@ -145,44 +176,14 @@
             "content_box_opacity": 100,
             "content_alignment_mobile": "center"
           }
-        },
-        "slider_item_PjqRQy": {
-          "type": "slider_item",
-          "name": "Copos Térmicos",
-          "settings": {
-            "image": "shopify://shop_images/DESKTOP_COPOS_AGRO.jpg",
-            "image_mobile": "shopify://shop_images/MOBILE_COPOS.webp",
-            "link_banner": "shopify://collections/copos-e-garrafas-termicas",
-            "overlay_opacity": 0,
-            "slider_effect": "effect_fadeinup",
-            "subheading": "",
-            "heading": "",
-            "description": "",
-            "first_button_label": "",
-            "first_button_link": "",
-            "first_button_style": false,
-            "second_button_label": "",
-            "second_button_link": "",
-            "second_button_style": false,
-            "content_alignment": "center",
-            "content_position": "top-center",
-            "content_width": "full_width",
-            "content_max_width": 100,
-            "content_padding_block": 60,
-            "content_padding_inline": 120,
-            "show_content_background": false,
-            "content_background": "#ffffff",
-            "content_box_opacity": 100,
-            "content_alignment_mobile": "center"
-          }
         }
       },
       "block_order": [
+        "slider_item_HhyAH6",
         "slider_item_qKtECH",
         "slider_item_tBYL6H",
         "slider_item_mHFJwJ",
-        "slider_item_73BmRw",
-        "slider_item_PjqRQy"
+        "slider_item_73BmRw"
       ],
       "custom_css": [
         ".h-full_screen {--height-topbar: 41px;}",
