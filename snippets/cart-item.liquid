@@ -344,10 +344,16 @@
 {%- liquid
   assign theme_st = settings
   assign show_currency_code = theme_st.show_currency_code
+  assign is_gift_progress_line = false
+  for property in item.properties
+    if property.first == '_brk_gift_progress' and property.last == 'true'
+      assign is_gift_progress_line = true
+    endif
+  endfor
 -%}
 
 <div
-  class="cart-item cart-item--v4 flex gap-10 py-10 border-0 border-bottom position-relative"
+  class="cart-item cart-item--v4{% if is_gift_progress_line %} cart-item--gift-progress{% endif %} flex gap-10 py-10 border-0 border-bottom position-relative"
   id="CartItem-{{ item.index | plus: 1 }}"
   data-key="{{ item.key }}"
 >
@@ -394,6 +400,9 @@
       >
         {{- item.product.title | escape -}}
       </a>
+      {%- if is_gift_progress_line -%}
+        <span class="cart-item__gift-badge">Brinde</span>
+      {%- endif -%}
 
       <div class="cart-item__price flex flex-column align-end flex-shrink-0 lh-13 heading-style">
         {%- assign current_variant = item.variant -%}
@@ -505,9 +514,12 @@
       {%- comment -%} Stepper + Edit/Remove {%- endcomment -%}
       <div class="cart-item__actions flex align-center gap-6 flex-shrink-0">
         {%- comment -%} Stepper {%- endcomment -%}
-        <quantity-input class="quantity cart-item__stepper inline-flex align-center overflow-hidden"
-          style="height: 22px; border: 1px solid var(--color-border); border-radius: 999px; background: var(--color-background, #fff);"
-        >
+        {%- if is_gift_progress_line -%}
+          <span class="cart-item__gift-qty">Qtd. {{ item.quantity }}</span>
+        {%- else -%}
+          <quantity-input class="quantity cart-item__stepper inline-flex align-center overflow-hidden"
+            style="height: 22px; border: 1px solid var(--color-border); border-radius: 999px; background: var(--color-background, #fff);"
+          >
           <button
             class="quantity__button pointer border-0 bg-transparent"
             name="minus"
@@ -549,11 +561,12 @@
               <path fill-rule="evenodd" clip-rule="evenodd" d="M5 11.5H6L6 6.5H11V5.5H6L6 0.5H5L5 5.5H0V6.5H5L5 11.5Z" fill="currentColor"/>
             </svg>
           </button>
-        </quantity-input>
+          </quantity-input>
+        {%- endif -%}
 
         {%- comment -%} Edit + Remove buttons {%- endcomment -%}
         <div class="cart-item__icon-actions inline-flex align-center gap-4">
-          {%- unless item.product.has_only_default_variant -%}
+          {%- unless item.product.has_only_default_variant or is_gift_progress_line -%}
             <cart-item-edit
               data-text-header="{{ 'general.cart.cart_edit' | t }}"
               data-custom-class="cart-item-edit"

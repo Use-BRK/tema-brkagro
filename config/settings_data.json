@@ -71,6 +71,7 @@
     "show_on_minicart_cart_page": false,
     "free_shipping_minimum": "150",
     "show_gift_bar": true,
+    "gift_bar_available_text": "Você desbloqueou todos os brindes disponíveis! 🎁",
     "gift_bar_minimum": "320",
     "show_duration_on_minicart_cart_page": false,
     "enable_cart_note": false,
