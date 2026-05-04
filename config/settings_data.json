@@ -71,11 +71,11 @@
     "show_on_minicart_cart_page": false,
     "free_shipping_minimum": "150",
     "show_gift_bar": true,
-    "gift_threshold_1": 200,
+    "gift_threshold_1": "200",
     "gift_product_1": "pulseira-de-silicone-brk-eu-sou-do-agro-brinde",
-    "gift_threshold_2": 600,
+    "gift_threshold_2": "600",
     "gift_product_2": "bolsa-termica-deyu-5-7-litros",
-    "gift_threshold_3": 1000,
+    "gift_threshold_3": "1000",
     "gift_product_3": "adesivo-brk-eu-sou-do-agro",
     "show_duration_on_minicart_cart_page": false,
     "enable_cart_note": false,
@@ -295,6 +295,28 @@
         "type": "shopify://apps/brk-apps-agro/blocks/app-embed/019d97af-ac2d-7e63-88fd-9b16e0f434c2",
         "disabled": true,
         "settings": {}
+      },
+      "16316115392492329230": {
+        "type": "shopify://apps/rewards-pro/blocks/missions_widget/0199e8b4-621e-7cd3-af1c-32293a9bc305",
+        "disabled": true,
+        "settings": {
+          "cache_duration": 30,
+          "default_tab": "daily",
+          "guest_message": "Complete missions to earn XP and level up!",
+          "guest_cta_text": "Sign In",
+          "guest_cta_url": "/account/login"
+        }
+      },
+      "10836757519992038104": {
+        "type": "shopify://apps/rewards-pro/blocks/membership_widget/0199e8b4-621e-7cd3-af1c-32293a9bc305",
+        "disabled": false,
+        "settings": {
+          "enable_api_calls": true,
+          "cache_duration": 300,
+          "guest_message": "Entre no nosso programa de recompensas!",
+          "guest_cta_text": "Sign In",
+          "guest_cta_url": "/account/login"
+        }
       }
     },
     "color_schemes": {
