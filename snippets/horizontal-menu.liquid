@@ -397,6 +397,9 @@
                   href="{{ link.url }}"
                   arial-label="{{ link.title }}"
                 >
+                  {%- if link.title contains 'CASHBACK' -%}
+                    {% render 'icon-cashback', class: 'cashback-menu-icon' %}
+                  {%- endif -%}
                   <span>{{ link.title }}</span>
                   {%- if link.links.size > 0 -%}
                     <open-children-toggle class="inline-flex flex-end align-center ms-5{% if section_st.redirect_to_link == blank %} absolute inset-0 static-1025{% else %} touch-target-mb{% endif %}">
@@ -938,6 +941,9 @@
                   href="{{ link.url }}"
                   arial-label="{{ link.title }}"
                 >
+                  {%- if link.title contains 'CASHBACK' -%}
+                    {% render 'icon-cashback', class: 'cashback-menu-icon' %}
+                  {%- endif -%}
                   <span>{{ link.title }}</span>
                   {%- if link.links.size > 0 -%}
                     <open-children-toggle class="inline-flex flex-end align-center ms-5{% if section_st.redirect_to_link == blank %} absolute inset-0 static-1025{% else %} touch-target-mb{% endif %}">
