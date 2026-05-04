@@ -72,7 +72,7 @@
     "show_message_when_remove": false,
     "action_after_add_cart": "open_drawer",
     "show_on_minicart_cart_page": false,
-    "free_shipping_minimum": "150",
+    "free_shipping_minimum": "",
     "show_gift_bar": false,
     "gift_threshold_1": "",
     "gift_product_1": "",
