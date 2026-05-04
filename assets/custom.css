@@ -185,11 +185,12 @@ mobile-navigation-bar a:active {
 /* Botão Uniformes - Menu Header */
 .btn-uniformes {
   border: 1px solid #3a9e35;
-  border-radius: 30rem;
+  border-radius: 12px;
   color: #FFF!important;
   background: #3a9e35;
   padding-inline: 1rem;
   box-shadow: 5px 10px 10px -8px rgba(0, 0, 0, 0.4);
+  min-height: 1.5px;
 }
 
 .horizontal-list .level0>menu-item>a.btn-uniformes:hover:after{
@@ -219,11 +220,12 @@ mobile-navigation-bar a:active {
 /* Botão Cashback - Menu Header */
 .btn-cashback {
   border: 1px solid #fcc419;
-  border-radius: 30rem;
+  border-radius: 12px;
   color: #433712!important;
   background: #fcc419;
   padding-inline: 1rem;
   box-shadow: 5px 10px 10px -8px rgba(0, 0, 0, 0.4);
+  min-height: 1.5px;
 }
 
 .cashback-menu-icon {
