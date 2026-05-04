@@ -29,6 +29,7 @@
         "slider_item_HhyAH6": {
           "type": "slider_item",
           "name": "Campanha Dia do Trabalho",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/AGRO.webp",
             "image_mobile": "shopify://shop_images/MOB_AGRO.webp",
