@@ -304,6 +304,11 @@
         "type": "shopify://apps/smile-io/blocks/smile-shopify-app/2fae4e25-1841-4ea2-bc02-bd548478c4f6",
         "disabled": true,
         "settings": {}
+      },
+      "14591349720731162389": {
+        "type": "shopify://apps/koin/blocks/app-embed/02895843-ca31-4ee5-82a1-bfd81a36a58d",
+        "disabled": false,
+        "settings": {}
       }
     },
     "color_schemes": {
