@@ -63,7 +63,7 @@
     "show_action_on_mobile": true,
     "swatch_item_type": "variant_images",
     "size_trigger": "Size, Taglia, Tamanho, Tamanho Baby Look, Tamanho Infantil",
-    "search_type": "default",
+    "search_type": "drawer",
     "search_result": "all",
     "enable_search_suggestion": true,
     "popular_key_word": "camisa do brasil, longhorn, texas, bonés, botinas, uniformes pro campo",
