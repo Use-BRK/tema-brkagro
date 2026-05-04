@@ -216,6 +216,40 @@ mobile-navigation-bar a:active {
   display:none;
 }
 
+/* Botão Cashback - Menu Header */
+.btn-cashback {
+  border: 1px solid #fcc419;
+  border-radius: 30rem;
+  color: #433712!important;
+  background: #fcc419;
+  padding-inline: 1rem;
+  box-shadow: 5px 10px 10px -8px rgba(0, 0, 0, 0.4);
+}
+
+.horizontal-list .level0>menu-item>a.btn-cashback:hover:after{
+  display:none;
+}
+
+.btn-cashback:hover{
+  opacity: 0.8;
+  transform: translateY(-3px);
+}
+
+.btn-cashback-mobile {
+  border: 1px solid #fcc419;
+  border-radius: 30rem;
+  color: #433712!important;
+  background: #fcc419;
+  padding-inline: 1rem;
+  min-height: auto;
+  margin: 10px 0px;
+  box-shadow: 5px 10px 10px -8px rgba(0, 0, 0, 0.4);
+}
+
+.horizontal-list .level0>menu-item>a.btn-cashback-mobile:hover:after{
+  display:none;
+}
+
 /* Product Card - Estilização */
 
 
