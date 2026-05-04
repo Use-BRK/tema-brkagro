@@ -307,7 +307,7 @@
       },
       "14591349720731162389": {
         "type": "shopify://apps/koin/blocks/app-embed/02895843-ca31-4ee5-82a1-bfd81a36a58d",
-        "disabled": false,
+        "disabled": true,
         "settings": {}
       }
     },
