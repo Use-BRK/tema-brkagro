@@ -44,12 +44,12 @@
             "second_button_label": "",
             "second_button_link": "",
             "second_button_style": false,
-            "content_alignment": "center",
-            "content_position": "top-center",
+            "content_alignment": "left",
+            "content_position": "bottom-center",
             "content_width": "full_width",
             "content_max_width": 100,
             "content_padding_block": 60,
-            "content_padding_inline": 120,
+            "content_padding_inline": 60,
             "show_content_background": false,
             "content_background": "#ffffff",
             "content_box_opacity": 100,
@@ -74,8 +74,8 @@
             "second_button_label": "",
             "second_button_link": "",
             "second_button_style": false,
-            "content_alignment": "center",
-            "content_position": "top-center",
+            "content_alignment": "left",
+            "content_position": "bottom-center",
             "content_width": "full_width",
             "content_max_width": 100,
             "content_padding_block": 60,
@@ -104,7 +104,7 @@
             "second_button_label": "",
             "second_button_link": "",
             "second_button_style": false,
-            "content_alignment": "center",
+            "content_alignment": "left",
             "content_position": "top-center",
             "content_width": "full_width",
             "content_max_width": 100,
@@ -134,7 +134,7 @@
             "second_button_label": "",
             "second_button_link": "",
             "second_button_style": false,
-            "content_alignment": "center",
+            "content_alignment": "left",
             "content_position": "top-center",
             "content_width": "full_width",
             "content_max_width": 100,
@@ -154,7 +154,7 @@
         "slider_item_73BmRw"
       ],
       "custom_css": [
-        "/* .h-full_screen {--height-topbar: 41px;} */"
+        ".h-full_screen {--height-topbar: 41px;}"
       ],
       "name": "Fullbanner",
       "settings": {
