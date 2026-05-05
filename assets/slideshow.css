@@ -3,6 +3,9 @@
   .swiper-slide:not(:first-child):not(.swiper-slide-active) {
   opacity: 0 !important;
 }
+.swiper.slideshow:not([class*='initialized']) .swiper-wrapper {
+  gap: 0;
+}
 .slideshow .swiper-slide-active .sec__content-inner {
   opacity: 1;
   visibility: visible;
