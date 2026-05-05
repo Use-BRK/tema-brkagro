@@ -46,10 +46,6 @@
         "padding_bottom": 0
       }
     },
-    "17719577145b7a3cf6": {
-      "type": "apps",
-      "settings": {}
-    },
     "cart-items": {
       "type": "main-cart-items",
       "settings": {
@@ -97,8 +93,7 @@
   },
   "order": [
     "heading",
-    "17719577145b7a3cf6",
-    "cart-items",
-    "alireviews-section-dee47fb0-de47-4321-b713-a7ba7412ef32"
+    "alireviews-section-dee47fb0-de47-4321-b713-a7ba7412ef32",
+    "cart-items"
   ]
 }
