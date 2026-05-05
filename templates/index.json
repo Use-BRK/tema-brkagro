@@ -56,37 +56,6 @@
             "content_alignment_mobile": "center"
           }
         },
-        "slider_item_qKtECH": {
-          "type": "slider_item",
-          "name": "Campanha Pulseira",
-          "disabled": true,
-          "settings": {
-            "image": "shopify://shop_images/BANNER-DESK02_bf1acf80-cf06-4055-8450-be63be17a401.webp",
-            "image_mobile": "shopify://shop_images/SAFRA-VANT.-MOBILE_caa54921-e0a1-4229-bc8f-1ee84e7dee64.webp",
-            "link_banner": "https://www.brkagro.com.br/collections/lancamentos-1?&sort_by=best-selling",
-            "overlay_opacity": 0,
-            "slider_effect": "effect_fadeinup",
-            "subheading": "",
-            "heading": "",
-            "description": "",
-            "first_button_label": "",
-            "first_button_link": "",
-            "first_button_style": false,
-            "second_button_label": "",
-            "second_button_link": "",
-            "second_button_style": false,
-            "content_alignment": "center",
-            "content_position": "top-center",
-            "content_width": "full_width",
-            "content_max_width": 100,
-            "content_padding_block": 60,
-            "content_padding_inline": 120,
-            "show_content_background": false,
-            "content_background": "#ffffff",
-            "content_box_opacity": 100,
-            "content_alignment_mobile": "center"
-          }
-        },
         "slider_item_tBYL6H": {
           "type": "slider_item",
           "name": "Essenciais",
@@ -180,14 +149,12 @@
       },
       "block_order": [
         "slider_item_HhyAH6",
-        "slider_item_qKtECH",
         "slider_item_tBYL6H",
         "slider_item_mHFJwJ",
         "slider_item_73BmRw"
       ],
       "custom_css": [
-        ".h-full_screen {--height-topbar: 41px;}",
-        "@media (max-width: 767.988px) {.sec__content {align-items: end; padding-bottom: 30px; }}"
+        "/* .h-full_screen {--height-topbar: 41px;} */"
       ],
       "name": "Fullbanner",
       "settings": {
@@ -203,16 +170,16 @@
         "pagination_position": "right",
         "autoplay": true,
         "autorotate_speed": 6,
-        "subheading_font_size": 18,
+        "subheading_font_size": 12,
         "subheading_font_weight": "subheading_weight",
-        "subheading_spacing_bottom": 15,
-        "heading_font_size": 60,
+        "subheading_spacing_bottom": 0,
+        "heading_font_size": 20,
         "heading_font_weight": "heading_weight",
         "heading_uppercase": false,
-        "heading_spacing_bottom": 40,
-        "des_font_size": 19,
+        "heading_spacing_bottom": 0,
+        "des_font_size": 12,
         "des_font_weight": "heading_weight",
-        "des_spacing_bottom": 60,
+        "des_spacing_bottom": 0,
         "content_below_image": false,
         "padding_top": 0,
         "padding_bottom": 0,
