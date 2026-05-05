@@ -9,6 +9,20 @@
  */
 {
   "sections": {
+    "divider_WJrFxP": {
+      "type": "divider",
+      "disabled": true,
+      "custom_css": [
+        ".sec__divider-inner {box-shadow: 0px 10px 15px -5px rgba(0, 0, 0, 0.4);}"
+      ],
+      "name": "Divisor",
+      "settings": {
+        "section_width": "full_width",
+        "border_height": 10,
+        "border_color": "#1e1e1e",
+        "reset_spacing": true
+      }
+    },
     "slideshow_8KKtNU": {
       "type": "slideshow",
       "blocks": {
@@ -1266,6 +1280,7 @@
     }
   },
   "order": [
+    "divider_WJrFxP",
     "slideshow_8KKtNU",
     "scrolling_text_XAxGTr",
     "collection_tab_DPbHcm",
