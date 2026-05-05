@@ -369,7 +369,8 @@
 
     <!-- Swiper CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
-  </head>
+  {% include 'store-credit-launcher' %}
+</head>
 
   <body class="gradient{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %}">
     <!-- Google Tag Manager (noscript) -->
@@ -498,5 +499,6 @@
         });
       });
     </script>
-  </body>
+  {% include 'store-credit-launcher' %}
+</body>
 </html>
