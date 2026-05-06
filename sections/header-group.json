@@ -176,7 +176,7 @@
         "menu_tab": "custom-collections",
         "collection_list": [],
         "menu_mobile_color": "#ffffff",
-        "menu_mobile_background": "#3db54d",
+        "menu_mobile_background": "#1e1e1e",
         "show_search": true,
         "show_account_icon": true,
         "show_wishlist_icon": false,
