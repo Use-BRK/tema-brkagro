@@ -48,9 +48,9 @@
         "navbar_collection_xFxBLk": {
           "type": "navbar-collection",
           "settings": {
-            "collection": "essenciais-sem-estampa",
-            "title": "Essenciais",
-            "custom_svg": "<img src=\"https://cdn.shopify.com/s/files/1/0887/2083/4857/files/essential.svg\">",
+            "collection": "sao-bento-e-nossa-senhora-1",
+            "title": "Nossa Senhora",
+            "custom_svg": "<img src=\"https://cdn.shopify.com/s/files/1/0887/2083/4857/files/cross.svg?v=1778100740\">",
             "svg_width": 23,
             "svg_height": 23
           }
