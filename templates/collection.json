@@ -198,7 +198,7 @@
         "grid_list": false,
         "items_to_show": 24,
         "items_per_row": 5,
-        "column_gap": 5,
+        "column_gap": 10,
         "pagination": "load_more_button",
         "button_show_more": "Ver mais",
         "promotion_link": "",
