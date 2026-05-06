@@ -1422,3 +1422,6 @@ input.option-disabled + .miniatura-swatch {
 }
 
 /* GPU compositing layer is handled by Swiper's translate3d — no will-change needed */
+
+
+/* teste de deploy prod */
