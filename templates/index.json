@@ -12,14 +12,13 @@
     "slideshow_8KKtNU": {
       "type": "slideshow",
       "blocks": {
-        "slider_item_HhyAH6": {
+        "slider_item_tBYL6H": {
           "type": "slider_item",
-          "name": "Campanha Dia do Trabalho",
-          "disabled": true,
+          "name": "Essenciais",
           "settings": {
-            "image": "shopify://shop_images/DESK_AGRO.webp",
-            "image_mobile": "shopify://shop_images/AGRO_MOB.webp",
-            "link_banner": "shopify://collections/agro-5-5",
+            "image": "shopify://shop_images/AGRO-01.webp",
+            "image_mobile": "shopify://shop_images/AGRO_MOB_03.webp",
+            "link_banner": "shopify://collections/essenciais-sem-estampa",
             "overlay_opacity": 0,
             "slider_effect": "effect_fadeinup",
             "subheading": "",
@@ -36,20 +35,20 @@
             "content_width": "full_width",
             "content_max_width": 100,
             "content_padding_block": 60,
-            "content_padding_inline": 60,
+            "content_padding_inline": 120,
             "show_content_background": false,
             "content_background": "#ffffff",
             "content_box_opacity": 100,
             "content_alignment_mobile": "center"
           }
         },
-        "slider_item_tBYL6H": {
+        "slider_item_3z4nap": {
           "type": "slider_item",
-          "name": "Essenciais",
+          "name": "Botinas",
           "settings": {
-            "image": "shopify://shop_images/ESSENCIAIS_DESKTOP.webp",
-            "image_mobile": "shopify://shop_images/ESSENCIAIS_MOBILE.webp",
-            "link_banner": "shopify://collections/essenciais-sem-estampa",
+            "image": "shopify://shop_images/BANNER-AGRO-03.webp",
+            "image_mobile": "shopify://shop_images/AGRO_MOB_01.webp",
+            "link_banner": "shopify://collections/botinas",
             "overlay_opacity": 0,
             "slider_effect": "effect_fadeinup",
             "subheading": "",
@@ -135,8 +134,8 @@
         }
       },
       "block_order": [
-        "slider_item_HhyAH6",
         "slider_item_tBYL6H",
+        "slider_item_3z4nap",
         "slider_item_mHFJwJ",
         "slider_item_73BmRw"
       ],
