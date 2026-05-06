@@ -29,6 +29,7 @@
         "slider_item_HhyAH6": {
           "type": "slider_item",
           "name": "Campanha Dia do Trabalho",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/DESK_AGRO.webp",
             "image_mobile": "shopify://shop_images/AGRO_MOB.webp",
@@ -192,13 +193,13 @@
         "scrolling_text_myQxMH": {
           "type": "scrolling_text",
           "settings": {
-            "content": "<strong>FRETE GRÁTIS</strong>"
+            "content": "<strong>FRETE FIXO R$9,90</strong>"
           }
         },
         "scrolling_text_7mQVAg": {
           "type": "scrolling_text",
           "settings": {
-            "content": "5.5 AGRO"
+            "content": "ENVIO RÁPIDO"
           }
         }
       },
