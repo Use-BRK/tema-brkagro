@@ -272,12 +272,20 @@
     "collection_list_TVMtme": {
       "type": "collection-list",
       "blocks": {
-        "collection_ccBEnR": {
+        "collection_h667Dx": {
           "type": "collection",
           "settings": {
-            "collection": "colecao-brasil",
-            "collection_image": "shopify://shop_images/BRASIL_AGRO.webp",
-            "collection_title": "Brasil é Agro"
+            "collection": "nossa-senhora-aparecida",
+            "collection_image": "shopify://shop_images/NOSSA_SENHORA.webp",
+            "collection_title": "Nossa Senhora"
+          }
+        },
+        "collection_rRd7j3": {
+          "type": "collection",
+          "settings": {
+            "collection": "agricultura-1",
+            "collection_image": "shopify://shop_images/AGRICULTURA.webp",
+            "collection_title": "Agricultura"
           }
         },
         "collection_qVrNRi": {
@@ -288,12 +296,12 @@
             "collection_title": "São Bento"
           }
         },
-        "collection_rRd7j3": {
+        "collection_ccBEnR": {
           "type": "collection",
           "settings": {
-            "collection": "agricultura-1",
-            "collection_image": "shopify://shop_images/AGRICULTURA.webp",
-            "collection_title": "Agricultura"
+            "collection": "colecao-brasil",
+            "collection_image": "shopify://shop_images/BRASIL_AGRO.webp",
+            "collection_title": "Brasil é Agro"
           }
         },
         "collection_azLAja": {
@@ -335,26 +343,18 @@
             "collection_image": "shopify://shop_images/CAVALOS_RODEIOS.webp",
             "collection_title": "Cavalos e Rodeios"
           }
-        },
-        "collection_h667Dx": {
-          "type": "collection",
-          "settings": {
-            "collection": "nossa-senhora-aparecida",
-            "collection_image": "shopify://shop_images/NOSSA_SENHORA.webp",
-            "collection_title": "Nossa Senhora"
-          }
         }
       },
       "block_order": [
-        "collection_ccBEnR",
-        "collection_qVrNRi",
+        "collection_h667Dx",
         "collection_rRd7j3",
+        "collection_qVrNRi",
+        "collection_ccBEnR",
         "collection_azLAja",
         "collection_W8AhUx",
         "collection_XMbNzT",
         "collection_eNdVfw",
-        "collection_gTWVCq",
-        "collection_h667Dx"
+        "collection_gTWVCq"
       ],
       "name": "Escolha Por Coleção",
       "settings": {
@@ -396,6 +396,7 @@
     },
     "products_carousel_GdfTjJ": {
       "type": "products-carousel",
+      "disabled": true,
       "name": "Lançamento Força do Agro V2",
       "settings": {
         "section_width": "fluid_container",
@@ -431,6 +432,7 @@
     },
     "products_carousel_nUcUgz": {
       "type": "products-carousel",
+      "disabled": true,
       "name": "Envio FULL + BRINDE",
       "settings": {
         "section_width": "fluid_container",
