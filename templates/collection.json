@@ -81,37 +81,6 @@
         "reset_spacing": false
       }
     },
-    "image_with_text_overlay_yUNLiX": {
-      "type": "image-with-text-overlay",
-      "disabled": true,
-      "name": "t:sections.image_with_text_overlay.name",
-      "settings": {
-        "section_width": "full_width",
-        "color_scheme": "",
-        "image": "shopify://shop_images/DESCONTOS-BANNER.png",
-        "image_mobile": "shopify://shop_images/DESCONTOS-BANNER-MOB.png",
-        "image_behavior": "none",
-        "overlay_opacity": 0,
-        "image_height": "adapt",
-        "desktop_height": 500,
-        "mobile_height": 500,
-        "product_list": [],
-        "content_alignment": "center",
-        "content_position": "top-left",
-        "content_width": "full_width",
-        "content_max_width": 100,
-        "content_padding_block": 15,
-        "content_padding_inline": 0,
-        "show_content_background": false,
-        "content_background": "#ffffff",
-        "content_box_opacity": 100,
-        "content_below_image": true,
-        "content_alignment_mobile": "left",
-        "padding_top": 0,
-        "padding_bottom": 0,
-        "reset_spacing": true
-      }
-    },
     "subcollection": {
       "type": "subcollection-list",
       "disabled": true,
@@ -243,7 +212,6 @@
   "order": [
     "banner",
     "scrolling_text_L4EgPy",
-    "image_with_text_overlay_yUNLiX",
     "subcollection",
     "main"
   ]

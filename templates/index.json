@@ -9,20 +9,6 @@
  */
 {
   "sections": {
-    "divider_WJrFxP": {
-      "type": "divider",
-      "disabled": true,
-      "custom_css": [
-        ".sec__divider-inner {box-shadow: 0px 10px 15px -5px rgba(0, 0, 0, 0.4);}"
-      ],
-      "name": "Divisor",
-      "settings": {
-        "section_width": "full_width",
-        "border_height": 10,
-        "border_color": "#1e1e1e",
-        "reset_spacing": true
-      }
-    },
     "slideshow_8KKtNU": {
       "type": "slideshow",
       "blocks": {
@@ -478,149 +464,6 @@
         "reset_spacing": true
       }
     },
-    "collection_tab_XNDCTb": {
-      "type": "collection-tab",
-      "blocks": {
-        "collection_HK34Cn": {
-          "type": "collection",
-          "settings": {
-            "collection": "lancamentos-1",
-            "collection_title": "Lançamentos"
-          }
-        },
-        "collection_RikWXM": {
-          "type": "collection",
-          "settings": {
-            "collection": "mais-vendidos-masculinas",
-            "collection_title": "Mais Vendidos"
-          }
-        }
-      },
-      "block_order": [
-        "collection_HK34Cn",
-        "collection_RikWXM"
-      ],
-      "disabled": true,
-      "custom_css": [
-        ".collection-tab__tab-item {font-size: clamp(1.105em, 2vw, 2.5rem);}",
-        ".btn_view-all {border-radius: 8px;}"
-      ],
-      "name": "Mais Vendidos/Lançamentos",
-      "settings": {
-        "section_width": "fluid_container",
-        "color_scheme": "default",
-        "heading": "",
-        "description": "",
-        "show_view_all_button": true,
-        "header_size": "medium",
-        "header_alignment": "center",
-        "tab_header_style": "horizontal",
-        "horizontal_tab_style": "underline",
-        "tab_header_postion": "default",
-        "display_mode": "grid",
-        "items_to_show": 24,
-        "items_per_row": 5,
-        "column_gap": 10,
-        "show_arrow": true,
-        "carousel_pagination": "show_dots_on_mobile",
-        "infinite": true,
-        "autoplay": false,
-        "autorotate_speed": 5,
-        "reveal": false,
-        "rows": 2,
-        "show_load_more_button": false,
-        "button_label": "Load more",
-        "carousel_on_mobile": true,
-        "items_per_row_mobile": 1.5,
-        "padding_top": 0,
-        "padding_bottom": 10,
-        "reset_spacing": true
-      }
-    },
-    "collection_list_DnBJyy": {
-      "type": "collection-list",
-      "blocks": {
-        "collection_EKPUGy": {
-          "type": "collection",
-          "settings": {
-            "collection": "ofertas-r-59",
-            "collection_image": "shopify://shop_images/OFERTA_AGRO_01.webp",
-            "collection_title": ""
-          }
-        },
-        "collection_gEjEAi": {
-          "type": "collection",
-          "settings": {
-            "collection": "ofertas-99",
-            "collection_image": "shopify://shop_images/OFERTA_AGRO_02.webp",
-            "collection_title": ""
-          }
-        },
-        "collection_XGJRwk": {
-          "type": "collection",
-          "settings": {
-            "collection": "ofertas-189",
-            "collection_image": "shopify://shop_images/OFERTA_AGRO_03.webp",
-            "collection_title": ""
-          }
-        },
-        "collection_7niYEB": {
-          "type": "collection",
-          "settings": {
-            "collection": "envio-imediato",
-            "collection_image": "shopify://shop_images/OFERTA_AGRO_04.webp",
-            "collection_title": ""
-          }
-        }
-      },
-      "block_order": [
-        "collection_EKPUGy",
-        "collection_gEjEAi",
-        "collection_XGJRwk",
-        "collection_7niYEB"
-      ],
-      "disabled": true,
-      "custom_css": [
-        ".collection-item__name {display: none;}"
-      ],
-      "name": "Card de Ofertas",
-      "settings": {
-        "section_width": "fluid_container",
-        "color_scheme": "default",
-        "heading": "",
-        "description": "",
-        "show_view_all_button": false,
-        "header_size": "medium",
-        "header_alignment": "left",
-        "display_mode": "carousel",
-        "image_ratio": "adapt",
-        "custom_ratio": "1000:1516",
-        "items_per_row": 4,
-        "column_gap": 30,
-        "show_arrow": true,
-        "carousel_pagination": "disable",
-        "infinite": true,
-        "autoplay": true,
-        "autorotate_speed": 5,
-        "reveal": false,
-        "items_per_row_mobile": 1.5,
-        "design": "default",
-        "collection_information_position": "overlay_image",
-        "text_alignment": "center",
-        "show_product_count": false,
-        "show_icon": false,
-        "show_description": false,
-        "font_size": 12,
-        "font_weight": "heading_weight",
-        "information_spacing": 12,
-        "rounded_image": false,
-        "image_custom_width": false,
-        "image_width": 200,
-        "padding_top": 30,
-        "padding_bottom": 30,
-        "reset_spacing": true
-      }
-    },
     "banner_packery_txTyNt": {
       "type": "banner-packery",
       "blocks": {
@@ -907,63 +750,6 @@
         "items_per_row_mobile": 2.5,
         "padding_top": 45,
         "padding_bottom": 30,
-        "reset_spacing": true
-      }
-    },
-    "product_bundle_U4cMyL": {
-      "type": "product-bundle",
-      "blocks": {
-        "product_discount_BrTU77": {
-          "type": "product_discount",
-          "name": "Produtos Descontos",
-          "settings": {
-            "collection": "",
-            "products": [
-              "bone-trucker-brk-agro-yellowstone-buckle-bunnies",
-              "bone-trucker-brk-agro-yellowstone-usa-flag",
-              "bone-trucker-brk-agro-yellowstone-dutton-rach-montana"
-            ],
-            "items_to_show": 3,
-            "items_per_row": 3,
-            "column_gap": 30,
-            "carousel_on_mobile": true,
-            "items_per_row_mobile": 2
-          }
-        },
-        "your_bundle_Geyk6h": {
-          "type": "your_bundle",
-          "name": "Kit",
-          "settings": {
-            "heading": "3 Bonés com 20% OFF 🔥",
-            "description": "<p>Adicione <strong>3 Bonés</strong> para <strong>Ganhar 20% de Desconto!</strong></p>",
-            "heading_font_size": 20,
-            "heading_font_weight": "heading_weight",
-            "heading_uppercase": false,
-            "heading_spacing_bottom": 20,
-            "des_font_size": 15,
-            "des_font_weight": "body_weight",
-            "des_spacing_bottom": 30
-          }
-        }
-      },
-      "block_order": [
-        "product_discount_BrTU77",
-        "your_bundle_Geyk6h"
-      ],
-      "disabled": true,
-      "name": "Monte seu Kit",
-      "settings": {
-        "section_width": "fluid_container",
-        "color_scheme": "",
-        "heading": "3 Bonés com 20% OFF 🔥",
-        "description": "<h6>ATÉ ACABAR OS ESTOQUES!</h6>",
-        "header_size": "small",
-        "header_alignment": "left",
-        "minimum": 2,
-        "maximum": 3,
-        "enable_quantity": true,
-        "padding_top": 45,
-        "padding_bottom": 45,
         "reset_spacing": true
       }
     },
@@ -1281,18 +1067,14 @@
     }
   },
   "order": [
-    "divider_WJrFxP",
     "slideshow_8KKtNU",
     "scrolling_text_XAxGTr",
     "collection_tab_DPbHcm",
     "collection_list_TVMtme",
     "products_carousel_GdfTjJ",
     "products_carousel_nUcUgz",
-    "collection_tab_XNDCTb",
-    "collection_list_DnBJyy",
     "banner_packery_txTyNt",
     "brand_logo_XHpAXt",
-    "product_bundle_U4cMyL",
     "slideshow_GRzeY3",
     "instagram_shop_X8AgdJ",
     "icon_box_TRwJBD"
