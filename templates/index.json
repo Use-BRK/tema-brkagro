@@ -40,7 +40,7 @@
         "use_heading_font": false,
         "padding_top": 0,
         "padding_bottom": 0,
-        "reset_spacing": false
+        "reset_spacing": true
       }
     },
     "slideshow_8KKtNU": {
