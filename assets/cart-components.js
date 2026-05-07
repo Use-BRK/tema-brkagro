@@ -455,12 +455,6 @@ class CartNotification extends HTMLElement {
 
   updateQuantity(id, quantity, currentQuantity, _this, name) {
     quantity = quantity ? quantity : 0;
-    const body = JSON.stringify({
-      id,
-      quantity,
-      sections: this.getSectionsToRender().map((section) => section.id),
-      sections_url: window.location.pathname,
-    });
     const selector = `mini-cart-remove-button[data-index="${id}"]`;
     const cart_select = `minicart-wishlist-action[data-index="${id}"]`;
 
@@ -476,38 +470,44 @@ class CartNotification extends HTMLElement {
     }
     const cart_free_ship = document.querySelector("free-ship-progress-bar");
     const cart_gift_bar = document.querySelector("gift-progress-bar");
-    fetch(`${routes?.cart_change_url}.js`, { ...fetchConfig(), ...{ body } })
-      .then((response) => {
-        return response.text();
+    const sections = this.getSectionsToRender().map((section) => section.id);
+    const sections_url = window.location.pathname;
+    const variantId = id.includes(':') ? id.split(':')[0] : id;
+    fetch('/cart.js')
+      .then((r) => r.json())
+      .then((cart) => {
+        const freshItem = cart.items.find(
+          (item) => String(item.variant_id) === String(variantId) || item.key === id
+        );
+        const changeBody = freshItem
+          ? JSON.stringify({ id: freshItem.key, quantity, sections, sections_url })
+          : JSON.stringify({ id, quantity, sections, sections_url });
+        return fetch(`${routes?.cart_change_url}.js`, { ...fetchConfig(), body: changeBody })
+          .then((r) => r.text())
+          .then((text) => JSON.parse(text))
+          .then((result) => {
+            if (result.status === 'bad_request') {
+              return fetch('/cart.json')
+                .then((r) => r.json())
+                .then((freshCart) => {
+                  const lineIndex = freshCart.items.findIndex(
+                    (item) => String(item.variant_id) === String(variantId)
+                  );
+                  if (lineIndex === -1) return this.refreshMinicartSection();
+                  const retryBody = JSON.stringify({
+                    line: lineIndex + 1, quantity, sections, sections_url,
+                  });
+                  return fetch(`${routes?.cart_change_url}.js`, { ...fetchConfig(), body: retryBody })
+                    .then((r) => r.text())
+                    .then((text) => JSON.parse(text));
+                })
+                .catch(() => this.refreshMinicartSection());
+            }
+            return result;
+          });
       })
-      .then((state) => {
-        const parsedState = JSON.parse(state);
-        if (parsedState.status === 'bad_request') {
-          return fetch('/cart.json')
-            .then((r) => r.json())
-            .then((cart) => {
-              const variantId = id.includes(':') ? id.split(':')[0] : id;
-              const lineIndex = cart.items.findIndex(
-                (item) => String(item.variant_id) === String(variantId)
-              );
-              if (lineIndex === -1) {
-                return this.refreshMinicartSection();
-              }
-              const retryBody = JSON.stringify({
-                line: lineIndex + 1,
-                quantity,
-                sections: this.getSectionsToRender().map((section) => section.id),
-                sections_url: window.location.pathname,
-              });
-              return fetch(`${routes?.cart_change_url}.js`, { ...fetchConfig(), body: retryBody })
-                .then((r) => r.text())
-                .then((text) => JSON.parse(text));
-            })
-            .catch(() => {
-              return this.refreshMinicartSection();
-            });
-        }
-        return parsedState;
+      .catch(() => {
+        return this.refreshMinicartSection();
       })
       .then((parsedState) => {
         if (!parsedState || parsedState.status === 'bad_request') return;
