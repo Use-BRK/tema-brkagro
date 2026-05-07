@@ -21,7 +21,11 @@
     "rounded_corner": 5,
     "spacing_desktop": 90,
     "space_mobile": 50,
+    "font_type_body": "shopify",
+    "font_body_system": "frank_ruhl_libre_n7",
     "body_font_size": 15,
+    "font_type_heading": "shopify",
+    "font_heading_system": "frank_ruhl_libre_n7",
     "heading_text_transform": "unset",
     "heading_letter_spacing": "negative",
     "menu_font": "heading_font",
@@ -198,7 +202,7 @@
     "color_schemes": {
       "default": {
         "settings": {
-          "background": "#fff",
+          "background": "#ffffff",
           "background_gradient": "",
           "primary_color": "#0f6049",
           "text_color": "#0f6049",
@@ -241,8 +245,8 @@
           "background": "#000000",
           "background_gradient": "",
           "primary_color": "#d0473e",
-          "text_color": "#fff",
-          "heading_color": "#fff",
+          "text_color": "#ffffff",
+          "heading_color": "#ffffff",
           "border_color": "#ebebeb",
           "btn_primary_color": "#ffffff",
           "btn_primary_background": "#111111",
