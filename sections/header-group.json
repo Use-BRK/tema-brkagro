@@ -17,27 +17,16 @@
         "text_slider_LFaC38": {
           "type": "text_slider",
           "settings": {
-            "text1": "Sign up for 10% off your first order. <a href=\"/account/\" title=\"/account/\"><strong>Sign Up</strong></a>",
-            "text2": "Summer sale discount off 50%. <a href=\"/collections/activewear\" title=\"Activewear\"><strong>Shop Sale</strong></a>",
-            "text3": "Coats—every friday 75% Off . <a href=\"/collections/blazers\" title=\"Blazers\"><strong>Shop Sale</strong></a>",
+            "text1": "CUPOM 1ª COMPRA: <strong>BEMVINDO</strong>",
+            "text2": "",
+            "text3": "",
             "change_every": 3,
             "hidden_on_mobile": false
-          }
-        },
-        "cur_lang_aPwfT9": {
-          "type": "cur_lang",
-          "settings": {
-            "menu_link": "menu-topbar",
-            "show_currency": true,
-            "show_language": false,
-            "show_our_store": true,
-            "hidden_on_mobile": true
           }
         }
       },
       "block_order": [
-        "text_slider_LFaC38",
-        "cur_lang_aPwfT9"
+        "text_slider_LFaC38"
       ],
       "settings": {
         "section_width": "stretch_width",
@@ -57,16 +46,15 @@
         "menu_promotion_EeqGGC": {
           "type": "menu_promotion",
           "settings": {
-            "text": "Home",
+            "text": "MASCULINO",
             "open-link-newtab": true,
             "item_label": "unset",
-            "promotion_menu_column": 2,
+            "promotion_menu_column": 3,
             "mega_custom_width": 860,
             "center_submenu": true,
             "full_width": false,
             "promotion_position": "right",
             "promotion_image_width": 41,
-            "promotion_image_1": "shopify://shop_images/banner-menu1.jpg",
             "promotion_link_1": "https://themeforest.net/item/glozin-multipurpose-shopify-theme-os-20/53006461?s_rank=1",
             "promotion_link_newtab_1": true,
             "promotion_link_2": "",
@@ -119,7 +107,6 @@
             "full_width": true,
             "promotion_position": "right",
             "promotion_image_width": 34,
-            "promotion_image_1": "shopify://shop_images/fashion_1_58a22a64-af35-4c05-b131-55c66d56522d.jpg",
             "promotion_link_1": "shopify://collections/activewear",
             "promotion_link_newtab_1": true,
             "promotion_link_2": "",
@@ -133,9 +120,16 @@
         "menu_collection_EkdGyG",
         "menu_promotion_rWzQL6"
       ],
+      "custom_css": [
+        ".header {--color-background: #0f6049 !important;}",
+        "menu-item span {color: #efe9da; text-transform: lowercase;}",
+        ".submenu span {color: #0f6049;}",
+        "svg {color: #efe9da !important;}",
+        ".h-count {background-color: #efe9da; color: #0f6049; font-weight: 800; font-size: 1rem;}"
+      ],
       "settings": {
         "section_width": "stretch_width",
-        "color_scheme": "",
+        "color_scheme": "default",
         "logo_position": "left",
         "separator_line": "inner_page",
         "enable_login_popup": true,
@@ -144,7 +138,8 @@
         "transparent_header": false,
         "transparent_mobile": false,
         "transparent_text_icon_color": "#ffffff",
-        "mega_menu": "main-menu",
+        "transparent_bg_color": "#111111",
+        "mega_menu": "menu",
         "dropdowns_animation": "down-to-up",
         "uppercase_first": false,
         "hot": "Hot",
