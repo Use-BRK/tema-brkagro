@@ -14,7 +14,7 @@
     "logo": "shopify://shop_images/REBRAND_AGRO.png",
     "logo_on_transparent": "shopify://shop_images/REBRAND_AGRO.png",
     "desktop_logo_width": 180,
-    "mobile_logo_width": 180,
+    "mobile_logo_width": 130,
     "page_width": 1200,
     "fluid_container_width": 1410,
     "enable_rounded": false,
@@ -238,11 +238,11 @@
       },
       "scheme-bb1431b0-be4a-4b03-a450-f572c07e3904": {
         "settings": {
-          "background": "#253230",
+          "background": "#000000",
           "background_gradient": "",
           "primary_color": "#d0473e",
-          "text_color": "#f3fc81",
-          "heading_color": "#f3fc81",
+          "text_color": "#fff",
+          "heading_color": "#fff",
           "border_color": "#ebebeb",
           "btn_primary_color": "#ffffff",
           "btn_primary_background": "#111111",

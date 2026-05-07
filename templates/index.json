@@ -9,29 +9,65 @@
  */
 {
   "sections": {
+    "scrolling_text_DNNJAq": {
+      "type": "scrolling-text",
+      "blocks": {
+        "scrolling_text_L3U9ea": {
+          "type": "scrolling_text",
+          "settings": {
+            "content": "<strong>A FORÇA QUE MOVE O AGRO</strong>"
+          }
+        }
+      },
+      "block_order": [
+        "scrolling_text_L3U9ea"
+      ],
+      "custom_css": [
+        "* {letter-spacing: 5px;}"
+      ],
+      "name": "t:sections.scrolling_text.name",
+      "settings": {
+        "section_width": "full_width",
+        "color_scheme": "scheme-bb1431b0-be4a-4b03-a450-f572c07e3904",
+        "direction": "right",
+        "icon_between_item": "dot",
+        "icon_width": 20,
+        "speed": 10,
+        "space_between_text": 100,
+        "font_size": 11,
+        "font_weight": "body_weight",
+        "uppercase": false,
+        "use_heading_font": false,
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": false
+      }
+    },
     "slideshow_8KKtNU": {
       "type": "slideshow",
       "blocks": {
         "slider_item_YipJd4": {
           "type": "slider_item",
           "settings": {
+            "image": "shopify://shop_images/AGRO-01.webp",
+            "image_mobile": "shopify://shop_images/AGRO_MOB_03.webp",
             "overlay_opacity": 0,
             "slider_effect": "fade-in-right",
-            "subheading": "Sweater Collection",
-            "heading": "Cozy Crew<br>\nOnline Exclusive",
+            "subheading": "",
+            "heading": "",
             "description": "",
-            "first_button_label": "Shop Collection",
-            "first_button_link": "shopify://collections/sweaters",
+            "first_button_label": "",
+            "first_button_link": "",
             "first_button_style": false,
             "second_button_label": "",
             "second_button_link": "",
             "second_button_style": false,
-            "content_alignment": "left",
-            "content_position": "middle-left",
+            "content_alignment": "center",
+            "content_position": "top-center",
             "content_width": "full_width",
             "content_max_width": 100,
-            "content_padding_block": 60,
-            "content_padding_inline": 60,
+            "content_padding_block": 40,
+            "content_padding_inline": 0,
             "show_content_background": false,
             "content_background": "#ffffff",
             "content_box_opacity": 100,
@@ -41,49 +77,25 @@
         "slider_item_jiLA39": {
           "type": "slider_item",
           "settings": {
+            "image": "shopify://shop_images/BANNER-AGRO-03.webp",
+            "image_mobile": "shopify://shop_images/AGRO_MOB_01.webp",
             "overlay_opacity": 0,
             "slider_effect": "fade-up",
-            "subheading": "Season Collection",
-            "heading": "Pure Ease<br>\nAll-Day Cool",
+            "subheading": "",
+            "heading": "",
             "description": "",
-            "first_button_label": "Shop Collection",
+            "first_button_label": "",
             "first_button_link": "shopify://collections/best-seller",
             "first_button_style": false,
             "second_button_label": "",
             "second_button_link": "",
             "second_button_style": false,
-            "content_alignment": "left",
-            "content_position": "middle-left",
+            "content_alignment": "center",
+            "content_position": "top-center",
             "content_width": "full_width",
             "content_max_width": 100,
-            "content_padding_block": 60,
-            "content_padding_inline": 60,
-            "show_content_background": false,
-            "content_background": "#ffffff",
-            "content_box_opacity": 100,
-            "content_alignment_mobile": "center"
-          }
-        },
-        "slider_item_iAiXpe": {
-          "type": "slider_item",
-          "settings": {
-            "overlay_opacity": 0,
-            "slider_effect": "zoom-in",
-            "subheading": "Look Exclusive",
-            "heading": "Clean Look<br>\nSuper Comfort",
-            "description": "",
-            "first_button_label": "Shop Collection",
-            "first_button_link": "shopify://collections/crop-top",
-            "first_button_style": false,
-            "second_button_label": "",
-            "second_button_link": "",
-            "second_button_style": false,
-            "content_alignment": "left",
-            "content_position": "middle-left",
-            "content_width": "full_width",
-            "content_max_width": 100,
-            "content_padding_block": 60,
-            "content_padding_inline": 60,
+            "content_padding_block": 40,
+            "content_padding_inline": 0,
             "show_content_background": false,
             "content_background": "#ffffff",
             "content_box_opacity": 100,
@@ -93,17 +105,16 @@
       },
       "block_order": [
         "slider_item_YipJd4",
-        "slider_item_jiLA39",
-        "slider_item_iAiXpe"
+        "slider_item_jiLA39"
       ],
       "custom_css": [
         ".h-full_screen {--height-topbar: 41px;}"
       ],
       "settings": {
         "section_width": "full_width",
-        "slide_height": "full_screen",
-        "desktop_height": 800,
-        "mobile_height": 300,
+        "slide_height": "adapt",
+        "desktop_height": 1000,
+        "mobile_height": 600,
         "color_scheme": "scheme-c4fa9b2e-e94e-477a-a1f0-ab1da4f2a676",
         "slide_effect": "fade",
         "fade_image_effect": "none",
@@ -111,8 +122,8 @@
         "show_arrow": true,
         "carousel_pagination": "show_dots",
         "pagination_position": "center",
-        "autoplay": false,
-        "autorotate_speed": 5,
+        "autoplay": true,
+        "autorotate_speed": 4,
         "subheading_font_size": 15,
         "subheading_font_weight": "subheading_weight",
         "subheading_spacing_bottom": 0,
@@ -126,7 +137,7 @@
         "content_below_image": false,
         "padding_top": 0,
         "padding_bottom": 0,
-        "reset_spacing": false
+        "reset_spacing": true
       }
     },
     "featured_collection_q4gHVx": {
@@ -759,6 +770,7 @@
     }
   },
   "order": [
+    "scrolling_text_DNNJAq",
     "slideshow_8KKtNU",
     "featured_collection_q4gHVx",
     "outfit_idea_wGzkBi",
