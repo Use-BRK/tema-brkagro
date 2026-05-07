@@ -140,45 +140,57 @@
         "reset_spacing": true
       }
     },
-    "featured_collection_q4gHVx": {
-      "type": "featured-collection",
-      "name": "t:names.featured_collection",
+    "collection_tab_cxBKk3": {
+      "type": "collection-tab",
+      "blocks": {
+        "collection_9WTytq": {
+          "type": "collection",
+          "settings": {
+            "collection": "mais-vendidos-masculinas",
+            "collection_title": "Masculinos"
+          }
+        },
+        "collection_FAKwKX": {
+          "type": "collection",
+          "settings": {
+            "collection": "mais-vendidas-femininas",
+            "collection_title": "Femininas"
+          }
+        }
+      },
+      "block_order": [
+        "collection_9WTytq",
+        "collection_FAKwKX"
+      ],
+      "name": "t:sections.collection-tab.name",
       "settings": {
         "section_width": "fluid_container",
         "color_scheme": "",
         "heading": "",
         "description": "",
         "show_view_all_button": true,
-        "space_between_header": true,
         "header_size": "medium",
         "header_alignment": "center",
-        "show_header_on_mobile": false,
-        "enable_collection_deal": false,
-        "messages": "Hurry up! Offer ends in:",
-        "end_time": "09-22-2026",
-        "timer_style": "default",
-        "collections_type": "carousel",
-        "collection": "best-seller",
+        "tab_header_style": "horizontal",
+        "horizontal_tab_style": "fill",
+        "tab_header_postion": "default",
+        "display_mode": "grid",
         "items_to_show": 8,
         "items_per_row": 4,
-        "rows_on_desktop": 2,
-        "enable_load_more": false,
-        "button_label": "Load more",
         "column_gap": 30,
-        "show_arrow": false,
+        "show_arrow": true,
         "carousel_pagination": "disable",
         "infinite": false,
         "autoplay": false,
-        "autorotate_speed": 5,
+        "autorotate_speed": 2,
         "reveal": false,
-        "equal_height_adjustment": false,
-        "sticky_block": false,
-        "content_width": 30,
-        "block_position": "left",
-        "carousel_on_mobile": false,
-        "items_per_row_mobile": 2,
+        "rows": 2,
+        "show_load_more_button": false,
+        "button_label": "Load more",
+        "carousel_on_mobile": true,
+        "items_per_row_mobile": 1.5,
         "padding_top": 0,
-        "padding_bottom": 10,
+        "padding_bottom": 0,
         "reset_spacing": false
       }
     },
@@ -772,7 +784,7 @@
   "order": [
     "scrolling_text_DNNJAq",
     "slideshow_8KKtNU",
-    "featured_collection_q4gHVx",
+    "collection_tab_cxBKk3",
     "outfit_idea_wGzkBi",
     "divider_FcGgzn",
     "scrolling_text_U3mttg",
