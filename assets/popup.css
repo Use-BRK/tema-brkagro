@@ -304,14 +304,14 @@ body .tingle-modal-box__content {
 
   body .tingle-modal--visible .tingle-modal-box {
     animation: none;
-    animation: fadeInUp .6s cubic-bezier(.7, 0, .2, 1) both;
-    transition: transform .6s cubic-bezier(.7, 0, .2, 1);
+    animation: fadeInUp .4s cubic-bezier(0.32, 0.72, 0, 1) both;
+    transition: transform .4s cubic-bezier(0.32, 0.72, 0, 1), opacity .4s cubic-bezier(0.32, 0.72, 0, 1);
   }
 
   body .remove-loading .tingle-modal-box {
     animation: none;
-    animation: fadeOutDown .5s cubic-bezier(.7, 0, .2, 1) both;
-    transition: transform .5s cubic-bezier(.7, 0, .2, 1);
+    animation: fadeOutDown .4s cubic-bezier(.7, 0, .2, 1) both;
+    transition: transform .4s cubic-bezier(.7, 0, .2, 1), opacity .4s cubic-bezier(.7, 0, .2, 1);
   }
 
   body .tingle-modal__close {

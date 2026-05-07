@@ -422,9 +422,16 @@ input[type='checkbox']:checked + .checkmark:before {
   transition: var(--transition);
   -webkit-transition: var(--transition);
 }
+.transition-btn {
+  transition: background-color var(--dur-hover) var(--ease-standard),
+    color var(--dur-hover) var(--ease-standard),
+    border-color var(--dur-hover) var(--ease-standard),
+    transform var(--dur-hover) var(--ease-standard);
+}
 .transition-popup {
   transition: var(--transition-popup);
-  -webkit-transition: var(--transition-popup);
+  transition-property: transform, translate, scale, rotate;
+  will-change: transform;
 }
 /* Rounded */
 .rounded-custom {

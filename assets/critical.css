@@ -330,7 +330,7 @@ textarea,
   font-weight: var(--body-weight);
   -webkit-appearance: none;
   appearance: none;
-  transition: 0.25s;
+  transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 html input[type='button'],
 input[type='reset'],
@@ -473,6 +473,15 @@ th {
   cursor: pointer;
   letter-spacing: calc(var(--btn-letter-spacing));
   text-transform: var(--btn-text-transform);
+}
+:where(.btn-primary, .btn-outline, .btn, .btn-white, .product-item__button):active,
+:is(
+    body .shopify-payment-button__more-options,
+    body .shopify-payment-button__button--unbranded,
+    .dmp_discount-form button
+  ):active {
+  transform: translateY(1px) scale(0.97) !important;
+  transition-duration: var(--dur-press);
 }
 :is(
     .btn-primary,

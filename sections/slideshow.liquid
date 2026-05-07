@@ -1,5 +1,6 @@
 {{ 'banner.css' | asset_url | stylesheet_tag }}
 <link rel="stylesheet" href="{{ 'slideshow.css' | asset_url }}" media="print" onload="this.media='all'">
+<script src="{{ 'slideshow-section.js' | asset_url }}" defer="defer" type="module"></script>
 {% liquid
   assign section_st = section.settings
   assign section_width = section_st.section_width
@@ -8,6 +9,7 @@
   assign show_arrow = section_st.show_arrow
   assign carousel_pagination = section_st.carousel_pagination
   assign slide_effect = section_st.slide_effect
+  assign fade_image_effect = section_st.fade_image_effect | default: 'none'
   assign pagination_position = section_st.pagination_position
   assign autoplay = section_st.autoplay
   assign autorotate_speed = section_st.autorotate_speed
@@ -18,6 +20,14 @@
   if reveal_slideshow
     assign slide_effect = 'slide'
   endif
+  if fade_image_effect == 'none' or fade_image_effect == blank
+    assign fade_image_effect = ''
+  else
+    assign fade_image_effect = 'image-' | append: fade_image_effect
+  endif
+  if slide_effect == 'slide' or slide_effect == 'parallax'
+    assign fade_image_effect = ''
+  endif
 %}
 {%- capture video_attribute -%}
     muted autoplay
@@ -27,17 +37,62 @@
   --height: {{ section_st.mobile_height }}px;--height-desktop: {{ section_st.desktop_height }}px;
   {% endif %}
 {%- endcapture -%}
+
+{% style %}
+  @media screen and (min-width: 1025px) {
+    #{{ section.id }} slideshow-section[data-slideshow="true"][data-reveal-slideshow="true"]:not(.swiper-initialized) .swiper-slide {
+      width: 66.142%;
+      transform: translateX(25.6%);
+    }
+    #{{ section.id }} slideshow-section[data-slideshow="true"][data-reveal-slideshow="true"]:not(.swiper-initialized) .swiper-wrapper {
+      gap: 30px;
+    }
+  }
+  .slideshow.image-zoom-out .swiper-slide .banner__media {
+    -webkit-transform: scale(1.35);
+    transform: scale(1.35);
+     -ms-transition: transform 9s cubic-bezier(0.1,0.2,.7,1);
+    -webkit-transition: transform 9s cubic-bezier(0.1, 0.2, .7, 1);
+    transition: transform 9s cubic-bezier(0.1, 0.2, .7, 1);
+  }
+  .slideshow.image-zoom-out .swiper-slide.swiper-slide-active .banner__media{
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    -ms-transition: transform 9s cubic-bezier(0.1,0.2,.7,1);
+    -webkit-transition: transform 9s cubic-bezier(0.1, 0.2, .7, 1);
+    transition: transform 9s cubic-bezier(0.1, 0.2, .7, 1);
+  }
+  .slideshow.image-zoom-in .swiper-slide .banner__media {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+     -ms-transition: transform 9s cubic-bezier(0.1,0.2,.7,1);
+    -webkit-transition: transform 9s cubic-bezier(0.1, 0.2, .7, 1);
+    transition: transform 9s cubic-bezier(0.1, 0.2, .7, 1);
+  }
+  .slideshow.image-zoom-in .swiper-slide.swiper-slide-active .banner__media{
+    -webkit-transform: scale(1.2);
+    transform: scale(1.2);
+    -ms-transition: transform 9s cubic-bezier(0.1,0.2,.7,1);
+    -webkit-transition: transform 9s cubic-bezier(0.1, 0.2, .7, 1);
+    transition: transform 9s cubic-bezier(0.1, 0.2, .7, 1);
+  }
+  .slideshow.image-zoom-out .swiper-slide, .slideshow.image-zoom-in .swiper-slide {
+    -webkit-transition: opacity .4s ease;
+    transition: opacity .4s ease;
+  }
+{% endstyle %}
+
 <div
   id="{{ section.id }}"
   class="section{% if section_st.padding_top < 30 %} pt-min{% endif %}{% if section_st.padding_bottom < 30 %} pb-min{% endif %} gradient slideshow {{ slide_effect }} color-{{ color_scheme }}{{ reset_spacing }}"
   style="{{ style | strip | strip_newlines }}"
   data-id="{{ section.id }}"
 >
-  <div class="{{ section_width }}">
+  <div class="{{ section_width }}  {% if section_st.section_width == "full_width" and section_st.reveal_slideshow == true %} reveal-full-width{% endif %}">
     {% if section.blocks.size > 0 %}
-      <slide-section
+      <slideshow-section
         id="swiper-{{ section.id }}"
-        class="swiper slideshow   lazy-loading-swiper-before"
+        class="{% if slide_effect == "parallax" %} {% if section_st.section_width != "full_width" %} rounded{% endif %}{% endif %} swiper slideshow lazy-loading-swiper-before {{ fade_image_effect }}"
         data-section-id="{{ section.id }}"
         data-autoplay="{{ autoplay }}"
         data-autoplay-speed="{{ autorotate_speed }}"
@@ -45,11 +100,11 @@
         data-loop="true"
         data-speed="600"
         data-slideshow="true"
-        data-spacing="{% if reveal_slideshow %}30{% else %}0{% endif %}"
         data-mobile="1"
         data-tablet="1"
         data-desktop="{% if reveal_slideshow %}1.5{% else %}1{% endif %}"
         data-reveal-slideshow="{{ reveal_slideshow }}"
+        data-centered-slides="{% if reveal_slideshow %}true{% else %}false{% endif %}"
       >
         <div class="swiper-wrapper">
           {% for block in section.blocks %}
@@ -58,6 +113,23 @@
               assign image = block_st.image
               assign image_mobile = block_st.image_mobile | default: image
               assign slider_effect = block_st.slider_effect
+              if slider_effect == 'effect_fadein'
+                assign slider_effect = 'fade-in'
+              elsif slider_effect == 'effect_fadeinup'
+                assign slider_effect = 'fade-up'
+              elsif slider_effect == 'effect_fadeindown'
+                assign slider_effect = 'fade-down'
+              elsif slider_effect == 'effect_fadeinleft'
+                assign slider_effect = 'fade-in-left'
+              elsif slider_effect == 'effect_fadeinright'
+                assign slider_effect = 'fade-in-right'
+              elsif slider_effect == 'effect_zoomin'
+                assign slider_effect = 'zoom-in'
+              elsif slider_effect == 'effect_zoomout'
+                assign slider_effect = 'zoom-out'
+              elsif slider_effect == blank
+                assign slider_effect = 'fade-up'
+              endif
               assign local_video = block_st.local_video
               assign lazy_load = false
               assign ratio_dk = ''
@@ -93,12 +165,13 @@
             %}
             <div {{ block.shopify_attributes }} class="swiper-slide">
               <div
-                class="sec__inner flex relative{% if section_st.content_below_image %} flex-column flex-md-row text-below-mb{% endif %}{% if slide_height == 'adapt' and image_mobile != blank %} ratio-mobile{% endif %} h-{{ slide_height }}"
+                class="{% if slide_effect != "parallax" %}{% if section_st.section_width != "full_width" or reveal_slideshow %} rounded{% endif %}{% endif %}  sec__inner flex relative{% if section_st.content_below_image %} flex-column flex-md-row text-below-mb{% endif %}{% if slide_height == 'adapt' and image_mobile != blank %} ratio-mobile{% endif %} h-{{ slide_height }}"
                 style="--overlay-opacity: {{ block_st.overlay_opacity }}%;{% if slide_height == 'adapt' or  slide_height == 'full_screen' %}--aspect-ratio: {{ ratio_dk }};--aspect-ratio-mb: {{ ratio_mb }};{% endif %}"
               >
                 <div
-                  class="banner__media w-full overlay-bg{% if section_st.section_width != "full_width" or reveal_slideshow %} rounded{% endif %}{% if section_st.content_below_image %} absolute-md mb-40 mb-md-0{% else %} absolute{% endif %} inset-0{% if slide_height == 'adapt' and image_mobile != blank %} ratio-mobile{% endif %}{% if slide_height == 'full_screen' %} h-{{ slide_height }}{% endif %}"
+                  class="banner__media w-full overlay-bg {% if slide_effect != "parallax" %}{% if section_st.section_width != "full_width" or reveal_slideshow %} rounded{% endif %}{% endif %}{% if section_st.content_below_image %} absolute-md mb-40 mb-md-0{% else %} absolute{% endif %} inset-0{% if slide_height == 'adapt' and image_mobile != blank %} ratio-mobile{% endif %}{% if slide_height == 'full_screen' %} h-{{ slide_height }}{% endif %}"
                   style="--aspect-ratio: {{ ratio_dk }};--aspect-ratio-mb: {{ ratio_mb }};--point:{{ image.presentation.focal_point }};"
+                  data-swiper-parallax="1152"
                 >
                   {%- if image != blank or image_mobile != blank or local_video != blank -%}
                     {% if local_video != blank %}
@@ -129,18 +202,22 @@
                           assign image_alt = block.settings.image.alt
                         endif
                       -%}
-                      <a href="{{ block_st.link_banner }}">
-                        {% render 'responsive-image',
-                          type: 'banner',
-                          container: section_width,
-                          image: image,
-                          image_mobile: image_mobile,
-                          image_alt: image_alt,
-                          lazy_load: lazy_load,
-                          fetchpriority: slide_fetchpriority,
-                          first: forloop.first
-                        %}
-                      </a>  
+                      {% if block_st.link_banner != blank %}
+                        <a href="{{ block_st.link_banner }}">
+                      {% endif %}
+                      {% render 'responsive-image',
+                        type: 'banner',
+                        container: section_width,
+                        image: image,
+                        image_mobile: image_mobile,
+                        image_alt: image_alt,
+                        lazy_load: lazy_load,
+                        fetchpriority: slide_fetchpriority,
+                        first: forloop.first
+                      %}
+                      {% if block_st.link_banner != blank %}
+                        </a>
+                      {% endif %}
                     {% endif %}
                   {%- else -%}
                     {%- render 'placeholder-render', class: 'absolute inset-0 w-full h-full object-fit-cover' -%}
@@ -160,33 +237,27 @@
                     style="--padding-inline: {{ block_st.content_padding_inline }};--padding-block: {{ block_st.content_padding_block }};"
                   >
                     <div
-                      class="sec__content-inner w-full w-md-unset invisible max-w-custom{% if section_st.content_below_image %} w-full w-md-unset{% endif %}{% if block_st.show_content_background == blank %} py-custom px-custom{% if block_st.content_padding_inline < 15 %} min-value{% endif %}{% endif %}{% if block_st.show_content_background %} content-box relative p-30 p-1025-50{% endif %} {{ slider_effect }}"
+                      class="sec__content-inner invisible w-full w-md-unset max-w-custom{% if section_st.content_below_image %} w-full w-md-unset{% endif %}{% if block_st.show_content_background == blank %} py-custom px-custom{% if block_st.content_padding_inline < 15 %} min-value{% endif %}{% endif %}{% if block_st.show_content_background %} content-box relative p-30 p-1025-50{% endif %} {{ slider_effect }}"
                       style="--max-width: {{ block_st.content_max_width }}%;{% if block_st.show_content_background %}--content-bg: {{ block_st.content_background}}; --opacity:{{ block_st.content_box_opacity }}%;{% endif %}"
                     >
                       {% if block_st.subheading != blank %}
                         <motion-element
-                          data-motion="fade-up"
-                          {% if block_st.slider_effect != 'effect_fadeinup' %}
-                            hold
-                          {% endif %}
+                          data-motion="{{ slider_effect }}"
                           slideshow
                           data-motion-delay="{{ animate_delay }}"
-                          class="{{ animate }} sec__content-subheading  {% if block_st.slider_effect == 'effect_fadeinup' %} {{ slider_effect }}  {% endif %}  block heading{% if section_st.subheading_spacing_bottom > 41 %} mb-big{% elsif section_st.subheading_spacing_bottom > 30 %} mb-medium {% else %} mb-custom{% endif %} fs-custom {{ section_st.subheading_font_weight }}"
+                          class=" {{ animate }} sec__content-subheading block heading{% if section_st.subheading_spacing_bottom > 41 %} mb-big{% elsif section_st.subheading_spacing_bottom > 30 %} mb-medium {% else %} mb-custom{% endif %} fs-custom {{ section_st.subheading_font_weight }}"
                           style="--font-size: {{ section_st.subheading_font_size }};--space-bottom: {{ section_st.subheading_spacing_bottom }}"
                         >
                           {{ block_st.subheading | escape }}
                         </motion-element>
                       {% endif %}
                       {% if block_st.heading != blank %}
-                        {% assign animate_delay = animate_delay | plus: 50 %}
+                        {% assign animate_delay = animate_delay | plus: 80 %}
                         <motion-element
-                          data-motion="fade-up"
-                          {% if block_st.slider_effect != 'effect_fadeinup' %}
-                            hold
-                          {% endif %}
+                          data-motion="{{ slider_effect }}"
                           slideshow
                           data-motion-delay="{{ animate_delay }}"
-                          class="block {{ animate }} {% if block_st.slider_effect == 'effect_fadeinup' %} {{ slider_effect }} {% endif %}"
+                          class="block {{ animate }}"
                         >
                           <h2
                             class="sec__content-heading   heading-letter-spacing mt-0{% if section_st.heading_spacing_bottom > 41 %} mb-big{% elsif section_st.heading_spacing_bottom > 30 %} mb-medium {% else %} mb-custom{% endif %}{% if section_st.heading_uppercase %} uppercase{% endif %}{% if section_st.heading_font_size > 41 %} fs-big{% elsif section_st.heading_font_size > 24 %} fs-medium{% else %} fs-custom{% endif %} {{ section_st.heading_font_weight }}"
@@ -198,15 +269,12 @@
                         </motion-element>
                       {% endif %}
                       {% if block_st.description != blank %}
-                        {% assign animate_delay = animate_delay | plus: 50 %}
+                        {% assign animate_delay = animate_delay | plus: 80 %}
                         <motion-element
-                          data-motion="fade-up"
-                          {% if block_st.slider_effect != 'effect_fadeinup' %}
-                            hold
-                          {% endif %}
+                          data-motion="{{ slider_effect }}"
                           slideshow
                           data-motion-delay="{{ animate_delay }}"
-                          class="sec__content-des {{ animate }} {% if block_st.slider_effect == 'effect_fadeinup' %} {{ slider_effect }}  {% endif %} block rich__text-m0 {% if section_st.des_spacing_bottom > 41 %} mb-big{% elsif section_st.des_spacing_bottom > 30 %} mb-medium {% else %} mb-custom{% endif %}{% if section_st.des_font_size > 24 %} fs-medium{% else %} fs-custom{% endif %} {{ section_st.des_font_weight }}"
+                          class="sec__content-des {{ animate }} block rich__text-m0 {% if section_st.des_spacing_bottom > 41 %} mb-big{% elsif section_st.des_spacing_bottom > 30 %} mb-medium {% else %} mb-custom{% endif %}{% if section_st.des_font_size > 24 %} fs-medium{% else %} fs-custom{% endif %} {{ section_st.des_font_weight }}"
                           style="--font-size: {{ section_st.des_font_size }};--space-bottom: {{ section_st.des_spacing_bottom }}"
                           {{ block.shopify_attributes }}
                         >
@@ -214,15 +282,12 @@
                         </motion-element>
                       {% endif %}
                       {% if block_st.first_button_label != blank or block_st.second_button_label != blank %}
-                        {% assign animate_delay = animate_delay | plus: 50 %}
+                        {% assign animate_delay = animate_delay | plus: 80 %}
                         <motion-element
-                          data-motion="fade-up"
-                          {% if block_st.slider_effect != 'effect_fadeinup' %}
-                            hold
-                          {% endif %}
+                          data-motion="{{ slider_effect }}"
                           slideshow
                           data-motion-delay="{{ animate_delay }}"
-                          class="sec__content-btn {{ animate }} {% if block_st.slider_effect == 'effect_fadeinup' %} {{ slider_effect }}  {% endif %} align-center flex flex-wrap gap-15 justify-content-{{ block_st.content_alignment_mobile }} justify-content-md-{{ block_st.content_alignment }}"
+                          class="sec__content-btn {{ animate }} align-center flex flex-wrap gap-15 justify-content-{{ block_st.content_alignment_mobile }} justify-content-md-{{ block_st.content_alignment }}"
                         >
                           {% if block_st.first_button_label != blank %}
                             <a
@@ -269,10 +334,11 @@
               hold
             {% endif %}
             class="swiper-pagination flex flex-wrap px-15 lh-1 bottom-30 {% if carousel_pagination == 'show_dots_on_mobile' %} hidden-md{% endif %} justify-content-{{ pagination_position }}{% if section_st.content_below_image %} absolute-md-impo{% endif %}"
-            style="--swiper-pagination-bottom: clamp(1.2rem, 2vw, 3rem);{% if section_st.content_below_image %}--swiper-pagination-position: static;{% else %}--swiper-pagination-position: absolute;{% endif %}">
+            style="--swiper-pagination-bottom: clamp(1.2rem, 2vw, 3rem);{% if section_st.content_below_image %}--swiper-pagination-position: static;{% else %}--swiper-pagination-position: absolute;{% endif %}"
+          >
           </motion-element>
         {% endif %}
-      </slide-section>
+      </slideshow-section>
     {% endif %}
   </div>
 </div>
@@ -377,9 +443,34 @@
         {
           "value": "slide",
           "label": "t:sections.all.carousel_settings.slide_effect.slide"
+        },
+        {
+          "value": "parallax",
+          "label": "Parallax"
         }
       ],
       "visible_if": "{{ section.settings.reveal_slideshow == false }}"
+    },
+    {
+      "type": "select",
+      "id": "fade_image_effect",
+      "label": "Image zoom effect",
+      "info": "Applies a subtle zoom effect while fade slides are active.",
+      "options": [
+        {
+          "value": "none",
+          "label": "t:sections.all.icon.none.label"
+        },
+        {
+          "value": "zoom-in",
+          "label": "Zoom in"
+        },
+        {
+          "value": "zoom-out",
+          "label": "Zoom out"
+        }
+      ],
+      "visible_if": "{{ section.settings.slide_effect == 'fade' }}"
     },
     {
       "type": "checkbox",
@@ -654,12 +745,6 @@
           "info": "t:sections.slideshow.blocks.slider_item.settings.image_mobile.info"
         },
         {
-          "type": "url",
-          "id": "link_banner",
-          "label": "Link do Banner",
-          "info": "Aceita: link, coleção, produto, páginas"
-        },
-        {
           "type": "video",
           "id": "local_video",
           "label": "t:sections.shopable-video.blocks.video_local.label"
@@ -682,27 +767,35 @@
           "type": "select",
           "id": "slider_effect",
           "label": "t:sections.slideshow.blocks.slider_item.settings.slider_effect.label",
-          "default": "effect_fadeindown",
+          "default": "fade-up",
           "options": [
             {
-              "value": "effect_fadein",
+              "value": "fade-in",
               "label": "t:sections.slideshow.blocks.slider_item.settings.slider_effect.options__1.label"
             },
             {
-              "value": "effect_fadeinup",
+              "value": "fade-up",
               "label": "t:sections.slideshow.blocks.slider_item.settings.slider_effect.options__2.label"
             },
             {
-              "value": "effect_fadeindown",
+              "value": "fade-down",
               "label": "t:sections.slideshow.blocks.slider_item.settings.slider_effect.options__3.label"
             },
             {
-              "value": "effect_zoomin",
+              "value": "zoom-in",
               "label": "t:sections.slideshow.blocks.slider_item.settings.slider_effect.options__4.label"
             },
             {
-              "value": "effect_zoomout",
+              "value": "zoom-out",
               "label": "t:sections.slideshow.blocks.slider_item.settings.slider_effect.options__5.label"
+            },
+            {
+              "value": "fade-in-left",
+              "label": "Fade in left"
+            },
+            {
+              "value": "fade-in-right",
+              "label": "Fade in right"
             }
           ]
         },

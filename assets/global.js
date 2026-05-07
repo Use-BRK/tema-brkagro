@@ -91,6 +91,54 @@ function pauseAllMedia() {
     if (model.modelViewerUI) model.modelViewerUI.pause();
   });
 }
+
+function runSlideMotionItemsEffect(host, swiper, methodName, options = {}) {
+  if (!host || !swiper || host?.dataset?.slideMotionHost !== "true") return;
+
+  const slides = new Set();
+  const activeSlide = swiper.slides?.[swiper.activeIndex];
+  const realIndex = swiper.realIndex;
+
+  if (activeSlide) {
+    slides.add(activeSlide);
+  }
+
+  host
+    .querySelectorAll(".swiper-slide-active, .swiper-slide-duplicate-active")
+    .forEach((slide) => slides.add(slide));
+
+  if (realIndex !== undefined && realIndex !== null) {
+    host
+      .querySelectorAll(`.swiper-slide[data-swiper-slide-index="${realIndex}"]`)
+      .forEach((slide) => slides.add(slide));
+  }
+
+  const effects = Array.from(slides).flatMap((slide) =>
+    Array.from(slide.querySelectorAll("motion-items-effect[slideshow]"))
+  );
+
+  if (!effects.length) return;
+
+  const triggerEffect = () => {
+    effects.forEach((effect) => {
+      if (typeof effect[methodName] === "function") {
+        effect[methodName]();
+      }
+    });
+  };
+
+  const runEffect = options.defer
+    ? () => requestAnimationFrame(triggerEffect)
+    : triggerEffect;
+
+  if (window.customElements?.get("motion-items-effect")) {
+    runEffect();
+    return;
+  }
+
+  window.customElements?.whenDefined("motion-items-effect").then(runEffect);
+}
+
 class SlideSection extends HTMLElement {
   constructor() {
     super();
@@ -129,6 +177,7 @@ class SlideSection extends HTMLElement {
 
   initSlide() {
     const _this = this;
+    const isSlideMotionHost = _this?.dataset?.slideMotionHost === "true";
     var autoplaying = _this?.dataset.autoplay === "true";
     const loop = _this?.dataset.loop === "true";
     const itemDesktop = _this?.dataset.desktop ? _this?.dataset.desktop : 4;
@@ -150,6 +199,11 @@ class SlideSection extends HTMLElement {
     const paginationCustom = _this?.dataset.customPagination;
     const slideShow = _this?.dataset.slideshow === "true";
     const revealSlideshow = _this?.dataset.revealSlideshow === "true";
+    const centeredSlidesAttr = _this?.dataset.centeredSlides;
+    const centeredSlidesSetting =
+      centeredSlidesAttr === undefined
+        ? slideShow && parseFloat(itemDesktop) === 1.5
+        : centeredSlidesAttr === "true";
     const customNavigation = _this?.dataset.customNavigation === "true";
     const customPrev = _this?.dataset.customPrev;
     const customNext = _this?.dataset.customNext;
@@ -183,11 +237,10 @@ class SlideSection extends HTMLElement {
       effect: effect,
       autoHeight: autoHeight,
       speed: speed,
-      watchSlidesProgress: false,
-      watchSlidesVisibility: false,
-      centeredSlides: false,
-      grabCursor: false,
-      cssMode: effect === 'slide' && !loop,
+      watchSlidesProgress: true,
+      watchSlidesVisibility: true,
+      centeredSlides: centeredSlidesSetting,
+      grabCursor: true,
       touchReleaseOnEdges: true,
       threshold: 2,
       longSwipesRatio: 0.3,
@@ -219,7 +272,7 @@ class SlideSection extends HTMLElement {
           spaceBetween: spacing,
           type: progressbar ? "progressbar" : "bullets",
           autoHeight: false,
-          centeredSlides: slideShow && itemDesktop == 1.5 ? true : false,
+          centeredSlides: centeredSlidesSetting,
         },
       },
       thumbs: {
@@ -229,12 +282,19 @@ class SlideSection extends HTMLElement {
       on: {
         init: function (e) {
           var sec__tiktok = _this.closest(".sec__tiktok-video");
-          e.autoplay.stop();
+          if (isSlideMotionHost) {
+            e.__slideMotionLoopReady = false;
+          }
+          if (e.autoplay?.stop) {
+            e.autoplay.stop();
+          }
           if (_this?.dataset.autoplay === "true") {
             Motion.inView(
               _this,
               async () => {
-                e.autoplay.start();
+                if (e.autoplay?.start) {
+                  e.autoplay.start();
+                }
               },
               { margin: "0px 0px -50px 0px" }
             );
@@ -286,6 +346,9 @@ class SlideSection extends HTMLElement {
               rootMargin: "0px 0px 200px 0px",
             }).observe(_this);
           }
+          runSlideMotionItemsEffect(_this, e, "refreshAnimationEffect", {
+            defer: true,
+          });
         },
         slideChange: function () {
           const index_currentSlide = this.realIndex + 1;
@@ -308,12 +371,19 @@ class SlideSection extends HTMLElement {
         },
         slideChangeTransitionStart: function () {
           if (!slideShow) return;
+          if (isSlideMotionHost) {
+            this.__slideMotionLoopReady = true;
+            runSlideMotionItemsEffect(_this, this, "refreshAnimationEffect");
+          }
           const currentSlide = this.slides[this.activeIndex];
           currentSlide
             .querySelectorAll("motion-element")
             .forEach(async (motion) => {
               await motion.preInitialize();
             });
+          if (!isSlideMotionHost) {
+            runSlideMotionItemsEffect(_this, this, "prepareAnimationEffect");
+          }
         },
         slideChangeTransitionEnd: function () {
           if (!slideShow) return;
@@ -321,9 +391,28 @@ class SlideSection extends HTMLElement {
           currentSlide
             .querySelectorAll("motion-element")
             .forEach(async (motion) => {
-                motion.classList.remove("animate-delay"),
-                await motion.initialize();
+              motion.classList.remove("animate-delay");
+              if (
+                isSlideMotionHost &&
+                typeof motion.refreshAnimation === "function"
+              ) {
+                motion.refreshAnimation();
+                return;
+              }
+              await motion.initialize();
             });
+          if (!isSlideMotionHost) {
+            runSlideMotionItemsEffect(_this, this, "refreshAnimationEffect", {
+              defer: true,
+            });
+          }
+        },
+        loopFix: function () {
+          if (!slideShow) return;
+          if (isSlideMotionHost && !this.__slideMotionLoopReady) return;
+          runSlideMotionItemsEffect(_this, this, "refreshAnimationEffect", {
+            defer: true,
+          });
         },
         afterInit: function () {
           if (slideShow && revealSlideshow && itemDesktop <= 3) {
@@ -692,6 +781,7 @@ class SlideLazyLoad {
 
   initSlide(el) {
     const _this = el;
+    const isSlideMotionHost = _this?.dataset?.slideMotionHost === "true";
     var autoplaying = _this?.dataset.autoplay === "true";
     const loop = _this?.dataset.loop === "true";
     const itemDesktop = _this?.dataset.desktop ? _this?.dataset.desktop : 4;
@@ -709,6 +799,9 @@ class SlideLazyLoad {
     var spacing = _this?.dataset.spacing ? _this?.dataset.spacing : 30;
     const progressbar = _this?.dataset.paginationProgressbar === "true";
     const autoItem = _this?.dataset.itemMobile === "true";
+    const autoHeight =
+      isSlideMotionHost && _this?.dataset.autoHeight === "true";
+    const slideShow = _this?.dataset.slideshow === "true";
     const arrowCenterimage = _this?.dataset.arrowCenterimage
       ? _this?.dataset.arrowCenterimage
       : 0;
@@ -737,10 +830,10 @@ class SlideLazyLoad {
       direction: direction,
       loop: loop,
       effect: effect,
+      autoHeight: autoHeight,
       speed: speed,
-      watchSlidesProgress: false,
-      watchSlidesVisibility: false,
-      cssMode: effect === 'slide' && !loop,
+      watchSlidesProgress: true,
+      watchSlidesVisibility: true,
       touchReleaseOnEdges: true,
       threshold: 2,
       longSwipesRatio: 0.3,
@@ -781,12 +874,19 @@ class SlideLazyLoad {
 
       on: {
         init: function (e) {
-          e.autoplay.stop();
+          if (isSlideMotionHost) {
+            e.__slideMotionLoopReady = false;
+          }
+          if (e.autoplay?.stop) {
+            e.autoplay.stop();
+          }
           if (_this?.dataset.autoplay === "true") {
             Motion.inView(
               _this,
               async () => {
-                e.autoplay.start();
+                if (e.autoplay?.start) {
+                  e.autoplay.start();
+                }
               },
               { margin: "0px 0px -50px 0px" }
             );
@@ -820,6 +920,9 @@ class SlideLazyLoad {
               }
             });
           }
+          runSlideMotionItemsEffect(_this, e, "refreshAnimationEffect", {
+            defer: true,
+          });
         },
         realIndexChange: function (swiper) {
           var slide_visibles = _this.querySelectorAll(
@@ -829,6 +932,51 @@ class SlideLazyLoad {
             if (!slide.hasAttribute("hold")) {
               slide?.setAttribute("hold", true);
             }
+          });
+        },
+        slideChangeTransitionStart: function () {
+          if (!slideShow) return;
+          if (isSlideMotionHost) {
+            this.__slideMotionLoopReady = true;
+            runSlideMotionItemsEffect(_this, this, "refreshAnimationEffect");
+          }
+          const currentSlide = this.slides[this.activeIndex];
+          currentSlide
+            .querySelectorAll("motion-element")
+            .forEach(async (motion) => {
+              await motion.preInitialize();
+            });
+          if (!isSlideMotionHost) {
+            runSlideMotionItemsEffect(_this, this, "prepareAnimationEffect");
+          }
+        },
+        slideChangeTransitionEnd: function () {
+          if (!slideShow) return;
+          const currentSlide = this.slides[this.activeIndex];
+          currentSlide
+            .querySelectorAll("motion-element")
+            .forEach(async (motion) => {
+              motion.classList.remove("animate-delay");
+              if (
+                isSlideMotionHost &&
+                typeof motion.refreshAnimation === "function"
+              ) {
+                motion.refreshAnimation();
+                return;
+              }
+              await motion.initialize();
+            });
+          if (!isSlideMotionHost) {
+            runSlideMotionItemsEffect(_this, this, "refreshAnimationEffect", {
+              defer: true,
+            });
+          }
+        },
+        loopFix: function () {
+          if (!slideShow) return;
+          if (isSlideMotionHost && !this.__slideMotionLoopReady) return;
+          runSlideMotionItemsEffect(_this, this, "refreshAnimationEffect", {
+            defer: true,
           });
         },
         slideChange: function () {

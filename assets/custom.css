@@ -1408,7 +1408,7 @@ input.option-disabled + .miniatura-swatch {
 /* Swiper performance: CSS containment isolates layout recalculations to inside
    the swiper, preventing propagation to external elements. */
 .swiper {
-  contain: layout style;
+  contain: layout;
 }
 
 /* content-visibility: auto — o browser PULA cálculo de estilo/layout para seções
@@ -1416,9 +1416,11 @@ input.option-disabled + .miniatura-swatch {
    As duas primeiras seções (announcement bar + hero/slideshow) ficam de fora
    pois estão acima do fold e devem sempre renderizar.
    contain-intrinsic-size reserva espaço estimado para o scroll bar não pular. */
-#MainContent .shopify-section:nth-child(n+3) {
-  content-visibility: auto;
-  contain-intrinsic-size: auto 600px;
+@supports selector(:has(*)) {
+  #MainContent .shopify-section:nth-child(n+3):not(:has(.swiper)) {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 600px;
+  }
 }
 
 /* GPU compositing layer is handled by Swiper's translate3d — no will-change needed */

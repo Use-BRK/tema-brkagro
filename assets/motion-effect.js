@@ -37,7 +37,7 @@ class MotionElement extends HTMLElement {
           _this.initialize();
         }, 50);
       },
-      { margin: custom_margin, ...rootElement }
+      { margin: custom_margin, ...rootElement },
     );
   }
 
@@ -87,12 +87,31 @@ class MotionElement extends HTMLElement {
       case "fade-in":
         Motion.animate(this, { opacity: 0 }, { duration: 0 });
         break;
-
+      case "fade-in-left":
+        Motion.animate(
+          this,
+          { transform: "translateX(-10rem)", opacity: 0 },
+          { duration: 0 },
+        );
+        break;
+      case "highlighted-text":
+        const svg = this.querySelectorAll("svg");
+        svg.forEach((el) => {
+          el.classList.remove("animate");
+        });
+        break;
+      case "fade-in-right":
+        Motion.animate(
+          this,
+          { transform: "translateX(10rem)", opacity: 0 },
+          { duration: 0 },
+        );
+        break;
       case "fade-up":
         Motion.animate(
           this,
           { transform: "translateY(2.5rem)", opacity: 0 },
-          { duration: 0 }
+          { duration: 0 },
         );
         break;
 
@@ -100,7 +119,7 @@ class MotionElement extends HTMLElement {
         Motion.animate(
           this,
           { transform: "translateY(1rem)", opacity: 0 },
-          { duration: 0 }
+          { duration: 0 },
         );
         break;
 
@@ -108,26 +127,32 @@ class MotionElement extends HTMLElement {
         Motion.animate(
           this,
           { transform: "translateY(3rem)", opacity: 0 },
-          { duration: 0 }
+          { duration: 0 },
         );
         break;
-
+      case "fade-down":
+        Motion.animate(
+          this,
+          { transform: "translateY(-2.5rem)", opacity: 0 },
+          { duration: 0 },
+        );
+        break;
       case "zoom-in":
-        Motion.animate(this, { transform: "scale(0.8)" }, { duration: 0 });
+        Motion.animate(this, { transform: "scale(0.8)", opacity: 0 }, { duration: 0 });
         break;
       case "zoom-in-lg":
-        Motion.animate(this, { transform: "scale(0)" }, { duration: 0 });
+        Motion.animate(this, { transform: "scale(0)", opacity: 0 }, { duration: 0 });
         break;
 
       case "zoom-out":
-        Motion.animate(this, { transform: "scale(1.07)" }, { duration: 0 });
+        Motion.animate(this, { transform: "scale(1.07)", opacity: 0 }, { duration: 0 });
         break;
 
       case "zoom-out-sm":
-        Motion.animate(this, { transform: "scale(1.07)" }, { duration: 0 });
+        Motion.animate(this, { transform: "scale(1.07)", opacity: 0 }, { duration: 0 });
         break;
       case "zoom-out-lg":
-        Motion.animate(this, { transform: "scale(1.07)" }, { duration: 0 });
+        Motion.animate(this, { transform: "scale(1.07)", opacity: 0 }, { duration: 0 });
         break;
     }
   }
@@ -141,10 +166,38 @@ class MotionElement extends HTMLElement {
         await Motion.animate(
           this,
           { opacity: 1 },
-          { duration: 1.5, delay: this.animationDelay, easing: this.transition }
+          {
+            duration: 0.45,
+            delay: this.animationDelay,
+            easing: this.transition || "cubic-bezier(0.22, 1, 0.36, 1)",
+          },
         ).finished;
         break;
-
+      case "fade-in-left":
+        await Motion.animate(
+          this,
+          { transform: "translateX(0)", opacity: 1 },
+          {
+            duration: 0.7,
+            delay: this.animationDelay,
+            easing: this.transition || "cubic-bezier(0.22, 1, 0.36, 1)",
+          },
+        ).finished;
+        break;
+      case "fade-in-right":
+        await Motion.animate(
+          this,
+          { transform: "translateX(0)", opacity: 1 },
+          {
+            duration: 0.7,
+            delay: this.animationDelay,
+            easing: this.transition || "cubic-bezier(0.22, 1, 0.36, 1)",
+          },
+        ).finished;
+        break;
+      case "highlighted-text":
+        await this.highlightedText();
+        break;
       case "fade-up":
         await Motion.animate(
           this,
@@ -152,8 +205,8 @@ class MotionElement extends HTMLElement {
           {
             duration: 0.5,
             delay: this.animationDelay,
-            easing: this.transition,
-          }
+            easing: this.transition || "cubic-bezier(0.22, 1, 0.36, 1)",
+          },
         ).finished;
         break;
 
@@ -164,8 +217,8 @@ class MotionElement extends HTMLElement {
           {
             duration: 0.3,
             delay: this.animationDelay,
-            easing: this.transition,
-          }
+            easing: this.transition || "cubic-bezier(0.22, 1, 0.36, 1)",
+          },
         ).finished;
         break;
 
@@ -176,47 +229,70 @@ class MotionElement extends HTMLElement {
           {
             duration: 0.5,
             delay: this.animationDelay,
-            easing: this.transition,
-          }
+            easing: this.transition || "cubic-bezier(0.22, 1, 0.36, 1)",
+          },
+        ).finished;
+        break;
+      case "fade-down":
+        await Motion.animate(
+          this,
+          { transform: "translateY(0)", opacity: 1 },
+          {
+            duration: 0.5,
+            delay: this.animationDelay,
+            easing: this.transition || "cubic-bezier(0.22, 1, 0.36, 1)",
+          },
         ).finished;
         break;
 
       case "zoom-in":
         await Motion.animate(
           this,
-          { transform: "scale(1)" },
-          { duration: 1.3, delay: this.animationDelay, easing: this.transition }
+          { transform: "scale(1)", opacity: 1  },
+          {
+            duration: 1.3,
+            delay: this.animationDelay,
+            easing: this.transition,
+          },
         ).finished;
         break;
 
       case "zoom-in-lg":
         await Motion.animate(
           this,
-          { transform: "scale(1)" },
-          { duration: 0.5, delay: this.animationDelay, easing: this.transition }
+          { transform: "scale(1)", opacity: 1  },
+          {
+            duration: 0.5,
+            delay: this.animationDelay,
+            easing: this.transition,
+          },
         ).finished;
         break;
 
       case "zoom-out":
         await Motion.animate(
           this,
-          { transform: "scale(1)" },
-          { duration: 1.5, delay: this.animationDelay, easing: this.transition }
+          { transform: "scale(1)", opacity: 1  },
+          {
+            duration: 1.5,
+            delay: this.animationDelay,
+            easing: this.transition,
+          },
         ).finished;
         break;
 
       case "zoom-out-sm":
         await Motion.animate(
           this,
-          { transform: "scale(1)" },
-          { duration: 1, delay: this.animationDelay, easing: this.transition }
+          { transform: "scale(1)", opacity: 1  },
+          { duration: 1, delay: this.animationDelay, easing: this.transition },
         ).finished;
         break;
       case "zoom-out-lg":
         await Motion.animate(
           this,
-          { transform: "scale(1)" },
-          { duration: 1, delay: this.animationDelay, easing: this.transition }
+          { transform: "scale(1)", opacity: 1  },
+          { duration: 1, delay: this.animationDelay, easing: this.transition },
         ).finished;
         break;
     }
@@ -230,6 +306,13 @@ class MotionElement extends HTMLElement {
     setTimeout(() => {
       this.initialize();
     }, 50); // Delay a bit to make animation re init properly.
+  }
+
+  highlightedText() {
+    const svg = this.querySelectorAll("svg");
+    svg.forEach((el) => {
+      el.classList.add("animate");
+    });
   }
 }
 customElements.define("motion-element", MotionElement);
@@ -250,71 +333,169 @@ class MotionItemsEffect extends HTMLElement {
   }
 
   get visibleItems() {
-    return this.querySelectorAll(".product-item:not([style])");
+    const items = Array.from(this.allItems).filter((item) => {
+      if (!(item instanceof HTMLElement)) return false;
+      return item.offsetParent !== null || item.getClientRects().length > 0;
+    });
+    return items.length ? items : this.allItems;
   }
 
   get animationType() {
     return this.dataset.motion || "fade-up";
   }
 
+  get slideElement() {
+    return this.hasAttribute("slideshow");
+  }
+
   setupInitialAnimation() {
-    if (window.innerWidth < 768) {
+    if (window.innerWidth < 768 && !this.slideElement) {
+      return;
+    }
+    this.prepareAnimationEffect(this.allItems);
+  }
+
+  prepareAnimationEffect(items = this.allItems) {
+    if (window.innerWidth < 768 && !this.slideElement) {
       return;
     }
     switch (this.animationType) {
       case "fade-in":
-        this.fadeInInit();
+        this.fadeInInit(items);
+        break;
+      case "fade-in-left":
+        this.fadeInLeftInit(items);
+        break;
+      case "fade-in-right":
+        this.fadeInRightInit(items);
+        break;
+      case "fade-up":
+        this.fadeUpInit(items);
+        break;
+      case "fade-down":
+        this.fadeDownInit(items);
         break;
       case "fade-up-lg":
-        this.fadeUpLgInit();
+        this.fadeUpLgInit(items);
         break;
       case "zoom-in":
-        this.zoomInInit();
+        this.zoomInInit(items);
+        break;
+      case "zoom-out":
+        this.zoomOutInit(items);
         break;
     }
   }
 
-  fadeInInit() {
+  fadeInInit(items = this.allItems) {
     Motion.animate(
-      this.allItems,
+      items,
       {
-        opacity: 0.01,
+        opacity: 0,
       },
       {
         duration: 0,
-      }
+      },
     );
   }
 
-  zoomInInit() {
+  zoomInInit(items = this.allItems) {
     Motion.animate(
-      this.allItems,
+      items,
       {
         opacity: 0,
         scale: 0.8,
       },
       {
         duration: 0,
-      }
+      },
     );
   }
 
-  fadeUpLgInit() {
+  zoomOutInit(items = this.allItems) {
     Motion.animate(
-      this.allItems,
+      items,
+      {
+        opacity: 0,
+        scale: 1.07,
+      },
+      {
+        duration: 0,
+      },
+    );
+  }
+
+  fadeUpInit(items = this.allItems) {
+    Motion.animate(
+      items,
+      {
+        y: 40,
+        opacity: 0,
+      },
+      {
+        duration: 0,
+      },
+    );
+  }
+
+  fadeDownInit(items = this.allItems) {
+    Motion.animate(
+      items,
+      {
+        y: -40,
+        opacity: 0,
+      },
+      {
+        duration: 0,
+      },
+    );
+  }
+
+  fadeInLeftInit(items = this.allItems) {
+    Motion.animate(
+      items,
+      {
+        x: -40,
+        opacity: 0,
+      },
+      {
+        duration: 0,
+      },
+    );
+  }
+
+  fadeInRightInit(items = this.allItems) {
+    Motion.animate(
+      items,
+      {
+        x: 40,
+        opacity: 0,
+      },
+      {
+        duration: 0,
+      },
+    );
+  }
+
+  fadeUpLgInit(items = this.allItems) {
+    Motion.animate(
+      items,
       {
         y: 20,
-        opacity: 0.01,
+        opacity: 0,
         visibility: "hidden",
       },
       {
         duration: 0,
-      }
+      },
     );
   }
 
   setupInViewEffect() {
-    if (window.innerWidth < 768) {
+    if (this.slideElement) {
+      return;
+    }
+    if (window.innerWidth < 768 && !this.slideElement) {
       return;
     }
     Motion.inView(this, this.animateItems.bind(this), {
@@ -327,11 +508,26 @@ class MotionItemsEffect extends HTMLElement {
       case "fade-in":
         this.fadeIn();
         break;
+      case "fade-in-left":
+        this.fadeInLeft();
+        break;
+      case "fade-in-right":
+        this.fadeInRight();
+        break;
+      case "fade-up":
+        this.fadeUp();
+        break;
+      case "fade-down":
+        this.fadeDown();
+        break;
       case "fade-up-lg":
         this.fadeUpLg();
         break;
       case "zoom-in":
         this.zoomIn();
+        break;
+      case "zoom-out":
+        this.zoomOut();
         break;
     }
   }
@@ -340,12 +536,72 @@ class MotionItemsEffect extends HTMLElement {
     Motion.animate(
       this.allItems,
       {
-        opacity: [0.01, 1],
+        opacity: [0, 1],
       },
       {
-        duration: 0.6,
+        duration: 0.4,
         easing: [0.22, 0.61, 0.36, 1],
-      }
+      },
+    ).finished;
+  }
+
+  fadeUp() {
+    Motion.animate(
+      this.allItems,
+      {
+        y: [40, 0],
+        opacity: [0, 1],
+      },
+      {
+        duration: 0.5,
+        delay: Motion.stagger(0.15),
+        easing: [0.22, 0.61, 0.36, 1],
+      },
+    ).finished;
+  }
+
+  fadeDown() {
+    Motion.animate(
+      this.allItems,
+      {
+        y: [-40, 0],
+        opacity: [0, 1],
+      },
+      {
+        duration: 0.5,
+        delay: Motion.stagger(0.15),
+        easing: [0.22, 0.61, 0.36, 1],
+      },
+    ).finished;
+  }
+
+  fadeInLeft() {
+    Motion.animate(
+      this.allItems,
+      {
+        x: [-40, 0],
+        opacity: [0, 1],
+      },
+      {
+        duration: 0.7,
+        delay: Motion.stagger(0.15),
+        easing: [0.22, 0.61, 0.36, 1],
+      },
+    ).finished;
+  }
+
+  fadeInRight() {
+    Motion.animate(
+      this.allItems,
+      {
+        x: [40, 0],
+        opacity: [0, 1],
+      },
+      {
+        duration: 0.7,
+        delay: Motion.stagger(0.15),
+        easing: [0.22, 0.61, 0.36, 1],
+      },
     ).finished;
   }
 
@@ -354,14 +610,14 @@ class MotionItemsEffect extends HTMLElement {
       this.allItems,
       {
         y: [20, 0],
-        opacity: [0.01, 1],
+        opacity: [0, 1],
         visibility: ["hidden", "visible"],
       },
       {
         duration: 0.6,
         delay: Motion.stagger(0.15),
         easing: [0.22, 0.61, 0.36, 1],
-      }
+      },
     ).finished;
   }
 
@@ -376,7 +632,22 @@ class MotionItemsEffect extends HTMLElement {
         duration: 0.6,
         delay: Motion.stagger(0.15),
         easing: [0.22, 0.61, 0.36, 1],
-      }
+      },
+    ).finished;
+  }
+
+  zoomOut() {
+    Motion.animate(
+      this.allItems,
+      {
+        opacity: [0, 1],
+        scale: [1.07, 1],
+      },
+      {
+        duration: 1.5,
+        delay: Motion.stagger(0.15),
+        easing: [0.22, 0.61, 0.36, 1],
+      },
     ).finished;
   }
 
@@ -385,25 +656,111 @@ class MotionItemsEffect extends HTMLElement {
       case "fade-in":
         this.fadeInReload();
         break;
+      case "fade-in-left":
+        this.fadeInLeftReload();
+        break;
+      case "fade-in-right":
+        this.fadeInRightReload();
+        break;
+      case "fade-up":
+        this.fadeUpReload();
+        break;
+      case "fade-down":
+        this.fadeDownReload();
+        break;
       case "fade-up-lg":
         this.fadeUpLgReload();
         break;
       case "zoom-in":
         this.zoomInReload();
         break;
+      case "zoom-out":
+        this.zoomOutReload();
+        break;
     }
+  }
+
+  refreshAnimationEffect() {
+    const host = this.closest("slide-section, slideshow-section");
+    if (host?.dataset?.slideMotionHost !== "true") {
+      return;
+    }
+    this.prepareAnimationEffect(this.visibleItems);
+    setTimeout(() => {
+      this.reloadAnimationEffect();
+    }, 50);
   }
 
   fadeInReload() {
     Motion.animate(
       this.visibleItems,
       {
-        opacity: [0.01, 1],
+        opacity: [0, 1],
       },
       {
-        duration: 0.6,
+        duration: 0.4,
         easing: [0.22, 0.61, 0.36, 1],
-      }
+      },
+    ).finished;
+  }
+
+  fadeUpReload() {
+    Motion.animate(
+      this.visibleItems,
+      {
+        y: [40, 0],
+        opacity: [0, 1],
+      },
+      {
+        duration: 0.5,
+        delay: Motion.stagger(0.15),
+        easing: [0.22, 0.61, 0.36, 1],
+      },
+    ).finished;
+  }
+
+  fadeDownReload() {
+    Motion.animate(
+      this.visibleItems,
+      {
+        y: [-40, 0],
+        opacity: [0, 1],
+      },
+      {
+        duration: 0.5,
+        delay: Motion.stagger(0.15),
+        easing: [0.22, 0.61, 0.36, 1],
+      },
+    ).finished;
+  }
+
+  fadeInLeftReload() {
+    Motion.animate(
+      this.visibleItems,
+      {
+        x: [-40, 0],
+        opacity: [0, 1],
+      },
+      {
+        duration: 0.7,
+        delay: Motion.stagger(0.15),
+        easing: [0.22, 0.61, 0.36, 1],
+      },
+    ).finished;
+  }
+
+  fadeInRightReload() {
+    Motion.animate(
+      this.visibleItems,
+      {
+        x: [40, 0],
+        opacity: [0, 1],
+      },
+      {
+        duration: 0.7,
+        delay: Motion.stagger(0.15),
+        easing: [0.22, 0.61, 0.36, 1],
+      },
     ).finished;
   }
 
@@ -412,14 +769,14 @@ class MotionItemsEffect extends HTMLElement {
       this.visibleItems,
       {
         y: [20, 0],
-        opacity: [0.01, 1],
+        opacity: [0, 1],
         visibility: ["hidden", "visible"],
       },
       {
         duration: 0.6,
         delay: Motion.stagger(0.15),
         easing: [0.22, 0.61, 0.36, 1],
-      }
+      },
     ).finished;
   }
 
@@ -434,7 +791,22 @@ class MotionItemsEffect extends HTMLElement {
         duration: 0.6,
         delay: Motion.stagger(0.15),
         easing: [0.22, 0.61, 0.36, 1],
-      }
+      },
+    ).finished;
+  }
+
+  zoomOutReload() {
+    Motion.animate(
+      this.visibleItems,
+      {
+        opacity: [0, 1],
+        scale: [1.07, 1],
+      },
+      {
+        duration: 1.5,
+        delay: Motion.stagger(0.15),
+        easing: [0.22, 0.61, 0.36, 1],
+      },
     ).finished;
   }
 }
