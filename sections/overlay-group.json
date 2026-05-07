@@ -73,7 +73,6 @@
         "cart_8xqQBb": {
           "type": "cart",
           "name": "Carrinho",
-          "disabled": true,
           "settings": {}
         }
       },
