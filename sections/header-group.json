@@ -28,6 +28,9 @@
       "block_order": [
         "text_slider_LFaC38"
       ],
+      "custom_css": [
+        "* {letter-spacing: 2px;}"
+      ],
       "settings": {
         "section_width": "stretch_width",
         "color_scheme": "scheme-4faf0e4d-27f4-4d02-bc51-617383bab1a9",
