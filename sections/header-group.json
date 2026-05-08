@@ -123,10 +123,12 @@
         "menu_collection_EkdGyG",
         "menu_promotion_rWzQL6"
       ],
-      "custom_css": [],
+      "custom_css": [
+        ".h-count {color: #0f6049; font-size: 1.5rem !important; font-weight: 600;}"
+      ],
       "settings": {
         "section_width": "stretch_width",
-        "color_scheme": "default",
+        "color_scheme": "scheme-a07f02f4-f1f2-4ea3-9eeb-577115ec9f47",
         "logo_position": "left",
         "separator_line": "unset",
         "enable_login_popup": true,
@@ -166,48 +168,10 @@
         "padding_top": 10,
         "padding_bottom": 10
       }
-    },
-    "announcement_bar_NENa47": {
-      "type": "announcement-bar",
-      "blocks": {
-        "announcement_knPnFM": {
-          "type": "announcement",
-          "settings": {
-            "text": "A FORÇA QUE MOVE O AGRO",
-            "countdown_deadline": ""
-          }
-        }
-      },
-      "block_order": [
-        "announcement_knPnFM"
-      ],
-      "custom_css": [
-        "* {letter-spacing: 2.9px;}"
-      ],
-      "name": "t:sections.announcement-bar.name",
-      "settings": {
-        "section_width": "full_width",
-        "color_scheme": "scheme-bb1431b0-be4a-4b03-a450-f572c07e3904",
-        "announcement_actions": "marquee",
-        "show_close": false,
-        "homepage_only": true,
-        "show_mobile": true,
-        "show_separator_line": false,
-        "uppercase": true,
-        "font_size": 12,
-        "font_weight": "heading_weight",
-        "speed": 10,
-        "space_between": 50,
-        "icon_between_item": "none",
-        "change_every": 3,
-        "padding_top": 12,
-        "padding_bottom": 12
-      }
     }
   },
   "order": [
     "top_bar_CbXNYj",
-    "header",
-    "announcement_bar_NENa47"
+    "header"
   ]
 }

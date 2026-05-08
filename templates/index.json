@@ -33,7 +33,7 @@
         "direction": "right",
         "icon_between_item": "dot",
         "icon_width": 20,
-        "speed": 10,
+        "speed": 13,
         "space_between_text": 100,
         "font_size": 11,
         "font_weight": "body_weight",
