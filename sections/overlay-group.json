@@ -49,10 +49,10 @@
           "type": "navbar-collection",
           "settings": {
             "collection": "sao-bento-e-nossa-senhora-1",
-            "title": "Nossa Senhora",
-            "custom_svg": "<img src=\"https://cdn.shopify.com/s/files/1/0887/2083/4857/files/cross.svg?v=1778100740\">",
-            "svg_width": 23,
-            "svg_height": 23
+            "title": "Brasil",
+            "custom_svg": "<img src=\"https://cdn.shopify.com/s/files/1/0887/2083/4857/files/3022546.png?v=1778266477\">",
+            "svg_width": 39,
+            "svg_height": 25
           }
         },
         "navbar_collection_J893UR": {
