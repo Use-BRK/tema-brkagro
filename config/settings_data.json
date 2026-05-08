@@ -30,6 +30,7 @@
     "heading_text_transform": "unset",
     "heading_letter_spacing": "negative",
     "menu_font": "heading_font",
+    "btn_text_transform": "unset",
     "button_radius": 1,
     "enable_browser_tab_notifications": false,
     "first_notification": "",
