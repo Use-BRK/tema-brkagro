@@ -46,6 +46,27 @@
     },
     "header": {
       "type": "header",
+      "blocks": {
+        "menu_collection_ihmPTW": {
+          "type": "menu_collection",
+          "settings": {
+            "text": "DESTAQUES",
+            "open-link-newtab": true,
+            "item_label": "unset",
+            "collection_menu_column": 4,
+            "mega_custom_width": 1030,
+            "center_submenu": true,
+            "full_width": true,
+            "collection_width": 60,
+            "collection_1": "agricultura-1",
+            "collection_2": "agricultura-femininas",
+            "collection_3": "agro-5-5"
+          }
+        }
+      },
+      "block_order": [
+        "menu_collection_ihmPTW"
+      ],
       "custom_css": [
         ".h-count {color: #0f6049; font-size: 1.5rem !important; font-weight: 600;}"
       ],
