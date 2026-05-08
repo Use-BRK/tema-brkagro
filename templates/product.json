@@ -112,7 +112,7 @@
         "collapsible_row_m3g6f8": {
           "type": "_product-collapsible-row",
           "settings": {
-            "heading": "descrição técnica",
+            "heading": "detalhes do produto",
             "content": "",
             "use_product_description": true,
             "open": true
