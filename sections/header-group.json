@@ -159,15 +159,7 @@
         "label_background_popular": "#14854e",
         "redirect_to_link": false,
         "menu_tab": "custom-collections",
-        "collection_list": [
-          "hot-deals",
-          "best-seller",
-          "sweaters",
-          "t-shirts",
-          "dress",
-          "blazers",
-          "activewear"
-        ],
+        "collection_list": [],
         "menu_mobile_color": "#ffffff",
         "menu_mobile_background": "#d0473e",
         "show_search": true,

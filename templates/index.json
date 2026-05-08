@@ -14,6 +14,7 @@
       "blocks": {
         "scrolling_text_L3U9ea": {
           "type": "scrolling_text",
+          "name": "A FORÇA QUE MOVE",
           "settings": {
             "content": "<strong>A FORÇA QUE MOVE O AGRO</strong>"
           }
@@ -25,7 +26,7 @@
       "custom_css": [
         "* {letter-spacing: 2.9px;}"
       ],
-      "name": "t:sections.scrolling_text.name",
+      "name": "Rotativo",
       "settings": {
         "section_width": "full_width",
         "color_scheme": "scheme-bb1431b0-be4a-4b03-a450-f572c07e3904",
@@ -110,6 +111,7 @@
       "custom_css": [
         ".h-full_screen {--height-topbar: 41px;}"
       ],
+      "name": "Fullbanners",
       "settings": {
         "section_width": "full_width",
         "slide_height": "adapt",
@@ -162,7 +164,7 @@
         "collection_9WTytq",
         "collection_FAKwKX"
       ],
-      "name": "t:sections.collection-tab.name",
+      "name": "Masculino / Feminino",
       "settings": {
         "section_width": "fluid_container",
         "color_scheme": "",

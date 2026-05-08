@@ -15,10 +15,11 @@
     "logo_on_transparent": "shopify://shop_images/REBRAND_AGRO.png",
     "desktop_logo_width": 180,
     "mobile_logo_width": 130,
-    "page_width": 1200,
-    "fluid_container_width": 1410,
+    "page_width": 1800,
+    "fluid_container_width": 1800,
     "enable_rounded": false,
     "rounded_corner": 5,
+    "customer_account_menu": "customer-account-main-menu",
     "spacing_desktop": 90,
     "space_mobile": 50,
     "font_type_body": "shopify",
@@ -29,20 +30,35 @@
     "heading_text_transform": "unset",
     "heading_letter_spacing": "negative",
     "menu_font": "heading_font",
+    "button_radius": 1,
+    "enable_browser_tab_notifications": false,
+    "first_notification": "",
+    "secondary_notification": "",
+    "badges_rounded_corner": 0,
     "sale_badge_type": "percent",
     "sale_badge_addons": "countdown",
     "new_background": "#3456e6",
     "pre_order_background": "#6a33d8",
     "sold_out_background": "#666666",
     "custom_badge_background": "#14854e",
-    "product_alignment": "center",
+    "product_style": "standard",
+    "show_quick_view": false,
+    "show_wishlist": false,
+    "show_compare": false,
+    "show_quantity_input": true,
+    "product_alignment": "start",
     "product_size": 15,
-    "price_size": 15,
+    "product_font_weight": "600",
+    "product_truncation_title": "2",
+    "price_size": 18,
+    "price_font_weight": "600",
     "show_vendor": false,
-    "show_secondary_image": true,
-    "product_image_ratio": "portrait",
+    "show_secondary_image": false,
+    "product_image_ratio": "adapt",
+    "product_hover_effect": "hover_zoom",
     "show_action_on_mobile": true,
     "swatch_item_type": "variant_images",
+    "size_trigger": "Size, Taglia, Tamanho",
     "search_type": "default",
     "search_result": "products",
     "enable_search_suggestion": true,
@@ -51,16 +67,17 @@
     "show_search_price": true,
     "show_message_when_remove": true,
     "action_after_add_cart": "open_drawer",
-    "free_shipping_minimum": "150",
+    "show_on_minicart_cart_page": false,
+    "free_shipping_minimum": "",
+    "show_duration_on_minicart_cart_page": false,
+    "enable_gift_wrap": false,
     "choose_gift_wrap_product": "digital-gift-card",
-    "product_recommendations_heading": "You may also like...",
-    "minicart_type": "show_beside",
-    "show_on_cart_page": true,
-    "select_product_recommendations": [
-      "balloon-sleeve-blouse-square-neck",
-      "cotton-long-sleeve-striped-t-shirt",
-      "plain-cotton-undershirt-wide-neck"
-    ],
+    "product_recommendations_heading": "Você pode gostar",
+    "minicart_type": "disable",
+    "show_on_cart_page": false,
+    "select_product_recommendations": [],
+    "show_estimate_shipping_rates": false,
+    "show_delivery_day": false,
     "facebook": "#",
     "instagram": "#",
     "twitter": "",
@@ -71,15 +88,21 @@
     "linkedin": "",
     "whatsapp": "",
     "enable_preload": false,
-    "zoom_image": false,
-    "scroll_animation": "fade-in",
-    "store_phone": "+1 (973) 435-3638",
-    "store_email": "info@fashionwomen.com",
+    "zoom_image": true,
+    "scroll_animation": "none",
+    "hover_effect": "none",
+    "store_phone": "(34) 3219-4697",
+    "store_email": "contato@usebrk.com.br",
+    "store_address": "R. Francisco Vieira de Paiva, 49 - B. Roosevelt, Uberlândia/MG",
     "store_page": "our-store",
     "heading_cookies": "",
-    "content_cookies": "<p>We use cookies to enhance your browsing experience, serve personalized ads or content, and analyze our traffics. By clicking \"<strong>Allow Cookies</strong>\" you consent to our use of cookie.</p>",
-    "label_allow": "Allow Cookies",
+    "content_cookies": "",
+    "label_allow": "",
     "label_refuse": "",
+    "show_check_box_in_cart": false,
+    "show_checkbox_in_product_page": false,
+    "show_check_box_in_quick_view": false,
+    "text_terms_conditions": "",
     "page_terms_conditions": "term-and-conditions",
     "rate_color": "#ea0606",
     "sections": {
@@ -126,6 +149,7 @@
           },
           "description_pKXRJa": {
             "type": "_product-short-description",
+            "disabled": true,
             "settings": {
               "excerpt_length": 150
             },
@@ -144,10 +168,10 @@
           "buy_buttons_pDYNX9": {
             "type": "_product-buy-buttons",
             "settings": {
-              "show_dynamic_checkout": true,
-              "show_gift_card_recipient": true,
-              "show_wishlist": true,
-              "show_compare": true
+              "show_dynamic_checkout": false,
+              "show_gift_card_recipient": false,
+              "show_wishlist": false,
+              "show_compare": false
             },
             "blocks": {}
           }
@@ -174,16 +198,11 @@
         "settings": {
           "show_fake_order": false,
           "disable_mobile": false,
-          "fake_product": [
-            "anime-t-shirt-printed-short-sleeve",
-            "balloon-sleeve-blouse-square-neck",
-            "basic-bright-green-rib-extreme-crop",
-            "braid-detailed-sleeveless-flow-top"
-          ],
-          "fake_user": "Jonson (California) | Tony (Texas) | Bruno (New York) | Eren (Ohio) | Lauren (Washington) | Flortino (California) | Blue (Ohio)",
-          "text_verify": "Verify",
-          "delay_time": "5000",
-          "display_time": "6000"
+          "fake_product": [],
+          "fake_user": "",
+          "text_verify": "",
+          "delay_time": "",
+          "display_time": ""
         }
       },
       "top-search": {
@@ -196,6 +215,50 @@
       "16555213172727936593": {
         "type": "shopify://apps/ns-discount-in-cart/blocks/discount_block/0cbbbcdd-bf54-49df-885c-9ca3fd52a671",
         "disabled": true,
+        "settings": {}
+      },
+      "2567389343055140935": {
+        "type": "shopify://apps/microsoft-clarity/blocks/clarity_js/31c3d126-8116-4b4a-8ba1-baeda7c4aeea",
+        "disabled": false,
+        "settings": {}
+      },
+      "18228966181090706294": {
+        "type": "shopify://apps/selleasy/blocks/app-embed/790c1a03-a71f-4bc1-9869-00dad526d3c2",
+        "disabled": false,
+        "settings": {
+          "storefrontAccessToken": ""
+        }
+      },
+      "1505163441232620700": {
+        "type": "shopify://apps/intelipost/blocks/core/167fd468-2ada-45e2-9d34-34022af59729",
+        "disabled": false,
+        "settings": {}
+      },
+      "1530068250781986104": {
+        "type": "shopify://apps/fbp-fast-bundle/blocks/fast_bundle/9e87fbe2-9041-4c23-acf5-322413994cef",
+        "disabled": false,
+        "settings": {
+          "home": false
+        }
+      },
+      "17730292167556765394": {
+        "type": "shopify://apps/pagbrasil-app-companion/blocks/app_embedded_extra_info/356201f0-7b27-4511-ac69-c1627db6da45",
+        "disabled": false,
+        "settings": {}
+      },
+      "15184704725445319147": {
+        "type": "shopify://apps/pagbrasil-app-companion/blocks/app_embedded_pagshield/356201f0-7b27-4511-ac69-c1627db6da45",
+        "disabled": false,
+        "settings": {}
+      },
+      "4893908813801555860": {
+        "type": "shopify://apps/pagbrasil-app-companion/blocks/app_embedded_pagstream/356201f0-7b27-4511-ac69-c1627db6da45",
+        "disabled": false,
+        "settings": {}
+      },
+      "10574872756031941262": {
+        "type": "shopify://apps/pagbrasil-app-companion/blocks/app_embedded_pagshield_mithoficial/356201f0-7b27-4511-ac69-c1627db6da45",
+        "disabled": false,
         "settings": {}
       }
     },
@@ -367,7 +430,7 @@
   },
   "platform_customizations": {
     "custom_css": [
-      "* {--btn-radius: 2px !important; -webkit-font-smoothing: antialiased !important; text-rendering: optimizeLegibility !important;}"
+      "* {-webkit-font-smoothing: antialiased !important; text-rendering: optimizeLegibility !important;}"
     ]
   }
 }
