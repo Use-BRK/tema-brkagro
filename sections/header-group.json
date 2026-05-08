@@ -125,7 +125,7 @@
       ],
       "custom_css": [
         ".header {--color-background: #0f6049 !important;}",
-        "menu-item span {color: #efe9da; text-transform: lowercase;}",
+        "menu-item span {color: #efe9da; text-transform: capitalize;}",
         ".submenu span {color: #0f6049;}",
         "svg {color: #efe9da !important;}",
         ".h-count {background-color: #efe9da; color: #0f6049; font-weight: 800; font-size: 1rem;}"
