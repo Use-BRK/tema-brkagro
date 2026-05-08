@@ -123,18 +123,12 @@
         "menu_collection_EkdGyG",
         "menu_promotion_rWzQL6"
       ],
-      "custom_css": [
-        ".header {--color-background: #0f6049 !important;}",
-        "menu-item span {color: #efe9da; text-transform: capitalize;}",
-        ".submenu span {color: #0f6049;}",
-        "svg {color: #efe9da !important;}",
-        ".h-count {background-color: #efe9da; color: #0f6049; font-weight: 800; font-size: 1rem;}"
-      ],
+      "custom_css": [],
       "settings": {
         "section_width": "stretch_width",
         "color_scheme": "scheme-accf3b11-ba40-4a3e-bafb-243ece6683ec",
         "logo_position": "left",
-        "separator_line": "inner_page",
+        "separator_line": "unset",
         "enable_login_popup": true,
         "sticky_header_type": "always",
         "sticky_header_mobile": true,
