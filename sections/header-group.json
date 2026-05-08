@@ -47,6 +47,22 @@
     "header": {
       "type": "header",
       "blocks": {
+        "menu_product_YFcake": {
+          "type": "menu_product",
+          "settings": {
+            "text": "MASCULINO",
+            "open-link-newtab": true,
+            "item_label": "unset",
+            "product_menu_column": 4,
+            "mega_custom_width": 1030,
+            "center_submenu": true,
+            "full_width": true,
+            "product_width": 50,
+            "product_1": "",
+            "product_2": "",
+            "product_3": ""
+          }
+        },
         "menu_collection_ihmPTW": {
           "type": "menu_collection",
           "settings": {
@@ -65,6 +81,7 @@
         }
       },
       "block_order": [
+        "menu_product_YFcake",
         "menu_collection_ihmPTW"
       ],
       "custom_css": [
