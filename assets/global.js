@@ -139,6 +139,20 @@ function runSlideMotionItemsEffect(host, swiper, methodName, options = {}) {
   window.customElements?.whenDefined("motion-items-effect").then(runEffect);
 }
 
+// Swiper init queue: yield to browser between each initialization so user
+// interactions are never blocked by a batch of Swiper inits running at once.
+var _swiperQ = [], _swiperQActive = false;
+function _queueSwiper(fn) {
+  _swiperQ.push(fn);
+  if (!_swiperQActive) _drainSwiperQ();
+}
+function _drainSwiperQ() {
+  if (!_swiperQ.length) { _swiperQActive = false; return; }
+  _swiperQActive = true;
+  _swiperQ.shift()();
+  setTimeout(_drainSwiperQ, 0);
+}
+
 class SlideSection extends HTMLElement {
   constructor() {
     super();
@@ -147,32 +161,25 @@ class SlideSection extends HTMLElement {
   }
 
   init() {
-    if (document.body.classList.contains("index")) {
-      let pos = window.pageYOffset;
-      if (pos > 0 || document.body.classList.contains("swiper-lazy")) {
-        this.initSlide();
-      } else {
-        if (this.classList.contains("lazy-loading-swiper-before")) {
-          this.initSlide();
-        } else {
-          if ('IntersectionObserver' in window) {
-            const observer = new IntersectionObserver((entries) => {
-              entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                  observer.disconnect();
-                  this.initSlide();
-                }
-              });
-            }, { rootMargin: '400px 0px' });
-            observer.observe(this);
-          } else {
-            this.classList.add("lazy-loading-swiper-after");
-          }
-        }
-      }
-    } else {
+    const pos = window.pageYOffset;
+    if (
+      pos > 0 ||
+      document.body.classList.contains("swiper-lazy") ||
+      this.classList.contains("lazy-loading-swiper-before") ||
+      !('IntersectionObserver' in window)
+    ) {
       this.initSlide();
+      return;
     }
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          observer.disconnect();
+          _queueSwiper(() => this.initSlide());
+        }
+      });
+    }, { rootMargin: '400px 0px' });
+    observer.observe(this);
   }
 
   initSlide() {

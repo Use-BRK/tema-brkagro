@@ -40,6 +40,41 @@
       <meta name="description" content="{{ page_description | escape }}">
     {% endif %}
     {% render 'meta-tags' %}
+    <script>
+      // Intercept dataLayer before GTM loads: buffer all events until first
+      // user interaction (or 4s timeout), then release in order. This prevents
+      // GTM tags from consuming main-thread CPU before the page is interactive,
+      // reducing INP. GTM's own bootstrap event (gtm.start) passes through
+      // immediately so the container still loads normally.
+      window.dataLayer = window.dataLayer || [];
+      (function () {
+        var buf = [], done = false;
+        var orig = Array.prototype.push;
+        function flush() {
+          if (done) return;
+          done = true;
+          ['pointerdown', 'keydown', 'scroll'].forEach(function (e) {
+            document.removeEventListener(e, flush, { passive: true });
+          });
+          window.dataLayer.push = function () { return orig.apply(window.dataLayer, arguments); };
+          buf.forEach(function (a) { orig.apply(window.dataLayer, a); });
+          buf = [];
+        }
+        window.dataLayer.push = function () {
+          var a = [].slice.call(arguments);
+          // Let GTM container bootstrap through immediately
+          if (a[0] && a[0]['gtm.start'] !== undefined) {
+            return orig.apply(window.dataLayer, a);
+          }
+          if (done) return orig.apply(window.dataLayer, a);
+          buf.push(a);
+        };
+        ['pointerdown', 'keydown', 'scroll'].forEach(function (e) {
+          document.addEventListener(e, flush, { once: true, passive: true });
+        });
+        setTimeout(flush, 4000);
+      })();
+    </script>
     {{ content_for_header }}
     {{ 'critical.css' | asset_url | stylesheet_tag }}
     {{ 'custom.css' | asset_url | stylesheet_tag }}
@@ -310,14 +345,6 @@
     </script>
   {% include 'store-credit-launcher' %}
 
-    <script type="speculationrules">
-      {
-        "prefetch": [{
-          "where": { "href_matches": "/products/*" },
-          "eagerness": "moderate"
-        }]
-      }
-    </script>
     <script>
       if (HTMLScriptElement.supports && HTMLScriptElement.supports('speculationrules')) {
         var defined = new Set();
