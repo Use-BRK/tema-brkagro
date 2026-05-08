@@ -267,7 +267,7 @@
     "color_schemes": {
       "default": {
         "settings": {
-          "background": "#ffffff",
+          "background": "#fff",
           "background_gradient": "",
           "primary_color": "#0f6049",
           "text_color": "#0f6049",
