@@ -29,7 +29,8 @@
         "text_slider_LFaC38"
       ],
       "custom_css": [
-        "* {letter-spacing: 2px;}"
+        "* {letter-spacing: 2px; font-weight: 500;}",
+        "strong {font-weight: 800;}"
       ],
       "settings": {
         "section_width": "stretch_width",
@@ -156,8 +157,8 @@
         "redirect_to_link": false,
         "menu_tab": "custom-collections",
         "collection_list": [],
-        "menu_mobile_color": "#ffffff",
-        "menu_mobile_background": "#d0473e",
+        "menu_mobile_color": "#efe9da",
+        "menu_mobile_background": "#0f6049",
         "show_search": true,
         "show_account_icon": true,
         "show_wishlist_icon": true,
