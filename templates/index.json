@@ -14,6 +14,36 @@
       "blocks": {
         "slider_item_tBYL6H": {
           "type": "slider_item",
+          "name": "Copa 2026",
+          "settings": {
+            "image": "shopify://shop_images/FULLBANNER_COPA_2026_AGRO.webp",
+            "image_mobile": "shopify://shop_images/MOBILE_AGRO.webp",
+            "overlay_opacity": 0,
+            "link_banner": "shopify://collections/copa-2026",
+            "slider_effect": "effect_fadeinup",
+            "subheading": "",
+            "heading": "",
+            "description": "",
+            "first_button_label": "",
+            "first_button_link": "",
+            "first_button_style": false,
+            "second_button_label": "",
+            "second_button_link": "",
+            "second_button_style": false,
+            "content_alignment": "left",
+            "content_position": "bottom-center",
+            "content_width": "full_width",
+            "content_max_width": 100,
+            "content_padding_block": 60,
+            "content_padding_inline": 120,
+            "show_content_background": false,
+            "content_background": "#ffffff",
+            "content_box_opacity": 100,
+            "content_alignment_mobile": "center"
+          }
+        },
+        "slider_item_9Th3KM": {
+          "type": "slider_item",
           "name": "Essenciais",
           "settings": {
             "image": "shopify://shop_images/AGRO-01.webp",
@@ -135,6 +165,7 @@
       },
       "block_order": [
         "slider_item_tBYL6H",
+        "slider_item_9Th3KM",
         "slider_item_3z4nap",
         "slider_item_mHFJwJ",
         "slider_item_73BmRw"
