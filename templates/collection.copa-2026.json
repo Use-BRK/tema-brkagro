@@ -104,7 +104,7 @@
         "font_size": 14,
         "font_weight": "heading_weight",
         "information_spacing": 4,
-        "rounded_image": true,
+        "rounded_image": false,
         "image_custom_width": false,
         "image_width": 200,
         "show_arrow": false,
@@ -114,7 +114,7 @@
         "autorotate_speed": 2,
         "reveal": false,
         "items_per_row_mobile": 2,
-        "padding_top": 12,
+        "padding_top": 20,
         "padding_bottom": 0
       }
     },
