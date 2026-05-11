@@ -104,7 +104,7 @@
         "font_size": 14,
         "font_weight": "heading_weight",
         "information_spacing": 4,
-        "rounded_image": false,
+        "rounded_image": true,
         "image_custom_width": false,
         "image_width": 200,
         "show_arrow": false,
