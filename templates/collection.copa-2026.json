@@ -78,14 +78,17 @@
         "use_heading_font": true,
         "padding_top": 10,
         "padding_bottom": 10,
-        "reset_spacing": false
+        "reset_spacing": true
       }
     },
     "subcollection": {
       "type": "subcollection-list",
+      "custom_css": [
+        ".swiper-wrapper {justify-content: center;}"
+      ],
       "settings": {
         "section_width": "stretch_width",
-        "color_scheme": "",
+        "color_scheme": "default",
         "heading": "",
         "description": "",
         "header_size": "medium",
@@ -111,7 +114,7 @@
         "autorotate_speed": 2,
         "reveal": false,
         "items_per_row_mobile": 2,
-        "padding_top": 0,
+        "padding_top": 12,
         "padding_bottom": 0
       }
     },
