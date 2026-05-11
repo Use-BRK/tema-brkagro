@@ -345,28 +345,5 @@
     </script>
   {% include 'store-credit-launcher' %}
 
-    <script>
-      if (HTMLScriptElement.supports && HTMLScriptElement.supports('speculationrules')) {
-        var defined = new Set();
-        function prerenderURL(url) {
-          if (defined.has(url) || defined.size >= 2) return;
-          defined.add(url);
-          var s = document.createElement('script');
-          s.type = 'speculationrules';
-          s.textContent = JSON.stringify({
-            prerender: [{ urls: [url], eagerness: 'eager' }]
-          });
-          document.head.appendChild(s);
-        }
-        document.addEventListener('pointerdown', function(e) {
-          var a = e.target.closest('a[href*="/products/"]');
-          if (a && a.href) prerenderURL(a.href);
-        }, { passive: true });
-        document.addEventListener('touchstart', function(e) {
-          var a = e.target.closest('a[href*="/products/"]');
-          if (a && a.href) prerenderURL(a.href);
-        }, { passive: true });
-      }
-    </script>
 </body>
 </html>
