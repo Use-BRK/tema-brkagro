@@ -30,7 +30,7 @@ class SlideshowSection extends HTMLElement {
       speed: +d.speed || 400,
       effect: d.effect || "slide",
       row: +d.row || 1,
-      spacing: +d.spacing || 30,
+      spacing: d.spacing === undefined || d.spacing === "" ? 30 : +d.spacing,
       progressbar: d.paginationProgressbar === "true",
       autoItem: d.itemMobile === "true",
       autoHeight: d.autoHeight === "true",
