@@ -19,7 +19,7 @@
             "image": "shopify://shop_images/FULLBANNER_COPA_2026_AGRO.webp",
             "image_mobile": "shopify://shop_images/MOBILE_AGRO.webp",
             "overlay_opacity": 0,
-            "link_banner": "shopify://collections/copa-2026",
+            "link_banner": "https://www.brkagro.com.br/collections/copa-2026?filter.p.m.custom.genero=Masculino",
             "slider_effect": "effect_fadeinup",
             "subheading": "",
             "heading": "",
