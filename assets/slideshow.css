@@ -8,6 +8,9 @@ html.js .slideshow motion-element[slideshow][data-motion*=fade],
 html.js .slideshow motion-element[slideshow][data-motion*=zoom] {
   opacity: 0;
 }
+.swiper.slideshow:not([class*='initialized']) .swiper-wrapper {
+  gap: 0;
+}
 .slideshow .swiper-slide-active .sec__content-inner {
   opacity: 1;
   visibility: visible;
