@@ -198,7 +198,7 @@
       "settings": {
         "section_width": "container",
         "color_scheme": "default",
-        "enable_sticky_content_on_desktop": false,
+        "enable_sticky_content_on_desktop": true,
         "enable_skeleton_loading": false,
         "desktop_media_width": 50,
         "desktop_layout": "thumbnail_bottom",
