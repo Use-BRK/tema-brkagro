@@ -1,0 +1,18 @@
+{%- liquid
+  assign category_icon = menu_link.object.metafields.custom.categories_menu_icon.value
+
+  if category_icon == blank and menu_link.url contains '/collections/'
+    assign collection_handle = menu_link.url | split: '/collections/' | last | split: '?' | first | split: '#' | first | split: '/' | first
+    assign category_icon = collections[collection_handle].metafields.custom.categories_menu_icon.value
+  endif
+-%}
+
+{%- if category_icon != blank -%}
+  <span class="menu-category-icon icon-list-menu inline-flex w-30 h-30 rounded-50 overflow-hidden me-10">
+    {{-
+      category_icon
+      | image_url: width: 80
+      | image_tag: loading: 'lazy', class: 'w-full h-full object-fit-cover'
+    -}}
+  </span>
+{%- endif -%}

@@ -33,14 +33,9 @@
                 endif
               endfor
               assign link_title = link.title
-              assign has_icon = false
-              assign icon_html = ''
               for i in (1..10)
                 assign icon_placeholder = '[icon_' | append: i | append: ']'
-                assign icon_setting = 'icon_' | append: i
-                if link_title contains icon_placeholder and section_st[icon_setting] != blank
-                  assign has_icon = true
-                  assign icon_html = section_st[icon_setting]
+                if link_title contains icon_placeholder
                   assign link_title = link.title | replace: icon_placeholder, ''
                 endif
               endfor
@@ -68,13 +63,7 @@
               {%- capture menu_level_0 -%}
                   <menu-item class="menu-item__first relative static-1025 flex align-center flex-1">
                     <a class="no-underline flex align-center nav-link flex-1" href="{{ link.url }}">
-                      {% if has_icon %}
-                        {{ icon_html }}
-                      {% else %}
-                        <span class="menu-icon-first-letter flex-1 text-center">
-                          {{ link_title | strip | first | upcase }}
-                        </span>
-                      {% endif %}
+                      {%- render 'menu-category-icon', menu_link: link -%}
                       <span class="menu-text inline-flex">{{ link_title }}</span>  
                     </a>
                     {%- if link.links.size > 0 -%}
@@ -112,9 +101,7 @@
                           </svg>
                         {% endif %}
                         <div class="flex align-center gap-10">
-                          {% if has_icon %}
-                            {{ icon_html }}
-                          {% endif %}
+                          {%- render 'menu-category-icon', menu_link: link -%}
                           <span>
                             {{ link_title }}
                           </span>
@@ -249,13 +236,7 @@
               >
                 <menu-item class="menu-item__first relative static-1025 flex align-center flex-1">
                   <a class="no-underline flex align-center nav-link flex-1" href="{{ link.url }}">
-                    {% if has_icon %}
-                      {{ icon_html }}
-                    {% else %}
-                      <span class="menu-icon-first-letter flex-1 text-center">
-                        {{ link_title | strip | first | upcase }}
-                      </span>
-                    {% endif %}
+                    {%- render 'menu-category-icon', menu_link: link -%}
                     <span class="menu-text inline-flex">{{ link_title }}</span>
                   </a>
                   {%- if link.links.size > 0 -%}
@@ -281,9 +262,7 @@
                           </svg>
                         {% endif %}
                         <div class="flex align-center gap-10">
-                          {% if has_icon %}
-                            {{ icon_html }}
-                          {% endif %}
+                          {%- render 'menu-category-icon', menu_link: link -%}
                           <span>
                             {{ link_title }}
                           </span>
