@@ -180,7 +180,7 @@
         "desktop_height": 800,
         "mobile_height": 300,
         "color_scheme": "scheme-c4fa9b2e-e94e-477a-a1f0-ab1da4f2a676",
-        "slide_effect": "parallax",
+        "slide_effect": "slide",
         "fade_image_effect": "none",
         "reveal_slideshow": false,
         "show_arrow": true,
