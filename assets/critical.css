@@ -1,3 +1,23 @@
+/* Rebranding */
+
+/* === BODY === */
+* {
+  -webkit-font-smoothing: antialiased !important;
+  text-rendering: optimizeLegibility !important;
+}
+
+
+/* === HEADER === */
+
+.h-count {
+  color: #0f6049;
+  font-size: 1.5rem !important;
+  font-weight: 600;
+}
+
+
+
+
 /* Reset */
 *,
 *::before,
