@@ -242,6 +242,44 @@
         "reset_spacing": true
       }
     },
+    "products_carousel_EN3AHK": {
+      "type": "products-carousel",
+      "custom_css": [
+        "h2 {font-size: 24px;}"
+      ],
+      "name": "Coleção Copa 2026",
+      "settings": {
+        "section_width": "fluid_container",
+        "color_scheme": "",
+        "heading": "🔥 LANÇAMENTO • Copa 2026",
+        "description": "",
+        "show_view_all_button": true,
+        "header_size": "small",
+        "header_alignment": "center",
+        "collection": "copa-2026-manga-curta",
+        "items_to_show": 25,
+        "items_per_row": 5,
+        "column_gap": 15,
+        "show_banner": false,
+        "sticky_banner": false,
+        "banner_width": 30,
+        "position": "left",
+        "banner_link": "shopify://collections/colecao-femininas-2026",
+        "banner_type": "image",
+        "video_url": "",
+        "video_autoplay": false,
+        "show_arrow": true,
+        "carousel_pagination": "disable",
+        "infinite": false,
+        "autoplay": false,
+        "autorotate_speed": 5,
+        "reveal": false,
+        "items_per_row_mobile": 1.5,
+        "padding_top": 20,
+        "padding_bottom": 20,
+        "reset_spacing": true
+      }
+    },
     "collection_tab_DPbHcm": {
       "type": "collection-tab",
       "blocks": {
@@ -427,6 +465,7 @@
     },
     "products_carousel_GdfTjJ": {
       "type": "products-carousel",
+      "disabled": true,
       "name": "Lançamento Força do Agro V2",
       "settings": {
         "section_width": "fluid_container",
@@ -1102,6 +1141,7 @@
   "order": [
     "slideshow_8KKtNU",
     "scrolling_text_XAxGTr",
+    "products_carousel_EN3AHK",
     "collection_tab_DPbHcm",
     "collection_list_TVMtme",
     "products_carousel_GdfTjJ",
