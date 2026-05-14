@@ -398,8 +398,6 @@
     "Default": {}
   },
   "platform_customizations": {
-    "custom_css": [
-      "* {-webkit-font-smoothing: antialiased !important; text-rendering: optimizeLegibility !important;}"
-    ]
+    "custom_css": []
   }
 }

@@ -84,9 +84,7 @@
         "menu_product_YFcake",
         "menu_collection_ihmPTW"
       ],
-      "custom_css": [
-        ".h-count {color: #0f6049; font-size: 1.5rem !important; font-weight: 600;}"
-      ],
+      "custom_css": [],
       "settings": {
         "section_width": "stretch_width",
         "color_scheme": "scheme-a07f02f4-f1f2-4ea3-9eeb-577115ec9f47",
