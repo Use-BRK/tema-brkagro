@@ -38,6 +38,10 @@
           "settings": {
             "show_barcode": false,
             "show_sku": true,
+            "show_production_deadline": true,
+            "producao": "9",
+            "algodao": "1",
+            "imediato": "0",
             "show_available": false,
             "show_tags": false,
             "show_type": false,
