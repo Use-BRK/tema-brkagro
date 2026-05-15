@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin language editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "accessibility": {
     "skip_to_text": "Pular para o conteúdo",
@@ -83,13 +92,13 @@
       "result": "Você visualizou {{ amount }} de {{ count }} resultado"
     },
     "breadcrumb": {
-      "home": "Lar"
+      "home": "Início"
     },
     "placeholder": {
       "label": "Nenhuma imagem"
     },
     "search": {
-      "search": "Estou procurando por…",
+      "search": "Procurar",
       "more_results": "Ver todos os resultados",
       "quick_search": "Tendências de pesquisa",
       "all_categories": "Todas as categorias",
@@ -105,7 +114,7 @@
       "label": "Carrinho",
       "view": "Ver meu carrinho ({{ count }})",
       "item_added": "Item adicionado ao seu carrinho",
-      "title": "Carrinho de compras",
+      "title": "CARRINHO",
       "cart_edit": "Editar opção",
       "remove_title": "Remover",
       "close": "Fechar",
@@ -128,9 +137,9 @@
       "return_shop": "Continuar comprando",
       "remove": "Remover este item",
       "edit": "Editar este item",
-      "subtotal": "Subtotal",
+      "subtotal": "Total",
       "viewcart": "Ver carrinho",
-      "checkout": "Confira",
+      "checkout": "Finalizar Compra",
       "save": "Salvar",
       "cancel": "Cancelar",
       "heading_payment": "Suporte de pagamento",
@@ -169,14 +178,10 @@
       "login": {
         "title": "Tem uma conta?",
         "paragraph_html": "<a href=\"{{ link }}\" class=\"link underlined-link\">Conecte-se</a> para verificar mais rápido."
-      },
-      "shipping_protection": {
-        "title": "Proteção de envio",
-        "description": "Protege seu pedido contra danos no envio, perda e roubo."
       }
     },
     "page_cart": {
-      "checkout": "Confira"
+      "checkout": "Finalizar Compra"
     },
     "collections": {
       "label": "Coleção",
@@ -197,7 +202,7 @@
     },
     "image_alt_default": "Obraz",
     "banner": "Bandeira",
-    "view_all": "Ver tudo",
+    "view_all": "VER TUDO",
     "policies_html": "Eu concordo com o <a href=\"/policies/privacy-policy\" target=\"_blank\" title=\"Privacy Policy\"><strong>política de Privacidade</strong></a> do site."
   },
   "blogs": {
@@ -298,8 +303,8 @@
       "redirect": "Voltar às compras"
     },
     "wishlist": {
-      "wishlist": "Lista de desejos",
-      "no_product": "Sua lista de desejos está vazia",
+      "wishlist": "Favoritos",
+      "no_product": "Sua lista de desejo está limpa",
       "empty_des": "Nenhum produto foi adicionado à página da lista de desejos.",
       "redirect": "Voltar às compras",
       "title_remove": "Adicionar à lista de desejos antes de remover?",
@@ -359,7 +364,7 @@
       "details": "Detalhes da conta",
       "view_addresses": "Ver endereços",
       "your_addresses": "Seus endereços",
-      "your_wishlist": "Sua lista de desejos",
+      "your_wishlist": "Seus favoritos",
       "return": "Retornar aos detalhes da conta",
       "welcome": "Bem-vindo",
       "no": "Não?",
@@ -537,12 +542,12 @@
           "label": "Visualização rápida"
         },
         "select_options": {
-          "label": "Selecione Opções"
+          "label": "Comprar"
         },
         "wishlist": {
-          "add": "Adicionar à lista de desejos",
-          "remove": "Remover da lista de desejos",
-          "redirect": "Navegar na lista de desejos"
+          "add": "Adicionar aos favoritos",
+          "remove": "Remover dos favoritos",
+          "redirect": "Navegar nos favoritos"
         },
         "compare": {
           "add": "Comparar",
@@ -551,7 +556,7 @@
         },
         "add_to_cart": {
           "default": {
-            "label": "adicionar ao carrinho"
+            "label": "Adicionar ao Carrinho"
           },
           "sold_out": {
             "label": "Fora de estoque"
@@ -562,7 +567,7 @@
           "custom_image": "Imagem personalizada"
         },
         "add_to_bundle": {
-          "label_bundle": "Adicione ao pacote",
+          "label_bundle": "Adicionar",
           "label_bundle_added": "Adicionado ao pacote",
           "label_add_all": "Adicione tudo ao carrinho"
         }
@@ -584,7 +589,7 @@
         "instock": "Estoque",
         "outstock": "Fora de estoque",
         "pre_order": "Pedido antecipado",
-        "add_to_cart": "adicionar ao carrinho"
+        "add_to_cart": "Adicionar ao Carrinho"
       },
       "quantity": {
         "label": "Quantidade",
@@ -648,12 +653,12 @@
       "instock": "Em estoque",
       "outstock": "Esgotado",
       "save": "Salvar",
-      "sale": "{{discount}}% desligado",
+      "sale": "{{discount}}% OFF",
       "value_unavailable": "{{ option_value }} - Indisponível",
       "sold_out": "Fora de estoque",
       "pre_order": "Pedido antecipado",
       "unavailable": "Indisponível",
-      "add_to_cart": "adicionar ao carrinho",
+      "add_to_cart": "Adicionar ao Carrinho",
       "fake_sold": "{{ sold }} vendido no último {{ hours }} horas",
       "xr_button": "Veja no seu espaço",
       "xr_button_label": "Visualize em seu espaço, carregue item em janela de realidade aumentada",
@@ -772,11 +777,12 @@
     "do_not_show_again": "Não, obrigado! "
   },
   "mobile_navbar": {
-    "shop": "Comprar",
-    "homepage": "Lar",
+    "shop": "Envio FULL",
+    "whatsapp": "WhatsApp",
+    "homepage": "Início",
     "account": "Conta",
     "cart": "Carrinho",
-    "wishlist": "Lista de desejos"
+    "wishlist": "Favoritos"
   },
   "rich_text": {
     "see_all": "Ver todas as informações",
@@ -787,9 +793,68 @@
     "time_minutes": "minutos atrás",
     "product_name": "Glozin por Blueskytechco"
   },
-  "lookbook_image": {
-    "show_product": "Mostrar produtos",
-    "hide_product": "Ocultar produtos",
-    "lookbook_product": "Produto do lookbook"
+  "pagefly": {
+    "products": {
+      "product": {
+        "regular_price": "Regular price",
+        "sold_out": "Sold out",
+        "unavailable": "Unavailable",
+        "on_sale": "Sale",
+        "quantity": "Quantity",
+        "add_to_cart": "Add to cart",
+        "back_to_collection": "Back to {{ title }}",
+        "view_details": "View details"
+      }
+    },
+    "article": {
+      "tags": "Tags:",
+      "all_topics": "All topics",
+      "by_author": "by {{ author }}",
+      "posted_in": "Posted in",
+      "read_more": "Read more",
+      "back_to_blog": "Back to {{ title }}"
+    },
+    "comments": {
+      "title": "Leave a comment",
+      "name": "Name",
+      "email": "Email",
+      "message": "Message",
+      "post": "Post comment",
+      "moderated": "Please note, comments must be approved before they are published",
+      "success_moderated": "Your comment was posted successfully. We will publish it in a little while, as our blog is moderated.",
+      "success": "Your comment was posted successfully! Thank you!",
+      "comments_with_count": {
+        "one": "{{ count }} comment",
+        "other": "{{ count }} comments"
+      }
+    },
+    "password_page": {
+      "login_form_message": "Enter store using password:",
+      "login_form_password_label": "Password",
+      "login_form_password_placeholder": "Your password",
+      "login_form_submit": "Enter",
+      "signup_form_email_label": "Email",
+      "signup_form_success": "We will send you an email right before we open!",
+      "password_link": "Enter using password"
+    }
+  },
+  "locksmith": {
+    "forms": {
+      "submit_button_text": "Continue",
+      "loading_text": "One moment..."
+    }
+  },
+  "shopify": {
+    "checkout": {
+      "marketing": {
+        "accept_marketing_checkbox_label": "Quero receber descontos por e-mail",
+        "post_accept_marketing_checkbox_label": "Você se inscreveu para receber descontos e ofertas por e-mail"
+      },
+      "order_summary": {
+        "discount_discovery": {
+          "add_code": "Usar meu cupom"
+        }
+      }
+    }
   }
 }
