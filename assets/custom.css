@@ -1,5 +1,10 @@
 .installment-payment {
   width: 100%;
+  font-size: 1.2rem;
+}
+
+.installment-payment p {
+  margin: 3px 0 0;
 }
 
 .product__badges-custom,

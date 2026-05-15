@@ -61,11 +61,6 @@ class MinicartDiscount extends HTMLElement {
 
     const response = await fetch(routes.cart_update_url, {
       ...fetchConfig(),
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
       body: body,
       signal: abortController.signal,
     });
