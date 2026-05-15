@@ -105,7 +105,7 @@
     {% if show_view_all_button and section_st.header_alignment == 'center' %}
       <div class="text-center mt-30">
         <a
-          class="inline-flex no-underline btn-primary"
+          class="inline-flex no-underline btn-{% if section_st.use_outline_button_style %}outline{% else %}primary{% endif %}"
           {% if section_st.link_view_all_button == blank %}
             role="link" aria-disabled="true"
           {% else %}
@@ -175,6 +175,12 @@
       "type": "checkbox",
       "id": "show_view_all_button",
       "label": "t:sections.all.section_header.show_view_all_button.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "use_outline_button_style",
+      "label": "t:sections.all.contents.button.use_outline_button_style",
+      "default": true
     },
     {
       "type": "url",

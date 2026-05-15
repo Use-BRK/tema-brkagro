@@ -259,7 +259,7 @@
                   data-url="?page={{ paginate.current_page | plus: 1 }}"
                   class="block text-center mt-25{% if carousel_on_mobile == true %} hidden-loadmore hidden{% endif %}"
                 >
-                  <button class="btn-primary load-more relative">
+                  <button class="btn-{% if section_st.use_outline_button_style %}outline{% else %}primary{% endif %} load-more relative">
                     <span class="hidden-on-load">{{ button_label }}</span>
                     <svg width="14" height="14" viewBox="0 0 14 14" fill="none" class="spin opacity-0 icon-load">
                       <use href="#icon-load"></use>
@@ -309,7 +309,7 @@
         %}
         <div class="text-center mt-30 {% if show == false %}hidden{% endif %}">
           <a
-            class="inline-flex no-underline btn-primary"
+            class="inline-flex no-underline btn-{% if section_st.use_outline_button_style %}outline{% else %}primary{% endif %}"
             href="{{ section_st.collection.url }}"
             aria-label="{{- 'general.view_all' | t -}}"
           >
@@ -319,7 +319,7 @@
       {% elsif enable_collection_deal and show_view_all_button %}
         <div class="text-center mt-30">
           <a
-            class="inline-flex no-underline btn-primary"
+            class="inline-flex no-underline btn-{% if section_st.use_outline_button_style %}outline{% else %}primary{% endif %}"
             href="{{ section_st.collection.url }}"
             aria-label="{{- 'general.view_all' | t -}}"
           >
@@ -417,7 +417,7 @@
         %}
         <div class="text-center mt-30 {% if show == false %}hidden{% endif %}">
           <a
-            class="inline-flex no-underline btn-primary"
+            class="inline-flex no-underline btn-{% if section_st.use_outline_button_style %}outline{% else %}primary{% endif %}"
             role="link"
             aria-label="{{- 'general.view_all' | t -}}"
           >
@@ -427,7 +427,7 @@
       {% elsif enable_collection_deal and show_view_all_button %}
         <div class="text-center mt-30">
           <a
-            class="inline-flex no-underline btn-primary"
+            class="inline-flex no-underline btn-{% if section_st.use_outline_button_style %}outline{% else %}primary{% endif %}"
             role="link"
             aria-label="{{- 'general.view_all' | t -}}"
           >
@@ -663,6 +663,12 @@
       "label": "t:sections.products-grid.settings.products.button_label",
       "default": "Load more",
       "visible_if": "{{ section.settings.enable_load_more and section.settings.collections_type == 'grid' }}"
+    },
+    {
+      "type": "checkbox",
+      "id": "use_outline_button_style",
+      "label": "t:sections.all.contents.button.use_outline_button_style",
+      "default": true
     },
     {
       "type": "range",

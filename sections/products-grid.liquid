@@ -180,7 +180,7 @@
                 data-url="?page={{ paginate.current_page | plus: 1 }}"
                 class="block text-center mt-25{% if carousel_on_mobile == true %} hidden-loadmore hidden{% endif %}"
               >
-                <button class="btn-primary load-more relative">
+                <button class="btn-{% if section_st.use_outline_button_style %}outline{% else %}primary{% endif %} load-more relative">
                   <span class="hidden-on-load">{{ button_label }}</span>
                   <svg width="14" height="14" viewBox="0 0 14 14" fill="none" class="spin opacity-0 icon-load">
                     <use href="#icon-load"></use>
@@ -225,7 +225,7 @@
         %}
           <div class="text-center view_all mt-30">
             <a
-              class="inline-flex btn-primary load-more no-underline relative"
+              class="inline-flex btn-{% if section_st.use_outline_button_style %}outline{% else %}primary{% endif %} load-more no-underline relative"
               href="{{ collection.url }}"
               aria-label="{{ button_label }}"
             >
@@ -354,7 +354,7 @@
             {% endif %}
             {%- if section_st.banner_button_label != blank -%}
               <a
-                class="btn-primary inline-flex no-underline"
+                class="btn-{% if section_st.use_outline_button_style %}outline{% else %}primary{% endif %} inline-flex no-underline"
                 {% if section_st.banner_link == blank %}
                   role="link" aria-disabled="true"
                 {% else %}
@@ -533,6 +533,12 @@
       "id": "button_label",
       "label": "t:sections.products-grid.settings.products.button_label",
       "default": "Load more"
+    },
+    {
+      "type": "checkbox",
+      "id": "use_outline_button_style",
+      "label": "t:sections.all.contents.button.use_outline_button_style",
+      "default": true
     },
     {
       "type": "header",

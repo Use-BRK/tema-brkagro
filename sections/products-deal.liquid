@@ -170,7 +170,7 @@
       {% if show_view_all_button %}
         <div class="text-center mt-30">
           <a
-            class="inline-flex btn-primary load-more no-underline relative"
+            class="inline-flex btn-{% if section_st.use_outline_button_style %}outline{% else %}primary{% endif %} load-more no-underline relative"
             href="{{ section_st.collection.url }}"
             aria-label="{{- 'general.view_all' | t -}}"
           >
@@ -230,7 +230,7 @@
       {% if show_view_all_button %}
         <div class="text-center mt-30">
           <a
-            class="inline-flex no-underline btn-primary"
+            class="inline-flex no-underline btn-{% if section_st.use_outline_button_style %}outline{% else %}primary{% endif %}"
             href="{{ section_st.collection.url }}"
             aria-label="{{- 'general.view_all' | t -}}"
           >
@@ -339,6 +339,12 @@
       "type": "checkbox",
       "id": "show_view_all_button",
       "label": "t:sections.all.section_header.show_view_all_button.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "use_outline_button_style",
+      "label": "t:sections.all.contents.button.use_outline_button_style",
+      "default": true
     },
     {
       "type": "header",

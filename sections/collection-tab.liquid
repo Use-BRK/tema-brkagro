@@ -178,7 +178,7 @@
                   <div
                     data-block-id="{{ block.id }}"
                     data-collection-url="{{ collection_url }}"
-                    class="collection-tab__tab-item whitespace-nowrap pointer px-20 pb-8 transition text-center heading-style{% if horizontal_tab_style == 'underline' %} fs-16 border-animation{% else %} grey-bg btn-hover btn-rounded px-20 py-10{% endif %}{% if forloop.first %} active{% if horizontal_tab_style != 'underline' %} btn-active{% endif %}{% endif %}"
+                    class="collection-tab__tab-item whitespace-nowrap pointer px-20 pb-8 transition text-center heading-style{% if horizontal_tab_style == 'underline' %} fs-16 border-animation{% else %} btn-outline btn-hover btn-rounded px-20 py-10{% endif %}{% if forloop.first %} active{% if horizontal_tab_style != 'underline' %} btn-active{% endif %}{% endif %}"
                     {{ block.shopify_attributes }}
                     data-style="{{ horizontal_tab_style }}"
                     style="--height: 2px;"
@@ -886,6 +886,12 @@
       "id": "button_label",
       "label": "t:sections.collection-tab.settings.grid_settings.button_label",
       "default": "Load more"
+    },
+    {
+      "type": "checkbox",
+      "id": "use_outline_button_style",
+      "label": "t:sections.all.contents.button.use_outline_button_style",
+      "default": true
     },
     {
       "type": "header",

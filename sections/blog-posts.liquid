@@ -296,7 +296,7 @@
           <a
             href="{{ section_st.blog.url }}"
             aria-label="{{ 'blog_post.view_all' | t }}"
-            class="inline-flex btn-primary load-more no-underline relative"
+            class="inline-flex btn-{% if section_st.use_outline_button_style %}outline{% else %}primary{% endif %} load-more no-underline relative"
           >
             {{ 'blog_post.view_all' | t }}
           </a>
@@ -363,6 +363,12 @@
       "type": "checkbox",
       "id": "show_view_all",
       "label": "t:sections.all.section_header.show_view_all_button.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "use_outline_button_style",
+      "label": "t:sections.all.contents.button.use_outline_button_style",
+      "default": true
     },
     {
       "type": "select",
