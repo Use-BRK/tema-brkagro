@@ -1,0 +1,65 @@
+{%- liquid
+  assign discount_codes = cart.cart_level_discount_applications | where: 'type', 'discount_code' | map: 'title'
+  for item_dc in cart.items
+    for allocation in item_dc.line_level_discount_allocations
+      if allocation.discount_application.type == 'discount_code'
+        assign discount_codes = item_dc.line_level_discount_allocations | slice: forloop.index0 | map: 'discount_application' | map: 'title' | concat: discount_codes
+      endif
+    endfor
+  endfor
+  assign discount_codes = discount_codes | uniq
+-%}
+
+<div class="minicart-coupon-inline mb-15" data-coupon-inline>
+  <minicart-discount class="block">
+    <form class="minicart-coupon-inline__form" on:submit="/applyDiscount">
+      <label class="visually-hidden" for="MinicartCouponInline-{{ section.id }}">
+        {{ 'general.cart.coupon.enter_discount_code' | t }}
+      </label>
+      <input
+        id="MinicartCouponInline-{{ section.id }}"
+        placeholder="{{ 'general.cart.coupon.enter_discount_code' | t }}"
+        type="text"
+        required
+        name="discount"
+        class="bls__discount_code discount_code bg-white cart-coupon"
+      >
+      <button
+        type="submit"
+        class="minicart-coupon-inline__button btn-primary relative"
+        name="{{ 'collections.sidebar.apply' | t }}"
+      >
+        <span class="hidden-on-load">{{ 'collections.sidebar.apply' | t }}</span>
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" class="spin opacity-0 icon-load">
+          <use href="#icon-load"></use>
+        </svg>
+      </button>
+    </form>
+
+    <ul class="cart-discount__codes list-unstyled flex gap-10 flex-wrap {% if discount_codes.size > 0 %}mt-10{% endif %} fs-14 heading-color">
+      {% for discount_code in discount_codes %}
+        <li
+          class="cart-discount__item inline-flex align-center gap-5"
+          data-discount-code="{{ discount_code }}"
+        >
+          <p class="cart-discount-code m-0 inline-flex align-center gap-5">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none">
+              <use href="#icon-discount"/>
+            </svg>
+            {{ discount_code }}
+          </p>
+          <button
+            type="button"
+            class="cart-discount-remove btn p-0 inline-flex align-center relative"
+            aria-label="{{ 'general.cart.remove' | t }} {{ discount_code }}"
+          >
+            <svg width="14" height="14" class="heading-color remove-icon hidden-on-load">
+              <use href="#icon-trash" />
+            </svg>
+            <div class="icon-rotator"></div>
+          </button>
+        </li>
+      {% endfor %}
+    </ul>
+  </minicart-discount>
+</div>

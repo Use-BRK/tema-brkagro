@@ -254,6 +254,9 @@
         {%- render 'cart-addons' -%}
       {% endif %}
       <div class="drawer-bottom cart__ctas px-30 pt-20 pb-30 grey-bg border-top">
+        {% if theme_st.enable_discount_code %}
+          {%- render 'minicart-coupon-inline' -%}
+        {% endif %}
         {% if hidden_price == false %}
           <div class="cart-summary {% if enable_rtl %}text-left{% else %}text-right{% endif %}" data-cart-summary>
             <div data-discounts>
@@ -319,12 +322,6 @@
           </terms-conditions>
         {% endif %}
         {%- if theme_st.enable_catalog_mode == false -%}
-          <a
-            class="action block mb-10 btn-outline w-full text-center no-underline viewcart"
-            href="{{ routes.cart_url }}"
-          >
-            <span>{{ 'general.cart.viewcart' | t }}</span>
-          </a>
           <button
             type="submit"
             class="btn-primary w-full btn-checkout"

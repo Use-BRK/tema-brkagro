@@ -283,6 +283,9 @@
               {%- render 'cart-addons' -%}
             {% endif %}
             <div class="drawer-bottom cart__ctas px-30 pt-20 pb-30 grey-bg border-top">
+              {% if theme_st.enable_discount_code %}
+                {%- render 'minicart-coupon-inline' -%}
+              {% endif %}
               {% if hidden_price == false %}
                 <div class="cart-summary {% if enable_rtl %}text-left{% else %}text-right{% endif %}" data-cart-summary>
                   <div data-discounts>
