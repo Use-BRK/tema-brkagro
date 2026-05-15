@@ -363,7 +363,7 @@ class CartItems extends HTMLElement {
       sections_url: window.location.pathname,
     });
 
-    fetch(`${routes.cart_change_url}`, { ...fetchConfig(), ...{ body } })
+    fetch(`${routes.cart_change_url}.js`, { ...fetchConfig(), ...{ body } })
       .then((response) => response.text())
       .then((state) => {
         const parsedState = JSON.parse(state);
@@ -810,6 +810,13 @@ class CartDiscount extends HTMLElement {
     // Update free shipping progress bar
     this.#updateCartFreeShipping(data);
 
+    if (
+      window.GiftProgressBar &&
+      typeof window.GiftProgressBar.syncAllFromCart === "function"
+    ) {
+      window.GiftProgressBar.syncAllFromCart(true);
+    }
+
     // Reinitialize components
     BlsLazyloadImg.init();
   }
@@ -1118,7 +1125,7 @@ if (!customElements.get("product-form-quick-edit")) {
           id,
           quantity,
         });
-        fetch(`${routes?.cart_change_url}`, config_change)
+        fetch(`${routes?.cart_change_url}.js`, config_change)
           .then((response) => {
             return response.text();
           })
@@ -1209,3 +1216,4 @@ if (!customElements.get("product-form-quick-edit")) {
     }
   );
 }
+

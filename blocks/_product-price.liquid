@@ -8,7 +8,7 @@
   class="product-detail__price mb-10{% if enable_skeleton_loading %} skeleton-loading{% endif %}"
   {{ block.shopify_attributes }}
 >
-  {%- render 'price', scope: 'detail', product: product, class: 'price-large', show_badges: false -%}
+  {%- render 'price', scope: 'detail', product: product, class: 'price-large', show_badges: true -%}
 </div>
 {% schema %}
 {

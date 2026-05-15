@@ -359,6 +359,7 @@ class CartNotification extends HTMLElement {
       headers: {
         "Content-Type": "application/json",
         Accept: `application/${type}`,
+        "X-Requested-With": "XMLHttpRequest",
       },
     };
   }
@@ -716,12 +717,11 @@ class CartNotification extends HTMLElement {
 
   updateQuantity(id, quantity, currentQuantity, _this, name) {
     quantity = quantity ? quantity : 0;
-    const body = JSON.stringify({
-      id,
-      quantity,
-      sections: this.getSectionsToRender().map((section) => section.id),
-      sections_url: window.location.pathname,
-    });
+    const lineId = String(id);
+    const variantId = lineId.includes(":") ? lineId.split(":")[0] : lineId;
+    const sections = this.getSectionsToRender().map((section) => section.id);
+    const sectionsUrl = window.location.pathname;
+    const changeUrl = `${routes?.cart_change_url || "/cart/change"}.js`;
     const selector = `mini-cart-remove-button[data-index="${id}"]`;
     const cart_select = `minicart-wishlist-action[data-index="${id}"]`;
 
@@ -736,84 +736,162 @@ class CartNotification extends HTMLElement {
       cartRecommend.classList.remove("open");
     }
     const cart_free_ship = document.querySelector("free-ship-progress-bar");
-    fetch(`${routes?.cart_change_url}`, { ...fetchConfig(), ...{ body } })
-      .then((response) => {
-        return response.text();
-      })
-      .then((state) => {
-        const parsedState = JSON.parse(state);
-        if (parsedState.errors) {
-          this.updateMessageErrors(id, parsedState.errors, _this);
-          return;
-        }
-        if (parsedState.item_count != undefined) {
-          document.querySelectorAll(".cart-count").forEach((el) => {
-            if (el.classList.contains("cart-count-drawer")) {
-              el.innerHTML = `(${parsedState.item_count})`;
-            } else {
-              el.innerHTML =
-                parsedState.item_count > 100 ? "~" : parsedState.item_count;
-            }
-          });
-          if (document.querySelector("header-total-price")) {
-            document
-              .querySelector("header-total-price")
-              .updateTotal(parsedState);
-          }
-        }
-        if (document.querySelector(".quantity__label")) {
-          const items = parsedState.items;
-          const pro_id = document
-            .querySelector(".quantity__label")
-            .getAttribute("data-pro-id");
-          var variant_id, variant_quantity;
-          items.forEach(function (item) {
-            variant_id = item.variant_id;
-            if (variant_id == pro_id) {
-              document.querySelector(".quantity-cart").innerHTML =
-                item.quantity;
-              document
-                .querySelector(".quantity__label")
-                .classList.remove("hidden");
-              variant_quantity = pro_id;
-              return;
-            }
-          });
-          if (!variant_quantity) {
-            document.querySelector(".quantity-cart").innerHTML = 0;
-            document.querySelector(".quantity__label").classList.add("hidden");
-          }
-        }
 
+    const buildIdBody = (freshId) =>
+      JSON.stringify({
+        id: freshId,
+        quantity,
+        sections,
+        sections_url: sectionsUrl,
+      });
+
+    const buildLineBody = (line) =>
+      JSON.stringify({
+        line,
+        quantity,
+        sections,
+        sections_url: sectionsUrl,
+      });
+
+    const parseCartResponse = async (response) => {
+      const text = await response.text();
+      let parsedState = {};
+      if (text) {
+        try {
+          parsedState = JSON.parse(text);
+        } catch (error) {
+          error.responseText = text;
+          throw error;
+        }
+      }
+
+      if (!response.ok) {
+        const error = new Error(parsedState.description || parsedState.message || response.statusText);
+        error.status = response.status;
+        error.parsedState = parsedState;
+        throw error;
+      }
+
+      return parsedState;
+    };
+
+    const applyParsedState = (parsedState) => {
+      if (!parsedState || parsedState.errors) {
+        if (parsedState?.errors && _this) {
+          this.updateMessageErrors(id, parsedState.errors, _this);
+        }
+        return parsedState;
+      }
+
+      if (parsedState.item_count != undefined) {
+        document.querySelectorAll(".cart-count").forEach((el) => {
+          if (el.classList.contains("cart-count-drawer")) {
+            el.innerHTML = `(${parsedState.item_count})`;
+          } else {
+            el.innerHTML = parsedState.item_count > 100 ? "~" : parsedState.item_count;
+          }
+        });
         if (document.querySelector("header-total-price")) {
           document.querySelector("header-total-price").updateTotal(parsedState);
         }
-        if (parsedState.item_count == 0 && this.cartCountDown) {
-          this.cartCountDown.querySelector("countdown-timer").remove();
-        }
-        if (parsedState.item_count == 0 && this.cartUpsellBeside) {
-          if (this.cartUpsellBeside.classList.contains("is-open")) {
-            this.cartUpsellBeside.classList.remove("is-open");
+      }
+
+      if (document.querySelector(".quantity__label")) {
+        const items = parsedState.items || [];
+        const pro_id = document
+          .querySelector(".quantity__label")
+          .getAttribute("data-pro-id");
+        let variant_quantity;
+        items.forEach(function (item) {
+          if (item.variant_id == pro_id) {
+            document.querySelector(".quantity-cart").innerHTML = item.quantity;
+            document.querySelector(".quantity__label").classList.remove("hidden");
+            variant_quantity = pro_id;
           }
+        });
+        if (!variant_quantity) {
+          document.querySelector(".quantity-cart").innerHTML = 0;
+          document.querySelector(".quantity__label").classList.add("hidden");
         }
-        if (!parsedState.error && parsedState.item_count != undefined) {
-          this.getSectionsToRender().forEach((section) => {
-            const elementToReplace = document.getElementById(section.id);
-            const html = new DOMParser().parseFromString(
-              parsedState.sections[section.id],
-              "text/html"
-            );
-            elementToReplace.innerHTML =
-              html.querySelector("#minicart-form").innerHTML;
-            if (cart_free_ship) {
-              cart_free_ship.init(parsedState.items_subtotal_price);
-            }
+      }
+
+      if (document.querySelector("header-total-price")) {
+        document.querySelector("header-total-price").updateTotal(parsedState);
+      }
+      if (parsedState.item_count == 0 && this.cartCountDown) {
+        this.cartCountDown.querySelector("countdown-timer")?.remove();
+      }
+      if (parsedState.item_count == 0 && this.cartUpsellBeside) {
+        if (this.cartUpsellBeside.classList.contains("is-open")) {
+          this.cartUpsellBeside.classList.remove("is-open");
+        }
+      }
+
+      if (!parsedState.error && parsedState.item_count != undefined) {
+        let rendered = true;
+        this.getSectionsToRender().forEach((section) => {
+          const elementToReplace = document.getElementById(section.id);
+          const sectionHtml = parsedState.sections?.[section.id];
+          if (!elementToReplace || !sectionHtml) {
+            rendered = false;
+            return;
+          }
+          const html = new DOMParser().parseFromString(sectionHtml, "text/html");
+          const source = html.querySelector("#minicart-form");
+          if (!source) {
+            rendered = false;
+            return;
+          }
+          elementToReplace.innerHTML = source.innerHTML;
+          if (cart_free_ship) {
+            cart_free_ship.init(parsedState.items_subtotal_price);
+          }
+        });
+        if (!rendered) return this.refreshMinicartSection();
+      }
+
+      this.cartAction();
+      return parsedState;
+    };
+
+    const retryByLine = () => {
+      return fetch("/cart.json", { cache: "no-store" })
+        .then((response) => response.json())
+        .then((cart) => {
+          const lineIndex = cart.items.findIndex((item) => {
+            return String(item.variant_id) === variantId || item.key === lineId;
           });
-        }
-        this.cartAction();
+          if (lineIndex === -1) return this.refreshMinicartSection();
+          return fetch(changeUrl, { ...fetchConfig(), body: buildLineBody(lineIndex + 1) })
+            .then(parseCartResponse)
+            .then(applyParsedState);
+        })
+        .catch(() => this.refreshMinicartSection());
+    };
+
+    const changeById = (freshId) => {
+      return fetch(changeUrl, { ...fetchConfig(), body: buildIdBody(freshId) })
+        .then(parseCartResponse)
+        .catch((error) => {
+          if (error.status === 400 || error.parsedState?.status === "bad_request") {
+            return retryByLine();
+          }
+          throw error;
+        })
+        .then(applyParsedState);
+    };
+
+    fetch("/cart.js", { cache: "no-store" })
+      .then((response) => response.json())
+      .then((cart) => {
+        const freshItem = cart.items.find((item) => {
+          return String(item.variant_id) === variantId || item.key === lineId;
+        });
+        return changeById(freshItem?.key || lineId);
       })
-      .catch((e) => {
-        throw e;
+      .catch((error) => {
+        console.warn("Cart update fallback triggered:", error);
+        return retryByLine().catch(() => this.refreshMinicartSection());
       })
       .finally(() => {
         BlsLazyloadImg.init();
@@ -821,7 +899,7 @@ class CartNotification extends HTMLElement {
         if (minicart_wishlist_action) {
           minicart_wishlist_action.classList.remove("loading");
         }
-        setTimeout(function () {
+        setTimeout(() => {
           this.cart = document.querySelector("cart-notification");
         }, 500);
         const cartRecommend = document.querySelector(".cart-recommend");
@@ -853,6 +931,46 @@ class CartNotification extends HTMLElement {
           this.setMinicartLoading(false);
           this.isShippingProtectionLoading = false;
         }
+      });
+  }
+
+  refreshMinicartSection() {
+    const url = `${window.location.pathname}?section_id=minicart-form`;
+    return fetch(url, { cache: "no-store" })
+      .then((response) => response.text())
+      .then((htmlText) => {
+        const html = new DOMParser().parseFromString(htmlText, "text/html");
+        const source = html.querySelector("#minicart-form");
+        const target = document.getElementById("minicart-form");
+        if (source && target) {
+          target.innerHTML = source.innerHTML;
+        }
+        return fetch("/cart.json", { cache: "no-store" })
+          .then((response) => response.json())
+          .catch(() => null);
+      })
+      .then((cart) => {
+        if (cart && cart.item_count !== undefined) {
+          document.querySelectorAll(".cart-count").forEach((el) => {
+            if (el.classList.contains("cart-count-drawer")) {
+              el.innerHTML = `(${cart.item_count})`;
+            } else {
+              el.innerHTML = cart.item_count > 100 ? "~" : cart.item_count;
+            }
+          });
+          if (document.querySelector("header-total-price")) {
+            document.querySelector("header-total-price").updateTotal(cart);
+          }
+          const cart_free_ship = document.querySelector("free-ship-progress-bar");
+          if (cart_free_ship) {
+            cart_free_ship.init(cart.items_subtotal_price);
+          }
+        }
+        this.cartAction();
+        return cart;
+      })
+      .catch((error) => {
+        console.error("Error refreshing minicart section:", error);
       });
   }
 
@@ -1154,3 +1272,5 @@ class CartItemEdit extends MinicartItemEdit {
   }
 }
 customElements.define("cart-item-edit", CartItemEdit);
+
+

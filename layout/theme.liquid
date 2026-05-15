@@ -34,6 +34,7 @@
     {% render 'meta-tags' %}
     {{ content_for_header }}
     {{ 'critical.css' | asset_url | stylesheet_tag }}
+    {{ 'custom.css' | asset_url | stylesheet_tag }}
     {% if enable_rtl %}{{ 'rtl.css' | asset_url | stylesheet_tag: preload: true }}{% endif %}
     {{ 'product-card.css' | asset_url | stylesheet_tag }}
     {{ 'swiper-bundle.min.css' | asset_url | stylesheet_tag }}

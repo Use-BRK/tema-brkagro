@@ -1191,7 +1191,7 @@
             "value": "6",
             "label": "t:settings_schema.color_swatches.settings.limit_color.6"
           }
-        ],
+        ]
       },
       {
         "type": "select",
@@ -1360,6 +1360,83 @@
         "info": "t:settings_schema.cart.settings.free_shipping.free_shipping_minimum.info"
       },
       {
+        "type": "header",
+        "content": "Barra de brindes"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_gift_bar",
+        "label": "Mostrar barra de brindes",
+        "default": false
+      },
+      {
+        "type": "text",
+        "id": "gift_threshold_1",
+        "label": "Brinde 1 - valor minimo",
+        "info": "Valor em reais, sem simbolo. Ex.: 100"
+      },
+      {
+        "type": "product",
+        "id": "gift_product_1",
+        "label": "Brinde 1 - produto"
+      },
+      {
+        "type": "text",
+        "id": "gift_threshold_2",
+        "label": "Brinde 2 - valor minimo",
+        "info": "Valor em reais, sem simbolo. Ex.: 200"
+      },
+      {
+        "type": "product",
+        "id": "gift_product_2",
+        "label": "Brinde 2 - produto"
+      },
+      {
+        "type": "text",
+        "id": "gift_threshold_3",
+        "label": "Brinde 3 - valor minimo",
+        "info": "Valor em reais, sem simbolo. Ex.: 300"
+      },
+      {
+        "type": "product",
+        "id": "gift_product_3",
+        "label": "Brinde 3 - produto"
+      },
+      {
+        "type": "text",
+        "id": "gift_threshold_4",
+        "label": "Brinde 4 - valor minimo",
+        "info": "Valor em reais, sem simbolo. Ex.: 400"
+      },
+      {
+        "type": "product",
+        "id": "gift_product_4",
+        "label": "Brinde 4 - produto"
+      },
+      {
+        "type": "text",
+        "id": "gift_threshold_5",
+        "label": "Brinde 5 - valor minimo",
+        "info": "Valor em reais, sem simbolo. Ex.: 500"
+      },
+      {
+        "type": "product",
+        "id": "gift_product_5",
+        "label": "Brinde 5 - produto"
+      },
+      {
+        "type": "text",
+        "id": "gift_bar_unavailable_text",
+        "label": "Texto antes de liberar brinde",
+        "info": "Use {{ amount }} para mostrar quanto falta.",
+        "default": "Faltam {{ amount }} para ganhar um brinde!"
+      },
+      {
+        "type": "text",
+        "id": "gift_bar_available_text",
+        "label": "Texto com todos os brindes liberados",
+        "default": "Voce desbloqueou todos os brindes disponiveis!"
+      },      {
         "type": "header",
         "content": "t:settings_schema.cart.settings.cart_count_down.label"
       },
@@ -1588,7 +1665,7 @@
           {
             "value": "background",
             "label": "t:settings_schema.colors.settings.header.background"
-          },
+          }
         ]
       }
     ]

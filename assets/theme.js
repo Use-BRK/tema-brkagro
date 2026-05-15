@@ -4485,7 +4485,7 @@ if (!customElements.get("product-form-quick-edit")) {
           id,
           quantity,
         });
-        fetch(`${routes?.cart_change_url}`, config_change)
+        fetch(`${routes?.cart_change_url}.js`, config_change)
           .then((response) => {
             return response.text();
           })
@@ -9231,5 +9231,6 @@ class tickerHandler extends HTMLElement {
   }
 }
 customElements.define('component-ticker', tickerHandler);
+
 
 

@@ -32,6 +32,7 @@ function fetchConfig(type = "json") {
     headers: {
       "Content-Type": "application/json",
       Accept: `application/${type}`,
+      "X-Requested-With": "XMLHttpRequest",
     },
   };
 }

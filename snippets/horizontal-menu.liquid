@@ -3,13 +3,11 @@
   assign section_st = section.settings
   assign theme_st = settings
   assign section_width = section_st.section_width
-  assign show_my_account = section_st.show_account_icon
   assign recently_viewed = section_st.show_recently_viewed
   assign wishlist = section_st.show_wishlist_icon
   assign uppercase_first = section_st.uppercase_first
   assign menu_mobile_tab = section_st.menu_tab
   assign collection_list = section_st.collection_list
-  assign title_categories = section_st.title_categories
 -%}
 {% liquid
   assign enable_rtl = settings.rtl
@@ -97,6 +95,7 @@
               -%}
               <menu-item class="relative static-1025 flex justify-between align-center border-bottom border-bottom-1025-0 header-color px-15">
               <a class="no-underline py-10 relative lh-normal inline-flex min-h-55 min-h-1025-50 z-1 align-center{% if theme_st.menu_font == 'heading_font' %} heading-style{% endif %}{% if uppercase_first %} uppercase{% endif %}{% if link.links.size > 0 and redirect_to_link == blank %} redirect-to-link{% endif %}" href="{{ link.url }}"{% if block_st.open-link-newtab != blank %} target="_blank"{% endif %}>
+                {%- render 'menu-category-icon', menu_link: link -%}
                 <span>{{ link.title }}</span>
                 {%- if label != blank and label != 'unset' -%}
                   <span class="menu_label rounded-2 text-center heading_weight relative absolute-1025 whitespace-nowrap uppercase  {{ label }}">{{ section_st[label] }}</span>
@@ -149,7 +148,10 @@
                           <use href="#icon-back" />
                         </svg>
                       {% endif %}
-                      {{ link.title }}
+                      <div class="flex align-center">
+                        {%- render 'menu-category-icon', menu_link: link -%}
+                        <span>{{ link.title }}</span>
+                      </div>
                     </back-menu>
                     <close-menu class="close-menu lh-1 ms-10">
                       <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
@@ -365,7 +367,6 @@
                                   {%- if product_value != blank -%}
                                     {% render 'product-item',
                                       card_product: product_value,
-                                      template_enable_action: false,
                                       template_enable_product_vendor: false,
                                       template_enable_rate: false,
                                       template_enable_product_short_description: false,
@@ -397,7 +398,8 @@
                   href="{{ link.url }}"
                   arial-label="{{ link.title }}"
                 >
-                  <span>{{ link.title }}</span>
+                  {%- render 'menu-category-icon', menu_link: link -%}
+                <span>{{ link.title }}</span>
                   {%- if link.links.size > 0 -%}
                     <open-children-toggle class="inline-flex flex-end align-center ms-5{% if section_st.redirect_to_link == blank %} absolute inset-0 static-1025{% else %} touch-target-mb{% endif %}">
                       <svg class="icon-down hidden block-1025" width="10" height="6">
@@ -436,7 +438,10 @@
                           <use href="#icon-back" />
                         </svg>
                       {% endif %}
-                      {{ link.title }}
+                      <div class="flex align-center">
+                        {%- render 'menu-category-icon', menu_link: link -%}
+                        <span>{{ link.title }}</span>
+                      </div>
                     </back-menu>
                     <close-menu class="close-menu lh-1 ms-10">
                       <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
@@ -600,6 +605,7 @@
               -%}
               <menu-item class="relative static-1025 flex justify-between align-center border-bottom border-bottom-1025-0 header-color px-15">
               <a class="no-underline py-10 relative lh-normal inline-flex min-h-55 min-h-1025-50 z-1 align-center{% if theme_st.menu_font == 'heading_font' %} heading-style{% endif %}{% if uppercase_first %} uppercase{% endif %}{% if link.links.size > 0 and redirect_to_link == blank %} redirect-to-link{% endif %}" href="{{ link.url }}"{% if block_st.open-link-newtab != blank %} target="_blank"{% endif %}>
+                {%- render 'menu-category-icon', menu_link: link -%}
                 <span>{{ link.title }}</span>
                 {%- if label != blank and label != 'unset' -%}
                   <span class="menu_label rounded-2 text-center heading_weight relative absolute-1025 whitespace-nowrap uppercase  {{ label }}">{{ section_st[label] }}</span>
@@ -652,7 +658,10 @@
                           <use href="#icon-back" />
                         </svg>
                       {% endif %}
-                      {{ link.title }}
+                      <div class="flex align-center">
+                        {%- render 'menu-category-icon', menu_link: link -%}
+                        <span>{{ link.title }}</span>
+                      </div>
                     </back-menu>
                     <close-menu class="close-menu lh-1 ms-10">
                       <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
@@ -868,7 +877,6 @@
                                   {%- if product_value != blank -%}
                                     {% render 'product-item',
                                       card_product: product_value,
-                                      template_enable_action: false,
                                       template_enable_product_vendor: false,
                                       template_enable_rate: false,
                                       template_enable_product_short_description: false,
@@ -900,7 +908,8 @@
                   href="{{ link.url }}"
                   arial-label="{{ link.title }}"
                 >
-                  <span>{{ link.title }}</span>
+                  {%- render 'menu-category-icon', menu_link: link -%}
+                <span>{{ link.title }}</span>
                   {%- if link.links.size > 0 -%}
                     <open-children-toggle class="inline-flex flex-end align-center ms-5{% if section_st.redirect_to_link == blank %} absolute inset-0 static-1025{% else %} touch-target-mb{% endif %}">
                       <svg class="icon-down hidden block-1025" width="10" height="6">
@@ -939,7 +948,10 @@
                           <use href="#icon-back" />
                         </svg>
                       {% endif %}
-                      {{ link.title }}
+                      <div class="flex align-center">
+                        {%- render 'menu-category-icon', menu_link: link -%}
+                        <span>{{ link.title }}</span>
+                      </div>
                     </back-menu>
                     <close-menu class="close-menu lh-1 ms-10">
                       <svg width="13" height="13" viewBox="0 0 13 13" fill="none">

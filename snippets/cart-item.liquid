@@ -14,6 +14,12 @@
   if enable_shipping_protection and shipping_protection_product_id == item.product_id
     assign is_shipping_protection_item = true
   endif
+  assign is_gift_progress_item = false
+  for property in item.properties
+    if property.first == '_brk_gift_progress' and property.last == 'true'
+      assign is_gift_progress_item = true
+    endif
+  endfor
   if item.image != 'adapt'
     case product_image_ratio
       when 'square'
@@ -51,9 +57,10 @@
   id="minicart__product-{{ item.key }}"
   product-handle="{{ item.product.handle }}"
   data-shipping-protection-item="{{ is_shipping_protection_item }}"
+  data-gift-progress-item="{{ is_gift_progress_item }}"
   data-shipping-protection-key="{{ item.key }}"
   data-shipping-protection-quantity="{{ item.quantity }}"
-  class="cart-item flex mb-20 pb-20 gap-15 border-bottom-dashed"
+  class="cart-item{% if is_gift_progress_item %} cart-item--gift-progress{% endif %} flex mb-20 pb-20 gap-15 border-bottom-dashed"
 >
   <div class="minicart__product__image global-media-settings w-custom fs-0 relative" style="--custom-width: 9rem">
     <a href="{{- item.url -}}" class="rounded-5 fs-0 block" aria-label="{{ item.product.title | escape }}" style="--aspect-ratio: {{ ratio }};">
@@ -79,8 +86,11 @@
         {{- item.product.title | escape -}}
       </a>
     </h3>
+    {% if is_gift_progress_item %}
+      <span class="cart-item__gift-badge">Brinde</span>
+    {% endif %}
     <div class="minicart__item-variant cart-options flex flex-wrap">
-      {%- unless item.product.has_only_default_variant -%}
+      {%- unless item.product.has_only_default_variant or is_gift_progress_item -%}
         {%- for option in item.options_with_values -%}
           <div class="product-option dark-grey fs-small">
             <span class="label">{{ option.name }}: </span>
@@ -197,7 +207,12 @@
           <span class="cart-item__error-text cart-item__error-text-{{ item.id }}"></span>
           {%- render 'icon-error' -%}
         </div>
-        {% if show_add_cart == true and theme_st.enable_catalog_mode == false and show_quantity and is_shipping_protection_item == false %}
+        {% if show_add_cart == true and theme_st.enable_catalog_mode == false and show_quantity %}
+          {% if is_gift_progress_item %}
+            <div class="minicart__actions mt-6 flex grow-1 bottom-left w-full">
+              <span class="cart-item__gift-qty">Qtd. {{ item.quantity }}</span>
+            </div>
+          {% elsif is_shipping_protection_item == false %}
           <div class="minicart__actions mt-6 flex grow-1 bottom-left w-full">
             <quantity-input class="quantity rounded-3 border inline-flex text-center grey-bg">
               <button
@@ -240,6 +255,7 @@
               </button>
             </quantity-input>
           </div>
+                  {% endif %}
         {% endif %}
       </div>
     {% endif %}
@@ -253,7 +269,7 @@
         </symbol>
       </svg>
       {% assign item_url = item.url %}
-      {%- unless item.product.has_only_default_variant -%}
+      {%- unless item.product.has_only_default_variant or is_gift_progress_item -%}
         {% if show_add_cart and theme_st.enable_catalog_mode == false %}
           <minicart-item-edit
             data-text-header="{{ 'general.cart.cart_edit' | t }}"

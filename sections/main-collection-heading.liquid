@@ -12,9 +12,20 @@
   assign alt = image_bg.alt | default: collection.title | escape
   assign height = section_st.height
   assign scroll_animation = settings.scroll_animation
+  assign object_fit = 'object-fit-cover'
+  if height == 'contain'
+    assign object_fit = 'object-fit-contain'
+  endif
 -%}
+{%- if height == 'contain' -%}
+  <style>
+    .object-fit-contain {
+      object-fit: contain !important;
+    }
+  </style>
+{%- endif -%}
 {%- capture style -%}
-  --section-pt: {{ section_st.padding_top }}; --section-pb: {{ section_st.padding_bottom }};{%- if image_bg != blank and height == 'adapt' -%}--aspect-ratio: {{ image_bg.aspect_ratio }}{% endif %};--overlay-opacity: {{ section_st.overlay_opacity }}%;
+  --section-pt: {{ section_st.padding_top }}; --section-pb: {{ section_st.padding_bottom }};{%- if image_bg != blank %}{% if height == 'adapt' or height == 'contain' %}--aspect-ratio: {{ image_bg.aspect_ratio }}{% endif %}{% endif %};--overlay-opacity: {{ section_st.overlay_opacity }}%;
 {%- endcapture -%}
 {%- if section.blocks.size > 0 -%}
   <div
@@ -24,15 +35,16 @@
     {% if show_collection_image or background_image != blank %}
       <div class="overlay-bg">
         {%- if image_bg != blank -%}
+          {%- assign image_class = 'background-heading absolute inset-0 z--1 pointer-none w-full h-full object-position-center '
+            | append: object_fit
+          -%}
           {% render 'responsive-image',
             type: 'banner',
             container: section_width,
             image: image_bg,
             image_alt: alt,
-            class: 'background-heading absolute inset-0 z--1 pointer-none w-full h-full object-position-center object-fit-cover'
+            class: image_class
           %}
-        {%- else -%}
-          {% render 'placeholder-render' | type: "collection", class: 'background-heading absolute inset-0 z--1 pointer-none w-full h-full object-position-center object-fit-cover' %}
         {% endif %}
       </div>
     {% endif %}
@@ -190,6 +202,10 @@
         {
           "value": "based_on_content",
           "label": "t:sections.all.page_heading.height.option__2"
+        },
+        {
+          "value": "contain",
+          "label": "Contain"
         }
       ],
       "default": "adapt",

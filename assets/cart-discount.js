@@ -87,6 +87,13 @@ class MinicartDiscount extends HTMLElement {
     // Update free shipping progress bar
     this.#updateCartFreeShipping(data);
 
+    if (
+      window.GiftProgressBar &&
+      typeof window.GiftProgressBar.syncAllFromCart === "function"
+    ) {
+      window.GiftProgressBar.syncAllFromCart(true);
+    }
+
     // Reinitialize components
     BlsLazyloadImg.init();
   }
