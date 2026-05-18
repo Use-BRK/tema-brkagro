@@ -4254,11 +4254,12 @@ class ButtonSubmitBundle extends HTMLElement {
           this.updateCartSections(response);
         }
 
+        if (!this.cart) {
+          this.cart = document.querySelector("cart-notification") || document.querySelector("cart-drawer");
+        }
         if (this.cart) {
           showMinicartAddSuccessMessage(this.cart);
           this.cart.open();
-        } else {
-          window.location = window.routes.cart_url;
         }
       })
       .catch((error) => {
@@ -7238,8 +7239,7 @@ if (!customElements.get("product-form")) {
                 return;
               }
             } else if (!this.cart) {
-              window.location = window.routes.cart_url;
-              return;
+              this.cart = document.querySelector("cart-notification") || document.querySelector("cart-drawer");
             }
 
             fetch("/cart.json")

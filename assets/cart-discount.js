@@ -4,26 +4,23 @@ class MinicartDiscount extends HTMLElement {
 
   constructor() {
     super();
+    this.init();
   }
 
-  connectedCallback() {
+  init() {
     this.submitButton = this.querySelector('[type="submit"]');
     this.cart =
       document.querySelector("cart-notification") ||
       document.querySelector("cart-drawer");
     const form = this.querySelector("form");
-    if (form && !form._discountListenerAttached) {
+    if (form) {
       form.addEventListener("submit", this.applyDiscount);
-      form._discountListenerAttached = true;
     }
-    if (!this._clickListenerAttached) {
-      this.addEventListener("click", (event) => {
-        if (event.target.closest(".cart-discount-remove")) {
-          this.removeDiscount(event);
-        }
-      });
-      this._clickListenerAttached = true;
-    }
+    this.addEventListener("click", (event) => {
+      if (event.target.closest(".cart-discount-remove")) {
+        this.removeDiscount(event);
+      }
+    });
   }
 
   #createAbortController() {
