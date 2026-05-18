@@ -5,6 +5,8 @@
   assign show_message_when_remove = theme_st.show_message_when_remove
   assign show_currency_code = theme_st.show_currency_code
   assign show_quantity = theme_st.show_quantity_input
+  assign product_image_ratio = theme_st.product_image_ratio
+  assign product_custom_ratio = theme_st.product_custom_ratio
   assign enable_shipping_protection = theme_st.enable_shipping_protection
   assign choose_shipping_protection_product = all_products[theme_st.choose_shipping_protection_product]
   assign shipping_protection_product_id = choose_shipping_protection_product.id
@@ -18,12 +20,42 @@
       assign is_gift_progress_item = true
     endif
   endfor
+  if item.image != 'adapt'
+    case product_image_ratio
+      when 'square'
+        assign ratio = '1/1'
+      when 'landscape'
+        assign ratio = '4/3'
+      when 'portrait'
+        assign ratio = '3/4'
+      else
+        if product_custom_ratio != empty
+          assign ratio = product_custom_ratio | replace: ':', '/'
+        else
+          assign ratio = '3/4'
+        endif
+    endcase
+  else
+    if item.image.media_type == 'model'
+      assign ratio = '3/4'
+    else
+      assign ratio = item.image.aspect_ratio
+    endif
+  endif
+  assign enable_rtl = settings.rtl
+  assign iso_code = request.locale.iso_code
+  assign lis_language_rtl = settings.language_rtl
+  if lis_language_rtl != blank
+    if lis_language_rtl contains iso_code
+      assign enable_rtl = true
+    else
+      assign enable_rtl = false
+    endif
+  endif
 -%}
 <div
   id="minicart__product-{{ item.key }}"
   product-handle="{{ item.product.handle }}"
-  data-line="{{ item.index | plus: 1 }}"
-  data-variant-id="{{ item.id }}"
   data-shipping-protection-item="{{ is_shipping_protection_item }}"
   data-gift-progress-item="{{ is_gift_progress_item }}"
   data-shipping-protection-key="{{ item.key }}"
@@ -128,7 +160,7 @@
             style="--custom-width: 12px;"
             viewBox="0 0 12 12"
           >
-            <path fill-rule="evenodd" clip-rule="evenodd" d="M7 0h3a2 2 0 012 2v3a1 1 0 01-.3.7l-6 6a1 1 0 01-1.4 0l-4-4a1 1 0 010-1.4l6-6A1 1 0 017 0zm2 2a1 1 0 102 0 1 1 0 00-2 0z" fill="currentColor"/>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M7 0h3a2 2 0 012 2v3a1 1 0 01-.3.7l-6 6a1 1 0 01-1.4 0l-4-4a1 1 0 010-1.4l6-6A1 1 0 017 0zm2 2a1 1 0 102 0 1 1 0 00-2 0z" fill="currentColor">
           </svg>
           {{ discount.discount_application.title }}
           (-{{ discount.amount | money }})
@@ -156,8 +188,6 @@
             name="minus"
             type="button"
             data-id="{{- item.key -}}"
-            data-line="{{ item.index | plus: 1 }}"
-            data-variant-id="{{ item.id }}"
             style="--custom-width: 2.6rem"
             arial-label="minus"
           >
@@ -174,8 +204,6 @@
             id="{{- item.key -}}"
             name="updates[]"
             data-id="{{- item.key -}}"
-            data-line="{{ item.index | plus: 1 }}"
-            data-variant-id="{{ item.id }}"
             value="{{- item.quantity -}}"
             data-value="{{- item.quantity -}}"
             min="0"
@@ -186,8 +214,6 @@
             name="plus"
             type="button"
             data-id="{{- item.key -}}"
-            data-line="{{ item.index | plus: 1 }}"
-            data-variant-id="{{ item.id }}"
             style="--custom-width: 2.6rem"
             arial-label="plus"
           >
@@ -227,8 +253,6 @@
             data-product-handle="{{ item.product.id }}"
             class="minicart__item-remove {% if show_message_when_remove %} action-add-wishlist{% endif %}"
             data-index="{{- item.key -}}"
-            data-line="{{ item.index | plus: 1 }}"
-            data-variant-id="{{ item.id }}"
           >
             <a
               href="{{ item.url_to_remove }}"
@@ -243,9 +267,9 @@
             </a>
           </mini-cart-remove-button>
         </div>
+      </div>
     {% endif %}
   {% endif %}
-  </div>
   {% if show_message_when_remove %}
     <div class="flex-1 relative minicart__wishlist fadeIn" style="display: none;">
       <p class="pr-20">
@@ -253,16 +277,12 @@
       </p>
       <minicart-wishlist-action
         data-index="{{- item.key -}}"
-        data-line="{{ item.index | plus: 1 }}"
-        data-variant-id="{{ item.id }}"
         class="mt-10 flex gap-10 relative align-center"
         style="--btn-padding-y: 8px;--btn-padding-x: 2.5rem;"
       >
         <a
           data-product-id="{{ item.product.id }}"
           data-index="{{- item.key -}}"
-          data-line="{{ item.index | plus: 1 }}"
-          data-variant-id="{{ item.id }}"
           class="btn-primary btn-small product-wishlist-js btn-minicart__add-wishlist-js pointer fs-small"
           type="button"
           role="button"
@@ -272,8 +292,6 @@
         </a>
         <a
           data-index="{{- item.key -}}"
-          data-line="{{ item.index | plus: 1 }}"
-          data-variant-id="{{ item.id }}"
           class="btn-outline btn-small bg-grey btn-minicart__remove-js pointer text-center fs-small"
           type="button"
           role="button"

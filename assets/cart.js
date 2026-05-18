@@ -96,12 +96,7 @@ class CartUtils {
         if (event.currentTarget.checked) {
           cartInstance.addGiftwrapCartClick(giftFormMinicart);
         } else {
-          cartInstance.updateQuantity({
-            line: event.currentTarget.dataset.index,
-            variantId: event.currentTarget.dataset.variantId,
-            quantity: 0,
-            target: event.currentTarget,
-          });
+          cartInstance.updateQuantity(event.currentTarget.dataset.index, 0);
         }
       });
     }
@@ -122,12 +117,7 @@ class CartUtils {
         } else {
           cartInstance.isShippingProtectionLoading = true;
           cartInstance.setPageCartLoading(true);
-          cartInstance.updateQuantity({
-            line: event.currentTarget.dataset.index,
-            variantId: event.currentTarget.dataset.variantId,
-            quantity: 0,
-            target: event.currentTarget,
-          });
+          cartInstance.updateQuantity(event.currentTarget.dataset.index, 0);
         }
       });
     }
@@ -311,13 +301,7 @@ class CartRemoveButton extends HTMLElement {
       event.preventDefault();
       const cartItems =
         this.closest("cart-items") || this.closest("cart-drawer-items");
-      cartItems.updateQuantity({
-        line: this.dataset.index,
-        key: this.dataset.key,
-        variantId: this.dataset.variantId || this.dataset.productId,
-        quantity: 0,
-        target: this,
-      });
+      cartItems.updateQuantity(this.dataset.index, 0);
     });
   }
 }
@@ -333,15 +317,11 @@ class CartItems extends HTMLElement {
       0
     );
 
-    this.cartUpdateQueue = Promise.resolve();
-    this.debouncedOnChange = debounce((change) => {
-      this.onChange(change);
+    this.debouncedOnChange = debounce((event) => {
+      this.onChange(event);
     }, 300);
 
-    this.addEventListener("change", (event) => {
-      const change = this.getQuantityChangeFromTarget(event.target);
-      if (change) this.debouncedOnChange(change);
-    });
+    this.addEventListener("change", this.debouncedOnChange.bind(this));
     this.isShippingProtectionLoading = false;
 
     // Use CartUtils for gift form listeners
@@ -350,96 +330,14 @@ class CartItems extends HTMLElement {
     CartUtils.enforceShippingProtectionQuantity(this);
   }
 
-  cleanCartValue(value) {
-    return value == null ? "" : String(value).trim();
-  }
-
-  parseCartLine(value) {
-    const line = parseInt(value, 10);
-    return Number.isInteger(line) && line > 0 ? line : null;
-  }
-
-  getQuantityChangeFromTarget(target) {
-    if (!target || target.getAttribute("name") !== "updates[]") return null;
-
-    return {
-      line: target.dataset.index,
-      key: target.dataset.id || target.dataset.key,
-      variantId: target.dataset.variantId,
-      quantity: target.value,
-      currentQuantity: target.dataset.value,
-      target,
-      name: document.activeElement?.getAttribute("name") || "",
-    };
-  }
-
-  normalizeQuantityChange(line, key, quantity, name, target) {
-    const source =
-      line && typeof line === "object"
-        ? line
-        : { line, key, quantity, name, target };
-    const rawKey = this.cleanCartValue(source.key);
-    const fallbackKey = this.cleanCartValue(source.id);
-    const normalizedKey = rawKey || (fallbackKey.includes(":") ? fallbackKey : "");
-    const rawVariantId =
-      this.cleanCartValue(source.variantId) ||
-      (normalizedKey.includes(":") ? normalizedKey.split(":")[0] : "");
-    const parsedQuantity = parseInt(source.quantity, 10);
-    const normalizedLine = this.parseCartLine(source.line);
-
-    if (!normalizedLine && !normalizedKey && !rawVariantId) return null;
-
-    return {
-      line: normalizedLine,
-      key: normalizedKey,
-      variantId: rawVariantId,
-      quantity:
-        Number.isInteger(parsedQuantity) && parsedQuantity >= 0
-          ? parsedQuantity
-          : 0,
-      target: source.target,
-      name: source.name,
-      errorKey:
-        this.cleanCartValue(source.errorKey) ||
-        rawVariantId ||
-        (normalizedKey.includes(":") ? normalizedKey.split(":")[0] : normalizedKey),
-    };
-  }
-
-  resolveCartLine(cart, change) {
-    const items = Array.isArray(cart?.items) ? cart.items : [];
-
-    if (change.key) {
-      const keyIndex = items.findIndex((item) => item.key === change.key);
-      if (keyIndex !== -1) {
-        return { line: keyIndex + 1, item: items[keyIndex] };
-      }
-    }
-
-    if (change.line && items[change.line - 1]) {
-      const item = items[change.line - 1];
-      if (
-        !change.variantId ||
-        String(item.variant_id) === change.variantId ||
-        item.key === change.key
-      ) {
-        return { line: change.line, item };
-      }
-    }
-
-    if (change.variantId) {
-      const matches = items
-        .map((item, index) => ({ item, line: index + 1 }))
-        .filter(({ item }) => String(item.variant_id) === change.variantId);
-
-      if (matches.length === 1) return matches[0];
-    }
-
-    return null;
-  }
-
-  onChange(change) {
-    if (change) this.updateQuantity(change);
+  onChange(event) {
+    this.updateQuantity(
+      event.target.dataset.index,
+      event.target.dataset.key,
+      event.target.value,
+      document.activeElement.getAttribute("name"),
+      event.target
+    );
   }
 
   getSectionsToRender() {
@@ -453,106 +351,46 @@ class CartItems extends HTMLElement {
   }
 
   updateQuantity(line, key, quantity, name, target) {
-    const change = this.normalizeQuantityChange(
-      line,
-      key,
-      quantity,
-      name,
-      target
-    );
-
-    if (!change) return this.refreshCartSection();
-
-    this.cartUpdateQueue = this.cartUpdateQueue
-      .catch(() => {})
-      .then(() => this.performQuantityUpdate(change));
-
-    return this.cartUpdateQueue;
-  }
-
-  performQuantityUpdate(change) {
-    const selector = change.line
-      ? `cart-remove-button[data-index="${change.line}"]`
-      : change.key
-      ? `cart-remove-button[data-key="${change.key}"]`
-      : "";
-    const cart_item = selector ? this.querySelector(selector) : null;
+    quantity = quantity ? quantity : 0;
+    const selector = `cart-remove-button[data-index="${line}"]`;
+    const cart_item = this.querySelector(selector);
     cart_item?.classList.add("loading");
 
-    const parseCartResponse = async (response) => {
-      const text = await response.text();
-      const parsedState = text ? JSON.parse(text) : {};
+    const body = JSON.stringify({
+      line,
+      quantity,
+      sections: this.getSectionsToRender().map((section) => section.section),
+      sections_url: window.location.pathname,
+    });
 
-      if (!response.ok) {
-        const error = new Error(parsedState.description || parsedState.message || response.statusText);
-        error.status = response.status;
-        error.parsedState = parsedState;
-        throw error;
-      }
-
-      return parsedState;
-    };
-
-    const applyParsedState = (parsedState) => {
-      if (parsedState.errors) {
-        if (change.target) {
-          this.updateMessageErrors(
-            change.resolvedLine || change.line,
-            parsedState.errors,
-            change.target
-          );
+    fetch(`${routes.cart_change_url}.js`, { ...fetchConfig(), ...{ body } })
+      .then((response) => response.text())
+      .then((state) => {
+        const parsedState = JSON.parse(state);
+        if (parsedState.errors) {
+          this.updateMessageErrors(line, parsedState.errors, target);
+          this.disableLoading();
+          return;
         }
-        this.disableLoading();
-        return parsedState;
-      }
 
-      if (parsedState.item_count !== undefined) {
-        CartUtils.updateFreeShippingBar(parsedState.items_subtotal_price);
-      }
+        if (parsedState.item_count !== undefined) {
+          CartUtils.updateFreeShippingBar(parsedState.items_subtotal_price);
+        }
 
-      CartUtils.updateCartUI({
-        parsedState,
-        sectionsToRender: this.getSectionsToRender(),
-        cartInstance: this,
-        totalsSelector: ".cart-info .totals",
-      });
-
-      this.updateLiveRegions(
-        change.resolvedLine || change.line,
-        change.errorKey,
-        parsedState.item_count
-      );
-      this.disableLoading();
-      return parsedState;
-    };
-
-    return fetch("/cart.js", { cache: "no-store" })
-      .then((response) => response.json())
-      .then((cart) => {
-        const resolved = this.resolveCartLine(cart, change);
-        if (!resolved) return this.refreshCartSection();
-
-        change.resolvedLine = resolved.line;
-        change.resolvedKey = resolved.item?.key;
-        change.errorKey = change.errorKey || String(resolved.item?.variant_id || "");
-
-        const body = JSON.stringify({
-          line: resolved.line,
-          quantity: change.quantity,
-          sections: this.getSectionsToRender().map((section) => section.section),
-          sections_url: window.location.pathname,
+        // Use CartUtils for comprehensive UI update
+        CartUtils.updateCartUI({
+          parsedState,
+          sectionsToRender: this.getSectionsToRender(),
+          cartInstance: this,
+          totalsSelector: ".cart-info .totals",
         });
 
-        return fetch(`${routes.cart_change_url}.js`, {
-          ...fetchConfig(),
-          ...{ body },
-        })
-          .then(parseCartResponse)
-          .then(applyParsedState);
+        this.updateLiveRegions(line, key, parsedState.item_count);
+        this.disableLoading();
       })
       .catch((e) => {
-        console.warn("Cart update skipped stale line item:", e);
-        return this.refreshCartSection();
+        console.error(e);
+        this.disableLoading();
       })
       .finally(() => {
         BlsLazyloadImg.init();
@@ -561,41 +399,6 @@ class CartItems extends HTMLElement {
           this.setPageCartLoading(false);
           this.isShippingProtectionLoading = false;
         }
-      });
-  }
-
-  refreshCartSection() {
-    const mainCartItems = document.getElementById("main-cart-items");
-    const sectionId = mainCartItems?.dataset.id;
-    const sectionRequest = sectionId
-      ? fetch(`${window.location.pathname}?section_id=${sectionId}`, {
-          cache: "no-store",
-        })
-          .then((response) => response.text())
-          .then((htmlText) => {
-            const html = new DOMParser().parseFromString(htmlText, "text/html");
-            const source = html.querySelector("#main-cart-items");
-            const target = document.getElementById("main-cart-items");
-            if (source && target) {
-              target.innerHTML = source.innerHTML;
-            }
-          })
-      : Promise.resolve();
-
-    return sectionRequest
-      .then(() => fetch("/cart.js", { cache: "no-store" }))
-      .then((response) => response.json())
-      .then((cart) => {
-        if (cart.item_count !== undefined) {
-          CartUtils.updateCartCount(cart.item_count);
-          CartUtils.updateHeaderTotalPrice(cart);
-          CartUtils.updateFreeShippingBar(cart.items_subtotal_price);
-        }
-        BlsLazyloadImg.init();
-        return cart;
-      })
-      .catch((error) => {
-        console.error("Error refreshing cart section:", error);
       });
   }
 

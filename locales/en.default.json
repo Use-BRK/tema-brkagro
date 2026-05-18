@@ -154,10 +154,6 @@
         "gift_wrap_html": "Please wrap the product carefully. Fee is only <span class=\"price heading-style\">{{ price }}</span>. (You can choose or not)",
         "button_text": "Add A Gift Wrap"
       },
-      "shipping_protection": {
-        "title": "Shipping protection",
-        "description": "Protect your order from loss, damage, or theft."
-      },
       "shipping": {
         "title": "Estimate",
         "estimate_shipping_title": "Estimate Shipping",
