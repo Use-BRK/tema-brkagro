@@ -740,9 +740,8 @@ class CartNotification extends HTMLElement {
     fetch('/cart.js')
       .then((r) => r.json())
       .then((cart) => {
-        const freshItem = cart.items.find(
-          (item) => String(item.variant_id) === String(variantId) || item.key === lineId
-        );
+        const freshItem = cart.items.find((item) => item.key === lineId)
+          || cart.items.find((item) => String(item.variant_id) === String(variantId));
         const changeBody = freshItem
           ? JSON.stringify({ id: freshItem.key, quantity, sections, sections_url })
           : JSON.stringify({ id: lineId, quantity, sections, sections_url });
