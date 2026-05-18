@@ -218,6 +218,8 @@
                             {%- endunless -%}
                             <cart-remove-button
                               data-product-id="{{ item.product.selected_or_first_available_variant.id }}"
+                              data-key="{{ item.key }}"
+                              data-variant-id="{{ item.id }}"
                               id="Remove-{{ item.index | plus: 1 }}"
                               data-index="{{ item.index | plus: 1 }}"
                               class="inline-flex align-center"
@@ -455,6 +457,8 @@
                                     type="number"
                                     name="updates[]"
                                     data-id="{{- item.key -}}"
+                                    data-key="{{ item.key }}"
+                                    data-variant-id="{{ item.id }}"
                                     value="{{- item.quantity -}}"
                                     data-value="{{ item.quantity }}"
                                     data-index="{{ item.index | plus: 1 }}"

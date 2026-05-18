@@ -4753,11 +4753,23 @@ class MiniCartRemoveButton extends HTMLElement {
           ).style.display = "none";
         } else {
           const cartItems = this.closest("cart-notification");
-          cartItems.updateQuantity(this.dataset.index, 0);
+          cartItems.updateQuantity({
+            key: this.dataset.index,
+            line: this.dataset.line,
+            variantId: this.dataset.variantId,
+            quantity: 0,
+            target: this,
+          });
         }
       } else {
         const cartItems = this.closest("cart-notification");
-        cartItems.updateQuantity(this.dataset.index, 0);
+        cartItems.updateQuantity({
+          key: this.dataset.index,
+          line: this.dataset.line,
+          variantId: this.dataset.variantId,
+          quantity: 0,
+          target: this,
+        });
       }
     });
   }
@@ -4815,7 +4827,13 @@ class MiniCartWishlistAction extends HTMLElement {
 
   eventRemove(target) {
     const cartItems = document.querySelector("cart-notification");
-    cartItems.updateQuantity(target.dataset.index, 0);
+    cartItems.updateQuantity({
+      key: target.dataset.index,
+      line: target.dataset.line,
+      variantId: target.dataset.variantId,
+      quantity: 0,
+      target,
+    });
   }
 
   actionClose() {
@@ -9231,6 +9249,5 @@ class tickerHandler extends HTMLElement {
   }
 }
 customElements.define('component-ticker', tickerHandler);
-
 
 
