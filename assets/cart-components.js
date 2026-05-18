@@ -940,7 +940,7 @@ class CartNotification extends HTMLElement {
       .then((response) => response.text())
       .then((htmlText) => {
         const html = new DOMParser().parseFromString(htmlText, "text/html");
-        const source = html.querySelector("#minicart-form");
+        const source = html.querySelector(".shopify-section") || html.querySelector("#minicart-form");
         const target = document.getElementById("minicart-form");
         if (source && target) {
           target.innerHTML = source.innerHTML;

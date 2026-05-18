@@ -183,7 +183,7 @@
   }
 }
 .menu-category-icon {
-  border-radius: 0 !important;
+  border-radius: 100% !important;
 }
 
 mobile-navigation-bar a {
