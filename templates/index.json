@@ -165,7 +165,7 @@
         "collection_FAKwKX"
       ],
       "custom_css": [],
-      "name": "Masculino / Feminino",
+      "name": "Mais Vendidos",
       "settings": {
         "section_width": "stretch_width",
         "color_scheme": "scheme-accf3b11-ba40-4a3e-bafb-243ece6683ec",
@@ -195,7 +195,7 @@
         "items_per_row_mobile": 1.5,
         "padding_top": 0,
         "padding_bottom": 0,
-        "reset_spacing": false
+        "reset_spacing": true
       }
     },
     "multi_content_Dyd3Y3": {
@@ -214,7 +214,7 @@
             "overlay_opacity": 0,
             "content_type": "overlay",
             "content_alignment": "center",
-            "content_position": "top-left",
+            "content_position": "middle-center",
             "content_padding_block": 10,
             "content_padding_inline": 10,
             "content_mobile_image": false
@@ -234,9 +234,89 @@
             "overlay_opacity": 0,
             "content_type": "overlay",
             "content_alignment": "center",
-            "content_position": "top-left",
-            "content_padding_block": 30,
-            "content_padding_inline": 30,
+            "content_position": "middle-center",
+            "content_padding_block": 10,
+            "content_padding_inline": 10,
+            "content_mobile_image": false
+          },
+          "blocks": {}
+        },
+        "group_media_content_KVhq9A": {
+          "type": "_group-media-content",
+          "settings": {
+            "color_scheme": "",
+            "content_width": "50%",
+            "media_type": "image",
+            "image_link": "",
+            "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
+            "autoplay": true,
+            "video_ratio": "16/9",
+            "overlay_opacity": 0,
+            "content_type": "overlay",
+            "content_alignment": "center",
+            "content_position": "middle-center",
+            "content_padding_block": 10,
+            "content_padding_inline": 10,
+            "content_mobile_image": false
+          },
+          "blocks": {}
+        },
+        "group_media_content_PrqNU4": {
+          "type": "_group-media-content",
+          "settings": {
+            "color_scheme": "",
+            "content_width": "50%",
+            "media_type": "image",
+            "image_link": "",
+            "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
+            "autoplay": true,
+            "video_ratio": "16/9",
+            "overlay_opacity": 0,
+            "content_type": "overlay",
+            "content_alignment": "center",
+            "content_position": "middle-center",
+            "content_padding_block": 10,
+            "content_padding_inline": 10,
+            "content_mobile_image": false
+          },
+          "blocks": {}
+        },
+        "group_media_content_A9mDNX": {
+          "type": "_group-media-content",
+          "settings": {
+            "color_scheme": "",
+            "content_width": "50%",
+            "media_type": "image",
+            "image_link": "",
+            "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
+            "autoplay": true,
+            "video_ratio": "16/9",
+            "overlay_opacity": 0,
+            "content_type": "overlay",
+            "content_alignment": "center",
+            "content_position": "middle-center",
+            "content_padding_block": 10,
+            "content_padding_inline": 10,
+            "content_mobile_image": false
+          },
+          "blocks": {}
+        },
+        "group_media_content_KejAPp": {
+          "type": "_group-media-content",
+          "settings": {
+            "color_scheme": "",
+            "content_width": "50%",
+            "media_type": "image",
+            "image_link": "",
+            "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
+            "autoplay": true,
+            "video_ratio": "16/9",
+            "overlay_opacity": 0,
+            "content_type": "overlay",
+            "content_alignment": "center",
+            "content_position": "middle-center",
+            "content_padding_block": 10,
+            "content_padding_inline": 10,
             "content_mobile_image": false
           },
           "blocks": {}
@@ -244,16 +324,20 @@
       },
       "block_order": [
         "group_media_content_ie4WQg",
-        "group_media_content_hqiaHe"
+        "group_media_content_hqiaHe",
+        "group_media_content_KVhq9A",
+        "group_media_content_PrqNU4",
+        "group_media_content_A9mDNX",
+        "group_media_content_KejAPp"
       ],
-      "name": "t:sections.multi_content.name",
+      "name": "Multiblocos",
       "settings": {
         "section_width": "fluid_container",
         "color_scheme": "",
-        "heading": "",
+        "heading": "O AGRO ESTÁ EM TUDO",
         "description": "",
         "show_view_all_button": false,
-        "use_outline_button_style": true,
+        "use_outline_button_style": false,
         "link_view_all_button": "",
         "space_between_header": true,
         "header_size": "medium",
@@ -261,11 +345,67 @@
         "column_gap": 15,
         "equal_height_adjustment": false,
         "vertical_align": "center",
-        "carousel_on_mobile": true,
+        "carousel_on_mobile": false,
         "items_per_row_mobile": 2,
         "padding_top": 30,
         "padding_bottom": 30,
         "reset_spacing": false
+      }
+    },
+    "collection_tab_cPpFqA": {
+      "type": "collection-tab",
+      "blocks": {
+        "collection_t7MiMg": {
+          "type": "collection",
+          "settings": {
+            "collection": "lancamentos-femininos",
+            "collection_title": "Femininas"
+          }
+        },
+        "collection_4BX6xr": {
+          "type": "collection",
+          "settings": {
+            "collection": "lancamentos",
+            "collection_title": "Masculino"
+          }
+        }
+      },
+      "block_order": [
+        "collection_t7MiMg",
+        "collection_4BX6xr"
+      ],
+      "custom_css": [],
+      "name": "Lançamentos",
+      "settings": {
+        "section_width": "stretch_width",
+        "color_scheme": "scheme-accf3b11-ba40-4a3e-bafb-243ece6683ec",
+        "heading": "",
+        "description": "<h2>Últimas Novidades</h2>",
+        "show_view_all_button": true,
+        "header_size": "small",
+        "header_alignment": "center",
+        "tab_header_style": "horizontal",
+        "horizontal_tab_style": "fill",
+        "tab_header_postion": "default",
+        "display_mode": "grid",
+        "items_to_show": 16,
+        "items_per_row": 5,
+        "column_gap": 30,
+        "show_arrow": true,
+        "carousel_pagination": "disable",
+        "infinite": false,
+        "autoplay": false,
+        "autorotate_speed": 2,
+        "reveal": false,
+        "rows": 2,
+        "show_load_more_button": false,
+        "button_label": "Ver mais",
+        "use_outline_button_style": true,
+        "carousel_on_mobile": true,
+        "items_per_row_mobile": 1.5,
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": true
       }
     },
     "outfit_idea_wGzkBi": {
@@ -861,6 +1001,7 @@
     "slideshow_8KKtNU",
     "collection_tab_cxBKk3",
     "multi_content_Dyd3Y3",
+    "collection_tab_cPpFqA",
     "outfit_idea_wGzkBi",
     "divider_FcGgzn",
     "scrolling_text_U3mttg",
