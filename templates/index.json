@@ -164,10 +164,7 @@
         "collection_9WTytq",
         "collection_FAKwKX"
       ],
-      "custom_css": [
-        "h2 {font-size: 1.7em; line-height: 1rem !important; margin-bottom: 0px !important; font-weight: 400;}",
-        "strong {font-weight: 800;}"
-      ],
+      "custom_css": [],
       "name": "Masculino / Feminino",
       "settings": {
         "section_width": "stretch_width",
