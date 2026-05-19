@@ -165,7 +165,7 @@
         "collection_FAKwKX"
       ],
       "custom_css": [
-        "h2 {font-size: clamp(1.7em, 1.7rem, 3vw); line-height: 1rem !important; margin-bottom: 0px !important; font-weight: 400;}",
+        "h2 {font-size: clamp(1.7em, 3rem, 3rem); line-height: 1rem !important; margin-bottom: 0px !important; font-weight: 400;}",
         "strong {font-weight: 800;}"
       ],
       "name": "Masculino / Feminino",
