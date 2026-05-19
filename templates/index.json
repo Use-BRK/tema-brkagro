@@ -165,14 +165,15 @@
         "collection_FAKwKX"
       ],
       "custom_css": [
-        "h4 {line-height: 1rem !important; margin-bottom: 0px !important; font-weight: 400;}"
+        "h2 {font-size: clamp(1.7em, 1.7rem, 3vw); line-height: 1rem !important; margin-bottom: 0px !important; font-weight: 400;}",
+        "strong {font-weight: 800;}"
       ],
       "name": "Masculino / Feminino",
       "settings": {
         "section_width": "stretch_width",
         "color_scheme": "scheme-accf3b11-ba40-4a3e-bafb-243ece6683ec",
         "heading": "",
-        "description": "<h4>Veja as <strong>+ Vendidas</strong> do Agro</h4>",
+        "description": "<h2>Veja as <strong>+ Vendidas</strong> do Agro</h2>",
         "show_view_all_button": true,
         "header_size": "small",
         "header_alignment": "center",
