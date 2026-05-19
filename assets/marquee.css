@@ -119,3 +119,11 @@
     padding: 0;
   }
 }
+@media (prefers-reduced-motion: reduce) {
+  .animation-marquee,
+  .animation-marquee.right,
+  .ticker--animation {
+    animation: none !important;
+    -webkit-animation: none !important;
+  }
+}

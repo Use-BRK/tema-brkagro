@@ -6,6 +6,24 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
+.product-item__information {
+  position: relative;
+}
+.product-item__name::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+.product-item__information .color-swatches,
+.product-item__information .product__add-cart,
+.product-item__information .product-list-action,
+.product-item__information select-option,
+.product-item__information quick-add-button,
+.product-item__information .product-item__select-options {
+  position: relative;
+  z-index: 2;
+}
 .product-item__wrapper {
   --shadow: 0 5px 30px rgba(0, 0, 0, 0.05);
   --col-width: 30%;
