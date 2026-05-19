@@ -121,6 +121,30 @@
               </button>
             </div>
           {%- endform -%}
+          <script>
+            document.addEventListener('DOMContentLoaded', function () {
+              var form = document.querySelector('.subscribe-form');
+              if (form) {
+                form.addEventListener('submit', function (e) {
+                  if (form.getAttribute('data-edrone-submitted')) return;
+                  e.preventDefault();
+
+                  var emailInput = form.querySelector('input[name="contact[email]"]');
+                  if (emailInput && window._edrone) {
+                    _edrone.email = emailInput.value;
+                    _edrone.action_type = 'subscribe';
+                    _edrone.init();
+                  }
+
+                  setTimeout(function () {
+                    form.setAttribute('data-edrone-submitted', 'true');
+                    form.submit();
+                  }, 500);
+                });
+              }
+            });
+          </script>
+
           {%- if section_st.note != blank -%}
             <div class="sec_newsletter_note newsletter-note mt-12 mx-auto fs-12">{{ section.settings.note }}</div>
           {% endif %}
