@@ -172,7 +172,7 @@
                           endif
                         endfor
                       -%}
-                      <tr data-hulkapps-lineitem 
+                      <tr
                         class="cart-item page__cart-item{% if is_gift_progress_line %} cart-item--gift-progress{% endif %}"
                         id="CartItem-{{ item.index | plus: 1 }}"
                         style="--custom-width: 10rem"
@@ -327,7 +327,7 @@
                                   {%- endfor -%}
                                 {% endif %}
                                 {%- if item.properties.size != 0 -%}
-                                  <div  data-hulkapps-line-properties class="product-option-property flex flex-wrap flex-column">
+                                  <div class="product-option-property flex flex-wrap flex-column">
                                 {% endif %}
                                 {%- for property in item.properties -%}
                                   {%- assign property_first_char = property.first | slice: 0 -%}
@@ -347,7 +347,6 @@
                                   {% endif %}
                                 {%- endfor -%}
                                 {%- if item.properties.size != 0 -%}</div>{% endif %}
-<button type='button' style='display: none;' class='edit_cart_option btn btn--primary button' data-product_id='{{item.product_id}}' data-key='{{item.key}}' data-variant_id='{{item.variant_id}}' data-quantity='{{item.quantity}}'>Edit Options</button>
                               </dl>
                               <p class="product-option my-0">{{ item.selling_plan_allocation.selling_plan.name }}</p>
                             {% endif %}
@@ -381,7 +380,7 @@
                                 <span class="visually-hidden">
                                   {{ 'products.product.price.regular_price' | t }}
                                 </span>
-                                <s  data-hulkapps-ci-price data-key='{{item.key}}' class="cart-item__old-price product-option">
+                                <s class="cart-item__old-price product-option">
                                   {% if settings.currency_code_enabled %}
                                     {{ item.original_price | money_with_currency }}
                                   {% else %}
@@ -391,7 +390,7 @@
                                 <span class="visually-hidden">
                                   {{ 'products.product.price.sale_price' | t }}
                                 </span>
-                                <strong  data-hulkapps-ci-price data-key='{{item.key}}' class="cart-item__final-price product-option">
+                                <strong class="cart-item__final-price product-option">
                                   {% if settings.currency_code_enabled %}
                                     {{ item.final_price | money_with_currency }}
                                   {% else %}
@@ -400,7 +399,7 @@
                                 </strong>
                               </div>
                             {%- else -%}
-                              <div  data-hulkapps-ci-price data-key='{{item.key}}' class="product-option">
+                              <div class="product-option">
                                 {% if settings.currency_code_enabled %}
                                   {{ item.original_price | money_with_currency }}
                                 {% else %}
@@ -473,7 +472,7 @@
                                 <dt class="visually-hidden">
                                   {{ 'products.product.price.sale_price' | t }}
                                 </dt>
-                                <dd  data-hulkapps-line-price data-key='{{item.key}}' class="price price--end">
+                                <dd class="price price--end">
                                   {% if settings.currency_code_enabled %}
                                     {{ item.final_line_price | money_with_currency }}
                                   {% else %}
@@ -482,7 +481,7 @@
                                 </dd>
                               </dl>
                             {%- else -%}
-                              <span  data-hulkapps-line-price data-key='{{item.key}}' class="price price--end">
+                              <span class="price price--end">
                                 {% if settings.currency_code_enabled %}
                                   {{ item.original_line_price | money_with_currency }}
                                 {% else %}
@@ -888,7 +887,7 @@
               {% endif %}
               <div class="totals flex flex-wrap gap-5 align-center justify-between mb-10 h5 mt-20 pt-25 border-top">
                 <span class="totals__subtotal"> {{ 'general.cart.subtotal' | t }}:</span>
-                <span data-hulkapps-cart-total>{{ cart.total_price | money_with_currency }}</span>
+                {{ cart.total_price | money_with_currency }}
               </div>
               <div class="js-contents_discounts">
                 {%- if cart.cart_level_discount_applications.size > 0 -%}
