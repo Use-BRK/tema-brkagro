@@ -164,14 +164,17 @@
         "collection_9WTytq",
         "collection_FAKwKX"
       ],
+      "custom_css": [
+        "h4 {line-height: 1rem !important; margin-bottom: 0px !important; font-weight: 400;}"
+      ],
       "name": "Masculino / Feminino",
       "settings": {
         "section_width": "stretch_width",
         "color_scheme": "scheme-accf3b11-ba40-4a3e-bafb-243ece6683ec",
         "heading": "",
-        "description": "",
+        "description": "<h4>Veja as <strong>+ Vendidas</strong> do Agro</h4>",
         "show_view_all_button": true,
-        "header_size": "medium",
+        "header_size": "small",
         "header_alignment": "center",
         "tab_header_style": "horizontal",
         "horizontal_tab_style": "fill",
