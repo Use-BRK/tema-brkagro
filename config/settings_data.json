@@ -389,22 +389,22 @@
       },
       "scheme-a07f02f4-f1f2-4ea3-9eeb-577115ec9f47": {
         "settings": {
-          "background": "#0f6049",
+          "background": "#085b47",
           "background_gradient": "",
           "primary_color": "#efe9da",
           "text_color": "#efe9da",
           "heading_color": "#efe9da",
           "border_color": "#efe9da",
           "btn_primary_color": "#ffffff",
-          "btn_primary_background": "#0f6049",
+          "btn_primary_background": "#085b47",
           "btn_primary_gradient": "",
-          "btn_primary_hover_color": "#0f6049",
+          "btn_primary_hover_color": "#085b47",
           "btn_primary_hover_background": "#3456e6",
           "btn_primary_hover_background_gradient": "",
-          "btn_outline_color": "#0f6049",
-          "btn_outline_border_color": "#0f6049",
-          "button_link_color": "#0f6049",
-          "button_link_hover_color": "#0f6049"
+          "btn_outline_color": "#085b47",
+          "btn_outline_border_color": "#085b47",
+          "button_link_color": "#085b47",
+          "button_link_hover_color": "#085b47"
         }
       },
       "scheme-d1483117-09cb-4b59-a57e-4f771e4a4d7b": {
