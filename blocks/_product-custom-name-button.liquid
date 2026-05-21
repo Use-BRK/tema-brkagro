@@ -51,15 +51,16 @@
         href="{{ whatsapp_url }}"
         target="_blank"
         rel="noopener"
-        class="btn btn-primary w-full product_submit_button product-form__submit word-wrap relative no-underline"
-        style="--btn-padding-x: 2rem;font-size: 1.7rem;"
+        class="btn btn-primary w-full product_submit_button product-form__submit word-wrap relative no-underline custom-name-button__link"
+        style="--btn-padding-x: 1.4rem;"
       >
-        <span class="btn-label hidden-on-load inline-flex align-center content-center gap-10">
+        <span class="btn-label hidden-on-load inline-flex align-center content-center gap-10 custom-name-button__label">
           <img
+            class="custom-name-button__icon"
             src="https://cdn.shopify.com/s/files/1/0887/2083/4857/files/customize.svg"
             alt=""
-            width="20"
-            height="20"
+            width="16"
+            height="16"
             loading="lazy"
           >
           <span>{{ button_label }}</span>
@@ -84,6 +85,34 @@
     </script>
   </div>
 {% endif %}
+
+{% stylesheet %}
+  .custom-name-button__link {
+    min-height: 4.4rem;
+    line-height: 1.15;
+    white-space: normal;
+  }
+
+  .custom-name-button__label {
+    max-width: 100%;
+    text-align: center;
+  }
+
+  .custom-name-button__icon {
+    flex: 0 0 auto;
+  }
+
+  @media (max-width: 749px) {
+    .custom-name-button__link {
+      min-height: 4.6rem;
+      font-size: 1.6rem;
+    }
+
+    .custom-name-button__label {
+      gap: 0.5rem;
+    }
+  }
+{% endstylesheet %}
 
 {% schema %}
 {
