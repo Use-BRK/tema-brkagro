@@ -28,16 +28,8 @@
   endif
 
   assign button_label = block_st.button_label | default: 'Quero meu nome na Camisa'
-  assign utm_query = 'utm_source=brkagro&utm_medium=PDP&utm_campaign=nome_personalizado&utm_content=botao_PDP'
   assign product_url = request.origin | append: product.url
-
-  if product_url contains '?'
-    assign product_url = product_url | append: '&' | append: utm_query
-  else
-    assign product_url = product_url | append: '?' | append: utm_query
-  endif
-
-  assign message = block_st.message | default: 'Olá, gostei dessa camisa e quero meu nome nela!'
+  assign message = 'Olá, gostei dessa camisa e quero meu nome nela!'
   assign whatsapp_text = message | append: ' ' | append: product_url | url_encode
   assign whatsapp_number = block_st.whatsapp_number | remove: ' ' | remove: '+' | remove: '-' | remove: '(' | remove: ')'
 
@@ -55,15 +47,41 @@
   >
     <div class="button_buy-now grow-1 skeleton-loading">
       <a
+        id="custom-name-button-{{ block.id }}"
         href="{{ whatsapp_url }}"
         target="_blank"
         rel="noopener"
-        class="btn btn-primary w-full product_submit_button product-form__submit word-wrap relative"
+        class="btn btn-primary w-full product_submit_button product-form__submit word-wrap relative no-underline"
         style="--btn-padding-x: 2.5rem;"
       >
-        <span class="btn-label hidden-on-load">{{ button_label }}</span>
+        <span class="btn-label hidden-on-load inline-flex align-center content-center gap-10">
+          <img
+            src="https://cdn.shopify.com/s/files/1/0887/2083/4857/files/customize.svg"
+            alt=""
+            width="20"
+            height="20"
+            loading="lazy"
+          >
+          <span>{{ button_label }}</span>
+        </span>
       </a>
     </div>
+    <script>
+      (() => {
+        const button = document.getElementById('custom-name-button-{{ block.id }}');
+        if (!button || !window.Shopify || !Shopify.analytics || typeof Shopify.analytics.publish !== 'function') return;
+
+        button.addEventListener('click', () => {
+          Shopify.analytics.publish('brkagro:nome_personalizado_click', {
+            productId: {{ product.id | json }},
+            productTitle: {{ product.title | json }},
+            productHandle: {{ product.handle | json }},
+            productUrl: {{ product_url | json }},
+            buttonText: {{ button_label | json }},
+          });
+        });
+      })();
+    </script>
   </div>
 {% endif %}
 
@@ -89,12 +107,6 @@
       "id": "whatsapp_number",
       "label": "Número do WhatsApp",
       "info": "Opcional. Use DDI + DDD + número, por exemplo: 5511999999999. Se ficar vazio, abre o compartilhamento do WhatsApp."
-    },
-    {
-      "type": "text",
-      "id": "message",
-      "default": "Olá, gostei dessa camisa e quero meu nome nela!",
-      "label": "Mensagem do WhatsApp"
     },
     {
       "type": "collection_list",
