@@ -100,6 +100,20 @@
           },
           "blocks": {}
         },
+        "product_custom_name_button_eMeRQg": {
+          "type": "_product-custom-name-button",
+          "name": "Botão nome na camisa",
+          "settings": {
+            "enable_button": true,
+            "button_label": "Quero meu nome na Camisa",
+            "whatsapp_number": "553432194697",
+            "collections": [
+              "camisas-uv50-femininas",
+              "camisas-uv50-masculinas"
+            ]
+          },
+          "blocks": {}
+        },
         "frete_no_produto_shipping_calc_rwYMRw": {
           "type": "shopify://apps/frete-no-produto/blocks/shipping_calc/86063d43-a133-4046-bbed-b9bfb712ccba",
           "settings": {
@@ -184,6 +198,7 @@
         "variant_picker_tcCihG",
         "stock_countdown_JNK9zi",
         "buy_buttons_LcQGtR",
+        "product_custom_name_button_eMeRQg",
         "frete_no_produto_shipping_calc_rwYMRw",
         "product_grouped_6epkNf",
         "more_colors_3zmxGq",
