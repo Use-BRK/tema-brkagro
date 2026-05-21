@@ -27,9 +27,9 @@
     assign matches_collection = true
   endif
 
-  assign button_label = block_st.button_label | default: 'Quero meu nome na Camisa'
+  assign button_label = block_st.button_label | default: 'Quero meu nome na Camisa (R$29,90)'
   assign product_url = request.origin | append: product.url
-  assign message = 'Olá, gostei dessa camisa e quero meu nome nela!'
+  assign message = 'Olá, gostei dessa camisa e quero meu nome nela! Estou ciente do valor adicional (+R$29,90)'
   assign whatsapp_text = message | append: ' ' | append: product_url | url_encode
   assign whatsapp_number = block_st.whatsapp_number | remove: ' ' | remove: '+' | remove: '-' | remove: '(' | remove: ')'
 
@@ -52,7 +52,7 @@
         target="_blank"
         rel="noopener"
         class="btn btn-primary w-full product_submit_button product-form__submit word-wrap relative no-underline"
-        style="--btn-padding-x: 2.5rem;"
+        style="--btn-padding-x: 2rem;font-size: 1.3rem;"
       >
         <span class="btn-label hidden-on-load inline-flex align-center content-center gap-10">
           <img
@@ -99,7 +99,7 @@
     {
       "type": "text",
       "id": "button_label",
-      "default": "Quero meu nome na Camisa",
+      "default": "Quero meu nome na Camisa (R$29,90)",
       "label": "Texto do botão"
     },
     {
