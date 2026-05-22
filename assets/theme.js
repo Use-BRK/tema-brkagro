@@ -1,5 +1,6 @@
 "use-strict";
-import "./cart-components.js";
+import "./cart-components.js?v=brk-minicart-20260520";
+import "./cart-discount.js?v=brk-minicart-20260520";
 
 function showMinicartAddSuccessMessage(cart) {
   if (!cart || typeof window.showMinicartMessage !== "function") return;
@@ -4305,10 +4306,10 @@ class ButtonSubmitBundle extends HTMLElement {
         response.sections[section.id],
         "text/html"
       );
+      const source = html.querySelector("#minicart-form");
 
-      if (elementToReplace) {
-        elementToReplace.innerHTML =
-          html.querySelector("#minicart-form").innerHTML;
+      if (elementToReplace && source) {
+        elementToReplace.innerHTML = source.innerHTML;
       }
     });
 
@@ -4542,6 +4543,12 @@ if (!customElements.get("product-form-quick-edit")) {
                   if (cart_free_ship) {
                     cart_free_ship.init(cart.items_subtotal_price);
                   }
+                  if (
+                    window.GiftProgressBar &&
+                    typeof window.GiftProgressBar.renderAll === "function"
+                  ) {
+                    window.GiftProgressBar.renderAll(cart);
+                  }
                 }
               })
               .catch((error) => {
@@ -4555,8 +4562,10 @@ if (!customElements.get("product-form-quick-edit")) {
                   parsedState.sections[section.id],
                   "text/html"
                 );
-                elementToReplace.innerHTML =
-                  html.querySelector("#minicart-form").innerHTML;
+                const source = html.querySelector("#minicart-form");
+                if (elementToReplace && source) {
+                  elementToReplace.innerHTML = source.innerHTML;
+                }
               });
               if (this.cart && typeof this.cart.cartAction === "function") {
                 this.cart.cartAction();
@@ -7265,6 +7274,12 @@ if (!customElements.get("product-form")) {
                   if (cart_free_ship) {
                     cart_free_ship.init(cart.items_subtotal_price);
                   }
+                  if (
+                    window.GiftProgressBar &&
+                    typeof window.GiftProgressBar.renderAll === "function"
+                  ) {
+                    window.GiftProgressBar.renderAll(cart);
+                  }
                 }
               })
               .catch((error) => {
@@ -7310,9 +7325,10 @@ if (!customElements.get("product-form")) {
                     response.sections[section.id],
                     "text/html"
                   );
-                  if (elementToReplace) {
+                  const source = html.querySelector("#minicart-form");
+                  if (elementToReplace && source) {
                     elementToReplace.innerHTML =
-                      html.querySelector("#minicart-form").innerHTML;
+                      source.innerHTML;
                   }
                 });
                 this.cart.cartAction();

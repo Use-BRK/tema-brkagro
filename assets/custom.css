@@ -241,12 +241,14 @@ mobile-navigation-bar a:active {
   transform: translateY(-1px);
 }
 
-.gift-progress-modal .tingle-modal-box {
+body .tingle-modal.gift-progress-modal .tingle-modal-box {
   border-radius: 0;
   max-width: min(92vw, 46rem);
+  width: min(92vw, 46rem);
 }
 
-.gift-progress-modal .tingle-modal-box__content {
+body .tingle-modal.gift-progress-modal .tingle-modal-box__content {
+  min-width: 0;
   padding: 2.4rem;
 }
 
@@ -343,11 +345,20 @@ select.gift-progress-modal__variant {
   opacity: 0.55;
 }
 
+#minicart-form .items > .cart-item {
+  width: 100%;
+}
+
+#minicart-form .cart-item--gift-progress .minicart__product-info {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
 .cart-item__gift-badge,
 .cart-item__gift-qty {
   align-items: center;
   background: rgba(var(--color-primary-rgb), 0.1);
-  border-radius: 0;
+  border-radius: 999px;
   color: var(--color-primary);
   display: inline-flex;
   flex-shrink: 0;

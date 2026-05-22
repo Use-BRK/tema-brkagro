@@ -12,7 +12,7 @@
 
 <div class="minicart-coupon-inline mb-15" data-coupon-inline>
   <minicart-discount class="block">
-    <form class="minicart-coupon-inline__form" on:submit="/applyDiscount">
+    <form class="minicart-coupon-inline__form" on:submit="/applyDiscount" onsubmit="return false;">
       <label class="visually-hidden" for="MinicartCouponInline-{{ section.id }}">
         {{ 'general.cart.coupon.enter_discount_code' | t }}
       </label>

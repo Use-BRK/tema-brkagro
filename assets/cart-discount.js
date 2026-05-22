@@ -81,10 +81,13 @@ class MinicartDiscount extends HTMLElement {
           document.getElementById(section.section);
 
         if (elementToReplace) {
-          elementToReplace.innerHTML = this.getSectionInnerHTML(
+          const sectionHTML = this.getSectionInnerHTML(
             data.sections[section.section],
             section.section
           );
+          if (sectionHTML) {
+            elementToReplace.innerHTML = sectionHTML;
+          }
         }
       }
     });
@@ -130,7 +133,16 @@ class MinicartDiscount extends HTMLElement {
       cart_free_ship.init(data.items_subtotal_price);
     }
     const cart_gift_bar = document.querySelector("gift-progress-bar");
-    if (cart_gift_bar) {
+    if (
+      window.GiftProgressBar &&
+      Array.isArray(data.items) &&
+      typeof window.GiftProgressBar.renderAll === "function"
+    ) {
+      window.GiftProgressBar.renderAll(data);
+      if (typeof window.GiftProgressBar.enforceGiftEligibility === "function") {
+        window.GiftProgressBar.enforceGiftEligibility(data);
+      }
+    } else if (cart_gift_bar) {
       cart_gift_bar.init(data.items_subtotal_price);
     }
   }
@@ -220,7 +232,7 @@ class MinicartDiscount extends HTMLElement {
     } catch (error) {
       this.#handleError(error, "applying discount");
     } finally {
-      this.cart.cartAction();
+      this.cart?.cartAction?.();
       this.#setLoadingState(false);
       this.#activeFetch = null;
     }
@@ -265,7 +277,7 @@ class MinicartDiscount extends HTMLElement {
     } catch (error) {
       this.#handleError(error, "removing discount");
     } finally {
-      this.cart.cartAction();
+      this.cart?.cartAction?.();
       this.#activeFetch = null;
       removeButton.setAttribute("aria-disabled", "false");
       removeButton.classList.remove("loading");
@@ -377,4 +389,21 @@ class MinicartDiscount extends HTMLElement {
 
 if (!customElements.get("minicart-discount")) {
   customElements.define("minicart-discount", MinicartDiscount);
+}
+
+if (!window.__brkMinicartDiscountSubmitGuard) {
+  window.__brkMinicartDiscountSubmitGuard = true;
+  document.addEventListener(
+    "submit",
+    (event) => {
+      const form = event.target;
+      if (
+        form instanceof HTMLFormElement &&
+        form.classList.contains("minicart-coupon-inline__form")
+      ) {
+        event.preventDefault();
+      }
+    },
+    true
+  );
 }

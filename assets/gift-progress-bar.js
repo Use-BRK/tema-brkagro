@@ -11,6 +11,7 @@ class GiftProgressBar extends HTMLElement {
 
   static cartPromise = null;
   static syncTimer = null;
+  static giftCleanupPromise = null;
 
   static isGiftLine(item) {
     return (
@@ -33,6 +34,7 @@ class GiftProgressBar extends HTMLElement {
     const shippingProtectionProductIds = GiftProgressBar.getShippingProtectionProductIds();
     return shippingProtectionProductIds.has(Number(item.product_id));
   }
+
   static getQualifyingSubtotal(cart) {
     if (!cart || !Array.isArray(cart.items)) return 0;
     return cart.items.reduce((subtotal, item) => {
@@ -40,6 +42,166 @@ class GiftProgressBar extends HTMLElement {
       if (GiftProgressBar.isShippingProtectionLine(item)) return subtotal;
       return subtotal + Number(item.final_line_price || item.line_price || 0);
     }, 0);
+  }
+
+  static getCurrencyRate() {
+    const rate =
+      window.Shopify && Shopify.currency ? Number(Shopify.currency.rate) : 1;
+    return rate || 1;
+  }
+
+  static getGiftThresholdCents(item) {
+    const rawThreshold = item?.properties?._brk_gift_threshold;
+    const threshold = Number(rawThreshold);
+    if (!Number.isFinite(threshold) || threshold <= 0) return 0;
+    return Math.round(threshold * GiftProgressBar.getCurrencyRate() * 100);
+  }
+
+  static getInvalidGiftLines(cart) {
+    if (!cart || !Array.isArray(cart.items)) return [];
+
+    const qualifyingSubtotal = GiftProgressBar.getQualifyingSubtotal(cart);
+    return cart.items.filter((item) => {
+      if (!GiftProgressBar.isGiftLine(item)) return false;
+      const giftThresholdCents = GiftProgressBar.getGiftThresholdCents(item);
+      if (qualifyingSubtotal <= 0) return true;
+      return giftThresholdCents > 0 && qualifyingSubtotal < giftThresholdCents;
+    });
+  }
+
+  static getSectionsToRender() {
+    const sections = [];
+    if (document.getElementById("minicart-form")) {
+      sections.push({
+        id: "minicart-form",
+        section: "minicart-form",
+        selector: "#minicart-form",
+      });
+    }
+
+    const mainCartItems = document.getElementById("main-cart-items");
+    if (mainCartItems && mainCartItems.dataset.id) {
+      sections.push({
+        id: "main-cart-items",
+        section: mainCartItems.dataset.id,
+        selector: "#main-cart-items",
+      });
+    }
+
+    return sections.filter((section, index, list) => {
+      return list.findIndex((item) => item.section === section.section) === index;
+    });
+  }
+
+  static updateSections(sections, sectionsToRender) {
+    if (!sections || !sectionsToRender.length) return false;
+    let rendered = true;
+    const cartNotification = document.querySelector("cart-notification");
+
+    sectionsToRender.forEach((section) => {
+      if (!sections[section.section]) {
+        rendered = false;
+        return;
+      }
+
+      if (
+        section.id === "minicart-form" &&
+        typeof cartNotification?.replaceMinicartFormFromHTML === "function"
+      ) {
+        if (!cartNotification.replaceMinicartFormFromHTML(sections[section.section])) {
+          rendered = false;
+        }
+        return;
+      }
+
+      const html = new DOMParser().parseFromString(
+        sections[section.section],
+        "text/html"
+      );
+      const source = html.querySelector(section.selector);
+      const target = document.getElementById(section.id);
+      if (!source || !target) {
+        rendered = false;
+        return;
+      }
+
+      target.innerHTML = source.innerHTML;
+    });
+
+    return rendered;
+  }
+
+  static removeGiftLine(item, sectionsToRender) {
+    const body = {
+      id: item.key || String(item.variant_id),
+      quantity: 0,
+    };
+
+    if (sectionsToRender.length) {
+      body.sections = sectionsToRender.map((section) => section.section);
+      body.sections_url = window.location.pathname;
+    }
+
+    const cartChangeUrl =
+      typeof routes !== "undefined" && routes.cart_change_url
+        ? routes.cart_change_url
+        : "/cart/change";
+
+    return fetch(`${cartChangeUrl}.js`, {
+      ...fetchConfig(),
+      body: JSON.stringify(body),
+    })
+      .then((response) => response.json())
+      .then((response) => {
+        if (response.errors || response.status === "bad_request") {
+          throw new Error(response.description || response.message || response.errors);
+        }
+
+        const rendered = GiftProgressBar.updateSections(
+          response.sections,
+          sectionsToRender
+        );
+        if (!rendered) {
+          document.querySelector("cart-notification")?.refreshMinicartSection?.();
+        }
+
+        return response;
+      });
+  }
+
+  static enforceGiftEligibility(cart) {
+    const invalidGiftLines = GiftProgressBar.getInvalidGiftLines(cart);
+    if (!invalidGiftLines.length) return Promise.resolve(cart);
+    if (GiftProgressBar.giftCleanupPromise) return GiftProgressBar.giftCleanupPromise;
+
+    const sectionsToRender = GiftProgressBar.getSectionsToRender();
+    GiftProgressBar.giftCleanupPromise = invalidGiftLines
+      .reduce((promise, item) => {
+        return promise.then(() => GiftProgressBar.removeGiftLine(item, sectionsToRender));
+      }, Promise.resolve())
+      .then(() => GiftProgressBar.fetchCart(true))
+      .then((freshCart) => {
+        GiftProgressBar.updateCartShell(freshCart);
+        GiftProgressBar.renderAll(freshCart);
+        const cartNotification = document.querySelector("cart-notification");
+        if (
+          cartNotification &&
+          typeof cartNotification.cartAction === "function"
+        ) {
+          cartNotification.cartAction();
+        }
+        return freshCart;
+      })
+      .catch((error) => {
+        console.error("Error removing invalid gift:", error);
+        document.querySelector("cart-notification")?.refreshMinicartSection?.();
+        return cart;
+      })
+      .finally(() => {
+        GiftProgressBar.giftCleanupPromise = null;
+      });
+
+    return GiftProgressBar.giftCleanupPromise;
   }
 
   static fetchCart(force = false) {
@@ -72,7 +234,7 @@ class GiftProgressBar extends HTMLElement {
       .then((cart) => {
         GiftProgressBar.updateCartShell(cart);
         GiftProgressBar.renderAll(cart);
-        return cart;
+        return GiftProgressBar.enforceGiftEligibility(cart);
       })
       .catch((error) => {
         console.error("Error syncing gift progress bar:", error);
@@ -466,7 +628,11 @@ class GiftProgressBar extends HTMLElement {
         if (response.errors || response.status) {
           throw new Error(response.description || response.message || response.errors);
         }
-        this.updateSections(response.sections, sectionsToRender);
+        const rendered = this.updateSections(response.sections, sectionsToRender);
+        if (!rendered) {
+          const cartNotification = document.querySelector("cart-notification");
+          cartNotification?.refreshMinicartSection?.();
+        }
         return GiftProgressBar.syncAllFromCart(true);
       })
       .then((cart) => {
@@ -525,20 +691,38 @@ class GiftProgressBar extends HTMLElement {
   }
 
   updateSections(sections, sectionsToRender) {
-    if (!sections || !sectionsToRender.length) return;
+    if (!sections || !sectionsToRender.length) return false;
+    let rendered = true;
+    const cartNotification = document.querySelector("cart-notification");
 
     sectionsToRender.forEach((section) => {
-      if (!sections[section.section]) return;
+      if (!sections[section.section]) {
+        rendered = false;
+        return;
+      }
+      if (
+        section.id === "minicart-form" &&
+        typeof cartNotification?.replaceMinicartFormFromHTML === "function"
+      ) {
+        if (!cartNotification.replaceMinicartFormFromHTML(sections[section.section])) {
+          rendered = false;
+        }
+        return;
+      }
       const html = new DOMParser().parseFromString(
         sections[section.section],
         "text/html"
       );
       const source = html.querySelector(section.selector);
       const target = document.getElementById(section.id);
-      if (!source || !target) return;
+      if (!source || !target) {
+        rendered = false;
+        return;
+      }
 
       target.innerHTML = source.innerHTML;
     });
+    return rendered;
   }
 
   toast(message, type) {

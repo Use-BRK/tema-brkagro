@@ -364,6 +364,70 @@ class CartNotification extends HTMLElement {
     };
   }
 
+  syncCartDecorations(cart) {
+    if (!cart) return;
+
+    if (cart.item_count != undefined) {
+      document.querySelectorAll(".cart-count").forEach((el) => {
+        if (el.classList.contains("cart-count-drawer")) {
+          el.innerHTML = `(${cart.item_count})`;
+        } else {
+          el.innerHTML = cart.item_count > 100 ? "~" : cart.item_count;
+        }
+      });
+    }
+
+    const headerTotalPrice = document.querySelector("header-total-price");
+    if (
+      headerTotalPrice &&
+      typeof headerTotalPrice.updateTotal === "function"
+    ) {
+      headerTotalPrice.updateTotal(cart);
+    }
+
+    const cartFreeShip = document.querySelector("free-ship-progress-bar");
+    if (cartFreeShip && cart.items_subtotal_price != undefined) {
+      cartFreeShip.init(cart.items_subtotal_price);
+    }
+
+    if (
+      window.GiftProgressBar &&
+      Array.isArray(cart.items) &&
+      typeof window.GiftProgressBar.renderAll === "function"
+    ) {
+      window.GiftProgressBar.renderAll(cart);
+      if (typeof window.GiftProgressBar.enforceGiftEligibility === "function") {
+        window.GiftProgressBar.enforceGiftEligibility(cart);
+      }
+    } else if (
+      window.GiftProgressBar &&
+      typeof window.GiftProgressBar.syncAllFromCart === "function"
+    ) {
+      window.GiftProgressBar.syncAllFromCart(true);
+    } else {
+      const cartGiftBar = document.querySelector("gift-progress-bar");
+      if (
+        cartGiftBar &&
+        cart.items_subtotal_price != undefined &&
+        typeof cartGiftBar.init === "function"
+      ) {
+        cartGiftBar.init(cart.items_subtotal_price);
+      }
+    }
+  }
+
+  replaceMinicartFormFromHTML(sectionHtml) {
+    if (!sectionHtml) return false;
+
+    const html = new DOMParser().parseFromString(sectionHtml, "text/html");
+    const source = html.querySelector("#minicart-form");
+    const target = document.getElementById("minicart-form");
+    if (!source || !target) return false;
+
+    target.innerHTML = source.innerHTML;
+    return true;
+  }
+
   cartAddonsSave(event) {
     event.preventDefault();
     const target = event.currentTarget;
@@ -481,37 +545,24 @@ class CartNotification extends HTMLElement {
         fetch("/cart.json")
           .then((res) => res.json())
           .then((cart) => {
-            if (cart.item_count != undefined) {
-              document.querySelectorAll(".cart-count").forEach((el) => {
-                if (el.classList.contains("cart-count-drawer")) {
-                  el.innerHTML = `(${cart.item_count})`;
-                } else {
-                  el.innerHTML = cart.item_count > 100 ? "~" : cart.item_count;
-                }
-              });
-              if (document.querySelector("header-total-price")) {
-                document.querySelector("header-total-price").updateTotal(cart);
-              }
-              const cart_free_ship = document.querySelector(
-                "free-ship-progress-bar"
-              );
-              if (cart_free_ship) {
-                cart_free_ship.init(cart.items_subtotal_price);
-              }
-            }
+            this.syncCartDecorations(cart);
           })
           .catch((error) => {
             throw error;
           });
         this.getSectionsToRender().forEach((section) => {
-          const elementToReplace = document.getElementById(section.id);
-          const html = new DOMParser().parseFromString(
-            parsedState.sections[section.id],
-            "text/html"
-          );
-          elementToReplace.innerHTML =
-            html.querySelector("#minicart-form").innerHTML;
+          if (!this.replaceMinicartFormFromHTML(parsedState.sections[section.id])) {
+            this.refreshMinicartSection();
+          }
         });
+        fetch("/cart.json")
+          .then((res) => res.json())
+          .then((cart) => {
+            this.syncCartDecorations(cart);
+          })
+          .catch((error) => {
+            throw error;
+          });
         this.cartAction();
       })
       .catch((e) => {
@@ -573,37 +624,24 @@ class CartNotification extends HTMLElement {
         fetch("/cart.json")
           .then((res) => res.json())
           .then((cart) => {
-            if (cart.item_count != undefined) {
-              document.querySelectorAll(".cart-count").forEach((el) => {
-                if (el.classList.contains("cart-count-drawer")) {
-                  el.innerHTML = `(${cart.item_count})`;
-                } else {
-                  el.innerHTML = cart.item_count > 100 ? "~" : cart.item_count;
-                }
-              });
-              if (document.querySelector("header-total-price")) {
-                document.querySelector("header-total-price").updateTotal(cart);
-              }
-              const cart_free_ship = document.querySelector(
-                "free-ship-progress-bar"
-              );
-              if (cart_free_ship) {
-                cart_free_ship.init(cart.items_subtotal_price);
-              }
-            }
+            this.syncCartDecorations(cart);
           })
           .catch((error) => {
             throw error;
           });
         this.getSectionsToRender().forEach((section) => {
-          const elementToReplace = document.getElementById(section.id);
-          const html = new DOMParser().parseFromString(
-            parsedState.sections[section.id],
-            "text/html"
-          );
-          elementToReplace.innerHTML =
-            html.querySelector("#minicart-form").innerHTML;
+          if (!this.replaceMinicartFormFromHTML(parsedState.sections[section.id])) {
+            this.refreshMinicartSection();
+          }
         });
+        fetch("/cart.json")
+          .then((res) => res.json())
+          .then((cart) => {
+            this.syncCartDecorations(cart);
+          })
+          .catch((error) => {
+            throw error;
+          });
         this.cartAction();
       })
       .catch((e) => {
@@ -735,8 +773,6 @@ class CartNotification extends HTMLElement {
     if (cartRecommend && cartRecommend.classList.contains("open")) {
       cartRecommend.classList.remove("open");
     }
-    const cart_free_ship = document.querySelector("free-ship-progress-bar");
-
     fetch('/cart.js')
       .then((r) => r.json())
       .then((cart) => {
@@ -779,18 +815,7 @@ class CartNotification extends HTMLElement {
           return;
         }
 
-        if (parsedState.item_count != undefined) {
-          document.querySelectorAll(".cart-count").forEach((el) => {
-            if (el.classList.contains("cart-count-drawer")) {
-              el.innerHTML = `(${parsedState.item_count})`;
-            } else {
-              el.innerHTML = parsedState.item_count > 100 ? "~" : parsedState.item_count;
-            }
-          });
-          if (document.querySelector("header-total-price")) {
-            document.querySelector("header-total-price").updateTotal(parsedState);
-          }
-        }
+        this.syncCartDecorations(parsedState);
 
         if (document.querySelector(".quantity__label")) {
           const items = parsedState.items || [];
@@ -832,20 +857,14 @@ class CartNotification extends HTMLElement {
               rendered = false;
               return;
             }
-            const html = new DOMParser().parseFromString(sectionHtml, "text/html");
-            const source = html.querySelector("#minicart-form");
-            if (!source) {
+            if (!this.replaceMinicartFormFromHTML(sectionHtml)) {
               rendered = false;
-              return;
-            }
-            elementToReplace.innerHTML = source.innerHTML;
-            if (cart_free_ship) {
-              cart_free_ship.init(parsedState.items_subtotal_price);
             }
           });
           if (!rendered) return this.refreshMinicartSection();
         }
 
+        this.syncCartDecorations(parsedState);
         this.cartAction();
       })
       .catch((e) => {
@@ -897,34 +916,17 @@ class CartNotification extends HTMLElement {
     return fetch(url, { cache: "no-store" })
       .then((response) => response.text())
       .then((htmlText) => {
-        const html = new DOMParser().parseFromString(htmlText, "text/html");
-        const source = html.querySelector(".shopify-section") || html.querySelector("#minicart-form");
-        const target = document.getElementById("minicart-form");
-        if (source && target) {
-          target.innerHTML = source.innerHTML;
+        if (!this.replaceMinicartFormFromHTML(htmlText)) {
+          throw new Error("Minicart section response did not include #minicart-form");
         }
         return fetch("/cart.json", { cache: "no-store" })
           .then((response) => response.json())
           .catch(() => null);
       })
       .then((cart) => {
-        if (cart && cart.item_count !== undefined) {
-          document.querySelectorAll(".cart-count").forEach((el) => {
-            if (el.classList.contains("cart-count-drawer")) {
-              el.innerHTML = `(${cart.item_count})`;
-            } else {
-              el.innerHTML = cart.item_count > 100 ? "~" : cart.item_count;
-            }
-          });
-          if (document.querySelector("header-total-price")) {
-            document.querySelector("header-total-price").updateTotal(cart);
-          }
-          const cart_free_ship = document.querySelector("free-ship-progress-bar");
-          if (cart_free_ship) {
-            cart_free_ship.init(cart.items_subtotal_price);
-          }
-        }
+        this.syncCartDecorations(cart);
         this.cartAction();
+        BlsLazyloadImg.init();
         return cart;
       })
       .catch((error) => {

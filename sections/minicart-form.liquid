@@ -15,6 +15,19 @@
   assign product_recommendations_type = theme_st.product_recommendations_type
   assign select_product_recommendations = theme_st.select_product_recommendations
   assign hidden_price = theme_st.hidden_price
+  assign cart_has_regular_item = false
+  for line_item in cart.items
+    assign line_is_gift_progress = false
+    for property in line_item.properties
+      if property.first == '_brk_gift_progress' and property.last == 'true'
+        assign line_is_gift_progress = true
+      endif
+    endfor
+    unless line_is_gift_progress
+      assign cart_has_regular_item = true
+      break
+    endunless
+  endfor
 -%}
 {% liquid
   assign enable_rtl = settings.rtl
@@ -87,7 +100,7 @@
       class="minicart-form flex-1 flex flex-column grow relative overflow-hidden color-default"
       novalidate
     >
-      {%- if cart.items.size > 0 -%}
+      {%- if cart.items.size > 0 and cart_has_regular_item -%}
         <div class="minicart-body flex-1 grow  px-30 overflow-x-hidden{% if action_after_add_cart == 'open_drawer' %} pb-30{% endif %}">
           <div class="items">
             {% for item in cart.items %}
@@ -117,7 +130,7 @@
         </div>
       {% endif %}
     </form>
-    {% if cart.items.size > 0 %}
+    {% if cart.items.size > 0 and cart_has_regular_item %}
       {% if action_after_add_cart == 'open_drawer' and minicart_type == 'show_inside' %}
         {%- if product_recommendations_type == 'auto' -%}
           <minicart-recommendations
@@ -248,7 +261,7 @@
       {% endif %}
     {% endif %}
   </div>
-  {% if cart.items.size > 0 %}
+  {% if cart.items.size > 0 and cart_has_regular_item %}
     <div class="cart-footer{% if action_after_add_cart == 'show_popup' %} mt-30{% endif %}">
       {% if action_after_add_cart == 'open_drawer' %}
         {%- render 'cart-addons' -%}

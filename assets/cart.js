@@ -46,6 +46,33 @@ class CartUtils {
     }
   }
 
+  static updateGiftProgressBar(cartData) {
+    if (!cartData) return;
+
+    if (
+      window.GiftProgressBar &&
+      Array.isArray(cartData.items) &&
+      typeof window.GiftProgressBar.renderAll === "function"
+    ) {
+      window.GiftProgressBar.renderAll(cartData);
+      if (typeof window.GiftProgressBar.enforceGiftEligibility === "function") {
+        window.GiftProgressBar.enforceGiftEligibility(cartData);
+      }
+      return;
+    }
+
+    const cartGiftBar = document.querySelector("gift-progress-bar");
+    const subtotalPrice =
+      typeof cartData === "number" ? cartData : cartData.items_subtotal_price;
+    if (
+      cartGiftBar &&
+      subtotalPrice !== undefined &&
+      typeof cartGiftBar.init === "function"
+    ) {
+      cartGiftBar.init(subtotalPrice);
+    }
+  }
+
   /**
    * Update cart totals section
    * @param {Object} sections - Parsed sections data
@@ -207,6 +234,8 @@ class CartUtils {
       // Enforce shipping protection quantity
       CartUtils.enforceShippingProtectionQuantity(cartInstance);
     }
+
+    CartUtils.updateGiftProgressBar(parsedState);
 
     // Reinitialize components
     BlsLazyloadImg.init();
