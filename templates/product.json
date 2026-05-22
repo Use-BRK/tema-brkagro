@@ -103,6 +103,7 @@
         "product_custom_name_button_eMeRQg": {
           "type": "_product-custom-name-button",
           "name": "Botão nome na camisa",
+          "disabled": true,
           "settings": {
             "enable_button": true,
             "button_label": "Quero meu nome na Camisa (+R$29,90)",
