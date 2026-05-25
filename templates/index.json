@@ -466,6 +466,7 @@
         "image_with_text_overlay_mnrWaL",
         "idea_4Haa8A"
       ],
+      "disabled": true,
       "custom_css": [],
       "settings": {
         "section_width": "fluid_container",
@@ -486,6 +487,7 @@
     },
     "divider_FcGgzn": {
       "type": "divider",
+      "disabled": true,
       "settings": {
         "section_width": "full_width",
         "border_height": 1,
@@ -520,6 +522,7 @@
         "scrolling_text_7defWk",
         "scrolling_text_PtA9FE"
       ],
+      "disabled": true,
       "settings": {
         "section_width": "full_width",
         "color_scheme": "scheme-accf3b11-ba40-4a3e-bafb-243ece6683ec",
@@ -539,6 +542,7 @@
     },
     "divider_xPQYgr": {
       "type": "divider",
+      "disabled": true,
       "settings": {
         "section_width": "full_width",
         "border_height": 1,
@@ -548,6 +552,7 @@
     },
     "featured_collection_NP3xfM": {
       "type": "featured-collection",
+      "disabled": true,
       "name": "t:names.featured_collection",
       "settings": {
         "section_width": "fluid_container",
@@ -625,6 +630,7 @@
         "testimonials_items_taknUR",
         "testimonials_items_RV8Jjg"
       ],
+      "disabled": true,
       "settings": {
         "section_width": "fluid_container",
         "color_scheme": "",
@@ -688,6 +694,7 @@
         "highlight_text_gBEK6N",
         "description_P9ehdd"
       ],
+      "disabled": true,
       "settings": {
         "section_width": "container",
         "color_scheme": "",
@@ -851,6 +858,7 @@
         "instagram_manual_upload_ficYJ9",
         "instagram_manual_upload_iWGFPW"
       ],
+      "disabled": true,
       "settings": {
         "section_width": "fluid_container",
         "color_scheme": "",
