@@ -20,7 +20,7 @@
         "heading_fntt9G": {
           "type": "heading",
           "settings": {
-            "page_title": "",
+            "page_title": "{{ collection.title }}",
             "header_size": "default"
           }
         }
