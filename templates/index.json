@@ -242,11 +242,34 @@
             "content_mobile_image": false
           },
           "blocks": {}
+        },
+        "group_media_content_PV8ryd": {
+          "type": "_group-media-content",
+          "name": "t:blocks.names.media_with_text",
+          "settings": {
+            "color_scheme": "",
+            "content_width": "50%",
+            "media_type": "image",
+            "image": "shopify://shop_images/DRONES_CATEGORIAS.png",
+            "image_link": "shopify://collections/drones",
+            "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
+            "autoplay": true,
+            "video_ratio": "16/9",
+            "overlay_opacity": 0,
+            "content_type": "overlay",
+            "content_alignment": "start",
+            "content_position": "top-left",
+            "content_padding_block": 30,
+            "content_padding_inline": 30,
+            "content_mobile_image": false
+          },
+          "blocks": {}
         }
       },
       "block_order": [
         "group_media_content_ie4WQg",
-        "group_media_content_hqiaHe"
+        "group_media_content_hqiaHe",
+        "group_media_content_PV8ryd"
       ],
       "name": "Multiblocos",
       "settings": {
@@ -268,58 +291,6 @@
         "padding_top": 30,
         "padding_bottom": 30,
         "reset_spacing": false
-      }
-    },
-    "banner_packery_KA8adf": {
-      "type": "banner-packery",
-      "blocks": {
-        "group_image_overlay_HE87Nb": {
-          "type": "_group-image-overlay",
-          "settings": {
-            "color_scheme": "",
-            "image": "shopify://shop_images/02_c11aa8fc-2a10-4849-873b-752deef95b2d.png",
-            "image_link": "",
-            "overlay_opacity": 0,
-            "content_alignment": "center",
-            "content_position": "top-left",
-            "content_padding_block": 10,
-            "content_padding_inline": 10
-          },
-          "blocks": {}
-        },
-        "group_image_overlay_tjq9Lj": {
-          "type": "_group-image-overlay",
-          "settings": {
-            "color_scheme": "",
-            "image": "shopify://shop_images/01_802239d4-c1b0-47c2-bbbb-84d7064d431a.png",
-            "image_link": "",
-            "overlay_opacity": 0,
-            "content_alignment": "center",
-            "content_position": "top-left",
-            "content_padding_block": 10,
-            "content_padding_inline": 10
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "group_image_overlay_HE87Nb",
-        "group_image_overlay_tjq9Lj"
-      ],
-      "name": "t:sections.banner-packery.name",
-      "settings": {
-        "section_width": "fluid_container",
-        "color_scheme": "",
-        "heading": "",
-        "description": "",
-        "show_view_all_button": false,
-        "view_all_url": "",
-        "header_size": "medium",
-        "header_alignment": "left",
-        "column_gap": 30,
-        "padding_top": 0,
-        "padding_bottom": 0,
-        "reset_spacing": true
       }
     },
     "collection_tab_cPpFqA": {
@@ -971,7 +942,6 @@
     "slideshow_8KKtNU",
     "collection_tab_cxBKk3",
     "multi_content_Dyd3Y3",
-    "banner_packery_KA8adf",
     "collection_tab_cPpFqA",
     "outfit_idea_wGzkBi",
     "divider_FcGgzn",
