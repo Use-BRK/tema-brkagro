@@ -18,8 +18,8 @@
           "type": "text_slider",
           "settings": {
             "text1": "CUPOM 1ª COMPRA: <strong>BEMVINDO</strong>",
-            "coupon1": "",
-            "coupon1_enabled": false,
+            "coupon1": "BEMVINDO",
+            "coupon1_enabled": true,
             "text2": "",
             "coupon2": "",
             "coupon2_enabled": false,
