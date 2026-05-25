@@ -1,3 +1,11 @@
+/* Top Bar */
+
+@media (max-width: 767px) {
+  #topbar .text-slide .px-15 {
+    font-size: clamp(9px, 2.8vw, 12px);
+  }
+}
+
 /* Página de Produto */
 
 .product-detail__title,
