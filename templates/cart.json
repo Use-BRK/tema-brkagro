@@ -69,7 +69,7 @@
       "settings": {
         "section_width": "fluid_container",
         "enable_cart_note": false,
-        "enable_discount_code": false,
+        "enable_discount_code": true,
         "show_estimate_shipping": false,
         "icon_svg_1": "question",
         "heading_1": "",

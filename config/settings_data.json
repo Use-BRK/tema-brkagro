@@ -52,7 +52,7 @@
     "show_quick_view": false,
     "show_wishlist": false,
     "show_compare": false,
-    "show_add_cart": true,
+    "show_add_cart": false,
     "show_quantity_input": true,
     "product_alignment": "start",
     "product_size": 15,
