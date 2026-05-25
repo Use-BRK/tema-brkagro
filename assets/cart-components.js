@@ -163,24 +163,22 @@ class CartNotification extends HTMLElement {
       (closeButton) =>
         closeButton.addEventListener("click", this.close.bind(this))
     );
-    document.querySelectorAll(".minicart__action").forEach((navToggle) => {
-      navToggle.addEventListener(
-        "click",
-        (e) => {
-          e.preventDefault();
-          if (
-            this.notification
-              .querySelector(".minicart__wrapper")
-              .classList.contains("open")
-          ) {
-            this.close();
-          } else {
-            this.open();
-          }
-        },
-        false
-      );
-    });
+    document.addEventListener(
+      "click",
+      (e) => {
+        const trigger = e.target.closest(".minicart__action");
+        if (!trigger) return;
+
+        e.preventDefault();
+
+        if (this.notification.querySelector(".minicart__wrapper").classList.contains("open")) {
+          this.close();
+        } else {
+          this.open();
+        }
+      },
+      true
+    );
     this.currentItemCount = Array.from(
       this.querySelectorAll('[name="updates[]"]')
     ).reduce(
@@ -241,7 +239,8 @@ class CartNotification extends HTMLElement {
       !target.closest(".header__minicart") &&
       !target.closest("cart-notification") &&
       !target.closest(".cart-quick-edit-modal") &&
-      !target.closest(".tingle-modal")
+      !target.closest(".tingle-modal") &&
+      !target.closest(".minicart__action")
     ) {
       this.close();
     }

@@ -1,6 +1,4 @@
 "use-strict";
-import "./cart-components.js?v=brk-minicart-20260520";
-import "./cart-discount.js?v=brk-minicart-20260520";
 
 function showMinicartAddSuccessMessage(cart) {
   if (!cart || typeof window.showMinicartMessage !== "function") return;
