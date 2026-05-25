@@ -1142,7 +1142,41 @@ let BlsMainMenuShopify = (function () {
     },
 
     initMobileMenu: function () {
-      // Reserved for mobile menu specific initialization
+      const mobileNavigation = document.querySelector("nav.navigation.mobile");
+      if (!mobileNavigation) return;
+
+      mobileNavigation.addEventListener(
+        "click",
+        (event) => {
+          if (window.innerWidth > 1024) return;
+
+          const menuItem = event.target.closest(".horizontal-list menu-item");
+          if (!menuItem || !mobileNavigation.contains(menuItem)) return;
+
+          const parentItem = menuItem.parentElement;
+          const submenu = menuItem.nextElementSibling;
+          if (
+            !parentItem ||
+            !parentItem.matches(".menu-parent, .menu-link") ||
+            !submenu ||
+            !submenu.matches(".submenu, .sub-children-menu")
+          ) {
+            return;
+          }
+
+          event.preventDefault();
+          event.stopPropagation();
+
+          const isOpen = menuItem.classList.toggle("is-open");
+          menuItem.setAttribute("aria-expanded", isOpen ? "true" : "false");
+          menuItem
+            .querySelectorAll("open-children-toggle")
+            .forEach((toggle) =>
+              toggle.setAttribute("aria-expanded", isOpen ? "true" : "false")
+            );
+        },
+        true
+      );
     },
   };
 })();

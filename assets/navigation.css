@@ -145,6 +145,41 @@
     transform: translate(0) !important;
     visibility: visible !important;
   }
+  .navigation.mobile .horizontal-list menu-item {
+    cursor: pointer;
+  }
+  .navigation.mobile .horizontal-list menu-item > a {
+    width: 100%;
+  }
+  .navigation.mobile .horizontal-list :is(.submenu, .sub-children-menu) {
+    position: static !important;
+    display: none;
+    top: auto;
+    left: auto;
+    right: auto;
+    bottom: auto;
+    width: 100%;
+    max-width: none;
+    transform: none !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    pointer-events: auto;
+    z-index: auto;
+    transition: none !important;
+    animation: none !important;
+    box-shadow: none;
+  }
+  .navigation.mobile .horizontal-list :is(.submenu, .sub-children-menu, .submenu *, .sub-children-menu *) {
+    transition: none !important;
+    animation: none !important;
+  }
+  .navigation.mobile .horizontal-list menu-item.is-open + :is(.submenu, .sub-children-menu) {
+    display: block;
+    transform: none !important;
+  }
+  .navigation.mobile .horizontal-list :is(.submenu, .sub-children-menu) > .grey-bg {
+    display: none !important;
+  }
   .submenu .grid-cols {
     --col-desktop: 1 !important;
   }
