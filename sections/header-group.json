@@ -69,26 +69,49 @@
             "product_3": ""
           }
         },
-        "menu_collection_fKiiL7": {
-          "type": "menu_collection",
+        "menu_promotion_iiUfrK": {
+          "type": "menu_promotion",
+          "settings": {
+            "text": "FEMININO",
+            "open-link-newtab": true,
+            "item_label": "unset",
+            "promotion_menu_column": 3,
+            "mega_custom_width": 1000,
+            "center_submenu": true,
+            "full_width": false,
+            "promotion_position": "right",
+            "promotion_image_width": 31,
+            "promotion_image_1": "shopify://shop_images/FEMININO_MENU.jpg",
+            "promotion_link_1": "",
+            "promotion_link_newtab_1": false,
+            "promotion_link_2": "",
+            "promotion_link_newtab_2": false
+          }
+        },
+        "menu_promotion_CyPFrj": {
+          "type": "menu_promotion",
           "settings": {
             "text": "MASCULINO",
             "open-link-newtab": true,
             "item_label": "unset",
-            "collection_menu_column": 3,
-            "mega_custom_width": 600,
+            "promotion_menu_column": 3,
+            "mega_custom_width": 1000,
             "center_submenu": true,
             "full_width": false,
-            "collection_width": 0,
-            "collection_1": "",
-            "collection_2": "",
-            "collection_3": ""
+            "promotion_position": "right",
+            "promotion_image_width": 31,
+            "promotion_image_1": "shopify://shop_images/MASCULINO_MENU.jpg",
+            "promotion_link_1": "",
+            "promotion_link_newtab_1": false,
+            "promotion_link_2": "",
+            "promotion_link_newtab_2": false
           }
         }
       },
       "block_order": [
         "menu_product_YFcake",
-        "menu_collection_fKiiL7"
+        "menu_promotion_iiUfrK",
+        "menu_promotion_CyPFrj"
       ],
       "custom_css": [
         ".h-count {color: #0f6049; font-size: 1.5rem !important; font-weight: 600;}"
@@ -114,12 +137,12 @@
         "new": "New",
         "label_color_new": "#ffffff",
         "label_background_new": "#516cf4",
-        "sale": "Sale",
-        "label_color_sale": "#ffffff",
-        "label_background_sale": "#d0473e",
+        "sale": "LANÇAMENTO",
+        "label_color_sale": "#14854e",
+        "label_background_sale": "#ffed00",
         "popular": "Popular",
         "label_color_popular": "#ffffff",
-        "label_background_popular": "#14854e",
+        "label_background_popular": "#ffed00",
         "redirect_to_link": false,
         "menu_tab": "custom-collections",
         "collection_list": [],
