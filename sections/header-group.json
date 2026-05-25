@@ -56,39 +56,39 @@
         "menu_product_YFcake": {
           "type": "menu_product",
           "settings": {
-            "text": "MASCULINO",
-            "open-link-newtab": true,
-            "item_label": "unset",
-            "product_menu_column": 4,
-            "mega_custom_width": 1030,
+            "text": "COPA 2026",
+            "open-link-newtab": false,
+            "item_label": "sale",
+            "product_menu_column": 2,
+            "mega_custom_width": 890,
             "center_submenu": true,
-            "full_width": true,
+            "full_width": false,
             "product_width": 50,
             "product_1": "",
             "product_2": "",
             "product_3": ""
           }
         },
-        "menu_collection_ihmPTW": {
+        "menu_collection_fKiiL7": {
           "type": "menu_collection",
           "settings": {
-            "text": "DESTAQUES",
+            "text": "MASCULINO",
             "open-link-newtab": true,
             "item_label": "unset",
-            "collection_menu_column": 4,
-            "mega_custom_width": 1030,
+            "collection_menu_column": 3,
+            "mega_custom_width": 1100,
             "center_submenu": true,
-            "full_width": true,
-            "collection_width": 60,
-            "collection_1": "agricultura-1",
-            "collection_2": "agricultura-femininas",
-            "collection_3": "agro-5-5"
+            "full_width": false,
+            "collection_width": 0,
+            "collection_1": "",
+            "collection_2": "",
+            "collection_3": ""
           }
         }
       },
       "block_order": [
         "menu_product_YFcake",
-        "menu_collection_ihmPTW"
+        "menu_collection_fKiiL7"
       ],
       "custom_css": [
         ".h-count {color: #0f6049; font-size: 1.5rem !important; font-weight: 600;}"
