@@ -96,10 +96,11 @@
         },
         "frete_no_produto_shipping_calc_mfbXjr": {
           "type": "shopify://apps/frete-no-produto/blocks/shipping_calc/86063d43-a133-4046-bbed-b9bfb712ccba",
+          "disabled": true,
           "settings": {
             "shipping_calculator": true,
             "show_localization": true,
-            "background_color_container": "transparent",
+            "background_color_container": "rgba(0,0,0,0)",
             "background_header": "#fafafa",
             "background_local": "#fafafa",
             "btnshipping": "#085b47",
