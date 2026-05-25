@@ -39,7 +39,7 @@
         "alignment": "center",
         "show_collection_image": true,
         "overlay_opacity": 0,
-        "height": "contain",
+        "height": "adapt",
         "padding_top": 0,
         "padding_bottom": 0
       }
