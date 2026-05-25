@@ -81,12 +81,53 @@
           },
           "blocks": {}
         },
+        "product_custom_field_Mb6r97": {
+          "type": "_product-custom-field",
+          "name": "Personalize",
+          "settings": {
+            "heading": "Personalize com seu Nome",
+            "description": "",
+            "enable_field_text": true,
+            "field_label": "Escreva seu nome",
+            "enable_field_image": false,
+            "field_image_label": ""
+          },
+          "blocks": {}
+        },
+        "frete_no_produto_shipping_calc_mfbXjr": {
+          "type": "shopify://apps/frete-no-produto/blocks/shipping_calc/86063d43-a133-4046-bbed-b9bfb712ccba",
+          "settings": {
+            "shipping_calculator": true,
+            "show_localization": true,
+            "background_color_container": "transparent",
+            "background_header": "#fafafa",
+            "background_local": "#fafafa",
+            "btnshipping": "#085b47",
+            "color_text": "#efe9da",
+            "color_shipping": "#085b47",
+            "color_ship_name": "#000000",
+            "color_shipping_date": "#000000",
+            "padding_inner": 0,
+            "padding_external": 12,
+            "space_top": 0,
+            "height_input": 45,
+            "border_radius": 0,
+            "text_btn": "Consultar",
+            "text_title": "Calcule o Frete",
+            "placeholder": "Digite seu CEP",
+            "pickup": "",
+            "dont_show_products": [],
+            "show_dont_know_cep": false,
+            "dont_know_cep_text": "Não sei meu CEP"
+          }
+        },
         "delivery_return_iJHeMD": {
           "type": "_product-delivery-return",
+          "name": "Prazo de Disponibilidade + Cupom",
           "settings": {
             "delivery_design": "vertical",
-            "delivery_content_icon": "truck",
-            "delivery_content": "<p>Esse produto possui <strong>prazo de produção</strong> de <strong>10 dias úteis</strong></p>",
+            "delivery_content_icon": "none",
+            "delivery_content": "",
             "discount_content_icon": "discount",
             "discount_content": "<p>Primeira compra? Use o cupom <strong>\"BEMVINDO\"</strong> para ganhar R$15 de desconto</p>",
             "return_content_icon": "none",
@@ -122,19 +163,6 @@
             "open": true
           },
           "blocks": {}
-        },
-        "complementary_products_Wip9YG": {
-          "type": "_product-complementary-products",
-          "disabled": true,
-          "settings": {
-            "heading": "Pairs well with",
-            "product_list_limit": 10,
-            "products_per_page": 3,
-            "show_navigation": false,
-            "show_pagination": true,
-            "enable_quick_add": false
-          },
-          "blocks": {}
         }
       },
       "block_order": [
@@ -145,11 +173,12 @@
         "price_VJ4N8m",
         "variant_picker_tcCihG",
         "buy_buttons_LcQGtR",
+        "product_custom_field_Mb6r97",
+        "frete_no_produto_shipping_calc_mfbXjr",
         "delivery_return_iJHeMD",
         "product_grouped_6epkNf",
         "more_colors_3zmxGq",
-        "collapsible_row_m3g6f8",
-        "complementary_products_Wip9YG"
+        "collapsible_row_m3g6f8"
       ],
       "custom_css": [
         ".product-detail__title {display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden;}",
@@ -228,6 +257,7 @@
         "scrolling_text_dEP8jr",
         "scrolling_text_bPAypi"
       ],
+      "disabled": true,
       "custom_css": [],
       "settings": {
         "section_width": "full_width",
