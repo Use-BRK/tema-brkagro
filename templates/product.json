@@ -38,10 +38,6 @@
           "settings": {
             "show_barcode": false,
             "show_sku": true,
-            "show_production_deadline": true,
-            "producao": "9",
-            "algodao": "1",
-            "imediato": "0",
             "show_available": false,
             "show_tags": false,
             "show_type": false,
@@ -94,7 +90,11 @@
             "discount_content_icon": "discount",
             "discount_content": "<p>Primeira compra? Use o cupom <strong>\"BEMVINDO\"</strong> para ganhar R$15 de desconto</p>",
             "return_content_icon": "none",
-            "return_content": ""
+            "return_content": "",
+            "show_production_deadline": true,
+            "producao": "9",
+            "algodao": "1",
+            "imediato": "0"
           },
           "blocks": {}
         },
@@ -120,26 +120,6 @@
             "content": "",
             "use_product_description": true,
             "open": true
-          },
-          "blocks": {}
-        },
-        "collapsible_row_eLaQpR": {
-          "type": "_product-collapsible-row",
-          "settings": {
-            "heading": "Shipping and Returns",
-            "content": "<p>We offer fast and reliable shipping for all our clothing items. Orders are processed within <strong>1-2 business days</strong> and shipped via standard delivery, which typically takes 3-5 business days.</p><p>Express shipping options are also available at checkout for an additional fee, ensuring your fashion essentials arrive even sooner. Enjoy <strong>free shipping</strong> on orders<strong> over $150</strong>. For any questions regarding your order, please contact our customer service team for assistance.</p>",
-            "use_product_description": false,
-            "open": false
-          },
-          "blocks": {}
-        },
-        "collapsible_row_DA4FUC": {
-          "type": "_product-collapsible-row",
-          "settings": {
-            "heading": "Return Policies",
-            "content": "<p>Provided the conditions in our refund policy have been met, refunds will be processed using the original form of payment. You can return an item purchased online by posting it to us. Please contact customer service for return address. Please note that delivery costs will be excluded from the refund unless goods are returned in accordance with your statutory rights (e.g. they are faulty or not as ordered).</p><ul><li>The items with the original receipt are returned within 30 days of purchase. </li><li>Items must be in the original condition as purchased with all labels/tickets attached.</li></ul><p>Provided the conditions in our refund policy have been met, refunds will be processed using the original form of payment. You can return an item purchased online by posting it to us. Please contact customer service for return address. Please note that delivery costs will be excluded from the refund unless goods are returned in accordance with your statutory rights (e.g. they are faulty or not as ordered).</p>",
-            "use_product_description": false,
-            "open": false
           },
           "blocks": {}
         },
@@ -169,8 +149,6 @@
         "product_grouped_6epkNf",
         "more_colors_3zmxGq",
         "collapsible_row_m3g6f8",
-        "collapsible_row_eLaQpR",
-        "collapsible_row_DA4FUC",
         "complementary_products_Wip9YG"
       ],
       "custom_css": [
@@ -320,13 +298,13 @@
       "settings": {
         "section_width": "container",
         "color_scheme": "",
-        "heading": "Recently Viewed",
-        "description": "Explore your recently viewed items, blending quality and style for a refined living experience.",
+        "heading": "Vistos Recentemente",
+        "description": "",
         "header_size": "medium",
         "header_alignment": "center",
-        "items_to_show": 8,
+        "items_to_show": 25,
         "items_per_row": 4,
-        "column_gap": 30,
+        "column_gap": 10,
         "show_arrow": true,
         "carousel_pagination": "show_dots_on_mobile",
         "infinite": false,
