@@ -13,6 +13,50 @@
   "sections": {
     "mobile_navigation_bar_GG8UWc": {
       "type": "mobile-navigation-bar",
+      "blocks": {
+        "homepage_xiQ8UP": {
+          "type": "homepage",
+          "name": "Inicio",
+          "settings": {}
+        },
+        "navbar_collection_xFxBLk": {
+          "type": "navbar-collection",
+          "settings": {
+            "collection": "copa-2026",
+            "title": "Copa 2026",
+            "custom_svg": "<img src=\"https://cdn.shopify.com/s/files/1/0887/2083/4857/files/3022546.png?v=1778266477\">",
+            "svg_width": 39,
+            "svg_height": 25
+          }
+        },
+        "navbar_collection_J893UR": {
+          "type": "navbar-collection",
+          "settings": {
+            "collection": "colecao-femininas-2026",
+            "title": "Femininas 2026",
+            "custom_svg": "<img src=\"https://cdn.shopify.com/s/files/1/0887/2083/4857/files/cowgirl_2.svg?v=1778012320\">",
+            "svg_width": 27,
+            "svg_height": 23
+          }
+        },
+        "cart_8xqQBb": {
+          "type": "cart",
+          "name": "Carrinho",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "homepage_xiQ8UP",
+        "navbar_collection_xFxBLk",
+        "navbar_collection_J893UR",
+        "cart_8xqQBb"
+      ],
+      "custom_css": [
+        "mobile-navigation-bar {backdrop-filter: blur(10px); background: #ffffffcf; transition: opacity 0.3s, transform 0.3s; opacity: 1; transform: translateY(0px); padding: 3px;}",
+        "span {font-size: 12px;}",
+        "svg {transform: scale(0.8); transform-origin: center; transition: transform 0.3s ease;}"
+      ],
+      "name": "Mobile Navbar",
       "settings": {
         "show_account": true
       }
