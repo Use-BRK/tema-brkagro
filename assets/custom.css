@@ -1,6 +1,13 @@
+/* Página de Produto */
+
+.product-detail__title,
+.product-detail__meta{
+  margin-bottom: 0;
+}
+
 .installment-payment {
   width: 100%;
-  font-size: 1.2rem;
+  font-size: 1.5rem;
 }
 
 .installment-payment p {
@@ -478,7 +485,7 @@ select.gift-progress-modal__variant {
 }
 
 .cart-item .minicart__item-prices {
-  font-size: 1.3rem;
+  font-size: 1.5rem;
   white-space: nowrap;
   flex-shrink: 0;
 }
