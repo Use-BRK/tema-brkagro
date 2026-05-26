@@ -23,6 +23,7 @@
       "blocks": {
         "badges_RwfTMp": {
           "type": "_product-badges",
+          "disabled": true,
           "settings": {},
           "blocks": {}
         },
