@@ -99,7 +99,7 @@
         <strong>{{ product.price | times: 0.95 | money }}</strong>
       </p> {% endcomment %}
     {% endif %}
-    <p>ou 6x de <strong style="margin:0;">{{ price | divided_by:6 | money }}</strong></p>
+    <p>ou 3x de <strong style="margin:0;">{{ price | divided_by:3 | money }}</strong></p>
   </div>
 
   {% if target.unit_price_measurement != null %}

@@ -8291,6 +8291,10 @@ class SlideWithThumbs extends HTMLElement {
     }
     const container = this.querySelector(".main-slide__navigation");
     const initSwiper = this.querySelector(".swiper-wrapper-preview");
+    const paginationEl = this.querySelector(".swiper-pagination");
+    const useSolidDotsPagination = paginationEl?.classList.contains(
+      "product-media-pagination--solid"
+    );
     var _this = this;
     this.globalSlide = new Swiper(initSwiper, {
       slidesPerView: itemMobile,
@@ -8308,11 +8312,13 @@ class SlideWithThumbs extends HTMLElement {
       },
       pagination: {
         clickable: true,
-        el: this.querySelector(".swiper-pagination"),
-        type: "custom",
-        renderCustom: function (swiper, current, total) {
-          return current + "/" + total;
-        },
+        el: paginationEl,
+        type: useSolidDotsPagination ? "bullets" : "custom",
+        renderCustom: useSolidDotsPagination
+          ? undefined
+          : function (swiper, current, total) {
+              return current + "/" + total;
+            },
       },
       breakpoints: {
         768: {

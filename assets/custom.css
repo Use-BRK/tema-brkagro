@@ -645,6 +645,78 @@ select.gift-progress-modal__variant {
   }
 }
 
+@media screen and (max-width: 767.98px) {
+  .product-detail__media media-gallery .swiper-pagination.product-media-pagination--solid {
+    position: absolute;
+    right: auto;
+    bottom: 16px;
+    left: 50%;
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: fit-content;
+    min-width: fit-content;
+    max-width: calc(100% - 32px);
+    height: 24px;
+    margin: 0;
+    padding: 0;
+    gap: 0;
+    overflow: hidden;
+    transform: translateX(-50%);
+    background: rgba(255, 255, 255, 0.62);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-radius: 12px;
+    box-shadow: none;
+  }
+
+  .product-detail__media media-gallery .swiper-pagination.product-media-pagination--solid.swiper-pagination-bullets {
+    display: flex;
+  }
+
+  .product-detail__media media-gallery .swiper-pagination.product-media-pagination--solid .swiper-pagination-bullet {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    margin: 0 !important;
+    padding: 0;
+    opacity: 1;
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+    cursor: pointer;
+  }
+
+  .product-detail__media media-gallery .swiper-pagination.product-media-pagination--solid .swiper-pagination-bullet::after {
+    display: none;
+  }
+
+  .product-detail__media media-gallery .swiper-pagination.product-media-pagination--solid .swiper-pagination-bullet::before {
+    content: "";
+    position: static;
+    display: block;
+    width: 6px;
+    height: 6px;
+    opacity: 0.45;
+    transform: none;
+    transition: 0.15s ease-in-out;
+    background: rgb(35, 55, 44);
+    border: 0;
+    border-radius: 50%;
+    box-shadow: none;
+  }
+
+  .product-detail__media media-gallery .swiper-pagination.product-media-pagination--solid .swiper-pagination-bullet-active::before {
+    opacity: 1;
+    transform: scale(1.15);
+  }
+}
+
 .product-detail__meta li {
   display: flex;
   align-items: baseline;

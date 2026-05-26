@@ -10,8 +10,10 @@
   endif
   assign zoom_option = 'inner-1'
   assign mobile_options = 'hidden_thumbnail'
+  assign mobile_pagination_style = 'original'
   if section_st != null
     assign mobile_options = section_st.mobile_options
+    assign mobile_pagination_style = section_st.mobile_pagination_style | default: 'original'
   endif
   assign image_zoom = 'no_zoom'
   if section_st != null
@@ -140,13 +142,13 @@
           </div>
           {% if section_st.mobile_options == 'hidden_thumbnail' and is_shopable_video == false %}
             <div
-              class="swiper-pagination hidden-md"
+              class="swiper-pagination hidden-md{% if mobile_pagination_style == 'solid_dots' %} product-media-pagination--solid{% endif %}"
             ></div>
           {% endif %}
         {% else %}
           {% if is_shopable_video == false %}
             <div
-              class="swiper-pagination hidden-md"
+              class="swiper-pagination hidden-md{% if mobile_pagination_style == 'solid_dots' %} product-media-pagination--solid{% endif %}"
             ></div>
           {% endif %}
         {% endif %}
