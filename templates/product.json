@@ -117,6 +117,7 @@
         },
         "frete_no_produto_shipping_calc_rwYMRw": {
           "type": "shopify://apps/frete-no-produto/blocks/shipping_calc/86063d43-a133-4046-bbed-b9bfb712ccba",
+          "disabled": true,
           "settings": {
             "shipping_calculator": true,
             "show_localization": true,
