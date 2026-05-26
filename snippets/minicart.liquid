@@ -1,4 +1,7 @@
 <link rel="stylesheet" href="{{ 'minicart.css' | asset_url }}" media="print" onload="this.media='all'">
+{% if settings.enable_discount_code %}
+  <script src="{{ 'cart-discount.js' | asset_url }}" defer="defer"></script>
+{% endif %}
 {%- liquid
   assign theme_st = settings
   assign free_shipping = theme_st.show_on_minicart_cart_page

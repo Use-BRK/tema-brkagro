@@ -33,9 +33,6 @@
   endfor
   assign discount_codes = discount_codes | uniq
 %}
-{% if enable_discount_code %}
-  <script src="{{ 'cart-discount.js' | asset_url }}" defer="defer"></script>
-{% endif %}
 {%- if enable_shipping_protection and shipping_protection_pr.variants.size == 1 and shipping_protection_pr.available -%}
   <div class="shipping-protection-row shipping-protection-row--minicart px-30 py-15 border-top flex align-center gap-15 justify-between">
     <div class="shipping-protection-row__content flex align-center gap-5 flex-1">
