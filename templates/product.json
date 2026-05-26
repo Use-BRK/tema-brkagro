@@ -81,19 +81,6 @@
           },
           "blocks": {}
         },
-        "product_custom_field_Mb6r97": {
-          "type": "_product-custom-field",
-          "name": "Personalize",
-          "settings": {
-            "heading": "Personalize com seu Nome",
-            "description": "",
-            "enable_field_text": true,
-            "field_label": "Escreva seu nome",
-            "enable_field_image": false,
-            "field_image_label": ""
-          },
-          "blocks": {}
-        },
         "frete_no_produto_shipping_calc_mfbXjr": {
           "type": "shopify://apps/frete-no-produto/blocks/shipping_calc/86063d43-a133-4046-bbed-b9bfb712ccba",
           "disabled": true,
@@ -134,7 +121,7 @@
             "return_content_icon": "none",
             "return_content": "",
             "show_production_deadline": true,
-            "producao": "9",
+            "producao": "10",
             "algodao": "1",
             "imediato": "0"
           },
@@ -174,7 +161,6 @@
         "price_VJ4N8m",
         "variant_picker_tcCihG",
         "buy_buttons_LcQGtR",
-        "product_custom_field_Mb6r97",
         "frete_no_produto_shipping_calc_mfbXjr",
         "delivery_return_iJHeMD",
         "product_grouped_6epkNf",

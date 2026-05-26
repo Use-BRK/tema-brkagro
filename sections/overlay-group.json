@@ -21,6 +21,7 @@
         },
         "navbar_collection_xFxBLk": {
           "type": "navbar-collection",
+          "disabled": true,
           "settings": {
             "collection": "copa-2026",
             "title": "Copa 2026",
@@ -39,6 +40,10 @@
             "svg_height": 23
           }
         },
+        "whatsapp_contact_qEDXnA": {
+          "type": "whatsapp-contact",
+          "settings": {}
+        },
         "cart_8xqQBb": {
           "type": "cart",
           "name": "Carrinho",
@@ -49,6 +54,7 @@
         "homepage_xiQ8UP",
         "navbar_collection_xFxBLk",
         "navbar_collection_J893UR",
+        "whatsapp_contact_qEDXnA",
         "cart_8xqQBb"
       ],
       "custom_css": [
