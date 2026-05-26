@@ -326,6 +326,15 @@
         "padding_bottom": 25,
         "reset_spacing": false
       }
+    },
+    "divider_cftdT4": {
+      "type": "divider",
+      "settings": {
+        "section_width": "full_width",
+        "border_height": 20,
+        "border_color": "#fff",
+        "reset_spacing": false
+      }
     }
   },
   "order": [
@@ -337,6 +346,7 @@
     "divider_TKLM6L",
     "related_products",
     "divider_HtLXd3",
-    "products_recently_viewed_GdCNUL"
+    "products_recently_viewed_GdCNUL",
+    "divider_cftdT4"
   ]
 }

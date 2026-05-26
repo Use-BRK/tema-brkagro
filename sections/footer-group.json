@@ -16,7 +16,7 @@
       "custom_css": [],
       "name": "t:sections.html_custom.name",
       "settings": {
-        "section_width": "container",
+        "section_width": "full_width",
         "color_scheme": "",
         "html_custom": "<img src=\"https://cdn.shopify.com/s/files/1/0887/2083/4857/files/FOOTER.png?v=1779798059\">",
         "padding_top": 0,
