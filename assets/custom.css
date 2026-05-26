@@ -673,7 +673,7 @@ select.gift-progress-modal__variant {
     gap: 0;
     overflow: hidden;
     transform: translateX(-50%);
-    background: rgba(255, 255, 255, 0.62);
+    background: rgba(255, 255, 255, 0.29);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     border-radius: 12px;
@@ -754,4 +754,9 @@ select.gift-progress-modal__variant {
 .minicart-body {
   padding-right: 1.5rem !important;
   padding-left: 1.5rem !important;
+}
+
+/* Minicart Bottom / Cart minicart footer */
+.drawer-bottom {
+  padding: 1rem !important;
 }

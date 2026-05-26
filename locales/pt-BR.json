@@ -114,7 +114,7 @@
       "label": "Carrinho",
       "view": "Ver meu carrinho ({{ count }})",
       "item_added": "Item adicionado ao seu carrinho",
-      "title": "CARRINHO",
+      "title": "Carrinho",
       "cart_edit": "Editar opção",
       "remove_title": "Remover",
       "close": "Fechar",
