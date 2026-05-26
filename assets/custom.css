@@ -1,3 +1,11 @@
+/* Custom Geral */
+.price,
+.installment-payment strong,
+.minicart__item-price {
+	color: #085b47 !important;
+}
+
+
 /* Top Bar */
 
 @media (max-width: 767px) {
