@@ -9,41 +9,6 @@
  */
 {
   "sections": {
-    "scrolling_text_DNNJAq": {
-      "type": "scrolling-text",
-      "blocks": {
-        "scrolling_text_L3U9ea": {
-          "type": "scrolling_text",
-          "name": "A FORÇA QUE MOVE",
-          "settings": {
-            "content": "<strong>A FORÇA QUE MOVE O AGRO</strong>"
-          }
-        }
-      },
-      "block_order": [
-        "scrolling_text_L3U9ea"
-      ],
-      "custom_css": [
-        "* {letter-spacing: 2.9px;}"
-      ],
-      "name": "Rotativo",
-      "settings": {
-        "section_width": "full_width",
-        "color_scheme": "scheme-bb1431b0-be4a-4b03-a450-f572c07e3904",
-        "direction": "right",
-        "icon_between_item": "dot",
-        "icon_width": 20,
-        "speed": 13,
-        "space_between_text": 100,
-        "font_size": 11,
-        "font_weight": "body_weight",
-        "uppercase": false,
-        "use_heading_font": false,
-        "padding_top": 0,
-        "padding_bottom": 0,
-        "reset_spacing": true
-      }
-    },
     "slideshow_8KKtNU": {
       "type": "slideshow",
       "blocks": {
@@ -137,6 +102,41 @@
         "des_font_weight": "heading_weight",
         "des_spacing_bottom": 60,
         "content_below_image": false,
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": true
+      }
+    },
+    "scrolling_text_DNNJAq": {
+      "type": "scrolling-text",
+      "blocks": {
+        "scrolling_text_L3U9ea": {
+          "type": "scrolling_text",
+          "name": "A FORÇA QUE MOVE",
+          "settings": {
+            "content": "<strong>A FORÇA QUE MOVE O AGRO</strong>"
+          }
+        }
+      },
+      "block_order": [
+        "scrolling_text_L3U9ea"
+      ],
+      "custom_css": [
+        "* {letter-spacing: 2.9px;}"
+      ],
+      "name": "Rotativo",
+      "settings": {
+        "section_width": "full_width",
+        "color_scheme": "scheme-bb1431b0-be4a-4b03-a450-f572c07e3904",
+        "direction": "right",
+        "icon_between_item": "dot",
+        "icon_width": 20,
+        "speed": 13,
+        "space_between_text": 100,
+        "font_size": 11,
+        "font_weight": "body_weight",
+        "uppercase": false,
+        "use_heading_font": false,
         "padding_top": 0,
         "padding_bottom": 0,
         "reset_spacing": true
@@ -940,8 +940,8 @@
     }
   },
   "order": [
-    "scrolling_text_DNNJAq",
     "slideshow_8KKtNU",
+    "scrolling_text_DNNJAq",
     "collection_tab_cxBKk3",
     "multi_content_Dyd3Y3",
     "collection_tab_cPpFqA",
