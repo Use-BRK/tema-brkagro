@@ -15,8 +15,8 @@
         "slider_item_YipJd4": {
           "type": "slider_item",
           "settings": {
-            "image": "shopify://shop_images/AGRO-01.webp",
-            "image_mobile": "shopify://shop_images/AGRO_MOB_03.webp",
+            "image": "shopify://shop_images/FULLBANNER_DESKTOP.webp",
+            "image_mobile": "shopify://shop_images/MOBILE_a0ba7d54-b5d0-48c0-8ba5-51e0bfad9a7a.webp",
             "overlay_opacity": 0,
             "slider_effect": "fade-in-right",
             "subheading": "",
@@ -39,39 +39,10 @@
             "content_box_opacity": 100,
             "content_alignment_mobile": "center"
           }
-        },
-        "slider_item_jiLA39": {
-          "type": "slider_item",
-          "settings": {
-            "image": "shopify://shop_images/BANNER-AGRO-03.webp",
-            "image_mobile": "shopify://shop_images/AGRO_MOB_01.webp",
-            "overlay_opacity": 0,
-            "slider_effect": "fade-up",
-            "subheading": "",
-            "heading": "",
-            "description": "",
-            "first_button_label": "",
-            "first_button_link": "shopify://collections/best-seller",
-            "first_button_style": false,
-            "second_button_label": "",
-            "second_button_link": "",
-            "second_button_style": false,
-            "content_alignment": "center",
-            "content_position": "top-center",
-            "content_width": "full_width",
-            "content_max_width": 100,
-            "content_padding_block": 40,
-            "content_padding_inline": 0,
-            "show_content_background": false,
-            "content_background": "#ffffff",
-            "content_box_opacity": 100,
-            "content_alignment_mobile": "center"
-          }
         }
       },
       "block_order": [
-        "slider_item_YipJd4",
-        "slider_item_jiLA39"
+        "slider_item_YipJd4"
       ],
       "custom_css": [
         ".h-full_screen {--height-topbar: 41px;}"
@@ -266,12 +237,35 @@
             "content_mobile_image": false
           },
           "blocks": {}
+        },
+        "group_media_content_cPfyMK": {
+          "type": "_group-media-content",
+          "name": "t:blocks.names.media_with_text",
+          "settings": {
+            "color_scheme": "",
+            "content_width": "50%",
+            "media_type": "image",
+            "image": "shopify://shop_images/03_1aa5c1f1-36f5-4875-859c-3704329ec215.webp",
+            "image_link": "shopify://collections/drones",
+            "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
+            "autoplay": true,
+            "video_ratio": "16/9",
+            "overlay_opacity": 0,
+            "content_type": "overlay",
+            "content_alignment": "start",
+            "content_position": "top-left",
+            "content_padding_block": 30,
+            "content_padding_inline": 30,
+            "content_mobile_image": false
+          },
+          "blocks": {}
         }
       },
       "block_order": [
         "group_media_content_ie4WQg",
         "group_media_content_hqiaHe",
-        "group_media_content_PV8ryd"
+        "group_media_content_PV8ryd",
+        "group_media_content_cPfyMK"
       ],
       "name": "Multiblocos",
       "settings": {
