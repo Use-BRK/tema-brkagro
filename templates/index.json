@@ -170,9 +170,7 @@
         "slider_item_mHFJwJ",
         "slider_item_73BmRw"
       ],
-      "custom_css": [
-        ".h-full_screen {--height-topbar: 41px;}"
-      ],
+      "custom_css": [],
       "name": "Fullbanner",
       "settings": {
         "section_width": "full_width",
