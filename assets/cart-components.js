@@ -1174,6 +1174,7 @@ class MinicartItemEdit extends PopupBase {
     event.preventDefault();
     self.classList.add("loading");
     const key = self.getAttribute("data-key");
+    const lineIndex = self.getAttribute("data-line-index");
     const quantity = self.getAttribute("data-quantity");
     const href = self.getAttribute("href");
     const variant =
@@ -1208,15 +1209,22 @@ class MinicartItemEdit extends PopupBase {
           document
             .querySelector("[data-template-quick-cart-edit]")
             .setAttribute("data-line", key);
+          if (lineIndex) {
+            document
+              .querySelector("[data-template-quick-cart-edit]")
+              .setAttribute("data-line-index", lineIndex);
+          }
         }
         if (
           document.querySelector(
             ".product-form-quick-edit quantity-input input"
           )
         ) {
-          document.querySelector(
+          const qtyInput = document.querySelector(
             ".product-form-quick-edit quantity-input input"
-          ).value = quantity;
+          );
+          qtyInput.value = quantity;
+          qtyInput.dispatchEvent(new Event("change", { bubbles: true }));
         }
         self.classList.remove("loading");
       });

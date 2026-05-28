@@ -4513,12 +4513,14 @@ if (!customElements.get("product-form-quick-edit")) {
         }
         const quick = document.getElementById("product-form-quick-edit");
         const id = quick.getAttribute("data-line");
+        const line = parseInt(quick.getAttribute("data-line-index"), 10);
         const quantity = 0;
         const config_change = fetchConfig("json");
-        config_change.body = JSON.stringify({
-          id,
-          quantity,
-        });
+        config_change.body = JSON.stringify(
+          Number.isInteger(line) && line > 0
+            ? { line, quantity }
+            : { id, quantity }
+        );
         fetch(`${routes?.cart_change_url}.js`, config_change)
           .then((response) => {
             return response.text();

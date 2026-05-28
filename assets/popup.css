@@ -423,6 +423,23 @@ body .tingle-modal-box__content {
 
 .cart-item-edit {
   --popup-max-width: 73rem;
+  z-index: 2147483646 !important;
+}
+
+.cart-item-edit .tingle-modal__close {
+  position: fixed;
+}
+
+html.open-popup #edrone-onsite-popup-iframe {
+  pointer-events: none !important;
+}
+
+html.open-popup div:has(> #edrone-onsite-popup-iframe) {
+  pointer-events: none !important;
+}
+
+.cart-item-edit .product-item__name::after {
+  content: none;
 }
 
 .rounded-style .quickview .media-gallery__image.rounded-5 {

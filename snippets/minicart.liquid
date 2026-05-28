@@ -127,7 +127,7 @@
               <div class="minicart-body flex-1 grow  px-30 overflow-x-hidden{% if action_after_add_cart == 'open_drawer' %} pb-30{% endif %}">
                 <div class="items">
                   {% for item in cart.items %}
-                    {%- render 'cart-item', item: item -%}
+                    {%- render 'cart-item', item: item, line: forloop.index -%}
                   {% endfor %}
                 </div>
               </div>
