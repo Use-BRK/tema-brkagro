@@ -82,6 +82,15 @@
 [data-type="open_lightbox"] .media-main-swiper .media-gallery__image {
   cursor: zoom-in;
 }
+@media (max-width: 767px) {
+  .product-detail__media media-gallery .grid_scroll {
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 0;
+    padding-right: 0;
+    width: 100%;
+  }
+}
 @media (min-width: 768px) {
   .stacked {
     grid-template-columns: repeat(2, 1fr);
