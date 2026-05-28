@@ -7,7 +7,7 @@
  * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
- {
+{
   "sections": {
     "divider_zDJB6F": {
       "type": "divider",
@@ -24,7 +24,6 @@
         "image_VQTRFT": {
           "type": "image",
           "settings": {
-            "image_block": "shopify://shop_images/img_4.jpg",
             "image_width": 450,
             "spacing_bottom": 40
           },
@@ -33,19 +32,42 @@
         "heading_6nj4md": {
           "type": "heading",
           "settings": {
-            "heading": "Oops...That link is broken.",
-            "font_size": 36,
+            "heading": "Página não encontrada",
+            "font_size": 54,
             "font_weight": "heading_weight",
             "uppercase": false,
             "spacing_bottom": 20
           },
           "blocks": {}
         },
+        "subheading_UENtaY": {
+          "type": "subheading",
+          "name": "t:sections.all.contents.subheading.label",
+          "settings": {
+            "subheading": "Mas calma, nem tudo tá perdido: achou essa página, achou presente!",
+            "font_size": 20,
+            "font_weight": "body_weight",
+            "uppercase": false,
+            "spacing_bottom": 15
+          },
+          "blocks": {}
+        },
+        "description_jyVHqj": {
+          "type": "description",
+          "name": "t:blocks.general.text.name",
+          "settings": {
+            "text": "<h4><strong>🎁 </strong>Use o cupom <strong>ENCONTREI20 </strong>e ganhe R$20 de desconto nas compras acima de R$99</h4>",
+            "font_size": 14,
+            "font_weight": "body_weight",
+            "spacing_bottom": 10
+          },
+          "blocks": {}
+        },
         "subheading_yFdKEQ": {
           "type": "subheading",
           "settings": {
-            "subheading": "Sorry for the inconvenience. Go to our homepage or check out our latest collections.",
-            "font_size": 15,
+            "subheading": "Aproveita, sô! Bora garantir sua camisa agro e voltar pra lida no estilo e protegido.",
+            "font_size": 20,
             "font_weight": "body_weight",
             "uppercase": false,
             "spacing_bottom": 40
@@ -56,8 +78,8 @@
           "type": "button",
           "settings": {
             "show_full_width": false,
-            "first_button_label": "Back to Homepage",
-            "first_button_link": "/",
+            "first_button_label": "VER COLEÇÕES",
+            "first_button_link": "shopify://collections",
             "first_button_type": "primary",
             "second_button_label": "",
             "second_button_link": "",
@@ -70,14 +92,16 @@
       "block_order": [
         "image_VQTRFT",
         "heading_6nj4md",
+        "subheading_UENtaY",
+        "description_jyVHqj",
         "subheading_yFdKEQ",
         "button_4yrfiE"
       ],
       "settings": {
         "section_width": "fluid_container",
-        "padding_top": 0,
-        "padding_bottom": 0,
-        "reset_spacing": false
+        "padding_top": 100,
+        "padding_bottom": 100,
+        "reset_spacing": true
       }
     }
   },
