@@ -16,6 +16,7 @@
       "blocks": {
         "store_information_QTGpmN": {
           "type": "store_information",
+          "disabled": true,
           "settings": {
             "show_email": false,
             "show_phone": true,
@@ -40,6 +41,7 @@
         },
         "text_NFgeiz": {
           "type": "text",
+          "disabled": true,
           "settings": {
             "text": "<a href=\"https://www.brkagro.com.br/pages/politica-de-frete\" target=\"_blank\" title=\"Rastrear Pedido\">Rastrear Pedido</a>",
             "hidden_on_mobile": true
