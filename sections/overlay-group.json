@@ -48,10 +48,10 @@
         "navbar_collection_xFxBLk": {
           "type": "navbar-collection",
           "settings": {
-            "collection": "copa-2026",
-            "title": "Copa 2026",
-            "custom_svg": "<img src=\"https://cdn.shopify.com/s/files/1/0887/2083/4857/files/3022546.png?v=1778266477\">",
-            "svg_width": 39,
+            "collection": "botinas",
+            "title": "Botinas Agro",
+            "custom_svg": "<img src=\"https://cdn.shopify.com/s/files/1/0887/2083/4857/files/botina3.svg?v=1746207593\">",
+            "svg_width": 32,
             "svg_height": 25
           }
         },
@@ -59,10 +59,10 @@
           "type": "navbar-collection",
           "settings": {
             "collection": "colecao-femininas-2026",
-            "title": "Femininas 2026",
+            "title": "Femininas",
             "custom_svg": "<img src=\"https://cdn.shopify.com/s/files/1/0887/2083/4857/files/cowgirl_2.svg?v=1778012320\">",
             "svg_width": 27,
-            "svg_height": 23
+            "svg_height": 26
           }
         },
         "shop_MUxUGE": {
