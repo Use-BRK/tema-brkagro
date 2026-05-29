@@ -83,6 +83,22 @@
             "product_3": ""
           }
         },
+        "menu_product_WqwLif": {
+          "type": "menu_product",
+          "settings": {
+            "text": "BOTINAS",
+            "open-link-newtab": false,
+            "item_label": "hot",
+            "product_menu_column": 2,
+            "mega_custom_width": 890,
+            "center_submenu": true,
+            "full_width": false,
+            "product_width": 0,
+            "product_1": "",
+            "product_2": "",
+            "product_3": ""
+          }
+        },
         "menu_promotion_EeqGGC": {
           "type": "menu_promotion",
           "settings": {
@@ -141,6 +157,7 @@
       },
       "block_order": [
         "menu_product_zAWFX7",
+        "menu_product_WqwLif",
         "menu_promotion_EeqGGC",
         "menu_promotion_Pkxb3d",
         "menu_collection_EkdGyG"
