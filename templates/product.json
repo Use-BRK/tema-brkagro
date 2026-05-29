@@ -44,7 +44,7 @@
           "settings": {
             "show_barcode": false,
             "show_sku": true,
-            "producao": "8",
+            "producao": "9",
             "algodao": "1",
             "imediato": "0",
             "show_available": false,
