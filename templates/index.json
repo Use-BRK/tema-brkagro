@@ -1150,14 +1150,13 @@
     "icon_box_TRwJBD": {
       "type": "icon-box",
       "blocks": {
-        "icon_box_ACjiqA": {
+        "icon_box_q8wtDP": {
           "type": "icon_box",
-          "disabled": true,
           "settings": {
-            "icon_svg": "free_shipping",
-            "custom_svg": "",
-            "heading": "FRETE GRÁTIS*",
-            "description": "<p>Para todas as compras acima de <strong>R$ 299</strong> de produtos da marca</p>"
+            "icon_svg": "none",
+            "custom_svg": "<svg width=\"32\" height=\"30\" fill=\"none\" style=\"filter: invert(1);\">\n        <g stroke=\"#111\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\"><path stroke-miterlimit=\"10\" d=\"M4.912 19.85 19.85 4.911M13.877 22.849l1.5-1.5M17.242 19.486l2.988-2.988\"></path><path d=\"m4.502 12.799 8.3-8.3c2.65-2.65 3.975-2.663 6.6-.038l6.137 6.138c2.625 2.625 2.613 3.95-.037 6.6l-8.3 8.3c-2.65 2.65-3.975 2.662-6.6.037L4.464 19.4c-2.625-2.625-2.625-3.938.038-6.6ZM2.5 27.498h25\"></path></g>\n      </svg>",
+            "heading": "Parcelamento",
+            "description": "<p>Folga na fatura! Parcele suas compras em até 3x sem juros com o cartão de crédito! </p>"
           }
         },
         "icon_box_RLNr9a": {
@@ -1180,10 +1179,11 @@
         }
       },
       "block_order": [
-        "icon_box_ACjiqA",
+        "icon_box_q8wtDP",
         "icon_box_RLNr9a",
         "icon_box_tj4DJd"
       ],
+      "custom_css": [],
       "name": "Informações",
       "settings": {
         "section_width": "fluid_container",
