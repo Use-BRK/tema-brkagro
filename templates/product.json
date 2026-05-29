@@ -234,12 +234,20 @@
     "collection_list_MD7Jnc": {
       "type": "collection-list",
       "blocks": {
-        "collection_ttHBfJ": {
+        "collection_aU7rMN": {
           "type": "collection",
           "settings": {
-            "collection": "nossa-senhora-aparecida",
-            "collection_image": "shopify://shop_images/NOSSA_SENHORA.webp",
-            "collection_title": "Nossa Senhora"
+            "collection": "sao-bento-e-nossa-senhora-1",
+            "collection_image": "shopify://shop_images/SAO_BENTO_E_NOSSA_SENHORA.webp",
+            "collection_title": "São Bento"
+          }
+        },
+        "collection_mCbCUG": {
+          "type": "collection",
+          "settings": {
+            "collection": "camuflado-e-caca",
+            "collection_image": "shopify://shop_images/CAMUFLADAS_77a42d7c-e8d1-49d9-bad6-9a3af284f675.webp",
+            "collection_title": "Camufladas"
           }
         },
         "collection_bneGBA": {
@@ -250,12 +258,20 @@
             "collection_title": "Agricultura"
           }
         },
-        "collection_aU7rMN": {
+        "collection_4GWx8H": {
           "type": "collection",
           "settings": {
-            "collection": "sao-bento-e-nossa-senhora-1",
-            "collection_image": "shopify://shop_images/SAO_BENTO_E_NOSSA_SENHORA.webp",
-            "collection_title": "São Bento"
+            "collection": "cavalos",
+            "collection_image": "shopify://shop_images/CAVALOS_RODEIOS.webp",
+            "collection_title": "Cavalos e Rodeios"
+          }
+        },
+        "collection_ttHBfJ": {
+          "type": "collection",
+          "settings": {
+            "collection": "nossa-senhora-aparecida",
+            "collection_image": "shopify://shop_images/NOSSA_SENHORA.webp",
+            "collection_title": "Nossa Senhora"
           }
         },
         "collection_9c7pwJ": {
@@ -274,14 +290,6 @@
             "collection_title": "Medicina Veterinária"
           }
         },
-        "collection_mCbCUG": {
-          "type": "collection",
-          "settings": {
-            "collection": "camuflado-e-caca",
-            "collection_image": "shopify://shop_images/CAMUFLADAS_77a42d7c-e8d1-49d9-bad6-9a3af284f675.webp",
-            "collection_title": "Camufladas"
-          }
-        },
         "collection_gjCGdE": {
           "type": "collection",
           "settings": {
@@ -297,26 +305,18 @@
             "collection_image": "shopify://shop_images/Texas_e_USA.webp",
             "collection_title": "Texas & USA"
           }
-        },
-        "collection_4GWx8H": {
-          "type": "collection",
-          "settings": {
-            "collection": "cavalos",
-            "collection_image": "shopify://shop_images/CAVALOS_RODEIOS.webp",
-            "collection_title": "Cavalos e Rodeios"
-          }
         }
       },
       "block_order": [
-        "collection_ttHBfJ",
-        "collection_bneGBA",
         "collection_aU7rMN",
+        "collection_mCbCUG",
+        "collection_bneGBA",
+        "collection_4GWx8H",
+        "collection_ttHBfJ",
         "collection_9c7pwJ",
         "collection_KxajDD",
-        "collection_mCbCUG",
         "collection_gjCGdE",
-        "collection_qF3pD6",
-        "collection_4GWx8H"
+        "collection_qF3pD6"
       ],
       "name": "Escolha Por Coleção",
       "settings": {
