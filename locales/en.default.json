@@ -135,7 +135,7 @@
       "taxes_included_and_shipping_policy_html": "Tax included. <a href=\"{{ link }}\">Shipping</a> and discounts calculated at checkout.",
       "taxes_and_shipping_at_checkout": "Taxes and shipping calculated at checkout.",
       "return_shop": "Continue Shopping",
-      "remove": "Remove this item",
+      "remove": "Remove",
       "edit": "Edit this item",
       "subtotal": "Subtotal",
       "viewcart": "View Cart",

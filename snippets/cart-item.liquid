@@ -198,7 +198,7 @@
         </svg>
           {% assign item_url = item.url %}
           {%- unless item.product.has_only_default_variant or is_gift_progress_item -%}
-            {% if theme_st.enable_catalog_mode == false %}
+            {% if theme_st.enable_catalog_mode == false and theme_st.enable_cart_item_edit %}
               <minicart-item-edit
                 data-text-header="{{ 'general.cart.cart_edit' | t }}"
                 data-custom-class="cart-item-edit"
@@ -223,14 +223,11 @@
           >
             <a
               href="{{ item.url_to_remove }}"
-              class="cart-remove button--tertiary relative"
+              class="cart-remove button--tertiary relative underline fs-small hover-heading-color transition"
               arial-label="{{- 'general.cart.remove' | t -}}"
               name="{{- 'general.cart.remove' | t -}}"
             >
-              <svg width="12" height="12" class="dark-grey remove-icon hover-heading-color transition">
-                <use href="#icon-trash" />
-              </svg>
-              <div class="icon-rotator"></div>
+              {{- 'general.cart.remove' | t -}}
             </a>
           </mini-cart-remove-button>
         </div>

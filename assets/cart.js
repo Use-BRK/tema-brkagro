@@ -346,11 +346,7 @@ class CartItems extends HTMLElement {
       0
     );
 
-    this.debouncedOnChange = debounce((event) => {
-      this.onChange(event);
-    }, 300);
-
-    this.addEventListener("change", this.debouncedOnChange.bind(this));
+    this.addEventListener("change", this.onChange.bind(this));
     this.isShippingProtectionLoading = false;
 
     // Use CartUtils for gift form listeners
@@ -379,8 +375,27 @@ class CartItems extends HTMLElement {
     ];
   }
 
+  disableCartButtons() {
+    this.querySelectorAll("quantity-input button, [data-item-remove]").forEach((el) => {
+      el.setAttribute("disabled", "true");
+    });
+    this.querySelectorAll("quantity-input input").forEach((input) => {
+      input.disabled = true;
+    });
+  }
+
+  enableCartButtons() {
+    this.querySelectorAll("quantity-input button, [data-item-remove]").forEach((el) => {
+      el.removeAttribute("disabled");
+    });
+    this.querySelectorAll("quantity-input input").forEach((input) => {
+      input.disabled = false;
+    });
+  }
+
   updateQuantity(line, key, quantity, name, target) {
     quantity = quantity ? quantity : 0;
+    this.disableCartButtons();
     const selector = `cart-remove-button[data-index="${line}"]`;
     const cart_item = this.querySelector(selector);
     cart_item?.classList.add("loading");
@@ -423,11 +438,9 @@ class CartItems extends HTMLElement {
       })
       .finally(() => {
         BlsLazyloadImg.init();
+        this.enableCartButtons();
         cart_item?.classList.remove("loading");
-        if (this.isShippingProtectionLoading) {
-          this.setPageCartLoading(false);
-          this.isShippingProtectionLoading = false;
-        }
+        this.isShippingProtectionLoading = false;
       });
   }
 

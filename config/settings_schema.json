@@ -1485,6 +1485,12 @@
       },
       {
         "type": "checkbox",
+        "id": "enable_cart_item_edit",
+        "label": "t:settings_schema.cart.settings.cart_addons.enable_cart_item_edit.label",
+        "default": true
+      },
+      {
+        "type": "checkbox",
         "id": "enable_shipping_protection",
         "label": "t:settings_schema.cart.settings.cart_addons.enable_shipping_protection.label",
         "default": false

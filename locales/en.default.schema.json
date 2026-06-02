@@ -607,6 +607,9 @@
           "choose_gift_wrap_product": {
             "label": "Choose gift wrap product"
           },
+          "enable_cart_item_edit": {
+            "label": "Enable cart item edit"
+          },
           "enable_shipping_protection": {
             "label": "Enable shipping protection"
           },

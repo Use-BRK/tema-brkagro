@@ -510,6 +510,37 @@ body .dmp_discount-form input {
   background-color: #fff;
   pointer-events: none; 
 }
+
+/* Cart item loading state */
+.cart-item {
+  position: relative;
+}
+.cart-item:has(mini-cart-remove-button.loading)::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: rgb(255 255 255 / 65%);
+  z-index: 2;
+  pointer-events: none;
+}
+.cart-item:has(mini-cart-remove-button.loading)::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 18px;
+  height: 18px;
+  margin: -9px 0 0 -9px;
+  border: 2px solid var(--color-border, #e8e0d0);
+  border-top-color: var(--color-heading, #1a1410);
+  border-radius: 50%;
+  animation: cart-item-spin 0.6s linear infinite;
+  z-index: 3;
+}
+@keyframes cart-item-spin {
+  to { transform: rotate(360deg); }
+}
+
 .discount-price {
   border-radius: 30px;
   padding-block: 6.5px;

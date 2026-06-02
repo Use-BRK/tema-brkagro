@@ -186,12 +186,9 @@ class CartNotification extends HTMLElement {
       0
     );
     this.onBodyClick = this.handleBodyClick.bind(this);
-    this.debouncedOnChange = debounce((event) => {
-      this.onChange(event);
-    }, 300);
     this.notification.addEventListener(
       "change",
-      this.debouncedOnChange.bind(this)
+      this.onChange.bind(this)
     );
     this.notification.addEventListener(
       "change",
@@ -752,8 +749,29 @@ class CartNotification extends HTMLElement {
       );
   }
 
+  disableCartButtons() {
+    const container = this.notification || this;
+    container.querySelectorAll("quantity-input button, [data-item-remove]").forEach((el) => {
+      el.setAttribute("disabled", "true");
+    });
+    container.querySelectorAll("quantity-input input").forEach((input) => {
+      input.disabled = true;
+    });
+  }
+
+  enableCartButtons() {
+    const container = this.notification || this;
+    container.querySelectorAll("quantity-input button, [data-item-remove]").forEach((el) => {
+      el.removeAttribute("disabled");
+    });
+    container.querySelectorAll("quantity-input input").forEach((input) => {
+      input.disabled = false;
+    });
+  }
+
   updateQuantity(id, quantity, currentQuantity, _this, name) {
     quantity = quantity ? quantity : 0;
+    this.disableCartButtons();
     const lineId = String(id);
     const variantId = lineId.includes(":") ? lineId.split(":")[0] : lineId;
     const sections = this.getSectionsToRender().map((section) => section.id);
@@ -871,10 +889,12 @@ class CartNotification extends HTMLElement {
       })
       .finally(() => {
         BlsLazyloadImg.init();
+        this.enableCartButtons();
         cart_item?.classList.remove("loading");
         if (minicart_wishlist_action) {
           minicart_wishlist_action.classList.remove("loading");
         }
+        this.isShippingProtectionLoading = false;
         setTimeout(() => {
           this.cart = document.querySelector("cart-notification");
         }, 500);
@@ -902,10 +922,6 @@ class CartNotification extends HTMLElement {
               cartRecommend.classList.add("open");
             }, 800);
           }
-        }
-        if (this.isShippingProtectionLoading) {
-          this.setMinicartLoading(false);
-          this.isShippingProtectionLoading = false;
         }
       });
   }
