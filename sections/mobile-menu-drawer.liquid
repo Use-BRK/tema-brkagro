@@ -1,0 +1,920 @@
+{%- liquid
+  assign logo = section.settings.logo
+  assign logo_width = section.settings.logo_max_width
+  assign logo_width_retina = logo_width | times: 2
+  assign theme_st = settings
+-%}
+
+<mobile-menu-drawer id="mobile-menu-drawer" class="mobile-menu-drawer" aria-hidden="true" data-section-id="{{ section.id }}"
+  style="
+    --hot-cl: {{ section.settings.label_hot_color }};--hot-bg-cl: {{ section.settings.label_hot_bg }};
+    --new-cl: {{ section.settings.label_new_color }};--new-bg-cl: {{ section.settings.label_new_bg }};
+    --sale-cl: {{ section.settings.label_sale_color }};--sale-bg-cl: {{ section.settings.label_sale_bg }};
+    --popular-cl: {{ section.settings.label_popular_color }};--popular-bg-cl: {{ section.settings.label_popular_bg }};
+    --mmd-close-icon-color: {{ section.settings.close_icon_color | default: '#000' }};
+    {% if section.settings.header_bg != blank and section.settings.header_bg.alpha > 0 %}--mmd-header-bg: {{ section.settings.header_bg }};{% endif %}
+    {% if section.settings.body_bg != blank and section.settings.body_bg.alpha > 0 %}--mmd-body-bg: {{ section.settings.body_bg }};{% endif %}
+    {% if section.settings.footer_bg != blank and section.settings.footer_bg.alpha > 0 %}--mmd-footer-bg: {{ section.settings.footer_bg }};{% endif %}
+  "
+>
+  <div class="mobile-menu-drawer__overlay"></div>
+  <div class="mobile-menu-drawer__panel">
+    <div class="mobile-menu-drawer__header">
+      {%- if logo != blank -%}
+        <a href="{{ routes.root_url }}" class="mobile-menu-drawer__logo" style="--logo-width: {{ logo_width }}px">
+          <img
+            src="{{ logo | image_url: width: logo_width_retina }}"
+            alt="{{ shop.name | escape }}"
+            width="{{ logo_width }}"
+            height="{{ logo_width | divided_by: logo.aspect_ratio | round }}"
+            loading="lazy"
+          >
+        </a>
+      {%- endif -%}
+      <button type="button" class="mobile-menu-drawer__close" aria-label="{{ 'accessibility.close' | t | default: 'Close' }}">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+          <path d="M15 5L5 15M15 15L5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </div>
+
+    <div class="mobile-menu-drawer__body">
+      {%- for block in section.blocks -%}
+        {%- liquid
+          assign pin_to_bottom = block.settings.pin_to_bottom
+          if pin_to_bottom
+            continue
+          endif
+        -%}
+        <div class="mobile-menu-drawer__block mobile-menu-drawer__block--{{ block.type }}" {{ block.shopify_attributes }} style="--block-pb: {{ block.settings.padding_bottom | default: 10 }}px;">
+          {%- case block.type -%}
+            {%- when 'menu' -%}
+              {%- liquid
+                assign menu = linklists[block.settings.menu]
+                assign show_images = block.settings.show_images
+                assign text_size = block.settings.text_size | default: 100
+                assign highlight_item = block.settings.highlight_item | downcase | strip
+                assign highlight_color = block.settings.highlight_item_color
+
+                comment
+                  Build a map of label assignments from block settings.
+                  Up to 6 items can have labels.
+                endcomment
+                assign label_items_str = ''
+                for i in (1..6)
+                  assign label_name_key = 'label_item_' | append: i
+                  assign label_type_key = 'label_type_' | append: i
+                  assign label_name_val = block.settings[label_name_key] | downcase | strip
+                  assign label_type_val = block.settings[label_type_key]
+                  if label_name_val != blank and label_type_val != 'unset'
+                    if label_items_str != ''
+                      assign label_items_str = label_items_str | append: '||'
+                    endif
+                    assign label_items_str = label_items_str | append: label_name_val | append: '::' | append: label_type_val
+                  endif
+                endfor
+                assign label_items = label_items_str | split: '||'
+              -%}
+              <ul class="mobile-menu-drawer__list mobile-menu-drawer__list--level-1" style="--text-size-multiplier: {{ text_size | times: 0.01 }}">
+                {%- for link in menu.links -%}
+                  {%- liquid
+                    assign is_highlighted = false
+                    assign link_title_lower = link.title | downcase | strip
+                    if highlight_item != blank and link_title_lower == highlight_item
+                      assign is_highlighted = true
+                    endif
+
+                    assign link_label = nil
+                    for entry in label_items
+                      assign parts = entry | split: '::'
+                      if parts[0] == link_title_lower
+                        assign link_label = parts[1]
+                      endif
+                    endfor
+
+                    assign has_children = false
+                    if link.links.size > 0
+                      assign has_children = true
+                    endif
+
+                    assign link_is_hash = false
+                    if link.url == '#' or link.url == ''
+                      assign link_is_hash = true
+                    endif
+                  -%}
+                  <li class="mobile-menu-drawer__item{% if has_children %} mobile-menu-drawer__item--has-children{% endif %}">
+                    <div class="mobile-menu-drawer__link-row">
+                      {%- if has_children and link_is_hash -%}
+                        <button type="button" class="mobile-menu-drawer__link mobile-menu-drawer__link--level-1 mobile-menu-drawer__link--parent-toggle"{% if is_highlighted %} style="--highlight: {{ highlight_color }};color: {{ highlight_color }}"{% endif %} data-parent-toggle="mmd-{{ section.id }}-{{ forloop.index }}">
+                          {{- link.title -}}
+                          {%- if link_label -%}
+                            <span class="menu_label rounded-2 text-center heading_weight whitespace-nowrap uppercase {{ link_label }}">{%- liquid
+                              assign _label_text_key = 'label_' | append: link_label | append: '_text'
+                              echo section.settings[_label_text_key]
+                            -%}</span>
+                          {%- endif -%}
+                        </button>
+                      {%- else -%}
+                        <a href="{{ link.url }}" class="mobile-menu-drawer__link mobile-menu-drawer__link--level-1"{% if is_highlighted %} style="--highlight: {{ highlight_color }};color: {{ highlight_color }}"{% endif %}>
+                          {{- link.title -}}
+                          {%- if link_label -%}
+                            <span class="menu_label rounded-2 text-center heading_weight whitespace-nowrap uppercase {{ link_label }}">{%- liquid
+                              assign _label_text_key = 'label_' | append: link_label | append: '_text'
+                              echo section.settings[_label_text_key]
+                            -%}</span>
+                          {%- endif -%}
+                        </a>
+                      {%- endif -%}
+                      {%- if has_children -%}
+                        <button type="button" class="mobile-menu-drawer__toggle" aria-expanded="false" aria-controls="mmd-{{ section.id }}-{{ forloop.index }}">
+                          <svg class="mobile-menu-drawer__icon-plus" width="16" height="16" viewBox="0 0 192 192" aria-hidden="true">
+                            <path d="M30 96h132M96 30v132" stroke="currentColor" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+                          </svg>
+                          <svg class="mobile-menu-drawer__icon-minus" width="16" height="16" viewBox="0 0 192 192" aria-hidden="true">
+                            <path d="M30 96h132" stroke="currentColor" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+                          </svg>
+                        </button>
+                      {%- endif -%}
+                    </div>
+                    {%- if has_children -%}
+                      <div class="mobile-menu-drawer__submenu" id="mmd-{{ section.id }}-{{ forloop.index }}">
+                        <ul class="mobile-menu-drawer__list mobile-menu-drawer__list--level-2">
+                          {%- for child in link.links -%}
+                            {%- liquid
+                              assign submenu_image = nil
+                              if show_images and child.type == 'collection_link' and child.object != blank
+                                assign submenu_image = child.object.metafields.custom.submenu_image.value
+                              endif
+
+                              assign child_has_children = false
+                              if child.links.size > 0
+                                assign child_has_children = true
+                              endif
+
+                              assign child_is_hash = false
+                              if child.url == '#' or child.url == ''
+                                assign child_is_hash = true
+                              endif
+                            -%}
+                            <li class="mobile-menu-drawer__item{% if child_has_children %} mobile-menu-drawer__item--has-children{% endif %}">
+                              <div class="mobile-menu-drawer__link-row">
+                                {%- if child_has_children and child_is_hash -%}
+                                  <button type="button" class="mobile-menu-drawer__link mobile-menu-drawer__link--level-2 mobile-menu-drawer__link--parent-toggle{% if submenu_image %} mobile-menu-drawer__link--has-image{% endif %}" data-parent-toggle="mmd-{{ section.id }}-{{ forloop.parentloop.index }}-{{ forloop.index }}">
+                                    {%- if submenu_image -%}
+                                      <div class="mobile-menu-drawer__image">
+                                        <img src="{{ submenu_image | image_url: width: 360 }}" alt="{{ child.title | escape }}" width="180" height="90" loading="lazy" class="mobile-menu-drawer__image-img">
+                                      </div>
+                                    {%- endif -%}
+                                    <span>{{ child.title }}</span>
+                                  </button>
+                                {%- else -%}
+                                  <a href="{{ child.url }}" class="mobile-menu-drawer__link mobile-menu-drawer__link--level-2{% if submenu_image %} mobile-menu-drawer__link--has-image{% endif %}">
+                                    {%- if submenu_image -%}
+                                      <div class="mobile-menu-drawer__image">
+                                        <img src="{{ submenu_image | image_url: width: 360 }}" alt="{{ child.title | escape }}" width="180" height="90" loading="lazy" class="mobile-menu-drawer__image-img">
+                                      </div>
+                                    {%- endif -%}
+                                    <span>{{ child.title }}</span>
+                                  </a>
+                                {%- endif -%}
+                                {%- if child_has_children -%}
+                                  <button type="button" class="mobile-menu-drawer__toggle mobile-menu-drawer__toggle--level-2" aria-expanded="false" aria-controls="mmd-{{ section.id }}-{{ forloop.parentloop.index }}-{{ forloop.index }}">
+                                    <svg class="mobile-menu-drawer__icon-plus" width="14" height="14" viewBox="0 0 192 192" aria-hidden="true">
+                                      <path d="M30 96h132M96 30v132" stroke="currentColor" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                    <svg class="mobile-menu-drawer__icon-minus" width="14" height="14" viewBox="0 0 192 192" aria-hidden="true">
+                                      <path d="M30 96h132" stroke="currentColor" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                  </button>
+                                {%- endif -%}
+                              </div>
+                              {%- if child_has_children -%}
+                                <div class="mobile-menu-drawer__submenu" id="mmd-{{ section.id }}-{{ forloop.parentloop.index }}-{{ forloop.index }}">
+                                  <ul class="mobile-menu-drawer__list mobile-menu-drawer__list--level-3">
+                                    {%- for grandchild in child.links -%}
+                                      <li class="mobile-menu-drawer__item">
+                                        <a href="{{ grandchild.url }}" class="mobile-menu-drawer__link mobile-menu-drawer__link--level-3">
+                                          {{- grandchild.title -}}
+                                        </a>
+                                      </li>
+                                    {%- endfor -%}
+                                  </ul>
+                                </div>
+                              {%- endif -%}
+                            </li>
+                          {%- endfor -%}
+                        </ul>
+                      </div>
+                    {%- endif -%}
+                  </li>
+                {%- endfor -%}
+              </ul>
+
+            {%- when 'image' -%}
+              {%- liquid
+                assign block_image = block.settings.image
+                assign image_url = block.settings.image_url
+                assign image_width_pct = block.settings.image_width
+                assign image_alignment = block.settings.image_alignment
+              -%}
+              {%- if block_image != blank -%}
+                <div class="mobile-menu-drawer__block-image mobile-menu-drawer__align--{{ image_alignment }}">
+                  <a href="{{ image_url | default: '#' }}" style="width: {{ image_width_pct }}%">
+                    <img src="{{ block_image | image_url: width: 700 }}" alt="{{ block_image.alt | escape | default: shop.name }}" width="{{ block_image.width }}" height="{{ block_image.height }}" loading="lazy" style="width: 100%; height: auto; display: block; border-radius: 4px;">
+                  </a>
+                </div>
+              {%- endif -%}
+
+            {%- when 'text' -%}
+              {%- if block.settings.text != blank -%}
+                <div class="mobile-menu-drawer__text {{ block.settings.align_text }}" style="padding: 8px 20px; font-size: calc(14px * {{ block.settings.text_size | times: 0.01 }});">
+                  <p style="margin: 0;">{{ block.settings.text }}</p>
+                </div>
+              {%- endif -%}
+
+            {%- when 'button' -%}
+              {%- if block.settings.button_text != blank -%}
+                <div style="padding: 8px 20px;">
+                  <a href="{{ block.settings.button_link | default: '#' }}" class="btn-{{ block.settings.button_style }} w-full text-center" style="display: block; padding: 12px 20px;">
+                    {{- block.settings.button_text | escape -}}
+                  </a>
+                </div>
+              {%- endif -%}
+
+            {%- when 'login' -%}
+              {%- if shop.customer_accounts_enabled -%}
+                <ul class="mobile-menu-drawer__list" style="font-size: calc(14px * {{ block.settings.text_size | default: 100 | times: 0.01 }});">
+                  {%- if customer -%}
+                    <li class="mobile-menu-drawer__item">
+                      <a href="{{ routes.account_url }}" class="mobile-menu-drawer__link mobile-menu-drawer__link--small">{{ 'customer.account_fallback' | t }}</a>
+                    </li>
+                    <li class="mobile-menu-drawer__item">
+                      <a href="{{ routes.account_logout_url }}" class="mobile-menu-drawer__link mobile-menu-drawer__link--small">{{ 'customer.log_out' | t | default: 'Sair' }}</a>
+                    </li>
+                  {%- else -%}
+                    <li class="mobile-menu-drawer__item">
+                      <a href="{{ routes.account_login_url }}" class="mobile-menu-drawer__link mobile-menu-drawer__link--small">{{ 'customer.log_in' | t | default: 'Entrar' }}</a>
+                    </li>
+                    <li class="mobile-menu-drawer__item">
+                      <a href="{{ routes.account_register_url }}" class="mobile-menu-drawer__link mobile-menu-drawer__link--small">{{ 'customer.register.title' | t | default: 'Criar Conta' }}</a>
+                    </li>
+                  {%- endif -%}
+                </ul>
+              {%- endif -%}
+
+            {%- when 'search' -%}
+              <ul class="mobile-menu-drawer__list">
+                <li class="mobile-menu-drawer__item">
+                  <a href="{{ routes.search_url }}" class="mobile-menu-drawer__link mobile-menu-drawer__link--small">{{ 'general.search.search' | t | default: 'Pesquisar' }}</a>
+                </li>
+              </ul>
+
+            {%- when 'divider' -%}
+              {%- if block.settings.show_line -%}
+                <hr style="margin: 0; border: 0; border-top: 1px solid var(--color-border, #e8e0d0);">
+              {%- endif -%}
+          {%- endcase -%}
+        </div>
+      {%- endfor -%}
+    </div>
+
+    <div class="mobile-menu-drawer__footer">
+      {%- for block in section.blocks -%}
+        {%- unless block.settings.pin_to_bottom -%}
+          {%- continue -%}
+        {%- endunless -%}
+        <div class="mobile-menu-drawer__block mobile-menu-drawer__block--{{ block.type }}" {{ block.shopify_attributes }} style="--block-pb: {{ block.settings.padding_bottom | default: 10 }}px;">
+          {%- case block.type -%}
+            {%- when 'login' -%}
+              {%- if shop.customer_accounts_enabled -%}
+                <ul class="mobile-menu-drawer__list" style="font-size: calc(14px * {{ block.settings.text_size | default: 100 | times: 0.01 }});">
+                  {%- if customer -%}
+                    <li class="mobile-menu-drawer__item">
+                      <a href="{{ routes.account_url }}" class="mobile-menu-drawer__link mobile-menu-drawer__link--small">{{ 'customer.account_fallback' | t }}</a>
+                    </li>
+                  {%- else -%}
+                    <li class="mobile-menu-drawer__item">
+                      <a href="{{ routes.account_login_url }}" class="mobile-menu-drawer__link mobile-menu-drawer__link--small">{{ 'customer.log_in' | t | default: 'Entrar' }}</a>
+                    </li>
+                    <li class="mobile-menu-drawer__item">
+                      <a href="{{ routes.account_register_url }}" class="mobile-menu-drawer__link mobile-menu-drawer__link--small">{{ 'customer.register.title' | t | default: 'Criar Conta' }}</a>
+                    </li>
+                  {%- endif -%}
+                </ul>
+              {%- endif -%}
+
+            {%- when 'search' -%}
+              <ul class="mobile-menu-drawer__list">
+                <li class="mobile-menu-drawer__item">
+                  <a href="{{ routes.search_url }}" class="mobile-menu-drawer__link mobile-menu-drawer__link--small">{{ 'general.search.search' | t | default: 'Pesquisar' }}</a>
+                </li>
+              </ul>
+
+            {%- when 'button' -%}
+              {%- if block.settings.button_text != blank -%}
+                <div style="padding: 8px 20px;">
+                  <a href="{{ block.settings.button_link | default: '#' }}" class="btn-{{ block.settings.button_style }} w-full text-center" style="display: block; padding: 12px 20px;">
+                    {{- block.settings.button_text | escape -}}
+                  </a>
+                </div>
+              {%- endif -%}
+
+            {%- when 'divider' -%}
+              {%- if block.settings.show_line -%}
+                <hr style="margin: 0; border: 0; border-top: 1px solid var(--color-border, #e8e0d0);">
+              {%- endif -%}
+
+            {%- when 'text' -%}
+              {%- if block.settings.text != blank -%}
+                <div class="mobile-menu-drawer__text {{ block.settings.align_text }}" style="padding: 8px 20px; font-size: calc(14px * {{ block.settings.text_size | times: 0.01 }});">
+                  <p style="margin: 0;">{{ block.settings.text }}</p>
+                </div>
+              {%- endif -%}
+          {%- endcase -%}
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</mobile-menu-drawer>
+
+{% schema %}
+{
+  "name": "Mobile menu",
+  "class": "shopify-section-mobile-menu-drawer",
+  "tag": "section",
+  "limit": 1,
+  "enabled_on": {
+    "groups": ["header"]
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "Logo"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo image"
+    },
+    {
+      "type": "range",
+      "id": "logo_max_width",
+      "label": "Logo width",
+      "min": 30,
+      "max": 200,
+      "default": 100,
+      "step": 10,
+      "unit": "px"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "close_icon_color",
+      "label": "Close icon color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "header_bg",
+      "label": "Header background"
+    },
+    {
+      "type": "color",
+      "id": "body_bg",
+      "label": "Body background"
+    },
+    {
+      "type": "color",
+      "id": "footer_bg",
+      "label": "Footer background"
+    },
+    {
+      "type": "header",
+      "content": "Menu labels"
+    },
+    {
+      "type": "text",
+      "id": "label_hot_text",
+      "label": "Hot label text",
+      "default": "Hot"
+    },
+    {
+      "type": "color",
+      "id": "label_hot_color",
+      "label": "Hot text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "label_hot_bg",
+      "label": "Hot background",
+      "default": "#d0473e"
+    },
+    {
+      "type": "text",
+      "id": "label_new_text",
+      "label": "New label text",
+      "default": "New"
+    },
+    {
+      "type": "color",
+      "id": "label_new_color",
+      "label": "New text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "label_new_bg",
+      "label": "New background",
+      "default": "#516cf4"
+    },
+    {
+      "type": "text",
+      "id": "label_sale_text",
+      "label": "Sale label text",
+      "default": "Sale"
+    },
+    {
+      "type": "color",
+      "id": "label_sale_color",
+      "label": "Sale text color",
+      "default": "#14854e"
+    },
+    {
+      "type": "color",
+      "id": "label_sale_bg",
+      "label": "Sale background",
+      "default": "#ffed00"
+    },
+    {
+      "type": "text",
+      "id": "label_popular_text",
+      "label": "Popular label text",
+      "default": "Popular"
+    },
+    {
+      "type": "color",
+      "id": "label_popular_color",
+      "label": "Popular text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "label_popular_bg",
+      "label": "Popular background",
+      "default": "#ffed00"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "menu",
+      "name": "Menu",
+      "limit": 2,
+      "settings": [
+        {
+          "type": "link_list",
+          "id": "menu",
+          "label": "Menu",
+          "default": "menu"
+        },
+        {
+          "type": "range",
+          "id": "text_size",
+          "label": "Text size",
+          "default": 100,
+          "min": 75,
+          "max": 200,
+          "step": 5,
+          "unit": "%"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_images",
+          "label": "Show collection images",
+          "info": "Shows images from metafield custom.submenu_image on level-2 collection links.",
+          "default": true
+        },
+        {
+          "type": "header",
+          "content": "Highlight link"
+        },
+        {
+          "type": "text",
+          "id": "highlight_item",
+          "label": "Menu item to highlight",
+          "info": "Exact menu item title."
+        },
+        {
+          "type": "color",
+          "id": "highlight_item_color",
+          "label": "Highlight color",
+          "default": "#D02E2E"
+        },
+        {
+          "type": "header",
+          "content": "Menu labels (badges)"
+        },
+        {
+          "type": "paragraph",
+          "content": "Assign labels to up to 6 menu items. Enter the exact menu title and choose a label type. Label text and colors use the global Header settings."
+        },
+        {
+          "type": "text",
+          "id": "label_item_1",
+          "label": "Item 1 title"
+        },
+        {
+          "type": "select",
+          "id": "label_type_1",
+          "label": "Item 1 label",
+          "default": "unset",
+          "options": [
+            { "value": "unset", "label": "None" },
+            { "value": "hot", "label": "Hot" },
+            { "value": "new", "label": "New" },
+            { "value": "sale", "label": "Sale" },
+            { "value": "popular", "label": "Popular" }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "label_item_2",
+          "label": "Item 2 title"
+        },
+        {
+          "type": "select",
+          "id": "label_type_2",
+          "label": "Item 2 label",
+          "default": "unset",
+          "options": [
+            { "value": "unset", "label": "None" },
+            { "value": "hot", "label": "Hot" },
+            { "value": "new", "label": "New" },
+            { "value": "sale", "label": "Sale" },
+            { "value": "popular", "label": "Popular" }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "label_item_3",
+          "label": "Item 3 title"
+        },
+        {
+          "type": "select",
+          "id": "label_type_3",
+          "label": "Item 3 label",
+          "default": "unset",
+          "options": [
+            { "value": "unset", "label": "None" },
+            { "value": "hot", "label": "Hot" },
+            { "value": "new", "label": "New" },
+            { "value": "sale", "label": "Sale" },
+            { "value": "popular", "label": "Popular" }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "label_item_4",
+          "label": "Item 4 title"
+        },
+        {
+          "type": "select",
+          "id": "label_type_4",
+          "label": "Item 4 label",
+          "default": "unset",
+          "options": [
+            { "value": "unset", "label": "None" },
+            { "value": "hot", "label": "Hot" },
+            { "value": "new", "label": "New" },
+            { "value": "sale", "label": "Sale" },
+            { "value": "popular", "label": "Popular" }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "label_item_5",
+          "label": "Item 5 title"
+        },
+        {
+          "type": "select",
+          "id": "label_type_5",
+          "label": "Item 5 label",
+          "default": "unset",
+          "options": [
+            { "value": "unset", "label": "None" },
+            { "value": "hot", "label": "Hot" },
+            { "value": "new", "label": "New" },
+            { "value": "sale", "label": "Sale" },
+            { "value": "popular", "label": "Popular" }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "label_item_6",
+          "label": "Item 6 title"
+        },
+        {
+          "type": "select",
+          "id": "label_type_6",
+          "label": "Item 6 label",
+          "default": "unset",
+          "options": [
+            { "value": "unset", "label": "None" },
+            { "value": "hot", "label": "Hot" },
+            { "value": "new", "label": "New" },
+            { "value": "sale", "label": "Sale" },
+            { "value": "popular", "label": "Popular" }
+          ]
+        },
+        {
+          "type": "header",
+          "content": "Block spacing"
+        },
+        {
+          "type": "range",
+          "id": "padding_bottom",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Padding bottom",
+          "default": 10
+        },
+        {
+          "type": "checkbox",
+          "id": "pin_to_bottom",
+          "label": "Pin to bottom",
+          "default": false
+        }
+      ]
+    },
+    {
+      "type": "image",
+      "name": "Image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "url",
+          "id": "image_url",
+          "label": "Link"
+        },
+        {
+          "type": "select",
+          "id": "image_alignment",
+          "label": "Alignment",
+          "default": "left",
+          "options": [
+            { "label": "Left", "value": "left" },
+            { "label": "Center", "value": "center" },
+            { "label": "Right", "value": "right" }
+          ]
+        },
+        {
+          "type": "range",
+          "id": "image_width",
+          "label": "Image width",
+          "min": 10,
+          "max": 100,
+          "step": 5,
+          "unit": "%",
+          "default": 50
+        },
+        {
+          "type": "header",
+          "content": "Block spacing"
+        },
+        {
+          "type": "range",
+          "id": "padding_bottom",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Padding bottom",
+          "default": 10
+        },
+        {
+          "type": "checkbox",
+          "id": "pin_to_bottom",
+          "label": "Pin to bottom",
+          "default": false
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "name": "Text",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Text",
+          "default": "Free shipping on orders over R$299"
+        },
+        {
+          "type": "select",
+          "id": "align_text",
+          "label": "Alignment",
+          "default": "text-left",
+          "options": [
+            { "value": "text-left", "label": "Left" },
+            { "value": "text-center", "label": "Center" }
+          ]
+        },
+        {
+          "type": "range",
+          "id": "text_size",
+          "label": "Size",
+          "default": 90,
+          "min": 50,
+          "max": 150,
+          "step": 5,
+          "unit": "%"
+        },
+        {
+          "type": "header",
+          "content": "Block spacing"
+        },
+        {
+          "type": "range",
+          "id": "padding_bottom",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Padding bottom",
+          "default": 10
+        },
+        {
+          "type": "checkbox",
+          "id": "pin_to_bottom",
+          "label": "Pin to bottom",
+          "default": false
+        }
+      ]
+    },
+    {
+      "type": "button",
+      "name": "Button",
+      "settings": [
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Text",
+          "default": "Ver Tudo"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Link",
+          "default": "/collections/all"
+        },
+        {
+          "type": "select",
+          "id": "button_style",
+          "label": "Style",
+          "default": "outline",
+          "options": [
+            { "label": "Primary", "value": "primary" },
+            { "label": "Outline", "value": "outline" }
+          ]
+        },
+        {
+          "type": "header",
+          "content": "Block spacing"
+        },
+        {
+          "type": "range",
+          "id": "padding_bottom",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Padding bottom",
+          "default": 10
+        },
+        {
+          "type": "checkbox",
+          "id": "pin_to_bottom",
+          "label": "Pin to bottom",
+          "default": false
+        }
+      ]
+    },
+    {
+      "type": "login",
+      "name": "Login links",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "range",
+          "id": "text_size",
+          "label": "Text size",
+          "default": 100,
+          "min": 75,
+          "max": 200,
+          "step": 5,
+          "unit": "%"
+        },
+        {
+          "type": "header",
+          "content": "Block spacing"
+        },
+        {
+          "type": "range",
+          "id": "padding_bottom",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Padding bottom",
+          "default": 10
+        },
+        {
+          "type": "checkbox",
+          "id": "pin_to_bottom",
+          "label": "Pin to bottom",
+          "default": true
+        }
+      ]
+    },
+    {
+      "type": "search",
+      "name": "Search link",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "header",
+          "content": "Block spacing"
+        },
+        {
+          "type": "range",
+          "id": "padding_bottom",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Padding bottom",
+          "default": 10
+        },
+        {
+          "type": "checkbox",
+          "id": "pin_to_bottom",
+          "label": "Pin to bottom",
+          "default": true
+        }
+      ]
+    },
+    {
+      "type": "divider",
+      "name": "Divider",
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "show_line",
+          "label": "Show line",
+          "default": true
+        },
+        {
+          "type": "header",
+          "content": "Block spacing"
+        },
+        {
+          "type": "range",
+          "id": "padding_bottom",
+          "min": 0,
+          "max": 50,
+          "step": 2,
+          "unit": "px",
+          "label": "Padding bottom",
+          "default": 10
+        },
+        {
+          "type": "checkbox",
+          "id": "pin_to_bottom",
+          "label": "Pin to bottom",
+          "default": false
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Mobile menu",
+      "blocks": [
+        { "type": "menu" },
+        { "type": "divider", "settings": { "pin_to_bottom": true } },
+        { "type": "login", "settings": { "pin_to_bottom": true } },
+        { "type": "search", "settings": { "pin_to_bottom": true } }
+      ]
+    }
+  ]
+}
+{% endschema %}

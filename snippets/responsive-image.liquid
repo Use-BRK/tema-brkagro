@@ -71,8 +71,14 @@
   endif
 
   assign loading = 'lazy'
+  assign image_fetchpriority = 'auto'
   if lazy_load == true
     assign loading = 'eager'
+  elsif section.location == 'header' or section.location == 'aside' or section.location == 'template' and section.index < 3
+    assign loading = 'eager'
+  endif
+  if loading == 'eager' and type == 'banner'
+    assign image_fetchpriority = 'high'
   endif
   assign secondary_image = false
   if class contains 'secondary-image'
@@ -105,7 +111,7 @@
     , calc( ({{ section_width_mobile }} - {{ padding_mobile }} * {{ colunm_mobile | minus: 1 }} ) * {{ divide_colunm_mobile }})
   {%- endcapture -%}
 {% endif %}
-{% if no_animate == blank and secondary_image == false and settings.zoom_image == true %}
+{% if no_animate == blank and secondary_image == false and settings.zoom_image == true and loading != 'eager' %}
   <motion-element
     data-motion="{{ custom_zoom | default: zoom_out }}"
     data-image
@@ -134,6 +140,7 @@
       | image_url: width: image.width
       | image_tag:
         loading: loading,
+        fetchpriority: image_fetchpriority,
         width: image.width,
         height: image.height,
         sizes: sizes,
@@ -148,6 +155,7 @@
     | image_url: width: image.width
     | image_tag:
       loading: loading,
+      fetchpriority: image_fetchpriority,
       width: width,
       height: image.height,
       sizes: sizes,
@@ -156,7 +164,7 @@
       alt: image_alt
   -}}
 {% endif %}
-{% if no_animate == blank and secondary_image == false and settings.zoom_image == true %}
+{% if no_animate == blank and secondary_image == false and settings.zoom_image == true and loading != 'eager' %}
   </motion-element>
 {% endif %}
 

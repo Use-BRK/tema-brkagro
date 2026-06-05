@@ -158,10 +158,48 @@
         "padding_top": 6,
         "padding_bottom": 6
       }
+    },
+    "mobile_menu_drawer": {
+      "type": "mobile-menu-drawer",
+      "blocks": {
+        "menu_block": {
+          "type": "menu",
+          "settings": {
+            "menu": "menu",
+            "show_images": true
+          }
+        },
+        "divider_block": {
+          "type": "divider",
+          "settings": {
+            "pin_to_bottom": true
+          }
+        },
+        "login_block": {
+          "type": "login",
+          "settings": {
+            "pin_to_bottom": true
+          }
+        },
+        "search_block": {
+          "type": "search",
+          "settings": {
+            "pin_to_bottom": true
+          }
+        }
+      },
+      "block_order": [
+        "menu_block",
+        "divider_block",
+        "login_block",
+        "search_block"
+      ],
+      "settings": {}
     }
   },
   "order": [
     "top_bar_CbXNYj",
-    "header"
+    "header",
+    "mobile_menu_drawer"
   ]
 }

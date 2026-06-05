@@ -19,6 +19,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
     <meta name="theme-color" content="">
     <link rel="canonical" href="{{ canonical_url }}">
+    <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
     {%- if settings.favicon != blank -%}
       <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
     {%- endif -%}
@@ -38,7 +39,9 @@
     {% if enable_rtl %}{{ 'rtl.css' | asset_url | stylesheet_tag: preload: true }}{% endif %}
     {{ 'product-card.css' | asset_url | stylesheet_tag }}
     {{ 'swiper-bundle.min.css' | asset_url | stylesheet_tag }}
-    {{ 'judgeme-reviews.css' | asset_url | stylesheet_tag }}
+    {{ 'mobile-menu-drawer.css' | asset_url | stylesheet_tag }}
+    <link rel="stylesheet" href="{{ 'judgeme-reviews.css' | asset_url }}" media="print" onload="this.media='all'">
+    <noscript>{{ 'judgeme-reviews.css' | asset_url | stylesheet_tag }}</noscript>
     {% render 'font-variables' %}
     {% if request.design_mode %}
       {{ 'design-mode.css' | asset_url | stylesheet_tag: preload: true }}
@@ -219,5 +222,23 @@
     {%- render 'scripts-tag' -%}
     {%- render 'sprite-svg' -%}
     {%- render 'content-bottom' -%}
+    <script type="speculationrules">
+      {
+        "prefetch": [
+          {
+            "source": "document",
+            "where": {
+              "and": [
+                { "href_matches": "/*" },
+                { "not": { "href_matches": "/checkout*" } },
+                { "not": { "href_matches": "/cart*" } },
+                { "not": { "selector_matches": "[data-no-prefetch]" } }
+              ]
+            },
+            "eagerness": "moderate"
+          }
+        ]
+      }
+    </script>
   </body>
 </html>

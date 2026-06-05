@@ -21,14 +21,46 @@
   {{ 'header-account-popup.css' | asset_url | stylesheet_tag }}
   <script src="{{ 'header-account-popup.js' | asset_url }}" defer="defer"></script>
 {% endif %}
+{%- liquid
+  assign layout = section.settings.layout | default: 'pill'
+  assign pill_text = section.settings.pill_text | default: 'MENU'
+  assign pill_font_size = section.settings.pill_font_size | default: 12
+  assign pill_font_obj = section.settings.pill_font
+  assign pill_bottom = section.settings.pill_bottom | default: 14
+  assign pill_horizontal = section.settings.pill_horizontal | default: 16
+  assign pill_side = section.settings.pill_side | default: 'left'
+-%}
 {%- capture style -%}
---number: {{ section.blocks.size }};
+  {%- if layout == 'pill' -%}
+    --number: {{ section.blocks.size | plus: 1 }};
+    --pill-bottom: {{ pill_bottom }}px;
+    --pill-horizontal: {{ pill_horizontal }}px;
+    --pill-font-size: {{ pill_font_size }}px;
+  {%- else -%}
+    --number: {{ section.blocks.size }};
+  {%- endif -%}
 {%- endcapture -%}
 {% if section.blocks.size > 0 %}
+  {%- if layout == 'pill' -%}
+    {%- if pill_font_obj -%}
+      <style>
+        {{ pill_font_obj | font_face: font_display: 'swap' }}
+        .nav-pill__trigger {
+          font-family: {{ pill_font_obj.family }}, {{ pill_font_obj.fallback_families }};
+        }
+      </style>
+    {%- endif -%}
+    <input type="checkbox" id="nav-pill-toggle" class="nav-pill__checkbox" aria-hidden="true">
+  {%- endif -%}
   <mobile-navigation-bar
-    class="mobile-navigation-bar transition flex invisible algin-center hidden-md fixed bottom-0 inset-x-0 z-10 bg-white shadow px-15 py-13 color-default show"
+    class="mobile-navigation-bar {% if layout == 'pill' %}nav-pill nav-pill--{{ pill_side }}{% else %}transition flex invisible algin-center fixed bottom-0 inset-x-0 z-10 bg-white shadow px-15 py-13 color-default{% endif %} hidden-md show"
     style="{{ style | strip | strip_newlines }}"
   >
+    {%- if layout == 'pill' -%}
+      <label for="nav-pill-toggle" class="nav-pill__trigger" aria-label="{{ pill_text }}">
+        <span>{{ pill_text }}</span>
+      </label>
+    {%- endif -%}
     {% for block in section.blocks %}
       {% case block.type %}
         {% when 'homepage' %}
@@ -193,6 +225,13 @@
           </a>
       {% endcase %}
     {% endfor %}
+    {%- if layout == 'pill' -%}
+      <label for="nav-pill-toggle" class="nav-pill__close" aria-label="Fechar menu">
+        <svg width="14" height="14" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+          <path d="M15 5L5 15M15 15L5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </label>
+    {%- endif -%}
   </mobile-navigation-bar>
 {% endif %}
 {% schema %}
@@ -213,6 +252,88 @@
       "id": "show_account",
       "label": "t:sections.mobile-navigation-bar.settings.show_account",
       "default": true
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "layout",
+      "label": "Mobile nav layout",
+      "default": "pill",
+      "options": [
+        { "value": "classic", "label": "Classic (bottom bar)" },
+        { "value": "pill", "label": "Pill (expandable)" }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Pill button",
+      "visible_if": "{{ section.settings.layout == 'pill' }}"
+    },
+    {
+      "type": "text",
+      "id": "pill_text",
+      "label": "Pill text",
+      "default": "MENU",
+      "visible_if": "{{ section.settings.layout == 'pill' }}"
+    },
+    {
+      "type": "range",
+      "id": "pill_font_size",
+      "label": "Pill font size",
+      "min": 9,
+      "max": 20,
+      "step": 1,
+      "default": 12,
+      "unit": "px",
+      "visible_if": "{{ section.settings.layout == 'pill' }}"
+    },
+    {
+      "type": "font_picker",
+      "id": "pill_font",
+      "label": "Pill font",
+      "default": "assistant_n4",
+      "visible_if": "{{ section.settings.layout == 'pill' }}"
+    },
+    {
+      "type": "header",
+      "content": "Pill position",
+      "visible_if": "{{ section.settings.layout == 'pill' }}"
+    },
+    {
+      "type": "range",
+      "id": "pill_bottom",
+      "label": "Bottom offset",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "default": 14,
+      "unit": "px",
+      "visible_if": "{{ section.settings.layout == 'pill' }}"
+    },
+    {
+      "type": "range",
+      "id": "pill_horizontal",
+      "label": "Horizontal offset",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "default": 16,
+      "unit": "px",
+      "visible_if": "{{ section.settings.layout == 'pill' }}"
+    },
+    {
+      "type": "select",
+      "id": "pill_side",
+      "label": "Horizontal side",
+      "default": "left",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "right", "label": "Right" }
+      ],
+      "visible_if": "{{ section.settings.layout == 'pill' }}"
     }
   ],
   "blocks": [

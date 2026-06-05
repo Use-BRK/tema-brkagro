@@ -939,6 +939,15 @@ let BlsMainMenuShopify = (function () {
       document.querySelectorAll(".nav-toggle").forEach((navToggle) => {
         navToggle.addEventListener("click", (e) => {
           const target = e.currentTarget;
+          const mobileDrawer = document.getElementById("mobile-menu-drawer");
+
+          if (mobileDrawer) {
+            e.preventDefault();
+            e.stopPropagation();
+            mobileDrawer.open();
+            return;
+          }
+
           const main_menu = document.querySelector(".navigation.horizontal");
 
           if (document.documentElement.classList.contains("nav-open")) {
@@ -2800,6 +2809,69 @@ class NavBar extends HTMLElement {
   }
 }
 customElements.define("mobile-navigation-bar", NavBar);
+
+class MobileMenuDrawer extends HTMLElement {
+  constructor() {
+    super();
+    this.overlay = this.querySelector(".mobile-menu-drawer__overlay");
+    this.closeBtn = this.querySelector(".mobile-menu-drawer__close");
+    this.toggles = this.querySelectorAll(".mobile-menu-drawer__toggle");
+    this.parentToggles = this.querySelectorAll("[data-parent-toggle]");
+
+    this.overlay?.addEventListener("click", () => this.close());
+    this.closeBtn?.addEventListener("click", () => this.close());
+    this.toggles.forEach((toggle) => {
+      toggle.addEventListener("click", () => this.onToggle(toggle));
+    });
+    this.parentToggles.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const targetId = btn.getAttribute("data-parent-toggle");
+        const submenu = document.getElementById(targetId);
+        const toggleBtn = btn.closest(".mobile-menu-drawer__link-row").querySelector(".mobile-menu-drawer__toggle");
+        if (toggleBtn) {
+          this.onToggle(toggleBtn);
+        } else if (submenu) {
+          submenu.classList.toggle("is-open");
+        }
+      });
+    });
+  }
+
+  connectedCallback() {
+    this._onKeydown = (e) => {
+      if (e.key === "Escape" && this.getAttribute("aria-hidden") === "false") {
+        this.close();
+      }
+    };
+    document.addEventListener("keydown", this._onKeydown);
+  }
+
+  disconnectedCallback() {
+    document.removeEventListener("keydown", this._onKeydown);
+  }
+
+  open() {
+    this.setAttribute("aria-hidden", "false");
+    root.style.setProperty("padding-right", getScrollBarWidth.init() + "px");
+    document.documentElement.classList.add("mobile-menu-drawer-open");
+  }
+
+  close() {
+    this.setAttribute("aria-hidden", "true");
+    root.style.removeProperty("padding-right");
+    document.documentElement.classList.remove("mobile-menu-drawer-open");
+  }
+
+  onToggle(toggle) {
+    const expanded = toggle.getAttribute("aria-expanded") === "true";
+    const submenu = toggle.closest(".mobile-menu-drawer__link-row").nextElementSibling;
+    toggle.setAttribute("aria-expanded", String(!expanded));
+    if (submenu) {
+      submenu.classList.toggle("is-open", !expanded);
+    }
+  }
+}
+customElements.define("mobile-menu-drawer", MobileMenuDrawer);
 
 class CarouselMobile extends SlideSection {
   constructor() {
