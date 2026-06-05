@@ -12,11 +12,13 @@ html.mobile-menu-drawer-open {
   z-index: 999;
   pointer-events: none;
   visibility: hidden;
+  transition: visibility 0s linear 0.3s;
 }
 
 .mobile-menu-drawer[aria-hidden="false"] {
   pointer-events: auto;
   visibility: visible;
+  transition: visibility 0s linear 0s;
 }
 
 /* Overlay */
