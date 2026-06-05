@@ -158,10 +158,103 @@
         "padding_top": 6,
         "padding_bottom": 6
       }
+    },
+    "mobile_menu_drawer_qVAPQC": {
+      "type": "mobile-menu-drawer",
+      "blocks": {
+        "menu_9XmD4T": {
+          "type": "menu",
+          "settings": {
+            "menu": "menu",
+            "text_size": 130,
+            "show_images": true,
+            "highlight_item": "",
+            "highlight_item_color": "#D02E2E",
+            "label_item_1": "COPA 2026",
+            "label_type_1": "sale",
+            "label_item_2": "",
+            "label_type_2": "unset",
+            "label_item_3": "",
+            "label_type_3": "unset",
+            "label_item_4": "",
+            "label_type_4": "unset",
+            "label_item_5": "",
+            "label_type_5": "unset",
+            "label_item_6": "",
+            "label_type_6": "unset",
+            "padding_bottom": 10,
+            "pin_to_bottom": false
+          }
+        },
+        "button_X8Eebj": {
+          "type": "button",
+          "settings": {
+            "button_text": "Coleções do Agro",
+            "button_link": "shopify://collections/all",
+            "button_style": "primary",
+            "padding_bottom": 10,
+            "pin_to_bottom": false
+          }
+        },
+        "button_xzXqHb": {
+          "type": "button",
+          "settings": {
+            "button_text": "Rastrear Pedido",
+            "button_link": "shopify://collections/all",
+            "button_style": "outline",
+            "padding_bottom": 10,
+            "pin_to_bottom": true
+          }
+        },
+        "login_WcQMag": {
+          "type": "login",
+          "settings": {
+            "text_size": 100,
+            "padding_bottom": 10,
+            "pin_to_bottom": true
+          }
+        },
+        "search_PLgRDi": {
+          "type": "search",
+          "settings": {
+            "padding_bottom": 10,
+            "pin_to_bottom": true
+          }
+        }
+      },
+      "block_order": [
+        "menu_9XmD4T",
+        "button_X8Eebj",
+        "button_xzXqHb",
+        "login_WcQMag",
+        "search_PLgRDi"
+      ],
+      "name": "Mobile menu",
+      "settings": {
+        "logo": "shopify://shop_images/Prancheta_1_c378cb50-736b-410e-a62b-c66a775cc60c.png",
+        "logo_max_width": 200,
+        "close_icon_color": "#ffffff",
+        "header_bg": "#085b47",
+        "body_bg": "",
+        "footer_bg": "",
+        "label_hot_text": "Hot",
+        "label_hot_color": "#ffffff",
+        "label_hot_bg": "#d0473e",
+        "label_new_text": "New",
+        "label_new_color": "#ffffff",
+        "label_new_bg": "#516cf4",
+        "label_sale_text": "LANÇAMENTO",
+        "label_sale_color": "#14854e",
+        "label_sale_bg": "#ffed00",
+        "label_popular_text": "Popular",
+        "label_popular_color": "#ffffff",
+        "label_popular_bg": "#ffed00"
+      }
     }
   },
   "order": [
     "top_bar_CbXNYj",
-    "header"
+    "header",
+    "mobile_menu_drawer_qVAPQC"
   ]
 }
