@@ -315,7 +315,7 @@
         "image_behavior": "none",
         "overlay_opacity": 50,
         "image_height": "custom",
-        "desktop_height": 350,
+        "desktop_height": 400,
         "mobile_height": 580,
         "product_list": [],
         "content_alignment": "left",
