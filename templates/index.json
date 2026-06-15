@@ -124,7 +124,7 @@
         "fade_image_effect": "none",
         "reveal_slideshow": false,
         "enable_card_scrolling": true,
-        "increase_border_radius": true,
+        "increase_border_radius": false,
         "show_arrow": true,
         "carousel_pagination": "show_dots",
         "pagination_position": "center",
@@ -334,89 +334,6 @@
         "reset_spacing": true
       }
     },
-    "banner_packery_mtLe9j": {
-      "type": "banner-packery",
-      "blocks": {
-        "group_image_overlay_Ymn44D": {
-          "type": "_group-image-overlay",
-          "settings": {
-            "color_scheme": "",
-            "image": "shopify://shop_images/1779967739469-07.webp",
-            "image_link": "",
-            "overlay_opacity": 0,
-            "content_alignment": "center",
-            "content_position": "middle-center",
-            "content_padding_block": 10,
-            "content_padding_inline": 10
-          },
-          "blocks": {}
-        },
-        "group_image_overlay_W6hL3J": {
-          "type": "_group-image-overlay",
-          "settings": {
-            "color_scheme": "",
-            "image": "shopify://shop_images/1779967652422-08.webp",
-            "image_link": "",
-            "overlay_opacity": 0,
-            "content_alignment": "center",
-            "content_position": "middle-center",
-            "content_padding_block": 10,
-            "content_padding_inline": 10
-          },
-          "blocks": {}
-        },
-        "group_image_overlay_w4dNQn": {
-          "type": "_group-image-overlay",
-          "settings": {
-            "color_scheme": "",
-            "image": "shopify://shop_images/1779967739469-08.webp",
-            "image_link": "",
-            "overlay_opacity": 0,
-            "content_alignment": "center",
-            "content_position": "middle-center",
-            "content_padding_block": 10,
-            "content_padding_inline": 10
-          },
-          "blocks": {}
-        },
-        "group_image_overlay_8bcXbr": {
-          "type": "_group-image-overlay",
-          "settings": {
-            "color_scheme": "",
-            "image": "shopify://shop_images/1779967739469-08.webp",
-            "image_link": "",
-            "overlay_opacity": 0,
-            "content_alignment": "center",
-            "content_position": "middle-center",
-            "content_padding_block": 10,
-            "content_padding_inline": 10
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "group_image_overlay_Ymn44D",
-        "group_image_overlay_W6hL3J",
-        "group_image_overlay_w4dNQn",
-        "group_image_overlay_8bcXbr"
-      ],
-      "disabled": true,
-      "name": "t:sections.banner-packery.name",
-      "settings": {
-        "section_width": "stretch_width",
-        "color_scheme": "scheme-a07f02f4-f1f2-4ea3-9eeb-577115ec9f47",
-        "heading": "",
-        "description": "",
-        "show_view_all_button": false,
-        "view_all_url": "",
-        "header_size": "medium",
-        "header_alignment": "center",
-        "column_gap": 0,
-        "padding_top": 0,
-        "padding_bottom": 0,
-        "reset_spacing": true
-      }
-    },
     "multi_content_Dyd3Y3": {
       "type": "multi-content",
       "blocks": {
@@ -559,6 +476,7 @@
         "group_media_content_KFYWEY",
         "group_media_content_i9MUmw"
       ],
+      "disabled": true,
       "name": "Multiblocos",
       "settings": {
         "section_width": "stretch_width",
@@ -579,6 +497,24 @@
         "padding_top": 30,
         "padding_bottom": 30,
         "reset_spacing": false
+      }
+    },
+    "banner_packery_mtLe9j": {
+      "type": "banner-packery",
+      "name": "t:sections.banner-packery.name",
+      "settings": {
+        "section_width": "stretch_width",
+        "color_scheme": "scheme-a07f02f4-f1f2-4ea3-9eeb-577115ec9f47",
+        "heading": "Nossas coleções",
+        "description": "",
+        "show_view_all_button": false,
+        "view_all_url": "",
+        "header_size": "medium",
+        "header_alignment": "center",
+        "column_gap": 0,
+        "padding_top": 0,
+        "padding_bottom": 20,
+        "reset_spacing": true
       }
     },
     "collection_tab_cPpFqA": {
@@ -777,8 +713,8 @@
     "icon_box_LjTRcj",
     "collection_tab_cxBKk3",
     "image_with_text_overlay_BBzj67",
-    "banner_packery_mtLe9j",
     "multi_content_Dyd3Y3",
+    "banner_packery_mtLe9j",
     "collection_tab_cPpFqA",
     "banner_packery_4RYN8d",
     "icon_box_TRwJBD"
