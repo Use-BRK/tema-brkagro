@@ -13,6 +13,7 @@
   "sections": {
     "custom_html_Ph4bQ3": {
       "type": "custom-html",
+      "disabled": true,
       "custom_css": [],
       "name": "t:sections.html_custom.name",
       "settings": {
