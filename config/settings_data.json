@@ -61,6 +61,7 @@
     "price_size": 18,
     "price_font_weight": "600",
     "show_vendor": false,
+    "show_rate": false,
     "show_secondary_image": false,
     "product_image_ratio": "adapt",
     "product_hover_effect": "hover_zoom",
@@ -131,6 +132,9 @@
     "show_check_box_in_quick_view": false,
     "text_terms_conditions": "",
     "page_terms_conditions": "termos-de-uso",
+    "enable_whatsapp_button": true,
+    "whatsapp_button_number": "553432194697",
+    "whatsapp_button_bottom": 75,
     "rate_color": "#ea0606",
     "sections": {
       "custom-colors": {
