@@ -2763,6 +2763,11 @@
           "label": "Desktop vertical filter posion",
           "left": "Left",
           "right": "Right"
+        },
+        "mobile_product_image_layout": {
+          "label": "Mobile product image layout",
+          "standard": "Standard",
+          "edge_bleed": "Edge bleed"
         }
       },
       "blocks": {

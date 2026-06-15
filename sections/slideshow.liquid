@@ -1,6 +1,9 @@
 {{ 'banner.css' | asset_url | stylesheet_tag }}
 <link rel="stylesheet" href="{{ 'slideshow.css' | asset_url }}" media="print" onload="this.media='all'">
 <script src="{{ 'slideshow-section.js' | asset_url }}" defer="defer" type="module"></script>
+{%- if section.settings.enable_card_scrolling -%}
+  <script src="{{ 'card-scrolling.js' | asset_url }}" defer="defer"></script>
+{%- endif -%}
 {% liquid
   assign section_st = section.settings
   assign section_width = section_st.section_width
@@ -13,6 +16,7 @@
   assign pagination_position = section_st.pagination_position
   assign autoplay = section_st.autoplay
   assign autorotate_speed = section_st.autorotate_speed
+  assign enable_card_scrolling = section_st.enable_card_scrolling
   if section_st.reset_spacing
     assign reset_spacing = ' remove_spacing'
   endif
@@ -80,7 +84,7 @@
 
 <div
   id="{{ section.id }}"
-  class="section{% if section_st.padding_top < 30 %} pt-min{% endif %}{% if section_st.padding_bottom < 30 %} pb-min{% endif %} gradient slideshow {{ slide_effect }} color-{{ color_scheme }}{{ reset_spacing }}"
+  class="section{% if section_st.padding_top < 30 %} pt-min{% endif %}{% if section_st.padding_bottom < 30 %} pb-min{% endif %} gradient slideshow {{ slide_effect }} color-{{ color_scheme }}{{ reset_spacing }}{% if enable_card_scrolling %} card-scrolling-effect{% endif %}{% if enable_card_scrolling and section_st.increase_border_radius %} card-scrolling-effect--rounded-large{% endif %}"
   style="{{ style | strip | strip_newlines }}"
   data-id="{{ section.id }}"
 >
@@ -102,6 +106,9 @@
         data-reveal-slideshow="{{ reveal_slideshow }}"
         data-centered-slides="{% if reveal_slideshow %}true{% else %}false{% endif %}"
       >
+        {%- if enable_card_scrolling -%}
+          <card-scrolling-element></card-scrolling-element>
+        {%- endif -%}
         <div class="swiper-wrapper">
           {% for block in section.blocks %}
             {% liquid
@@ -448,6 +455,21 @@
       "label": "t:sections.all.carousel_settings.reveal.label",
       "info": "t:sections.all.carousel_settings.reveal.info",
       "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_card_scrolling",
+      "label": "Enable card scrolling effect",
+      "info": "Section below will overlap and continue on scroll",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "increase_border_radius",
+      "label": "Increase border radius",
+      "info": "Applied to the next section's upper corners only when card scrolling effect is enabled",
+      "default": true,
+      "visible_if": "{{ section.settings.enable_card_scrolling }}"
     },
     {
       "type": "checkbox",

@@ -35,3 +35,82 @@ html.js .slideshow motion-element[slideshow][data-motion*=zoom] {
 .swiper-pagination-duplicate{
   display: none;
 }
+
+/* ================ Card scrolling effect ================ */
+body:has(.card-scrolling-effect) {
+  --card-scroll-offset: 100px;
+  --sticky-top: 0;
+}
+body:has(.card-scrolling-effect):has(.shopify-section-header-sticky) {
+  --sticky-top: var(--header-height, 0px);
+}
+body:has(.card-scrolling-effect):has(.shopify-section-header-sticky) #MainContent > .shopify-section:first-child {
+  --sticky-top: 0;
+}
+
+.shopify-section:has(.card-scrolling-effect) {
+  position: sticky;
+  top: var(--sticky-top);
+}
+.shopify-section:has(.card-scrolling-effect).sticky-top-zero {
+  top: 0;
+}
+.shopify-section:has(.card-scrolling-effect).card-scrolling-hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* Add bottom padding to create overlap space */
+.shopify-section:has(.card-scrolling-effect):not(:last-child) .sec__inner {
+  padding-bottom: var(--card-scroll-offset);
+}
+
+/* Offset pagination dots when card scrolling is active */
+.shopify-section:has(.card-scrolling-effect):not(:last-child) .swiper-pagination {
+  bottom: calc(10px + var(--card-scroll-offset));
+}
+
+/* Pull next section up to overlap */
+#MainContent > .shopify-section:has(.card-scrolling-effect) + .shopify-section {
+  top: 1px;
+  margin-top: calc(var(--card-scroll-offset) * -1);
+}
+
+/* If next section also has card-scrolling, keep sticky behavior */
+#MainContent > .shopify-section:has(.card-scrolling-effect) + .shopify-section:has(.card-scrolling-effect) {
+  top: var(--sticky-top);
+}
+
+/* Sections after card-scrolling need stacking context to sit on top */
+#MainContent > .shopify-section:has(.card-scrolling-effect) ~ .shopify-section:not(:has(.card-scrolling-effect)) {
+  position: relative;
+  backface-visibility: hidden;
+  background: var(--color-background, #fff);
+  transform: translateZ(0);
+}
+
+/* Card-scrolling container needs position context for overlay */
+.card-scrolling-effect {
+  position: relative;
+}
+
+/* Border radius on next section */
+#MainContent > .shopify-section:has(.card-scrolling-effect) + .shopify-section {
+  --card-scrolling-radius: 12px;
+  border-radius: var(--card-scrolling-radius) var(--card-scrolling-radius) 0 0;
+  contain: paint;
+}
+#MainContent > .shopify-section:has(.card-scrolling-effect--rounded-large) + .shopify-section {
+  --card-scrolling-radius: 34px;
+}
+
+/* Darkening overlay */
+.shopify-section:has(.card-scrolling-effect) .card-scrolling-effect::after {
+  content: "";
+  z-index: 101;
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.34);
+  pointer-events: none;
+  opacity: var(--card-scrolling-overlay, 0);
+}

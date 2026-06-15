@@ -3682,7 +3682,7 @@ header-inner .button-localization {
 }
 
 @media screen and (max-width: 767.98px) {
-  .mobi-navigation-bar {
+  .mobi-navigation-bar:has(mobile-navigation-bar:not(.nav-pill)) {
     padding-bottom: 6.5rem;
   }
 

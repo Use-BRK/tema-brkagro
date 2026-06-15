@@ -61,6 +61,22 @@
   }
 }
 
+@media (max-width: 575.98px) {
+  .sec__collection-main #product-grid.product-grid.collection-product-media--edge-bleed {
+    --collection-product-media-bleed: 2rem;
+  }
+
+  .sec__collection-main #product-grid.product-grid.collection-product-media--edge-bleed > .grid__item:not(.promotion):nth-child(odd) .product-item__inner {
+    margin-left: calc(var(--collection-product-media-bleed) * -1);
+    width: calc(100% + var(--collection-product-media-bleed));
+  }
+
+  .sec__collection-main #product-grid.product-grid.collection-product-media--edge-bleed > .grid__item:not(.promotion):nth-child(even) .product-item__inner {
+    margin-right: calc(var(--collection-product-media-bleed) * -1);
+    width: calc(100% + var(--collection-product-media-bleed));
+  }
+}
+
 :where(.grid-mode) {
   color: #cbcbcb;
 }

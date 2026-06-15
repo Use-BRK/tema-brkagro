@@ -269,7 +269,7 @@
               <div
                 id="product-grid"
                 data-id="{{ section.id }}"
-                class="{% if view == 'list' %}list product-type-list flex flex-column {% else %}grid grid-cols row-gap-custom product-grid grid-columns-{{ products_column }} {% endif %}gap container-products-switch{% if pagination == 'load_more_button' or pagination == 'infinit_scrolling' %} loadmore-lists{% endif %}"
+                class="{% if view == 'list' %}list product-type-list flex flex-column {% else %}grid grid-cols row-gap-custom product-grid grid-columns-{{ products_column }} {% if section_st.mobile_product_image_layout == blank or section_st.mobile_product_image_layout == 'edge_bleed' %}collection-product-media--edge-bleed {% endif %}{% endif %}gap container-products-switch{% if pagination == 'load_more_button' or pagination == 'infinit_scrolling' %} loadmore-lists{% endif %}"
                 {% if view == 'list' %}
                   style="--gap: 3rem;"
                 {% else %}
@@ -613,6 +613,22 @@
       "step": 5,
       "default": 30,
       "unit": "px"
+    },
+    {
+      "type": "select",
+      "id": "mobile_product_image_layout",
+      "label": "t:sections.collection-main.settings.mobile_product_image_layout.label",
+      "default": "edge_bleed",
+      "options": [
+        {
+          "value": "standard",
+          "label": "t:sections.collection-main.settings.mobile_product_image_layout.standard"
+        },
+        {
+          "value": "edge_bleed",
+          "label": "t:sections.collection-main.settings.mobile_product_image_layout.edge_bleed"
+        }
+      ]
     },
     {
       "type": "select",

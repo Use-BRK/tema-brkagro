@@ -890,10 +890,10 @@
                   </h6>
                   <form
                     on:submit="/applyDiscount"
-                    class="flex flex-wrap gap-10 h-custom"
+                    class="flex flex-nowrap gap-10 h-custom"
                     style="--custom-height: var(--input-height, 5rem);"
                   >
-                    <div class="form-floating flex-1 h-custom" style="--custom-height: var(--input-height, 5rem);">
+                    <div class="form-floating flex-1 h-custom" style="--custom-height: var(--input-height, 5rem); min-width: 0;">
                       <input
                         class="form-control w-full"
                         name="discount"
@@ -908,7 +908,8 @@
                     </div>
                     <button
                       type="submit"
-                      class="btn-save btn-primary mb-10 relative"
+                      class="btn-save btn-primary relative"
+                      style="flex-shrink: 0;"
                       name="{{ 'collections.sidebar.apply' | t }}"
                     >
                       <span class="hidden-on-load">{{ 'collections.sidebar.apply' | t }}</span>

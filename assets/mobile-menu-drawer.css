@@ -220,11 +220,9 @@ html.mobile-menu-drawer-open {
 
 /* Collection images */
 .mobile-menu-drawer__image {
-  flex-shrink: 0;
-  width: 60px;
-  border-radius: 4px;
+  flex: 0 0 74px;
+  border-radius: 6px;
   overflow: hidden;
-  aspect-ratio: 2 / 1;
 }
 
 .mobile-menu-drawer__image-img {
