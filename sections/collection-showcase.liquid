@@ -1,0 +1,297 @@
+{{ 'collection-showcase.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign section_st = section.settings
+  assign heading = section_st.heading
+  assign columns_dk = section_st.columns_desktop
+  assign columns_mb = section_st.columns_mobile
+  assign bg_color = section_st.bg_color
+  assign heading_color = section_st.heading_color
+  assign caption_size = section_st.caption_font_size
+  assign image_ratio = section_st.image_ratio
+  assign section_width = section_st.section_width
+  assign show_view_all = section_st.show_view_all
+  assign view_all_url = section_st.view_all_url
+  assign view_all_style = section_st.view_all_style
+-%}
+
+<style>
+  #collection-showcase-{{ section.id }} {
+    background-color: {{ bg_color }};
+    padding: {{ section_st.padding_top }}px 0 {{ section_st.padding_bottom }}px;
+  }
+  #collection-showcase-{{ section.id }} .cs__heading {
+    color: {{ heading_color }};
+  }
+  #collection-showcase-{{ section.id }} .cs__grid {
+    --cs-columns-dk: {{ columns_dk }};
+    --cs-columns-mb: {{ columns_mb }};
+  }
+  #collection-showcase-{{ section.id }} .cs__card-img {
+    aspect-ratio: {{ image_ratio }};
+  }
+  #collection-showcase-{{ section.id }} .cs__caption {
+    font-size: {{ caption_size }}px;
+  }
+</style>
+
+<div id="collection-showcase-{{ section.id }}" class="collection-showcase" data-section-id="{{ section.id }}">
+  <div class="{{ section_width }}">
+    {%- if heading != blank -%}
+      <h2 class="cs__heading">{{ heading }}</h2>
+    {%- endif -%}
+
+    {%- if section.blocks.size > 0 -%}
+      <div class="cs__grid">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'collection_item' -%}
+            {%- liquid
+              assign col = block.settings.collection
+              assign custom_title = block.settings.custom_title
+              assign col_image = col.image | default: col.products.first.featured_image
+              assign display_title = custom_title | default: col.title | default: 'Collection'
+            -%}
+            <a href="{{ col.url | default: '#' }}" class="cs__card" {{ block.shopify_attributes }} aria-label="{{ display_title | escape }}">
+              <div class="cs__card-img">
+                {%- if col_image -%}
+                  <img
+                    src="{{ col_image | image_url: width: 800 }}"
+                    alt="{{ display_title | escape }}"
+                    width="400"
+                    height="{{ 400 | divided_by: col_image.aspect_ratio | round }}"
+                    loading="lazy"
+                    class="cs__img"
+                  >
+                {%- else -%}
+                  {{ 'collection-1' | placeholder_svg_tag: 'cs__img cs__img--placeholder' }}
+                {%- endif -%}
+              </div>
+              <span class="cs__caption">{{ display_title }}</span>
+            </a>
+          {%- endif -%}
+        {%- endfor -%}
+
+        {%- if show_view_all -%}
+          <div class="cs__card cs__card--view-all">
+            <div class="cs__card-img cs__view-all-inner">
+              <a href="{{ view_all_url | default: routes.collections_url }}" class="btn btn-{{ view_all_style }} cs__view-all-btn">
+                {{ section_st.view_all_text | default: 'Ver Todas' }}
+              </a>
+            </div>
+          </div>
+        {%- endif -%}
+      </div>
+    {%- else -%}
+      {%- if request.design_mode -%}
+        <div class="cs__grid">
+          {%- for i in (1..5) -%}
+            <div class="cs__card">
+              <div class="cs__card-img">
+                {{ 'collection-1' | placeholder_svg_tag: 'cs__img cs__img--placeholder' }}
+              </div>
+              <span class="cs__caption">Collection {{ i }}</span>
+            </div>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+    {%- endif -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Collection Showcase",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "select",
+      "id": "section_width",
+      "options": [
+        {
+          "value": "container",
+          "label": "t:sections.all.section_width.container.label"
+        },
+        {
+          "value": "fluid_container",
+          "label": "t:sections.all.section_width.fluid_container.label"
+        },
+        {
+          "value": "stretch_width",
+          "label": "t:sections.all.section_width.stretch_width.label"
+        },
+        {
+          "value": "full_width",
+          "label": "t:sections.all.section_width.full_width.label"
+        }
+      ],
+      "default": "stretch_width",
+      "label": "t:sections.all.section_width.label"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Nossas coleções"
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "min": 2,
+      "max": 6,
+      "step": 1,
+      "default": 5,
+      "label": "Columns desktop"
+    },
+    {
+      "type": "range",
+      "id": "columns_mobile",
+      "min": 1,
+      "max": 3,
+      "step": 1,
+      "default": 2,
+      "label": "Columns mobile"
+    },
+    {
+      "type": "select",
+      "id": "image_ratio",
+      "label": "Image ratio",
+      "default": "2 / 3",
+      "options": [
+        {
+          "value": "1 / 1",
+          "label": "Square (1:1)"
+        },
+        {
+          "value": "3 / 4",
+          "label": "Portrait (3:4)"
+        },
+        {
+          "value": "2 / 3",
+          "label": "Tall portrait (2:3)"
+        },
+        {
+          "value": "4 / 5",
+          "label": "Classic (4:5)"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "caption_font_size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "default": 16,
+      "unit": "px",
+      "label": "Caption font size"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background color",
+      "default": "#661a2e"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color",
+      "default": "#fcf5e6"
+    },
+    {
+      "type": "header",
+      "content": "\"Ver Todas\" button"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_view_all",
+      "label": "Show \"Ver Todas\" button",
+      "info": "Takes the place of the last card in the grid",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "view_all_text",
+      "label": "Button text",
+      "default": "Ver Todas"
+    },
+    {
+      "type": "url",
+      "id": "view_all_url",
+      "label": "Button link"
+    },
+    {
+      "type": "select",
+      "id": "view_all_style",
+      "label": "Button style",
+      "default": "outline",
+      "options": [
+        {
+          "value": "outline",
+          "label": "Outline"
+        },
+        {
+          "value": "primary",
+          "label": "Primary"
+        }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.section_padding.label"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "t:sections.all.section_padding.top.label",
+      "default": 32,
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "t:sections.all.section_padding.bottom.label",
+      "default": 32,
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "collection_item",
+      "name": "Collection",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection"
+        },
+        {
+          "type": "text",
+          "id": "custom_title",
+          "label": "Custom title",
+          "info": "Leave blank to use collection name"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Collection Showcase"
+    }
+  ]
+}
+{% endschema %}

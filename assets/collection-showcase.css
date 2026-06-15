@@ -1,0 +1,103 @@
+/* ============================================================
+   Collection Showcase — Phebo-style
+   ============================================================ */
+
+.collection-showcase {
+  overflow: hidden;
+}
+
+.cs__heading {
+  font-size: 32px;
+  font-weight: 700;
+  text-align: center;
+  margin: 0 0 24px;
+  line-height: 1.1;
+}
+
+.cs__grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+}
+
+.cs__card {
+  flex: 0 0 calc(100% / var(--cs-columns-mb, 2));
+  position: relative;
+  overflow: hidden;
+  display: block;
+  text-decoration: none;
+  color: #fff;
+}
+
+.cs__card-img {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+
+.cs__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.cs__img--placeholder {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.cs__card:hover .cs__img {
+  transform: scale(1.06);
+}
+
+.cs__caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 40px 12px 14px;
+  background: linear-gradient(rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.55) 100%);
+  color: #fff;
+  font-weight: 700;
+  text-align: center;
+  line-height: 1.3;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* "Ver Todas" button card */
+.cs__card--view-all {
+  cursor: default;
+}
+
+.cs__view-all-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.cs__view-all-btn {
+  white-space: nowrap;
+}
+
+.cs__view-all-btn.btn-outline {
+  border-color: rgba(255, 255, 255, 0.6);
+  color: #fff;
+}
+
+.cs__view-all-btn.btn-outline:hover {
+  background: #fff;
+  border-color: #fff;
+  color: #1a1a1a;
+}
+
+@media screen and (min-width: 768px) {
+  .cs__card {
+    flex-basis: calc(100% / var(--cs-columns-dk, 5));
+  }
+  .cs__caption {
+    padding: 60px 16px 18px;
+  }
+}
