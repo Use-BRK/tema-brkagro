@@ -11,7 +11,7 @@
   "current": {
     "purchase_code": "64513e3f-16d1-4159-9b2f-180b0ba29ec9",
     "favicon": "shopify://shop_images/Favicon.png",
-    "logo": "shopify://shop_images/LOGOBRKAGRO_2026ai.svg",
+    "logo": "shopify://shop_images/LOGOBRKAGRO_2026ai_1.svg",
     "logo_on_transparent": "shopify://shop_images/LOGOBRKAGRO_2026ai_1.svg",
     "desktop_logo_width": 150,
     "mobile_logo_width": 120,
@@ -427,6 +427,26 @@
           "text_color": "#085b47",
           "heading_color": "#085b47",
           "border_color": "#085b47",
+          "btn_primary_color": "#ffffff",
+          "btn_primary_background": "#085b47",
+          "btn_primary_gradient": "",
+          "btn_primary_hover_color": "#085b47",
+          "btn_primary_hover_background": "#efe9da",
+          "btn_primary_hover_background_gradient": "",
+          "btn_outline_color": "#085b47",
+          "btn_outline_border_color": "#085b47",
+          "button_link_color": "#085b47",
+          "button_link_hover_color": "#085b47"
+        }
+      },
+      "scheme-d974d385-6b51-44ef-85ca-6d85a4af76ac": {
+        "settings": {
+          "background": "#ffffff",
+          "background_gradient": "",
+          "primary_color": "#FFFFFF",
+          "text_color": "#FFFFFF",
+          "heading_color": "#FFFFFF",
+          "border_color": "#FFFFFF",
           "btn_primary_color": "#ffffff",
           "btn_primary_background": "#085b47",
           "btn_primary_gradient": "",

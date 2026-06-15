@@ -146,6 +146,68 @@
         "reset_spacing": true
       }
     },
+    "icon_box_LjTRcj": {
+      "type": "icon-box",
+      "blocks": {
+        "icon_box_N8NjdF": {
+          "type": "icon_box",
+          "settings": {
+            "icon_svg": "truck",
+            "custom_svg": "",
+            "heading": "Frete Fixo",
+            "description": "<p><strong>Frete fixo</strong> para todo o Brasil por apenas <strong>R$9,90! </strong>Entrega rápida BRK</p>"
+          }
+        },
+        "icon_box_bDntUA": {
+          "type": "icon_box",
+          "settings": {
+            "icon_svg": "payment",
+            "custom_svg": "",
+            "heading": "Parcelamento",
+            "description": "<p>Fatura apertou? Parcele seu pedido <strong>em até 3x sem juros!</strong></p>"
+          }
+        },
+        "icon_box_kWDjpf": {
+          "type": "icon_box",
+          "settings": {
+            "icon_svg": "check_badge",
+            "custom_svg": "",
+            "heading": "Troca Grátis*",
+            "description": "<p>Não serviu? <strong>Primeira Troca Grátis </strong>até 7 dias após recebimento do pedido<br/></p>"
+          }
+        }
+      },
+      "block_order": [
+        "icon_box_N8NjdF",
+        "icon_box_bDntUA",
+        "icon_box_kWDjpf"
+      ],
+      "name": "Beneficios",
+      "settings": {
+        "section_width": "stretch_width",
+        "color_scheme": "",
+        "type": "default",
+        "column_gap": 30,
+        "icon_position": "top",
+        "icon_size": 32,
+        "spacing": 2,
+        "show_border": false,
+        "enable_background": false,
+        "background": "linear-gradient(180deg, rgba(255, 211, 226, 1), rgba(168, 255, 251, 1) 100%)",
+        "content_alignment": "center",
+        "heading_font_size": 16,
+        "heading_font_weight": "heading_weight",
+        "heading_uppercase": false,
+        "heading_spacing_bottom": 10,
+        "des_font_size": 14,
+        "des_font_weight": "body_weight",
+        "carousel_on_mobile": true,
+        "items_per_row_mobile": "1",
+        "padding_top": 20,
+        "padding_bottom": 20,
+        "reset_spacing": true
+      }
+    },
     "collection_tab_cxBKk3": {
       "type": "collection-tab",
       "blocks": {
@@ -199,6 +261,157 @@
         "use_outline_button_style": true,
         "carousel_on_mobile": true,
         "items_per_row_mobile": 1.5,
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": true
+      }
+    },
+    "image_with_text_overlay_BBzj67": {
+      "type": "image-with-text-overlay",
+      "blocks": {
+        "image_nHaiER": {
+          "type": "image",
+          "name": "t:sections.all.image.label",
+          "settings": {
+            "image_block": "shopify://shop_images/LOGOUNICO.svg",
+            "image_width": 130,
+            "spacing_bottom": 0
+          },
+          "blocks": {}
+        },
+        "heading_LQFY4n": {
+          "type": "heading",
+          "settings": {
+            "heading": "Viva seu mundo, nós vestimos você",
+            "font_size": 36,
+            "font_weight": "heading_weight",
+            "uppercase": false,
+            "spacing_bottom": 20
+          },
+          "blocks": {}
+        },
+        "description_fzUdRk": {
+          "type": "description",
+          "settings": {
+            "text": "<p>Share information about your brand with your customers. Describe a product, make announcements, or welcome customers to your store.</p>",
+            "font_size": 20,
+            "font_weight": "body_weight",
+            "spacing_bottom": 10
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "image_nHaiER",
+        "heading_LQFY4n",
+        "description_fzUdRk"
+      ],
+      "name": "Reforço de Marca",
+      "settings": {
+        "section_width": "full_width",
+        "color_scheme": "scheme-d974d385-6b51-44ef-85ca-6d85a4af76ac",
+        "image": "shopify://shop_images/ad2.jpg",
+        "image_mobile": "shopify://shop_images/ChatGPT_Image_1_de_jun._de_2026_09_55_45.webp",
+        "image_behavior": "none",
+        "overlay_opacity": 50,
+        "image_height": "custom",
+        "desktop_height": 330,
+        "mobile_height": 580,
+        "product_list": [],
+        "content_alignment": "left",
+        "content_position": "bottom-center",
+        "content_width": "container",
+        "content_max_width": 100,
+        "content_padding_block": 50,
+        "content_padding_inline": 50,
+        "show_content_background": false,
+        "content_background": "#fff",
+        "content_box_opacity": 100,
+        "content_below_image": false,
+        "content_alignment_mobile": "center",
+        "padding_top": 20,
+        "padding_bottom": 20,
+        "reset_spacing": true
+      }
+    },
+    "banner_packery_mtLe9j": {
+      "type": "banner-packery",
+      "blocks": {
+        "group_image_overlay_Ymn44D": {
+          "type": "_group-image-overlay",
+          "settings": {
+            "color_scheme": "",
+            "image": "shopify://shop_images/1779967739469-07.webp",
+            "image_link": "",
+            "overlay_opacity": 0,
+            "content_alignment": "center",
+            "content_position": "middle-center",
+            "content_padding_block": 10,
+            "content_padding_inline": 10
+          },
+          "blocks": {}
+        },
+        "group_image_overlay_W6hL3J": {
+          "type": "_group-image-overlay",
+          "settings": {
+            "color_scheme": "",
+            "image": "shopify://shop_images/1779967652422-08.webp",
+            "image_link": "",
+            "overlay_opacity": 0,
+            "content_alignment": "center",
+            "content_position": "middle-center",
+            "content_padding_block": 10,
+            "content_padding_inline": 10
+          },
+          "blocks": {}
+        },
+        "group_image_overlay_w4dNQn": {
+          "type": "_group-image-overlay",
+          "settings": {
+            "color_scheme": "",
+            "image": "shopify://shop_images/1779967739469-08.webp",
+            "image_link": "",
+            "overlay_opacity": 0,
+            "content_alignment": "center",
+            "content_position": "middle-center",
+            "content_padding_block": 10,
+            "content_padding_inline": 10
+          },
+          "blocks": {}
+        },
+        "group_image_overlay_8bcXbr": {
+          "type": "_group-image-overlay",
+          "settings": {
+            "color_scheme": "",
+            "image": "shopify://shop_images/1779967739469-08.webp",
+            "image_link": "",
+            "overlay_opacity": 0,
+            "content_alignment": "center",
+            "content_position": "middle-center",
+            "content_padding_block": 10,
+            "content_padding_inline": 10
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "group_image_overlay_Ymn44D",
+        "group_image_overlay_W6hL3J",
+        "group_image_overlay_w4dNQn",
+        "group_image_overlay_8bcXbr"
+      ],
+      "disabled": true,
+      "name": "t:sections.banner-packery.name",
+      "settings": {
+        "section_width": "stretch_width",
+        "color_scheme": "scheme-a07f02f4-f1f2-4ea3-9eeb-577115ec9f47",
+        "heading": "",
+        "description": "",
+        "show_view_all_button": false,
+        "view_all_url": "",
+        "header_size": "medium",
+        "header_alignment": "center",
+        "column_gap": 0,
         "padding_top": 0,
         "padding_bottom": 0,
         "reset_spacing": true
@@ -561,7 +774,10 @@
   "order": [
     "scrolling_text_DNNJAq",
     "slideshow_8KKtNU",
+    "icon_box_LjTRcj",
     "collection_tab_cxBKk3",
+    "image_with_text_overlay_BBzj67",
+    "banner_packery_mtLe9j",
     "multi_content_Dyd3Y3",
     "collection_tab_cPpFqA",
     "banner_packery_4RYN8d",
