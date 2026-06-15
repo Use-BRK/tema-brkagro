@@ -9,75 +9,6 @@
  */
 {
   "sections": {
-    "slideshow_8KKtNU": {
-      "type": "slideshow",
-      "blocks": {
-        "slider_item_YipJd4": {
-          "type": "slider_item",
-          "settings": {
-            "image": "shopify://shop_images/FULLBANNER_DESKTOP.webp",
-            "image_mobile": "shopify://shop_images/MOBILE_a0ba7d54-b5d0-48c0-8ba5-51e0bfad9a7a.webp",
-            "overlay_opacity": 0,
-            "slider_effect": "fade-in-right",
-            "subheading": "",
-            "heading": "",
-            "description": "",
-            "first_button_label": "",
-            "first_button_link": "",
-            "first_button_style": false,
-            "second_button_label": "",
-            "second_button_link": "",
-            "second_button_style": false,
-            "content_alignment": "center",
-            "content_position": "top-center",
-            "content_width": "full_width",
-            "content_max_width": 100,
-            "content_padding_block": 40,
-            "content_padding_inline": 0,
-            "show_content_background": false,
-            "content_background": "#ffffff",
-            "content_box_opacity": 100,
-            "content_alignment_mobile": "center"
-          }
-        }
-      },
-      "block_order": [
-        "slider_item_YipJd4"
-      ],
-      "custom_css": [
-        ".h-full_screen {--height-topbar: 41px;}"
-      ],
-      "name": "Fullbanners",
-      "settings": {
-        "section_width": "full_width",
-        "slide_height": "adapt",
-        "desktop_height": 1000,
-        "mobile_height": 600,
-        "color_scheme": "scheme-c4fa9b2e-e94e-477a-a1f0-ab1da4f2a676",
-        "slide_effect": "fade",
-        "fade_image_effect": "none",
-        "reveal_slideshow": false,
-        "show_arrow": true,
-        "carousel_pagination": "show_dots",
-        "pagination_position": "center",
-        "autoplay": true,
-        "autorotate_speed": 4,
-        "subheading_font_size": 15,
-        "subheading_font_weight": "subheading_weight",
-        "subheading_spacing_bottom": 0,
-        "heading_font_size": 70,
-        "heading_font_weight": "heading_weight",
-        "heading_uppercase": false,
-        "heading_spacing_bottom": 15,
-        "des_font_size": 19,
-        "des_font_weight": "heading_weight",
-        "des_spacing_bottom": 60,
-        "content_below_image": false,
-        "padding_top": 0,
-        "padding_bottom": 0,
-        "reset_spacing": true
-      }
-    },
     "scrolling_text_DNNJAq": {
       "type": "scrolling-text",
       "blocks": {
@@ -108,6 +39,108 @@
         "font_weight": "body_weight",
         "uppercase": false,
         "use_heading_font": false,
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": true
+      }
+    },
+    "slideshow_8KKtNU": {
+      "type": "slideshow",
+      "blocks": {
+        "slider_item_YipJd4": {
+          "type": "slider_item",
+          "name": "Rebrand",
+          "settings": {
+            "image": "shopify://shop_images/FULLBANNER_DESKTOP.webp",
+            "image_mobile": "shopify://shop_images/MOBILE_a0ba7d54-b5d0-48c0-8ba5-51e0bfad9a7a.webp",
+            "overlay_opacity": 0,
+            "slider_effect": "fade-in-right",
+            "subheading": "",
+            "heading": "",
+            "description": "",
+            "first_button_label": "",
+            "first_button_link": "",
+            "first_button_style": false,
+            "second_button_label": "",
+            "second_button_link": "",
+            "second_button_style": false,
+            "content_alignment": "center",
+            "content_position": "top-center",
+            "content_width": "full_width",
+            "content_max_width": 100,
+            "content_padding_block": 40,
+            "content_padding_inline": 0,
+            "show_content_background": false,
+            "content_background": "#ffffff",
+            "content_box_opacity": 100,
+            "content_alignment_mobile": "center"
+          }
+        },
+        "slider_item_n3PrkQ": {
+          "type": "slider_item",
+          "name": "Botas/Botinas",
+          "settings": {
+            "image": "shopify://shop_images/BOTAS_BOTINAS_DESKTOP.webp",
+            "image_mobile": "shopify://shop_images/BOTAS_BOTINAS_MOBILE.webp",
+            "overlay_opacity": 0,
+            "slider_effect": "fade-in-right",
+            "subheading": "",
+            "heading": "",
+            "description": "",
+            "first_button_label": "",
+            "first_button_link": "",
+            "first_button_style": false,
+            "second_button_label": "",
+            "second_button_link": "",
+            "second_button_style": false,
+            "content_alignment": "center",
+            "content_position": "top-center",
+            "content_width": "full_width",
+            "content_max_width": 100,
+            "content_padding_block": 40,
+            "content_padding_inline": 0,
+            "show_content_background": false,
+            "content_background": "#ffffff",
+            "content_box_opacity": 100,
+            "content_alignment_mobile": "center"
+          }
+        }
+      },
+      "block_order": [
+        "slider_item_YipJd4",
+        "slider_item_n3PrkQ"
+      ],
+      "custom_css": [
+        ".h-full_screen {--height-topbar: 41px;}"
+      ],
+      "name": "Fullbanners",
+      "settings": {
+        "section_width": "full_width",
+        "slide_height": "adapt",
+        "desktop_height": 1000,
+        "mobile_height": 600,
+        "color_scheme": "scheme-c4fa9b2e-e94e-477a-a1f0-ab1da4f2a676",
+        "slide_effect": "fade",
+        "fade_image_effect": "none",
+        "reveal_slideshow": false,
+        "enable_card_scrolling": true,
+        "increase_border_radius": true,
+        "show_arrow": true,
+        "carousel_pagination": "show_dots",
+        "pagination_position": "center",
+        "autoplay": true,
+        "autorotate_speed": 4,
+        "subheading_font_size": 15,
+        "subheading_font_weight": "subheading_weight",
+        "subheading_spacing_bottom": 0,
+        "heading_font_size": 70,
+        "heading_font_weight": "heading_weight",
+        "heading_uppercase": false,
+        "heading_spacing_bottom": 15,
+        "des_font_size": 19,
+        "des_font_weight": "heading_weight",
+        "des_spacing_bottom": 60,
+        "content_below_image": false,
         "padding_top": 0,
         "padding_bottom": 0,
         "reset_spacing": true
@@ -393,6 +426,76 @@
         "reset_spacing": true
       }
     },
+    "banner_packery_4RYN8d": {
+      "type": "banner-packery",
+      "blocks": {
+        "group_image_overlay_mwCLNK": {
+          "type": "_group-image-overlay",
+          "name": "Baixe o APP",
+          "settings": {
+            "color_scheme": "",
+            "image": "shopify://shop_images/BAIXE_O_APP.webp",
+            "image_link": "https://use-brk.github.io/tema-brkagro/app/",
+            "overlay_opacity": 0,
+            "content_alignment": "center",
+            "content_position": "top-left",
+            "content_padding_block": 30,
+            "content_padding_inline": 30
+          },
+          "blocks": {}
+        },
+        "group_image_overlay_4TznbV": {
+          "type": "_group-image-overlay",
+          "name": "Personalize",
+          "settings": {
+            "color_scheme": "",
+            "image": "shopify://shop_images/PERSONALIZE.webp",
+            "image_link": "https://personalize.brkagro.com.br/lp?utm_source=site_agro&utm_medium=organico&utm_campaign=brkagro.com.br&utm_content=menu_home",
+            "overlay_opacity": 0,
+            "content_alignment": "center",
+            "content_position": "top-left",
+            "content_padding_block": 30,
+            "content_padding_inline": 30
+          },
+          "blocks": {}
+        },
+        "group_image_overlay_zGr4rD": {
+          "type": "_group-image-overlay",
+          "name": "Revendedor",
+          "settings": {
+            "color_scheme": "",
+            "image": "shopify://shop_images/REVENDEDOR.webp",
+            "image_link": "https://links.usebrk.com.br/B2B-BRKAGRO",
+            "overlay_opacity": 0,
+            "content_alignment": "center",
+            "content_position": "top-left",
+            "content_padding_block": 30,
+            "content_padding_inline": 30
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "group_image_overlay_mwCLNK",
+        "group_image_overlay_4TznbV",
+        "group_image_overlay_zGr4rD"
+      ],
+      "name": "Miniblocos",
+      "settings": {
+        "section_width": "stretch_width",
+        "color_scheme": "",
+        "heading": "",
+        "description": "",
+        "show_view_all_button": false,
+        "view_all_url": "",
+        "header_size": "medium",
+        "header_alignment": "left",
+        "column_gap": 30,
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": false
+      }
+    },
     "icon_box_TRwJBD": {
       "type": "icon-box",
       "blocks": {
@@ -446,11 +549,12 @@
     }
   },
   "order": [
-    "slideshow_8KKtNU",
     "scrolling_text_DNNJAq",
+    "slideshow_8KKtNU",
     "collection_tab_cxBKk3",
     "multi_content_Dyd3Y3",
     "collection_tab_cPpFqA",
+    "banner_packery_4RYN8d",
     "icon_box_TRwJBD"
   ]
 }

@@ -69,6 +69,22 @@
             "product_3": ""
           }
         },
+        "menu_product_mWrUMn": {
+          "type": "menu_product",
+          "settings": {
+            "text": "BOTINAS",
+            "open-link-newtab": false,
+            "item_label": "hot",
+            "product_menu_column": 2,
+            "mega_custom_width": 890,
+            "center_submenu": true,
+            "full_width": false,
+            "product_width": 50,
+            "product_1": "",
+            "product_2": "",
+            "product_3": ""
+          }
+        },
         "menu_promotion_iiUfrK": {
           "type": "menu_promotion",
           "settings": {
@@ -110,6 +126,7 @@
       },
       "block_order": [
         "menu_product_YFcake",
+        "menu_product_mWrUMn",
         "menu_promotion_iiUfrK",
         "menu_promotion_CyPFrj"
       ],
@@ -131,7 +148,7 @@
         "mega_menu": "menu",
         "dropdowns_animation": "down-to-up",
         "uppercase_first": false,
-        "hot": "Hot",
+        "hot": "PRO CAMPO",
         "label_color_hot": "#ffffff",
         "label_background_hot": "#d0473e",
         "new": "New",
@@ -169,7 +186,7 @@
             "text_size": 130,
             "show_images": true,
             "highlight_item": "",
-            "highlight_item_color": "#D02E2E",
+            "highlight_item_color": "#d02e2e",
             "label_item_1": "COPA 2026",
             "label_type_1": "sale",
             "label_item_2": "",
@@ -188,21 +205,23 @@
         },
         "button_X8Eebj": {
           "type": "button",
+          "name": "Coleções do Agro",
           "settings": {
             "button_text": "Coleções do Agro",
-            "button_link": "shopify://collections/all",
+            "button_link": "shopify://collections",
             "button_style": "primary",
-            "padding_bottom": 10,
-            "pin_to_bottom": false
+            "padding_bottom": 0,
+            "pin_to_bottom": true
           }
         },
         "button_xzXqHb": {
           "type": "button",
+          "name": "Rastrear",
           "settings": {
             "button_text": "Rastrear Pedido",
             "button_link": "shopify://collections/all",
-            "button_style": "outline",
-            "padding_bottom": 10,
+            "button_style": "primary",
+            "padding_bottom": 0,
             "pin_to_bottom": true
           }
         },
