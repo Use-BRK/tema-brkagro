@@ -516,11 +516,21 @@
             "heading": "SUPORTE ONLINE",
             "description": "<p>Estamos disponíveis no <strong>WhatsAPP: </strong><a href=\"https://web.whatsapp.com/send?phone=+553432194697&text=Oi,%20vim%20da%20loja%20BRK%20Agro.\" target=\"_blank\" title=\"https://web.whatsapp.com/send?phone=+553432194697&text=Oi,%20vim%20da%20loja%20BRK%20Agro.\"><strong>(34) 3219-4697</strong></a></p>"
           }
+        },
+        "icon_box_cChTbF": {
+          "type": "icon_box",
+          "settings": {
+            "icon_svg": "payment",
+            "custom_svg": "",
+            "heading": "PARCELAMENTO",
+            "description": "<p>Dê uma folga a sua fatura, parcele suas compras em até 3x sem juros!</p>"
+          }
         }
       },
       "block_order": [
         "icon_box_RLNr9a",
-        "icon_box_tj4DJd"
+        "icon_box_tj4DJd",
+        "icon_box_cChTbF"
       ],
       "settings": {
         "section_width": "fluid_container",
