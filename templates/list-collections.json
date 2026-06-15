@@ -30,6 +30,7 @@
         "heading_B3DXTc",
         "description_tLPCVn"
       ],
+      "disabled": true,
       "settings": {
         "section_width": "fluid_container",
         "color_scheme": "",
@@ -162,78 +163,60 @@
         "padding_bottom": 0
       }
     },
-    "multi_content_gV8UHd": {
+    "multi_content_zDwAnG": {
       "type": "multi-content",
       "blocks": {
-        "group_media_content_xAcQPN": {
+        "group_media_content_4bQLfB": {
           "type": "_group-media-content",
           "settings": {
             "color_scheme": "",
             "content_width": "50%",
             "media_type": "image",
+            "image": "shopify://shop_images/PECUARIA_MINIBLOCO_7f7d2d76-ecd5-4ee3-9645-57978cefb24b.webp",
             "image_link": "",
             "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
             "autoplay": true,
             "video_ratio": "16/9",
             "overlay_opacity": 0,
             "content_type": "overlay",
-            "content_alignment": "start",
-            "content_position": "top-left",
-            "content_padding_block": 30,
-            "content_padding_inline": 30,
+            "content_alignment": "center",
+            "content_position": "middle-center",
+            "content_padding_block": 10,
+            "content_padding_inline": 10,
             "content_mobile_image": false
           },
-          "blocks": {
-            "subheading_9j6eUW": {
-              "type": "subheading",
-              "settings": {
-                "subheading": "Subheading",
-                "font_size": 14,
-                "font_weight": "subheading_weight",
-                "uppercase": false,
-                "spacing_bottom": 15
-              },
-              "blocks": {}
-            },
-            "heading_DHCPQV": {
-              "type": "heading",
-              "settings": {
-                "heading": "Talk about your brand",
-                "font_size": 36,
-                "font_weight": "heading_weight",
-                "uppercase": false,
-                "spacing_bottom": 20
-              },
-              "blocks": {}
-            },
-            "button_DbzCPd": {
-              "type": "button",
-              "settings": {
-                "show_full_width": false,
-                "first_button_label": "Button label",
-                "first_button_link": "",
-                "first_button_type": "primary",
-                "second_button_label": "",
-                "second_button_link": "",
-                "second_button_type": "primary",
-                "spacing_bottom": 10
-              },
-              "blocks": {}
-            }
-          },
-          "block_order": [
-            "subheading_9j6eUW",
-            "heading_DHCPQV",
-            "button_DbzCPd"
-          ]
+          "blocks": {}
         },
-        "group_media_content_Rnd8Pm": {
+        "group_media_content_Gitpcm": {
           "type": "_group-media-content",
           "settings": {
             "color_scheme": "",
             "content_width": "50%",
             "media_type": "image",
+            "image": "shopify://shop_images/FEMININAS_MINIBLOCO_c425b824-77fe-4a1c-a9a1-c3cbd3110a0a.webp",
             "image_link": "",
+            "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
+            "autoplay": true,
+            "video_ratio": "16/9",
+            "overlay_opacity": 0,
+            "content_type": "overlay",
+            "content_alignment": "center",
+            "content_position": "middle-center",
+            "content_padding_block": 10,
+            "content_padding_inline": 10,
+            "content_mobile_image": false
+          },
+          "blocks": {}
+        },
+        "group_media_content_AFRaQw": {
+          "type": "_group-media-content",
+          "name": "t:blocks.names.media_with_text",
+          "settings": {
+            "color_scheme": "",
+            "content_width": "50%",
+            "media_type": "image",
+            "image": "shopify://shop_images/SAO_BENTO_MINIBLOCO_d369a252-e73d-47bb-9500-1f368b27c389.webp",
+            "image_link": "shopify://collections/drones",
             "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
             "autoplay": true,
             "video_ratio": "16/9",
@@ -245,70 +228,98 @@
             "content_padding_inline": 30,
             "content_mobile_image": false
           },
-          "blocks": {
-            "subheading_PQMMLH": {
-              "type": "subheading",
-              "settings": {
-                "subheading": "Subheading",
-                "font_size": 14,
-                "font_weight": "subheading_weight",
-                "uppercase": false,
-                "spacing_bottom": 15
-              },
-              "blocks": {}
-            },
-            "heading_VQ6w4V": {
-              "type": "heading",
-              "settings": {
-                "heading": "Talk about your brand",
-                "font_size": 36,
-                "font_weight": "heading_weight",
-                "uppercase": false,
-                "spacing_bottom": 20
-              },
-              "blocks": {}
-            },
-            "button_gHKYkC": {
-              "type": "button",
-              "settings": {
-                "show_full_width": false,
-                "first_button_label": "Button label",
-                "first_button_link": "",
-                "first_button_type": "primary",
-                "second_button_label": "",
-                "second_button_link": "",
-                "second_button_type": "primary",
-                "spacing_bottom": 10
-              },
-              "blocks": {}
-            }
+          "blocks": {}
+        },
+        "group_media_content_3cpkQD": {
+          "type": "_group-media-content",
+          "name": "t:blocks.names.media_with_text",
+          "settings": {
+            "color_scheme": "",
+            "content_width": "50%",
+            "media_type": "image",
+            "image": "shopify://shop_images/BRASIL_MINIBLOCO_3f6170ab-545a-441a-9ef7-baeaaebe8f8b.webp",
+            "image_link": "shopify://collections/drones",
+            "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
+            "autoplay": true,
+            "video_ratio": "16/9",
+            "overlay_opacity": 0,
+            "content_type": "overlay",
+            "content_alignment": "start",
+            "content_position": "top-left",
+            "content_padding_block": 30,
+            "content_padding_inline": 30,
+            "content_mobile_image": false
           },
-          "block_order": [
-            "subheading_PQMMLH",
-            "heading_VQ6w4V",
-            "button_gHKYkC"
-          ]
+          "blocks": {}
+        },
+        "group_media_content_eLEcTf": {
+          "type": "_group-media-content",
+          "name": "t:blocks.names.media_with_text",
+          "settings": {
+            "color_scheme": "",
+            "content_width": "50%",
+            "media_type": "image",
+            "image": "shopify://shop_images/DRONES_MINIBLOCO_692772f9-5f5d-456b-a715-31f03cfd5ea8.webp",
+            "image_link": "shopify://collections/drones",
+            "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
+            "autoplay": true,
+            "video_ratio": "16/9",
+            "overlay_opacity": 0,
+            "content_type": "overlay",
+            "content_alignment": "start",
+            "content_position": "top-left",
+            "content_padding_block": 30,
+            "content_padding_inline": 30,
+            "content_mobile_image": false
+          },
+          "blocks": {}
+        },
+        "group_media_content_Gm79Qb": {
+          "type": "_group-media-content",
+          "name": "t:blocks.names.media_with_text",
+          "settings": {
+            "color_scheme": "",
+            "content_width": "50%",
+            "media_type": "image",
+            "image": "shopify://shop_images/TRATORES_MINIBLOCO_d869c910-f934-41d9-92b4-96c56d954755.webp",
+            "image_link": "shopify://collections/drones",
+            "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
+            "autoplay": true,
+            "video_ratio": "16/9",
+            "overlay_opacity": 0,
+            "content_type": "overlay",
+            "content_alignment": "start",
+            "content_position": "top-left",
+            "content_padding_block": 30,
+            "content_padding_inline": 30,
+            "content_mobile_image": false
+          },
+          "blocks": {}
         }
       },
       "block_order": [
-        "group_media_content_xAcQPN",
-        "group_media_content_Rnd8Pm"
+        "group_media_content_4bQLfB",
+        "group_media_content_Gitpcm",
+        "group_media_content_AFRaQw",
+        "group_media_content_3cpkQD",
+        "group_media_content_eLEcTf",
+        "group_media_content_Gm79Qb"
       ],
-      "name": "t:sections.multi_content.name",
+      "name": "Multiblocos",
       "settings": {
-        "section_width": "fluid_container",
+        "section_width": "stretch_width",
         "color_scheme": "",
-        "heading": "",
-        "description": "",
+        "heading": "Coleções do Agro",
+        "description": "<p>Explore e descubra o seu estilo!</p>",
         "show_view_all_button": false,
-        "use_outline_button_style": true,
+        "use_outline_button_style": false,
         "link_view_all_button": "",
         "space_between_header": true,
         "header_size": "medium",
         "header_alignment": "center",
-        "column_gap": 30,
+        "column_gap": 5,
         "equal_height_adjustment": false,
-        "vertical_align": "start",
+        "vertical_align": "center",
         "carousel_on_mobile": false,
         "items_per_row_mobile": 1,
         "padding_top": 30,
@@ -320,6 +331,6 @@
   "order": [
     "heading",
     "main",
-    "multi_content_gV8UHd"
+    "multi_content_zDwAnG"
   ]
 }
