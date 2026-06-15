@@ -315,7 +315,7 @@
         "image_behavior": "none",
         "overlay_opacity": 50,
         "image_height": "custom",
-        "desktop_height": 330,
+        "desktop_height": 350,
         "mobile_height": 580,
         "product_list": [],
         "content_alignment": "left",
@@ -329,8 +329,8 @@
         "content_box_opacity": 100,
         "content_below_image": false,
         "content_alignment_mobile": "center",
-        "padding_top": 20,
-        "padding_bottom": 20,
+        "padding_top": 10,
+        "padding_bottom": 10,
         "reset_spacing": true
       }
     },
