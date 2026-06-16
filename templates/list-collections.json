@@ -326,11 +326,33 @@
         "padding_bottom": 30,
         "reset_spacing": false
       }
+    },
+    "collection_showcase_CEjG4r": {
+      "type": "collection-showcase",
+      "disabled": true,
+      "name": "Collection Showcase",
+      "settings": {
+        "section_width": "stretch_width",
+        "heading": "Nossas coleções",
+        "columns_desktop": 5,
+        "columns_mobile": 2,
+        "image_ratio": "2 / 3",
+        "caption_font_size": 16,
+        "bg_color": "#FFFFFF",
+        "heading_color": "#085B47",
+        "show_view_all": false,
+        "view_all_text": "Ver Todas",
+        "view_all_url": "",
+        "view_all_style": "outline",
+        "padding_top": 32,
+        "padding_bottom": 32
+      }
     }
   },
   "order": [
     "heading",
     "main",
-    "multi_content_zDwAnG"
+    "multi_content_zDwAnG",
+    "collection_showcase_CEjG4r"
   ]
 }
