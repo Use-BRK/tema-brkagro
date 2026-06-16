@@ -568,35 +568,40 @@
           "type": "collection_item",
           "settings": {
             "collection": "pecuaria",
-            "custom_title": ""
+            "custom_title": "Pecuária",
+            "custom_image": "shopify://shop_images/Pecuaria_df1acd59-3fb1-470f-a0d2-a2541d382620.webp"
           }
         },
         "collection_item_wEWFqH": {
           "type": "collection_item",
           "settings": {
             "collection": "brasil-e-agro-2026",
-            "custom_title": ""
+            "custom_title": "Brasil é AGRO",
+            "custom_image": "shopify://shop_images/Brasil_e_Agro_33516ee8-e00a-4520-8783-c89f0414ddf1.webp"
           }
         },
         "collection_item_9Rm6Lm": {
           "type": "collection_item",
           "settings": {
             "collection": "drones",
-            "custom_title": ""
+            "custom_title": "Drones do Agro",
+            "custom_image": "shopify://shop_images/Drones.webp"
           }
         },
         "collection_item_xjXqBG": {
           "type": "collection_item",
           "settings": {
             "collection": "cavalos",
-            "custom_title": ""
+            "custom_title": "",
+            "custom_image": "shopify://shop_images/Cavalos_e_Rodeios.webp"
           }
         },
         "collection_item_xmD36t": {
           "type": "collection_item",
           "settings": {
             "collection": "sao-bento-e-nossa-senhora-1",
-            "custom_title": ""
+            "custom_title": "",
+            "custom_image": "shopify://shop_images/Sao_Bento.webp"
           }
         }
       },
@@ -663,7 +668,7 @@
           "name": "Revendedor",
           "settings": {
             "color_scheme": "",
-            "image": "shopify://shop_images/SEJA_UM_REVENDEDOR.png",
+            "image": "shopify://shop_images/SEJA_UM_REVENDEDOR_b2b82d15-ee6a-4d5a-b5e1-6765a23941cd.png",
             "image_link": "https://links.usebrk.com.br/B2B-BRKAGRO",
             "overlay_opacity": 0,
             "content_alignment": "center",
