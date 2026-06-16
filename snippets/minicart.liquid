@@ -150,6 +150,46 @@
                     {{ 'general.cart.return_shop' | t }}
                   </button>
                 </div>
+                {%- if select_product_recommendations != blank -%}
+                  <div class="cart-recommend cart-recommend-empty pt-30 pb-30 px-30 border-top">
+                    {%- if recommendations_heading -%}
+                      <h4 class="minicart-heading mt-0 mb-15 fs-18 heading-letter-spacing">
+                        {{ recommendations_heading }}
+                      </h4>
+                    {%- endif -%}
+                    <slide-section
+                      class="swiper swiper-cart-upsell-empty"
+                      id="swiper-cart-upsell-empty"
+                      data-section-id="cart-upsell-empty"
+                      data-autoplay="false"
+                      data-loop="false"
+                      data-mobile="1"
+                      data-tablet="1"
+                      data-desktop="1"
+                      data-item-mobile="1"
+                      data-spacing="5"
+                    >
+                      <div class="swiper-wrapper">
+                        {%- for item in select_product_recommendations -%}
+                          <div class="swiper-slide">
+                            {% render 'product-item',
+                              card_product: item,
+                              template_enable_price: true,
+                              template_enable_add_cart: true,
+                              template_enable_product_vendor: false,
+                              template_enable_rate: false,
+                              template_enable_product_short_description: false,
+                              template_enable_color_swatches: false,
+                              type: 'list',
+                              lazy_product: false
+                            %}
+                          </div>
+                        {%- endfor -%}
+                      </div>
+                      <div class="swiper-pagination"></div>
+                    </slide-section>
+                  </div>
+                {%- endif -%}
               </div>
             {%- endif -%}
           </form>

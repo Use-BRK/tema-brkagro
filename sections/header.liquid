@@ -14,6 +14,7 @@
   assign my_account = section_st.show_account_icon
   assign recently_viewed = section_st.show_recently_viewed
   assign wishlist = section_st.show_wishlist_icon
+  assign wishlist_mobile = section_st.show_wishlist_mobile
   assign minicart = section_st.show_shopping_cart
   assign show_country = section_st.show_currency
   assign show_language = section_st.show_language
@@ -147,8 +148,24 @@
         <div class="header__logo text-center text-left-1025 inline-flex align-center">
           {%- render 'logo', isTransparent: transparent -%}
         </div>
-        <div class="header__menu {{  show_language }}">
+        <div class="header__menu {{ show_language }} flex align-center">
           {%- render 'toggle-menu' -%}
+          {%- if wishlist and wishlist_mobile -%}
+            <a
+              href="/pages/wishlist"
+              class="header-icon header-color w-44 h-44 inline-flex content-center hidden-1025"
+              aria-label="{{ 'templates.wishlist.wishlist' | t }}"
+            >
+              <h-count class="relative lh-1 fs-0">
+                <svg width="19" height="16" viewBox="0 0 19 16" fill="none">
+                  <use href="#icon-wishlist-header" />
+                </svg>
+                <span class="absolute lh-1 wishlist-count h-count inline-flex align-center justify-content-center rounded-50 overflow-hidden fs-10">
+                  0
+                </span>
+              </h-count>
+            </a>
+          {%- endif -%}
           {%- liquid
             render 'horizontal-menu', class: 'min-h-1025-50', show_language: show_language
           -%}
@@ -556,6 +573,13 @@
       "type": "checkbox",
       "id": "show_wishlist_icon",
       "label": "t:sections.header.settings.addons.show_wishlist_icon.label",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_wishlist_mobile",
+      "label": "Exibir wishlist no header mobile",
+      "info": "Exibe o ícone ao lado do menu hamburguer",
       "default": true
     },
     {
