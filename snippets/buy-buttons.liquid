@@ -115,7 +115,13 @@
                   {% endif %}
                 >
                   <span class="btn-label hidden-on-load">
-                    {%- if product.selected_or_first_available_variant.inventory_management == null -%}
+                    {%- if type == 'sticky' -%}
+                      {%- if product.selected_or_first_available_variant.available == false -%}
+                        {{ 'products.product.general.outstock' | t }}
+                      {%- else -%}
+                        Comprar
+                      {%- endif -%}
+                    {%- elsif product.selected_or_first_available_variant.inventory_management == null -%}
                       {{ 'products.product.general.add_to_cart' | t }}
                     {%- else -%}
                       {%- if product.selected_or_first_available_variant.available == false -%}
@@ -123,7 +129,6 @@
                       {%- else -%}
                         {%- if product.selected_or_first_available_variant.inventory_quantity < 1 -%}
                           {{ 'products.product.general.pre_order' | t }}
-
                         {%- else -%}
                           {{ 'products.product.general.add_to_cart' | t }}
                         {%- endif -%}

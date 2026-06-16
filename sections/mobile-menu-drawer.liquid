@@ -144,9 +144,6 @@
                               assign submenu_image = nil
                               if show_images and child.type == 'collection_link' and child.object != blank
                                 assign submenu_image = child.object.metafields.custom.submenu_image.value
-                                if submenu_image == blank
-                                  assign submenu_image = child.object.image
-                                endif
                               endif
 
                               assign child_has_children = false

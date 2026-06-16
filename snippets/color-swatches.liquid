@@ -456,12 +456,7 @@
           endif
         %}
         {% if show_title %}
-          {{ variant.title }} -
-        {% endif %}
-        {% if settings.currency_code_enabled %}
-          {{ variant.price | money_with_currency }}
-        {% else %}
-          {{ variant.price | money }}
+          {{ variant.title }}
         {% endif %}
       </option>
     {% endfor %}
