@@ -168,6 +168,7 @@
         "show_search": true,
         "show_account_icon": true,
         "show_wishlist_icon": true,
+        "show_wishlist_mobile": false,
         "show_shopping_cart": true,
         "show_currency": false,
         "show_language": false,
