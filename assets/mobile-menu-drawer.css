@@ -150,7 +150,7 @@ html.mobile-menu-drawer-open {
 .mobile-menu-drawer__link--level-1 {
   font-weight: 600;
   font-size: calc(15px * var(--text-size-multiplier, 1));
-  text-transform: uppercase;
+  text-transform: none;
   letter-spacing: 0.03em;
 }
 
