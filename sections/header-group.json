@@ -206,6 +206,7 @@
         "button_X8Eebj": {
           "type": "button",
           "name": "Coleções do Agro",
+          "disabled": true,
           "settings": {
             "button_text": "Coleções do Agro",
             "button_link": "shopify://collections",
@@ -217,6 +218,7 @@
         "button_xzXqHb": {
           "type": "button",
           "name": "Rastrear",
+          "disabled": true,
           "settings": {
             "button_text": "RASTREAR PEDIDO",
             "button_link": "",
