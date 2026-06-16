@@ -89,7 +89,7 @@
           "type": "menu_promotion",
           "settings": {
             "text": "FEMININO",
-            "open-link-newtab": true,
+            "open-link-newtab": false,
             "item_label": "unset",
             "promotion_menu_column": 3,
             "mega_custom_width": 1000,
@@ -108,7 +108,7 @@
           "type": "menu_promotion",
           "settings": {
             "text": "MASCULINO",
-            "open-link-newtab": true,
+            "open-link-newtab": false,
             "item_label": "unset",
             "promotion_menu_column": 3,
             "mega_custom_width": 1000,
