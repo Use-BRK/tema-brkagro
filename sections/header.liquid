@@ -173,7 +173,7 @@
         </div>
         <div class="header__menu {{ show_language }} flex align-center">
           {%- render 'toggle-menu' -%}
-          {%- if wishlist -%}
+          {%- if wishlist and wishlist_mobile -%}
             <div class="header__wishlist-mobile hidden-1025">
               <a
                 href="/pages/wishlist"
