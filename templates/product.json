@@ -169,7 +169,7 @@
         "collapsible_row_m3g6f8"
       ],
       "custom_css": [
-        ".product-detail__title {display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden;}",
+        ".product-detail__title {display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; font-size: 2.29rem;}",
         "variant-king-combined-listing + variant-king-combined-listing {display: none;}"
       ],
       "name": "Informações do Produto",
