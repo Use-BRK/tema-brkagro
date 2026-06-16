@@ -59,6 +59,29 @@
     }
   {%- endstyle -%}
 {% endif %}
+{%- style -%}
+  @media screen and (max-width: 1024.98px) {
+    .header__wishlist-mobile {
+      display: block !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+      position: relative;
+      z-index: 2;
+    }
+
+    .header__wishlist-mobile .header__wishlist-mobile-link {
+      display: inline-flex !important;
+      color: var(--color-heading) !important;
+      opacity: 1 !important;
+      visibility: visible !important;
+    }
+
+    .header__wishlist-mobile .header__wishlist-mobile-link svg,
+    .header__wishlist-mobile .header__wishlist-mobile-link svg path {
+      fill: currentColor !important;
+    }
+  }
+{%- endstyle -%}
 {% if transparent %}
   {%- style -%}
     .section-header:not(.shopify-section-header-sticky) .transparent:not(:hover):before {
@@ -150,21 +173,23 @@
         </div>
         <div class="header__menu {{ show_language }} flex align-center">
           {%- render 'toggle-menu' -%}
-          {%- if wishlist and wishlist_mobile -%}
-            <a
-              href="/pages/wishlist"
-              class="header-icon header-color w-44 h-44 inline-flex content-center hidden-1025"
-              aria-label="{{ 'templates.wishlist.wishlist' | t }}"
-            >
-              <h-count class="relative lh-1 fs-0">
-                <svg width="19" height="16" viewBox="0 0 19 16" fill="none">
-                  <use href="#icon-wishlist-header" />
-                </svg>
-                <span class="absolute lh-1 wishlist-count h-count inline-flex align-center justify-content-center rounded-50 overflow-hidden fs-10">
-                  0
-                </span>
-              </h-count>
-            </a>
+          {%- if wishlist -%}
+            <div class="header__wishlist-mobile hidden-1025">
+              <a
+                href="/pages/wishlist"
+                class="header-icon header-color header__wishlist-mobile-link w-44 h-44 inline-flex content-center"
+                aria-label="{{ 'templates.wishlist.wishlist' | t }}"
+              >
+                <h-count class="relative lh-1 fs-0">
+                  <svg width="19" height="16" viewBox="0 0 19 16" fill="none">
+                    <path d="M17.4693 1.46278C16.4831 0.52335 15.178 0 13.8216 0C12.4652 0 11.1601 0.52335 10.1739 1.46278L9.5 2.11096L8.8261 1.46278C7.84238 0.51698 6.53343 -0.00720742 5.17448 0.000442952C3.81807 -0.00598466 2.512 0.518175 1.53069 1.46278C1.04762 1.9183 0.662488 2.46909 0.399178 3.08097C0.135869 3.69285 0 4.35278 0 5.01983C0 5.68687 0.135869 6.3468 0.399178 6.95868C0.662488 7.57057 1.04762 8.12135 1.53069 8.57687L8.96715 15.7858C9.04006 15.8502 9.12189 15.9034 9.21006 15.9439C9.39624 16.0187 9.60376 16.0187 9.78994 15.9439C9.87811 15.9034 9.95994 15.8502 10.0329 15.7858L17.4693 8.57687C17.9524 8.12135 18.3375 7.57057 18.6008 6.95868C18.8641 6.3468 19 5.68687 19 5.01983C19 4.35278 18.8641 3.69285 18.6008 3.08097C18.3375 2.46909 17.9524 1.9183 17.4693 1.46278ZM17.4693 5.00402C17.4715 5.47163 17.3796 5.93483 17.1991 6.36555C17.0186 6.79627 16.7533 7.18553 16.4193 7.50976L9.5 14.2286L2.58856 7.50976C2.24936 7.18822 1.97903 6.80001 1.79425 6.36906C1.60946 5.93811 1.51413 5.47355 1.51413 5.00402C1.51413 4.53448 1.60946 4.06992 1.79425 3.63897C1.97903 3.20802 2.24936 2.81981 2.58856 2.49828C3.28454 1.82749 4.21191 1.45613 5.17448 1.46278C6.14183 1.45534 7.07438 1.82652 7.77606 2.49828L8.96715 3.66025C9.04006 3.72459 9.12189 3.77785 9.21006 3.81834C9.39624 3.89313 9.60376 3.89313 9.78994 3.81834C9.87811 3.77785 9.95994 3.72459 10.0329 3.66025L11.2318 2.49828C11.9277 1.82749 12.8551 1.45613 13.8177 1.46278C14.785 1.45534 15.7176 1.82652 16.4193 2.49828C16.7562 2.82115 17.0244 3.20981 17.2076 3.64059C17.3908 4.07137 17.4852 4.53526 17.485 5.00402H17.4693Z" fill="currentColor"/>
+                  </svg>
+                  <span class="absolute lh-1 wishlist-count h-count inline-flex align-center justify-content-center rounded-50 overflow-hidden fs-10">
+                    0
+                  </span>
+                </h-count>
+              </a>
+            </div>
           {%- endif -%}
           {%- liquid
             render 'horizontal-menu', class: 'min-h-1025-50', show_language: show_language

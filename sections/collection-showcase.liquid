@@ -48,7 +48,7 @@
             {%- liquid
               assign col = block.settings.collection
               assign custom_title = block.settings.custom_title
-              assign col_image = col.image | default: col.products.first.featured_image
+              assign col_image = block.settings.custom_image | default: col.image | default: col.products.first.featured_image
               assign display_title = custom_title | default: col.title | default: 'Collection'
             -%}
             <a href="{{ col.url | default: '#' }}" class="cs__card" {{ block.shopify_attributes }} aria-label="{{ display_title | escape }}">
@@ -284,6 +284,12 @@
           "id": "custom_title",
           "label": "Custom title",
           "info": "Leave blank to use collection name"
+        },
+        {
+          "type": "image_picker",
+          "id": "custom_image",
+          "label": "Custom image",
+          "info": "Leave blank to use collection image"
         }
       ]
     }
