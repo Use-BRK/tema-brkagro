@@ -36,6 +36,20 @@ html.js .slideshow motion-element[slideshow][data-motion*=zoom] {
   display: none;
 }
 
+/* ================ Slideshow arrows — transparent style ================ */
+@media screen and (min-width: 1025px) {
+  .slideshow .swiper-arrow {
+    background: transparent;
+    border-color: transparent;
+    color: #fff;
+  }
+  .slideshow .swiper-arrow:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: transparent;
+    color: #fff;
+  }
+}
+
 /* ================ Card scrolling effect ================ */
 body:has(.card-scrolling-effect):has(.shopify-section-header-sticky) {
   --sticky-top: var(--header-height, 0px);
