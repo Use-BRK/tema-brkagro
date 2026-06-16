@@ -51,8 +51,8 @@
           "type": "slider_item",
           "name": "Rebrand",
           "settings": {
-            "image": "shopify://shop_images/FULLBANNER_DESKTOP.webp",
-            "image_mobile": "shopify://shop_images/MOBILE_a0ba7d54-b5d0-48c0-8ba5-51e0bfad9a7a.webp",
+            "image": "shopify://shop_images/FULLBANNER_DESKTOP_3b9d6a35-c139-4fdb-80da-444ca6fbb6de.webp",
+            "image_mobile": "shopify://shop_images/MOBILE_03c09017-1dde-445b-97df-8f112a94a4b9.webp",
             "overlay_opacity": 0,
             "link_banner": "shopify://collections/botinas",
             "slider_effect": "fade-in-right",
@@ -633,7 +633,7 @@
           "name": "Baixe o APP",
           "settings": {
             "color_scheme": "",
-            "image": "shopify://shop_images/BAIXE_O_APP.webp",
+            "image": "shopify://shop_images/BAIXE_O_APP.png",
             "image_link": "https://use-brk.github.io/tema-brkagro/app/",
             "overlay_opacity": 0,
             "content_alignment": "center",
@@ -648,7 +648,7 @@
           "name": "Personalize",
           "settings": {
             "color_scheme": "",
-            "image": "shopify://shop_images/PERSONALIZE.webp",
+            "image": "shopify://shop_images/PERSONALIZE.png",
             "image_link": "https://personalize.brkagro.com.br/lp?utm_source=site_agro&utm_medium=organico&utm_campaign=brkagro.com.br&utm_content=menu_home",
             "overlay_opacity": 0,
             "content_alignment": "center",
@@ -663,7 +663,7 @@
           "name": "Revendedor",
           "settings": {
             "color_scheme": "",
-            "image": "shopify://shop_images/REVENDEDOR.webp",
+            "image": "shopify://shop_images/SEJA_UM_REVENDEDOR.png",
             "image_link": "https://links.usebrk.com.br/B2B-BRKAGRO",
             "overlay_opacity": 0,
             "content_alignment": "center",
@@ -688,7 +688,7 @@
         "show_view_all_button": false,
         "view_all_url": "",
         "header_size": "medium",
-        "header_alignment": "left",
+        "header_alignment": "center",
         "column_gap": 30,
         "padding_top": 0,
         "padding_bottom": 0,
