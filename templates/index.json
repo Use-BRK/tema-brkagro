@@ -283,7 +283,7 @@
         "heading_LQFY4n": {
           "type": "heading",
           "settings": {
-            "heading": "Viva seu mundo, nós vestimos você",
+            "heading": "A Força que Veste o Agro",
             "font_size": 36,
             "font_weight": "heading_weight",
             "uppercase": false,
@@ -294,7 +294,7 @@
         "description_fzUdRk": {
           "type": "description",
           "settings": {
-            "text": "<p>Share information about your brand with your customers. Describe a product, make announcements, or welcome customers to your store.</p>",
+            "text": "<p>A BRK entende que o agro é identidade, tradição e orgulho.</p><p>Desenvolvemos peças que representam histórias reais, feitas para quem honra o passado, vive intensamente o presente e constrói o futuro com as próprias mãos.<br/></p>",
             "font_size": 20,
             "font_weight": "body_weight",
             "spacing_bottom": 10
@@ -613,7 +613,7 @@
         "columns_mobile": 2,
         "image_ratio": "2 / 3",
         "caption_font_size": 16,
-        "bg_color": "#085B47",
+        "bg_color": "#085b47",
         "heading_color": "#fcf5e6",
         "show_view_all": false,
         "view_all_text": "Ver Todas",
