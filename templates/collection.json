@@ -194,7 +194,7 @@
         "image_banner_UUJxtT"
       ],
       "settings": {
-        "section_width": "fluid_container",
+        "section_width": "stretch_width",
         "enable_filtering": false,
         "show_filter_counts": true,
         "default_filter": "first_open",
@@ -206,6 +206,7 @@
         "items_to_show": 24,
         "items_per_row": 5,
         "column_gap": 10,
+        "mobile_product_image_layout": "edge_bleed",
         "pagination": "load_more_button",
         "button_show_more": "Ver mais",
         "promotion_link": "",
