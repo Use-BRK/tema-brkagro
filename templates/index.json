@@ -148,63 +148,60 @@
         "reset_spacing": true
       }
     },
-    "icon_box_LjTRcj": {
-      "type": "icon-box",
+    "collection_tab_9R4n9j": {
+      "type": "collection-tab",
       "blocks": {
-        "icon_box_N8NjdF": {
-          "type": "icon_box",
+        "collection_DakUnd": {
+          "type": "collection",
           "settings": {
-            "icon_svg": "truck",
-            "custom_svg": "",
-            "heading": "Frete Fixo",
-            "description": "<p><strong>Frete fixo</strong> para todo o Brasil por apenas <strong>R$9,90! </strong>Entrega rápida BRK</p>"
+            "collection": "botinas-country-masculinas",
+            "collection_title": "Masculinos"
           }
         },
-        "icon_box_bDntUA": {
-          "type": "icon_box",
+        "collection_xWbgRL": {
+          "type": "collection",
           "settings": {
-            "icon_svg": "payment",
-            "custom_svg": "",
-            "heading": "Parcelamento",
-            "description": "<p>Fatura apertou? Parcele seu pedido <strong>em até 3x sem juros!</strong></p>"
-          }
-        },
-        "icon_box_kWDjpf": {
-          "type": "icon_box",
-          "settings": {
-            "icon_svg": "check_badge",
-            "custom_svg": "",
-            "heading": "Troca Grátis*",
-            "description": "<p>Não serviu? <strong>Primeira Troca Grátis </strong>até 7 dias após recebimento do pedido<br/></p>"
+            "collection": "botinas-country-femininas",
+            "collection_title": "Femininas"
           }
         }
       },
       "block_order": [
-        "icon_box_N8NjdF",
-        "icon_box_bDntUA",
-        "icon_box_kWDjpf"
+        "collection_DakUnd",
+        "collection_xWbgRL"
       ],
-      "name": "Beneficios",
+      "custom_css": [
+        ".collection-tab__tab-item {font-size: clamp(1.105em, 2vw, 2.5rem);}",
+        "h3 {margin-top: 0px; margin-bottom: 0px;}"
+      ],
+      "name": "Novas Botinas",
       "settings": {
         "section_width": "stretch_width",
-        "color_scheme": "",
-        "type": "default",
-        "column_gap": 30,
-        "icon_position": "top",
-        "icon_size": 32,
-        "spacing": 2,
-        "show_border": false,
-        "enable_background": false,
-        "background": "linear-gradient(180deg, rgba(255, 211, 226, 1), rgba(168, 255, 251, 1) 100%)",
-        "content_alignment": "center",
-        "heading_font_size": 16,
-        "heading_font_weight": "heading_weight",
-        "heading_uppercase": false,
-        "heading_spacing_bottom": 10,
-        "des_font_size": 14,
-        "des_font_weight": "body_weight",
+        "color_scheme": "scheme-accf3b11-ba40-4a3e-bafb-243ece6683ec",
+        "heading": "",
+        "description": "<h3>Botas e Botinas</h3>",
+        "show_view_all_button": true,
+        "header_size": "small",
+        "header_alignment": "center",
+        "tab_header_style": "horizontal",
+        "horizontal_tab_style": "fill",
+        "tab_header_postion": "default",
+        "display_mode": "grid",
+        "items_to_show": 24,
+        "items_per_row": 5,
+        "column_gap": 10,
+        "show_arrow": true,
+        "carousel_pagination": "disable",
+        "infinite": false,
+        "autoplay": false,
+        "autorotate_speed": 2,
+        "reveal": false,
+        "rows": 2,
+        "show_load_more_button": false,
+        "button_label": "Ver mais",
+        "use_outline_button_style": true,
         "carousel_on_mobile": true,
-        "items_per_row_mobile": "1",
+        "items_per_row_mobile": 1.5,
         "padding_top": 20,
         "padding_bottom": 20,
         "reset_spacing": true
@@ -630,6 +627,68 @@
         "padding_bottom": 32
       }
     },
+    "icon_box_LjTRcj": {
+      "type": "icon-box",
+      "blocks": {
+        "icon_box_N8NjdF": {
+          "type": "icon_box",
+          "settings": {
+            "icon_svg": "truck",
+            "custom_svg": "",
+            "heading": "Frete Fixo",
+            "description": "<p><strong>Frete fixo</strong> para todo o Brasil por apenas <strong>R$9,90! </strong>Entrega rápida BRK</p>"
+          }
+        },
+        "icon_box_bDntUA": {
+          "type": "icon_box",
+          "settings": {
+            "icon_svg": "payment",
+            "custom_svg": "",
+            "heading": "Parcelamento",
+            "description": "<p>Fatura apertou? Parcele seu pedido <strong>em até 3x sem juros!</strong></p>"
+          }
+        },
+        "icon_box_kWDjpf": {
+          "type": "icon_box",
+          "settings": {
+            "icon_svg": "check_badge",
+            "custom_svg": "",
+            "heading": "Troca Grátis*",
+            "description": "<p>Não serviu? <strong>Primeira Troca Grátis </strong>até 7 dias após recebimento do pedido<br/></p>"
+          }
+        }
+      },
+      "block_order": [
+        "icon_box_N8NjdF",
+        "icon_box_bDntUA",
+        "icon_box_kWDjpf"
+      ],
+      "name": "Beneficios",
+      "settings": {
+        "section_width": "stretch_width",
+        "color_scheme": "",
+        "type": "default",
+        "column_gap": 30,
+        "icon_position": "top",
+        "icon_size": 32,
+        "spacing": 2,
+        "show_border": false,
+        "enable_background": false,
+        "background": "linear-gradient(180deg, rgba(255, 211, 226, 1), rgba(168, 255, 251, 1) 100%)",
+        "content_alignment": "center",
+        "heading_font_size": 16,
+        "heading_font_weight": "heading_weight",
+        "heading_uppercase": false,
+        "heading_spacing_bottom": 10,
+        "des_font_size": 14,
+        "des_font_weight": "body_weight",
+        "carousel_on_mobile": true,
+        "items_per_row_mobile": "1",
+        "padding_top": 50,
+        "padding_bottom": 50,
+        "reset_spacing": true
+      }
+    },
     "banner_packery_4RYN8d": {
       "type": "banner-packery",
       "blocks": {
@@ -700,6 +759,78 @@
         "reset_spacing": false
       }
     },
+    "faq_98Ch8c": {
+      "type": "faq",
+      "blocks": {
+        "faq_items_VjkwiJ": {
+          "type": "faq-items",
+          "name": "Proteção UV50",
+          "settings": {
+            "faq_title": "Os produtos da BRK possuem proteção solar real?",
+            "faq_content": "Sim. Nossas camisas contam com a tecnologia <strong>UV50+</strong>, que bloqueia até 98% dos raios UVA e UVB. Essa proteção é aplicada diretamente nas fibras do tecido, o que garante que a eficácia não saia nas lavagens, mantendo você seguro durante toda a vida útil da peça."
+          }
+        },
+        "faq_items_GK7i8q": {
+          "type": "faq-items",
+          "name": "Tecidos das Camisas",
+          "settings": {
+            "faq_title": "Diferencial do tecido das camisas BRK",
+            "faq_content": "Utilizamos tecidos de alta tecnologia, que permite a rápida evaporação do suor, mantendo o corpo seco e em temperatura agradável, mesmo em atividades sob sol intenso ou práticas esportivas."
+          }
+        },
+        "faq_items_grkz8N": {
+          "type": "faq-items",
+          "name": "Tamanho Ideal",
+          "settings": {
+            "faq_title": "Como escolher o tamanho ideal?",
+            "faq_content": "Em cada página de produto, disponibilizamos uma <strong>Tabela de Medidas</strong>. Recomendamos comparar as medidas de uma peça que você já usa com os nossos valores."
+          }
+        },
+        "faq_items_9NpmfN": {
+          "type": "faq-items",
+          "name": "Cores das Camisas",
+          "settings": {
+            "faq_title": "As camisas desbotam com o tempo?",
+            "faq_content": "Não. Utilizamos um processo de sublimação de alta definição. Isso garante que as estampas e cores permaneçam vivas e vibrantes mesmo após diversas lavagens e exposição prolongada ao sol."
+          }
+        },
+        "faq_items_VhbD7p": {
+          "type": "faq-items",
+          "name": "Formas de Pagamento",
+          "settings": {
+            "faq_title": "Quais são as formas de pagamento e prazos de entrega?",
+            "faq_content": "Aceitamos as principais bandeiras de cartão de crédito (com parcelamento) e PIX. O prazo de entrega varia de acordo com a sua região e a modalidade de frete escolhida no carrinho."
+          }
+        },
+        "faq_items_B8ep34": {
+          "type": "faq-items",
+          "settings": {
+            "faq_title": "Posso trocar o produto se não servir?",
+            "faq_content": "Se você recebeu um produto e não ficou satisfeito ou ele simplesmente não serviu, é possível fazer a solicitação devolução para estorno <strong>em até 7 dias corridos após a entrega</strong>. Para isso, o produto deverá estar em sua embalagem original, sem indícios de uso e com todos os itens e acessórios recebidos. Para os casos de insatisfação com o produto adquirido, solicite a troca, através do nosso Portal de Trocas e Devoluções, pelo endereço <a href=\"https://brkagro.troque.app.br/\" target=\"_blank\">https://brkagro.troque.app.br/</a>"
+          }
+        }
+      },
+      "block_order": [
+        "faq_items_VjkwiJ",
+        "faq_items_GK7i8q",
+        "faq_items_grkz8N",
+        "faq_items_9NpmfN",
+        "faq_items_VhbD7p",
+        "faq_items_B8ep34"
+      ],
+      "name": "t:sections.faq.presets.name",
+      "settings": {
+        "section_width": "container",
+        "color_scheme": "default",
+        "heading": "Perguntas Frequentes",
+        "description": "",
+        "header_size": "medium",
+        "header_alignment": "center",
+        "padding_top": 35,
+        "padding_bottom": 35,
+        "reset_spacing": true
+      }
+    },
     "icon_box_TRwJBD": {
       "type": "icon-box",
       "blocks": {
@@ -766,13 +897,15 @@
   "order": [
     "scrolling_text_DNNJAq",
     "slideshow_8KKtNU",
-    "icon_box_LjTRcj",
+    "collection_tab_9R4n9j",
     "collection_tab_cxBKk3",
     "image_with_text_overlay_BBzj67",
     "multi_content_Dyd3Y3",
     "collection_tab_cPpFqA",
     "collection_showcase_VG6Ymn",
+    "icon_box_LjTRcj",
     "banner_packery_4RYN8d",
+    "faq_98Ch8c",
     "icon_box_TRwJBD"
   ]
 }
