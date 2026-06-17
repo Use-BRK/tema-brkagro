@@ -30,23 +30,22 @@
             "svg_height": 25
           }
         },
-        "navbar_collection_J893UR": {
-          "type": "navbar-collection",
-          "disabled": true,
-          "settings": {
-            "collection": "colecao-femininas-2026",
-            "title": "Femininas 2026",
-            "custom_svg": "<img src=\"https://cdn.shopify.com/s/files/1/0887/2083/4857/files/cowgirl_2.svg?v=1778012320\">",
-            "svg_width": 27,
-            "svg_height": 23
-          }
-        },
         "navbar_collection_7zmyr7": {
           "type": "navbar-collection",
           "settings": {
             "collection": "botinas",
             "title": "Botinas",
             "custom_svg": "<img src=\"https://cdn.shopify.com/s/files/1/0887/2083/4857/files/botina3.svg?v=1746207593\">",
+            "svg_width": 27,
+            "svg_height": 23
+          }
+        },
+        "navbar_collection_J893UR": {
+          "type": "navbar-collection",
+          "settings": {
+            "collection": "colecao-femininas-2026",
+            "title": "Femininas 2026",
+            "custom_svg": "<img src=\"https://cdn.shopify.com/s/files/1/0887/2083/4857/files/cowgirl_2.svg?v=1778012320\">",
             "svg_width": 27,
             "svg_height": 23
           }
@@ -65,8 +64,8 @@
       "block_order": [
         "homepage_xiQ8UP",
         "navbar_collection_xFxBLk",
-        "navbar_collection_J893UR",
         "navbar_collection_7zmyr7",
+        "navbar_collection_J893UR",
         "whatsapp_contact_qEDXnA",
         "cart_8xqQBb"
       ],
