@@ -114,7 +114,7 @@
             <div>
           {% endif %}
           {%- if heading != blank or description != blank -%}
-            <div class="text-{{ section_st.header_alignment }}"{% if section_st.inline_header_tabs %} style="flex-shrink:1;min-width:0"{% endif %}>
+            <div class="text-{{ section_st.header_alignment }}"{% if section_st.inline_header_tabs %} style="flex-shrink:1;min-width:0;overflow-wrap:normal;word-break:keep-all"{% endif %}>
               {%- if section_st.heading != blank -%}
                 <motion-element
                   data-motion="{{ scroll_animation }}"
