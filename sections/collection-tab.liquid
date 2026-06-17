@@ -80,6 +80,7 @@
             >
               <h2
                 class="section__header-heading heading-letter-spacing   {{ header_size  }} mt-0{% if section_st.description != blank %} mb-10{% else %} mb-0{% endif %}"
+                style="font-size: {{ section_st.heading_font_size }}px"
               >
                 {{ section.settings.heading }}
               </h2>
@@ -104,7 +105,7 @@
     {% if section.blocks.size > 0 %}
       <tab-items data-type="{{ tab_header_style }}">
         <div
-          class="{% if section_st.tab_header_postion == 'horizontal_header' %}flex align-center flex-wrap tab-inner justify-between{% endif %} text-{{ section_st.header_alignment }} block section__header mb-40 mb-sm-30{% if section_st.section_width == 'full_width' %} px-20{% endif %}{% if section_st.header_alignment == 'center' and section_st.tab_header_postion == "horizontal_header" %} flex-column{% endif %} {% if section_st.header_alignment == 'left' and section_st.tab_header_postion == "horizontal_header" %} flex-row-reverse{% endif %}{% if section_st.show_view_all_button and section_st.tab_header_postion == 'default' and section_st.header_alignment != 'center' %} flex justify-between{% endif %}{% if section_st.header_alignment == 'left' and section_st.tab_header_postion == "default" %} flex-row-reverse{% endif %}"
+          class="{% if section_st.inline_header_tabs %}flex align-center gap-15 justify-between flex-nowrap{% elsif section_st.tab_header_postion == 'horizontal_header' %}flex align-center flex-wrap tab-inner justify-between{% endif %} text-{{ section_st.header_alignment }} block section__header{% unless section_st.inline_header_tabs %} mb-40 mb-sm-30{% endunless %}{% if section_st.inline_header_tabs %} mb-20{% endif %}{% if section_st.section_width == 'full_width' %} px-20{% endif %}{% if section_st.header_alignment == 'center' and section_st.tab_header_postion == "horizontal_header" and section_st.inline_header_tabs == false %} flex-column{% endif %} {% if section_st.header_alignment == 'left' and section_st.tab_header_postion == "horizontal_header" and section_st.inline_header_tabs == false %} flex-row-reverse{% endif %}{% if section_st.show_view_all_button and section_st.tab_header_postion == 'default' and section_st.header_alignment != 'center' and section_st.inline_header_tabs == false %} flex justify-between{% endif %}{% if section_st.header_alignment == 'left' and section_st.tab_header_postion == "default" and section_st.inline_header_tabs == false %} flex-row-reverse{% endif %}"
         >
           {% if section_st.show_view_all_button
             and section_st.tab_header_postion == 'default'
@@ -113,7 +114,7 @@
             <div>
           {% endif %}
           {%- if heading != blank or description != blank -%}
-            <div class="text-{{ section_st.header_alignment }}">
+            <div class="text-{{ section_st.header_alignment }}"{% if section_st.inline_header_tabs %} style="flex-shrink:1;min-width:0"{% endif %}>
               {%- if section_st.heading != blank -%}
                 <motion-element
                   data-motion="{{ scroll_animation }}"
@@ -123,7 +124,7 @@
                   {% endif %}
                   class="block"
                 >
-                  <h2 class="section__header-heading heading-letter-spacing {{ header_size  }} mt-0{% if section_st.description != blank %} mb-10{% else %} mb-0{% endif %}{% if show_view_all_button and section_st.header_alignment == "left" and section_st.tab_header_postion == 'default'%} text-right{% endif %}{% if show_view_all_button and section_st.header_alignment == "right" and section_st.tab_header_postion == 'default'%} text-left{% endif %}">
+                  <h2 class="section__header-heading heading-letter-spacing {{ header_size  }}{% if section_st.inline_header_tabs %} mt-0 mb-0{% else %} mt-0{% if section_st.description != blank %} mb-10{% else %} mb-0{% endif %}{% endif %}{% if show_view_all_button and section_st.header_alignment == "left" and section_st.tab_header_postion == 'default'%} text-right{% endif %}{% if show_view_all_button and section_st.header_alignment == "right" and section_st.tab_header_postion == 'default'%} text-left{% endif %}" style="font-size: {{ section_st.heading_font_size }}px">
                     {{ section.settings.heading }}
                   </h2>
                 </motion-element>
@@ -142,8 +143,8 @@
               {% endif %}
             </div>
           {% endif %}
-          <div class="inline-flex flex-wrap gap-15 justify-center align-center{% if section_st.header_alignment == 'left' and section_st.tab_header_postion == "horizontal_header" %} flex-row-reverse{% endif %}">
-            <div class="mt-30 inline-flex flex-wrap justify-center align-center max-w-100{% if tab_header_style == 'horizontal' %} collection-tab__ta overflow-auto{% else %} collection-tab__select align-center gap-10{% endif %}{% if tab_header_style != 'horizontal' %} h4 my-0{% endif %}{% if tab_header_style == 'horizontal' and horizontal_tab_style == 'underline' %} border-bottom{% endif %}{% if tab_header_style == 'horizontal' and horizontal_tab_style != 'underline' %} gap-15{% endif %} collection-tab-style_{{ section_st.horizontal_tab_style }} collection-tab-postion_{{ section_st.tab_header_postion }}">
+          <div class="inline-flex {% unless section_st.inline_header_tabs %}flex-wrap{% endunless %} gap-15 justify-center align-center{% if section_st.header_alignment == 'left' and section_st.tab_header_postion == "horizontal_header" %} flex-row-reverse{% endif %}"{% if section_st.inline_header_tabs %} style="flex-shrink:1;min-width:0"{% endif %}>
+            <div class="{% unless section_st.inline_header_tabs %}mt-30{% endunless %} inline-flex flex-wrap justify-center align-center max-w-100{% if tab_header_style == 'horizontal' %} collection-tab__ta overflow-auto{% else %} collection-tab__select align-center gap-10{% endif %}{% if tab_header_style != 'horizontal' %} h4 my-0{% endif %}{% if tab_header_style == 'horizontal' and horizontal_tab_style == 'underline' %} border-bottom{% endif %}{% if tab_header_style == 'horizontal' and horizontal_tab_style != 'underline' %} gap-15{% endif %} collection-tab-style_{{ section_st.horizontal_tab_style }} collection-tab-postion_{{ section_st.tab_header_postion }}">
               {% if tab_header_style != 'horizontal' %}
                 <span>{{ 'sections.collection_tab.tab_header_select' | t }} </span>
                 <div class="select-collection-tab relative select-custom">
@@ -684,6 +685,16 @@
       ]
     },
     {
+      "type": "range",
+      "id": "heading_font_size",
+      "min": 14,
+      "max": 48,
+      "step": 1,
+      "default": 24,
+      "unit": "px",
+      "label": "Header font size"
+    },
+    {
       "type": "select",
       "id": "header_alignment",
       "label": "t:sections.all.section_header.alignment.label",
@@ -755,6 +766,13 @@
       ],
       "default": "default",
       "visible_if": "{{ section.settings.tab_header_style == 'horizontal' and section.settings.header_alignment != 'center' }}"
+    },
+    {
+      "type": "checkbox",
+      "id": "inline_header_tabs",
+      "label": "Header e tabs na mesma linha",
+      "info": "Coloca o título à esquerda e as tabs à direita na mesma linha",
+      "default": false
     },
     {
       "type": "select",

@@ -75,6 +75,13 @@
     margin-right: calc(var(--collection-product-media-bleed) * -1);
     width: calc(100% + var(--collection-product-media-bleed));
   }
+
+  /* Edge bleed: 1 item per row — expand both sides */
+  .sec__collection-main #product-grid.product-grid.collection-product-media--edge-bleed[style*="--col-number: 1"] > .grid__item:not(.promotion) .product-item__inner {
+    margin-left: calc(var(--collection-product-media-bleed) * -1);
+    margin-right: calc(var(--collection-product-media-bleed) * -1);
+    width: calc(100% + var(--collection-product-media-bleed) * 2);
+  }
 }
 
 :where(.grid-mode) {
