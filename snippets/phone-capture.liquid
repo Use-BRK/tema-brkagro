@@ -6,40 +6,103 @@
       </button>
       <h3 style="margin:0 0 8px;font-size:18px;color:var(--color-heading,#333)">Complete seu cadastro</h3>
       <p style="margin:0 0 20px;font-size:14px;color:var(--color-text,#666)">Precisamos do seu telefone para contato sobre seus pedidos.</p>
-      {% form 'customer' %}
-        <input type="hidden" name="customer[id]" value="{{ customer.id }}">
+      <form id="phone-capture-form">
         <div style="margin-bottom:16px">
           <input
             type="tel"
-            name="customer[phone]"
+            id="phone-capture-input"
             placeholder="(00) 00000-0000"
             required
             style="width:100%;padding:12px 14px;border:1px solid #ddd;border-radius:8px;font-size:16px;box-sizing:border-box"
           >
+          <p id="phone-capture-error" style="display:none;color:#d0473e;font-size:13px;margin:8px 0 0"></p>
         </div>
-        <button type="submit" class="btn-primary" style="width:100%;padding:12px;border:none;border-radius:8px;font-size:15px;cursor:pointer">
+        <button type="submit" id="phone-capture-submit" class="btn-primary" style="width:100%;padding:12px;border:none;border-radius:8px;font-size:15px;cursor:pointer">
           Salvar telefone
         </button>
-      {% endform %}
+      </form>
     </div>
   </div>
   <script>
     (function() {
       var STORAGE_KEY = 'phone_capture_dismissed';
+      var API_URL = 'https://brk-apps-agro.allexadriel.workers.dev/api/customer-phone';
+      var CUSTOMER_ID = '{{ customer.id }}';
       var overlay = document.getElementById('phone-capture-overlay');
       var dismiss = document.getElementById('phone-capture-dismiss');
+      var form = document.getElementById('phone-capture-form');
+      var input = document.getElementById('phone-capture-input');
+      var errorEl = document.getElementById('phone-capture-error');
+      var submitBtn = document.getElementById('phone-capture-submit');
+
       if (!overlay) return;
       if (localStorage.getItem(STORAGE_KEY)) return;
       overlay.style.display = 'flex';
-      dismiss.addEventListener('click', function() {
+
+      function close() {
         overlay.style.display = 'none';
         localStorage.setItem(STORAGE_KEY, Date.now());
+      }
+
+      function formatPhone(value) {
+        var digits = value.replace(/\D/g, '').slice(0, 11);
+        if (digits.length <= 2) return '(' + digits;
+        if (digits.length <= 7) return '(' + digits.slice(0,2) + ') ' + digits.slice(2);
+        return '(' + digits.slice(0,2) + ') ' + digits.slice(2,7) + '-' + digits.slice(7);
+      }
+
+      input.addEventListener('input', function() {
+        var pos = input.selectionStart;
+        var before = input.value.length;
+        input.value = formatPhone(input.value);
+        var after = input.value.length;
+        var newPos = pos + (after - before);
+        input.setSelectionRange(newPos, newPos);
       });
+
+      dismiss.addEventListener('click', close);
       overlay.addEventListener('click', function(e) {
-        if (e.target === overlay) {
-          overlay.style.display = 'none';
-          localStorage.setItem(STORAGE_KEY, Date.now());
+        if (e.target === overlay) close();
+      });
+
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        var digits = input.value.replace(/\D/g, '');
+        if (digits.length < 10) {
+          errorEl.textContent = 'Digite um telefone válido com DDD.';
+          errorEl.style.display = 'block';
+          return;
         }
+        var phone = '+55' + digits;
+
+        errorEl.style.display = 'none';
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Salvando...';
+
+        fetch(API_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ customerId: CUSTOMER_ID, phone: phone })
+        })
+        .then(function(res) { return res.json(); })
+        .then(function(data) {
+          if (data.success) {
+            submitBtn.textContent = 'Salvo!';
+            localStorage.setItem(STORAGE_KEY, 'saved');
+            setTimeout(function() { overlay.style.display = 'none'; }, 800);
+          } else {
+            errorEl.textContent = data.error || 'Erro ao salvar. Tente novamente.';
+            errorEl.style.display = 'block';
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Salvar telefone';
+          }
+        })
+        .catch(function() {
+          errorEl.textContent = 'Erro de conexão. Tente novamente.';
+          errorEl.style.display = 'block';
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Salvar telefone';
+        });
       });
     })();
   </script>
