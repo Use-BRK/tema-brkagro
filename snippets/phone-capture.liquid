@@ -1,0 +1,46 @@
+{%- if customer and customer.phone == blank -%}
+  <div id="phone-capture-overlay" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,0.5);align-items:center;justify-content:center">
+    <div style="background:var(--color-background,#fff);border-radius:12px;padding:32px;max-width:400px;width:90%;margin:auto;position:relative;box-shadow:0 8px 30px rgba(0,0,0,0.15)">
+      <button type="button" id="phone-capture-dismiss" style="position:absolute;top:12px;right:12px;background:none;border:none;cursor:pointer;padding:4px;color:var(--color-heading,#333)">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M12.207 4.793a1 1 0 0 0-1.414 0L8 7.586 5.207 4.793a1 1 0 1 0-1.414 1.414L6.586 9l-2.793 2.793a1 1 0 1 0 1.414 1.414L8 10.414l2.793 2.793a1 1 0 0 0 1.414-1.414L9.414 9l2.793-2.793a1 1 0 0 0 0-1.414z"/></svg>
+      </button>
+      <h3 style="margin:0 0 8px;font-size:18px;color:var(--color-heading,#333)">Complete seu cadastro</h3>
+      <p style="margin:0 0 20px;font-size:14px;color:var(--color-text,#666)">Precisamos do seu telefone para contato sobre seus pedidos.</p>
+      {% form 'customer' %}
+        <input type="hidden" name="customer[id]" value="{{ customer.id }}">
+        <div style="margin-bottom:16px">
+          <input
+            type="tel"
+            name="customer[phone]"
+            placeholder="(00) 00000-0000"
+            required
+            style="width:100%;padding:12px 14px;border:1px solid #ddd;border-radius:8px;font-size:16px;box-sizing:border-box"
+          >
+        </div>
+        <button type="submit" class="btn-primary" style="width:100%;padding:12px;border:none;border-radius:8px;font-size:15px;cursor:pointer">
+          Salvar telefone
+        </button>
+      {% endform %}
+    </div>
+  </div>
+  <script>
+    (function() {
+      var STORAGE_KEY = 'phone_capture_dismissed';
+      var overlay = document.getElementById('phone-capture-overlay');
+      var dismiss = document.getElementById('phone-capture-dismiss');
+      if (!overlay) return;
+      if (localStorage.getItem(STORAGE_KEY)) return;
+      overlay.style.display = 'flex';
+      dismiss.addEventListener('click', function() {
+        overlay.style.display = 'none';
+        localStorage.setItem(STORAGE_KEY, Date.now());
+      });
+      overlay.addEventListener('click', function(e) {
+        if (e.target === overlay) {
+          overlay.style.display = 'none';
+          localStorage.setItem(STORAGE_KEY, Date.now());
+        }
+      });
+    })();
+  </script>
+{%- endif -%}
