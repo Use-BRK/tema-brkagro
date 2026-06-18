@@ -204,6 +204,28 @@
             "pin_to_bottom": false
           }
         },
+        "image_UnMzrJ": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/PERSONALIZE.png",
+            "image_url": "https://personalize.brkagro.com.br/lp?utm_source=site_agro&utm_medium=organico&utm_campaign=brkagro.com.br&utm_content=menu_home",
+            "image_alignment": "left",
+            "image_width": 100,
+            "padding_bottom": 10,
+            "pin_to_bottom": false
+          }
+        },
+        "image_BENy3h": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/SEJA_UM_REVENDEDOR_b2b82d15-ee6a-4d5a-b5e1-6765a23941cd.png",
+            "image_url": "",
+            "image_alignment": "left",
+            "image_width": 100,
+            "padding_bottom": 10,
+            "pin_to_bottom": false
+          }
+        },
         "button_X8Eebj": {
           "type": "button",
           "name": "Coleções do Agro",
@@ -238,6 +260,7 @@
         },
         "search_PLgRDi": {
           "type": "search",
+          "disabled": true,
           "settings": {
             "padding_bottom": 10,
             "pin_to_bottom": true
@@ -246,6 +269,8 @@
       },
       "block_order": [
         "menu_9XmD4T",
+        "image_UnMzrJ",
+        "image_BENy3h",
         "button_X8Eebj",
         "button_xzXqHb",
         "login_WcQMag",
@@ -263,8 +288,8 @@
         "label_hot_color": "#ffffff",
         "label_hot_bg": "#d0473e",
         "label_new_text": "LANÇAMENTO",
-        "label_new_color": "#14854E",
-        "label_new_bg": "#FFED00",
+        "label_new_color": "#14854e",
+        "label_new_bg": "#ffed00",
         "label_sale_text": "Sale",
         "label_sale_color": "#14854e",
         "label_sale_bg": "#ffed00",
