@@ -210,6 +210,67 @@
         "reset_spacing": true
       }
     },
+    "collection_tab_8f78pi": {
+      "type": "collection-tab",
+      "blocks": {
+        "collection_VRKMtc": {
+          "type": "collection",
+          "settings": {
+            "collection": "copa-2026",
+            "collection_title": "Todas"
+          }
+        },
+        "collection_jV3pjw": {
+          "type": "collection",
+          "settings": {
+            "collection": "copa-2026-camisas-de-algodao",
+            "collection_title": "Camisetas"
+          }
+        }
+      },
+      "block_order": [
+        "collection_VRKMtc",
+        "collection_jV3pjw"
+      ],
+      "custom_css": [
+        ".collection-tab__tab-item {font-size: clamp(1.105em, 2vw, 2.5rem);}",
+        "h3 {margin-top: 0px; margin-bottom: 0px;}"
+      ],
+      "name": "Copa 2026",
+      "settings": {
+        "section_width": "stretch_width",
+        "color_scheme": "scheme-accf3b11-ba40-4a3e-bafb-243ece6683ec",
+        "heading": "Copa 2026",
+        "description": "",
+        "show_view_all_button": true,
+        "header_size": "small",
+        "heading_font_size": 35,
+        "header_alignment": "center",
+        "tab_header_style": "horizontal",
+        "horizontal_tab_style": "fill",
+        "tab_header_postion": "default",
+        "inline_header_tabs": true,
+        "display_mode": "grid",
+        "items_to_show": 24,
+        "items_per_row": 5,
+        "column_gap": 10,
+        "show_arrow": true,
+        "carousel_pagination": "disable",
+        "infinite": false,
+        "autoplay": false,
+        "autorotate_speed": 2,
+        "reveal": false,
+        "rows": 2,
+        "show_load_more_button": false,
+        "button_label": "Ver mais",
+        "use_outline_button_style": true,
+        "carousel_on_mobile": true,
+        "items_per_row_mobile": 1.5,
+        "padding_top": 50,
+        "padding_bottom": 50,
+        "reset_spacing": true
+      }
+    },
     "collection_tab_cxBKk3": {
       "type": "collection-tab",
       "blocks": {
@@ -905,6 +966,7 @@
     "scrolling_text_DNNJAq",
     "slideshow_8KKtNU",
     "collection_tab_9R4n9j",
+    "collection_tab_8f78pi",
     "collection_tab_cxBKk3",
     "image_with_text_overlay_BBzj67",
     "multi_content_Dyd3Y3",
