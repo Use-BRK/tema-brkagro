@@ -158,7 +158,7 @@
             "collection_title": "Masculinos"
           }
         },
-        "collection_xWbgRL": {
+        "collection_tpCKAk": {
           "type": "collection",
           "settings": {
             "collection": "botinas-country-femininas",
@@ -168,8 +168,9 @@
       },
       "block_order": [
         "collection_DakUnd",
-        "collection_xWbgRL"
+        "collection_tpCKAk"
       ],
+      "disabled": true,
       "custom_css": [
         ".collection-tab__tab-item {font-size: clamp(1.105em, 2vw, 2.5rem);}",
         "h3 {margin-top: 0px; margin-bottom: 0px;}"
