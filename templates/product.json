@@ -180,7 +180,7 @@
         "enable_skeleton_loading": false,
         "desktop_media_width": 50,
         "desktop_layout": "grid_2_column",
-        "image_zoom": "no_zoom",
+        "image_zoom": "open_lightbox",
         "enable_video_looping": false,
         "enable_video_autoplay": false,
         "enable_frequently_bought_together": false,
