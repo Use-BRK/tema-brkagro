@@ -967,3 +967,16 @@ select.gift-progress-modal__variant {
 .drawer-bottom {
   padding: 1rem !important;
 }
+
+/* Perf: skip rendering/layout/paint of off-screen sections to cut main-thread
+   work on load (helps INP on low-end devices). On-screen sections render
+   normally; only off-screen ones are skipped. Scoped to mobile/tablet to avoid
+   clipping desktop hover popups/tooltips. First section (LCP / above-the-fold)
+   is excluded so it is never deferred. `contain-intrinsic-size: auto` remembers
+   each section's real height after first render to keep scroll stable. */
+@media (max-width: 1024px) {
+  #MainContent > .shopify-section:not(:first-child) {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 700px;
+  }
+}

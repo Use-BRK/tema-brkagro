@@ -1026,10 +1026,20 @@ let BlsMainMenuShopify = (function () {
         sec_header.classList.add("scroll-up");
       }
 
-      window.addEventListener("scroll", () => {
-        if (header.classList.contains("open-submenu")) return;
-        this.updateStickyHeader(sec_header, sticky, headerh);
-      });
+      let stickyTicking = false;
+      window.addEventListener(
+        "scroll",
+        () => {
+          if (header.classList.contains("open-submenu")) return;
+          if (stickyTicking) return;
+          stickyTicking = true;
+          window.requestAnimationFrame(() => {
+            this.updateStickyHeader(sec_header, sticky, headerh);
+            stickyTicking = false;
+          });
+        },
+        { passive: true }
+      );
     },
 
     updateStickyHeader: function (sec_header, sticky, headerh) {
@@ -2873,13 +2883,34 @@ class MobileMenuDrawer extends HTMLElement {
 }
 customElements.define("mobile-menu-drawer", MobileMenuDrawer);
 
+// Perf: defer heavy carousel (Swiper) init until the element is near the
+// viewport. Off-screen product carousels no longer init synchronously on parse,
+// which removes the big main-thread long task on load (worst on slow devices).
+// The pre-init layout is held by CSS (`:not(.swiper-initialized)` rules), so no CLS.
+function lazyInitOnApproach(el, cb) {
+  if (typeof IntersectionObserver === "undefined") {
+    cb();
+    return;
+  }
+  const io = new IntersectionObserver(
+    (entries, obs) => {
+      if (entries.some((e) => e.isIntersecting)) {
+        obs.disconnect();
+        cb();
+      }
+    },
+    { rootMargin: "600px 0px" }
+  );
+  io.observe(el);
+}
+
 class CarouselMobile extends SlideSection {
   constructor() {
     super();
     this.enable = this.dataset.enable;
     this.swiperSlideInnerHtml = this.innerHTML;
     this.id = this.dataset.id;
-    this.init();
+    lazyInitOnApproach(this, () => this.init());
   }
   init() {
     if (this.enable == "true") {
@@ -8248,7 +8279,7 @@ class GridCustom extends SlideSection {
     this.loadmore = this.parentElementt?.querySelectorAll("loadmore-function");
     this.viewAll = this.parentElementt?.querySelector(".view_all");
     this.swiperSlideInnerHtml = this.innerHTML;
-    this.init();
+    lazyInitOnApproach(this, () => this.init());
   }
   init() {
     if (this.enable == "true") {

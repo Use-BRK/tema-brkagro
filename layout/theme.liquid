@@ -34,6 +34,7 @@
     {% endif %}
     {% render 'meta-tags' %}
     {{ content_for_header }}
+    {%- comment -%} perf: critical styles render-blocking, theme.css now sync to avoid FOUC {%- endcomment -%}
     {{ 'critical.css' | asset_url | stylesheet_tag }}
     {{ 'custom.css' | asset_url | stylesheet_tag }}
     {% if enable_rtl %}{{ 'rtl.css' | asset_url | stylesheet_tag: preload: true }}{% endif %}
@@ -181,8 +182,7 @@
         }
       }
     {% endstyle %}
-    <link rel="stylesheet" href="{{ 'theme.css' | asset_url }}" media="print" onload="this.media='all'">
-    <noscript><link rel="stylesheet" href="{{ 'theme.css' | asset_url }}"></noscript>
+    {{ 'theme.css' | asset_url | stylesheet_tag }}
     <link rel="stylesheet" href="{{ 'popup.css' | asset_url }}" media="print" onload="this.media='all'">
     <noscript><link rel="stylesheet" href="{{ 'popup.css' | asset_url }}"></noscript>
     <script src="{{ 'swiper-bundle.min.js' | asset_url }}" defer="defer"></script>
