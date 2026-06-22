@@ -8,6 +8,7 @@
 %}
 {% if products_group == blank %}
   <div
+    id="product-variant-picker"
     class="product-detail__variant-picker mb-25"
     {{ block.shopify_attributes }}
     data-type="{{ block.settings.variant_type }}"

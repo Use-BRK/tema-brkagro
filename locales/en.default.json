@@ -525,6 +525,7 @@
       "addGiftCard": "Add gift card successfully",
       "removeCartItem": "Remove item successfully",
       "loading": "loading",
+      "sticky_choose_options": "Choose options",
       "label": {
         "sale_label": "Sale",
         "new_label": "New",

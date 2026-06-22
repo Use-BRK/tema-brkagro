@@ -11,6 +11,7 @@
   assign user_variants_image_group = false
   assign enable_sticky_add_cart_on_desktop = section_st.enable_on_desktop
   assign enable_sticky_add_cart_on_mobile = section_st.enable_on_mobile
+  assign enable_sticky_choose_options_on_mobile = section_st.enable_choose_options_on_mobile
   assign enable_frequently_bought_together = section_st.enable_frequently_bought_together
   if settings.color_swatch_trigger != blank and settings.enable_color_swatches != false
     assign option_color_name = settings.color_swatch_trigger | split: ','
@@ -238,7 +239,16 @@
             section_st: section_st
           %}
           <div class="sticky__item-info flex gap-10 w-full w-md-unset">
-            <div class="product-detail__variant-picker text-size heading-color w-full">
+            {%- if enable_sticky_choose_options_on_mobile and product.has_only_default_variant == false -%}
+              <a
+                href="#product-variant-picker"
+                class="btn btn-primary w-full hidden-md text-center inline-flex content-center"
+                style="--btn-padding-x: 2.5rem;"
+              >
+                {{- 'products.product.sticky_choose_options' | t -}}
+              </a>
+            {%- endif -%}
+            <div class="product-detail__variant-picker text-size heading-color w-full{% if enable_sticky_choose_options_on_mobile %} hidden block-md{% endif %}">
               {% if user_variants_image_group %}
                 {%- render 'color-swatches', product: product, type: 'sticky_group' -%}
               {% else %}
@@ -268,6 +278,22 @@
       class="productJson"
     >
       {{ product | json }}
+    </script>
+    <script type="application/json" data-standard-event-product>
+      {
+        "id": {{ product.id | json }},
+        "title": {{ product.title | json }},
+        "handle": {{ product.handle | json }},
+        "selectedVariant": {
+          "id": {{ product.selected_or_first_available_variant.id | json }},
+          "title": {{ product.selected_or_first_available_variant.title | json }},
+          "availableForSale": {{ product.selected_or_first_available_variant.available | json }},
+          "price": {
+            "amount": {{ product.selected_or_first_available_variant.price | money_without_currency | json }},
+            "currencyCode": {{ cart.currency.iso_code | json }}
+          }
+        }
+      }
     </script>
   {% endunless %}
   {%- unless product.has_only_default_variant -%}
@@ -541,6 +567,13 @@
       "id": "enable_on_mobile",
       "default": true,
       "label": "t:sections.main-product.settings.sticky_add_to_cart.enable_on_mobile"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_choose_options_on_mobile",
+      "default": false,
+      "label": "t:sections.main-product.settings.sticky_add_to_cart.enable_choose_options_on_mobile",
+      "info": "t:sections.main-product.settings.sticky_add_to_cart.enable_choose_options_on_mobile_info"
     },
     {
       "type": "header",

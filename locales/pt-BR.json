@@ -525,6 +525,7 @@
       "addGiftCard": "Adicionar vale-presente com sucesso",
       "removeCartItem": "Remover item com sucesso",
       "loading": "carregando",
+      "sticky_choose_options": "Escolher Opções",
       "label": {
         "sale_label": "Oferta",
         "new_label": "Novo",

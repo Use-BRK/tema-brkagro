@@ -4472,7 +4472,9 @@
         "sticky_add_to_cart": {
           "header": "Sticky add to cart",
           "enable_on_desktop": "Enable on desktop",
-          "enable_on_mobile": "Enable on mobile"
+          "enable_on_mobile": "Enable on mobile",
+          "enable_choose_options_on_mobile": "Show \"Choose options\" button on mobile",
+          "enable_choose_options_on_mobile_info": "On mobile, replaces the variant selector in the sticky bar with a single button that scrolls to the product options."
         },
         "mobile_options": {
           "label": "Mobile options",

@@ -5789,10 +5789,7 @@ class SwatchFunctions extends SwatchInit {
         }
       });
     } else {
-      // mediaGalleries.setActiveMedia(
-      //   `${this.dataset.section}-${this.currentVariant.featured_media.id}`,
-      //   true
-      // );
+      if (!this.currentVariant?.featured_media) return;
       const mediaElement = document.querySelector(
         `[data-media-id="${this.dataset.section}-${this.currentVariant.featured_media.id}"]`
       );
