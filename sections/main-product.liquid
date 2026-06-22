@@ -87,7 +87,7 @@
     style="--col-gap: 30px;--col-width: {{ desktop_media_width }}%"
   >
     {%- if product.media.size > 0 -%}
-      <div class="product-detail__media col-md-w-custom w-full ">
+      <div id="product-detail__media" class="product-detail__media col-md-w-custom w-full ">
         {% comment %} logic check ratio of image{% endcomment %}
         {%- liquid
           assign default_position = 0
@@ -241,8 +241,8 @@
           <div class="sticky__item-info flex gap-10 w-full w-md-unset">
             {%- if enable_sticky_choose_options_on_mobile -%}
               <a
-                href="#product-detail__title"
-                class="btn btn-primary w-full hidden-md text-center inline-flex content-center"
+                href="#product-detail__media"
+                class="btn btn-primary w-full hidden-md text-center inline-flex content-center no-underline"
                 style="--btn-padding-x: 2.5rem;"
               >
                 {{- 'products.product.sticky_choose_options' | t -}}

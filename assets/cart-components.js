@@ -781,11 +781,21 @@ class CartNotification extends HTMLElement {
     const cart_select = `minicart-wishlist-action[data-index="${id}"]`;
 
     const minicart_wishlist_action = this.querySelector(cart_select);
-    if (minicart_wishlist_action) {
-      minicart_wishlist_action.classList.add("loading");
-    }
     const cart_item = this.querySelector(selector);
-    cart_item?.classList.add("loading");
+    // Show a single loading indicator: when removing through the "add to
+    // wishlist before removing?" prompt, only the wishlist-action spinner is
+    // shown; otherwise the cart-item overlay spinner. Showing both produces
+    // two simultaneous spinners on the same item.
+    const wishlistPanel = cart_item
+      ?.closest(".cart-item")
+      ?.querySelector(".minicart__wishlist");
+    const removingViaWishlist =
+      minicart_wishlist_action && wishlistPanel && wishlistPanel.style.display !== "none";
+    if (removingViaWishlist) {
+      minicart_wishlist_action.classList.add("loading");
+    } else {
+      cart_item?.classList.add("loading");
+    }
     const cartRecommend = document.querySelector(".cart-recommend");
     if (cartRecommend && cartRecommend.classList.contains("open")) {
       cartRecommend.classList.remove("open");
