@@ -239,9 +239,9 @@
             section_st: section_st
           %}
           <div class="sticky__item-info flex gap-10 w-full w-md-unset">
-            {%- if enable_sticky_choose_options_on_mobile and product.has_only_default_variant == false -%}
+            {%- if enable_sticky_choose_options_on_mobile -%}
               <a
-                href="#product-variant-picker"
+                href="#product-detail__title"
                 class="btn btn-primary w-full hidden-md text-center inline-flex content-center"
                 style="--btn-padding-x: 2.5rem;"
               >
@@ -255,7 +255,7 @@
                 {%- render 'color-swatches', product: product, type: 'sticky' -%}
               {% endif %}
             </div>
-            <div class="product-detail__buy-buttons w-full">
+            <div class="product-detail__buy-buttons w-full{% if enable_sticky_choose_options_on_mobile %} hidden block-md{% endif %}">
               {%- render 'buy-buttons',
                 product: product,
                 product_form_id: product_form_id,
