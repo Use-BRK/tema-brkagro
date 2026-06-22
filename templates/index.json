@@ -247,15 +247,15 @@
         "collection_VRKMtc": {
           "type": "collection",
           "settings": {
-            "collection": "copa-2026",
-            "collection_title": "Todas"
+            "collection": "copa-2026-manga-curta",
+            "collection_title": "Manga Curta"
           }
         },
         "collection_jV3pjw": {
           "type": "collection",
           "settings": {
-            "collection": "copa-2026-camisas-de-algodao",
-            "collection_title": "Camisetas"
+            "collection": "copa-2026-manga-longa",
+            "collection_title": "Manga Longa"
           }
         }
       },
