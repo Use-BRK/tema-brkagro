@@ -10,7 +10,7 @@
 {
   "current": {
     "purchase_code": "64513e3f-16d1-4159-9b2f-180b0ba29ec9",
-    "favicon": "shopify://shop_images/Favicon.png",
+    "favicon": "shopify://shop_images/tractor.svg",
     "logo": "shopify://shop_images/LOGOBRKAGRO_2026ai_1.svg",
     "logo_on_transparent": "shopify://shop_images/LOGOBRKAGRO_2026ai_1.svg",
     "desktop_logo_width": 150,
@@ -53,6 +53,7 @@
     "show_wishlist": false,
     "show_compare": false,
     "show_add_cart": false,
+    "show_variant": false,
     "show_quantity_input": true,
     "product_alignment": "start",
     "product_size": 15,
@@ -443,10 +444,10 @@
         "settings": {
           "background": "#ffffff",
           "background_gradient": "",
-          "primary_color": "#FFFFFF",
-          "text_color": "#FFFFFF",
-          "heading_color": "#FFFFFF",
-          "border_color": "#FFFFFF",
+          "primary_color": "#ffffff",
+          "text_color": "#ffffff",
+          "heading_color": "#ffffff",
+          "border_color": "#ffffff",
           "btn_primary_color": "#ffffff",
           "btn_primary_background": "#085b47",
           "btn_primary_gradient": "",

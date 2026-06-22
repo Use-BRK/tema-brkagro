@@ -19,6 +19,10 @@
           "name": "Inicio",
           "settings": {}
         },
+        "account_mNDeiq": {
+          "type": "account",
+          "settings": {}
+        },
         "navbar_collection_xFxBLk": {
           "type": "navbar-collection",
           "disabled": true,
@@ -32,6 +36,7 @@
         },
         "navbar_collection_7zmyr7": {
           "type": "navbar-collection",
+          "disabled": true,
           "settings": {
             "collection": "botinas",
             "title": "Botinas",
@@ -63,6 +68,7 @@
       },
       "block_order": [
         "homepage_xiQ8UP",
+        "account_mNDeiq",
         "navbar_collection_xFxBLk",
         "navbar_collection_7zmyr7",
         "navbar_collection_J893UR",
