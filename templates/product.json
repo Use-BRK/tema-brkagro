@@ -62,6 +62,10 @@
           "settings": {},
           "blocks": {}
         },
+        "sa_variants_product_swatch_block_tF6T7z": {
+          "type": "shopify://apps/sa-variants/blocks/product-swatch-block/ff68b20f-8c8f-491e-92bf-3e5b8f17ef88",
+          "settings": {}
+        },
         "variant_picker_tcCihG": {
           "type": "_product-variant-picker",
           "settings": {
@@ -174,6 +178,7 @@
         "product_meta_kiKPhW",
         "review_and_sold_AAbJC9",
         "price_VJ4N8m",
+        "sa_variants_product_swatch_block_tF6T7z",
         "variant_picker_tcCihG",
         "buy_buttons_LcQGtR",
         "product_custom_name_button_ya3Yfz",
