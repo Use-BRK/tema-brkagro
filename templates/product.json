@@ -88,9 +88,10 @@
           "settings": {
             "enable_button": true,
             "button_label": "Quero meu nome na Camisa (R$29,90)",
-            "whatsapp_number": "",
+            "whatsapp_number": "553432194697",
             "collections": [
-              "acessorios"
+              "camisas-uv50-femininas",
+              "camisas-uv50-masculinas"
             ]
           },
           "blocks": {}
