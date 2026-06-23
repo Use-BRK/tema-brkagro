@@ -185,7 +185,7 @@
           "settings": {
             "menu": "menu",
             "text_size": 130,
-            "show_images": true,
+            "show_images": false,
             "highlight_item": "",
             "highlight_item_color": "#d02e2e",
             "label_item_1": "Botinas",
