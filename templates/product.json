@@ -82,6 +82,19 @@
           },
           "blocks": {}
         },
+        "product_custom_name_button_ya3Yfz": {
+          "type": "_product-custom-name-button",
+          "name": "Botão nome na camisa",
+          "settings": {
+            "enable_button": true,
+            "button_label": "Quero meu nome na Camisa (R$29,90)",
+            "whatsapp_number": "",
+            "collections": [
+              "acessorios"
+            ]
+          },
+          "blocks": {}
+        },
         "frete_no_produto_shipping_calc_mfbXjr": {
           "type": "shopify://apps/frete-no-produto/blocks/shipping_calc/86063d43-a133-4046-bbed-b9bfb712ccba",
           "disabled": true,
@@ -162,6 +175,7 @@
         "price_VJ4N8m",
         "variant_picker_tcCihG",
         "buy_buttons_LcQGtR",
+        "product_custom_name_button_ya3Yfz",
         "frete_no_produto_shipping_calc_mfbXjr",
         "delivery_return_iJHeMD",
         "product_grouped_6epkNf",
