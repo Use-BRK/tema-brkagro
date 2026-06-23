@@ -980,3 +980,30 @@ select.gift-progress-modal__variant {
     contain-intrinsic-size: auto 700px;
   }
 }
+
+/* Collection tab — header + tabs on the same line (inline_header_tabs):
+   keep tabs on ONE row and shrink them to fit instead of stacking, and never
+   break the heading in the middle of a word. */
+.collection-tab--inline-header {
+  flex-wrap: nowrap;
+}
+.collection-tab--inline-header .section__header-heading {
+  word-break: normal;
+  overflow-wrap: normal;
+  hyphens: none;
+}
+.collection-tab--inline-header .collection-tab__ta {
+  flex-wrap: nowrap;
+}
+.collection-tab--inline-header .collection-tab__tab-item {
+  flex: 0 0 auto;
+}
+@media (max-width: 1024px) {
+  .collection-tab--inline-header .collection-tab__tab-item {
+    padding-left: clamp(8px, 2.4vw, 20px);
+    padding-right: clamp(8px, 2.4vw, 20px);
+    padding-top: clamp(5px, 1.4vw, 10px);
+    padding-bottom: clamp(5px, 1.4vw, 10px);
+    font-size: clamp(11px, 3.2vw, 16px);
+  }
+}

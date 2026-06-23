@@ -1,0 +1,153 @@
+{% liquid
+  assign block_st = block.settings
+  assign product = closest.product
+  assign show_button = block_st.enable_button
+  assign selected_collections = block_st.collections
+  assign has_collection_filter = false
+  assign matches_collection = false
+
+  if selected_collections.size > 0
+    assign has_collection_filter = true
+  endif
+
+  if has_collection_filter
+    for selected_collection in selected_collections
+      for product_collection in product.collections
+        if product_collection.id == selected_collection.id
+          assign matches_collection = true
+          break
+        endif
+      endfor
+
+      if matches_collection
+        break
+      endif
+    endfor
+  else
+    assign matches_collection = true
+  endif
+
+  assign button_label = block_st.button_label | default: 'Quero meu nome na Camisa (R$29,90)'
+  assign product_url = request.origin | append: product.url
+  assign message = 'Olá, gostei dessa camisa e quero meu nome nela! Estou ciente do valor adicional (+R$29,90)'
+  assign whatsapp_text = message | append: ' ' | append: product_url | url_encode
+  assign whatsapp_number = block_st.whatsapp_number | remove: ' ' | remove: '+' | remove: '-' | remove: '(' | remove: ')'
+
+  if whatsapp_number != blank
+    assign whatsapp_url = 'https://wa.me/' | append: whatsapp_number | append: '?text=' | append: whatsapp_text
+  else
+    assign whatsapp_url = 'https://api.whatsapp.com/send?text=' | append: whatsapp_text
+  endif
+%}
+
+{% if show_button and matches_collection %}
+  <div
+    class="product-detail__custom-name-button mb-20"
+    {{ block.shopify_attributes }}
+  >
+    <div class="button_buy-now grow-1 skeleton-loading">
+      <a
+        id="custom-name-button-{{ block.id }}"
+        href="{{ whatsapp_url }}"
+        target="_blank"
+        rel="noopener"
+        class="btn btn-primary w-full product_submit_button product-form__submit word-wrap relative no-underline custom-name-button__link"
+        style="--btn-padding-x: 1.4rem;"
+      >
+        <span class="btn-label hidden-on-load inline-flex align-center content-center gap-10 custom-name-button__label">
+          <img
+            class="custom-name-button__icon"
+            src="https://cdn.shopify.com/s/files/1/0887/2083/4857/files/customize.svg"
+            alt=""
+            width="16"
+            height="16"
+            loading="lazy"
+          >
+          <span>{{ button_label }}</span>
+        </span>
+      </a>
+    </div>
+    <script>
+      (() => {
+        const button = document.getElementById('custom-name-button-{{ block.id }}');
+        if (!button || !window.Shopify || !Shopify.analytics || typeof Shopify.analytics.publish !== 'function') return;
+
+        button.addEventListener('click', () => {
+          Shopify.analytics.publish('brkagro:nome_personalizado_click', {
+            productId: {{ product.id | json }},
+            productTitle: {{ product.title | json }},
+            productHandle: {{ product.handle | json }},
+            productUrl: {{ product_url | json }},
+            buttonText: {{ button_label | json }},
+          });
+        });
+      })();
+    </script>
+  </div>
+{% endif %}
+
+{% stylesheet %}
+  .custom-name-button__link {
+    min-height: 4.4rem;
+    line-height: 1.15;
+    white-space: normal;
+  }
+
+  .custom-name-button__label {
+    max-width: 100%;
+    text-align: center;
+  }
+
+  .custom-name-button__icon {
+    flex: 0 0 auto;
+  }
+
+  @media (max-width: 749px) {
+    .custom-name-button__link {
+      min-height: 4.6rem;
+      font-size: 1.6rem;
+    }
+
+    .custom-name-button__label {
+      gap: 0.5rem;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Botão nome na camisa",
+  "tag": null,
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "enable_button",
+      "default": true,
+      "label": "Exibir botão"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "default": "Quero meu nome na Camisa (R$29,90)",
+      "label": "Texto do botão"
+    },
+    {
+      "type": "text",
+      "id": "whatsapp_number",
+      "label": "Número do WhatsApp",
+      "info": "Opcional. Use DDI + DDD + número, por exemplo: 5511999999999. Se ficar vazio, abre o compartilhamento do WhatsApp."
+    },
+    {
+      "type": "collection_list",
+      "id": "collections",
+      "label": "Exibir apenas nestas collections",
+      "info": "Se nenhuma collection for selecionada, o botão aparece em todos os produtos."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Botão nome na camisa"
+    }
+  ]
+}
+{% endschema %}
