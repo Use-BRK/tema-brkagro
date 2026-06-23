@@ -254,13 +254,6 @@
         "disabled": false,
         "settings": {}
       },
-      "18228966181090706294": {
-        "type": "shopify://apps/selleasy/blocks/app-embed/790c1a03-a71f-4bc1-9869-00dad526d3c2",
-        "disabled": false,
-        "settings": {
-          "storefrontAccessToken": ""
-        }
-      },
       "1505163441232620700": {
         "type": "shopify://apps/intelipost/blocks/core/167fd468-2ada-45e2-9d34-34022af59729",
         "disabled": false,
@@ -297,6 +290,14 @@
         "type": "shopify://apps/koin/blocks/app-embed/02895843-ca31-4ee5-82a1-bfd81a36a58d",
         "disabled": true,
         "settings": {}
+      },
+      "18228966181090706294": {
+        "type": "shopify://apps/selleasy/blocks/app-embed/790c1a03-a71f-4bc1-9869-00dad526d3c2",
+        "disabled": true,
+        "settings": {
+          "storefrontAccessToken": "",
+          "scriptInitMode": "immediate"
+        }
       }
     },
     "color_schemes": {
