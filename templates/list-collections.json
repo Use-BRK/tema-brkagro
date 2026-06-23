@@ -305,6 +305,7 @@
         "group_media_content_eLEcTf",
         "group_media_content_Gm79Qb"
       ],
+      "disabled": true,
       "name": "Multiblocos",
       "settings": {
         "section_width": "stretch_width",
@@ -327,9 +328,57 @@
         "reset_spacing": false
       }
     },
-    "collection_showcase_CEjG4r": {
+    "collection_showcase_9D9WNT": {
       "type": "collection-showcase",
-      "disabled": true,
+      "blocks": {
+        "collection_item_Ug7hcC": {
+          "type": "collection_item",
+          "settings": {
+            "collection": "pecuaria",
+            "custom_title": "Pecuária",
+            "custom_image": "shopify://shop_images/Pecuaria_df1acd59-3fb1-470f-a0d2-a2541d382620.webp"
+          }
+        },
+        "collection_item_jxqRAw": {
+          "type": "collection_item",
+          "settings": {
+            "collection": "brasil-e-agro-2026",
+            "custom_title": "Brasil é AGRO",
+            "custom_image": "shopify://shop_images/Brasil_e_Agro_33516ee8-e00a-4520-8783-c89f0414ddf1.webp"
+          }
+        },
+        "collection_item_UhAiTV": {
+          "type": "collection_item",
+          "settings": {
+            "collection": "drones",
+            "custom_title": "Drones do Agro",
+            "custom_image": "shopify://shop_images/Drones.webp"
+          }
+        },
+        "collection_item_bHrj3F": {
+          "type": "collection_item",
+          "settings": {
+            "collection": "cavalos",
+            "custom_title": "",
+            "custom_image": "shopify://shop_images/Cavalos_e_Rodeios.webp"
+          }
+        },
+        "collection_item_fiPTDr": {
+          "type": "collection_item",
+          "settings": {
+            "collection": "sao-bento-e-nossa-senhora-1",
+            "custom_title": "",
+            "custom_image": "shopify://shop_images/Sao_Bento.webp"
+          }
+        }
+      },
+      "block_order": [
+        "collection_item_Ug7hcC",
+        "collection_item_jxqRAw",
+        "collection_item_UhAiTV",
+        "collection_item_bHrj3F",
+        "collection_item_fiPTDr"
+      ],
       "name": "Collection Showcase",
       "settings": {
         "section_width": "stretch_width",
@@ -338,8 +387,8 @@
         "columns_mobile": 2,
         "image_ratio": "2 / 3",
         "caption_font_size": 16,
-        "bg_color": "#FFFFFF",
-        "heading_color": "#085B47",
+        "bg_color": "#085b47",
+        "heading_color": "#efe9da",
         "show_view_all": false,
         "view_all_text": "Ver Todas",
         "view_all_url": "",
@@ -353,6 +402,6 @@
     "heading",
     "main",
     "multi_content_zDwAnG",
-    "collection_showcase_CEjG4r"
+    "collection_showcase_9D9WNT"
   ]
 }

@@ -47,36 +47,6 @@
     "slideshow_8KKtNU": {
       "type": "slideshow",
       "blocks": {
-        "slider_item_x8a9pz": {
-          "type": "slider_item",
-          "name": "Copa 2026",
-          "settings": {
-            "image": "shopify://shop_images/FULLBANNER_COPA_2026_AGRO.webp",
-            "image_mobile": "shopify://shop_images/MOBILE_AGRO.webp",
-            "overlay_opacity": 0,
-            "link_banner": "shopify://collections/copa-2026",
-            "slider_effect": "fade-in-right",
-            "subheading": "",
-            "heading": "",
-            "description": "",
-            "first_button_label": "",
-            "first_button_link": "",
-            "first_button_style": false,
-            "second_button_label": "",
-            "second_button_link": "",
-            "second_button_style": false,
-            "content_alignment": "center",
-            "content_position": "top-center",
-            "content_width": "full_width",
-            "content_max_width": 100,
-            "content_padding_block": 40,
-            "content_padding_inline": 0,
-            "show_content_background": false,
-            "content_background": "#ffffff",
-            "content_box_opacity": 100,
-            "content_alignment_mobile": "center"
-          }
-        },
         "slider_item_n3PrkQ": {
           "type": "slider_item",
           "name": "Botas/Botinas",
@@ -136,12 +106,42 @@
             "content_box_opacity": 100,
             "content_alignment_mobile": "center"
           }
+        },
+        "slider_item_x8a9pz": {
+          "type": "slider_item",
+          "name": "Copa 2026",
+          "settings": {
+            "image": "shopify://shop_images/FULLBANNER_COPA_2026_AGRO.webp",
+            "image_mobile": "shopify://shop_images/MOBILE_AGRO.webp",
+            "overlay_opacity": 0,
+            "link_banner": "shopify://collections/copa-2026",
+            "slider_effect": "fade-in-right",
+            "subheading": "",
+            "heading": "",
+            "description": "",
+            "first_button_label": "",
+            "first_button_link": "",
+            "first_button_style": false,
+            "second_button_label": "",
+            "second_button_link": "",
+            "second_button_style": false,
+            "content_alignment": "center",
+            "content_position": "top-center",
+            "content_width": "full_width",
+            "content_max_width": 100,
+            "content_padding_block": 40,
+            "content_padding_inline": 0,
+            "show_content_background": false,
+            "content_background": "#ffffff",
+            "content_box_opacity": 100,
+            "content_alignment_mobile": "center"
+          }
         }
       },
       "block_order": [
-        "slider_item_x8a9pz",
         "slider_item_n3PrkQ",
-        "slider_item_YipJd4"
+        "slider_item_YipJd4",
+        "slider_item_x8a9pz"
       ],
       "custom_css": [
         ".h-full_screen {--height-topbar: 41px;}"
@@ -186,7 +186,7 @@
           "type": "collection",
           "settings": {
             "collection": "botinas-country-masculinas",
-            "collection_title": "Masculinos"
+            "collection_title": "Masculinas"
           }
         },
         "collection_tpCKAk": {
@@ -201,7 +201,6 @@
         "collection_DakUnd",
         "collection_tpCKAk"
       ],
-      "disabled": true,
       "custom_css": [
         ".collection-tab__tab-item {font-size: clamp(1.105em, 2vw, 2.5rem);}",
         "h3 {margin-top: 0px; margin-bottom: 0px;}"
@@ -247,15 +246,15 @@
         "collection_VRKMtc": {
           "type": "collection",
           "settings": {
-            "collection": "copa-2026",
-            "collection_title": "Todas"
+            "collection": "copa-2026-manga-curta",
+            "collection_title": "Manga Curta"
           }
         },
         "collection_jV3pjw": {
           "type": "collection",
           "settings": {
-            "collection": "copa-2026-camisas-de-algodao",
-            "collection_title": "Camisetas"
+            "collection": "copa-2026-manga-longa",
+            "collection_title": "Manga Longa"
           }
         }
       },
@@ -263,6 +262,7 @@
         "collection_VRKMtc",
         "collection_jV3pjw"
       ],
+      "disabled": true,
       "custom_css": [
         ".collection-tab__tab-item {font-size: clamp(1.105em, 2vw, 2.5rem);}",
         "h3 {margin-top: 0px; margin-bottom: 0px;}"
