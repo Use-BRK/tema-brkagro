@@ -17,10 +17,12 @@
         "homepage_xiQ8UP": {
           "type": "homepage",
           "name": "Inicio",
+          "disabled": true,
           "settings": {}
         },
         "account_mNDeiq": {
           "type": "account",
+          "disabled": true,
           "settings": {}
         },
         "navbar_collection_xFxBLk": {
@@ -36,7 +38,6 @@
         },
         "navbar_collection_7zmyr7": {
           "type": "navbar-collection",
-          "disabled": true,
           "settings": {
             "collection": "botinas",
             "title": "Botinas",
@@ -63,6 +64,7 @@
         "cart_8xqQBb": {
           "type": "cart",
           "name": "Carrinho",
+          "disabled": true,
           "settings": {}
         }
       },
@@ -84,7 +86,7 @@
       "settings": {
         "show_account": true,
         "layout": "pill",
-        "pill_text": "MENU",
+        "pill_text": "OFERTAS",
         "pill_font_size": 12,
         "pill_font": "assistant_n4",
         "pill_bottom": 14,
