@@ -186,7 +186,7 @@
           "type": "collection",
           "settings": {
             "collection": "botinas-country-masculinas",
-            "collection_title": "Masculinos"
+            "collection_title": "Masculinas"
           }
         },
         "collection_tpCKAk": {
@@ -201,7 +201,6 @@
         "collection_DakUnd",
         "collection_tpCKAk"
       ],
-      "disabled": true,
       "custom_css": [
         ".collection-tab__tab-item {font-size: clamp(1.105em, 2vw, 2.5rem);}",
         "h3 {margin-top: 0px; margin-bottom: 0px;}"
@@ -263,6 +262,7 @@
         "collection_VRKMtc",
         "collection_jV3pjw"
       ],
+      "disabled": true,
       "custom_css": [
         ".collection-tab__tab-item {font-size: clamp(1.105em, 2vw, 2.5rem);}",
         "h3 {margin-top: 0px; margin-bottom: 0px;}"
