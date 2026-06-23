@@ -70,16 +70,27 @@
     <script>
       (() => {
         const button = document.getElementById('custom-name-button-{{ block.id }}');
-        if (!button || !window.Shopify || !Shopify.analytics || typeof Shopify.analytics.publish !== 'function') return;
+        if (!button) return;
 
         button.addEventListener('click', () => {
-          Shopify.analytics.publish('brkagro:nome_personalizado_click', {
-            productId: {{ product.id | json }},
-            productTitle: {{ product.title | json }},
-            productHandle: {{ product.handle | json }},
-            productUrl: {{ product_url | json }},
-            buttonText: {{ button_label | json }},
-          });
+          // Microsoft Clarity custom (API) event — aparece no dashboard, Filters
+          // e Recordings do Clarity; pode virar Smart Event. Dispara independente
+          // do Shopify.analytics estar disponível.
+          if (typeof window.clarity === 'function') {
+            window.clarity('event', 'nome_personalizado_click');
+            window.clarity('set', 'botao_nome_camisa', {{ product.handle | json }});
+          }
+
+          // Shopify custom event (para Web Pixels / ferramentas externas)
+          if (window.Shopify && Shopify.analytics && typeof Shopify.analytics.publish === 'function') {
+            Shopify.analytics.publish('brkagro:nome_personalizado_click', {
+              productId: {{ product.id | json }},
+              productTitle: {{ product.title | json }},
+              productHandle: {{ product.handle | json }},
+              productUrl: {{ product_url | json }},
+              buttonText: {{ button_label | json }},
+            });
+          }
         });
       })();
     </script>
