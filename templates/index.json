@@ -201,6 +201,7 @@
         "collection_DakUnd",
         "collection_tpCKAk"
       ],
+      "disabled": true,
       "custom_css": [
         ".collection-tab__tab-item {font-size: clamp(1.105em, 2vw, 2.5rem);}",
         "h3 {margin-top: 0px; margin-bottom: 0px;}"
