@@ -89,11 +89,13 @@
         "product_custom_name_button_ya3Yfz": {
           "type": "_product-custom-name-button",
           "name": "Botão nome na camisa",
-          "disabled": true,
           "settings": {
             "enable_button": true,
+            "button_mode": "personalization",
             "button_label": "Quero meu nome na Camisa (R$29,90)",
             "whatsapp_number": "553432194697",
+            "perso_variant_id": "53224470479145",
+            "perso_price": "29,90",
             "collections": [
               "camisas-uv50-femininas",
               "camisas-uv50-masculinas"
