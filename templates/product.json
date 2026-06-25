@@ -89,6 +89,7 @@
         "product_custom_name_button_ya3Yfz": {
           "type": "_product-custom-name-button",
           "name": "Botão nome na camisa",
+          "disabled": true,
           "settings": {
             "enable_button": true,
             "button_label": "Quero meu nome na Camisa (R$29,90)",
@@ -100,9 +101,26 @@
           },
           "blocks": {}
         },
+        "delivery_return_iJHeMD": {
+          "type": "_product-delivery-return",
+          "name": "Prazo de Disponibilidade + Cupom",
+          "settings": {
+            "delivery_design": "vertical",
+            "delivery_content_icon": "none",
+            "delivery_content": "",
+            "discount_content_icon": "discount",
+            "discount_content": "<p>Primeira compra? Use o cupom <strong>\"BEMVINDO\"</strong> para ganhar R$15 de desconto</p>",
+            "return_content_icon": "none",
+            "return_content": "",
+            "show_production_deadline": true,
+            "producao": "10",
+            "algodao": "1",
+            "imediato": "0"
+          },
+          "blocks": {}
+        },
         "frete_no_produto_shipping_calc_mfbXjr": {
           "type": "shopify://apps/frete-no-produto/blocks/shipping_calc/86063d43-a133-4046-bbed-b9bfb712ccba",
-          "disabled": true,
           "settings": {
             "shipping_calculator": true,
             "show_localization": true,
@@ -127,24 +145,6 @@
             "show_dont_know_cep": false,
             "dont_know_cep_text": "Não sei meu CEP"
           }
-        },
-        "delivery_return_iJHeMD": {
-          "type": "_product-delivery-return",
-          "name": "Prazo de Disponibilidade + Cupom",
-          "settings": {
-            "delivery_design": "vertical",
-            "delivery_content_icon": "none",
-            "delivery_content": "",
-            "discount_content_icon": "discount",
-            "discount_content": "<p>Primeira compra? Use o cupom <strong>\"BEMVINDO\"</strong> para ganhar R$15 de desconto</p>",
-            "return_content_icon": "none",
-            "return_content": "",
-            "show_production_deadline": true,
-            "producao": "10",
-            "algodao": "1",
-            "imediato": "0"
-          },
-          "blocks": {}
         },
         "product_grouped_6epkNf": {
           "type": "_product-grouped",
@@ -182,8 +182,8 @@
         "variant_picker_tcCihG",
         "buy_buttons_LcQGtR",
         "product_custom_name_button_ya3Yfz",
-        "frete_no_produto_shipping_calc_mfbXjr",
         "delivery_return_iJHeMD",
+        "frete_no_produto_shipping_calc_mfbXjr",
         "product_grouped_6epkNf",
         "more_colors_3zmxGq",
         "collapsible_row_m3g6f8"
