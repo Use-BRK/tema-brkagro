@@ -183,7 +183,7 @@
                         endfor
                       -%}
                       <tr
-                        class="cart-item page__cart-item{% if is_gift_progress_item %} cart-item--gift-progress{% endif %}"
+                        class="cart-item page__cart-item{% if is_gift_progress_item %} cart-item--gift-progress{% endif %}{% if item.parent_relationship %} cart-item--child{% endif %}"
                         id="CartItem-{{ item.index | plus: 1 }}"
                         data-shipping-protection-item="{{ is_shipping_protection_item }}"
                         data-gift-progress-item="{{ is_gift_progress_item }}"

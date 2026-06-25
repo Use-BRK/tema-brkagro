@@ -26,7 +26,7 @@
   data-gift-progress-item="{{ is_gift_progress_item }}"
   data-shipping-protection-key="{{ item.key }}"
   data-shipping-protection-quantity="{{ item.quantity }}"
-  class="cart-item{% if is_gift_progress_item %} cart-item--gift-progress{% endif %} flex mb-20 pb-20 gap-15 border-bottom-dashed"
+  class="cart-item{% if is_gift_progress_item %} cart-item--gift-progress{% endif %}{% if item.parent_relationship %} cart-item--child{% endif %} flex mb-20 pb-20 gap-15 border-bottom-dashed"
 >
   <div class="minicart__product__image global-media-settings w-custom fs-0 relative" style="--custom-width: 8rem">
     <a href="{{- item.url -}}" class="rounded-5 fs-0 block" aria-label="{{ item.product.title | escape }}" style="--aspect-ratio: 1/1;">

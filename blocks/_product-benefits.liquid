@@ -1,0 +1,246 @@
+{% liquid
+  assign block_st = block.settings
+  assign product = closest.product
+  assign benefits = product.metafields.custom.beneficios.value
+  assign icon_size = block_st.icon_size | default: 40
+  assign cols_m = block_st.columns_mobile | default: 2
+  assign layout = block_st.layout | default: 'icon_left'
+  assign display = block_st.display | default: 'list'
+  assign radius = block_st.border_radius | default: 10
+  assign heading = block_st.heading
+  assign is_carousel = false
+  if display == 'carousel'
+    assign is_carousel = true
+  endif
+%}
+
+{% if benefits != blank and benefits.size > 0 %}
+  {% if is_carousel %}
+    <script src="{{ 'product-benefits.js' | asset_url }}" defer="defer"></script>
+  {% endif %}
+
+  {%- comment -%} Itens (ícone + texto) — reusados em todos os modos {%- endcomment -%}
+  {%- capture items_html -%}
+    {% for benefit in benefits %}
+      {%- liquid
+        assign icon = benefit.icone
+        assign icon_url = ''
+        if icon.url
+          assign icon_url = icon.url
+        elsif icon != blank
+          assign icon_url = icon | image_url: width: 200
+        endif
+        assign benefit_text = benefit.texto
+      -%}
+      <li class="product-benefits__item{% if is_carousel %} pb-slide{% endif %}">
+        {% if icon_url != blank %}
+          <span class="product-benefits__icon">
+            <img src="{{ icon_url }}" alt="{{ benefit_text | escape }}" width="{{ icon_size }}" height="{{ icon_size }}" loading="lazy">
+          </span>
+        {% endif %}
+        {% if benefit_text != blank %}
+          <span class="product-benefits__text text-size heading-color">{{ benefit_text }}</span>
+        {% endif %}
+      </li>
+    {% endfor %}
+  {%- endcapture -%}
+
+  {%- capture inner -%}
+    {% if is_carousel %}
+      <benefits-carousel class="pb-carousel">
+        <button type="button" class="pb-arrow pb-arrow--prev" aria-label="Anterior" hidden>
+          <svg width="7" height="12" fill="none"><use href="#icon-back" /></svg>
+        </button>
+        <ul class="pb-track product-benefits__list--{{ layout }}" style="--pb-cols-m: {{ cols_m }}; --pb-icon: {{ icon_size }}px;">
+          {{ items_html }}
+        </ul>
+        <button type="button" class="pb-arrow pb-arrow--next" aria-label="Próximo" hidden>
+          <svg width="7" height="12" fill="none"><use href="#icon-next" /></svg>
+        </button>
+      </benefits-carousel>
+    {% else %}
+      <ul
+        class="product-benefits__list product-benefits__list--{{ display }} product-benefits__list--{{ layout }}"
+        style="--pb-cols-m: {{ cols_m }}; --pb-icon: {{ icon_size }}px;"
+      >
+        {{ items_html }}
+      </ul>
+    {% endif %}
+  {%- endcapture -%}
+
+  {% if block_st.collapsible %}
+    <details
+      class="product-benefits mb-20{% if block_st.show_border %} product-benefits--card{% endif %}{% if block_st.bold_text %} product-benefits--bold{% endif %}"
+      style="--pb-radius: {{ radius }}px;"
+      {% if block_st.open_default %}open{% endif %}
+      {{ block.shopify_attributes }}
+    >
+      <summary class="product-benefits__summary heading-color">
+        <span>{{ heading | default: 'Benefícios' }}</span>
+        <svg class="product-benefits__chev" width="12" height="8" fill="none"><use href="#icon-arrow-down" /></svg>
+      </summary>
+      <div class="product-benefits__body">{{ inner }}</div>
+    </details>
+  {% else %}
+    <div
+      class="product-benefits mb-20{% if block_st.show_border %} product-benefits--card{% endif %}{% if block_st.bold_text %} product-benefits--bold{% endif %}"
+      style="--pb-radius: {{ radius }}px;"
+      {{ block.shopify_attributes }}
+    >
+      {% if heading != blank %}
+        <h3 class="product-benefits__heading heading-color text-size mt-0 mb-15">{{ heading }}</h3>
+      {% endif %}
+      {{ inner }}
+    </div>
+  {% endif %}
+{% endif %}
+
+{% stylesheet %}
+  .product-benefits--card { border: 1px solid var(--color-border, #e2ddd0); border-radius: var(--pb-radius, 10px); padding: 18px 20px; }
+  .product-benefits__heading { font-weight: var(--heading-weight, 600); }
+  .product-benefits--bold .product-benefits__text { font-weight: 700; }
+
+  /* Collapsible */
+  .product-benefits__summary { display: flex; align-items: center; justify-content: space-between; gap: 10px; cursor: pointer; list-style: none; font-weight: var(--heading-weight, 600); }
+  .product-benefits__summary::-webkit-details-marker { display: none; }
+  .product-benefits__chev { flex: 0 0 auto; transition: transform .2s ease; }
+  details[open] .product-benefits__chev { transform: rotate(180deg); }
+  .product-benefits__body { margin-top: 16px; }
+
+  /* Item */
+  .product-benefits__list, .pb-track { list-style: none; margin: 0; padding: 0; }
+  .product-benefits__item { display: flex; align-items: center; gap: 12px; min-width: 0; }
+  .product-benefits__icon { flex: 0 0 auto; display: inline-flex; width: var(--pb-icon, 40px); height: var(--pb-icon, 40px); }
+  .product-benefits__icon img { width: 100%; height: 100%; object-fit: contain; display: block; }
+  .product-benefits__text { line-height: 1.25; word-break: break-word; font-family: var(--body-font, sans-serif); }
+  .product-benefits__list--icon_top .product-benefits__item,
+  .pb-track.product-benefits__list--icon_top .product-benefits__item { flex-direction: column; text-align: center; align-items: center; gap: 8px; }
+
+  /* ---- Lista (1 por linha) com divisória tracejada (estilo delivery/return) ---- */
+  .product-benefits__list--list { display: block; }
+  .product-benefits__list--list .product-benefits__item { padding: 12px 0; }
+  .product-benefits__list--list .product-benefits__item:first-child { padding-top: 0; }
+  .product-benefits__list--list .product-benefits__item + .product-benefits__item { border-top: 1px dashed var(--color-border, #cfcabb); }
+
+  /* ---- Grade: mobile = N por linha; desktop = automático conforme a quantidade ---- */
+  .product-benefits__list--grid { display: grid; grid-template-columns: repeat(var(--pb-cols-m, 2), minmax(0, 1fr)); gap: 16px 18px; }
+  @media (min-width: 768px) {
+    .product-benefits__list--grid.product-benefits__list--icon_top { grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); }
+    .product-benefits__list--grid.product-benefits__list--icon_left { grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); }
+  }
+
+  /* ---- Carrossel: mobile = N por tela; desktop = se ajusta à quantidade ---- */
+  .pb-carousel { position: relative; }
+  .pb-track { display: flex; gap: 14px; overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+  .pb-track::-webkit-scrollbar { display: none; }
+  .pb-slide { flex: 0 0 calc((100% - (var(--pb-cols-m, 2) - 1) * 14px) / var(--pb-cols-m, 2)); scroll-snap-align: start; }
+  @media (min-width: 768px) {
+    /* desktop: distribui conforme a quantidade; só rola (setas) se não couber */
+    .pb-track.product-benefits__list--icon_top .pb-slide { flex: 1 1 auto; min-width: 110px; }
+    .pb-track.product-benefits__list--icon_left .pb-slide { flex: 1 1 auto; min-width: 190px; }
+  }
+
+  /* Setas sem borda/outline */
+  .pb-arrow { position: absolute; top: 50%; transform: translateY(-50%); z-index: 2; width: 32px; height: 32px; padding: 0; border: 0; background: transparent; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; color: var(--color-heading, #111); transition: opacity .15s ease; }
+  .pb-arrow:hover { opacity: .6; }
+  .pb-arrow--prev { left: -6px; }
+  .pb-arrow--next { right: -6px; }
+  .pb-arrow[hidden] { display: none; }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Benefícios do produto",
+  "tag": null,
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Título (opcional)",
+      "default": "Benefícios"
+    },
+    {
+      "type": "checkbox",
+      "id": "collapsible",
+      "label": "Tornar recolhível (collapsible)",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "open_default",
+      "label": "Começar aberto (Open content)",
+      "info": "Só vale quando 'recolhível' está ligado.",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_border",
+      "label": "Mostrar borda (card)",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "label": "Arredondamento da borda",
+      "min": 0,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "default": 10
+    },
+    {
+      "type": "checkbox",
+      "id": "bold_text",
+      "label": "Texto em negrito",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "layout",
+      "label": "Layout do item",
+      "default": "icon_left",
+      "options": [
+        { "value": "icon_left", "label": "Ícone ao lado do texto" },
+        { "value": "icon_top", "label": "Ícone acima do texto" }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "display",
+      "label": "Exibição",
+      "default": "list",
+      "info": "Desktop se ajusta sozinho à quantidade; o mobile usa 'Itens por linha — Mobile'.",
+      "options": [
+        { "value": "list", "label": "Lista (1 por linha, com divisória)" },
+        { "value": "grid", "label": "Grade (auto no desktop)" },
+        { "value": "carousel", "label": "Carrossel com setas" }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "columns_mobile",
+      "label": "Itens por linha — Mobile",
+      "info": "Vale para Grade e Carrossel.",
+      "min": 1,
+      "max": 4,
+      "step": 1,
+      "default": 2
+    },
+    {
+      "type": "range",
+      "id": "icon_size",
+      "label": "Tamanho do ícone",
+      "min": 20,
+      "max": 96,
+      "step": 2,
+      "unit": "px",
+      "default": 40
+    }
+  ],
+  "presets": [
+    {
+      "name": "Benefícios do produto"
+    }
+  ]
+}
+{% endschema %}

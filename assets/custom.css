@@ -981,29 +981,42 @@ select.gift-progress-modal__variant {
   }
 }
 
-/* Collection tab — header + tabs on the same line (inline_header_tabs):
-   keep tabs on ONE row and shrink them to fit instead of stacking, and never
-   break the heading in the middle of a word. */
-.collection-tab--inline-header {
-  flex-wrap: nowrap;
+/* ---- Linha de carrinho aninhada (personalização atrelada à camisa) ----
+   O Glozin não é Dawn/Horizon, então renderizamos o aninhamento via CSS:
+   a linha filha (item.parent_relationship) é recuada/marcada sob a linha pai.
+   IMPORTANTE: indentação por PADDING + box-sizing:border-box (NUNCA margin-left
+   num item de width:100% — isso estourava a largura e cortava preço/quantidade).
+   Item compacto: o que importa é chegar identificado no pedido. */
+/* Minicart (item é um flex div) */
+.cart-item--child:not(tr) {
+  position: relative;
+  box-sizing: border-box;
+  width: 100%;
+  padding-left: 16px;
+  border-left: 2px solid rgba(8, 91, 71, .35);
 }
-.collection-tab--inline-header .section__header-heading {
-  word-break: normal;
-  overflow-wrap: normal;
-  hyphens: none;
+/* permite os filhos flex encolherem em vez de transbordar */
+.cart-item--child:not(tr),
+.cart-item--child:not(tr) .minicart__product-info,
+.cart-item--child:not(tr) .minicart__header-left { min-width: 0; }
+.cart-item--child:not(tr)::before {
+  content: "\21B3"; /* ↳ */
+  position: absolute;
+  left: 3px;
+  top: 12px;
+  color: #9aa0a6;
+  font-size: 12px;
+  line-height: 1;
 }
-.collection-tab--inline-header .collection-tab__ta {
-  flex-wrap: nowrap;
+/* imagem e textos menores (item compacto) */
+.cart-item--child:not(tr) .minicart__product__image { --custom-width: 4.5rem; }
+.cart-item--child:not(tr) .minicart__product-name { font-size: 13px; }
+.cart-item--child:not(tr) .product-option { font-size: 11.5px; line-height: 1.35; }
+.cart-item--child:not(tr) .product-option-property { word-break: break-word; overflow-wrap: anywhere; }
+
+/* Página de carrinho (item é um <tr>) */
+tr.cart-item--child td { background: rgba(8, 91, 71, .04); }
+tr.cart-item--child td:first-child {
+  box-shadow: inset 4px 0 0 rgba(8, 91, 71, .5);
 }
-.collection-tab--inline-header .collection-tab__tab-item {
-  flex: 0 0 auto;
-}
-@media (max-width: 1024px) {
-  .collection-tab--inline-header .collection-tab__tab-item {
-    padding-left: clamp(8px, 2.4vw, 20px);
-    padding-right: clamp(8px, 2.4vw, 20px);
-    padding-top: clamp(5px, 1.4vw, 10px);
-    padding-bottom: clamp(5px, 1.4vw, 10px);
-    font-size: clamp(11px, 3.2vw, 16px);
-  }
-}
+tr.cart-item--child .product-option-property { word-break: break-word; overflow-wrap: anywhere; }
