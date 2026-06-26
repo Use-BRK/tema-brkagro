@@ -74,12 +74,20 @@ class CustomNameModal extends HTMLElement {
     if (this.state.mode === "company") {
       return raw.split("\n").map((s) => s.replace(/[ \t]+/g, " ").trim()).filter(Boolean);
     }
+    // Sigla/inicial abreviada: 1-2 letras seguidas de ponto (ex: "S.", "G.", "Jr.")
+    const isAbbrev = (w) => /^\p{L}{1,2}\.$/u.test(w);
     const words = raw.replace(/\s+/g, " ").trim().split(" ").filter(Boolean);
     const lines = [];
     let buffer = "";
     words.forEach((w) => {
       if (NAME_CONNECTORS.has(w.toLowerCase())) {
+        // conector (da/de/do...) gruda na próxima palavra
         buffer = buffer ? buffer + " " + w : w;
+      } else if (isAbbrev(w)) {
+        // sigla gruda na palavra ANTERIOR — quebra só depois dela (nunca isola a sigla)
+        if (buffer) buffer = buffer + " " + w;
+        else if (lines.length) lines[lines.length - 1] += " " + w;
+        else buffer = w;
       } else {
         lines.push(buffer ? buffer + " " + w : w);
         buffer = "";
