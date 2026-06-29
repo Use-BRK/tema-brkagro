@@ -26,6 +26,19 @@
     assign matches_collection = true
   endif
 
+  comment
+    Envio imediato (FULL): personalização não é aplicável (a peça precisa ser produzida).
+    Se QUALQUER variante tiver 'FULL' no SKU, o botão NÃO aparece.
+  endcomment
+  assign has_full_sku = false
+  for variant in product.variants
+    assign variant_sku_up = variant.sku | upcase
+    if variant_sku_up contains 'FULL'
+      assign has_full_sku = true
+      break
+    endif
+  endfor
+
   assign button_label = block_st.button_label | default: 'Quero meu nome na Camisa (R$29,90)'
   assign perso_variant_id = block_st.perso_variant_id | default: '53224470479145'
   assign perso_price = block_st.perso_price | default: '29,90'
@@ -45,7 +58,7 @@
   endif
 %}
 
-{% if show_button and matches_collection %}
+{% if show_button and matches_collection and has_full_sku == false %}
   {% comment %} ============ MODO WHATSAPP (comportamento atual de produção) ============ {% endcomment %}
   {% if button_mode == 'whatsapp' %}
     <div class="product-detail__custom-name-button mb-20" {{ block.shopify_attributes }}>
