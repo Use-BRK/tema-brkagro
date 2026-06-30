@@ -65,13 +65,37 @@
         "brk_apps_agro_combined_listing_6xbDqi": {
           "type": "shopify://apps/brk-apps-agro/blocks/combined-listing/019f0471-1a7f-7d87-ace2-a886cbd950ee",
           "settings": {
-            "show_option_name": true
+            "show_option_name": true,
+            "show_label": true,
+            "swatch_size": 86,
+            "border_radius": 0,
+            "border_width": 1,
+            "gap": 4,
+            "margin_y": 10,
+            "border_color": "#cfcfcf",
+            "selected_color": "#085b47",
+            "selected_text_color": "#ffffff",
+            "hover_color": "#3a9e35",
+            "label_color": "#6a6a6a",
+            "label_size": 12
           }
         },
-        "sa_variants_product_swatch_block_tF6T7z": {
-          "type": "shopify://apps/sa-variants/blocks/product-swatch-block/ff68b20f-8c8f-491e-92bf-3e5b8f17ef88",
-          "disabled": true,
-          "settings": {}
+        "product_benefits_hWMhBF": {
+          "type": "_product-benefits",
+          "name": "Benefícios do produto",
+          "settings": {
+            "heading": "",
+            "collapsible": false,
+            "open_default": true,
+            "show_border": true,
+            "border_radius": 1,
+            "bold_text": false,
+            "layout": "icon_left",
+            "display": "list",
+            "columns_mobile": 2,
+            "icon_size": 40
+          },
+          "blocks": {}
         },
         "variant_picker_tcCihG": {
           "type": "_product-variant-picker",
@@ -188,7 +212,7 @@
         "review_and_sold_AAbJC9",
         "price_VJ4N8m",
         "brk_apps_agro_combined_listing_6xbDqi",
-        "sa_variants_product_swatch_block_tF6T7z",
+        "product_benefits_hWMhBF",
         "variant_picker_tcCihG",
         "buy_buttons_LcQGtR",
         "product_custom_name_button_ya3Yfz",
