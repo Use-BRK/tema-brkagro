@@ -151,30 +151,35 @@
       <p class="cnm__illustrative">*Imagem meramente ilustrativa</p>
 
       {% if product.variants.size > 1 %}
-        <div class="cnm__field">
-          <span class="cnm__label">Tamanho:</span>
-          {% comment %} Pills idênticos aos do produto: radio visually-hidden + label .product__item-option
-             dentro de .product-form__input — o estado selecionado é estilizado pelo CSS do tema. {% endcomment %}
-          <div class="cnm__sizes product-form__input">
-            {% for variant in product.variants %}
-              <input
-                type="radio"
-                id="cnm-size-{{ block.id }}-{{ forloop.index0 }}"
-                name="cnm-size-{{ block.id }}"
-                value="{{ variant.id }}"
-                class="visually-hidden{% unless variant.available %} option-disabled{% endunless %}"
-                {% if variant.id == product.selected_or_first_available_variant.id %}checked{% endif %}
-                {% unless variant.available %}disabled{% endunless %}
-              >
-              <label
-                for="cnm-size-{{ block.id }}-{{ forloop.index0 }}"
-                class="product__item-option inline-flex align-center border rounded-3 subheading_weight btn-hover lh-normal px-20 py-10 transition relative pointer"
-              >
-                <span class="relative z-2 uppercase-first-letter">{{ variant.title }}</span>
-              </label>
-            {% endfor %}
+        {%- assign cnm_def_variant = product.selected_or_first_available_variant -%}
+        {% comment %} Um seletor por OPÇÃO (Cor, Tamanho...) em vez de listar todas as combinações.
+           Pills idênticos aos do produto: radio visually-hidden + label .product__item-option
+           dentro de .product-form__input — o estado selecionado é estilizado pelo CSS do tema. {% endcomment %}
+        {%- for option in product.options_with_values -%}
+          {%- assign cnm_opt_idx = forloop.index0 -%}
+          <div class="cnm__field">
+            <span class="cnm__label">{{ option.name }}:</span>
+            <div class="cnm__sizes cnm__options product-form__input" data-option-position="{{ option.position }}">
+              {%- for value in option.values -%}
+                <input
+                  type="radio"
+                  id="cnm-opt-{{ block.id }}-{{ option.position }}-{{ forloop.index0 }}"
+                  name="cnm-opt-{{ block.id }}-{{ option.position }}"
+                  value="{{ value | escape }}"
+                  class="visually-hidden cnm__opt-input"
+                  {% if cnm_def_variant.options[cnm_opt_idx] == value %}checked{% endif %}
+                >
+                <label
+                  for="cnm-opt-{{ block.id }}-{{ option.position }}-{{ forloop.index0 }}"
+                  class="product__item-option inline-flex align-center border rounded-3 subheading_weight btn-hover lh-normal px-20 py-10 transition relative pointer"
+                >
+                  <span class="relative z-2 uppercase-first-letter">{{ value }}</span>
+                </label>
+              {%- endfor -%}
+            </div>
           </div>
-        </div>
+        {%- endfor -%}
+        <script type="application/json" class="cnm__variants-data">{{ product.variants | json }}</script>
       {% endif %}
 
       <div class="cnm__field">
@@ -217,7 +222,7 @@
         <p class="cnm__disclaimer-strong"><strong>A personalização adiciona +6 dias ao prazo de entrega.</strong></p>
         <p>Vamos utilizar uma fonte padrão com alguma cor selecionada da camisa, não vamos escrever em laranja em uma parte da camisa que é laranja, em função de preservar o design da camisa.</p>
         <p>O designer mantém os elementos visuais da camisa — nenhum texto da arte é removido para inserir o nome. Se o nome ficar no mesmo local de algum elemento, ele será adaptado pelo designer.</p>
-        <p>Não é possível trocar um produto personalizado.</p>
+        <p style="font-color: red">Não é possível trocar um produto personalizado.</p>
         <p>Camisas de envio imediato (ou FULL) não podem ser personalizadas, uma vez que já estão produzidas.</p>
       </div>
 

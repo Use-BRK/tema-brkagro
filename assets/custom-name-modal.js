@@ -274,15 +274,55 @@ class CustomNameModal extends HTMLElement {
     this.ensureFontThenDraw();
   }
 
-  /* Reflete no modal a variante selecionada na página ao abrir (o cliente pode trocar depois). */
+  // Dados das variantes (id + options) embutidos no bloco.
+  getVariantsData() {
+    if (this._variantsData) return this._variantsData;
+    try {
+      const el = this.querySelector(".cnm__variants-data");
+      this._variantsData = el ? JSON.parse(el.textContent) : [];
+    } catch (e) {
+      this._variantsData = [];
+    }
+    return this._variantsData;
+  }
+
+  // Valores selecionados por grupo de opção, na ordem da posição (option1, option2...).
+  getSelectedOptions() {
+    const groups = Array.from(this.querySelectorAll(".cnm__options"));
+    groups.sort((a, b) => Number(a.dataset.optionPosition) - Number(b.dataset.optionPosition));
+    return groups.map((g) => {
+      const checked = g.querySelector("input.cnm__opt-input:checked");
+      return checked ? checked.value : null;
+    });
+  }
+
+  // Encontra a variante cujas options batem com a seleção.
+  resolveVariantId(options) {
+    const match = this.getVariantsData().find(
+      (v) =>
+        Array.isArray(v.options) &&
+        v.options.length === options.length &&
+        v.options.every((opt, i) => opt === options[i])
+    );
+    return match ? match.id : null;
+  }
+
+  /* Reflete no modal a variante selecionada na página ao abrir (marca as opções; o cliente pode trocar depois). */
   syncSizeFromProduct() {
     const forms = Array.from(document.querySelectorAll('form[action*="/cart/add"]'));
     const form = forms.find((f) => !((f.getAttribute("id") || "").startsWith("sticky"))) || forms[0];
     const input = form && form.querySelector('[name="id"]');
     const currentId = input && input.value;
     if (!currentId) return;
-    const pill = this.querySelector(`.cnm__sizes input[type="radio"][value="${currentId}"]`);
-    if (pill && !pill.disabled) pill.checked = true;
+    const variant = this.getVariantsData().find((v) => String(v.id) === String(currentId));
+    if (!variant || !Array.isArray(variant.options)) return;
+    const groups = Array.from(this.querySelectorAll(".cnm__options"));
+    groups.sort((a, b) => Number(a.dataset.optionPosition) - Number(b.dataset.optionPosition));
+    groups.forEach((g, i) => {
+      g.querySelectorAll("input.cnm__opt-input").forEach((r) => {
+        if (r.value === variant.options[i]) r.checked = true;
+      });
+    });
   }
   close() {
     this.hidden = true;
@@ -291,9 +331,15 @@ class CustomNameModal extends HTMLElement {
 
   /* ---------- carrinho (2 passos) ---------- */
   getShirtVariantId() {
-    // 1) tamanho escolhido no próprio modal (pills independentes = sem conflito com o form)
-    const checked = this.querySelector('.cnm__sizes input[type="radio"]:checked');
-    if (checked && checked.value) return checked.value;
+    // 1) resolve pela seleção de opções no modal (1 grupo por opção: Cor, Tamanho...)
+    const groups = this.querySelectorAll(".cnm__options");
+    if (groups.length) {
+      const opts = this.getSelectedOptions();
+      if (opts.every(Boolean)) {
+        const id = this.resolveVariantId(opts);
+        if (id) return String(id);
+      }
+    }
     // 2) produto de variante única: usa a variante padrão
     if (this.dataset.defaultVariantId) return this.dataset.defaultVariantId;
     // 3) fallback: lê do form principal do produto
