@@ -80,7 +80,7 @@
             >
               <h2
                 class="section__header-heading heading-letter-spacing   {{ header_size  }} mt-0{% if section_st.description != blank %} mb-10{% else %} mb-0{% endif %}"
-                style="font-size: {{ section_st.heading_font_size }}px"
+                style="font-size: {{ section_st.heading_font_size }}px; overflow-wrap: normal; word-break: keep-all;"
               >
                 {{ section.settings.heading }}
               </h2>
@@ -124,7 +124,7 @@
                   {% endif %}
                   class="block"
                 >
-                  <h2 class="section__header-heading heading-letter-spacing {{ header_size  }}{% if section_st.inline_header_tabs %} mt-0 mb-0{% else %} mt-0{% if section_st.description != blank %} mb-10{% else %} mb-0{% endif %}{% endif %}{% if show_view_all_button and section_st.header_alignment == "left" and section_st.tab_header_postion == 'default'%} text-right{% endif %}{% if show_view_all_button and section_st.header_alignment == "right" and section_st.tab_header_postion == 'default'%} text-left{% endif %}" style="font-size: {{ section_st.heading_font_size }}px">
+                  <h2 class="section__header-heading heading-letter-spacing {{ header_size  }}{% if section_st.inline_header_tabs %} mt-0 mb-0{% else %} mt-0{% if section_st.description != blank %} mb-10{% else %} mb-0{% endif %}{% endif %}{% if show_view_all_button and section_st.header_alignment == "left" and section_st.tab_header_postion == 'default'%} text-right{% endif %}{% if show_view_all_button and section_st.header_alignment == "right" and section_st.tab_header_postion == 'default'%} text-left{% endif %}" style="font-size: {{ section_st.heading_font_size }}px; overflow-wrap: normal; word-break: keep-all;">
                     {{ section.settings.heading }}
                   </h2>
                 </motion-element>
