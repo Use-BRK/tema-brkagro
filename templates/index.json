@@ -303,6 +303,67 @@
         "reset_spacing": true
       }
     },
+    "collection_tab_cPpFqA": {
+      "type": "collection-tab",
+      "blocks": {
+        "collection_t7MiMg": {
+          "type": "collection",
+          "settings": {
+            "collection": "lancamentos-femininos",
+            "collection_title": "Femininas"
+          }
+        },
+        "collection_4BX6xr": {
+          "type": "collection",
+          "settings": {
+            "collection": "lancamentos",
+            "collection_title": "Masculino"
+          }
+        }
+      },
+      "block_order": [
+        "collection_t7MiMg",
+        "collection_4BX6xr"
+      ],
+      "custom_css": [
+        ".collection-tab__tab-item {font-size: clamp(1.105em, 2vw, 2.5rem);}",
+        "h3 {margin-top: 0px; margin-bottom: 0px;}"
+      ],
+      "name": "Lançamentos",
+      "settings": {
+        "section_width": "stretch_width",
+        "color_scheme": "scheme-accf3b11-ba40-4a3e-bafb-243ece6683ec",
+        "heading": "Lançamentos",
+        "description": "",
+        "show_view_all_button": true,
+        "header_size": "small",
+        "heading_font_size": 25,
+        "header_alignment": "center",
+        "tab_header_style": "horizontal",
+        "horizontal_tab_style": "fill",
+        "tab_header_postion": "default",
+        "inline_header_tabs": true,
+        "display_mode": "grid",
+        "items_to_show": 24,
+        "items_per_row": 5,
+        "column_gap": 10,
+        "show_arrow": true,
+        "carousel_pagination": "disable",
+        "infinite": false,
+        "autoplay": false,
+        "autorotate_speed": 2,
+        "reveal": false,
+        "rows": 2,
+        "show_load_more_button": false,
+        "button_label": "Ver mais",
+        "use_outline_button_style": true,
+        "carousel_on_mobile": true,
+        "items_per_row_mobile": 1.5,
+        "padding_top": 50,
+        "padding_bottom": 50,
+        "reset_spacing": true
+      }
+    },
     "collection_tab_cxBKk3": {
       "type": "collection-tab",
       "blocks": {
@@ -595,67 +656,6 @@
         "padding_top": 30,
         "padding_bottom": 30,
         "reset_spacing": false
-      }
-    },
-    "collection_tab_cPpFqA": {
-      "type": "collection-tab",
-      "blocks": {
-        "collection_t7MiMg": {
-          "type": "collection",
-          "settings": {
-            "collection": "lancamentos-femininos",
-            "collection_title": "Femininas"
-          }
-        },
-        "collection_4BX6xr": {
-          "type": "collection",
-          "settings": {
-            "collection": "lancamentos",
-            "collection_title": "Masculino"
-          }
-        }
-      },
-      "block_order": [
-        "collection_t7MiMg",
-        "collection_4BX6xr"
-      ],
-      "custom_css": [
-        ".collection-tab__tab-item {font-size: clamp(1.105em, 2vw, 2.5rem);}",
-        "h3 {margin-top: 0px; margin-bottom: 0px;}"
-      ],
-      "name": "Lançamentos",
-      "settings": {
-        "section_width": "stretch_width",
-        "color_scheme": "scheme-accf3b11-ba40-4a3e-bafb-243ece6683ec",
-        "heading": "Lançamentos",
-        "description": "",
-        "show_view_all_button": true,
-        "header_size": "small",
-        "heading_font_size": 35,
-        "header_alignment": "center",
-        "tab_header_style": "horizontal",
-        "horizontal_tab_style": "fill",
-        "tab_header_postion": "default",
-        "inline_header_tabs": true,
-        "display_mode": "grid",
-        "items_to_show": 24,
-        "items_per_row": 5,
-        "column_gap": 10,
-        "show_arrow": true,
-        "carousel_pagination": "disable",
-        "infinite": false,
-        "autoplay": false,
-        "autorotate_speed": 2,
-        "reveal": false,
-        "rows": 2,
-        "show_load_more_button": false,
-        "button_label": "Ver mais",
-        "use_outline_button_style": true,
-        "carousel_on_mobile": true,
-        "items_per_row_mobile": 1.5,
-        "padding_top": 50,
-        "padding_bottom": 50,
-        "reset_spacing": true
       }
     },
     "collection_showcase_VG6Ymn": {
@@ -999,10 +999,10 @@
     "slideshow_8KKtNU",
     "collection_tab_9R4n9j",
     "collection_tab_8f78pi",
+    "collection_tab_cPpFqA",
     "collection_tab_cxBKk3",
     "image_with_text_overlay_BBzj67",
     "multi_content_Dyd3Y3",
-    "collection_tab_cPpFqA",
     "collection_showcase_VG6Ymn",
     "icon_box_LjTRcj",
     "banner_packery_4RYN8d",
