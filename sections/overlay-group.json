@@ -38,11 +38,11 @@
         "navbar_collection_7zmyr7": {
           "type": "navbar-collection",
           "settings": {
-            "collection": "botinas",
-            "title": "Botinas",
-            "custom_svg": "<img src=\"https://cdn.shopify.com/s/files/1/0887/2083/4857/files/botina3.svg?v=1746207593\">",
-            "svg_width": 27,
-            "svg_height": 23
+            "collection": "sao-bento-2026",
+            "title": "São Bento 2026",
+            "custom_svg": "",
+            "svg_width": 35,
+            "svg_height": 35
           }
         },
         "navbar_collection_J893UR": {
@@ -85,7 +85,7 @@
       "settings": {
         "show_account": true,
         "layout": "pill",
-        "pill_text": "OFERTAS",
+        "pill_text": "MENU",
         "pill_font_size": 12,
         "pill_font": "assistant_n4",
         "pill_bottom": 14,
