@@ -56,7 +56,7 @@
         "menu_product_YFcake": {
           "type": "menu_product",
           "settings": {
-            "text": "São Bento",
+            "text": "Mês de São Bento",
             "open-link-newtab": false,
             "item_label": "hot",
             "product_menu_column": 2,
