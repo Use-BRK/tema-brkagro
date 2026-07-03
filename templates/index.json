@@ -436,6 +436,16 @@
         "reset_spacing": true
       }
     },
+    "divider_yFgDbN": {
+      "type": "divider",
+      "name": "t:sections.divider.name",
+      "settings": {
+        "section_width": "container",
+        "border_height": 1,
+        "border_color": "#ebebeb",
+        "reset_spacing": true
+      }
+    },
     "collection_tab_cxBKk3": {
       "type": "collection-tab",
       "blocks": {
@@ -968,6 +978,7 @@
     "collection_tab_9R4n9j",
     "collection_tab_8f78pi",
     "collection_tab_9YVWaA",
+    "divider_yFgDbN",
     "collection_tab_ThWUTh",
     "divider_GQPnca",
     "collection_tab_cxBKk3",
