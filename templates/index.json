@@ -365,6 +365,16 @@
         "reset_spacing": true
       }
     },
+    "divider_yFgDbN": {
+      "type": "divider",
+      "name": "t:sections.divider.name",
+      "settings": {
+        "section_width": "container",
+        "border_height": 1,
+        "border_color": "#ebebeb",
+        "reset_spacing": true
+      }
+    },
     "collection_tab_ThWUTh": {
       "type": "collection-tab",
       "blocks": {
@@ -427,16 +437,6 @@
       }
     },
     "divider_GQPnca": {
-      "type": "divider",
-      "name": "t:sections.divider.name",
-      "settings": {
-        "section_width": "container",
-        "border_height": 1,
-        "border_color": "#ebebeb",
-        "reset_spacing": true
-      }
-    },
-    "divider_yFgDbN": {
       "type": "divider",
       "name": "t:sections.divider.name",
       "settings": {
@@ -552,7 +552,7 @@
         "section_width": "full_width",
         "color_scheme": "scheme-d974d385-6b51-44ef-85ca-6d85a4af76ac",
         "image": "shopify://shop_images/ad2.jpg",
-        "image_mobile": "shopify://shop_images/ChatGPT_Image_1_de_jun._de_2026_09_55_45.webp",
+        "image_mobile": "shopify://shop_images/REFORCO_MARCA_MOBILE.webp",
         "image_behavior": "none",
         "overlay_opacity": 50,
         "image_height": "custom",
