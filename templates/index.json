@@ -304,41 +304,41 @@
         "reset_spacing": true
       }
     },
-    "collection_tab_cPpFqA": {
+    "collection_tab_ThWUTh": {
       "type": "collection-tab",
       "blocks": {
-        "collection_4BX6xr": {
+        "collection_6qHyd8": {
           "type": "collection",
           "settings": {
-            "collection": "lancamentos",
-            "collection_title": "Masculino"
+            "collection": "patriota",
+            "collection_title": "Masculinos"
           }
         },
-        "collection_t7MiMg": {
+        "collection_nQen4E": {
           "type": "collection",
           "settings": {
-            "collection": "lancamentos-femininos",
+            "collection": "patriota-feminino",
             "collection_title": "Femininas"
           }
         }
       },
       "block_order": [
-        "collection_4BX6xr",
-        "collection_t7MiMg"
+        "collection_6qHyd8",
+        "collection_nQen4E"
       ],
       "custom_css": [
         ".collection-tab__tab-item {font-size: clamp(1.105em, 2vw, 2.5rem);}",
         "h3 {margin-top: 0px; margin-bottom: 0px;}"
       ],
-      "name": "Lançamentos",
+      "name": "Coleção Patriota",
       "settings": {
         "section_width": "stretch_width",
         "color_scheme": "scheme-accf3b11-ba40-4a3e-bafb-243ece6683ec",
-        "heading": "Lançamentos",
-        "description": "<p>Nova coleção SÃO BENTO 2026 com Brinde de lançamento 🎁 </p>",
+        "heading": "Coleção Patriota",
+        "description": "",
         "show_view_all_button": true,
         "header_size": "small",
-        "heading_font_size": 30,
+        "heading_font_size": 35,
         "header_alignment": "center",
         "tab_header_style": "horizontal",
         "horizontal_tab_style": "fill",
@@ -362,6 +362,16 @@
         "items_per_row_mobile": 1.5,
         "padding_top": 50,
         "padding_bottom": 50,
+        "reset_spacing": true
+      }
+    },
+    "divider_GQPnca": {
+      "type": "divider",
+      "name": "t:sections.divider.name",
+      "settings": {
+        "section_width": "container",
+        "border_height": 1,
+        "border_color": "#ebebeb",
         "reset_spacing": true
       }
     },
@@ -494,169 +504,65 @@
         "reset_spacing": true
       }
     },
-    "multi_content_Dyd3Y3": {
-      "type": "multi-content",
+    "collection_tab_cPpFqA": {
+      "type": "collection-tab",
       "blocks": {
-        "group_media_content_ie4WQg": {
-          "type": "_group-media-content",
+        "collection_4BX6xr": {
+          "type": "collection",
           "settings": {
-            "color_scheme": "",
-            "content_width": "50%",
-            "media_type": "image",
-            "image": "shopify://shop_images/PECUARIA_MINIBLOCO_7f7d2d76-ecd5-4ee3-9645-57978cefb24b.webp",
-            "image_link": "",
-            "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
-            "autoplay": true,
-            "video_ratio": "16/9",
-            "overlay_opacity": 0,
-            "content_type": "overlay",
-            "content_alignment": "center",
-            "content_position": "middle-center",
-            "content_padding_block": 10,
-            "content_padding_inline": 10,
-            "content_mobile_image": false
-          },
-          "blocks": {}
+            "collection": "lancamentos",
+            "collection_title": "Masculino"
+          }
         },
-        "group_media_content_hqiaHe": {
-          "type": "_group-media-content",
+        "collection_t7MiMg": {
+          "type": "collection",
           "settings": {
-            "color_scheme": "",
-            "content_width": "50%",
-            "media_type": "image",
-            "image": "shopify://shop_images/FEMININAS_MINIBLOCO_c425b824-77fe-4a1c-a9a1-c3cbd3110a0a.webp",
-            "image_link": "",
-            "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
-            "autoplay": true,
-            "video_ratio": "16/9",
-            "overlay_opacity": 0,
-            "content_type": "overlay",
-            "content_alignment": "center",
-            "content_position": "middle-center",
-            "content_padding_block": 10,
-            "content_padding_inline": 10,
-            "content_mobile_image": false
-          },
-          "blocks": {}
-        },
-        "group_media_content_PV8ryd": {
-          "type": "_group-media-content",
-          "name": "t:blocks.names.media_with_text",
-          "settings": {
-            "color_scheme": "",
-            "content_width": "50%",
-            "media_type": "image",
-            "image": "shopify://shop_images/SAO_BENTO_MINIBLOCO_d369a252-e73d-47bb-9500-1f368b27c389.webp",
-            "image_link": "shopify://collections/drones",
-            "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
-            "autoplay": true,
-            "video_ratio": "16/9",
-            "overlay_opacity": 0,
-            "content_type": "overlay",
-            "content_alignment": "start",
-            "content_position": "top-left",
-            "content_padding_block": 30,
-            "content_padding_inline": 30,
-            "content_mobile_image": false
-          },
-          "blocks": {}
-        },
-        "group_media_content_cPfyMK": {
-          "type": "_group-media-content",
-          "name": "t:blocks.names.media_with_text",
-          "settings": {
-            "color_scheme": "",
-            "content_width": "50%",
-            "media_type": "image",
-            "image": "shopify://shop_images/BRASIL_MINIBLOCO_3f6170ab-545a-441a-9ef7-baeaaebe8f8b.webp",
-            "image_link": "shopify://collections/drones",
-            "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
-            "autoplay": true,
-            "video_ratio": "16/9",
-            "overlay_opacity": 0,
-            "content_type": "overlay",
-            "content_alignment": "start",
-            "content_position": "top-left",
-            "content_padding_block": 30,
-            "content_padding_inline": 30,
-            "content_mobile_image": false
-          },
-          "blocks": {}
-        },
-        "group_media_content_KFYWEY": {
-          "type": "_group-media-content",
-          "name": "t:blocks.names.media_with_text",
-          "settings": {
-            "color_scheme": "",
-            "content_width": "50%",
-            "media_type": "image",
-            "image": "shopify://shop_images/DRONES_MINIBLOCO_692772f9-5f5d-456b-a715-31f03cfd5ea8.webp",
-            "image_link": "shopify://collections/drones",
-            "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
-            "autoplay": true,
-            "video_ratio": "16/9",
-            "overlay_opacity": 0,
-            "content_type": "overlay",
-            "content_alignment": "start",
-            "content_position": "top-left",
-            "content_padding_block": 30,
-            "content_padding_inline": 30,
-            "content_mobile_image": false
-          },
-          "blocks": {}
-        },
-        "group_media_content_i9MUmw": {
-          "type": "_group-media-content",
-          "name": "t:blocks.names.media_with_text",
-          "settings": {
-            "color_scheme": "",
-            "content_width": "50%",
-            "media_type": "image",
-            "image": "shopify://shop_images/TRATORES_MINIBLOCO_d869c910-f934-41d9-92b4-96c56d954755.webp",
-            "image_link": "shopify://collections/drones",
-            "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
-            "autoplay": true,
-            "video_ratio": "16/9",
-            "overlay_opacity": 0,
-            "content_type": "overlay",
-            "content_alignment": "start",
-            "content_position": "top-left",
-            "content_padding_block": 30,
-            "content_padding_inline": 30,
-            "content_mobile_image": false
-          },
-          "blocks": {}
+            "collection": "lancamentos-femininos",
+            "collection_title": "Femininas"
+          }
         }
       },
       "block_order": [
-        "group_media_content_ie4WQg",
-        "group_media_content_hqiaHe",
-        "group_media_content_PV8ryd",
-        "group_media_content_cPfyMK",
-        "group_media_content_KFYWEY",
-        "group_media_content_i9MUmw"
+        "collection_4BX6xr",
+        "collection_t7MiMg"
       ],
-      "disabled": true,
-      "name": "Multiblocos",
+      "custom_css": [
+        ".collection-tab__tab-item {font-size: clamp(1.105em, 2vw, 2.5rem);}",
+        "h3 {margin-top: 0px; margin-bottom: 0px;}"
+      ],
+      "name": "Lançamentos",
       "settings": {
         "section_width": "stretch_width",
-        "color_scheme": "",
-        "heading": "O AGRO ESTÁ EM TUDO",
-        "description": "",
-        "show_view_all_button": false,
-        "use_outline_button_style": false,
-        "link_view_all_button": "",
-        "space_between_header": true,
-        "header_size": "medium",
+        "color_scheme": "scheme-accf3b11-ba40-4a3e-bafb-243ece6683ec",
+        "heading": "Lançamentos",
+        "description": "<p>Nova coleção SÃO BENTO 2026 com Brinde de lançamento 🎁 </p>",
+        "show_view_all_button": true,
+        "header_size": "small",
+        "heading_font_size": 30,
         "header_alignment": "center",
-        "column_gap": 5,
-        "equal_height_adjustment": false,
-        "vertical_align": "center",
-        "carousel_on_mobile": false,
-        "items_per_row_mobile": 1,
-        "padding_top": 30,
-        "padding_bottom": 30,
-        "reset_spacing": false
+        "tab_header_style": "horizontal",
+        "horizontal_tab_style": "fill",
+        "tab_header_postion": "default",
+        "inline_header_tabs": false,
+        "display_mode": "grid",
+        "items_to_show": 24,
+        "items_per_row": 5,
+        "column_gap": 10,
+        "show_arrow": true,
+        "carousel_pagination": "disable",
+        "infinite": false,
+        "autoplay": false,
+        "autorotate_speed": 2,
+        "reveal": false,
+        "rows": 2,
+        "show_load_more_button": false,
+        "button_label": "Ver mais",
+        "use_outline_button_style": true,
+        "carousel_on_mobile": true,
+        "items_per_row_mobile": 1.5,
+        "padding_top": 50,
+        "padding_bottom": 50,
+        "reset_spacing": true
       }
     },
     "collection_showcase_VG6Ymn": {
@@ -718,8 +624,8 @@
         "columns_mobile": 2,
         "image_ratio": "2 / 3",
         "caption_font_size": 16,
-        "bg_color": "#085b47",
-        "heading_color": "#efe9da",
+        "bg_color": "#FFFFFF",
+        "heading_color": "#085B47",
         "show_view_all": false,
         "view_all_text": "Ver Todas",
         "view_all_url": "",
@@ -1000,10 +906,11 @@
     "slideshow_8KKtNU",
     "collection_tab_9R4n9j",
     "collection_tab_8f78pi",
-    "collection_tab_cPpFqA",
+    "collection_tab_ThWUTh",
+    "divider_GQPnca",
     "collection_tab_cxBKk3",
     "image_with_text_overlay_BBzj67",
-    "multi_content_Dyd3Y3",
+    "collection_tab_cPpFqA",
     "collection_showcase_VG6Ymn",
     "icon_box_LjTRcj",
     "banner_packery_4RYN8d",
