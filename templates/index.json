@@ -54,7 +54,7 @@
             "image": "shopify://shop_images/BANNER_SITE.webp",
             "image_mobile": "shopify://shop_images/BANNER_Mob.webp",
             "overlay_opacity": 0,
-            "link_banner": "shopify://collections/mes-de-sao-bento-2026",
+            "link_banner": "https://www.brkagro.com.br/collections/mes-de-sao-bento-2026?filter.p.m.custom.genero=Masculino",
             "slider_effect": "fade-in-right",
             "subheading": "",
             "heading": "",
