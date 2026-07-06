@@ -110,6 +110,7 @@
         "slider_item_YipJd4": {
           "type": "slider_item",
           "name": "Rebrand",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/FULLBANNER_DESKTOP_3b9d6a35-c139-4fdb-80da-444ca6fbb6de.webp",
             "image_mobile": "shopify://shop_images/MOBILE_03c09017-1dde-445b-97df-8f112a94a4b9.webp",
@@ -976,9 +977,9 @@
     "slideshow_8KKtNU",
     "collection_tab_9R4n9j",
     "collection_tab_8f78pi",
-    "collection_tab_9YVWaA",
-    "divider_yFgDbN",
     "collection_tab_ThWUTh",
+    "divider_yFgDbN",
+    "collection_tab_9YVWaA",
     "divider_GQPnca",
     "collection_tab_cxBKk3",
     "image_with_text_overlay_BBzj67",
