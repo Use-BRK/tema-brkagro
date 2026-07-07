@@ -10,6 +10,10 @@
 font-size: 23px;
 }
 
+.product-item__action,
+select-option {
+border-radius: 30%;
+}
 
 
 /* Top Bar */
