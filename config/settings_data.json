@@ -52,7 +52,7 @@
     "show_quick_view": false,
     "show_wishlist": false,
     "show_compare": false,
-    "show_add_cart": false,
+    "show_add_cart": true,
     "show_variant": false,
     "show_quantity_input": true,
     "product_alignment": "start",
@@ -244,11 +244,6 @@
     },
     "content_for_index": [],
     "blocks": {
-      "16555213172727936593": {
-        "type": "shopify://apps/ns-discount-in-cart/blocks/discount_block/0cbbbcdd-bf54-49df-885c-9ca3fd52a671",
-        "disabled": true,
-        "settings": {}
-      },
       "2567389343055140935": {
         "type": "shopify://apps/microsoft-clarity/blocks/clarity_js/31c3d126-8116-4b4a-8ba1-baeda7c4aeea",
         "disabled": false,
@@ -290,16 +285,6 @@
         "settings": {
           "storefrontAccessToken": "",
           "scriptInitMode": "immediate"
-        }
-      },
-      "12334822184266723110": {
-        "type": "shopify://apps/sa-variants/blocks/variant-king-combined-listing/ff68b20f-8c8f-491e-92bf-3e5b8f17ef88",
-        "disabled": true,
-        "settings": {
-          "alignment": "left",
-          "swatch_location": "After price",
-          "switch_on_hover": false,
-          "preselect_variant": true
         }
       },
       "1530068250781986104": {
