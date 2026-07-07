@@ -5,6 +5,12 @@
 	color: #085b47 !important;
 }
 
+.product-item__price,
+.card-product-price {
+font-size: 23px;
+}
+
+
 
 /* Top Bar */
 
