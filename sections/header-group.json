@@ -184,7 +184,7 @@
           "type": "menu",
           "settings": {
             "menu": "menu",
-            "text_size": 100,
+            "text_size": 110,
             "show_images": false,
             "highlight_item": "",
             "highlight_item_color": "#d02e2e",
@@ -229,7 +229,6 @@
         "button_X8Eebj": {
           "type": "button",
           "name": "Coleções do Agro",
-          "disabled": true,
           "settings": {
             "button_text": "Coleções do Agro",
             "button_link": "shopify://collections",
