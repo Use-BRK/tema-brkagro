@@ -53,13 +53,20 @@ class CustomNameModal extends HTMLElement {
 
   /* Formata conforme o modo. Nome = Title Case (conectores minúsculos); Empresa = MAIÚSCULO preservando Enter. */
   formatName(raw) {
+    // Sanitiza: mantém letras/acentos, números, espaço e . ' - ; remove emojis e demais símbolos.
+    // Normaliza variantes de apóstrofo (’ ‘ ´ `) para o apóstrofo reto.
+    const clean = (raw || "").normalize("NFC").replace(/[’‘´`]/g, "'");
     if (this.state.mode === "company") {
       // EMPRESA: maiúsculo, preserva as quebras de linha (Enter) feitas pelo cliente
-      return (raw || "").toUpperCase().replace(/[ \t]+/g, " ").replace(/\n{3,}/g, "\n\n");
+      return clean
+        .replace(/[^\p{L}0-9 .'\-\n]/gu, "")
+        .toUpperCase()
+        .replace(/[ \t]+/g, " ")
+        .replace(/\n{3,}/g, "\n\n");
     }
     // NOME: Title Case (mantém acentos) + conectores em minúsculo (da, de, do...)
-    const s = (raw || "").replace(/\s+/g, " ").replace(/^\s/, "");
-    const titled = s.toLowerCase().replace(/(^|\s|['’\-])([\p{L}])/gu, (m, sep, ch) => sep + ch.toUpperCase());
+    const s = clean.replace(/[^\p{L}0-9 .'\-]/gu, "").replace(/\s+/g, " ").replace(/^\s/, "");
+    const titled = s.toLowerCase().replace(/(^|\s|['\-])([\p{L}0-9])/gu, (m, sep, ch) => sep + ch.toUpperCase());
     return titled.split(" ").map((w, i) => (i > 0 && NAME_CONNECTORS.has(w.toLowerCase()) ? w.toLowerCase() : w)).join(" ");
   }
 
@@ -74,8 +81,8 @@ class CustomNameModal extends HTMLElement {
     if (this.state.mode === "company") {
       return raw.split("\n").map((s) => s.replace(/[ \t]+/g, " ").trim()).filter(Boolean);
     }
-    // Sigla/inicial abreviada: 1-2 letras seguidas de ponto (ex: "S.", "G.", "Jr.")
-    const isAbbrev = (w) => /^\p{L}{1,2}\.$/u.test(w);
+    // Sigla/inicial (1-2 letras, COM ou SEM ponto): "G", "G.", "S.", "Jr" — nunca fica sozinha na linha
+    const isAbbrev = (w) => /^\p{L}{1,2}\.?$/u.test(w);
     const words = raw.replace(/\s+/g, " ").trim().split(" ").filter(Boolean);
     const lines = [];
     let buffer = "";
