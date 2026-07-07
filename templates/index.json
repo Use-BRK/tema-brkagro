@@ -47,14 +47,14 @@
     "slideshow_8KKtNU": {
       "type": "slideshow",
       "blocks": {
-        "slider_item_n3PrkQ": {
+        "slider_item_QaQnmE": {
           "type": "slider_item",
-          "name": "Botas/Botinas",
+          "name": "Femininas 2026",
           "settings": {
-            "image": "shopify://shop_images/BOTAS_BOTINAS_DESKTOP.webp",
-            "image_mobile": "shopify://shop_images/BOTAS_BOTINAS_MOBILE.webp",
+            "image": "shopify://shop_images/DESKTOP_FEMININAS2026.webp",
+            "image_mobile": "shopify://shop_images/MOBILE_FEMININAS2026.webp",
             "overlay_opacity": 0,
-            "link_banner": "shopify://collections/botinas",
+            "link_banner": "shopify://collections/colecao-femininas-2026",
             "slider_effect": "fade-in-right",
             "subheading": "",
             "heading": "",
@@ -77,14 +77,14 @@
             "content_alignment_mobile": "center"
           }
         },
-        "slider_item_QaQnmE": {
+        "slider_item_n3PrkQ": {
           "type": "slider_item",
-          "name": "Femininas 2026",
+          "name": "Botas/Botinas",
           "settings": {
-            "image": "shopify://shop_images/DESKTOP_FEMININAS2026.webp",
-            "image_mobile": "shopify://shop_images/MOBILE_FEMININAS2026.webp",
+            "image": "shopify://shop_images/BOTAS_BOTINAS_DESKTOP.webp",
+            "image_mobile": "shopify://shop_images/BOTAS_BOTINAS_MOBILE.webp",
             "overlay_opacity": 0,
-            "link_banner": "shopify://collections/colecao-femininas-2026",
+            "link_banner": "shopify://collections/botinas",
             "slider_effect": "fade-in-right",
             "subheading": "",
             "heading": "",
@@ -170,8 +170,8 @@
         }
       },
       "block_order": [
-        "slider_item_n3PrkQ",
         "slider_item_QaQnmE",
+        "slider_item_n3PrkQ",
         "slider_item_wzBeHe",
         "slider_item_YipJd4"
       ],
