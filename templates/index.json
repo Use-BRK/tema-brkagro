@@ -484,6 +484,7 @@
     },
     "divider_GQPnca": {
       "type": "divider",
+      "disabled": true,
       "name": "t:sections.divider.name",
       "settings": {
         "section_width": "container",
@@ -514,6 +515,7 @@
         "collection_9WTytq",
         "collection_FAKwKX"
       ],
+      "disabled": true,
       "custom_css": [
         ".collection-tab__tab-item {font-size: clamp(1.105em, 2vw, 2.5rem);}",
         "h3 {margin-top: 0px; margin-bottom: 0px;}"
@@ -1023,9 +1025,9 @@
     "slideshow_8KKtNU",
     "collection_tab_9R4n9j",
     "collection_tab_8f78pi",
-    "collection_tab_ThWUTh",
-    "divider_yFgDbN",
     "collection_tab_9YVWaA",
+    "divider_yFgDbN",
+    "collection_tab_ThWUTh",
     "divider_GQPnca",
     "collection_tab_cxBKk3",
     "image_with_text_overlay_BBzj67",
