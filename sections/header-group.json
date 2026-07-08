@@ -252,7 +252,7 @@
         "login_WcQMag": {
           "type": "login",
           "settings": {
-            "text_size": 100,
+            "text_size": 140,
             "padding_bottom": 10,
             "pin_to_bottom": true
           }
