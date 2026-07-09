@@ -173,8 +173,8 @@
         "show_currency": false,
         "show_language": false,
         "show_recently_viewed": false,
-        "padding_top": 6,
-        "padding_bottom": 6
+        "padding_top": 20,
+        "padding_bottom": 20
       }
     },
     "mobile_menu_drawer_qVAPQC": {
