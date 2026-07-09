@@ -92,14 +92,14 @@
             "content_alignment_mobile": "center"
           }
         },
-        "slider_item_n3PrkQ": {
+        "slider_item_wzBeHe": {
           "type": "slider_item",
-          "name": "Botas/Botinas",
+          "name": "São Bento 2026",
           "settings": {
-            "image": "shopify://shop_images/BOTAS_BOTINAS_DESKTOP.webp",
-            "image_mobile": "shopify://shop_images/BOTAS_BOTINAS_MOBILE.webp",
+            "image": "shopify://shop_images/BANNER_SITE.webp",
+            "image_mobile": "shopify://shop_images/BANNER_Mob.webp",
             "overlay_opacity": 0,
-            "link_banner": "shopify://collections/botinas",
+            "link_banner": "https://www.brkagro.com.br/collections/mes-de-sao-bento-2026?filter.p.m.custom.genero=Masculino",
             "slider_effect": "fade-in-right",
             "subheading": "",
             "heading": "",
@@ -122,14 +122,14 @@
             "content_alignment_mobile": "center"
           }
         },
-        "slider_item_wzBeHe": {
+        "slider_item_n3PrkQ": {
           "type": "slider_item",
-          "name": "São Bento 2026",
+          "name": "Botas/Botinas",
           "settings": {
-            "image": "shopify://shop_images/BANNER_SITE.webp",
-            "image_mobile": "shopify://shop_images/BANNER_Mob.webp",
+            "image": "shopify://shop_images/BOTAS_BOTINAS_DESKTOP.webp",
+            "image_mobile": "shopify://shop_images/BOTAS_BOTINAS_MOBILE.webp",
             "overlay_opacity": 0,
-            "link_banner": "https://www.brkagro.com.br/collections/mes-de-sao-bento-2026?filter.p.m.custom.genero=Masculino",
+            "link_banner": "shopify://collections/botinas",
             "slider_effect": "fade-in-right",
             "subheading": "",
             "heading": "",
@@ -186,8 +186,8 @@
       },
       "block_order": [
         "slider_item_QaQnmE",
-        "slider_item_n3PrkQ",
         "slider_item_wzBeHe",
+        "slider_item_n3PrkQ",
         "slider_item_YipJd4"
       ],
       "custom_css": [
@@ -207,7 +207,7 @@
         "increase_border_radius": false,
         "show_arrow": true,
         "carousel_pagination": "show_dots",
-        "pagination_position": "right",
+        "pagination_position": "center",
         "autoplay": true,
         "autorotate_speed": 4,
         "subheading_font_size": 15,
@@ -350,77 +350,6 @@
         "reset_spacing": true
       }
     },
-    "collection_tab_9YVWaA": {
-      "type": "collection-tab",
-      "blocks": {
-        "collection_GTJta4": {
-          "type": "collection",
-          "settings": {
-            "collection": "essenciais-sem-estampa",
-            "collection_title": "Masculinos"
-          }
-        },
-        "collection_EWiWb4": {
-          "type": "collection",
-          "settings": {
-            "collection": "essenciais-femininas",
-            "collection_title": "Femininas"
-          }
-        }
-      },
-      "block_order": [
-        "collection_GTJta4",
-        "collection_EWiWb4"
-      ],
-      "custom_css": [
-        ".collection-tab__tab-item {font-size: clamp(1.105em, 2vw, 2.5rem);}",
-        "h3 {margin-top: 0px; margin-bottom: 0px;}"
-      ],
-      "name": "Lisas Essenciais",
-      "settings": {
-        "section_width": "stretch_width",
-        "color_scheme": "scheme-accf3b11-ba40-4a3e-bafb-243ece6683ec",
-        "heading": "Lisas e Essenciais",
-        "description": "",
-        "show_view_all_button": true,
-        "header_size": "small",
-        "heading_font_size": 35,
-        "header_alignment": "center",
-        "tab_header_style": "horizontal",
-        "horizontal_tab_style": "fill",
-        "tab_header_postion": "default",
-        "inline_header_tabs": false,
-        "display_mode": "grid",
-        "items_to_show": 24,
-        "items_per_row": 5,
-        "column_gap": 10,
-        "show_arrow": true,
-        "carousel_pagination": "disable",
-        "infinite": false,
-        "autoplay": false,
-        "autorotate_speed": 2,
-        "reveal": false,
-        "rows": 2,
-        "show_load_more_button": false,
-        "button_label": "Ver mais",
-        "use_outline_button_style": true,
-        "carousel_on_mobile": true,
-        "items_per_row_mobile": 1.5,
-        "padding_top": 50,
-        "padding_bottom": 50,
-        "reset_spacing": true
-      }
-    },
-    "divider_yFgDbN": {
-      "type": "divider",
-      "name": "t:sections.divider.name",
-      "settings": {
-        "section_width": "container",
-        "border_height": 1,
-        "border_color": "#ebebeb",
-        "reset_spacing": true
-      }
-    },
     "collection_tab_ThWUTh": {
       "type": "collection-tab",
       "blocks": {
@@ -482,9 +411,79 @@
         "reset_spacing": true
       }
     },
+    "divider_yFgDbN": {
+      "type": "divider",
+      "name": "t:sections.divider.name",
+      "settings": {
+        "section_width": "container",
+        "border_height": 1,
+        "border_color": "#ebebeb",
+        "reset_spacing": true
+      }
+    },
+    "collection_tab_9YVWaA": {
+      "type": "collection-tab",
+      "blocks": {
+        "collection_GTJta4": {
+          "type": "collection",
+          "settings": {
+            "collection": "essenciais-sem-estampa",
+            "collection_title": "Masculinos"
+          }
+        },
+        "collection_EWiWb4": {
+          "type": "collection",
+          "settings": {
+            "collection": "essenciais-femininas",
+            "collection_title": "Femininas"
+          }
+        }
+      },
+      "block_order": [
+        "collection_GTJta4",
+        "collection_EWiWb4"
+      ],
+      "custom_css": [
+        ".collection-tab__tab-item {font-size: clamp(1.105em, 2vw, 2.5rem);}",
+        "h3 {margin-top: 0px; margin-bottom: 0px;}"
+      ],
+      "name": "Lisas Essenciais",
+      "settings": {
+        "section_width": "stretch_width",
+        "color_scheme": "scheme-accf3b11-ba40-4a3e-bafb-243ece6683ec",
+        "heading": "Lisas e Essenciais",
+        "description": "",
+        "show_view_all_button": true,
+        "header_size": "small",
+        "heading_font_size": 35,
+        "header_alignment": "center",
+        "tab_header_style": "horizontal",
+        "horizontal_tab_style": "fill",
+        "tab_header_postion": "default",
+        "inline_header_tabs": false,
+        "display_mode": "grid",
+        "items_to_show": 24,
+        "items_per_row": 5,
+        "column_gap": 10,
+        "show_arrow": true,
+        "carousel_pagination": "disable",
+        "infinite": false,
+        "autoplay": false,
+        "autorotate_speed": 2,
+        "reveal": false,
+        "rows": 2,
+        "show_load_more_button": false,
+        "button_label": "Ver mais",
+        "use_outline_button_style": true,
+        "carousel_on_mobile": true,
+        "items_per_row_mobile": 1.5,
+        "padding_top": 50,
+        "padding_bottom": 50,
+        "reset_spacing": true
+      }
+    },
     "divider_GQPnca": {
       "type": "divider",
-      "disabled": true,
       "name": "t:sections.divider.name",
       "settings": {
         "section_width": "container",
@@ -515,7 +514,6 @@
         "collection_9WTytq",
         "collection_FAKwKX"
       ],
-      "disabled": true,
       "custom_css": [
         ".collection-tab__tab-item {font-size: clamp(1.105em, 2vw, 2.5rem);}",
         "h3 {margin-top: 0px; margin-bottom: 0px;}"
@@ -1025,9 +1023,9 @@
     "slideshow_8KKtNU",
     "collection_tab_9R4n9j",
     "collection_tab_8f78pi",
-    "collection_tab_9YVWaA",
-    "divider_yFgDbN",
     "collection_tab_ThWUTh",
+    "divider_yFgDbN",
+    "collection_tab_9YVWaA",
     "divider_GQPnca",
     "collection_tab_cxBKk3",
     "image_with_text_overlay_BBzj67",
