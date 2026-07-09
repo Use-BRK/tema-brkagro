@@ -102,7 +102,7 @@
         "image_border_width": 4,
         "image_border_color": "#efe9da",
         "items_per_row": 6,
-        "column_gap": 0,
+        "column_gap": 5,
         "center_insufficient": true,
         "collection_information_position": "below_image",
         "design": "default",
