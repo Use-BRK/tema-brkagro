@@ -103,7 +103,7 @@
           data-mobile="{{ items_per_row_mobile }}"
           data-desktop="{{ items_per_row }}"
           data-free-scroll="{{ data_free_scroll }}"
-          data-center-insufficient="true"
+          data-center-insufficient="{{ section_st.center_insufficient }}"
           data-pagination-progressbar="{% if carousel_pagination == 'show_progress_bar' %}true{% else %}false{% endif %}"
         >
           {% if show_arrow %}
@@ -334,6 +334,13 @@
       "step": 5,
       "default": 30,
       "unit": "px"
+    },
+    {
+      "type": "checkbox",
+      "id": "center_insufficient",
+      "label": "Centralizar itens quando não preencherem a linha",
+      "info": "Ativado: centraliza quando há poucas subcoleções (gera margens nas laterais). Desativado: alinha à esquerda, sem margens laterais.",
+      "default": true
     },
     {
       "type": "header",
