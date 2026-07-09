@@ -286,6 +286,7 @@ class SlideSection extends HTMLElement {
       watchSlidesVisibility: true,
       grabCursor: true,
       centeredSlides: centeredSlidesSetting,
+      centerInsufficientSlides: _this?.dataset.centerInsufficient === "true",
       grid: {
         rows: row,
         fill: "row",

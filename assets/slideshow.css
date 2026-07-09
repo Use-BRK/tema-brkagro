@@ -21,9 +21,10 @@ html.js .slideshow motion-element[slideshow][data-motion*=zoom] {
 .slideshow .swiper-actions {
   margin-bottom: 0;
 }
+/* Keep the slideshow arrows visible on tablet/mobile (they carry .show-on-mobile) */
 @media screen and (max-width: 1024.98px) {
-  .slideshow .swiper-actions {
-    display: none;
+  .slideshow .swiper-actions.show-arrow {
+    display: flex;
   }
 }
 .slideshow .swiper-pagination-bullet:after {
@@ -36,18 +37,16 @@ html.js .slideshow motion-element[slideshow][data-motion*=zoom] {
   display: none;
 }
 
-/* ================ Slideshow arrows — transparent style ================ */
-@media screen and (min-width: 1025px) {
-  .slideshow .swiper-arrow {
-    background: transparent;
-    border-color: transparent;
-    color: #fff;
-  }
-  .slideshow .swiper-arrow:hover {
-    background: rgba(255, 255, 255, 0.15);
-    border-color: transparent;
-    color: #fff;
-  }
+/* ================ Slideshow arrows — subtle transparent style (all breakpoints) ================ */
+.slideshow .swiper-arrow {
+  background: transparent;
+  border-color: transparent;
+  color: #fff;
+}
+.slideshow .swiper-arrow:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: transparent;
+  color: #fff;
 }
 
 /* ================ Card scrolling effect ================ */

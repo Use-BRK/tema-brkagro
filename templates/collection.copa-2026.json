@@ -84,9 +84,6 @@
     },
     "subcollection": {
       "type": "subcollection-list",
-      "custom_css": [
-        ".swiper-wrapper {justify-content: center;}"
-      ],
       "settings": {
         "section_width": "stretch_width",
         "color_scheme": "default",

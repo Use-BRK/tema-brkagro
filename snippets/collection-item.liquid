@@ -47,6 +47,8 @@
   else
     if collection_image != blank
       assign ratio = collection_image.aspect_ratio
+    elsif image_source == 'first_product' and card_collection.products.first.featured_image
+      assign ratio = card_collection.products.first.featured_image.aspect_ratio
     elsif card_collection.featured_image
       assign ratio = card_collection.featured_image.aspect_ratio
     else
@@ -93,7 +95,15 @@
         aria-label="{{- card_collection.title -}}"
         style="--aspect-ratio: {{ ratio }};"
       >
-        {% assign collection_media = card_collection.featured_image %}
+        {%- liquid
+          if image_source == 'first_product'
+            assign collection_media = card_collection.products.first.featured_image
+          elsif image_source == 'banner'
+            assign collection_media = card_collection.image | default: card_collection.featured_image
+          else
+            assign collection_media = card_collection.featured_image
+          endif
+        -%}
 
         {% comment %} Case collection has image {% endcomment %}
         {%- if collection_media -%}

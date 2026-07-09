@@ -40,6 +40,13 @@
     }
   {%- endstyle -%}
 {% endif %}
+{% if section_st.image_border %}
+  {%- style -%}
+    #shopify-section-{{ section.id }} .collection-item__media {
+      border: {{ section_st.image_border_width }}px solid {{ section_st.image_border_color }};
+    }
+  {%- endstyle -%}
+{% endif %}
 {% if collection.metafields.custom.subcollection.value %}
   {% assign sub_collection = collection.metafields.custom.subcollection.value %}
   {% if sub_collection != blank %}
@@ -96,6 +103,7 @@
           data-mobile="{{ items_per_row_mobile }}"
           data-desktop="{{ items_per_row }}"
           data-free-scroll="{{ data_free_scroll }}"
+          data-center-insufficient="true"
           data-pagination-progressbar="{% if carousel_pagination == 'show_progress_bar' %}true{% else %}false{% endif %}"
         >
           {% if show_arrow %}
@@ -111,7 +119,8 @@
                     card_collection: collection,
                     section: section,
                     collection_information_position: collection_information_position,
-                    design: design
+                    design: design,
+                    image_source: section_st.image_source
                   %}
                 </div>
               </div>
@@ -261,6 +270,51 @@
       "type": "text",
       "id": "custom_ratio",
       "label": "t:sections.all.image.image_ratio.custom_ratio.label"
+    },
+    {
+      "type": "select",
+      "id": "image_source",
+      "label": "Fonte da imagem",
+      "info": "Escolha qual imagem exibir em cada subcoleção.",
+      "default": "banner",
+      "options": [
+        {
+          "value": "banner",
+          "label": "Usar imagem do banner (imagem da coleção)"
+        },
+        {
+          "value": "first_product",
+          "label": "Usar imagem do primeiro produto"
+        }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Borda da imagem"
+    },
+    {
+      "type": "checkbox",
+      "id": "image_border",
+      "label": "Ativar borda na imagem",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "image_border_width",
+      "label": "Espessura da borda",
+      "min": 1,
+      "max": 10,
+      "step": 1,
+      "unit": "px",
+      "default": 2,
+      "visible_if": "{{ section.settings.image_border }}"
+    },
+    {
+      "type": "color",
+      "id": "image_border_color",
+      "label": "Cor da borda",
+      "default": "#085B47",
+      "visible_if": "{{ section.settings.image_border }}"
     },
     {
       "type": "range",

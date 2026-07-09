@@ -308,7 +308,7 @@
           {% endfor %}
         </div>
         {% if show_arrow %}
-          {%- render 'swiper-navigation', class: 'original-style' -%}
+          {%- render 'swiper-navigation', class: 'original-style show-on-mobile' -%}
         {% endif %}
         {%- if carousel_pagination == 'show_dots' or carousel_pagination == 'show_dots_on_mobile' -%}
           <motion-element

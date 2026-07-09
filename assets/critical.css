@@ -3203,7 +3203,9 @@ header.active li.visible .submenu:not(.submenu-vertical) {
   gap: var(--gap, 1.5rem);
 }
 
-.swiper:not([class*='initialized'])[data-mobile='1.5'] .swiper-wrapper {
+.swiper:not([class*='initialized'])[data-mobile='1.5'] .swiper-wrapper,
+.swiper:not([class*='initialized'])[data-mobile='2.5'] .swiper-wrapper,
+.swiper:not([class*='initialized'])[data-mobile='3.5'] .swiper-wrapper {
   overflow: unset;
 }
 
@@ -3241,6 +3243,14 @@ header.active li.visible .submenu:not(.submenu-vertical) {
 
 .swiper:not([class*='initialized'])[data-mobile='2'] .swiper-slide {
   width: calc((100% - (var(--gap, 3rem) * 1)) / 2);
+}
+
+.swiper:not([class*='initialized'])[data-mobile='3.5'] .swiper-slide {
+  width: calc((100% - (var(--gap, 3rem) * 3)) / 3.5);
+}
+
+.swiper:not([class*='initialized'])[data-mobile='2.5'] .swiper-slide {
+  width: calc((100% - (var(--gap, 3rem) * 2)) / 2.5);
 }
 
 .swiper:not([class*='initialized'])[data-mobile='1.5'] .swiper-slide {
