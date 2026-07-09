@@ -33,25 +33,28 @@
   --section-pt: {{ section_st.padding_top }}; --section-pb: {{ section_st.padding_bottom }};
   {% if column_gap < 15 %}--col-gap: {{ column_gap }}px;--col-gap-desktop: {{ column_gap }}px;{% else %}--col-gap: 15px;--col-gap-desktop: {{  column_gap }}px;{% endif %}
 {%- endcapture -%}
-{% if collection_information_position == 'below_image' and image_custom_width and rounded_image %}
-  {%- style -%}
-    .collection-item__media--ratio {
+{%- comment -%}
+  Subcollection images fill the column: the media always fills its slide width, so the column
+  gap is the only spacing between items (0 = touching). An optional lateral margin reduces the
+  media width (kept centered) instead of overflowing. 1:1 ratio keeps rounded images perfectly
+  circular regardless of the source image ratio. This intentionally overrides the fixed
+  "image custom width", which no longer drives the media width here.
+{%- endcomment -%}
+{%- style -%}
+  #shopify-section-{{ section.id }} .collection-item__media {
+    {% if section_st.media_horizontal_margin > 0 %}width: calc(100% - {{ section_st.media_horizontal_margin | times: 2 }}px);margin-left: auto;margin-right: auto;{% else %}width: 100%;{% endif %}
+    max-width: 100%;
+  }
+  {% if collection_information_position == 'below_image' and rounded_image %}
+    #shopify-section-{{ section.id }} .collection-item__media--ratio {
       --aspect-ratio: 1 !important;
     }
-  {%- endstyle -%}
-{% endif %}
+  {% endif %}
+{%- endstyle -%}
 {% if section_st.image_border %}
   {%- style -%}
     #shopify-section-{{ section.id }} .collection-item__media {
       border: {{ section_st.image_border_width }}px solid {{ section_st.image_border_color }};
-    }
-  {%- endstyle -%}
-{% endif %}
-{% if section_st.media_horizontal_margin > 0 %}
-  {%- style -%}
-    #shopify-section-{{ section.id }} .collection-item__media {
-      margin-left: {{ section_st.media_horizontal_margin }}px;
-      margin-right: {{ section_st.media_horizontal_margin }}px;
     }
   {%- endstyle -%}
 {% endif %}
