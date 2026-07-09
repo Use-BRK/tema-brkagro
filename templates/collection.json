@@ -12,22 +12,22 @@
     "banner": {
       "type": "main-collection-heading",
       "blocks": {
+        "heading_gz7jj4": {
+          "type": "heading",
+          "settings": {
+            "page_title": "",
+            "header_size": "default"
+          }
+        },
         "breadcrumb_tAe9LK": {
           "type": "breadcrumb",
           "disabled": true,
           "settings": {}
-        },
-        "heading_fntt9G": {
-          "type": "heading",
-          "settings": {
-            "page_title": "{{ collection.title }}",
-            "header_size": "default"
-          }
         }
       },
       "block_order": [
-        "breadcrumb_tAe9LK",
-        "heading_fntt9G"
+        "heading_gz7jj4",
+        "breadcrumb_tAe9LK"
       ],
       "custom_css": [
         "* {margin-bottom: 0 !important;}",
