@@ -34,17 +34,21 @@
   {% if column_gap < 15 %}--col-gap: {{ column_gap }}px;--col-gap-desktop: {{ column_gap }}px;{% else %}--col-gap: 15px;--col-gap-desktop: {{  column_gap }}px;{% endif %}
 {%- endcapture -%}
 {%- comment -%}
-  Subcollection images fill the column: the media always fills its slide width, so the column
-  gap is the only spacing between items (0 = touching). An optional lateral margin reduces the
-  media width (kept centered) instead of overflowing. 1:1 ratio keeps rounded images perfectly
-  circular regardless of the source image ratio. This intentionally overrides the fixed
-  "image custom width", which no longer drives the media width here.
+  Two size modes for the subcollection images:
+  - "Image custom width" OFF -> media fills the column, so the column gap is the only spacing
+    between items (0 = touching). Bigger circles = fewer columns (items per row).
+    An optional lateral margin reduces the media width (kept centered) instead of overflowing.
+  - "Image custom width" ON  -> media uses the fixed "Image width" (px) and stays centered, so
+    you control the exact circle size (the "ANTES" look).
+  1:1 ratio keeps rounded images perfectly circular in both modes.
 {%- endcomment -%}
 {%- style -%}
-  #shopify-section-{{ section.id }} .collection-item__media {
-    {% if section_st.media_horizontal_margin > 0 %}width: calc(100% - {{ section_st.media_horizontal_margin | times: 2 }}px);margin-left: auto;margin-right: auto;{% else %}width: 100%;{% endif %}
-    max-width: 100%;
-  }
+  {% unless image_custom_width %}
+    #shopify-section-{{ section.id }} .collection-item__media {
+      {% if section_st.media_horizontal_margin > 0 %}width: calc(100% - {{ section_st.media_horizontal_margin | times: 2 }}px);margin-left: auto;margin-right: auto;{% else %}width: 100%;{% endif %}
+      max-width: 100%;
+    }
+  {% endunless %}
   {% if collection_information_position == 'below_image' and rounded_image %}
     #shopify-section-{{ section.id }} .collection-item__media--ratio {
       --aspect-ratio: 1 !important;
