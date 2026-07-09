@@ -3209,6 +3209,12 @@ header.active li.visible .submenu:not(.submenu-vertical) {
   overflow: unset;
 }
 
+/* Match centerInsufficientSlides before JS inits, to avoid a layout shift:
+   centers the group when items don't fill the row, left-aligns (no cut) when they overflow. */
+.swiper.center-insufficient:not([class*='initialized']) .swiper-wrapper {
+  justify-content: safe center;
+}
+
 :is(.swiper-button-next, .swiper-button-prev).swiper-arrow:before,
 :is(.swiper-button-next, .swiper-button-prev).swiper-arrow:after {
   display: none;

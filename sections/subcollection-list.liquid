@@ -47,6 +47,14 @@
     }
   {%- endstyle -%}
 {% endif %}
+{% if section_st.media_horizontal_margin > 0 %}
+  {%- style -%}
+    #shopify-section-{{ section.id }} .collection-item__media {
+      margin-left: {{ section_st.media_horizontal_margin }}px;
+      margin-right: {{ section_st.media_horizontal_margin }}px;
+    }
+  {%- endstyle -%}
+{% endif %}
 {% if collection.metafields.custom.subcollection.value %}
   {% assign sub_collection = collection.metafields.custom.subcollection.value %}
   {% if sub_collection != blank %}
@@ -92,7 +100,7 @@
           <motion-items-effect data-motion="{{ scroll_animation }}">
         {% endif %}
         <slide-section
-          class="swiper{% if reveal %} reveal_on_scroll{% endif %}"
+          class="swiper{% if reveal %} reveal_on_scroll{% endif %}{% if section_st.center_insufficient %} center-insufficient{% endif %}"
           data-section-id="{{ section.id }}"
           data-autoplay="{{ autoplay }}"
           data-effect="slide"
@@ -287,6 +295,17 @@
           "label": "Usar imagem do primeiro produto"
         }
       ]
+    },
+    {
+      "type": "range",
+      "id": "media_horizontal_margin",
+      "label": "Margem lateral da imagem",
+      "info": "Espaço nas laterais de cada imagem, independente do espaçamento entre colunas (column gap) e da largura da imagem.",
+      "min": 0,
+      "max": 80,
+      "step": 1,
+      "unit": "px",
+      "default": 0
     },
     {
       "type": "header",
