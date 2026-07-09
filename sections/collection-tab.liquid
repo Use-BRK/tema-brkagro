@@ -456,7 +456,8 @@
                 assign all_product_visible = rows | times: items_per_row
               %}
               {% if block_st.collection.products.size > 0 %}
-                {%- paginate block_st.collection.products by all_product_visible -%}
+                {%- comment -%} Carousel shows up to "items to show" products (rows is a grid-only setting). {%- endcomment -%}
+                {%- paginate block_st.collection.products by all_products_to_show -%}
                   <div
                     class="collection-tab__tab-content{% if forloop.first %} active{% else %} hidden{% endif %}"
                     data-block-id="{{ block.id }}"

@@ -23,6 +23,10 @@
     endfor
   endfor
   assign variant_type = block.settings.variant_type
+  assign has_miniatura = false
+  if product.tags contains 'Miniatura'
+    assign has_miniatura = true
+  endif
 %}
 {%- if type == 'item' -%}
   {% comment %} Case color swatches for product item {% endcomment %}
@@ -231,7 +235,8 @@
                   isColorOption: is_color_option,
                   option_name: option_name,
                   swatch_item_type: swatch_item_type,
-                  variant_type: 'dropdown'
+                  variant_type: 'dropdown',
+                  has_miniatura: has_miniatura
                 %}
               </div>
             </div>
@@ -294,14 +299,17 @@
               {%- endif -%}
             {%- endif -%}
           </div>
+          {% if has_miniatura %}<div class="ident-size-block--miniatura">{% endif %}
           {% render 'product-variant-options',
             product: product,
             option: option,
             isColorOption: is_color_option,
             option_name: option_name,
             swatch_item_type: swatch_item_type,
-            variant_type: 'swatches'
+            variant_type: 'swatches',
+            has_miniatura: has_miniatura
           %}
+          {% if has_miniatura %}</div>{% endif %}
         </fieldset>
       {%- endfor -%}
       <script type="application/json">
@@ -379,14 +387,17 @@
               {%- endif -%}
             {%- endif -%}
           </div>
+          {% if has_miniatura %}<div class="ident-size-block--miniatura">{% endif %}
           {% render 'product-variant-options',
             product: product,
             option: option,
             isColorOption: is_color_option,
             option_name: option_name,
             swatch_item_type: swatch_item_type,
-            variant_type: 'swatches'
+            variant_type: 'swatches',
+            has_miniatura: has_miniatura
           %}
+          {% if has_miniatura %}</div>{% endif %}
         </fieldset>
       {%- endfor -%}
       <script type="application/json">
