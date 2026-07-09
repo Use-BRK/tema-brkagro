@@ -29,6 +29,16 @@
   assign font_weight_description = section_st.font_weight_description
   assign font_size_description = section_st.font_size_description
   assign ratio = ''
+  comment
+    Only touch card_collection.products (an expensive query on subcollections) when the
+    "first product image" source is actually selected. Never combine this access with `and`
+    on a single line: Liquid evaluates conditions right-to-left, so the products lookup would
+    run on every card regardless of image_source.
+  endcomment
+  assign first_product_image = null
+  if image_source == 'first_product'
+    assign first_product_image = card_collection.products.first.featured_image
+  endif
   if image_ratio != 'adapt'
     case image_ratio
       when 'square'
@@ -47,8 +57,8 @@
   else
     if collection_image != blank
       assign ratio = collection_image.aspect_ratio
-    elsif image_source == 'first_product' and card_collection.products.first.featured_image
-      assign ratio = card_collection.products.first.featured_image.aspect_ratio
+    elsif first_product_image
+      assign ratio = first_product_image.aspect_ratio
     elsif card_collection.featured_image
       assign ratio = card_collection.featured_image.aspect_ratio
     else
@@ -97,7 +107,7 @@
       >
         {%- liquid
           if image_source == 'first_product'
-            assign collection_media = card_collection.products.first.featured_image
+            assign collection_media = first_product_image
           elsif image_source == 'banner'
             assign collection_media = card_collection.image | default: card_collection.featured_image
           else

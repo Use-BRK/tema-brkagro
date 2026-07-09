@@ -3215,6 +3215,13 @@ header.active li.visible .submenu:not(.submenu-vertical) {
   justify-content: safe center;
 }
 
+/* Hide the carousel navigation arrows until Swiper initializes. Before init the arrows are
+   always shown, then Swiper locks them (display:none) when scrolling isn't needed — that made
+   them flash in and out on load. They are position:absolute, so hiding them causes no reflow. */
+.sec__collection-list .swiper:not(.swiper-initialized) .swiper-actions {
+  visibility: hidden;
+}
+
 :is(.swiper-button-next, .swiper-button-prev).swiper-arrow:before,
 :is(.swiper-button-next, .swiper-button-prev).swiper-arrow:after {
   display: none;
