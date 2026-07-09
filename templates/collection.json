@@ -219,7 +219,7 @@
         "promotion_link": "",
         "promotion_postion": 6,
         "items_per_row_mobile": "2",
-        "padding_top": 30,
+        "padding_top": 10,
         "padding_bottom": 40
       }
     }
