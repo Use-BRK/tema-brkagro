@@ -542,7 +542,7 @@
         "autoplay": false,
         "autorotate_speed": 2,
         "reveal": false,
-        "rows": 1,
+        "rows": 2,
         "show_load_more_button": false,
         "button_label": "Ver mais",
         "use_outline_button_style": true,
