@@ -31,7 +31,7 @@
 -%}
 {%- capture style -%}
   --section-pt: {{ section_st.padding_top }}; --section-pb: {{ section_st.padding_bottom }};
-  {% if column_gap < 15 %}--col-gap: {{ column_gap }}px;{% else %}--col-gap: 15px;--col-gap-desktop: {{  column_gap }}px;{% endif %}
+  {% if column_gap < 15 %}--col-gap: {{ column_gap }}px;--col-gap-desktop: {{ column_gap }}px;{% else %}--col-gap: 15px;--col-gap-desktop: {{  column_gap }}px;{% endif %}
 {%- endcapture -%}
 {% if collection_information_position == 'below_image' and image_custom_width and rounded_image %}
   {%- style -%}
