@@ -21,6 +21,7 @@
         },
         "account_mNDeiq": {
           "type": "account",
+          "disabled": true,
           "settings": {}
         },
         "navbar_collection_xFxBLk": {
@@ -36,7 +37,6 @@
         },
         "navbar_collection_7zmyr7": {
           "type": "navbar-collection",
-          "disabled": true,
           "settings": {
             "collection": "patriota",
             "title": "Coleção Patriota",
@@ -63,6 +63,7 @@
         "cart_8xqQBb": {
           "type": "cart",
           "name": "Carrinho",
+          "disabled": true,
           "settings": {}
         }
       },
