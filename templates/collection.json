@@ -113,7 +113,7 @@
         "information_spacing": 12,
         "rounded_image": true,
         "image_custom_width": true,
-        "image_width": 120,
+        "image_width": 185,
         "show_arrow": true,
         "carousel_pagination": "show_progress_bar",
         "infinite": false,
