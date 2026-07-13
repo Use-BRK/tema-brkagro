@@ -204,28 +204,6 @@
             "pin_to_bottom": false
           }
         },
-        "image_UnMzrJ": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/PERSONALIZE.png",
-            "image_url": "https://personalize.brkagro.com.br/lp?utm_source=site_agro&utm_medium=organico&utm_campaign=brkagro.com.br&utm_content=menu_home",
-            "image_alignment": "left",
-            "image_width": 100,
-            "padding_bottom": 10,
-            "pin_to_bottom": false
-          }
-        },
-        "image_BENy3h": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/SEJA_UM_REVENDEDOR_b2b82d15-ee6a-4d5a-b5e1-6765a23941cd.png",
-            "image_url": "",
-            "image_alignment": "left",
-            "image_width": 100,
-            "padding_bottom": 10,
-            "pin_to_bottom": false
-          }
-        },
         "button_X8Eebj": {
           "type": "button",
           "name": "Coleções do Agro",
@@ -268,8 +246,6 @@
       },
       "block_order": [
         "menu_9XmD4T",
-        "image_UnMzrJ",
-        "image_BENy3h",
         "button_X8Eebj",
         "button_xzXqHb",
         "login_WcQMag",
