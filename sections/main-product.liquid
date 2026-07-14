@@ -614,6 +614,31 @@
       "info": "Applies when mobile thumbnails are hidden and Swiper pagination is visible."
     },
     {
+      "type": "select",
+      "id": "mobile_media_layout",
+      "options": [
+        {
+          "value": "carousel",
+          "label": "Carrossel (1 imagem + solid dots)"
+        },
+        {
+          "value": "grid_1_column",
+          "label": "Grid 1 coluna"
+        },
+        {
+          "value": "grid_2_column",
+          "label": "Grid 2 colunas"
+        },
+        {
+          "value": "stack",
+          "label": "Empilhado (vertical)"
+        }
+      ],
+      "default": "carousel",
+      "label": "Mobile media layout",
+      "info": "Controla a visualização das imagens no mobile de forma independente do Desktop layout. Aplica-se quando o Desktop layout é Grid/Stack (nesses casos o mobile não usa o carrossel de miniaturas). O modo Carrossel exibe uma imagem por vez com solid dots."
+    },
+    {
       "type": "header",
       "content": "t:sections.all.section_padding.label"
     },

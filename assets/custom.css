@@ -1259,3 +1259,39 @@ input.option-disabled + .miniatura-swatch {
 sticky-add-cart {
   padding: 0 !important;
 }
+
+/* ============================================================
+   Mobile media layout (independente do Desktop layout)
+   Controlado por <media-gallery data-mobile-media="..."> e aplicado só ao
+   DOM grid/stack (quando o Desktop layout é Grid/Stack). O desktop não muda.
+   ============================================================ */
+.media-grid-wrapper {
+  position: relative;
+}
+@media (max-width: 767.98px) {
+  /* Carrossel: uma imagem por vez, com snap (os solid dots são gerados pelo
+     media-mobile-dots.js e estilizados pelo bloco .product-media-pagination--solid) */
+  .product-detail__media media-gallery[data-mobile-media="carousel"] .grid_scroll {
+    --col-number: 1 !important; /* vence o --col-number inline (1.2) */
+    scroll-snap-type: x mandatory;
+  }
+  .product-detail__media media-gallery[data-mobile-media="carousel"] .grid_scroll > * {
+    scroll-snap-align: center;
+  }
+  /* Grid 1 coluna (scroll horizontal, 1 por vez, sem dots) */
+  .product-detail__media media-gallery[data-mobile-media="grid_1_column"] .grid_scroll {
+    --col-number: 1 !important;
+  }
+  /* Grid 2 colunas */
+  .product-detail__media media-gallery[data-mobile-media="grid_2_column"] .grid_scroll {
+    --col-number: 2 !important;
+  }
+  /* Empilhado: imagens uma embaixo da outra (rolagem vertical da página) */
+  .product-detail__media media-gallery[data-mobile-media="stack"] .grid_scroll {
+    grid-auto-flow: row !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    grid-auto-columns: auto !important;
+    overflow-x: visible;
+    overflow-y: visible;
+  }
+}

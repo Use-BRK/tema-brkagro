@@ -139,7 +139,7 @@
       "edit": "Editar este item",
       "subtotal": "Subtotal",
       "viewcart": "Ver carrinho",
-      "checkout": "Finalizar Compra",
+      "checkout": "FINALIZAR COMPRA",
       "save": "Salvar",
       "cancel": "Cancelar",
       "heading_payment": "Suporte de pagamento",
@@ -181,7 +181,7 @@
       }
     },
     "page_cart": {
-      "checkout": "Finalizar Compra"
+      "checkout": "FINALIZAR COMPRA"
     },
     "collections": {
       "label": "Coleção",

@@ -11,9 +11,11 @@
   assign zoom_option = 'inner-1'
   assign mobile_options = 'hidden_thumbnail'
   assign mobile_pagination_style = 'original'
+  assign mobile_media_layout = 'carousel'
   if section_st != null
     assign mobile_options = section_st.mobile_options
     assign mobile_pagination_style = section_st.mobile_pagination_style | default: 'original'
+    assign mobile_media_layout = section_st.mobile_media_layout | default: 'carousel'
   endif
   assign image_zoom = 'no_zoom'
   if section_st != null
@@ -60,6 +62,7 @@
 <media-gallery
   class="block{% if enable_sticky_content_on_desktop %} sticky top-30{% endif %}"
   data-layout="{{ layout }}"
+  data-mobile-media="{{ mobile_media_layout }}"
 >
   {% if type != 'single' and type != 'quickview' %}
     <zoom-action
@@ -71,6 +74,15 @@
     >
   {% endif %}
   {% comment %} Case product has more than one media {% endcomment %}
+  {%- comment -%} Solid dots do mobile para os layouts grid/stack (sem Swiper) {%- endcomment -%}
+  {%- capture mobile_dots -%}
+    {%- if section_st != null and mobile_media_layout == 'carousel' and images.size > 1 -%}
+      <script src="{{ 'media-mobile-dots.js' | asset_url }}" defer></script>
+      <media-mobile-dots data-target="GalleryViewer-{{ section.id }}" class="product-media-mobile-dots hidden-md">
+        <div class="swiper-pagination product-media-pagination--solid"></div>
+      </media-mobile-dots>
+    {%- endif -%}
+  {%- endcapture -%}
   {% case layout %}
     {% when 'thumbnail' %}
       {% comment %} Case carousel layout {% endcomment %}
@@ -155,37 +167,43 @@
       </slide-with-thumbs>
     {% when 'grid' %}
       {% comment %} Case grid layout {% endcomment %}
-      <div
-        id="GalleryViewer-{{ section.id }}"
-        class="grid grid-cols gap grid_scroll"
-        style="{%- if desktop_layout == 'grid_1_column' -%}--col-number: 1.2;--col-desktop: 1;--col-tablet: 1;--col-gap: 10px;{%- else -%}--col-number: 1.2;--col-tablet: 2;--col-desktop: 2;--col-gap: 10px;{%- endif -%}"
-      >
-        {% render 'product-media-layout',
-          images: images,
-          section_st: section_st,
-          theme_st: theme_st,
-          section: section,
-          zoom_type: image_zoom,
-          type: type,
-          layout: layout
-        %}
+      <div class="media-grid-wrapper relative">
+        <div
+          id="GalleryViewer-{{ section.id }}"
+          class="grid grid-cols gap grid_scroll"
+          style="{%- if desktop_layout == 'grid_1_column' -%}--col-number: 1.2;--col-desktop: 1;--col-tablet: 1;--col-gap: 10px;{%- else -%}--col-number: 1.2;--col-tablet: 2;--col-desktop: 2;--col-gap: 10px;{%- endif -%}"
+        >
+          {% render 'product-media-layout',
+            images: images,
+            section_st: section_st,
+            theme_st: theme_st,
+            section: section,
+            zoom_type: image_zoom,
+            type: type,
+            layout: layout
+          %}
+        </div>
+        {{ mobile_dots }}
       </div>
     {% else %}
       {% comment %} Case stack layout {% endcomment %}
-      <div
-        class="stacked gap-10 grid grid-cols grid_scroll"
-        id="GalleryViewer-{{ section.id }}"
-        style="--col-number: 1.2;"
-      >
-        {% render 'product-media-layout',
-          images: images,
-          section_st: section_st,
-          theme_st: theme_st,
-          section: section,
-          zoom_type: image_zoom,
-          type: type,
-          layout: layout
-        %}
+      <div class="media-grid-wrapper relative">
+        <div
+          class="stacked gap-10 grid grid-cols grid_scroll"
+          id="GalleryViewer-{{ section.id }}"
+          style="--col-number: 1.2;"
+        >
+          {% render 'product-media-layout',
+            images: images,
+            section_st: section_st,
+            theme_st: theme_st,
+            section: section,
+            zoom_type: image_zoom,
+            type: type,
+            layout: layout
+          %}
+        </div>
+        {{ mobile_dots }}
       </div>
   {% endcase %}
   {% comment %} Case product has only one image {% endcomment %}
