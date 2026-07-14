@@ -36,6 +36,7 @@
         },
         "navbar_collection_7zmyr7": {
           "type": "navbar-collection",
+          "disabled": true,
           "settings": {
             "collection": "sao-bento-2026",
             "title": "Com Brinde!",
