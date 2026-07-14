@@ -205,6 +205,7 @@
         "scrolling_text_yGymte",
         "scrolling_text_L3U9ea"
       ],
+      "disabled": true,
       "custom_css": [
         "* {letter-spacing: 2.9px;}"
       ],

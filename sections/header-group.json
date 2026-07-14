@@ -11,45 +11,6 @@
   "name": "t:sections.header.name",
   "type": "header",
   "sections": {
-    "top_bar_CbXNYj": {
-      "type": "top-bar",
-      "blocks": {
-        "text_slider_LFaC38": {
-          "type": "text_slider",
-          "settings": {
-            "text1": "<strong>FRETE FIXO R$9,90</strong>",
-            "coupon1": "",
-            "coupon1_enabled": false,
-            "text2": "<strong>ATÉ 3X SEM JUROS</strong>",
-            "coupon2": "",
-            "coupon2_enabled": false,
-            "text3": "<strong>1ª TROCA GRÁTIS</strong>",
-            "coupon3": "",
-            "coupon3_enabled": false,
-            "change_every": 3,
-            "hidden_on_mobile": false
-          }
-        }
-      },
-      "block_order": [
-        "text_slider_LFaC38"
-      ],
-      "custom_css": [
-        "* {letter-spacing: 2px; font-weight: 500;}",
-        "strong {font-weight: 800;}"
-      ],
-      "settings": {
-        "section_width": "stretch_width",
-        "color_scheme": "scheme-a07f02f4-f1f2-4ea3-9eeb-577115ec9f47",
-        "show_mobile": true,
-        "show_separator_line": false,
-        "uppercase": false,
-        "font_size": 12,
-        "font_weight": "body_weight",
-        "padding_top": 3,
-        "padding_bottom": 3
-      }
-    },
     "header": {
       "type": "header",
       "blocks": {
@@ -130,7 +91,6 @@
         "menu_promotion_iiUfrK",
         "menu_promotion_CyPFrj"
       ],
-      "disabled": true,
       "custom_css": [
         ".h-count {color: #efefe8; font-size: 1.5rem !important; font-weight: 600;}"
       ],
@@ -203,6 +163,7 @@
       "block_order": [
         "menu_promotion_twnTVX"
       ],
+      "disabled": true,
       "name": "t:sections.header.header_menu_bottom",
       "settings": {
         "section_width": "stretch_width",
@@ -222,21 +183,21 @@
         "uppercase_first": false,
         "hot": "Hot",
         "label_color_hot": "#fff",
-        "label_background_hot": "#D0473E",
+        "label_background_hot": "#d0473e",
         "new": "New",
         "label_color_new": "#fff",
         "label_background_new": "#516cf4",
         "sale": "Sale",
         "label_color_sale": "#fff",
-        "label_background_sale": "#D0473E",
+        "label_background_sale": "#d0473e",
         "popular": "Popular",
         "label_color_popular": "#fff",
-        "label_background_popular": "#14854E",
+        "label_background_popular": "#14854e",
         "redirect_to_link": true,
         "menu_tab": "unset",
         "collection_list": [],
         "menu_mobile_color": "#fff",
-        "menu_mobile_background": "#D0473E",
+        "menu_mobile_background": "#d0473e",
         "show_search": true,
         "show_account_icon": true,
         "show_wishlist_icon": true,
@@ -246,6 +207,45 @@
         "show_recently_viewed": false,
         "padding_top": 8,
         "padding_bottom": 8
+      }
+    },
+    "top_bar_CbXNYj": {
+      "type": "top-bar",
+      "blocks": {
+        "text_slider_LFaC38": {
+          "type": "text_slider",
+          "settings": {
+            "text1": "<strong>FRETE FIXO R$9,90</strong>",
+            "coupon1": "",
+            "coupon1_enabled": false,
+            "text2": "<strong>ATÉ 3X SEM JUROS</strong>",
+            "coupon2": "",
+            "coupon2_enabled": false,
+            "text3": "<strong>1ª TROCA GRÁTIS</strong>",
+            "coupon3": "",
+            "coupon3_enabled": false,
+            "change_every": 3,
+            "hidden_on_mobile": false
+          }
+        }
+      },
+      "block_order": [
+        "text_slider_LFaC38"
+      ],
+      "custom_css": [
+        "* {letter-spacing: 2px; font-weight: 500;}",
+        "strong {font-weight: 800;}"
+      ],
+      "settings": {
+        "section_width": "stretch_width",
+        "color_scheme": "scheme-a07f02f4-f1f2-4ea3-9eeb-577115ec9f47",
+        "show_mobile": true,
+        "show_separator_line": false,
+        "uppercase": false,
+        "font_size": 12,
+        "font_weight": "body_weight",
+        "padding_top": 3,
+        "padding_bottom": 3
       }
     },
     "mobile_menu_drawer_qVAPQC": {
