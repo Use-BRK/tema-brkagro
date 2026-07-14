@@ -85,23 +85,6 @@
             "label_size": 12
           }
         },
-        "product_benefits_hWMhBF": {
-          "type": "_product-benefits",
-          "name": "Benefícios do produto",
-          "settings": {
-            "heading": "",
-            "collapsible": false,
-            "open_default": true,
-            "show_border": true,
-            "border_radius": 1,
-            "bold_text": false,
-            "layout": "icon_left",
-            "display": "list",
-            "columns_mobile": 2,
-            "icon_size": 40
-          },
-          "blocks": {}
-        },
         "variant_picker_tcCihG": {
           "type": "_product-variant-picker",
           "settings": {
@@ -136,6 +119,23 @@
               "camisas-uv50-femininas",
               "camisas-uv50-masculinas"
             ]
+          },
+          "blocks": {}
+        },
+        "product_benefits_hWMhBF": {
+          "type": "_product-benefits",
+          "name": "Benefícios do produto",
+          "settings": {
+            "heading": "",
+            "collapsible": false,
+            "open_default": true,
+            "show_border": true,
+            "border_radius": 1,
+            "bold_text": false,
+            "layout": "icon_left",
+            "display": "list",
+            "columns_mobile": 2,
+            "icon_size": 40
           },
           "blocks": {}
         },
@@ -208,6 +208,17 @@
             "open": true
           },
           "blocks": {}
+        },
+        "product_collapsible_row_PancQ9": {
+          "type": "_product-collapsible-row",
+          "disabled": true,
+          "settings": {
+            "heading": "ficha técnica",
+            "content": "<p>SKU: </p>",
+            "use_product_description": true,
+            "open": true
+          },
+          "blocks": {}
         }
       },
       "block_order": [
@@ -218,15 +229,16 @@
         "review_and_sold_AAbJC9",
         "price_VJ4N8m",
         "brk_apps_agro_combined_listing_6xbDqi",
-        "product_benefits_hWMhBF",
         "variant_picker_tcCihG",
         "buy_buttons_LcQGtR",
         "product_custom_name_button_ya3Yfz",
+        "product_benefits_hWMhBF",
         "delivery_return_iJHeMD",
         "frete_no_produto_shipping_calc_mfbXjr",
         "product_grouped_6epkNf",
         "more_colors_3zmxGq",
-        "collapsible_row_m3g6f8"
+        "collapsible_row_m3g6f8",
+        "product_collapsible_row_PancQ9"
       ],
       "custom_css": [
         ".product-detail__title {display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; font-size: 2.29rem;}",
@@ -348,7 +360,7 @@
         "items_to_show": 4,
         "items_per_row": 4,
         "column_gap": 30,
-        "items_per_row_mobile": 2,
+        "items_per_row_mobile": 1.5,
         "padding_top": 25,
         "padding_bottom": 25,
         "reset_spacing": true
@@ -382,7 +394,7 @@
         "autoplay": false,
         "autorotate_speed": 5,
         "reveal": false,
-        "items_per_row_mobile": 2,
+        "items_per_row_mobile": 1.5,
         "padding_top": 25,
         "padding_bottom": 25,
         "reset_spacing": false
@@ -485,6 +497,7 @@
       "block_order": [
         "judge_me_reviews_review_widget_DwpRgk"
       ],
+      "disabled": true,
       "settings": {}
     }
   },
