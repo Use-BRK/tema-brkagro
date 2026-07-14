@@ -46,6 +46,10 @@
           },
           "blocks": {}
         },
+        "judge_me_reviews_preview_badge_nzUTHB": {
+          "type": "shopify://apps/judge-me-reviews/blocks/preview_badge/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {}
+        },
         "review_and_sold_AAbJC9": {
           "type": "_product-review-sold",
           "disabled": true,
@@ -209,6 +213,7 @@
         "badges_RwfTMp",
         "title_G6tU8U",
         "product_meta_kiKPhW",
+        "judge_me_reviews_preview_badge_nzUTHB",
         "review_and_sold_AAbJC9",
         "price_VJ4N8m",
         "brk_apps_agro_combined_listing_6xbDqi",
