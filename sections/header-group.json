@@ -11,6 +11,45 @@
   "name": "t:sections.header.name",
   "type": "header",
   "sections": {
+    "top_bar_CbXNYj": {
+      "type": "top-bar",
+      "blocks": {
+        "text_slider_LFaC38": {
+          "type": "text_slider",
+          "settings": {
+            "text1": "<strong>FRETE FIXO R$9,90</strong>",
+            "coupon1": "",
+            "coupon1_enabled": false,
+            "text2": "<strong>ATÉ 3X SEM JUROS</strong>",
+            "coupon2": "",
+            "coupon2_enabled": false,
+            "text3": "<strong>1ª TROCA GRÁTIS</strong>",
+            "coupon3": "",
+            "coupon3_enabled": false,
+            "change_every": 3,
+            "hidden_on_mobile": false
+          }
+        }
+      },
+      "block_order": [
+        "text_slider_LFaC38"
+      ],
+      "custom_css": [
+        "* {letter-spacing: 2px; font-weight: 500;}",
+        "strong {font-weight: 800;}"
+      ],
+      "settings": {
+        "section_width": "stretch_width",
+        "color_scheme": "scheme-a07f02f4-f1f2-4ea3-9eeb-577115ec9f47",
+        "show_mobile": true,
+        "show_separator_line": false,
+        "uppercase": false,
+        "font_size": 12,
+        "font_weight": "body_weight",
+        "padding_top": 3,
+        "padding_bottom": 3
+      }
+    },
     "header": {
       "type": "header",
       "blocks": {
@@ -209,45 +248,6 @@
         "padding_bottom": 8
       }
     },
-    "top_bar_CbXNYj": {
-      "type": "top-bar",
-      "blocks": {
-        "text_slider_LFaC38": {
-          "type": "text_slider",
-          "settings": {
-            "text1": "<strong>FRETE FIXO R$9,90</strong>",
-            "coupon1": "",
-            "coupon1_enabled": false,
-            "text2": "<strong>ATÉ 3X SEM JUROS</strong>",
-            "coupon2": "",
-            "coupon2_enabled": false,
-            "text3": "<strong>1ª TROCA GRÁTIS</strong>",
-            "coupon3": "",
-            "coupon3_enabled": false,
-            "change_every": 3,
-            "hidden_on_mobile": false
-          }
-        }
-      },
-      "block_order": [
-        "text_slider_LFaC38"
-      ],
-      "custom_css": [
-        "* {letter-spacing: 2px; font-weight: 500;}",
-        "strong {font-weight: 800;}"
-      ],
-      "settings": {
-        "section_width": "stretch_width",
-        "color_scheme": "scheme-a07f02f4-f1f2-4ea3-9eeb-577115ec9f47",
-        "show_mobile": true,
-        "show_separator_line": false,
-        "uppercase": false,
-        "font_size": 12,
-        "font_weight": "body_weight",
-        "padding_top": 3,
-        "padding_bottom": 3
-      }
-    },
     "mobile_menu_drawer_qVAPQC": {
       "type": "mobile-menu-drawer",
       "blocks": {
@@ -277,11 +277,11 @@
         },
         "button_X8Eebj": {
           "type": "button",
-          "name": "Coleções do Agro",
+          "name": "Minha Conta",
           "settings": {
             "button_text": "Minha Conta",
             "button_link": "https://minha-conta.brkagro.com.br/",
-            "button_style": "outline",
+            "button_style": "primary",
             "padding_bottom": 0,
             "pin_to_bottom": true
           }

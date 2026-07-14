@@ -406,7 +406,7 @@
         "button_label": "Ver mais",
         "use_outline_button_style": true,
         "carousel_on_mobile": true,
-        "items_per_row_mobile": 2,
+        "items_per_row_mobile": 1.5,
         "padding_top": 50,
         "padding_bottom": 50,
         "reset_spacing": true
@@ -477,7 +477,7 @@
         "button_label": "Ver mais",
         "use_outline_button_style": true,
         "carousel_on_mobile": true,
-        "items_per_row_mobile": 2,
+        "items_per_row_mobile": 1.5,
         "padding_top": 50,
         "padding_bottom": 50,
         "reset_spacing": true
