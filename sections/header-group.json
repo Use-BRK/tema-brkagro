@@ -208,9 +208,9 @@
           "type": "button",
           "name": "Coleções do Agro",
           "settings": {
-            "button_text": "Coleções do Agro",
-            "button_link": "shopify://collections",
-            "button_style": "primary",
+            "button_text": "Minha Conta",
+            "button_link": "https://minha-conta.brkagro.com.br/",
+            "button_style": "outline",
             "padding_bottom": 0,
             "pin_to_bottom": true
           }
@@ -229,6 +229,7 @@
         },
         "login_WcQMag": {
           "type": "login",
+          "disabled": true,
           "settings": {
             "text_size": 100,
             "padding_bottom": 10,
