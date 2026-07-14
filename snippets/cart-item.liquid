@@ -141,7 +141,8 @@
       <span class="cart-item__error-text cart-item__error-text-{{ item.id }}"></span>
       {%- render 'icon-error' -%}
     </div>
-    {% if theme_st.enable_catalog_mode == false and show_quantity %}
+    {% comment %} Quantidade/remover no carrinho independem de show_quantity_input (esse setting controla só a PDP) {% endcomment %}
+    {% if theme_st.enable_catalog_mode == false %}
     {% if is_gift_progress_item %}
       <div class="minicart__actions-row">
         <span class="cart-item__gift-qty">Qtd. {{ item.quantity }}</span>
