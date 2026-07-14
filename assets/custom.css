@@ -5,6 +5,11 @@
 	color: #085b47 !important;
 }
 
+.sale_badge .product__badges .product__badges-sale {
+  font-size: 1rem !important;
+  padding: 0.5rem 0.5rem !important;
+}
+
 .product-item__price,
 .card-product-price {
 font-size: 23px;
@@ -41,6 +46,11 @@ border-radius: 30%;
 padding: 15px !important;
 }
 
+.product__submit-form-cart .button_buy-now button span {
+  letter-spacing: 1.2px;
+  font-size: 1.75rem;
+}
+
 .product-detail__title,
 .product-detail__meta{
   margin-bottom: 0;
@@ -71,11 +81,12 @@ padding: 15px !important;
 
 .installment-payment {
   width: 100%;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
 }
 
 .installment-payment p {
   margin: 0;
+  font-size: 1.1rem;
 }
 
 /* Delivery availability alignment */
@@ -1103,4 +1114,148 @@ input.option-disabled + .miniatura-swatch {
   .miniatura-swatch__label {
     font-size: 11px;
   }
+}
+
+/* ============================================================
+   AJUSTES 14-07
+   ============================================================ */
+
+/* ---- Combined listing (grupo de variantes / brk-cl) ----
+   Transforma o grid "stacked" em um carrossel horizontal: os swatches
+   ficam numa única linha e deslizam ao chegar na borda (swipe no mobile,
+   barra de rolagem no desktop). Especificidade .brk-cl .brk-cl__* vence
+   a do CSS do app (classe única) independente da ordem de carregamento. */
+.brk-cl .brk-cl__list {
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x proximity;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  padding-bottom: 6px;
+}
+.brk-cl .brk-cl__item {
+  flex: 0 0 auto;
+  scroll-snap-align: start;
+}
+.brk-cl .brk-cl__list::-webkit-scrollbar {
+  height: 4px;
+}
+.brk-cl .brk-cl__list::-webkit-scrollbar-track {
+  background: transparent;
+}
+.brk-cl .brk-cl__list::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+
+/* ---- Pills de variação "Tamanho" em uma única linha ----
+   Quando o option name contém "Tamanho" (fieldset .product-form__input_size),
+   tenta encaixar todas as pills na mesma linha reduzindo o padding e
+   distribuindo o espaço. Se não couber, ainda quebra (flex-wrap: wrap). */
+.product-form__input_size {
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+.product-form__input_size .product__item-option {
+  flex: 0 1 auto; /* desktop: largura natural, sem esticar/deformar */
+  min-width: 3.4rem;
+  padding-inline: 1.2rem;
+  justify-content: center;
+  text-align: center;
+}
+/* No mobile as pills preenchem a linha para caberem todas de uma vez */
+@media (max-width: 749.98px) {
+  .product-form__input_size .product__item-option {
+    flex: 1 1 auto;
+    padding-inline: 0.6rem;
+  }
+}
+
+/* ---- Product cards (vitrines): badges menores no canto sup. esquerdo ---- */
+.product-item .product__badges {
+  top: 6px;
+  left: 6px;
+}
+.product-item .product__badges-inner {
+  padding-block: 2px !important;
+  padding-inline: 6px !important;
+  font-size: 9.5px !important;
+  border-radius: 3px;
+  gap: 2px;
+  line-height: 1.25;
+}
+.product-item .product__badges-inner svg {
+  width: 11px;
+  height: 11px;
+}
+[dir="rtl"] .product-item .product__badges {
+  left: auto;
+  right: 6px;
+}
+
+/* ---- Product cards (vitrines): preços ----
+   1ª linha: compare-at-price + price lado a lado (COMPARE | PRICE)
+   2ª linha: parcelamento (quando houver), abaixo. */
+.product-item .card-product-price {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 2px 6px;
+}
+.product-item .card-product-price .price-regular {
+  white-space: nowrap;
+  line-height: 1.15;
+  margin: 0;
+}
+.product-item .card-product-price .price {
+  font-size: 1.8rem;
+  line-height: 1.15;
+}
+.product-item .card-product-price .compare-price {
+  font-size: 1.2rem;
+}
+/* parcelamento em linha própria, abaixo do compare | price */
+.product-item .installment-payment {
+  flex: 0 0 100%;
+  width: 100%;
+  margin: 2px 0 0;
+}
+.product-item .installment-payment,
+.product-item .installment-payment p {
+  font-size: 1.1rem;
+  line-height: 1.15;
+}
+.product-item .card-product-price .unit-price {
+  flex: 0 0 100%;
+}
+
+/* ---- PDP mobile: sale badge no canto superior esquerdo da imagem ----
+   No mobile a sale badge (.sale_badge--inside-price) sai da linha de preço
+   e vai para o topo-esquerdo da imagem do produto, como nas vitrines.
+   Neutralizamos os ancestrais posicionados da coluna de info para que a
+   badge ancore em .main-product (cujo 1º filho empilhado é a imagem). */
+@media (max-width: 767.98px) {
+  .main-product {
+    position: relative;
+  }
+  .main-product .product-detail__information,
+  .main-product .product-detail__information .sticky,
+  .product-detail__information .product-detail__price,
+  .product-detail__information .card-product-price {
+    position: static;
+  }
+  .product-detail__information .card-product-price .sale_badge--inside-price {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    margin: 0 !important;
+    z-index: 5;
+  }
+}
+
+/* ---- Sticky add to cart: sem padding + container full width ---- */
+sticky-add-cart {
+  padding: 0 !important;
 }

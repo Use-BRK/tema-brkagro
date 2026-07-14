@@ -278,6 +278,59 @@ html.mobile-menu-drawer-open {
   height: auto;
 }
 
+/* ============================================================
+   Hierarquia de níveis (1 › 2 › 3) — AJUSTES 14-07
+   ============================================================ */
+
+/* Separador entre itens (tracejado como no minicart), porém encurtado —
+   não ocupa a largura toda do item; fica recuado nas laterais. */
+.mobile-menu-drawer__link-row {
+  position: relative;
+}
+.mobile-menu-drawer__link-row::after {
+  content: "";
+  position: absolute;
+  left: 20px;
+  right: 20px;
+  bottom: 0;
+  border-bottom: 1px dashed var(--color-border, #e8e0d0);
+}
+.mobile-menu-drawer__list > .mobile-menu-drawer__item:last-child > .mobile-menu-drawer__link-row::after {
+  display: none;
+}
+
+/* Nível 1 em destaque para separar visualmente dos níveis abaixo */
+.mobile-menu-drawer__link--level-1 {
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+/* Fundo cinza sutil a partir do nível 2 */
+.mobile-menu-drawer__submenu {
+  background: #fafafa;
+}
+/* Nível 3 um tom levemente mais escuro, reforçando a profundidade */
+.mobile-menu-drawer__list--level-3 {
+  background: #f3f3f3;
+}
+
+/* Barrinha vertical de aninhamento — recuada para ficar perto dos títulos
+   dos subníveis (não colada na borda esquerda do drawer). */
+.mobile-menu-drawer__list--level-2 {
+  margin-left: 18px;
+  border-left: 2px solid var(--color-primary, #085b47);
+}
+.mobile-menu-drawer__list--level-3 {
+  margin-left: 12px;
+  border-left: 2px solid rgba(8, 91, 71, 0.35);
+}
+.mobile-menu-drawer__link--level-2 {
+  padding-left: 12px;
+}
+.mobile-menu-drawer__link--level-3 {
+  padding-left: 14px;
+}
+
 /* Hide on desktop */
 @media (min-width: 1025px) {
   .mobile-menu-drawer {

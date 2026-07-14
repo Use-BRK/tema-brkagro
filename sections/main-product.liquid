@@ -224,7 +224,7 @@
   {% if enable_sticky_add_cart_on_desktop == true or enable_sticky_add_cart_on_mobile == true %}
     {%- assign product_form_id = 'sticky-addcart-form-' | append: section.id -%}
     <sticky-add-cart class="fixed z-10 inset-x-0 bottom-0 py-15 shadow color-default transition-popup invisible {% if enable_sticky_add_cart_on_desktop == true %}sticky_desktop--show{% else %} hidden-md{% endif %}{% if enable_sticky_add_cart_on_mobile == true %} sticky_mobile--show{% else %} hidden{% endif %}">
-      <div class="{{ section_width }}">
+      <div class="full_width">
         <div class="flex gap-15 justify-between align-center">
           {% render 'product-item',
             card_product: product,
