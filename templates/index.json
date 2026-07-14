@@ -12,14 +12,14 @@
     "slideshow_8KKtNU": {
       "type": "slideshow",
       "blocks": {
-        "slider_item_YipJd4": {
+        "slider_item_QaQnmE": {
           "type": "slider_item",
-          "name": "Rebrand",
+          "name": "Femininas 2026",
           "settings": {
-            "image": "shopify://shop_images/FULLBANNER_DESKTOP_3b9d6a35-c139-4fdb-80da-444ca6fbb6de.webp",
-            "image_mobile": "shopify://shop_images/MOBILE_03c09017-1dde-445b-97df-8f112a94a4b9.webp",
+            "image": "shopify://shop_images/DESKTOP_FEMININAS2026.webp",
+            "image_mobile": "shopify://shop_images/MOBILE_FEMININAS2026.webp",
             "overlay_opacity": 0,
-            "link_banner": "shopify://collections/botinas",
+            "link_banner": "shopify://collections/colecao-femininas-2026",
             "slider_effect": "fade-in-right",
             "subheading": "",
             "heading": "",
@@ -42,14 +42,15 @@
             "content_alignment_mobile": "center"
           }
         },
-        "slider_item_QaQnmE": {
+        "slider_item_YipJd4": {
           "type": "slider_item",
-          "name": "Femininas 2026",
+          "name": "Rebrand",
+          "disabled": true,
           "settings": {
-            "image": "shopify://shop_images/DESKTOP_FEMININAS2026.webp",
-            "image_mobile": "shopify://shop_images/MOBILE_FEMININAS2026.webp",
+            "image": "shopify://shop_images/FULLBANNER_DESKTOP_3b9d6a35-c139-4fdb-80da-444ca6fbb6de.webp",
+            "image_mobile": "shopify://shop_images/MOBILE_03c09017-1dde-445b-97df-8f112a94a4b9.webp",
             "overlay_opacity": 0,
-            "link_banner": "shopify://collections/colecao-femininas-2026",
+            "link_banner": "shopify://collections/botinas",
             "slider_effect": "fade-in-right",
             "subheading": "",
             "heading": "",
@@ -135,8 +136,8 @@
         }
       },
       "block_order": [
-        "slider_item_YipJd4",
         "slider_item_QaQnmE",
+        "slider_item_YipJd4",
         "slider_item_wzBeHe",
         "slider_item_n3PrkQ"
       ],
