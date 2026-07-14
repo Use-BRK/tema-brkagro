@@ -238,7 +238,7 @@
         "enable_sticky_content_on_desktop": true,
         "enable_skeleton_loading": false,
         "desktop_media_width": 50,
-        "desktop_layout": "grid_2_column",
+        "desktop_layout": "thumbnail_left",
         "image_zoom": "open_lightbox",
         "enable_video_looping": false,
         "enable_video_autoplay": false,
