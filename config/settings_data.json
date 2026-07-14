@@ -66,7 +66,7 @@
     "show_secondary_image": true,
     "product_image_ratio": "adapt",
     "product_hover_effect": "hover_zoom",
-    "show_action_on_mobile": true,
+    "show_action_on_mobile": false,
     "limit_color": "4",
     "swatch_item_type": "variant_images",
     "size_trigger": "Size, Taglia, Tamanho, Tamanho Baby Look, Tamanho Infantil",
