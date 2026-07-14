@@ -17,13 +17,13 @@
         "text_slider_LFaC38": {
           "type": "text_slider",
           "settings": {
-            "text1": "CUPOM 1ª COMPRA: <strong>BEMVINDO</strong>",
-            "coupon1": "BEMVINDO",
-            "coupon1_enabled": true,
-            "text2": "",
+            "text1": "<strong>FRETE FIXO R$9,90</strong>",
+            "coupon1": "",
+            "coupon1_enabled": false,
+            "text2": "<strong>ATÉ 3X SEM JUROS</strong>",
             "coupon2": "",
             "coupon2_enabled": false,
-            "text3": "",
+            "text3": "<strong>1ª TROCA GRÁTIS</strong>",
             "coupon3": "",
             "coupon3_enabled": false,
             "change_every": 3,
@@ -40,7 +40,7 @@
       ],
       "settings": {
         "section_width": "stretch_width",
-        "color_scheme": "scheme-4faf0e4d-27f4-4d02-bc51-617383bab1a9",
+        "color_scheme": "scheme-a07f02f4-f1f2-4ea3-9eeb-577115ec9f47",
         "show_mobile": true,
         "show_separator_line": false,
         "uppercase": false,
@@ -56,7 +56,7 @@
         "menu_product_YFcake": {
           "type": "menu_product",
           "settings": {
-            "text": "Camisas UV50 Lisas Básicas",
+            "text": "",
             "open-link-newtab": false,
             "item_label": "popular",
             "product_menu_column": 2,
@@ -130,12 +130,13 @@
         "menu_promotion_iiUfrK",
         "menu_promotion_CyPFrj"
       ],
+      "disabled": true,
       "custom_css": [
-        ".h-count {color: #0f6049; font-size: 1.5rem !important; font-weight: 600;}"
+        ".h-count {color: #efefe8; font-size: 1.5rem !important; font-weight: 600;}"
       ],
       "settings": {
         "section_width": "stretch_width",
-        "color_scheme": "scheme-a07f02f4-f1f2-4ea3-9eeb-577115ec9f47",
+        "color_scheme": "scheme-6a9d954b-0454-4f9a-9a46-168c51be1b2d",
         "logo_position": "left",
         "separator_line": "unset",
         "enable_login_popup": true,
@@ -173,8 +174,78 @@
         "show_currency": false,
         "show_language": false,
         "show_recently_viewed": false,
-        "padding_top": 20,
-        "padding_bottom": 20
+        "padding_top": 8,
+        "padding_bottom": 8
+      }
+    },
+    "header_layout2_iKXCQ3": {
+      "type": "header-layout2",
+      "blocks": {
+        "menu_promotion_twnTVX": {
+          "type": "menu_promotion",
+          "settings": {
+            "text": "",
+            "open-link-newtab": true,
+            "item_label": "unset",
+            "promotion_menu_column": 4,
+            "mega_custom_width": 1030,
+            "center_submenu": true,
+            "full_width": true,
+            "promotion_position": "right",
+            "promotion_image_width": 27,
+            "promotion_link_1": "",
+            "promotion_link_newtab_1": true,
+            "promotion_link_2": "",
+            "promotion_link_newtab_2": true
+          }
+        }
+      },
+      "block_order": [
+        "menu_promotion_twnTVX"
+      ],
+      "name": "t:sections.header.header_menu_bottom",
+      "settings": {
+        "section_width": "stretch_width",
+        "color_scheme": "scheme-6a9d954b-0454-4f9a-9a46-168c51be1b2d",
+        "show_email": true,
+        "show_phone": true,
+        "enable_login_popup": true,
+        "separator_line": "unset",
+        "sticky_header_type": "none",
+        "sticky_header_mobile": true,
+        "transparent_header": false,
+        "transparent_mobile": false,
+        "transparent_text_icon_color": "#ffffff",
+        "transparent_bg_color": "#111111",
+        "mega_menu": "menu",
+        "dropdowns_animation": "down-to-up",
+        "uppercase_first": false,
+        "hot": "Hot",
+        "label_color_hot": "#fff",
+        "label_background_hot": "#D0473E",
+        "new": "New",
+        "label_color_new": "#fff",
+        "label_background_new": "#516cf4",
+        "sale": "Sale",
+        "label_color_sale": "#fff",
+        "label_background_sale": "#D0473E",
+        "popular": "Popular",
+        "label_color_popular": "#fff",
+        "label_background_popular": "#14854E",
+        "redirect_to_link": true,
+        "menu_tab": "unset",
+        "collection_list": [],
+        "menu_mobile_color": "#fff",
+        "menu_mobile_background": "#D0473E",
+        "show_search": true,
+        "show_account_icon": true,
+        "show_wishlist_icon": true,
+        "show_shopping_cart": true,
+        "show_currency": false,
+        "show_language": false,
+        "show_recently_viewed": false,
+        "padding_top": 8,
+        "padding_bottom": 8
       }
     },
     "mobile_menu_drawer_qVAPQC": {
@@ -278,6 +349,7 @@
   "order": [
     "top_bar_CbXNYj",
     "header",
+    "header_layout2_iKXCQ3",
     "mobile_menu_drawer_qVAPQC"
   ]
 }
