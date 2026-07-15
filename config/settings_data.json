@@ -9,6 +9,7 @@
  */
 {
   "current": {
+    "enable_phone_capture": false,
     "purchase_code": "64513e3f-16d1-4159-9b2f-180b0ba29ec9",
     "favicon": "shopify://shop_images/tractor.svg",
     "logo": "shopify://shop_images/LOGO_HORIZONTAL_COLORVERDE.svg",
