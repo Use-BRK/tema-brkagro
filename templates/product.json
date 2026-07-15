@@ -213,6 +213,17 @@
           "type": "_product-collapsible-row",
           "disabled": true,
           "settings": {
+            "heading": "detalhes técnicos",
+            "content": "<p>SKU: </p>",
+            "use_product_description": true,
+            "open": true
+          },
+          "blocks": {}
+        },
+        "product_collapsible_row_zirPk7": {
+          "type": "_product-collapsible-row",
+          "disabled": true,
+          "settings": {
             "heading": "ficha técnica",
             "content": "<p>SKU: </p>",
             "use_product_description": true,
@@ -238,11 +249,11 @@
         "product_grouped_6epkNf",
         "more_colors_3zmxGq",
         "collapsible_row_m3g6f8",
-        "product_collapsible_row_PancQ9"
+        "product_collapsible_row_PancQ9",
+        "product_collapsible_row_zirPk7"
       ],
       "custom_css": [
-        ".product-detail__title {display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; font-size: 2.29rem;}",
-        "variant-king-combined-listing + variant-king-combined-listing {display: none;}"
+        ".product-detail__title {display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; font-size: 2.29rem;}"
       ],
       "name": "Informações do Produto",
       "settings": {
@@ -251,7 +262,7 @@
         "enable_sticky_content_on_desktop": true,
         "enable_skeleton_loading": false,
         "desktop_media_width": 50,
-        "desktop_layout": "thumbnail_left",
+        "desktop_layout": "grid_2_column",
         "image_zoom": "open_lightbox",
         "enable_video_looping": false,
         "enable_video_autoplay": false,
@@ -261,6 +272,7 @@
         "enable_choose_options_on_mobile": true,
         "mobile_options": "hidden_thumbnail",
         "mobile_pagination_style": "solid_dots",
+        "mobile_media_layout": "carousel",
         "padding_top": 20,
         "padding_bottom": 0,
         "reset_spacing": true
