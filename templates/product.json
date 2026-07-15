@@ -202,16 +202,25 @@
         "collapsible_row_m3g6f8": {
           "type": "_product-collapsible-row",
           "settings": {
-            "heading": "detalhes do produto",
+            "heading": "beneficios do produto",
             "content": "",
-            "use_product_description": true,
+            "use_product_description": false,
             "open": true
           },
           "blocks": {}
         },
         "product_collapsible_row_PancQ9": {
           "type": "_product-collapsible-row",
-          "disabled": true,
+          "settings": {
+            "heading": "ficha técnica",
+            "content": "<p>SKU: </p>",
+            "use_product_description": true,
+            "open": true
+          },
+          "blocks": {}
+        },
+        "product_collapsible_row_zirPk7": {
+          "type": "_product-collapsible-row",
           "settings": {
             "heading": "ficha técnica",
             "content": "<p>SKU: </p>",
@@ -238,7 +247,8 @@
         "product_grouped_6epkNf",
         "more_colors_3zmxGq",
         "collapsible_row_m3g6f8",
-        "product_collapsible_row_PancQ9"
+        "product_collapsible_row_PancQ9",
+        "product_collapsible_row_zirPk7"
       ],
       "custom_css": [
         ".product-detail__title {display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; font-size: 2.29rem;}"
