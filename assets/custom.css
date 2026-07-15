@@ -1295,3 +1295,12 @@ sticky-add-cart {
     overflow-y: visible;
   }
 }
+
+/* Galeria do produto nos layouts grid/stack/carrossel (.grid_scroll): imagem
+   sem corte de largura. O tema força object-fit:cover em todo container com
+   --aspect-ratio (regra global via :where(), especificidade 0); aqui trocamos
+   para contain só nesse DOM. O layout de miniaturas (swiper) NÃO usa
+   .grid_scroll, então continua como está (cover). Vale desktop e mobile. */
+.product-detail__media media-gallery .grid_scroll :is(img, picture) {
+  object-fit: contain;
+}
