@@ -42,6 +42,36 @@
             "content_alignment_mobile": "center"
           }
         },
+        "slider_item_n3PrkQ": {
+          "type": "slider_item",
+          "name": "Botas/Botinas",
+          "settings": {
+            "image": "shopify://shop_images/BOTAS_BOTINAS_DESKTOP.webp",
+            "image_mobile": "shopify://shop_images/BOTAS_BOTINAS_MOBILE.webp",
+            "overlay_opacity": 0,
+            "link_banner": "shopify://collections/botinas",
+            "slider_effect": "fade-in-right",
+            "subheading": "",
+            "heading": "",
+            "description": "",
+            "first_button_label": "",
+            "first_button_link": "",
+            "first_button_style": false,
+            "second_button_label": "",
+            "second_button_link": "",
+            "second_button_style": false,
+            "content_alignment": "center",
+            "content_position": "top-center",
+            "content_width": "full_width",
+            "content_max_width": 100,
+            "content_padding_block": 40,
+            "content_padding_inline": 0,
+            "show_content_background": false,
+            "content_background": "#ffffff",
+            "content_box_opacity": 100,
+            "content_alignment_mobile": "center"
+          }
+        },
         "slider_item_wzBeHe": {
           "type": "slider_item",
           "name": "São Bento 2026",
@@ -101,75 +131,13 @@
             "content_box_opacity": 100,
             "content_alignment_mobile": "center"
           }
-        },
-        "slider_item_YipJd4": {
-          "type": "slider_item",
-          "name": "Rebrand",
-          "disabled": true,
-          "settings": {
-            "image": "shopify://shop_images/FULLBANNER_DESKTOP_3b9d6a35-c139-4fdb-80da-444ca6fbb6de.webp",
-            "image_mobile": "shopify://shop_images/MOBILE_03c09017-1dde-445b-97df-8f112a94a4b9.webp",
-            "overlay_opacity": 0,
-            "link_banner": "shopify://collections/botinas",
-            "slider_effect": "fade-in-right",
-            "subheading": "",
-            "heading": "",
-            "description": "",
-            "first_button_label": "",
-            "first_button_link": "",
-            "first_button_style": false,
-            "second_button_label": "",
-            "second_button_link": "",
-            "second_button_style": false,
-            "content_alignment": "center",
-            "content_position": "top-center",
-            "content_width": "full_width",
-            "content_max_width": 100,
-            "content_padding_block": 40,
-            "content_padding_inline": 0,
-            "show_content_background": false,
-            "content_background": "#ffffff",
-            "content_box_opacity": 100,
-            "content_alignment_mobile": "center"
-          }
-        },
-        "slider_item_n3PrkQ": {
-          "type": "slider_item",
-          "name": "Botas/Botinas",
-          "settings": {
-            "image": "shopify://shop_images/BOTAS_BOTINAS_DESKTOP.webp",
-            "image_mobile": "shopify://shop_images/BOTAS_BOTINAS_MOBILE.webp",
-            "overlay_opacity": 0,
-            "link_banner": "shopify://collections/botinas",
-            "slider_effect": "fade-in-right",
-            "subheading": "",
-            "heading": "",
-            "description": "",
-            "first_button_label": "",
-            "first_button_link": "",
-            "first_button_style": false,
-            "second_button_label": "",
-            "second_button_link": "",
-            "second_button_style": false,
-            "content_alignment": "center",
-            "content_position": "top-center",
-            "content_width": "full_width",
-            "content_max_width": 100,
-            "content_padding_block": 40,
-            "content_padding_inline": 0,
-            "show_content_background": false,
-            "content_background": "#ffffff",
-            "content_box_opacity": 100,
-            "content_alignment_mobile": "center"
-          }
         }
       },
       "block_order": [
         "slider_item_69KniN",
+        "slider_item_n3PrkQ",
         "slider_item_wzBeHe",
-        "slider_item_QaQnmE",
-        "slider_item_YipJd4",
-        "slider_item_n3PrkQ"
+        "slider_item_QaQnmE"
       ],
       "custom_css": [
         ".h-full_screen {--height-topbar: 41px;}"
