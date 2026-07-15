@@ -202,17 +202,18 @@
         "collapsible_row_m3g6f8": {
           "type": "_product-collapsible-row",
           "settings": {
-            "heading": "beneficios do produto",
+            "heading": "detalhes do produto",
             "content": "",
-            "use_product_description": false,
+            "use_product_description": true,
             "open": true
           },
           "blocks": {}
         },
         "product_collapsible_row_PancQ9": {
           "type": "_product-collapsible-row",
+          "disabled": true,
           "settings": {
-            "heading": "ficha técnica",
+            "heading": "detalhes técnicos",
             "content": "<p>SKU: </p>",
             "use_product_description": true,
             "open": true
@@ -221,6 +222,7 @@
         },
         "product_collapsible_row_zirPk7": {
           "type": "_product-collapsible-row",
+          "disabled": true,
           "settings": {
             "heading": "ficha técnica",
             "content": "<p>SKU: </p>",
