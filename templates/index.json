@@ -12,6 +12,36 @@
     "slideshow_8KKtNU": {
       "type": "slideshow",
       "blocks": {
+        "slider_item_69KniN": {
+          "type": "slider_item",
+          "name": "Long Horn Texas",
+          "settings": {
+            "image": "shopify://shop_images/LONGHORN_DESKTOP.webp",
+            "image_mobile": "shopify://shop_images/LONGHORN_TEXAS_MOBILE.png",
+            "overlay_opacity": 0,
+            "link_banner": "shopify://collections/agro-western",
+            "slider_effect": "fade-in-right",
+            "subheading": "",
+            "heading": "",
+            "description": "",
+            "first_button_label": "",
+            "first_button_link": "",
+            "first_button_style": false,
+            "second_button_label": "",
+            "second_button_link": "",
+            "second_button_style": false,
+            "content_alignment": "center",
+            "content_position": "top-center",
+            "content_width": "full_width",
+            "content_max_width": 100,
+            "content_padding_block": 40,
+            "content_padding_inline": 0,
+            "show_content_background": false,
+            "content_background": "#ffffff",
+            "content_box_opacity": 100,
+            "content_alignment_mobile": "center"
+          }
+        },
         "slider_item_wzBeHe": {
           "type": "slider_item",
           "name": "São Bento 2026",
@@ -135,6 +165,7 @@
         }
       },
       "block_order": [
+        "slider_item_69KniN",
         "slider_item_wzBeHe",
         "slider_item_QaQnmE",
         "slider_item_YipJd4",
