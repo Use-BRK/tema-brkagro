@@ -8,6 +8,21 @@
     "theme_support_url": "https://support.nextsky.co"
   },
   {
+    "name": "BRK — Captura de telefone",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "Modal que pede o telefone para clientes logados sem telefone cadastrado. Desmarque para desativar em todo o site."
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_phone_capture",
+        "label": "Ativar modal de captura de telefone",
+        "default": true
+      }
+    ]
+  },
+  {
     "name": "t:settings_schema.purchase_code.name",
     "settings": [
       {
