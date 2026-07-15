@@ -10,6 +10,19 @@
   padding: 0.5rem 0.5rem !important;
 }
 
+.product-detail__custom-name-button button {
+  background: none;
+	border: 1px solid #1d1d1b;
+	color: #1d1d1b;
+	font-weight: 400;
+  width: fit-content;
+}
+
+.product-detail__custom-name-button span {
+  /* text-decoration: underline; */
+  text-underline-offset: 5px;
+}
+
 .product-item__price,
 .card-product-price {
 font-size: 23px;
