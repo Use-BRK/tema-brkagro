@@ -88,7 +88,7 @@
         "menu_promotion_iiUfrK": {
           "type": "menu_promotion",
           "settings": {
-            "text": "MULHERES",
+            "text": "",
             "open-link-newtab": false,
             "item_label": "unset",
             "promotion_menu_column": 3,
@@ -107,7 +107,7 @@
         "menu_promotion_CyPFrj": {
           "type": "menu_promotion",
           "settings": {
-            "text": "HOMENS",
+            "text": "",
             "open-link-newtab": false,
             "item_label": "unset",
             "promotion_menu_column": 3,
