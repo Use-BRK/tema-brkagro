@@ -525,7 +525,7 @@
       "addGiftCard": "Adicionar vale-presente com sucesso",
       "removeCartItem": "Remover item com sucesso",
       "loading": "carregando",
-      "sticky_choose_options": "Adicionar à Sacola",
+      "sticky_choose_options": "Comprar",
       "label": {
         "sale_label": "Oferta",
         "new_label": "Novo",
@@ -543,7 +543,7 @@
           "label": "Visualização rápida"
         },
         "select_options": {
-          "label": "Adicionar à Sacola"
+          "label": "Comprar"
         },
         "wishlist": {
           "add": "Adicionar aos favoritos",
@@ -557,7 +557,7 @@
         },
         "add_to_cart": {
           "default": {
-            "label": "Adicionar à Sacola"
+            "label": "Comprar"
           },
           "sold_out": {
             "label": "Fora de estoque"
@@ -590,7 +590,7 @@
         "instock": "Estoque",
         "outstock": "Fora de estoque",
         "pre_order": "Pedido antecipado",
-        "add_to_cart": "Adicionar à Sacola"
+        "add_to_cart": "Comprar"
       },
       "quantity": {
         "label": "Quantidade",
@@ -659,7 +659,7 @@
       "sold_out": "Fora de estoque",
       "pre_order": "Pedido antecipado",
       "unavailable": "Indisponível",
-      "add_to_cart": "Adicionar à Sacola",
+      "add_to_cart": "Comprar",
       "fake_sold": "{{ sold }} vendido no último {{ hours }} horas",
       "xr_button": "Veja no seu espaço",
       "xr_button_label": "Visualize em seu espaço, carregue item em janela de realidade aumentada",
