@@ -590,7 +590,7 @@
         "instock": "Estoque",
         "outstock": "Fora de estoque",
         "pre_order": "Pedido antecipado",
-        "add_to_cart": "Comprar"
+        "add_to_cart": "Adicionar a Sacola"
       },
       "quantity": {
         "label": "Quantidade",
