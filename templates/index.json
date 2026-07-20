@@ -75,6 +75,7 @@
         "slider_item_wzBeHe": {
           "type": "slider_item",
           "name": "São Bento 2026",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/BANNER_SITE.webp",
             "image_mobile": "shopify://shop_images/BANNER_Mob.webp",
@@ -236,6 +237,16 @@
         "reset_spacing": true
       }
     },
+    "divider_kpy84P": {
+      "type": "divider",
+      "name": "t:sections.divider.name",
+      "settings": {
+        "section_width": "container",
+        "border_height": 1,
+        "border_color": "#ebebeb",
+        "reset_spacing": true
+      }
+    },
     "collection_tab_9R4n9j": {
       "type": "collection-tab",
       "blocks": {
@@ -294,16 +305,6 @@
         "items_per_row_mobile": 1.5,
         "padding_top": 50,
         "padding_bottom": 50,
-        "reset_spacing": true
-      }
-    },
-    "divider_kpy84P": {
-      "type": "divider",
-      "name": "t:sections.divider.name",
-      "settings": {
-        "section_width": "container",
-        "border_height": 1,
-        "border_color": "#ebebeb",
         "reset_spacing": true
       }
     },
