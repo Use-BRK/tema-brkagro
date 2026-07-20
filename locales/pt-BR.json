@@ -543,7 +543,7 @@
           "label": "Visualização rápida"
         },
         "select_options": {
-          "label": "Comprar"
+          "label": "Adicionar a Sacola"
         },
         "wishlist": {
           "add": "Adicionar aos favoritos",
@@ -557,7 +557,7 @@
         },
         "add_to_cart": {
           "default": {
-            "label": "Comprar"
+            "label": "Adicionar a Sacola"
           },
           "sold_out": {
             "label": "Fora de estoque"
