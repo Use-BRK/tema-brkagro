@@ -103,7 +103,7 @@
     "enable_cart_item_edit": true,
     "product_recommendations_heading": "Você pode gostar",
     "minicart_type": "show_inside",
-    "show_on_cart_page": true,
+    "show_on_cart_page": false,
     "product_recommendations_type": "auto",
     "select_product_recommendations": [],
     "show_estimate_shipping_rates": false,
@@ -287,13 +287,6 @@
         "settings": {
           "storefrontAccessToken": "",
           "scriptInitMode": "immediate"
-        }
-      },
-      "1530068250781986104": {
-        "type": "shopify://apps/fbp-fast-bundle/blocks/fast_bundle/9e87fbe2-9041-4c23-acf5-322413994cef",
-        "disabled": false,
-        "settings": {
-          "home": true
         }
       },
       "14060646107696862457": {
