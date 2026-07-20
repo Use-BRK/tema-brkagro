@@ -1,0 +1,11 @@
+# Arquivos temporários de editores (atomic save) — evitam o erro
+# "Must have a .liquid file extension" ao sincronizar
+*.tmp
+*.tmp.*
+*.tmp*
+*~
+*.swp
+*.swo
+*.bak
+.DS_Store
+Thumbs.db

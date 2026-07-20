@@ -6,6 +6,12 @@ html.mobile-menu-drawer-open {
   overflow: hidden;
 }
 
+/* Com o drawer aberto, remove a sombra do header mobile
+   (definida com !important em custom.css). */
+html.mobile-menu-drawer-open .section-header {
+  box-shadow: none !important;
+}
+
 .mobile-menu-drawer {
   position: fixed;
   inset: 0;
@@ -16,9 +22,16 @@ html.mobile-menu-drawer-open {
 }
 
 .mobile-menu-drawer[aria-hidden="false"] {
-  pointer-events: auto;
   visibility: visible;
   transition: visibility 0s linear 0s;
+}
+
+/* Só overlay e painel capturam clique quando aberto; o container fica
+   pointer-events:none para que a linha do header (hambúrguer/logo/carrinho)
+   continue clicável no modo "abaixo do header". */
+.mobile-menu-drawer[aria-hidden="false"] .mobile-menu-drawer__overlay,
+.mobile-menu-drawer[aria-hidden="false"] .mobile-menu-drawer__panel {
+  pointer-events: auto;
 }
 
 /* Overlay */
@@ -39,7 +52,7 @@ html.mobile-menu-drawer-open {
   top: 0;
   left: 0;
   bottom: 0;
-  width: min(85vw, 380px);
+  width: var(--mmd-width, 85vw);
   background: var(--mmd-body-bg, var(--color-background, #fff));
   color: var(--color-foreground, #1a1a1a);
   display: flex;
@@ -148,7 +161,7 @@ html.mobile-menu-drawer-open {
 }
 
 .mobile-menu-drawer__link--level-1 {
-  font-weight: 600;
+  font-weight: 400;
   font-size: calc(15px * var(--text-size-multiplier, 1));
   text-transform: none;
   letter-spacing: 0.03em;
@@ -293,7 +306,7 @@ html.mobile-menu-drawer-open {
   left: 20px;
   right: 20px;
   bottom: 0;
-  border-bottom: 1px dashed var(--color-border, #e8e0d0);
+  border-bottom: 1px solid var(--color-border, #085b47);
 }
 .mobile-menu-drawer__list > .mobile-menu-drawer__item:last-child > .mobile-menu-drawer__link-row::after {
   display: none;
@@ -302,7 +315,7 @@ html.mobile-menu-drawer-open {
 /* Nível 1 em destaque para separar visualmente dos níveis abaixo */
 .mobile-menu-drawer__link--level-1 {
   text-transform: uppercase;
-  font-weight: 700;
+  font-weight: 400;
 }
 
 /* Fundo cinza sutil a partir do nível 2 */
@@ -329,6 +342,166 @@ html.mobile-menu-drawer-open {
 }
 .mobile-menu-drawer__link--level-3 {
   padding-left: 14px;
+}
+
+/* ============================================================
+   Variante "abaixo do header" — o drawer começa logo abaixo da
+   linha do header (--mmd-top é setado via JS) e sobrepõe a barra
+   de busca, deslizando da esquerda. A linha do header permanece
+   visível e clicável (o hambúrguer alterna abrir/fechar).
+   ============================================================ */
+.mobile-menu-drawer--below-header .mobile-menu-drawer__overlay {
+  top: var(--mmd-top, 0);
+}
+.mobile-menu-drawer--below-header .mobile-menu-drawer__panel {
+  top: var(--mmd-top, 0);
+  box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.12);
+}
+/* O header interno do drawer (logo + X) é redundante aqui, pois a
+   linha do header real continua visível acima. */
+.mobile-menu-drawer--below-header .mobile-menu-drawer__header {
+  display: none;
+}
+
+/* ============================================================
+   Navegação em etapas (steps) — tocar num item desliza para uma
+   "página" com os filhos (subitem em negrito + netos), com botão voltar.
+   ============================================================ */
+.mobile-menu-drawer--steps .mobile-menu-drawer__body {
+  padding: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+/* Propaga a altura pelo wrapper do bloco até o .mmd-steps */
+.mobile-menu-drawer--steps .mobile-menu-drawer__block--menu {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 0;
+}
+.mmd-steps {
+  position: relative;
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: hidden;
+}
+.mmd-steps__viewport {
+  position: absolute;
+  inset: 0;
+}
+.mmd-steps__panel {
+  position: absolute;
+  inset: 0;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  background: var(--mmd-body-bg, var(--color-background, #fff));
+}
+/* Cada painel de detalhe entra direto da direita (sem passar pelos outros) */
+.mmd-steps__panel--detail {
+  transform: translateX(100%);
+  transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.mmd-steps__panel--detail.is-active {
+  transform: translateX(0);
+}
+
+/* Lista raiz */
+.mmd-steps__panel--root {
+  list-style: none;
+  margin: 0;
+  padding: 8px 0;
+}
+.mmd-steps__item {
+  position: relative;
+}
+.mmd-steps__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  width: 100%;
+  padding: 14px 20px;
+  text-decoration: none;
+  color: inherit;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: calc(15px * var(--text-size-multiplier, 1));
+  text-transform: uppercase;
+  text-align: left;
+}
+.mmd-steps__label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.mmd-steps__chevron {
+  flex-shrink: 0;
+  opacity: 0.5;
+}
+/* Linha sólida primary sob cada item da raiz */
+.mmd-steps__item:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  left: 20px;
+  right: 20px;
+  bottom: 0;
+  border-bottom: 1px solid var(--color-border, #085b47);
+}
+
+/* Página de detalhe */
+.mmd-steps__back {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 14px 20px;
+  background: none;
+  border: 0;
+  border-bottom: 1px solid var(--color-border, #085b47);
+  cursor: pointer;
+  font-family: inherit;
+  font-size: calc(15px * var(--text-size-multiplier, 1));
+  font-weight: 700;
+  color: inherit;
+  text-align: left;
+  text-transform: uppercase;
+}
+.mmd-steps__grid {
+  column-count: 2;
+  column-gap: 16px;
+  padding: 20px;
+}
+.mmd-steps__group {
+  break-inside: avoid;
+  display: inline-block;
+  width: 100%;
+  margin-bottom: 22px;
+}
+.mmd-steps__group-title {
+  display: block;
+  font-weight: 700;
+  font-size: calc(15px * var(--text-size-multiplier, 1));
+  color: inherit;
+  text-decoration: none;
+  margin-bottom: 10px;
+}
+.mmd-steps__sublist {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.mmd-steps__sublink {
+  display: block;
+  padding: 6px 0;
+  text-decoration: none;
+  color: inherit;
+  opacity: 0.62;
+  font-size: calc(14px * var(--text-size-multiplier, 1));
 }
 
 /* Hide on desktop */

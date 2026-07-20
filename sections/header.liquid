@@ -16,6 +16,7 @@
   assign wishlist = section_st.show_wishlist_icon
   assign wishlist_mobile = section_st.show_wishlist_mobile
   assign minicart = section_st.show_shopping_cart
+  assign mobile_search_bar = section_st.show_mobile_search_bar
   assign show_country = section_st.show_currency
   assign show_language = section_st.show_language
   assign transparent_class = ''
@@ -79,6 +80,48 @@
     .header__wishlist-mobile .header__wishlist-mobile-link svg,
     .header__wishlist-mobile .header__wishlist-mobile-link svg path {
       fill: currentColor !important;
+    }
+  }
+{%- endstyle -%}
+{%- style -%}
+  @media screen and (min-width: 1025px) {
+    /* Menu ao lado do logo (não centralizado) e alinhado à base do logo */
+    header-inner.logo-position.logo-left {
+      grid-template-columns: auto auto 1fr;
+      align-items: end;
+    }
+    /* Remove o negrito dos itens do menu desktop */
+    .header__menu .navigation.horizontal .level0 > menu-item > a {
+      font-weight: 400;
+    }
+  }
+  @media screen and (max-width: 1024.98px) {
+    /* Com a barra de busca fixa ativa, esconde o ícone de busca dos actions no mobile */
+    .has-mobile-search-bar .header__action .header_search {
+      display: none;
+    }
+    .header__mobile-search {
+      position: relative;
+      z-index: 2;
+      padding-top: 6px;
+    }
+    .header__mobile-search-trigger {
+      height: 3.4rem;
+      padding: 0 1.4rem;
+      border: 1px solid var(--color-border);
+      border-radius: 6px;
+      background: transparent;
+      color: var(--color-heading);
+      font-family: inherit;
+      font-size: 1.3rem;
+    }
+    .header__mobile-search-placeholder {
+      opacity: 0.6;
+    }
+    .header__mobile-search-trigger svg {
+      width: 15px;
+      height: 15px;
+      opacity: 0.65;
     }
   }
 {%- endstyle -%}
@@ -159,7 +202,7 @@
   {%- endstyle -%}
 {% endif %}
 <header
-  class="header relative section{% if section_st.padding_top < 30 %} pt-min{% endif %}{% if section_st.padding_bottom < 30 %} pb-min{% endif %} gradient remove_spacing color-{{ color_scheme }}{{ transparent_class }}{% if transparent_mobile %}{{ transparent_mobile_class }}{% endif %}{% if request.page_type == 'index' and section_st.separator_line == 'homepage' %} border-bottom{% endif %}{% if section_st.separator_line == 'all-page' %} border-bottom{% endif %}{% if request.page_type != 'index' and section_st.separator_line == 'inner_page' %} border-bottom{% endif %} popup-search-mobile"
+  class="header relative section{% if section_st.padding_top < 30 %} pt-min{% endif %}{% if section_st.padding_bottom < 30 %} pb-min{% endif %} gradient remove_spacing color-{{ color_scheme }}{{ transparent_class }}{% if transparent_mobile %}{{ transparent_mobile_class }}{% endif %}{% if request.page_type == 'index' and section_st.separator_line == 'homepage' %} border-bottom{% endif %}{% if section_st.separator_line == 'all-page' %} border-bottom{% endif %}{% if request.page_type != 'index' and section_st.separator_line == 'inner_page' %} border-bottom{% endif %} popup-search-mobile{% if top_search and mobile_search_bar %} has-mobile-search-bar{% endif %}"
   data-section-id="{{ section.id }}"
   data-sticky="{{ sticky_header_type }}"
   data-sticky-mobile="{{ sticky_mobile }}"
@@ -263,8 +306,42 @@
         </div>
       </header-inner>
     </div>
+    {% if top_search and mobile_search_bar %}
+      <div class="header__mobile-search hidden-1025">
+        <div class="{{ section_width }}">
+          <button
+            type="button"
+            class="header__mobile-search-trigger btn-reset flex align-center justify-between w-full pointer"
+            aria-label="{{ 'general.search.search' | t }}"
+          >
+            <span class="header__mobile-search-placeholder">{{ 'general.search.search' | t }}</span>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+              <use href="#icon-search" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    {% endif %}
   </div>
 </header>
+{% if top_search and mobile_search_bar %}
+  <script>
+    (function () {
+      document.addEventListener('click', function (e) {
+        var trigger = e.target.closest('.header__mobile-search-trigger');
+        if (!trigger) return;
+        e.preventDefault();
+        var toggle =
+          document.querySelector('.header_search .top-search-toggle:not(#button_search_default)') ||
+          document.querySelector('.header__action .top-search-toggle:not(#button_search_default)') ||
+          document.querySelector('.header_search .top-search-toggle');
+        // Adia para o próximo tick: evita que o handler de fechar do tema,
+        // rodando no mesmo evento, feche o search logo após abrir.
+        if (toggle) setTimeout(function () { toggle.click(); }, 0);
+      });
+    })();
+  </script>
+{% endif %}
 {% schema %}
 {
   "name": "t:sections.header.name",
@@ -586,6 +663,13 @@
       "type": "checkbox",
       "id": "show_search",
       "label": "t:sections.header.settings.addons.show_search_icon.label",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_mobile_search_bar",
+      "label": "Barra de busca fixa no mobile",
+      "info": "Exibe uma barra de busca sempre aberta abaixo do header no mobile. Ao tocar, abre o modal de busca.",
       "default": true
     },
     {

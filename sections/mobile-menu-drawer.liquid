@@ -3,10 +3,17 @@
   assign logo_width = section.settings.logo_max_width
   assign logo_width_retina = logo_width | times: 2
   assign theme_st = settings
+  assign below_header = section.settings.open_below_header
+  assign steps_mode = section.settings.steps_navigation
+  assign drawer_fullwidth = section.settings.drawer_fullwidth
+  assign drawer_width = section.settings.drawer_width | default: 85
 -%}
+{%- capture mmd_width -%}
+  {%- if drawer_fullwidth -%}100%{%- else -%}{{ drawer_width }}vw{%- endif -%}
+{%- endcapture -%}
 
-<mobile-menu-drawer id="mobile-menu-drawer" class="mobile-menu-drawer" aria-hidden="true" data-section-id="{{ section.id }}"
-  style="
+<mobile-menu-drawer id="mobile-menu-drawer" class="mobile-menu-drawer{% if below_header %} mobile-menu-drawer--below-header{% endif %}{% if steps_mode %} mobile-menu-drawer--steps{% endif %}" aria-hidden="true" data-section-id="{{ section.id }}" data-below-header="{{ below_header }}" data-steps="{{ steps_mode }}"
+  style="--mmd-width: {{ mmd_width | strip }};
     --hot-cl: {{ section.settings.label_hot_color }};--hot-bg-cl: {{ section.settings.label_hot_bg }};
     --new-cl: {{ section.settings.label_new_color }};--new-bg-cl: {{ section.settings.label_new_bg }};
     --sale-cl: {{ section.settings.label_sale_color }};--sale-bg-cl: {{ section.settings.label_sale_bg }};
@@ -75,6 +82,75 @@
                 endfor
                 assign label_items = label_items_str | split: '||'
               -%}
+              {%- if steps_mode -%}
+                <div class="mmd-steps" style="--text-size-multiplier: {{ text_size | times: 0.01 }}">
+                  <div class="mmd-steps__viewport" data-mmd-viewport>
+                    <ul class="mmd-steps__panel mmd-steps__panel--root mobile-menu-drawer__list">
+                      {%- for link in menu.links -%}
+                        {%- liquid
+                          assign link_title_lower = link.title | downcase | strip
+                          assign link_label = nil
+                          for entry in label_items
+                            assign parts = entry | split: '::'
+                            if parts[0] == link_title_lower
+                              assign link_label = parts[1]
+                            endif
+                          endfor
+                          assign is_highlighted = false
+                          if highlight_item != blank and link_title_lower == highlight_item
+                            assign is_highlighted = true
+                          endif
+                          assign step_label_text = ''
+                          if link_label
+                            assign _lk = 'label_' | append: link_label | append: '_text'
+                            assign step_label_text = section.settings[_lk]
+                          endif
+                        -%}
+                        <li class="mmd-steps__item">
+                          {%- if link.links.size > 0 -%}
+                            <button type="button" class="mmd-steps__row mmd-steps__row--parent"{% if is_highlighted %} style="color: {{ highlight_color }}"{% endif %} data-mmd-open="mmd-step-{{ section.id }}-{{ forloop.index }}">
+                              <span class="mmd-steps__label">{{ link.title }}{%- if link_label -%}<span class="menu_label rounded-2 text-center whitespace-nowrap uppercase {{ link_label }}">{{ step_label_text }}</span>{%- endif -%}</span>
+                              <svg class="mmd-steps__chevron" width="8" height="14" viewBox="0 0 8 14" fill="none" aria-hidden="true"><path d="M1 1l6 6-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            </button>
+                          {%- else -%}
+                            <a href="{{ link.url }}" class="mmd-steps__row"{% if is_highlighted %} style="color: {{ highlight_color }}"{% endif %}>
+                              <span class="mmd-steps__label">{{ link.title }}{%- if link_label -%}<span class="menu_label rounded-2 text-center whitespace-nowrap uppercase {{ link_label }}">{{ step_label_text }}</span>{%- endif -%}</span>
+                            </a>
+                          {%- endif -%}
+                        </li>
+                      {%- endfor -%}
+                    </ul>
+                    {%- for link in menu.links -%}
+                      {%- if link.links.size > 0 -%}
+                        <div class="mmd-steps__panel mmd-steps__panel--detail" id="mmd-step-{{ section.id }}-{{ forloop.index }}" data-mmd-detail>
+                          <button type="button" class="mmd-steps__back" data-mmd-back>
+                            <svg width="8" height="14" viewBox="0 0 8 14" fill="none" aria-hidden="true"><path d="M7 1L1 7l6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            <span>{{ link.title }}</span>
+                          </button>
+                          <div class="mmd-steps__grid">
+                            {%- for child in link.links -%}
+                              <div class="mmd-steps__group">
+                                {%- if child.url != '#' and child.url != '' -%}
+                                  <a href="{{ child.url }}" class="mmd-steps__group-title">{{ child.title }}</a>
+                                {%- else -%}
+                                  <span class="mmd-steps__group-title">{{ child.title }}</span>
+                                {%- endif -%}
+                                {%- if child.links.size > 0 -%}
+                                  <ul class="mmd-steps__sublist">
+                                    {%- for gc in child.links -%}
+                                      <li><a href="{{ gc.url }}" class="mmd-steps__sublink">{{ gc.title }}</a></li>
+                                    {%- endfor -%}
+                                  </ul>
+                                {%- endif -%}
+                              </div>
+                            {%- endfor -%}
+                          </div>
+                        </div>
+                      {%- endif -%}
+                    {%- endfor -%}
+                  </div>
+                </div>
+              {%- else -%}
               <ul class="mobile-menu-drawer__list mobile-menu-drawer__list--level-1" style="--text-size-multiplier: {{ text_size | times: 0.01 }}">
                 {%- for link in menu.links -%}
                   {%- liquid
@@ -209,6 +285,7 @@
                   </li>
                 {%- endfor -%}
               </ul>
+              {%- endif -%}
 
             {%- when 'image' -%}
               {%- liquid
@@ -337,6 +414,79 @@
   </div>
 </mobile-menu-drawer>
 
+{%- if below_header -%}
+  <script>
+    (function () {
+      var drawer = document.getElementById('mobile-menu-drawer');
+      if (!drawer || drawer.dataset.belowHeader !== 'true') return;
+
+      // Define o topo do drawer = base da linha superior do header (logo/carrinho),
+      // de modo que ele "puxe" logo abaixo do header e sobreponha a barra de busca.
+      function setTop() {
+        var row = document.querySelector('header header-inner');
+        var bottom = row ? row.getBoundingClientRect().bottom : 0;
+        drawer.style.setProperty('--mmd-top', Math.max(0, Math.round(bottom)) + 'px');
+      }
+
+      document.querySelectorAll('.nav-toggle').forEach(function (toggle) {
+        toggle.addEventListener(
+          'click',
+          function (e) {
+            if (drawer.getAttribute('aria-hidden') === 'false') {
+              // Já aberto: fecha e impede o open() padrão do tema.
+              e.stopImmediatePropagation();
+              e.preventDefault();
+              if (typeof drawer.close === 'function') drawer.close();
+            } else {
+              // Vai abrir: posiciona o topo antes da animação.
+              setTop();
+            }
+          },
+          true // fase de captura: roda antes do handler do tema
+        );
+      });
+    })();
+  </script>
+{%- endif -%}
+
+{%- if steps_mode -%}
+  <script>
+    (function () {
+      var drawer = document.getElementById('mobile-menu-drawer');
+      if (!drawer) return;
+      var viewport = drawer.querySelector('[data-mmd-viewport]');
+      if (!viewport) return;
+
+      function reset() {
+        drawer
+          .querySelectorAll('.mmd-steps__panel--detail.is-active')
+          .forEach(function (p) {
+            p.classList.remove('is-active');
+          });
+      }
+      function open(panel) {
+        reset();
+        panel.classList.add('is-active');
+      }
+
+      drawer.querySelectorAll('[data-mmd-open]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var target = document.getElementById(btn.getAttribute('data-mmd-open'));
+          if (target) open(target);
+        });
+      });
+      drawer.querySelectorAll('[data-mmd-back]').forEach(function (btn) {
+        btn.addEventListener('click', reset);
+      });
+
+      // Ao fechar o drawer, volta para a raiz (após a animação de fechar).
+      new MutationObserver(function () {
+        if (drawer.getAttribute('aria-hidden') === 'true') setTimeout(reset, 320);
+      }).observe(drawer, { attributes: true, attributeFilter: ['aria-hidden'] });
+    })();
+  </script>
+{%- endif -%}
+
 {% schema %}
 {
   "name": "Mobile menu",
@@ -347,6 +497,37 @@
     "groups": ["header"]
   },
   "settings": [
+    {
+      "type": "checkbox",
+      "id": "open_below_header",
+      "label": "Abrir abaixo do header (mobile)",
+      "info": "O menu desliza da esquerda começando logo abaixo da linha do header, sobrepondo a barra de busca. Desligado, abre em tela cheia a partir do topo.",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "drawer_width",
+      "label": "Largura do menu",
+      "min": 60,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "default": 85,
+      "info": "Percentual da largura da tela ocupado pelo menu. Ignorado se 'Largura total' estiver ativo."
+    },
+    {
+      "type": "checkbox",
+      "id": "drawer_fullwidth",
+      "label": "Largura total (100%)",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "steps_navigation",
+      "label": "Navegação em etapas",
+      "info": "Ao tocar num item com submenu, desliza para uma página com os filhos (subitens em negrito + netos). Desligado, usa o modo sanfona (collapsible).",
+      "default": true
+    },
     {
       "type": "header",
       "content": "Logo"
