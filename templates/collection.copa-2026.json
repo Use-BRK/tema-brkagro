@@ -160,7 +160,7 @@
         "section_width": "fluid_container",
         "enable_filtering": true,
         "show_filter_counts": true,
-        "default_filter": "close_all",
+        "default_filter": "first_open",
         "filter_layout": "drawer",
         "vertical_posion": "left",
         "number_products_per_page": true,
