@@ -355,12 +355,24 @@ html.mobile-menu-drawer-open .section-header {
 }
 .mobile-menu-drawer--below-header .mobile-menu-drawer__panel {
   top: var(--mmd-top, 0);
-  box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.12);
+  /* Sombra apenas na borda direita (spread negativo evita vazar para cima,
+     junto ao header). */
+  box-shadow: 8px 0 12px -10px rgba(0, 0, 0, 0.35);
 }
-/* O header interno do drawer (logo + X) é redundante aqui, pois a
-   linha do header real continua visível acima. */
+/* Header interno compacto: mantém só o X à direita (o logo real do site
+   continua visível acima). */
 .mobile-menu-drawer--below-header .mobile-menu-drawer__header {
+  padding: 6px 12px;
+  border-bottom: 0;
+  background: transparent;
+}
+.mobile-menu-drawer--below-header .mobile-menu-drawer__logo {
   display: none;
+}
+/* close_icon_color pode estar claro (para o modo tela cheia com header
+   escuro); aqui o fundo é claro, então força um X escuro. */
+.mobile-menu-drawer--below-header .mobile-menu-drawer__close {
+  color: var(--color-heading, #111);
 }
 
 /* ============================================================
