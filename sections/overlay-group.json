@@ -76,6 +76,7 @@
         "whatsapp_contact_qEDXnA",
         "cart_8xqQBb"
       ],
+      "disabled": true,
       "custom_css": [
         "mobile-navigation-bar {backdrop-filter: blur(10px); background: #ffffffcf; transition: opacity 0.3s, transform 0.3s; opacity: 1; transform: translateY(0px); padding: 3px;}",
         "span {font-size: 12px;}",
