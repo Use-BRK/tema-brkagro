@@ -1018,6 +1018,14 @@ select.gift-progress-modal__variant {
     content-visibility: auto;
     contain-intrinsic-size: auto 700px;
   }
+  /* Exceção: a seção da collection contém o "Ordenar por" (bottom-sheet
+     position:fixed) e o drawer de filtros. O containment do content-visibility
+     torna a seção o containing block do fixed, jogando o bottom-sheet para o
+     fim da seção (fora da tela). Mantemos essa seção sem containment. */
+  #MainContent > .shopify-section:has(.sec__collection-main) {
+    content-visibility: visible;
+    contain-intrinsic-size: none;
+  }
 }
 
 /* ---- Linha de carrinho aninhada (personalização atrelada à camisa) ----
