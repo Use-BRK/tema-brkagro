@@ -72,7 +72,7 @@
     "limit_color": "4",
     "swatch_item_type": "variant_images",
     "size_trigger": "Size, Taglia, Tamanho, Tamanho Baby Look, Tamanho Infantil",
-    "search_type": "default",
+    "search_type": "drawer",
     "search_result": "products",
     "enable_search_suggestion": true,
     "popular_key_word": "camisas, botinas, chapéu, camiseta, brasil, long horn",
