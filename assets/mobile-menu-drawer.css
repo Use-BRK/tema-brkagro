@@ -5,9 +5,13 @@
 /* Reserva o espaço da scrollbar para que travar o scroll (overflow:hidden)
    ao abrir o drawer não cause layout shift. No-op em mobile com scrollbar
    overlay (0px); em navegadores com scrollbar clássica, evita o deslocamento
-   de ~15px do conteúdo. */
+   de ~15px do conteúdo.
+   IMPORTANTE: escopado ao estado aberto do drawer. Se aplicado no <html>
+   global, o gutter fica reservado o tempo todo e soma com o padding-right
+   que o minicart/busca compensam via JS — gerando um gap de ~15px que
+   "gruda" durante o fechamento (dupla compensação). */
 @media (max-width: 1024.98px) {
-  html {
+  html.mobile-menu-drawer-open {
     scrollbar-gutter: stable;
   }
 }
