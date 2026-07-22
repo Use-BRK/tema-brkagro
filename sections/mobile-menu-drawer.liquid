@@ -5,6 +5,8 @@
   assign theme_st = settings
   assign below_header = section.settings.open_below_header
   assign steps_mode = section.settings.steps_navigation
+  assign steps_breadcrumb = section.settings.steps_breadcrumb
+  assign menu_uppercase = section.settings.menu_uppercase
   assign drawer_fullwidth = section.settings.drawer_fullwidth
   assign drawer_width = section.settings.drawer_width | default: 85
 -%}
@@ -12,7 +14,7 @@
   {%- if drawer_fullwidth -%}100%{%- else -%}{{ drawer_width }}vw{%- endif -%}
 {%- endcapture -%}
 
-<mobile-menu-drawer id="mobile-menu-drawer" class="mobile-menu-drawer{% if below_header %} mobile-menu-drawer--below-header{% endif %}{% if steps_mode %} mobile-menu-drawer--steps{% endif %}" aria-hidden="true" data-section-id="{{ section.id }}" data-below-header="{{ below_header }}" data-steps="{{ steps_mode }}"
+<mobile-menu-drawer id="mobile-menu-drawer" class="mobile-menu-drawer{% if below_header %} mobile-menu-drawer--below-header{% endif %}{% if steps_mode %} mobile-menu-drawer--steps{% endif %}{% unless menu_uppercase %} mobile-menu-drawer--no-uppercase{% endunless %}" aria-hidden="true" data-section-id="{{ section.id }}" data-below-header="{{ below_header }}" data-steps="{{ steps_mode }}"
   style="--mmd-width: {{ mmd_width | strip }};
     --hot-cl: {{ section.settings.label_hot_color }};--hot-bg-cl: {{ section.settings.label_hot_bg }};
     --new-cl: {{ section.settings.label_new_color }};--new-bg-cl: {{ section.settings.label_new_bg }};
@@ -43,7 +45,9 @@
           <path d="M7 1a6 6 0 1 0 4.472 10.02l3.254 3.253a.75.75 0 1 0 1.06-1.06l-3.253-3.254A6 6 0 0 0 7 1ZM2.5 7a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0Z"/>
         </svg>
         <input
-          type="search"
+          type="text"
+          inputmode="search"
+          role="searchbox"
           class="mmd-search__input"
           placeholder="Buscar no menu (camisas, botinas, etc)"
           aria-label="Buscar no menu"
@@ -51,11 +55,7 @@
           autocorrect="off"
           spellcheck="false"
         >
-        <button type="button" class="mmd-search__clear" aria-label="{{ 'accessibility.close' | t | default: 'Limpar' }}" hidden>
-          <svg width="12" height="12" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-            <path d="M15 5L5 15M15 15L5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-          </svg>
-        </button>
+        <button type="button" class="mmd-search__clear" aria-label="Limpar busca" hidden>Limpar</button>
       </div>
       <button type="button" class="mobile-menu-drawer__close" aria-label="{{ 'accessibility.close' | t | default: 'Close' }}">
         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
@@ -145,8 +145,10 @@
                           <button type="button" class="mmd-steps__back" data-mmd-back>
                             <svg width="8" height="14" viewBox="0 0 8 14" fill="none" aria-hidden="true"><path d="M7 1L1 7l6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
                             <span class="mmd-steps__crumbs">
-                              <span class="mmd-steps__crumb-root">Menu</span>
-                              <span class="mmd-steps__crumb-sep" aria-hidden="true">›</span>
+                              {%- if steps_breadcrumb -%}
+                                <span class="mmd-steps__crumb-root">Menu</span>
+                                <span class="mmd-steps__crumb-sep" aria-hidden="true">›</span>
+                              {%- endif -%}
                               <span class="mmd-steps__crumb-current">{{ link.title }}</span>
                             </span>
                           </button>
@@ -378,7 +380,7 @@
       {%- endfor -%}
       <div class="mmd-search__results" data-mmd-results hidden>
         <ul class="mmd-search__results-list"></ul>
-        <p class="mmd-search__empty" hidden>{{ 'general.search.no_results' | t: terms: '' | default: 'Nenhum resultado.' }}</p>
+        <p class="mmd-search__empty" hidden>Nenhum resultado encontrado.</p>
       </div>
     </div>
 
@@ -656,6 +658,20 @@
       "label": "Navegação em etapas",
       "info": "Ao tocar num item com submenu, desliza para uma página com os filhos (subitens em negrito + netos). Desligado, usa o modo sanfona (collapsible).",
       "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "steps_breadcrumb",
+      "label": "Breadcrumb no título das etapas",
+      "info": "Mostra \"Menu › {item}\" no botão voltar. Desligado, mostra apenas o nome do item.",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "menu_uppercase",
+      "label": "Itens do menu em maiúsculas",
+      "info": "Desligado, os itens seguem a caixa (maiúscula/minúscula) definida no menu da Shopify.",
+      "default": false
     },
     {
       "type": "header",

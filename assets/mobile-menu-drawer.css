@@ -2,6 +2,15 @@
    Mobile Menu Drawer — Palo Alto-style
    ============================================================ */
 
+/* Reserva o espaço da scrollbar para que travar o scroll (overflow:hidden)
+   ao abrir o drawer não cause layout shift. No-op em mobile com scrollbar
+   overlay (0px); em navegadores com scrollbar clássica, evita o deslocamento
+   de ~15px do conteúdo. */
+@media (max-width: 1024.98px) {
+  html {
+    scrollbar-gutter: stable;
+  }
+}
 html.mobile-menu-drawer-open {
   overflow: hidden;
 }
@@ -478,7 +487,7 @@ html.mobile-menu-drawer-open .section-header {
   cursor: pointer;
   font-family: inherit;
   font-size: calc(15px * var(--text-size-multiplier, 1));
-  font-weight: 700;
+  font-weight: 500;
   color: inherit;
   text-align: left;
   text-transform: uppercase;
@@ -496,9 +505,9 @@ html.mobile-menu-drawer-open .section-header {
 }
 .mmd-steps__group-title {
   display: block;
-  font-weight: 700;
+  font-weight: 500;
   font-size: calc(15px * var(--text-size-multiplier, 1));
-  color: inherit;
+  color: var(--color-border, #085b47);
   text-decoration: none;
   margin-bottom: 10px;
 }
@@ -527,6 +536,14 @@ html.mobile-menu-drawer-open .section-header {
   line-height: 1.35;
 }
 
+/* Toggle de maiúsculas: quando desligado, itens seguem a caixa do menu Shopify. */
+.mobile-menu-drawer--no-uppercase .mmd-steps__row,
+.mobile-menu-drawer--no-uppercase .mmd-steps__back,
+.mobile-menu-drawer--no-uppercase .mmd-steps__crumb-current,
+.mobile-menu-drawer--no-uppercase .mobile-menu-drawer__link--level-1 {
+  text-transform: none;
+}
+
 /* Breadcrumb no botão voltar: "Menu › {item}" — prefixo cinza sutil. */
 .mmd-steps__crumbs {
   display: inline-flex;
@@ -538,6 +555,9 @@ html.mobile-menu-drawer-open .section-header {
 .mmd-steps__crumb-sep {
   font-weight: 400;
   opacity: 0.45;
+}
+.mmd-steps__crumb-current {
+  color: var(--color-border, #085b47);
 }
 
 /* ============================================================
@@ -576,21 +596,31 @@ html.mobile-menu-drawer-open .section-header {
   font-size: 1.3rem;
   color: var(--color-heading, #111);
 }
-.mmd-search__input::-webkit-search-cancel-button {
-  -webkit-appearance: none;
-  appearance: none;
+/* Esconde o × nativo/custom do input search do tema (evita botão duplicado). */
+.mmd-search__input::-webkit-search-cancel-button,
+.mmd-search__input::-webkit-search-decoration {
+  -webkit-appearance: none !important;
+  appearance: none !important;
+  display: none !important;
+  background: none !important;
+  width: 0 !important;
+  height: 0 !important;
 }
+/* "Limpar" como texto sublinhado sutil, no lugar de um ícone de fechar. */
 .mmd-search__clear {
   flex-shrink: 0;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
   border: 0;
   background: none;
-  padding: 4px;
+  padding: 0 2px;
   cursor: pointer;
   color: inherit;
   opacity: 0.6;
+  font-family: inherit;
+  font-size: 1.2rem;
+  line-height: 1;
+  white-space: nowrap;
+  text-decoration: underline;
+  text-underline-offset: 2px;
 }
 .mmd-search__clear[hidden] {
   display: none;
@@ -650,6 +680,30 @@ html.mobile-menu-drawer-open .section-header {
   padding: 24px 20px;
   text-align: center;
   opacity: 0.6;
+}
+
+/* ============================================================
+   Feedback de toque (tap highlight) — indica que o item foi
+   pressionado / vai redirecionar.
+   ============================================================ */
+.mobile-menu-drawer {
+  -webkit-tap-highlight-color: rgba(8, 91, 71, 0.18);
+}
+.mmd-steps__row,
+.mmd-steps__back,
+.mmd-steps__group-title,
+.mmd-steps__sublink,
+.mmd-search__result,
+.mobile-menu-drawer__link {
+  transition: background-color 0.15s ease;
+}
+.mmd-steps__row:active,
+.mmd-steps__back:active,
+.mmd-steps__group-title:active,
+.mmd-steps__sublink:active,
+.mmd-search__result:active,
+.mobile-menu-drawer__link:active {
+  background-color: rgba(8, 91, 71, 0.12);
 }
 
 /* Hide on desktop */
