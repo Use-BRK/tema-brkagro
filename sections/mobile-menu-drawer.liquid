@@ -38,6 +38,25 @@
           >
         </a>
       {%- endif -%}
+      <div class="mmd-search" data-mmd-search>
+        <svg class="mmd-search__icon" width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+          <path d="M7 1a6 6 0 1 0 4.472 10.02l3.254 3.253a.75.75 0 1 0 1.06-1.06l-3.253-3.254A6 6 0 0 0 7 1ZM2.5 7a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0Z"/>
+        </svg>
+        <input
+          type="search"
+          class="mmd-search__input"
+          placeholder="Buscar no menu (camisas, botinas, etc)"
+          aria-label="Buscar no menu"
+          autocomplete="off"
+          autocorrect="off"
+          spellcheck="false"
+        >
+        <button type="button" class="mmd-search__clear" aria-label="{{ 'accessibility.close' | t | default: 'Limpar' }}" hidden>
+          <svg width="12" height="12" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+            <path d="M15 5L5 15M15 15L5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
       <button type="button" class="mobile-menu-drawer__close" aria-label="{{ 'accessibility.close' | t | default: 'Close' }}">
         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
           <path d="M15 5L5 15M15 15L5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -125,7 +144,11 @@
                         <div class="mmd-steps__panel mmd-steps__panel--detail" id="mmd-step-{{ section.id }}-{{ forloop.index }}" data-mmd-detail>
                           <button type="button" class="mmd-steps__back" data-mmd-back>
                             <svg width="8" height="14" viewBox="0 0 8 14" fill="none" aria-hidden="true"><path d="M7 1L1 7l6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                            <span>{{ link.title }}</span>
+                            <span class="mmd-steps__crumbs">
+                              <span class="mmd-steps__crumb-root">Menu</span>
+                              <span class="mmd-steps__crumb-sep" aria-hidden="true">›</span>
+                              <span class="mmd-steps__crumb-current">{{ link.title }}</span>
+                            </span>
                           </button>
                           <div class="mmd-steps__grid">
                             {%- for child in link.links -%}
@@ -353,6 +376,10 @@
           {%- endcase -%}
         </div>
       {%- endfor -%}
+      <div class="mmd-search__results" data-mmd-results hidden>
+        <ul class="mmd-search__results-list"></ul>
+        <p class="mmd-search__empty" hidden>{{ 'general.search.no_results' | t: terms: '' | default: 'Nenhum resultado.' }}</p>
+      </div>
     </div>
 
     <div class="mobile-menu-drawer__footer">
@@ -486,6 +513,108 @@
     })();
   </script>
 {%- endif -%}
+
+{%- comment -%} Busca dentro da estrutura do menu (nomes + handles das collections) {%- endcomment -%}
+<script>
+  (function () {
+    var drawer = document.getElementById('mobile-menu-drawer');
+    if (!drawer) return;
+    var input = drawer.querySelector('.mmd-search__input');
+    var clearBtn = drawer.querySelector('.mmd-search__clear');
+    var results = drawer.querySelector('[data-mmd-results]');
+    var list = results && results.querySelector('.mmd-search__results-list');
+    var empty = results && results.querySelector('.mmd-search__empty');
+    if (!input || !results || !list) return;
+
+    function norm(s) {
+      return (s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
+    }
+
+    // Índice: todos os links do menu (título + handle da URL).
+    var index = [];
+    var seen = {};
+    drawer.querySelectorAll('.mobile-menu-drawer__body a[href]').forEach(function (a) {
+      if (a.closest('[data-mmd-results]')) return;
+      var href = a.getAttribute('href') || '';
+      if (!href || href === '#') return;
+      var title = (a.textContent || '').trim();
+      if (!title) return;
+      var key = href + '|' + title;
+      if (seen[key]) return;
+      seen[key] = 1;
+      var crumb = '';
+      var detail = a.closest('.mmd-steps__panel--detail');
+      if (detail) {
+        var cur = detail.querySelector('.mmd-steps__crumb-current');
+        if (cur) crumb = cur.textContent.trim();
+      }
+      var handleWords = href.replace(/^https?:\/\/[^/]+/, '').replace(/[\/\-_?=&.]+/g, ' ');
+      index.push({ title: title, href: href, crumb: crumb, text: norm(title + ' ' + handleWords) });
+    });
+
+    function render(q) {
+      var nq = norm(q).trim();
+      list.innerHTML = '';
+      if (!nq) {
+        results.setAttribute('hidden', '');
+        clearBtn.setAttribute('hidden', '');
+        return;
+      }
+      clearBtn.removeAttribute('hidden');
+      var words = nq.split(/\s+/).filter(function (w) { return w.length >= 2; });
+      var matches = index
+        .map(function (it) {
+          var score = 0;
+          words.forEach(function (w) { if (it.text.indexOf(w) !== -1) score++; });
+          if (it.text.indexOf(nq) !== -1) score += 2;
+          return { it: it, score: score };
+        })
+        .filter(function (m) { return m.score > 0; })
+        .sort(function (a, b) { return b.score - a.score; })
+        .slice(0, 30);
+
+      results.removeAttribute('hidden');
+      if (!matches.length) {
+        empty.removeAttribute('hidden');
+        return;
+      }
+      empty.setAttribute('hidden', '');
+      var frag = document.createDocumentFragment();
+      matches.forEach(function (m) {
+        var li = document.createElement('li');
+        var a = document.createElement('a');
+        a.className = 'mmd-search__result';
+        a.href = m.it.href;
+        var t = document.createElement('span');
+        t.className = 'mmd-search__result-title';
+        t.textContent = m.it.title;
+        a.appendChild(t);
+        if (m.it.crumb) {
+          var c = document.createElement('span');
+          c.className = 'mmd-search__result-crumb';
+          c.textContent = m.it.crumb;
+          a.appendChild(c);
+        }
+        li.appendChild(a);
+        frag.appendChild(li);
+      });
+      list.appendChild(frag);
+    }
+
+    input.addEventListener('input', function () { render(input.value); });
+    clearBtn.addEventListener('click', function () {
+      input.value = '';
+      render('');
+      input.focus();
+    });
+    new MutationObserver(function () {
+      if (drawer.getAttribute('aria-hidden') === 'true') {
+        input.value = '';
+        render('');
+      }
+    }).observe(drawer, { attributes: true, attributeFilter: ['aria-hidden'] });
+  })();
+</script>
 
 {% schema %}
 {

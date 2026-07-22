@@ -2862,7 +2862,8 @@ class MobileMenuDrawer extends HTMLElement {
 
   open() {
     this.setAttribute("aria-hidden", "false");
-    root.style.setProperty("padding-right", getScrollBarWidth.init() + "px");
+    // Drawer é mobile-only (scrollbar overlay = 0px), então não compensamos a
+    // largura da scrollbar — isso evita o padding-right/gap de 15px no body.
     document.documentElement.classList.add("mobile-menu-drawer-open");
   }
 
