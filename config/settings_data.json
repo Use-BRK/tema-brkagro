@@ -304,6 +304,18 @@
           "mobile_side_margin": 16,
           "mobile_bottom_margin": 46
         }
+      },
+      "16075608675720552436": {
+        "type": "shopify://apps/brk-apps-agro/blocks/bundle-embed/019f0471-1a7f-7d87-ace2-a886cbd950ee",
+        "disabled": false,
+        "settings": {
+          "enabled": true,
+          "product_form_selector": "form[action*=\"/cart/add\"]",
+          "cart_refresh_selectors": "",
+          "popup_title": "Aproveite esta oferta!",
+          "popup_accept": "Adicionar",
+          "popup_decline": "Não, obrigado"
+        }
       }
     },
     "color_schemes": {

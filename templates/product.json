@@ -95,6 +95,18 @@
           },
           "blocks": {}
         },
+        "brk_apps_agro_bundle_addon_qKaPkE": {
+          "type": "shopify://apps/brk-apps-agro/blocks/bundle-addon/019f0471-1a7f-7d87-ace2-a886cbd950ee",
+          "settings": {
+            "title_size": 15,
+            "border_radius": 12,
+            "margin_y": 16,
+            "border_color": "#E1E3E5",
+            "accent_color": "#085B47",
+            "label_bg": "#085B47",
+            "label_text_color": "#FFFFFF"
+          }
+        },
         "buy_buttons_LcQGtR": {
           "type": "_product-buy-buttons",
           "settings": {
@@ -242,6 +254,7 @@
         "price_VJ4N8m",
         "brk_apps_agro_combined_listing_6xbDqi",
         "variant_picker_tcCihG",
+        "brk_apps_agro_bundle_addon_qKaPkE",
         "buy_buttons_LcQGtR",
         "product_custom_name_button_ya3Yfz",
         "product_benefits_hWMhBF",
