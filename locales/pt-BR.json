@@ -543,7 +543,7 @@
           "label": "Visualização rápida"
         },
         "select_options": {
-          "label": "Adicionar ao Carrinho"
+          "label": "Adicionar à Sacola"
         },
         "wishlist": {
           "add": "Adicionar aos favoritos",
@@ -557,7 +557,7 @@
         },
         "add_to_cart": {
           "default": {
-            "label": "Adicionar ao Carrinho"
+            "label": "Adicionar à Sacola"
           },
           "sold_out": {
             "label": "Fora de estoque"
@@ -590,7 +590,7 @@
         "instock": "Estoque",
         "outstock": "Fora de estoque",
         "pre_order": "Pedido antecipado",
-        "add_to_cart": "Adicionar ao Carrinho"
+        "add_to_cart": "Adicionar à Sacola"
       },
       "quantity": {
         "label": "Quantidade",
