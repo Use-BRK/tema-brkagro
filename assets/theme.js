@@ -8178,8 +8178,7 @@ class TabItems extends HTMLElement {
       if (isMatch && !c.classList.contains("active")) {
         Motion.animate(c, 
           { 
-            opacity: [0, 1],
-            y: [20, 0]
+            opacity: [0, 1]
           }, 
           { 
             duration: 0.3,
@@ -8200,7 +8199,6 @@ class TabItems extends HTMLElement {
         );
         c.classList.remove("active");
         c.classList.add("hidden");
-        this.initContentSwiper();
       }
     });
 
@@ -8252,8 +8250,8 @@ class TabItems extends HTMLElement {
     if (slideSection && slideSection.swiper) {
         try {
           if (slideSection.swiper.initialized) {
-            slideSection.swiper.destroy(true, false);
-            slideSection.init();
+            // destroy+init era caro na troca de tab; o update() abaixo já recalcula
+            // as dimensões do carrossel (a tab estava display:none).
           }
           
           setTimeout(() => {
