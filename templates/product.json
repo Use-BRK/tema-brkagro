@@ -101,10 +101,10 @@
             "title_size": 15,
             "border_radius": 12,
             "margin_y": 16,
-            "border_color": "#E1E3E5",
-            "accent_color": "#085B47",
-            "label_bg": "#085B47",
-            "label_text_color": "#FFFFFF"
+            "border_color": "#e1e3e5",
+            "accent_color": "#085b47",
+            "label_bg": "#085b47",
+            "label_text_color": "#ffffff"
           }
         },
         "buy_buttons_LcQGtR": {
@@ -131,6 +131,20 @@
               "camisas-uv50-femininas",
               "camisas-uv50-masculinas"
             ]
+          },
+          "blocks": {}
+        },
+        "product_whatsapp_cta_QD4eY3": {
+          "type": "_product-whatsapp-cta",
+          "name": "Compre pelo WhatsApp",
+          "settings": {
+            "enable_button": true,
+            "button_text": "Ou se preferir [whatsapp] <strong>COMPRE PELO WHATSAPP</strong>",
+            "text_color": "#128c4a",
+            "whatsapp_number": "553432194697",
+            "whatsapp_message": "Olá, tenho interesse nesse produto:",
+            "append_product_link": true,
+            "collections": []
           },
           "blocks": {}
         },
@@ -257,6 +271,7 @@
         "brk_apps_agro_bundle_addon_qKaPkE",
         "buy_buttons_LcQGtR",
         "product_custom_name_button_ya3Yfz",
+        "product_whatsapp_cta_QD4eY3",
         "product_benefits_hWMhBF",
         "delivery_return_iJHeMD",
         "frete_no_produto_shipping_calc_mfbXjr",
