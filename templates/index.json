@@ -214,15 +214,15 @@
         "collection_REBGpn": {
           "type": "collection",
           "settings": {
-            "collection": "apache-masculinas",
-            "collection_title": "Masculinas"
+            "collection": "sao-bento-2026",
+            "collection_title": "São Bento"
           }
         },
         "collection_rUjFcg": {
           "type": "collection",
           "settings": {
-            "collection": "apache-femininas",
-            "collection_title": "Femininas"
+            "collection": "apache",
+            "collection_title": "Coleção Apache"
           }
         }
       },
@@ -234,18 +234,18 @@
         ".collection-tab__tab-item {font-size: clamp(1.105em, 2vw, 1.8rem);}",
         "h3 {margin-top: 0px; margin-bottom: 0px;}"
       ],
-      "name": "Apache",
+      "name": "Lançamentos",
       "settings": {
         "section_width": "stretch_width",
         "color_scheme": "scheme-accf3b11-ba40-4a3e-bafb-243ece6683ec",
-        "heading": "🪶 Lançamento Apache",
+        "heading": "🔥 Lançamentos",
         "description": "",
         "show_view_all_button": true,
         "header_size": "small",
         "heading_font_size": 30,
         "header_alignment": "center",
         "tab_header_style": "horizontal",
-        "horizontal_tab_style": "fill",
+        "horizontal_tab_style": "underline",
         "tab_header_postion": "horizontal_header",
         "inline_header_tabs": false,
         "display_mode": "carousel",
