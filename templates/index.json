@@ -42,14 +42,14 @@
             "content_alignment_mobile": "center"
           }
         },
-        "slider_item_QaQnmE": {
+        "slider_item_wzBeHe": {
           "type": "slider_item",
-          "name": "Femininas 2026",
+          "name": "São Bento 2026",
           "settings": {
-            "image": "shopify://shop_images/DESKTOP_FEMININAS2026.webp",
-            "image_mobile": "shopify://shop_images/MOBILE_FEMININAS2026.webp",
+            "image": "shopify://shop_images/BANNER_SITE.webp",
+            "image_mobile": "shopify://shop_images/BANNER_Mob.webp",
             "overlay_opacity": 0,
-            "link_banner": "shopify://collections/colecao-femininas-2026",
+            "link_banner": "https://www.brkagro.com.br/collections/mes-de-sao-bento-2026?filter.p.m.custom.genero=Masculino",
             "slider_effect": "fade-in-right",
             "subheading": "",
             "heading": "",
@@ -72,15 +72,44 @@
             "content_alignment_mobile": "center"
           }
         },
-        "slider_item_69KniN": {
+        "slider_item_c3iPJm": {
           "type": "slider_item",
-          "name": "Long Horn Texas",
-          "disabled": true,
+          "name": "Semana da Agricultura",
           "settings": {
-            "image": "shopify://shop_images/LONGHORN_DESKTOP.webp",
-            "image_mobile": "shopify://shop_images/LONGHORN_TEXAS_MOBILE.png",
+            "image": "shopify://shop_images/SEMANA_AGRICULTURA_DESKTOP.webp",
+            "image_mobile": "shopify://shop_images/SEMANA_AGRICULTURA_MOBILE.webp",
             "overlay_opacity": 0,
-            "link_banner": "shopify://collections/agro-western",
+            "link_banner": "shopify://collections/forca-do-agro-v2",
+            "slider_effect": "fade-in-right",
+            "subheading": "",
+            "heading": "",
+            "description": "",
+            "first_button_label": "",
+            "first_button_link": "",
+            "first_button_style": false,
+            "second_button_label": "",
+            "second_button_link": "",
+            "second_button_style": false,
+            "content_alignment": "center",
+            "content_position": "top-center",
+            "content_width": "full_width",
+            "content_max_width": 100,
+            "content_padding_block": 40,
+            "content_padding_inline": 0,
+            "show_content_background": false,
+            "content_background": "#ffffff",
+            "content_box_opacity": 100,
+            "content_alignment_mobile": "center"
+          }
+        },
+        "slider_item_QaQnmE": {
+          "type": "slider_item",
+          "name": "Femininas 2026",
+          "settings": {
+            "image": "shopify://shop_images/DESKTOP_FEMININAS2026.webp",
+            "image_mobile": "shopify://shop_images/MOBILE_FEMININAS2026.webp",
+            "overlay_opacity": 0,
+            "link_banner": "shopify://collections/colecao-femininas-2026",
             "slider_effect": "fade-in-right",
             "subheading": "",
             "heading": "",
@@ -132,45 +161,14 @@
             "content_box_opacity": 100,
             "content_alignment_mobile": "center"
           }
-        },
-        "slider_item_wzBeHe": {
-          "type": "slider_item",
-          "name": "São Bento 2026",
-          "disabled": true,
-          "settings": {
-            "image": "shopify://shop_images/BANNER_SITE.webp",
-            "image_mobile": "shopify://shop_images/BANNER_Mob.webp",
-            "overlay_opacity": 0,
-            "link_banner": "https://www.brkagro.com.br/collections/mes-de-sao-bento-2026?filter.p.m.custom.genero=Masculino",
-            "slider_effect": "fade-in-right",
-            "subheading": "",
-            "heading": "",
-            "description": "",
-            "first_button_label": "",
-            "first_button_link": "",
-            "first_button_style": false,
-            "second_button_label": "",
-            "second_button_link": "",
-            "second_button_style": false,
-            "content_alignment": "center",
-            "content_position": "top-center",
-            "content_width": "full_width",
-            "content_max_width": 100,
-            "content_padding_block": 40,
-            "content_padding_inline": 0,
-            "show_content_background": false,
-            "content_background": "#ffffff",
-            "content_box_opacity": 100,
-            "content_alignment_mobile": "center"
-          }
         }
       },
       "block_order": [
         "slider_item_GGRrnM",
+        "slider_item_wzBeHe",
+        "slider_item_c3iPJm",
         "slider_item_QaQnmE",
-        "slider_item_69KniN",
-        "slider_item_n3PrkQ",
-        "slider_item_wzBeHe"
+        "slider_item_n3PrkQ"
       ],
       "custom_css": [
         ".h-full_screen {--height-topbar: 41px;}"
