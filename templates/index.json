@@ -75,6 +75,7 @@
         "slider_item_c3iPJm": {
           "type": "slider_item",
           "name": "Semana da Agricultura",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/SEMANA_AGRICULTURA_DESKTOP.webp",
             "image_mobile": "shopify://shop_images/SEMANA_AGRICULTURA_MOBILE.webp",
