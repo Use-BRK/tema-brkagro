@@ -282,7 +282,7 @@
           "settings": {
             "button_text": "Minha Conta",
             "button_link": "https://minha-conta.brkagro.com.br/",
-            "button_style": "primary",
+            "button_style": "outline",
             "padding_bottom": 0,
             "pin_to_bottom": true
           }
@@ -336,7 +336,7 @@
         "logo_max_width": 130,
         "close_icon_color": "#ffffff",
         "header_bg": "#085b47",
-        "body_bg": "#EFEFE8",
+        "body_bg": "#efefe8",
         "footer_bg": "",
         "label_hot_text": "+ BRINDE 🎁",
         "label_hot_color": "#ffffff",
