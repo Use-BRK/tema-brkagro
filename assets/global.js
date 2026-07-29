@@ -273,14 +273,6 @@ class SlideSection extends HTMLElement {
     if (direction == "vertical") {
       _this.style.maxHeight = _this.offsetHeight + "px";
     }
-    // EXPERIMENTO (scroll "arrastado" no mobile): watchSlidesProgress recalcula
-    // o progresso de TODOS os slides a cada frame do arraste (main thread).
-    // Em carrosséis com muitos slides isso trava o drag no celular. Só é
-    // necessário em carrosséis .show-tooltip (a regra CSS que zera opacity dos
-    // slides sem .swiper-slide-visible). Mantemos ligado só nesses; desligamos
-    // no resto. Para reverter: trocar needsSlideVisibility por `true`.
-    const needsSlideVisibility =
-      _this.classList.contains("show-tooltip") || !!_this.closest(".show-tooltip");
     this.globalSlide = new Swiper(_this, {
       slidesPerView: autoItem ? "auto" : itemMobile,
       spaceBetween: spacing >= 15 ? 15 : spacing,
@@ -882,7 +874,7 @@ class SlideLazyLoad {
       autoHeight: autoHeight,
       speed: speed,
       watchSlidesProgress: true,
-      watchSlidesVisibility: true,
+      watchSlidesVisibility: true, /* experimento revertido: voltou ao original */
       grid: {
         rows: row,
         fill: "row",

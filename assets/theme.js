@@ -2124,7 +2124,21 @@ class BackToTop extends HTMLElement {
   }
 
   connectedCallback() {
-    window.addEventListener("scroll", this.updateScrollPercentage.bind(this));
+    // rAF-throttle + passive: coalesce os eventos de scroll para no máximo
+    // 1 leitura/escrita de layout por frame (evita reflow forçado por evento).
+    let ticking = false;
+    window.addEventListener(
+      "scroll",
+      () => {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(() => {
+          this.updateScrollPercentage();
+          ticking = false;
+        });
+      },
+      { passive: true }
+    );
   }
 
   backToTop() {
@@ -2693,12 +2707,20 @@ class TiktokVideo extends HTMLElement {
   }
   init() {
     const _this = this;
-    window.addEventListener("scroll", () => {
-      let wpy = window.scrollY;
-      if (wpy > 0) {
-        this.scrollLazyloadVideo();
-      }
-    });
+    // rAF-throttle + passive (mesmo motivo do BackToTop).
+    let ticking = false;
+    window.addEventListener(
+      "scroll",
+      () => {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(() => {
+          if (window.scrollY > 0) this.scrollLazyloadVideo();
+          ticking = false;
+        });
+      },
+      { passive: true }
+    );
     let pos = window.pageYOffset;
     if (pos > 40) {
       this.scrollLazyloadVideo();
