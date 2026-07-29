@@ -204,8 +204,8 @@
 <header
   class="header relative section{% if section_st.padding_top < 30 %} pt-min{% endif %}{% if section_st.padding_bottom < 30 %} pb-min{% endif %} gradient remove_spacing color-{{ color_scheme }}{{ transparent_class }}{% if transparent_mobile %}{{ transparent_mobile_class }}{% endif %}{% if request.page_type == 'index' and section_st.separator_line == 'homepage' %} border-bottom{% endif %}{% if section_st.separator_line == 'all-page' %} border-bottom{% endif %}{% if request.page_type != 'index' and section_st.separator_line == 'inner_page' %} border-bottom{% endif %} popup-search-mobile{% if top_search and mobile_search_bar %} has-mobile-search-bar{% endif %}"
   data-section-id="{{ section.id }}"
-  data-sticky="{{ sticky_header_type }}"
-  data-sticky-mobile="{{ sticky_mobile }}"
+  data-sticky="{% if request.page_type == 'page' and page.handle == 'links' %}none{% else %}{{ sticky_header_type }}{% endif %}"
+  data-sticky-mobile="{% if request.page_type == 'page' and page.handle == 'links' %}false{% else %}{{ sticky_mobile }}{% endif %}"
   style="{{ style | strip | strip_newlines }}{% if transparent %}--transparent-color: {{ transparent_color }};--transparent-bg-color: {{ transparent_bg_color }};{% endif %}"
 >
   <div class="header__inner header__layout-1" id="header-sticky">

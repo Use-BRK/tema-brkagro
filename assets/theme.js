@@ -8176,17 +8176,22 @@ class TabItems extends HTMLElement {
       const isMatch = c.dataset.blockId === blockId;
       
       if (isMatch && !c.classList.contains("active")) {
-        Motion.animate(c, 
-          { 
+        // Revela ANTES de animar: a tab passa a display:block para o Swiper
+        // conseguir medir os slides. Sem isso, os slides ficam com largura 0
+        // (a tab estava display:none) e a 1ª imagem "estoura" em largura natural.
+        c.classList.add("active");
+        c.classList.remove("hidden");
+        // Recalcula o Swiper de forma SÍNCRONA, ainda no mesmo tick, antes de
+        // qualquer paint. Elimina o frame com a imagem gigante (layout shift).
+        this.initContentSwiper();
+        Motion.animate(c,
+          {
             opacity: [0, 1]
-          }, 
-          { 
+          },
+          {
             duration: 0.3,
           }
         );
-        c.classList.add("active");
-        c.classList.remove("hidden");
-        this.initContentSwiper();
       } else if (!isMatch && c.classList.contains("active")) {
         Motion.animate(c, 
           { 
@@ -8247,22 +8252,17 @@ class TabItems extends HTMLElement {
 
   initContentSwiper() {
     const slideSection = this.querySelector('.collection-tab__tab-content.active slide-section');
-    if (slideSection && slideSection.swiper) {
-        try {
-          if (slideSection.swiper.initialized) {
-            // destroy+init era caro na troca de tab; o update() abaixo já recalcula
-            // as dimensões do carrossel (a tab estava display:none).
-          }
-          
-          setTimeout(() => {
-            if (slideSection.swiper && slideSection.swiper.initialized) {
-              slideSection.swiper.update();
-            }
-          }, 10);
-        } catch (e) {
-          console.warn('Error updating swiper:', e);
-        }
+    if (slideSection && slideSection.swiper && slideSection.swiper.initialized) {
+      try {
+        // Síncrono e imediato: a tab já está display:block (setada logo acima),
+        // então update() força o reflow e recalcula a largura dos slides ANTES
+        // do próximo paint. Nada de setTimeout — era ele que deixava um frame
+        // com os slides sem largura (a imagem gigante que "popava" na troca).
+        slideSection.swiper.update();
+      } catch (e) {
+        console.warn('Error updating swiper:', e);
       }
+    }
   }
 }
 customElements.define("tab-items", TabItems);

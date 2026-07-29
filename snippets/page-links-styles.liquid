@@ -1,0 +1,155 @@
+{% comment %}
+  Estilos exclusivos da página /pages/links (linktree BRK Agro).
+  Carregado condicionalmente em layout/theme.liquid apenas quando
+  page.handle == 'links'. Não afeta nenhuma outra página.
+{% endcomment %}
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Science+Gothic:wdth,wght@50..200,100..900&display=optional">
+
+<style>
+  /* ═══════════════════════════════════════════════════════════
+     /pages/links — gradiente conectado: header + conteúdo + footer
+     Seletores baseados no HTML real inspecionado via DevTools.
+  ═══════════════════════════════════════════════════════════ */
+
+  /* 1. GRADIENTE FIXO NO BODY
+        background-attachment:fixed → gradiente relativo ao viewport,
+        não repete conforme o conteúdo cresce. */
+  body.page-links {
+    background: radial-gradient(120% 85% at 50% 32%,
+      #1f7d5e 0%, #12604a 34%, #0b432f 64%, #062318 100%) no-repeat center center !important;
+    background-attachment: fixed !important;
+    background-size: cover !important;
+    min-height: 100vh !important;
+  }
+
+  /* 2. HEADER NÃO-STICKY
+        Resolvido na origem: header.liquid passa data-sticky="none" para esta página.
+        O JS lê "none" e nunca inicializa o sticky → zero CLS de reflow.
+        Fallback CSS caso o JS ainda dispare por algum motivo: */
+  body.page-links .section-header,
+  body.page-links .section-header.shopify-section-header-sticky {
+    position: relative !important;
+    top: auto !important;
+  }
+
+  /* 3. HEADER TRANSPARENTE */
+  body.page-links .header {
+    --gradient-background: transparent !important;
+    --color-background: transparent !important;
+    background: transparent !important;
+    background-color: transparent !important;
+    background-image: none !important;
+    border-bottom: none !important;
+    box-shadow: none !important;
+  }
+  body.page-links #header-sticky {
+    background: transparent !important;
+  }
+
+  /* 4. LOGO → branco (LOGO_HORIZONTAL_COLORVERDE.svg → filtro branco) */
+  body.page-links .header__logo img,
+  body.page-links .header__logo svg {
+    filter: brightness(0) invert(1) !important;
+  }
+
+  /* 5. ÍCONES E TEXTO DO HEADER → brancos */
+  body.page-links .header .header-color,
+  body.page-links .header .heading-color,
+  body.page-links .header .header-icon,
+  body.page-links .header a,
+  body.page-links .header button,
+  body.page-links .header .nav-toggle {
+    color: #ffffff !important;
+    --color-heading: #ffffff;
+  }
+  body.page-links .header svg {
+    color: #ffffff !important;
+    fill: currentColor !important;
+  }
+
+  /* 6. BARRA DE BUSCA MOBILE */
+  body.page-links .header__mobile-search-trigger {
+    background: rgba(255,255,255,0.12) !important;
+    border: 1px solid rgba(255,255,255,0.3) !important;
+    border-radius: 10px !important;
+    color: #fff !important;
+  }
+  body.page-links .header__mobile-search-placeholder {
+    color: rgba(255,255,255,0.7) !important;
+  }
+  body.page-links .header__mobile-search svg path {
+    fill: #ffffff !important;
+  }
+
+  /* 7. FOOTER TRANSPARENTE
+        O gradiente fixed do body aparece por baixo.
+        A parte mais escura (#062318) aparece naturalmente no rodapé. */
+  body.page-links footer.footer {
+    --gradient-background: transparent !important;
+    --color-background: transparent !important;
+    background: transparent !important;
+    background-color: transparent !important;
+    background-image: none !important;
+    border-top: none !important;
+    box-shadow: none !important;
+  }
+  body.page-links footer.footer,
+  body.page-links footer.footer a,
+  body.page-links footer.footer p,
+  body.page-links footer.footer span,
+  body.page-links footer.footer li,
+  body.page-links footer.footer svg {
+    color: rgba(255,255,255,0.85) !important;
+    fill: currentColor !important;
+  }
+  body.page-links footer.footer .footer__block-heading {
+    color: #ffffff !important;
+  }
+  body.page-links footer.footer [class*="border"] {
+    border-color: rgba(255,255,255,0.15) !important;
+  }
+
+  /* 8. BADGES carrinho/wishlist — mantém visíveis */
+  body.page-links .cart-count,
+  body.page-links .wishlist-count {
+    background-color: #ef4444 !important;
+    color: #fff !important;
+  }
+
+  /* 9. ÍCONES DAS REDES SOCIAIS DO FOOTER
+        Precisa de seletor mais específico que a regra do footer svg acima
+        para vencer na cascata mesmo com !important. */
+  body.page-links footer.footer .list-social svg {
+    color: white !important;
+    fill: transparent !important;
+  }
+
+  /* 10. ELEMENTOS OCULTOS NESTA PÁGINA */
+  body.page-links .page-title          { display: none !important; }
+  body.page-links #whatsapp-button-contact { display: none !important; }
+  body.page-links mobile-navigation-bar    { display: none !important; }
+
+  /* 10. SEM PADDING EXTRA no conteúdo (o linktree tem o próprio) */
+  body.page-links #MainContent         { padding: 0 !important; }
+  body.page-links .page-default.section { padding: 0 !important; }
+
+  /* 11. RESERVA ESPAÇO DO H1 (Science Gothic)
+         font-display:optional não faz swap após primeiro paint → sem CLS.
+         Mas se a fonte já estiver em cache, carrega direto sem nenhum shift.
+         size-adjust aproxima as métricas do fallback às da Science Gothic
+         para minimizar o deslocamento no raro caso de swap. */
+  @font-face {
+    font-family: 'Science Gothic Fallback';
+    src: local('Arial');
+    size-adjust: 105%;
+    ascent-override: 90%;
+    descent-override: 22%;
+    line-gap-override: 0%;
+  }
+  body.page-links h1 {
+    font-family: 'Science Gothic', 'Science Gothic Fallback', sans-serif !important;
+  }
+</style>
