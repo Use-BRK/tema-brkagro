@@ -889,6 +889,18 @@ class SlideLazyLoad {
     if (direction == "vertical") {
       _this.style.maxHeight = _this.offsetHeight + "px";
     }
+    // (mesma lógica do initSlide principal — este é o caminho de LAZY-INIT)
+    var needsSlideVisibility =
+      _this.classList.contains("show-tooltip") || !!_this.closest(".show-tooltip");
+    var onProductPage =
+      document.body.classList.contains("product") ||
+      /\/products\//.test(location.pathname);
+    var useCssMode =
+      !onProductPage &&
+      !loop &&
+      (effect === "slide" || !effect) &&
+      direction === "horizontal" &&
+      Number(row) <= 1;
     _this.globalSlide = new Swiper(el, {
       slidesPerView: autoItem ? "auto" : itemMobile,
       spaceBetween: spacing >= 15 ? 15 : spacing,
@@ -898,8 +910,9 @@ class SlideLazyLoad {
       effect: effect,
       autoHeight: autoHeight,
       speed: speed,
-      watchSlidesProgress: true,
-      watchSlidesVisibility: true, /* experimento revertido: voltou ao original */
+      cssMode: useCssMode,
+      watchSlidesProgress: needsSlideVisibility,
+      watchSlidesVisibility: needsSlideVisibility,
       grid: {
         rows: row,
         fill: "row",
