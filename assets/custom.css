@@ -1015,8 +1015,12 @@ select.gift-progress-modal__variant {
    each section's real height after first render to keep scroll stable. */
 @media (max-width: 1024px) {
   #MainContent > .shopify-section:not(:first-child) {
-    content-visibility: auto;
-    contain-intrinsic-size: auto 700px;
+    /* EXPERIMENTO (arrasto/jank no scroll mobile): content-visibility desligado
+       temporariamente para medir se o recálculo de estilo por frame no scroll
+       cai. Para REVERTER: descomentar as 2 linhas abaixo. */
+    /* content-visibility: auto; */
+    /* contain-intrinsic-size: auto 700px; */
+    content-visibility: visible;
   }
   /* Exceção: a seção da collection contém o "Ordenar por" (bottom-sheet
      position:fixed) e o drawer de filtros. O containment do content-visibility
