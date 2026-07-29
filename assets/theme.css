@@ -635,11 +635,6 @@ footer .localization-flags{
     .disclosure__list {
     border-radius: 5px;
   }
-  /* EXPERIMENTO (arrasto no scroll): estes body:has() reavaliam o DOCUMENTO
-     INTEIRO toda vez que a classe .shopify-section-header-sticky liga/desliga
-     no scroll (header sticky) -> recálculo de estilo caro por frame.
-     Desligados temporariamente para medir. REVERTER: descomentar o bloco. */
-  /*
   body:has(.shopify-section-header-sticky) .sticky.top-30 {
     top: calc(var(--height-header, 0px) + 30px);
     transition: var(--transition);
@@ -650,7 +645,6 @@ footer .localization-flags{
   body:has(.shopify-section-header-hidden) .sticky.top-30 {
     top: 30px;
   }
-  */
   .shopify-section-group-header-group:not(.section-header) {
     position: relative;
     z-index: 12;

@@ -286,7 +286,13 @@ class SlideSection extends HTMLElement {
     // (a causa do "arrastado"). Ativado só onde é seguro, pois cssMode NÃO
     // suporta loop, efeitos (fade/cube) nem grid multi-linha.
     // Para REVERTER: trocar useCssMode por false.
+    // Não usar cssMode em páginas de produto (/products/) — a galeria de mídia
+    // e os carrosséis do produto se comportam melhor com o Swiper normal.
+    var onProductPage =
+      document.body.classList.contains("product") ||
+      /\/products\//.test(location.pathname);
     var useCssMode =
+      !onProductPage &&
       !loop &&
       (effect === "slide" || !effect) &&
       direction === "horizontal" &&

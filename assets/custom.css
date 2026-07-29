@@ -1,4 +1,13 @@
 /* Custom Geral */
+
+/* cssMode (scroll nativo dos carrosséis): trava o scroll SÓ no eixo horizontal.
+   Sem isto, o wrapper vira um container que também rola na vertical -> "engole"
+   o scroll da página e deforma os produtos ao arrastar pra baixo. */
+.swiper.swiper-css-mode > .swiper-wrapper {
+  overflow-y: hidden;
+  overscroll-behavior-x: contain;
+}
+
 .price,
 .installment-payment strong,
 .minicart__item-price {
