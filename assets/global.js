@@ -273,6 +273,24 @@ class SlideSection extends HTMLElement {
     if (direction == "vertical") {
       _this.style.maxHeight = _this.offsetHeight + "px";
     }
+    // PERF: watchSlidesProgress/Visibility recalcula o progresso de TODOS os
+    // slides a cada frame do arraste. Só é necessário quando alguma regra CSS
+    // usa .swiper-slide-visible — no Glozin, apenas os carrosséis .show-tooltip
+    // (theme.css: .show-tooltip .swiper-slide:not(.swiper-slide-visible){opacity:0}).
+    // Nos demais, desligamos para aliviar a main thread no swipe.
+    var needsSlideVisibility =
+      _this.classList.contains("show-tooltip") || !!_this.closest(".show-tooltip");
+    // PERF (arrasto no mobile): cssMode delega o arraste ao SCROLL NATIVO do
+    // navegador (compositor thread) em vez de mover o wrapper via JS na main
+    // thread a cada frame. Isso torna o swipe imune à saturação da main thread
+    // (a causa do "arrastado"). Ativado só onde é seguro, pois cssMode NÃO
+    // suporta loop, efeitos (fade/cube) nem grid multi-linha.
+    // Para REVERTER: trocar useCssMode por false.
+    var useCssMode =
+      !loop &&
+      (effect === "slide" || !effect) &&
+      direction === "horizontal" &&
+      Number(row) <= 1;
     this.globalSlide = new Swiper(_this, {
       slidesPerView: autoItem ? "auto" : itemMobile,
       spaceBetween: spacing >= 15 ? 15 : spacing,
@@ -282,8 +300,9 @@ class SlideSection extends HTMLElement {
       effect: effect,
       autoHeight: autoHeight,
       speed: speed,
-      watchSlidesProgress: true,
-      watchSlidesVisibility: true,
+      cssMode: useCssMode,
+      watchSlidesProgress: needsSlideVisibility,
+      watchSlidesVisibility: needsSlideVisibility,
       grabCursor: true,
       centeredSlides: centeredSlidesSetting,
       centerInsufficientSlides: _this?.dataset.centerInsufficient === "true",
