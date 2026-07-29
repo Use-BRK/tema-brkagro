@@ -461,20 +461,20 @@ class SlideSection extends HTMLElement {
           }
         },
         touchMove: function (swiper, event) {
-          const innerWidth = event.view.innerWidth;
-          const swiperMedia = swiper.el.classList.contains('swiper-popup-media');
+          // PERF: só a galeria popup (.swiper-popup-media) precisa desta lógica.
+          // O early-return evita rodar document.querySelector a CADA touchmove
+          // em TODO carrossel (era trabalho síncrono por frame no arraste).
+          if (!swiper.el.classList.contains('swiper-popup-media')) return;
           const slidePopup = document.querySelector("slide-section-popup");
-          if (slidePopup && swiperMedia && innerWidth > 767) {
+          if (slidePopup && event.view.innerWidth > 767) {
             slidePopup.swiper.allowTouchMove = false;
             slidePopup.swiper.unsetGrabCursor();
           }
         },
         touchEnd: function (swiper, event) {
-          const innerWidth = event.view.innerWidth;
-          const swiperMedia = swiper.el.classList.contains('swiper-popup-media');
+          if (!swiper.el.classList.contains('swiper-popup-media')) return;
           const slidePopup = document.querySelector("slide-section-popup");
-          if (!swiperMedia) return;
-          if (slidePopup && innerWidth > 767) {
+          if (slidePopup && event.view.innerWidth > 767) {
             slidePopup.swiper.allowTouchMove = true;
             slidePopup.swiper.setGrabCursor();
           }
