@@ -24,6 +24,15 @@
     background-size: cover !important;
     min-height: 100vh !important;
   }
+  /* Backstop: com background-attachment:fixed no mobile, o fundo do html
+     aparece (branco) ao rolar/overscroll -> a "barra branca" embaixo.
+     Pinta o html com a cor mais escura do gradiente para esconder isso. */
+  html:has(body.page-links) {
+    background-color: #062318 !important;
+  }
+
+  /* Esconde a topbar nesta página */
+  body.page-links #topbar { display: none !important; }
 
   /* 2. HEADER NÃO-STICKY
         Resolvido na origem: header.liquid passa data-sticky="none" para esta página.
