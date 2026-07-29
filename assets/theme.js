@@ -8285,6 +8285,23 @@ class TabItems extends HTMLElement {
         console.warn('Error updating swiper:', e);
       }
     }
+    // Recalcula a posição vertical das setas. O offset (--arrows-offset-top) é
+    // medido no init do global.js a partir do offsetHeight das imagens; para
+    // tabs que iniciam hidden (display:none) esse valor era 0, então as setas
+    // "subiam" para o topo ao trocar de tab. Agora que a tab está visível,
+    // recalculamos com as alturas reais.
+    if (slideSection && slideSection.dataset.arrowCenterimage) {
+      const items = slideSection.querySelectorAll(".product-item__media--ratio");
+      const arrows = slideSection.querySelectorAll(".swiper-arrow");
+      if (items.length && arrows.length) {
+        const max = Math.max(...[...items].map((el) => el.offsetHeight / 2));
+        if (max > 0) {
+          arrows.forEach((arrow) => {
+            arrow.style.setProperty("--arrows-offset-top", max + "px");
+          });
+        }
+      }
+    }
   }
 }
 customElements.define("tab-items", TabItems);
