@@ -65,7 +65,7 @@
     "price_size": 18,
     "price_font_weight": "600",
     "show_vendor": false,
-    "show_rate": false,
+    "show_rate": true,
     "show_secondary_image": true,
     "product_image_ratio": "adapt",
     "product_hover_effect": "hover_zoom",
