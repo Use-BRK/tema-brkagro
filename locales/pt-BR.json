@@ -659,7 +659,7 @@
       "sold_out": "Fora de estoque",
       "pre_order": "Pedido antecipado",
       "unavailable": "Indisponível",
-      "add_to_cart": "Comprar",
+      "add_to_cart": "Adicionar à Sacola",
       "fake_sold": "{{ sold }} vendido no último {{ hours }} horas",
       "xr_button": "Veja no seu espaço",
       "xr_button_label": "Visualize em seu espaço, carregue item em janela de realidade aumentada",
