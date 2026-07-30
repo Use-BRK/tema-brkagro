@@ -3215,6 +3215,14 @@ header.active li.visible .submenu:not(.submenu-vertical) {
   justify-content: safe center;
 }
 
+/* cssMode ignora o centerInsufficientSlides do Swiper (a centralização feita via
+   JS não se aplica no scroll nativo), então a centralização se perdia DEPOIS do
+   init e o grupo pulava para a esquerda (layout shift). Mantemos a mesma
+   centralização por CSS também pós-init quando há cssMode. */
+.swiper.center-insufficient.swiper-css-mode .swiper-wrapper {
+  justify-content: safe center;
+}
+
 /* Hide the carousel navigation arrows until Swiper initializes. Before init the arrows are
    always shown, then Swiper locks them (display:none) when scrolling isn't needed — that made
    them flash in and out on load. They are position:absolute, so hiding them causes no reflow. */
