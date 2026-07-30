@@ -11,6 +11,34 @@
   "name": "t:sections.footer.name",
   "type": "footer",
   "sections": {
+    "icon_box_iW6mQH": {
+      "type": "icon-box",
+      "name": "t:sections.icon_box.name",
+      "settings": {
+        "section_width": "container",
+        "color_scheme": "",
+        "type": "default",
+        "column_gap": 30,
+        "icon_position": "top",
+        "icon_size": 32,
+        "spacing": 11,
+        "show_border": false,
+        "enable_background": false,
+        "background": "",
+        "content_alignment": "center",
+        "heading_font_size": 16,
+        "heading_font_weight": "heading_weight",
+        "heading_uppercase": false,
+        "heading_spacing_bottom": 10,
+        "des_font_size": 14,
+        "des_font_weight": "body_weight",
+        "carousel_on_mobile": false,
+        "items_per_row_mobile": "1",
+        "padding_top": 50,
+        "padding_bottom": 50,
+        "reset_spacing": true
+      }
+    },
     "footer": {
       "type": "footer",
       "blocks": {
@@ -74,6 +102,7 @@
     }
   },
   "order": [
+    "icon_box_iW6mQH",
     "footer"
   ]
 }
