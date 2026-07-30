@@ -8518,6 +8518,11 @@ class SlideWithThumbs extends HTMLElement {
     const watchOverflow = this.dataset.thumbWatchOverflow
       ? this.dataset.thumbWatchOverflow
       : true;
+    // Escala do tamanho das miniaturas (Media > "Tamanho das miniaturas").
+    // No thumbnail_bottom (horizontal), tamanho maior = menos thumbs por view.
+    // No thumbnail_left (vertical) o tamanho vem da largura da coluna (CSS), então
+    // mantemos 10 por view.
+    const thumbScale = parseFloat(this.dataset.thumbScale) || 1;
     this.thumbnailSlide = new Swiper(container, {
       // centeredSlides: true,
       // centeredSlidesBounds: true,
@@ -8530,7 +8535,10 @@ class SlideWithThumbs extends HTMLElement {
       breakpoints: {
         768: {
           direction: direction,
-          slidesPerView: direction == "vertical" ? 10 : 6,
+          slidesPerView:
+            direction == "vertical"
+              ? 10
+              : Math.max(2, Math.round(6 / thumbScale)),
         },
       },
     });

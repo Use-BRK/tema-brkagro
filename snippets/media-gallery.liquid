@@ -54,6 +54,11 @@
     assign gallery_first_media = product.selected_or_first_available_variant.featured_media
   endif
   assign gallery_ratio = gallery_first_media.preview_image.aspect_ratio | default: 1
+  assign thumb_size_pct = 100
+  if section_st != null and section_st.thumbnail_size != blank
+    assign thumb_size_pct = section_st.thumbnail_size
+  endif
+  assign thumb_scale = thumb_size_pct | divided_by: 100.0
 %}
 {% for image in images %}
   {% if image.alt == 'image-360' and image.media_type == 'image' %}
@@ -107,12 +112,11 @@
         data-desktop="1"
         data-thumb-direction="{% if desktop_layout == 'thumbnail_left' %}vertical{% else %}horizontal{% endif %}"
         data-thumb-slides-per-view="4"
+        data-thumb-scale="{{ thumb_scale }}"
         {%- if type == 'quickview' -%}
           data-nothumb="true"
         {%- endif -%}
-        {% if desktop_layout == 'thumbnail_left' %}
-          style="--col-gap: 1rem; --col-gap-desktop: 1rem;"
-        {% endif %}
+        style="--gallery-ratio: {{ gallery_ratio }}; --thumb-scale: {{ thumb_scale }};{% if desktop_layout == 'thumbnail_left' %}--col-gap: 1rem; --col-gap-desktop: 1rem;{% endif %}"
         data-auto-play-video="{%- if type == "quickview"  -%} true {%- else -%}{{ section_st.enable_video_autoplay }}{%- endif -%}"
         {% if type == 'quickview' %}data-spacing="10"{% endif %}
       >

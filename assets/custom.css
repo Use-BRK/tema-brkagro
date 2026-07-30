@@ -1351,6 +1351,16 @@ sticky-add-cart {
     overflow-x: visible;
     overflow-y: visible;
   }
+
+  /* Layout "Thumbnail" (desktop) usa Swiper (não o grid). No MOBILE, uma imagem
+     retrato entre quadradas esticava o container do swiper (fica mais alto que a
+     imagem visível) e os solid dots caíam na faixa branca abaixo. Aqui as fotos
+     do carrossel principal assumem a razão da 1ª imagem (--gallery-ratio), então
+     o container = imagem e os dots voltam pra cima da imagem. Só mobile; o
+     desktop (thumbnail_left) não é afetado. */
+  .product-detail__media slide-with-thumbs .media-main-swiper .media-gallery__image {
+    --aspect-ratio: var(--gallery-ratio, 1) !important;
+  }
 }
 
 /* Galeria do produto nos layouts grid/stack/carrossel (.grid_scroll): imagem
@@ -1360,6 +1370,39 @@ sticky-add-cart {
    .grid_scroll, então continua como está (cover). Vale desktop e mobile. */
 .product-detail__media media-gallery .grid_scroll :is(img, picture) {
   object-fit: contain;
+}
+
+/* ============================================================
+   Layout Thumbnail (left/bottom) no DESKTOP
+   ============================================================ */
+@media (min-width: 768px) {
+  /* Imagem principal NÃO corta. Sem o ajuste, uma foto retrato entre quadradas
+     esticava o wrapper do swiper (fica mais alto que a imagem) e o cover cortava
+     as laterais. Aqui a caixa assume a razão da 1ª imagem (--gallery-ratio) e as
+     imagens usam contain (as de razão diferente ficam com faixa, mas sem corte). */
+  .product-detail__media slide-with-thumbs .media-main-swiper .swiper-wrapper {
+    align-items: flex-start;
+  }
+  .product-detail__media slide-with-thumbs .media-main-swiper .swiper-slide,
+  .product-detail__media slide-with-thumbs .media-main-swiper .media-gallery__image {
+    height: auto !important;
+    aspect-ratio: var(--gallery-ratio, 1);
+  }
+  .product-detail__media slide-with-thumbs .media-main-swiper .media-gallery__image img {
+    object-fit: contain !important;
+    height: 100% !important;
+  }
+
+  /* Tamanho das miniaturas (Product information > Media > "Tamanho das
+     miniaturas"). No thumbnail_left o tamanho = largura da coluna; escalamos ela
+     e a largura da imagem principal por --thumb-scale. (No thumbnail_bottom o
+     tamanho é controlado pelo slides-per-view no theme.js, também via escala.) */
+  .product-detail__media .thumbnail_left .media-thumb-swiper {
+    width: calc(5rem * var(--thumb-scale, 1));
+  }
+  .product-detail__media .thumbnail_left .media-main-swiper {
+    width: calc(100% - 1rem - 5rem * var(--thumb-scale, 1));
+  }
 }
 
 /* ============================================================
