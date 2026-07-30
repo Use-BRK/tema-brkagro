@@ -141,7 +141,9 @@
                 type: type
               %}
             </div>
-            {%- render 'swiper-navigation', class: 'main-slide__navigation', class_prodcut_mobile: class_prodcut_mobile -%}
+            {%- if section_st == null or section_st.show_media_arrows -%}
+              {%- render 'swiper-navigation', class: 'main-slide__navigation', class_prodcut_mobile: class_prodcut_mobile -%}
+            {%- endif -%}
           </div>
         </div>
         {% comment %} {%- render 'swiper-navigation' -%} {% endcomment %}

@@ -1403,6 +1403,48 @@ sticky-add-cart {
   .product-detail__media .thumbnail_left .media-main-swiper {
     width: calc(100% - 1rem - 5rem * var(--thumb-scale, 1));
   }
+
+  /* Setas de navegar entre as fotos: estilo sútil (sem fundo branco/borda verde).
+     Trocamos o ícone preenchido (que ficava grosso ao ampliar) por um chevron
+     desenhado com borda — traçado fino e do tamanho que quisermos.
+     O clique no lightbox segue pelo próprio <a> da imagem. */
+  .product-detail__media .swiper-arrow {
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    color: var(--color-heading);
+    opacity: 0.4;
+    transition: opacity 0.15s ease;
+  }
+  .product-detail__media .swiper-arrow svg {
+    display: none;
+  }
+  .product-detail__media .swiper-arrow::before {
+    content: "";
+    display: block;
+    width: 14px;
+    height: 14px;
+    border-right: 1.5px solid currentColor;
+    border-bottom: 1.5px solid currentColor;
+  }
+  .product-detail__media .swiper-button-prev::before {
+    transform: rotate(135deg);
+    margin-left: 5px;
+  }
+  .product-detail__media .swiper-button-next::before {
+    transform: rotate(-45deg);
+    margin-right: 5px;
+  }
+  .product-detail__media .swiper-arrow:hover {
+    opacity: 0.8;
+    background: transparent !important;
+  }
+}
+
+/* Remove o botão "expandir" (lightbox) sobre a imagem. O hover/zoom continua e o
+   clique na imagem ainda abre o lightbox. */
+.product-detail__media .zoom_light_box {
+  display: none !important;
 }
 
 /* ============================================================
