@@ -227,6 +227,16 @@
           },
           "blocks": {}
         },
+        "product_collapsible_row_HB7ApJ": {
+          "type": "_product-collapsible-row",
+          "settings": {
+            "heading": "ficha técnica",
+            "content": "<p>SKU: </p>",
+            "use_product_description": false,
+            "open": false
+          },
+          "blocks": {}
+        },
         "collapsible_row_m3g6f8": {
           "type": "_product-collapsible-row",
           "settings": {
@@ -278,6 +288,7 @@
         "frete_no_produto_shipping_calc_mfbXjr",
         "product_grouped_6epkNf",
         "more_colors_3zmxGq",
+        "product_collapsible_row_HB7ApJ",
         "collapsible_row_m3g6f8",
         "product_collapsible_row_PancQ9",
         "product_collapsible_row_zirPk7"
