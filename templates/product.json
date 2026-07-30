@@ -65,7 +65,7 @@
           "type": "_product-price",
           "settings": {
             "price_size": 24,
-            "price_weight": "500",
+            "price_weight": "600",
             "compare_size": 18,
             "compare_weight": "400",
             "installment_size": 15,
@@ -316,14 +316,14 @@
     },
     "custom_liquid_gbRHwy": {
       "type": "custom-liquid",
-      "name": "t:sections.custom_liquid.name",
+      "name": "Descrição Produto",
       "settings": {
         "section_width": "container",
-        "color_scheme": "",
+        "color_scheme": "default",
         "custom_liquid": "{{ product.description }}",
-        "padding_top": 0,
-        "padding_bottom": 0,
-        "reset_spacing": false
+        "padding_top": 15,
+        "padding_bottom": 15,
+        "reset_spacing": true
       }
     },
     "product-set": {
@@ -469,6 +469,33 @@
         "reset_spacing": false
       }
     },
+    "1785433041f7474707": {
+      "type": "apps",
+      "blocks": {
+        "judge_me_reviews_review_widget_itdQpc": {
+          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "review_data": "real_data",
+            "max_width": 1200,
+            "show_shop_reviews": false,
+            "empty_state": "other_products_reviews"
+          }
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_review_widget_itdQpc"
+      ],
+      "settings": {}
+    },
+    "divider_TXWjaf": {
+      "type": "divider",
+      "settings": {
+        "section_width": "full_width",
+        "border_height": 20,
+        "border_color": "#fff",
+        "reset_spacing": false
+      }
+    },
     "faq_XdwEqr": {
       "type": "faq",
       "blocks": {
@@ -573,6 +600,8 @@
     "divider_HtLXd3",
     "products_recently_viewed_GdCNUL",
     "divider_cftdT4",
+    "1785433041f7474707",
+    "divider_TXWjaf",
     "faq_XdwEqr",
     "178404639084306e5f"
   ]

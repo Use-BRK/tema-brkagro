@@ -27,6 +27,7 @@
     "font_type_body": "shopify",
     "font_body_system": "mona_sans_n4",
     "body_font_size": 15,
+    "body_font_weight": 500,
     "font_type_heading": "shopify",
     "font_heading_system": "mona_sans_n4",
     "heading_font_weight": 500,
@@ -178,7 +179,14 @@
           },
           "price_NNg9B8": {
             "type": "_product-price",
-            "settings": {},
+            "settings": {
+              "price_size": 24,
+              "price_weight": "600",
+              "compare_size": 18,
+              "compare_weight": "400",
+              "installment_size": 13,
+              "installment_weight": "400"
+            },
             "blocks": {}
           },
           "description_pKXRJa": {
