@@ -144,7 +144,6 @@
         "product_whatsapp_cta_QD4eY3": {
           "type": "_product-whatsapp-cta",
           "name": "Compre pelo WhatsApp",
-          "disabled": true,
           "settings": {
             "enable_button": true,
             "button_text": "Ou se preferir [whatsapp] <strong>COMPRE PELO WHATSAPP</strong>",
