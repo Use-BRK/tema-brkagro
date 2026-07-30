@@ -66,11 +66,11 @@
           "type": "_product-price",
           "settings": {
             "price_size": 24,
-            "price_weight": "600",
+            "price_weight": "500",
             "compare_size": 18,
             "compare_weight": "400",
-            "installment_size": 13,
-            "installment_weight": "400"
+            "installment_size": 15,
+            "installment_weight": "300"
           },
           "blocks": {}
         },
