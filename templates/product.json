@@ -241,9 +241,7 @@
             "heading": "ficha técnica",
             "content": "<p>SKU: [product_sku]</p>",
             "use_product_description": false,
-            "show_sku": true,
-            "sku_label": "SKU:",
-            "open": false
+            "open": true
           },
           "blocks": {}
         },
@@ -254,8 +252,6 @@
             "heading": "detalhes técnicos",
             "content": "<p>SKU: </p>",
             "use_product_description": true,
-            "show_sku": false,
-            "sku_label": "SKU:",
             "open": true
           },
           "blocks": {}
@@ -267,8 +263,6 @@
             "heading": "ficha técnica",
             "content": "<p>SKU: </p>",
             "use_product_description": true,
-            "show_sku": false,
-            "sku_label": "SKU:",
             "open": true
           },
           "blocks": {}

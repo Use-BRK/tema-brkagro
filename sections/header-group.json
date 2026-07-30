@@ -88,13 +88,13 @@
         "menu_promotion_iiUfrK": {
           "type": "menu_promotion",
           "settings": {
-            "text": "",
+            "text": "Mulheres",
             "open-link-newtab": false,
             "item_label": "unset",
-            "promotion_menu_column": 3,
+            "promotion_menu_column": 4,
             "mega_custom_width": 1250,
             "center_submenu": true,
-            "full_width": false,
+            "full_width": true,
             "promotion_position": "right",
             "promotion_image_width": 31,
             "promotion_image_1": "shopify://shop_images/FEMININO_MENU.jpg",
@@ -130,9 +130,7 @@
         "menu_promotion_iiUfrK",
         "menu_promotion_CyPFrj"
       ],
-      "custom_css": [
-        ".h-count {color: #efefe8; font-size: 1.5rem !important; font-weight: 600;}"
-      ],
+      "custom_css": [],
       "settings": {
         "section_width": "stretch_width",
         "color_scheme": "scheme-6a9d954b-0454-4f9a-9a46-168c51be1b2d",
@@ -170,77 +168,6 @@
         "show_account_icon": true,
         "show_wishlist_icon": true,
         "show_wishlist_mobile": false,
-        "show_shopping_cart": true,
-        "show_currency": false,
-        "show_language": false,
-        "show_recently_viewed": false,
-        "padding_top": 8,
-        "padding_bottom": 8
-      }
-    },
-    "header_layout2_iKXCQ3": {
-      "type": "header-layout2",
-      "blocks": {
-        "menu_promotion_twnTVX": {
-          "type": "menu_promotion",
-          "settings": {
-            "text": "",
-            "open-link-newtab": true,
-            "item_label": "unset",
-            "promotion_menu_column": 4,
-            "mega_custom_width": 1030,
-            "center_submenu": true,
-            "full_width": true,
-            "promotion_position": "right",
-            "promotion_image_width": 27,
-            "promotion_link_1": "",
-            "promotion_link_newtab_1": true,
-            "promotion_link_2": "",
-            "promotion_link_newtab_2": true
-          }
-        }
-      },
-      "block_order": [
-        "menu_promotion_twnTVX"
-      ],
-      "disabled": true,
-      "name": "t:sections.header.header_menu_bottom",
-      "settings": {
-        "section_width": "stretch_width",
-        "color_scheme": "scheme-6a9d954b-0454-4f9a-9a46-168c51be1b2d",
-        "show_email": true,
-        "show_phone": true,
-        "enable_login_popup": true,
-        "separator_line": "unset",
-        "sticky_header_type": "none",
-        "sticky_header_mobile": true,
-        "transparent_header": false,
-        "transparent_mobile": false,
-        "transparent_text_icon_color": "#ffffff",
-        "transparent_bg_color": "#111111",
-        "mega_menu": "menu",
-        "dropdowns_animation": "down-to-up",
-        "uppercase_first": false,
-        "hot": "Hot",
-        "label_color_hot": "#fff",
-        "label_background_hot": "#d0473e",
-        "new": "New",
-        "label_color_new": "#fff",
-        "label_background_new": "#516cf4",
-        "sale": "Sale",
-        "label_color_sale": "#fff",
-        "label_background_sale": "#d0473e",
-        "popular": "Popular",
-        "label_color_popular": "#fff",
-        "label_background_popular": "#14854e",
-        "redirect_to_link": true,
-        "menu_tab": "unset",
-        "collection_list": [],
-        "menu_mobile_color": "#fff",
-        "menu_mobile_background": "#d0473e",
-        "show_search": true,
-        "show_account_icon": true,
-        "show_wishlist_icon": true,
         "show_shopping_cart": true,
         "show_currency": false,
         "show_language": false,
@@ -356,7 +283,6 @@
   "order": [
     "top_bar_CbXNYj",
     "header",
-    "header_layout2_iKXCQ3",
     "mobile_menu_drawer_qVAPQC"
   ]
 }
