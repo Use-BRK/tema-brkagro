@@ -102,36 +102,6 @@
             "content_alignment_mobile": "center"
           }
         },
-        "slider_item_QaQnmE": {
-          "type": "slider_item",
-          "name": "Femininas 2026",
-          "settings": {
-            "image": "shopify://shop_images/DESKTOP_FEMININAS2026.webp",
-            "image_mobile": "shopify://shop_images/MOBILE_FEMININAS2026.webp",
-            "overlay_opacity": 0,
-            "link_banner": "shopify://collections/colecao-femininas-2026",
-            "slider_effect": "fade-in-right",
-            "subheading": "",
-            "heading": "",
-            "description": "",
-            "first_button_label": "",
-            "first_button_link": "",
-            "first_button_style": false,
-            "second_button_label": "",
-            "second_button_link": "",
-            "second_button_style": false,
-            "content_alignment": "center",
-            "content_position": "top-center",
-            "content_width": "full_width",
-            "content_max_width": 100,
-            "content_padding_block": 40,
-            "content_padding_inline": 0,
-            "show_content_background": false,
-            "content_background": "#ffffff",
-            "content_box_opacity": 100,
-            "content_alignment_mobile": "center"
-          }
-        },
         "slider_item_n3PrkQ": {
           "type": "slider_item",
           "name": "Botas/Botinas",
@@ -167,7 +137,6 @@
         "slider_item_K3DbMk",
         "slider_item_GGRrnM",
         "slider_item_wzBeHe",
-        "slider_item_QaQnmE",
         "slider_item_n3PrkQ"
       ],
       "custom_css": [
@@ -183,8 +152,8 @@
         "slide_effect": "fade",
         "fade_image_effect": "none",
         "reveal_slideshow": false,
-        "enable_card_scrolling": false,
-        "increase_border_radius": false,
+        "enable_card_scrolling": true,
+        "increase_border_radius": true,
         "show_arrow": true,
         "carousel_pagination": "show_dots",
         "pagination_position": "center",
