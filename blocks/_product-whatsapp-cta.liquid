@@ -51,7 +51,17 @@
   {%- endcapture -%}
   {%- assign rendered_text = button_text | replace: '[whatsapp]', wa_icon -%}
 
-  <div class="product-detail__whatsapp-cta mb-20" style="--wa-color: {{ block_st.text_color | default: '#128c4a' }};" {{ block.shopify_attributes }}>
+  <div
+    id="wa-cta-{{ block.id }}"
+    class="product-detail__whatsapp-cta mb-20"
+    style="--wa-color: {{ block_st.text_color | default: '#128c4a' }};"
+    {% if block_st.enable_schedule %}
+      data-wa-schedule="true"
+      data-wa-start="{{ block_st.hours_start | default: '08:00' }}"
+      data-wa-end="{{ block_st.hours_end | default: '18:00' }}"
+    {% endif %}
+    {{ block.shopify_attributes }}
+  >
     <a
       href="{{ wa_url }}"
       target="_blank"
@@ -59,6 +69,44 @@
       class="whatsapp-cta"
     >{{ rendered_text }}</a>
   </div>
+  {% if block_st.enable_schedule %}
+    <script>
+      (function () {
+        var wrap = document.getElementById('wa-cta-{{ block.id }}');
+        if (!wrap) return;
+        // No editor do tema, mantém sempre visível para conseguir editar.
+        if (window.Shopify && Shopify.designMode) return;
+
+        function toMinutes(value) {
+          var m = (value || '').match(/^(\d{1,2}):(\d{2})$/);
+          if (!m) return null;
+          var h = parseInt(m[1], 10);
+          var min = parseInt(m[2], 10);
+          if (h > 23 || min > 59) return null;
+          return h * 60 + min;
+        }
+
+        var start = toMinutes(wrap.getAttribute('data-wa-start'));
+        var end = toMinutes(wrap.getAttribute('data-wa-end'));
+        if (start === null || end === null) return; // horário inválido -> não esconde
+
+        function update() {
+          // Hora atual em UTC-3, independente do fuso do visitante.
+          var now = new Date();
+          var utcMs = now.getTime() + now.getTimezoneOffset() * 60000;
+          var brt = new Date(utcMs - 3 * 3600000);
+          var cur = brt.getHours() * 60 + brt.getMinutes();
+          // Suporta janela normal (08:00-18:00) e que cruza a meia-noite (20:00-06:00).
+          var open = start <= end ? (cur >= start && cur < end) : (cur >= start || cur < end);
+          wrap.style.display = open ? '' : 'none';
+        }
+
+        update();
+        // Revalida a cada minuto para o caso da página ficar aberta cruzando o horário.
+        setInterval(update, 60000);
+      })();
+    </script>
+  {% endif %}
 {% endif %}
 
 {% stylesheet %}
@@ -126,6 +174,31 @@
       "id": "append_product_link",
       "default": true,
       "label": "Adicionar link do produto à mensagem"
+    },
+    {
+      "type": "header",
+      "content": "Horário de atendimento"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_schedule",
+      "default": false,
+      "label": "Ativar horário",
+      "info": "Quando ligado, o botão só aparece dentro do horário abaixo (fuso UTC-3, horário de Brasília). Fora do horário fica oculto automaticamente."
+    },
+    {
+      "type": "text",
+      "id": "hours_start",
+      "default": "08:00",
+      "label": "Início",
+      "info": "Formato 24h HH:MM (ex.: 08:00)."
+    },
+    {
+      "type": "text",
+      "id": "hours_end",
+      "default": "18:00",
+      "label": "Fim",
+      "info": "Formato 24h HH:MM (ex.: 18:00)."
     },
     {
       "type": "header",
