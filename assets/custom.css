@@ -58,9 +58,9 @@ border-radius: 30%;
 
 /* Header */
 
-.section-header {
+/* .section-header {
   box-shadow: 0 5px 10px -5px rgba(0, 0, 0, 0.2) !important;
-}
+} */
 
 /* Página de Produto */
 
@@ -1360,4 +1360,39 @@ sticky-add-cart {
    .grid_scroll, então continua como está (cover). Vale desktop e mobile. */
 .product-detail__media media-gallery .grid_scroll :is(img, picture) {
   object-fit: contain;
+}
+
+/* ============================================================
+   Mega menu (novo layout em colunas). Só no desktop (≥1025px), onde o mega
+   vira colunas estáticas. Uma coluna por categoria (grid nativo do tema) —
+   configure o nº de colunas do bloco = nº de categorias do item. */
+@media (min-width: 1025px) {
+  /* Sublinha os links de NÍVEL 2 que são diretos (sem submenu-3). */
+  .submenu-horizontal .menu-lv2-direct {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1px;
+  }
+
+  /* Cada categoria alinhada ao topo da sua coluna (sem esticar). */
+  .submenu-horizontal .menu-list .subchildmenu.grid {
+    align-items: start;
+  }
+
+  /* Título da coluna (categoria de nível-2): peso maior para destacar do
+     resto dos subitens, como na referência. */
+  .submenu-horizontal .menu-list .subchildmenu > li.menu-link.level-1 > menu-item > a {
+    font-weight: 700;
+  }
+
+  /* Fundo do mega menu igual ao do header. */
+  .submenu.submenu-horizontal {
+    background: #efefe8;
+  }
+
+  /* Cada lista de subitens (nível-3) sem fundo próprio (transparente). */
+  .submenu-horizontal .sub-children-menu,
+  .submenu-horizontal .sub-children-menu .gradient {
+    background: transparent;
+  }
 }

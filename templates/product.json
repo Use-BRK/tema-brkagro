@@ -231,7 +231,7 @@
           "type": "_product-collapsible-row",
           "settings": {
             "heading": "ficha técnica",
-            "content": "<p>SKU: </p>",
+            "content": "<p>SKU: [product_sku]</p>",
             "use_product_description": false,
             "open": false
           },

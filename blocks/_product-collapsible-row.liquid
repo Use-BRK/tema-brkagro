@@ -29,14 +29,18 @@
           {{ 'onboarding.default_description' | t }}
         {% endif %}
       {% else %}
-        {{ block_st.content }}
-      {% endif %}
-      {% if block_st.show_sku %}
-        {%- assign current_sku = product.selected_or_first_available_variant.sku -%}
-        <p{% if current_sku == blank %} class="visibility-hidden"{% endif %}>
-          {{ block_st.sku_label }}
-          <span class="product__sku" role="status">{{ current_sku | default: 'N/A' }}</span>
-        </p>
+        {%- liquid
+          # Token [product_sku] no Content vira o SKU real da variante. O span
+          # .product__sku é atualizado pelo theme.js ao trocar de variante.
+          assign sku_value = product.selected_or_first_available_variant.sku | default: 'N/A'
+          capture sku_html
+            echo '<span class="product__sku" role="status">'
+            echo sku_value
+            echo '</span>'
+          endcapture
+          assign content_output = block_st.content | replace: '[product_sku]', sku_html
+        -%}
+        {{ content_output }}
       {% endif %}
     </div>
   </div>
@@ -55,26 +59,14 @@
     {
       "type": "richtext",
       "id": "content",
-      "label": "t:sections.main-product.blocks.collapsible_row.settings.content"
+      "label": "t:sections.main-product.blocks.collapsible_row.settings.content",
+      "info": "Use [product_sku] no texto para inserir o SKU da variante (ex.: SKU: [product_sku]). Atualiza ao trocar de variante."
     },
     {
       "type": "checkbox",
       "id": "use_product_description",
       "default": false,
       "label": "t:sections.main-product.blocks.collapsible_row.settings.use_product_description"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_sku",
-      "default": false,
-      "label": "Exibir SKU da variante",
-      "info": "Insere o SKU da variante selecionada no conteúdo (atualiza ao trocar de variante)."
-    },
-    {
-      "type": "text",
-      "id": "sku_label",
-      "default": "SKU:",
-      "label": "Rótulo do SKU"
     },
     {
       "type": "checkbox",
