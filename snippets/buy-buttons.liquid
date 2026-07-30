@@ -129,7 +129,7 @@
                       {%- if product.selected_or_first_available_variant.available == false -%}
                         {{ 'products.product.general.outstock' | t }}
                       {%- else -%}
-                        Comprar
+                        Adicionar à Sacola
                       {%- endif -%}
                     {%- elsif product.selected_or_first_available_variant.inventory_management == null -%}
                       {{ 'products.product.general.add_to_cart' | t }}
