@@ -31,6 +31,13 @@
       {% else %}
         {{ block_st.content }}
       {% endif %}
+      {% if block_st.show_sku %}
+        {%- assign current_sku = product.selected_or_first_available_variant.sku -%}
+        <p{% if current_sku == blank %} class="visibility-hidden"{% endif %}>
+          {{ block_st.sku_label }}
+          <span class="product__sku" role="status">{{ current_sku | default: 'N/A' }}</span>
+        </p>
+      {% endif %}
     </div>
   </div>
 </collapsible-block>
@@ -55,6 +62,19 @@
       "id": "use_product_description",
       "default": false,
       "label": "t:sections.main-product.blocks.collapsible_row.settings.use_product_description"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_sku",
+      "default": false,
+      "label": "Exibir SKU da variante",
+      "info": "Insere o SKU da variante selecionada no conteúdo (atualiza ao trocar de variante)."
+    },
+    {
+      "type": "text",
+      "id": "sku_label",
+      "default": "SKU:",
+      "label": "Rótulo do SKU"
     },
     {
       "type": "checkbox",

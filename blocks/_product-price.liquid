@@ -1,11 +1,13 @@
 {% liquid
   assign product = closest.product
   assign section_st = section.settings
+  assign block_st = block.settings
   assign enable_skeleton_loading = section_st.enable_skeleton_loading
 %}
 <div
   id="price-{{ section.id }}"
   class="product-detail__price mb-10{% if enable_skeleton_loading %} skeleton-loading{% endif %}"
+  style="--pdp-price-size: {{ block_st.price_size }}px; --pdp-price-weight: {{ block_st.price_weight }}; --pdp-compare-size: {{ block_st.compare_size }}px; --pdp-compare-weight: {{ block_st.compare_weight }}; --pdp-installment-size: {{ block_st.installment_size }}px; --pdp-installment-weight: {{ block_st.installment_weight }};"
   {{ block.shopify_attributes }}
 >
   {%- render 'price', scope: 'detail', product: product, class: 'price-large', show_badges: true -%}
@@ -14,6 +16,90 @@
 {
   "name": "t:blocks.product.price.name",
   "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Preço"
+    },
+    {
+      "type": "range",
+      "id": "price_size",
+      "min": 12,
+      "max": 48,
+      "step": 1,
+      "unit": "px",
+      "label": "Tamanho da fonte",
+      "default": 24
+    },
+    {
+      "type": "select",
+      "id": "price_weight",
+      "label": "Peso da fonte",
+      "default": "600",
+      "options": [
+        { "value": "300", "label": "300" },
+        { "value": "400", "label": "400" },
+        { "value": "500", "label": "500" },
+        { "value": "600", "label": "600" },
+        { "value": "700", "label": "700" },
+        { "value": "800", "label": "800" }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Preço comparativo (De)"
+    },
+    {
+      "type": "range",
+      "id": "compare_size",
+      "min": 10,
+      "max": 36,
+      "step": 1,
+      "unit": "px",
+      "label": "Tamanho da fonte",
+      "default": 18
+    },
+    {
+      "type": "select",
+      "id": "compare_weight",
+      "label": "Peso da fonte",
+      "default": "400",
+      "options": [
+        { "value": "300", "label": "300" },
+        { "value": "400", "label": "400" },
+        { "value": "500", "label": "500" },
+        { "value": "600", "label": "600" },
+        { "value": "700", "label": "700" }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Parcelamento"
+    },
+    {
+      "type": "range",
+      "id": "installment_size",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Tamanho da fonte",
+      "default": 13
+    },
+    {
+      "type": "select",
+      "id": "installment_weight",
+      "label": "Peso da fonte",
+      "default": "400",
+      "options": [
+        { "value": "300", "label": "300" },
+        { "value": "400", "label": "400" },
+        { "value": "500", "label": "500" },
+        { "value": "600", "label": "600" },
+        { "value": "700", "label": "700" }
+      ]
+    }
+  ],
   "presets": [
     {
       "name": "t:blocks.product.price.name"

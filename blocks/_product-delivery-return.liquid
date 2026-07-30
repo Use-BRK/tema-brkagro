@@ -44,7 +44,7 @@
     endif
   %}
   <div
-    class="delivery-return {{ block_st.delivery_design }} flex flex-wrap flex-md-nowrap px-20 {% if block_st.delivery_design == 'horizontal' %}px-md-0{% endif %} py-0 py-md-20 border text-center mb-20 rounded-5{% if enable_skeleton_loading %} skeleton-loading{% endif %}"
+    class="delivery-return {{ block_st.delivery_design }} flex flex-wrap flex-md-nowrap px-20 {% if block_st.delivery_design == 'horizontal' %}px-md-0{% endif %} py-0 py-md-20 {% unless block_st.disable_outline %}border{% endunless %} text-center mb-20 rounded-5{% if enable_skeleton_loading %} skeleton-loading{% endif %}"
     {{ block.shopify_attributes }}
   >
     {% if block_st.delivery_content != blank %}
@@ -166,6 +166,12 @@
           "label": "t:sections.main-product.blocks.delivery_return.settings.design_type.option__2"
         }
       ]
+    },
+    {
+      "type": "checkbox",
+      "id": "disable_outline",
+      "label": "Desativar borda (outline)",
+      "default": false
     },
     {
       "type": "header",

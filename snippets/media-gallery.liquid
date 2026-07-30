@@ -43,6 +43,17 @@
       assign product_ar = true
     endif
   endfor
+  comment
+    Razão da 1ª imagem (a visível): usada no carrossel mobile para todas as
+    células terem a mesma altura. Evita que uma imagem retrato estique a linha
+    do grid e crie faixa branca (letterbox) nas quadradas, onde o sale badge e
+    os dots acabavam caindo.
+  endcomment
+  assign gallery_first_media = images.first
+  if product != blank and product.selected_or_first_available_variant.featured_media != blank
+    assign gallery_first_media = product.selected_or_first_available_variant.featured_media
+  endif
+  assign gallery_ratio = gallery_first_media.preview_image.aspect_ratio | default: 1
 %}
 {% for image in images %}
   {% if image.alt == 'image-360' and image.media_type == 'image' %}
@@ -167,7 +178,7 @@
       </slide-with-thumbs>
     {% when 'grid' %}
       {% comment %} Case grid layout {% endcomment %}
-      <div class="media-grid-wrapper relative">
+      <div class="media-grid-wrapper relative" style="--gallery-ratio: {{ gallery_ratio }};">
         <div
           id="GalleryViewer-{{ section.id }}"
           class="grid grid-cols gap grid_scroll"
@@ -187,7 +198,7 @@
       </div>
     {% else %}
       {% comment %} Case stack layout {% endcomment %}
-      <div class="media-grid-wrapper relative">
+      <div class="media-grid-wrapper relative" style="--gallery-ratio: {{ gallery_ratio }};">
         <div
           class="stacked gap-10 grid grid-cols grid_scroll"
           id="GalleryViewer-{{ section.id }}"

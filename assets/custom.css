@@ -32,10 +32,10 @@
   text-underline-offset: 5px;
 }
 
-.product-item__price,
+/* .product-item__price,
 .card-product-price {
-font-size: 23px;
-}
+font-size: 10px;
+} */
 
 @media (max-width: 767px) {
 .product-item__action,
@@ -78,8 +78,21 @@ padding: 15px !important;
   margin-bottom: 0;
 }
 
-.card-product-price .price {
-	font-weight: 700;
+/* PDP: tamanho/peso do preço, do preço comparativo (De) e do parcelamento vêm
+   do bloco "Preço" em Informações do produto (vars --pdp-*). Os defaults abaixo
+   reproduzem o visual atual; ajuste tudo pelo editor, sem tocar no CSS. */
+.product-detail__price .price {
+  font-size: var(--pdp-price-size, 24px);
+  font-weight: var(--pdp-price-weight, 600);
+}
+.product-detail__price .compare-price {
+  font-size: var(--pdp-compare-size, 18px);
+  font-weight: var(--pdp-compare-weight, 400);
+}
+.product-detail__price .installment-payment,
+.product-detail__price .installment-payment p {
+  font-size: var(--pdp-installment-size, 13px);
+  font-weight: var(--pdp-installment-weight, 400);
 }
 
 .card-product-price .price-regular {
@@ -101,14 +114,22 @@ padding: 15px !important;
   opacity: 0.7;
 }
 
-.installment-payment {
+.product-detail__price {
+  align-items: baseline;
+}
+
+/* Parcelamento sempre numa linha PRÓPRIA, logo abaixo do preço (content-after),
+   colado — sem o gap longo. flex-basis:100% quebra a linha; o espaçamento
+   vertical fica só o row-gap do container (pequeno). */
+.card-product-price .installment-payment {
+  flex: 0 0 100%;
   width: 100%;
-  font-size: 1.2rem;
+  margin-top: 0;
+  line-height: 1.1;
 }
 
 .installment-payment p {
   margin: 0;
-  font-size: 1.1rem;
 }
 
 /* Delivery availability alignment */
@@ -1307,6 +1328,12 @@ sticky-add-cart {
   }
   .product-detail__media media-gallery[data-mobile-media="carousel"] .grid_scroll > * {
     scroll-snap-align: center;
+    /* Todas as células assumem a razão da 1ª imagem (--gallery-ratio) em vez da
+       razão de cada imagem. Assim uma foto retrato não estica a linha do grid e
+       não gera faixa branca nas quadradas — o sale badge (topo) e os dots (base)
+       voltam a ficar sobre a imagem. object-fit: contain segue valendo (sem corte);
+       imagens de razão diferente só ganham faixa lateral dentro da célula. */
+    --aspect-ratio: var(--gallery-ratio, 1) !important;
   }
   /* Grid 1 coluna (scroll horizontal, 1 por vez, sem dots) */
   .product-detail__media media-gallery[data-mobile-media="grid_1_column"] .grid_scroll {
