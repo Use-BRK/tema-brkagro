@@ -160,44 +160,16 @@
             ]
           }
         },
-        "categories_LYDr6p": {
-          "type": "categories",
-          "disabled": true,
-          "settings": {
-            "title": "Products Category",
-            "menu": "menu"
-          }
-        },
-        "popular_product_Xwjqcf": {
-          "type": "popular_product",
-          "disabled": true,
-          "settings": {
-            "title": "Featured product",
-            "collection": "acessorios",
-            "items_to_show": 3
-          }
-        },
         "filter_giBtHK": {
           "type": "filter",
           "name": "Filtros",
           "settings": {}
-        },
-        "image_banner_UUJxtT": {
-          "type": "image_banner",
-          "disabled": true,
-          "settings": {
-            "url": "shopify://collections",
-            "open_link": true
-          }
         }
       },
       "block_order": [
         "gender_filter_WjhFKQ",
         "size_filter_beBB4b",
-        "categories_LYDr6p",
-        "popular_product_Xwjqcf",
-        "filter_giBtHK",
-        "image_banner_UUJxtT"
+        "filter_giBtHK"
       ],
       "settings": {
         "section_width": "stretch_width",
