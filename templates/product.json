@@ -150,6 +150,9 @@
             "whatsapp_number": "553432194697",
             "whatsapp_message": "Olá, tenho interesse nesse produto:",
             "append_product_link": true,
+            "enable_schedule": true,
+            "hours_start": "08:00",
+            "hours_end": "17:32",
             "collections": []
           },
           "blocks": {}
@@ -300,6 +303,7 @@
         "desktop_media_width": 50,
         "desktop_layout": "thumbnail_left",
         "thumbnail_size": 160,
+        "show_media_arrows": true,
         "image_zoom": "open_lightbox",
         "enable_video_looping": false,
         "enable_video_autoplay": false,
