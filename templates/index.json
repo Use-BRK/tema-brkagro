@@ -42,6 +42,36 @@
             "content_alignment_mobile": "center"
           }
         },
+        "slider_item_rYBq93": {
+          "type": "slider_item",
+          "name": "Novos Bonés",
+          "settings": {
+            "image": "shopify://shop_images/NOVOS_BONES_AGRO_DESKTOP.webp",
+            "image_mobile": "shopify://shop_images/NOVOS_BONES_AGRO_MOBILE.webp",
+            "overlay_opacity": 0,
+            "link_banner": "shopify://collections/bones",
+            "slider_effect": "fade-in-right",
+            "subheading": "",
+            "heading": "",
+            "description": "",
+            "first_button_label": "",
+            "first_button_link": "",
+            "first_button_style": false,
+            "second_button_label": "",
+            "second_button_link": "",
+            "second_button_style": false,
+            "content_alignment": "center",
+            "content_position": "top-center",
+            "content_width": "full_width",
+            "content_max_width": 100,
+            "content_padding_block": 40,
+            "content_padding_inline": 0,
+            "show_content_background": false,
+            "content_background": "#ffffff",
+            "content_box_opacity": 100,
+            "content_alignment_mobile": "center"
+          }
+        },
         "slider_item_GGRrnM": {
           "type": "slider_item",
           "name": "Dia dos Pais 2026",
@@ -135,6 +165,7 @@
       },
       "block_order": [
         "slider_item_K3DbMk",
+        "slider_item_rYBq93",
         "slider_item_GGRrnM",
         "slider_item_wzBeHe",
         "slider_item_n3PrkQ"
