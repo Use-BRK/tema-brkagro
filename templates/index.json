@@ -1048,9 +1048,9 @@
       "settings": {
         "section_width": "stretch_width",
         "color_scheme": "",
-        "heading": "Aglog",
+        "heading": "Blog do Agro",
         "description": "",
-        "show_view_all": false,
+        "show_view_all": true,
         "use_outline_button_style": true,
         "header_size": "medium",
         "header_alignment": "center",
