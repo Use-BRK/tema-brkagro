@@ -51,16 +51,17 @@
       "blocks": {
         "categories_gYgLVH": {
           "type": "categories",
+          "disabled": true,
           "settings": {
             "title": "Blog Categories",
-            "menu": ""
+            "menu": "menu"
           }
         },
         "recent_post_KiffBB": {
           "type": "recent_post",
           "settings": {
-            "title": "Popular Posts",
-            "maximum": 3,
+            "title": "Recentes",
+            "maximum": 4,
             "image_ratio": "square",
             "custom_ratio": ""
           }
@@ -74,6 +75,7 @@
         "image_banner_mhPKkQ": {
           "type": "image_banner",
           "settings": {
+            "image": "shopify://shop_images/DIA-DO-CACAU-EX.png",
             "url": "shopify://collections/all",
             "open_link": true
           }
@@ -86,7 +88,7 @@
         "image_banner_mhPKkQ"
       ],
       "settings": {
-        "section_width": "fluid_container",
+        "section_width": "stretch_width",
         "enable_sidebar": true,
         "sidebar_position": "left",
         "layout": "grid",
@@ -94,7 +96,7 @@
         "items_per_row": 2,
         "column_gap": 30,
         "pagination": "default",
-        "button_show_more": "Load more",
+        "button_show_more": "Ver mais",
         "promotion_link": "",
         "promotion_postion": 3,
         "image_ratio": "adapt",
@@ -104,7 +106,7 @@
         "show_date": false,
         "show_author": false,
         "show_excerpt": true,
-        "show_comment_count": true,
+        "show_comment_count": false,
         "show_readmore": false,
         "readmore_type": "primary",
         "items_per_row_mobile": 1,
