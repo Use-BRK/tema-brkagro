@@ -699,16 +699,6 @@
         "reset_spacing": true
       }
     },
-    "divider_yFgDbN": {
-      "type": "divider",
-      "name": "t:sections.divider.name",
-      "settings": {
-        "section_width": "container",
-        "border_height": 1,
-        "border_color": "#ebebeb",
-        "reset_spacing": true
-      }
-    },
     "collection_tab_9YVWaA": {
       "type": "collection-tab",
       "blocks": {
@@ -773,6 +763,7 @@
     },
     "divider_GQPnca": {
       "type": "divider",
+      "disabled": true,
       "name": "t:sections.divider.name",
       "settings": {
         "section_width": "container",
@@ -1296,7 +1287,6 @@
     "collection_tab_8f78pi",
     "collection_tab_em8rkQ",
     "collection_tab_k7Azbj",
-    "divider_yFgDbN",
     "collection_tab_9YVWaA",
     "divider_GQPnca",
     "image_with_text_overlay_BBzj67",
