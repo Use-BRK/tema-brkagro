@@ -25,6 +25,7 @@
         },
         "description_YRWpkt": {
           "type": "description",
+          "disabled": true,
           "settings": {
             "description": "<p>Discover style insights and trends on our fashion lifestyle blog.</p>"
           }
@@ -52,7 +53,7 @@
           "type": "categories",
           "settings": {
             "title": "Blog Categories",
-            "menu": "our-company"
+            "menu": ""
           }
         },
         "recent_post_KiffBB": {
@@ -73,7 +74,6 @@
         "image_banner_mhPKkQ": {
           "type": "image_banner",
           "settings": {
-            "image": "shopify://shop_images/blog_banner.jpg",
             "url": "shopify://collections/all",
             "open_link": true
           }
@@ -99,7 +99,7 @@
         "promotion_postion": 3,
         "image_ratio": "adapt",
         "custom_ratio": "",
-        "content_alignment": "center",
+        "content_alignment": "left",
         "show_category": true,
         "show_date": true,
         "show_author": true,
