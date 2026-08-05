@@ -1088,6 +1088,7 @@
     },
     "blog_posts_hmzMP6": {
       "type": "blog-posts",
+      "disabled": true,
       "name": "t:sections.blog-post.presets.name",
       "settings": {
         "section_width": "stretch_width",
