@@ -16,8 +16,8 @@
           "type": "slider_item",
           "name": "Apache",
           "settings": {
-            "image": "shopify://shop_images/APACHE_DESKTOP_63a272d4-7481-4cca-befc-b7cc3cbb4119.webp",
-            "image_mobile": "shopify://shop_images/APACHE_MOBILE_1bf431cc-6a45-45a3-9ff1-b448b9400501.webp",
+            "image": "shopify://shop_images/APACHE_NEWBANNER_DESKTOP.webp",
+            "image_mobile": "shopify://shop_images/APACHE_NEWBANNER_MOBILE.webp",
             "overlay_opacity": 0,
             "link_banner": "shopify://collections/apache",
             "slider_effect": "fade-in-right",
