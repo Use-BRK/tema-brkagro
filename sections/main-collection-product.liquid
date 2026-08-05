@@ -20,19 +20,24 @@
 
 {%- if show_gender_filter -%}
 <style>
+  /* Gender bar vive DENTRO da .toolbar; controles alinhados na mesma altura */
   .gender-filter-bar {
     display: flex;
-    justify-content: center;
-    gap: 12px;
-    padding: 20px 15px;
-    margin-bottom: 10px;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
   }
   .gender-filter-btn {
-    position: relative;
-    padding: 12px 36px;
-    font-size: 14px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 42px;
+    padding: 0 26px;
+    box-sizing: border-box;
+    font-size: 13px;
     font-weight: 700;
-    letter-spacing: 1.5px;
+    letter-spacing: 1px;
+    line-height: normal;
     text-transform: uppercase;
     border: 2px solid var(--color-heading, #222);
     background: transparent;
@@ -40,25 +45,61 @@
     cursor: pointer;
     transition: all 0.25s ease;
     border-radius: 0;
-    min-width: 160px;
-    text-align: center;
+    white-space: nowrap;
   }
   .gender-filter-btn:hover,
   .gender-filter-btn.active {
     background: var(--color-heading, #222);
     color: var(--color-background, #fff);
   }
+  /* Botão de Filtro na mesma altura dos de gênero (desktop) */
+  .toolbar--gender .btn-filter {
+    min-height: 42px;
+    box-sizing: border-box;
+  }
   @media (max-width: 749px) {
-    .gender-filter-bar {
+    /* Mobile: Filtro + gênero + Ordenar numa linha só */
+    .toolbar-products.toolbar--gender {
       gap: 8px;
-      padding: 15px 10px;
+    }
+    .gender-filter-bar {
+      gap: 6px;
     }
     .gender-filter-btn {
-      flex: 1;
-      min-width: 0;
-      padding: 11px 10px;
-      font-size: 13px;
-      letter-spacing: 1px;
+      padding: 0 16px;
+      font-size: 12px;
+      letter-spacing: 0.5px;
+    }
+  }
+  @media (max-width: 575.98px) {
+    /* Centraliza o grupo Filtro + gênero + Ordenar */
+    .toolbar-products.toolbar--gender {
+      justify-content: center;
+    }
+    /* Filtro e Ordenar viram só ícone p/ tudo caber numa linha */
+    .toolbar--gender .btn-filter__label,
+    .toolbar--gender .sort-label-text,
+    .toolbar--gender .toolbar-sorter .icon-down {
+      display: none;
+    }
+    .toolbar--gender .sort-icon-mobile {
+      display: inline-flex;
+    }
+    /* Todos os controles com a MESMA altura no mobile */
+    .toolbar--gender .gender-filter-btn,
+    .toolbar--gender .btn-filter,
+    .toolbar--gender .toolbar-sorter label {
+      min-height: 40px;
+      box-sizing: border-box;
+    }
+    .toolbar--gender .gender-filter-btn {
+      padding: 0 14px;
+    }
+    .toolbar--gender .btn-filter {
+      padding: 0 12px;
+    }
+    .toolbar--gender .toolbar-sorter label {
+      padding: 0 11px;
     }
   }
 </style>
@@ -190,22 +231,12 @@
             collection_url: collection.url
           -%}
         {% endif %}
-        {%- render 'collection-toolbar',
-          section_st: section_st,
-          pageurl: view,
-          enable_filtering: enable_filtering,
-          filter_layout: filter_layout,
-          products_column: products_column
-        -%}
-        {%- if enable_filtering and filter_layout -%}
-          {%- render 'filter-current', class: 'mb-30' -%}
-        {% endif %}
-
+        {%- comment -%} Gender values computados aqui p/ injetar na toolbar {%- endcomment -%}
+        {%- assign masc_active = false -%}
+        {%- assign fem_active = false -%}
+        {%- assign masc_value = '' -%}
+        {%- assign fem_value = '' -%}
         {%- if show_gender_filter -%}
-          {%- assign masc_active = false -%}
-          {%- assign fem_active = false -%}
-          {%- assign masc_value = '' -%}
-          {%- assign fem_value = '' -%}
           {%- for filter in collection.filters -%}
             {%- if filter.param_name == 'filter.p.m.custom.genero' -%}
               {%- for value in filter.values -%}
@@ -220,12 +251,25 @@
               {%- endfor -%}
             {%- endif -%}
           {%- endfor -%}
-
-          <div class="gender-filter-bar" id="gender-filter-bar" {{ gender_block.shopify_attributes }}>
-            <button class="gender-filter-btn{% if masc_active %} active{% endif %}" data-filter-value="{{ masc_value }}" type="button">{{ gender_block.settings.label_masculino }}</button>
-            <button class="gender-filter-btn{% if fem_active %} active{% endif %}" data-filter-value="{{ fem_value }}" type="button">{{ gender_block.settings.label_feminino }}</button>
-          </div>
         {%- endif -%}
+        {%- render 'collection-toolbar',
+          section_st: section_st,
+          pageurl: view,
+          enable_filtering: enable_filtering,
+          filter_layout: filter_layout,
+          products_column: products_column,
+          show_gender_filter: show_gender_filter,
+          masc_active: masc_active,
+          fem_active: fem_active,
+          masc_value: masc_value,
+          fem_value: fem_value,
+          gender_label_masc: gender_block.settings.label_masculino,
+          gender_label_fem: gender_block.settings.label_feminino,
+          gender_attrs: gender_block.shopify_attributes
+        -%}
+        {%- if enable_filtering and filter_layout -%}
+          {%- render 'filter-current', class: 'mb-30' -%}
+        {% endif %}
 
         <div
           class="product-grid-container relative"
