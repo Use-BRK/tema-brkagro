@@ -8535,10 +8535,16 @@ class SlideWithThumbs extends HTMLElement {
       breakpoints: {
         768: {
           direction: direction,
+          // Vertical (thumbnail_left): as miniaturas são retrato, então a
+          // altura real de cada uma > (altura do container / 10). Com um número
+          // fixo (10) o Swiper calculava virtualSize == size e travava
+          // (isLocked), impedindo rolar até as últimas fotos no desktop.
+          // "auto" lê a altura real de cada slide → destrava e permite arrastar.
           slidesPerView:
             direction == "vertical"
-              ? 10
+              ? "auto"
               : Math.max(2, Math.round(6 / thumbScale)),
+          freeMode: direction == "vertical",
         },
       },
     });
