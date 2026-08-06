@@ -76,10 +76,10 @@
           "type": "slider_item",
           "name": "Dia dos Pais 2026",
           "settings": {
-            "image": "shopify://shop_images/DIA_DOS_PAIS_2026_DESKTOP.webp",
-            "image_mobile": "shopify://shop_images/DIA_DOS_PAIS_2026_MOBILE.webp",
+            "image": "shopify://shop_images/Prancheta_2_99e2a3a4-d38f-454c-ab64-335585315eac.png",
+            "image_mobile": "shopify://shop_images/Prancheta_1_eb934097-955b-4d1b-8a0c-07dae4b1eaeb.png",
             "overlay_opacity": 0,
-            "link_banner": "shopify://collections/dia-dos-pais-2026",
+            "link_banner": "shopify://collections/calcas-jeans",
             "slider_effect": "fade-in-right",
             "subheading": "",
             "heading": "",
