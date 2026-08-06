@@ -137,7 +137,7 @@
     "show_check_box_in_quick_view": false,
     "text_terms_conditions": "",
     "page_terms_conditions": "termos-de-uso",
-    "enable_whatsapp_button": true,
+    "enable_whatsapp_button": false,
     "whatsapp_button_number": "553432194697",
     "whatsapp_button_bottom": 80,
     "rate_color": "#ea0606",
