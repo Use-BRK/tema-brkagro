@@ -12,14 +12,14 @@
     "slideshow_8KKtNU": {
       "type": "slideshow",
       "blocks": {
-        "slider_item_GGRrnM": {
+        "slider_item_K3DbMk": {
           "type": "slider_item",
-          "name": "CALÇAS JEANS",
+          "name": "Apache",
           "settings": {
-            "image": "shopify://shop_images/Prancheta_2_472af1bb-c8d4-4ce5-a4d6-e8f554bb2367.png",
-            "image_mobile": "shopify://shop_images/Prancheta_1_eb934097-955b-4d1b-8a0c-07dae4b1eaeb.png",
+            "image": "shopify://shop_images/FULLBANNER_APACHE.webp",
+            "image_mobile": "shopify://shop_images/APACHE_NEWBANNER_MOBILE.webp",
             "overlay_opacity": 0,
-            "link_banner": "shopify://collections/calcas-jeans",
+            "link_banner": "shopify://collections/apache",
             "slider_effect": "fade-in-right",
             "subheading": "",
             "heading": "",
@@ -42,14 +42,14 @@
             "content_alignment_mobile": "center"
           }
         },
-        "slider_item_K3DbMk": {
+        "slider_item_GGRrnM": {
           "type": "slider_item",
-          "name": "Apache",
+          "name": "CALÇAS JEANS",
           "settings": {
-            "image": "shopify://shop_images/FULLBANNER_APACHE.webp",
-            "image_mobile": "shopify://shop_images/APACHE_NEWBANNER_MOBILE.webp",
+            "image": "shopify://shop_images/Prancheta_2_472af1bb-c8d4-4ce5-a4d6-e8f554bb2367.png",
+            "image_mobile": "shopify://shop_images/Prancheta_1_eb934097-955b-4d1b-8a0c-07dae4b1eaeb.png",
             "overlay_opacity": 0,
-            "link_banner": "shopify://collections/apache",
+            "link_banner": "shopify://collections/calcas-jeans",
             "slider_effect": "fade-in-right",
             "subheading": "",
             "heading": "",
@@ -164,8 +164,8 @@
         }
       },
       "block_order": [
-        "slider_item_GGRrnM",
         "slider_item_K3DbMk",
+        "slider_item_GGRrnM",
         "slider_item_rYBq93",
         "slider_item_wzBeHe",
         "slider_item_n3PrkQ"
@@ -209,11 +209,18 @@
     "collection_tab_kENEYA": {
       "type": "collection-tab",
       "blocks": {
-        "collection_rUjFcg": {
+        "collection_REBGpn": {
           "type": "collection",
           "settings": {
-            "collection": "apache",
-            "collection_title": "Coleção Apache"
+            "collection": "sao-bento-2026",
+            "collection_title": "São Bento"
+          }
+        },
+        "collection_beDCB9": {
+          "type": "collection",
+          "settings": {
+            "collection": "calcas-jeans",
+            "collection_title": "Calça Jeans"
           }
         },
         "collection_UcdRDk": {
@@ -222,19 +229,12 @@
             "collection": "bones",
             "collection_title": "Bonés"
           }
-        },
-        "collection_REBGpn": {
-          "type": "collection",
-          "settings": {
-            "collection": "sao-bento-2026",
-            "collection_title": "São Bento"
-          }
         }
       },
       "block_order": [
-        "collection_rUjFcg",
-        "collection_UcdRDk",
-        "collection_REBGpn"
+        "collection_REBGpn",
+        "collection_beDCB9",
+        "collection_UcdRDk"
       ],
       "custom_css": [
         ".collection-tab__tab-item {font-size: clamp(1.105em, 2vw, 1.8rem);}",
