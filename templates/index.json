@@ -16,7 +16,7 @@
           "type": "slider_item",
           "name": "Apache",
           "settings": {
-            "image": "shopify://shop_images/APACHE_NEWBANNER_DESKTOP.webp",
+            "image": "shopify://shop_images/FULLBANNER_APACHE.webp",
             "image_mobile": "shopify://shop_images/APACHE_NEWBANNER_MOBILE.webp",
             "overlay_opacity": 0,
             "link_banner": "shopify://collections/apache",
