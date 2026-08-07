@@ -12,6 +12,36 @@
     "slideshow_8KKtNU": {
       "type": "slideshow",
       "blocks": {
+        "slider_item_wzBeHe": {
+          "type": "slider_item",
+          "name": "São Bento 2026",
+          "settings": {
+            "image": "shopify://shop_images/BANNER_SITE_a26654a4-7950-40d3-835f-58216983f85e.webp",
+            "image_mobile": "shopify://shop_images/BANNER_MOBILE.webp",
+            "overlay_opacity": 0,
+            "link_banner": "https://www.brkagro.com.br/collections/mes-de-sao-bento-2026?filter.p.m.custom.genero=Masculino",
+            "slider_effect": "fade-in-right",
+            "subheading": "",
+            "heading": "",
+            "description": "",
+            "first_button_label": "",
+            "first_button_link": "",
+            "first_button_style": false,
+            "second_button_label": "",
+            "second_button_link": "",
+            "second_button_style": false,
+            "content_alignment": "center",
+            "content_position": "top-center",
+            "content_width": "full_width",
+            "content_max_width": 100,
+            "content_padding_block": 40,
+            "content_padding_inline": 0,
+            "show_content_background": false,
+            "content_background": "#ffffff",
+            "content_box_opacity": 100,
+            "content_alignment_mobile": "center"
+          }
+        },
         "slider_item_K3DbMk": {
           "type": "slider_item",
           "name": "Apache",
@@ -72,66 +102,6 @@
             "content_alignment_mobile": "center"
           }
         },
-        "slider_item_rYBq93": {
-          "type": "slider_item",
-          "name": "Novos Bonés",
-          "settings": {
-            "image": "shopify://shop_images/NOVOS_BONES_AGRO_DESKTOP.webp",
-            "image_mobile": "shopify://shop_images/NOVOS_BONES_AGRO_MOBILE.webp",
-            "overlay_opacity": 0,
-            "link_banner": "shopify://collections/bones",
-            "slider_effect": "fade-in-right",
-            "subheading": "",
-            "heading": "",
-            "description": "",
-            "first_button_label": "",
-            "first_button_link": "",
-            "first_button_style": false,
-            "second_button_label": "",
-            "second_button_link": "",
-            "second_button_style": false,
-            "content_alignment": "center",
-            "content_position": "top-center",
-            "content_width": "full_width",
-            "content_max_width": 100,
-            "content_padding_block": 40,
-            "content_padding_inline": 0,
-            "show_content_background": false,
-            "content_background": "#ffffff",
-            "content_box_opacity": 100,
-            "content_alignment_mobile": "center"
-          }
-        },
-        "slider_item_wzBeHe": {
-          "type": "slider_item",
-          "name": "São Bento 2026",
-          "settings": {
-            "image": "shopify://shop_images/BANNER_SITE_a26654a4-7950-40d3-835f-58216983f85e.webp",
-            "image_mobile": "shopify://shop_images/BANNER_MOBILE.webp",
-            "overlay_opacity": 0,
-            "link_banner": "https://www.brkagro.com.br/collections/mes-de-sao-bento-2026?filter.p.m.custom.genero=Masculino",
-            "slider_effect": "fade-in-right",
-            "subheading": "",
-            "heading": "",
-            "description": "",
-            "first_button_label": "",
-            "first_button_link": "",
-            "first_button_style": false,
-            "second_button_label": "",
-            "second_button_link": "",
-            "second_button_style": false,
-            "content_alignment": "center",
-            "content_position": "top-center",
-            "content_width": "full_width",
-            "content_max_width": 100,
-            "content_padding_block": 40,
-            "content_padding_inline": 0,
-            "show_content_background": false,
-            "content_background": "#ffffff",
-            "content_box_opacity": 100,
-            "content_alignment_mobile": "center"
-          }
-        },
         "slider_item_n3PrkQ": {
           "type": "slider_item",
           "name": "Botas/Botinas",
@@ -161,14 +131,44 @@
             "content_box_opacity": 100,
             "content_alignment_mobile": "center"
           }
+        },
+        "slider_item_rYBq93": {
+          "type": "slider_item",
+          "name": "Novos Bonés",
+          "settings": {
+            "image": "shopify://shop_images/NOVOS_BONES_AGRO_DESKTOP.webp",
+            "image_mobile": "shopify://shop_images/NOVOS_BONES_AGRO_MOBILE.webp",
+            "overlay_opacity": 0,
+            "link_banner": "shopify://collections/bones",
+            "slider_effect": "fade-in-right",
+            "subheading": "",
+            "heading": "",
+            "description": "",
+            "first_button_label": "",
+            "first_button_link": "",
+            "first_button_style": false,
+            "second_button_label": "",
+            "second_button_link": "",
+            "second_button_style": false,
+            "content_alignment": "center",
+            "content_position": "top-center",
+            "content_width": "full_width",
+            "content_max_width": 100,
+            "content_padding_block": 40,
+            "content_padding_inline": 0,
+            "show_content_background": false,
+            "content_background": "#ffffff",
+            "content_box_opacity": 100,
+            "content_alignment_mobile": "center"
+          }
         }
       },
       "block_order": [
+        "slider_item_wzBeHe",
         "slider_item_K3DbMk",
         "slider_item_GGRrnM",
-        "slider_item_rYBq93",
-        "slider_item_wzBeHe",
-        "slider_item_n3PrkQ"
+        "slider_item_n3PrkQ",
+        "slider_item_rYBq93"
       ],
       "custom_css": [
         ".h-full_screen {--height-topbar: 41px;}"
