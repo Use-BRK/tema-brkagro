@@ -17,13 +17,13 @@
         "text_slider_LFaC38": {
           "type": "text_slider",
           "settings": {
-            "text1": "<strong>FRETE FIXO R$9,90</strong>",
+            "text1": "<strong>FRETE FIXO R$9,90 — PARA TODO BRASIL</strong>",
             "coupon1": "",
             "coupon1_enabled": false,
-            "text2": "<strong>ATÉ 3X SEM JUROS</strong>",
+            "text2": "",
             "coupon2": "",
             "coupon2_enabled": false,
-            "text3": "<strong>1ª TROCA GRÁTIS</strong>",
+            "text3": "",
             "coupon3": "",
             "coupon3_enabled": false,
             "change_every": 3,

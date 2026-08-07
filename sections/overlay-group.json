@@ -17,29 +17,19 @@
         "homepage_xiQ8UP": {
           "type": "homepage",
           "name": "Inicio",
+          "disabled": true,
           "settings": {}
         },
         "account_mNDeiq": {
           "type": "account",
-          "settings": {}
-        },
-        "navbar_collection_xFxBLk": {
-          "type": "navbar-collection",
           "disabled": true,
-          "settings": {
-            "collection": "copa-2026",
-            "title": "Copa 2026",
-            "custom_svg": "<img src=\"https://cdn.shopify.com/s/files/1/0887/2083/4857/files/3022546.png?v=1778266477\">",
-            "svg_width": 39,
-            "svg_height": 25
-          }
+          "settings": {}
         },
         "navbar_collection_7zmyr7": {
           "type": "navbar-collection",
-          "disabled": true,
           "settings": {
             "collection": "sao-bento-2026",
-            "title": "Com Brinde!",
+            "title": "Camisas + Brinde!",
             "custom_svg": "<svg viewbox=\"0 0 462.62 486.43\" xmlns=\"http://www.w3.org/2000/svg\" id=\"Layer_1\"><path d=\"M253.24,237.71l-.05-81.88c-14.87-.81-29.07-.62-43.99.01v81.86s-187.07-.15-187.07-.15C10.35,237.54,0,227.45,0,216.33l.02-54.15c0-13.01,12.09-21.11,24.12-21.1l75.24.06c-17.61-11.87-31.25-28.27-37.44-48.41-11.64-37.85,7.81-75.87,45.25-89.05,33.51-10.87,71.13,2.87,90.08,33.53l33.9,59.41,35.17-61.29c18.77-29.21,55-41.66,87.6-32.16,30.06,10.55,50.83,37.93,49.35,70.01-1.29,28.14-17.23,52.43-40.6,67.9l75.5-.02c13.51,0,24,9.33,24.44,23.15l-.12,51.11c-.03,11.39-10.03,22.19-22.22,22.2l-187.04.18ZM196.56,120.12l-24.2-52.1c-5.42-11.67-15.25-20.07-26.63-25.33-19.21-8.88-42.01,1.33-46.74,22.08-3.77,16.55,4.64,32.3,19.32,40.38,15.21,8.37,31.66,12.85,49.2,14.59,9.51.95,18.89.29,29.05.38ZM344.26,105.41c10.81-5.95,17.98-15.23,20.05-27.24,2.07-11.99-2.32-23.55-10.96-30.88-21.67-18.38-52.58-.95-62.31,19.63l-25.15,53.21c28.27,1.19,54.09-1.34,78.37-14.72Z\"></path><path d=\"M209.22,486.39l-146.91-.13c-22.65-.02-39.66-19.02-40.01-41.13v-178.97s186.91.02,186.91.02l.02,220.21Z\"></path><path d=\"M440.12,444.7c-.24,23.22-18.09,41.66-41.01,41.67l-145.91.07v-220.26s186.92-.02,186.92-.02v178.54Z\"></path></svg>",
             "svg_width": 50,
             "svg_height": 22
@@ -47,7 +37,6 @@
         },
         "navbar_collection_J893UR": {
           "type": "navbar-collection",
-          "disabled": true,
           "settings": {
             "collection": "colecao-femininas-2026",
             "title": "Femininas 2026",
@@ -64,19 +53,18 @@
         "cart_8xqQBb": {
           "type": "cart",
           "name": "Carrinho",
+          "disabled": true,
           "settings": {}
         }
       },
       "block_order": [
         "homepage_xiQ8UP",
         "account_mNDeiq",
-        "navbar_collection_xFxBLk",
         "navbar_collection_7zmyr7",
         "navbar_collection_J893UR",
         "whatsapp_contact_qEDXnA",
         "cart_8xqQBb"
       ],
-      "disabled": true,
       "custom_css": [
         "mobile-navigation-bar {backdrop-filter: blur(10px); background: #ffffffcf; transition: opacity 0.3s, transform 0.3s; opacity: 1; transform: translateY(0px); padding: 3px;}",
         "span {font-size: 12px;}",
