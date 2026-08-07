@@ -209,18 +209,18 @@
     "collection_tab_kENEYA": {
       "type": "collection-tab",
       "blocks": {
-        "collection_REBGpn": {
-          "type": "collection",
-          "settings": {
-            "collection": "sao-bento-2026",
-            "collection_title": "São Bento"
-          }
-        },
         "collection_beDCB9": {
           "type": "collection",
           "settings": {
             "collection": "calcas-jeans",
             "collection_title": "Calça Jeans"
+          }
+        },
+        "collection_REBGpn": {
+          "type": "collection",
+          "settings": {
+            "collection": "sao-bento-2026",
+            "collection_title": "São Bento"
           }
         },
         "collection_UcdRDk": {
@@ -232,19 +232,16 @@
         }
       },
       "block_order": [
-        "collection_REBGpn",
         "collection_beDCB9",
+        "collection_REBGpn",
         "collection_UcdRDk"
       ],
-      "custom_css": [
-        ".collection-tab__tab-item {font-size: clamp(1.105em, 2vw, 1.8rem);}",
-        "h3 {margin-top: 0px; margin-bottom: 0px;}"
-      ],
+      "custom_css": [],
       "name": "Lançamentos",
       "settings": {
         "section_width": "stretch_width",
         "color_scheme": "scheme-accf3b11-ba40-4a3e-bafb-243ece6683ec",
-        "heading": "🔥 Lançamentos",
+        "heading": "Lançamentos",
         "description": "",
         "show_view_all_button": true,
         "header_size": "small",
