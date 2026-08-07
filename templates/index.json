@@ -238,7 +238,7 @@
         "show_view_all_button": true,
         "header_size": "small",
         "heading_font_size": 30,
-        "header_alignment": "center",
+        "header_alignment": "right",
         "tab_header_style": "horizontal",
         "horizontal_tab_style": "fill",
         "tab_header_postion": "horizontal_header",
