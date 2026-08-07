@@ -236,7 +236,7 @@
         "heading": "Lançamentos",
         "description": "",
         "show_view_all_button": true,
-        "header_size": "small",
+        "header_size": "large",
         "heading_font_size": 30,
         "header_alignment": "right",
         "tab_header_style": "horizontal",
