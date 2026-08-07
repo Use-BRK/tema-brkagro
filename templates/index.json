@@ -209,32 +209,24 @@
     "collection_tab_kENEYA": {
       "type": "collection-tab",
       "blocks": {
+        "collection_REBGpn": {
+          "type": "collection",
+          "settings": {
+            "collection": "sao-bento-2026",
+            "collection_title": "Camisas São Bento"
+          }
+        },
         "collection_beDCB9": {
           "type": "collection",
           "settings": {
             "collection": "calcas-jeans",
             "collection_title": "Calça Jeans"
           }
-        },
-        "collection_REBGpn": {
-          "type": "collection",
-          "settings": {
-            "collection": "sao-bento-2026",
-            "collection_title": "São Bento"
-          }
-        },
-        "collection_UcdRDk": {
-          "type": "collection",
-          "settings": {
-            "collection": "bones",
-            "collection_title": "Bonés"
-          }
         }
       },
       "block_order": [
-        "collection_beDCB9",
         "collection_REBGpn",
-        "collection_UcdRDk"
+        "collection_beDCB9"
       ],
       "custom_css": [],
       "name": "Lançamentos",
