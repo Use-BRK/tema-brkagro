@@ -710,6 +710,235 @@ html.mobile-menu-drawer-open .section-header {
   background-color: rgba(8, 91, 71, 0.12);
 }
 
+/* ============================================================
+   Modo "design" (accordion) — layout de referência do Figma
+   (MENU E FILTRO BRK AGRO). Ativado quando steps_navigation = off.
+   Nível 1 = cabeçalho verde (seção) com traçado fino embaixo.
+   Estado inicial (aberto/fechado) vem do setting "Seções abertas".
+   Nível 3 é exibido em grade de 2 colunas com fundo claro.
+   ============================================================ */
+.mmd-acc {
+  --mmd-acc-green: #0f6049;
+  --mmd-acc-ink: #38372f;
+  --mmd-acc-muted: #6f6e63;
+  --mmd-acc-line: #d9d6ca;
+  --mmd-acc-grid-bg: #f9f9f9;
+  list-style: none;
+  margin: 0;
+  padding: 2px 0;
+  font-weight: 400;
+}
+
+/* Sem os separadores automáticos das link-rows do modo antigo. */
+.mmd-acc .mobile-menu-drawer__link-row::after {
+  display: none;
+}
+
+/* ---- Nível 1: cabeçalho de seção (verde, caixa alta, leve) ---- */
+.mmd-acc__head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  margin: 0;
+  padding: 13px 20px;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  text-align: left;
+  text-decoration: none;
+  font-family: inherit;
+  font-weight: var(--mmd-l1-weight, 600);
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--mmd-acc-green);
+  font-size: calc(var(--mmd-l1-size, 14px) * var(--text-size-multiplier, 1));
+  line-height: 1.2;
+}
+.mmd-acc__head-title {
+  flex: 1;
+  min-width: 0;
+}
+.mmd-acc__head-row {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+/* Traçado fino sob cada cabeçalho de nível 1 (recuado nas laterais). */
+.mmd-acc__head-row::before,
+.mmd-acc__item--link > .mmd-acc__head--link::before {
+  content: "";
+  position: absolute;
+  left: 20px;
+  right: 20px;
+  bottom: 0;
+  border-bottom: 1px solid var(--mmd-acc-line);
+}
+.mmd-acc__item--link > .mmd-acc__head--link {
+  position: relative;
+}
+
+/* Chevron ">" — discreto, à direita */
+.mmd-acc__chevron {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  margin-left: auto;
+  color: #b6b4a8;
+}
+
+/* Botão +/− (reaproveita .mobile-menu-drawer__toggle) — fino e discreto */
+.mmd-acc__plus {
+  color: var(--mmd-acc-green);
+  opacity: 0.75;
+}
+.mmd-acc__plus--l2 {
+  color: var(--mmd-acc-muted);
+}
+/* O botão +/− de nível 2 tinha altura fixa de 44px e "esticava" a linha,
+   anulando o padding compacto do link. Aqui ele acompanha a altura da linha
+   (definida pelo padding do link), mantendo a área de toque na largura. */
+.mmd-acc__l2-row .mobile-menu-drawer__toggle {
+  height: auto;
+  align-self: stretch;
+}
+
+/* ---- Nível 2 (dentro da seção) ---- */
+.mmd-acc__l2 {
+  list-style: none;
+  margin: 0;
+  /* Sem padding vertical: elemento que colapsa (overflow:hidden) — padding
+     vertical vazaria uma fatia quando fechado. Respiro vem dos links. */
+  padding: 0;
+}
+.mmd-acc__l2-link {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin: 0;
+  padding: 5px 20px;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  text-align: left;
+  text-decoration: none;
+  font-family: inherit;
+  font-weight: var(--mmd-l2-weight, 400);
+  color: #000;
+  font-size: calc(var(--mmd-l2-size, 13px) * var(--text-size-multiplier, 1));
+  line-height: 1.3;
+}
+.mmd-acc__l2-label {
+  flex: 1;
+  min-width: 0;
+}
+.mmd-acc__l2-row {
+  display: flex;
+  align-items: center;
+}
+
+/* ---- Gutter do ícone à esquerda: largura fixa para alinhar rótulos.
+   Só é reservado quando a lista tem itens com badge (#star#/#new#).
+   Assim, itens sem ícone não "empurram" o texto. ---- */
+.mmd-acc__lead {
+  display: none;
+}
+.mmd-acc__l2--badged .mmd-acc__lead {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex: 0 0 30px;
+  width: 30px;
+  margin-right: 6px;
+}
+.mmd-acc__lead .menu-lead-badge {
+  margin: 0;
+}
+.menu-lead-badge--star {
+  width: 16px;
+  height: 16px;
+}
+.menu-lead-badge--new {
+  width: 29px;
+  height: 15px;
+}
+
+/* ---- Nível 3 em grade de 2 colunas, dentro de uma "caixa" clara inset ---- */
+.mmd-acc__panel {
+  background: transparent;
+}
+.mmd-acc__panel--grid {
+  background: transparent;
+}
+/* .mmd-acc__grid é o elemento que colapsa (overflow:hidden) — sem fundo/padding
+   aqui para não vazar quando fechado. O visual fica na .mmd-acc__grid-box. */
+.mmd-acc__panel > .mmd-acc__l2,
+.mmd-acc__panel--grid > .mmd-acc__grid {
+  min-height: 0;
+  overflow: hidden;
+}
+/* A "caixa": fundo cinza-claro só ao redor das colunas, recuada nas laterais. */
+.mmd-acc__grid-box {
+  column-count: 2;
+  column-gap: 16px;
+  margin: 4px 16px 14px;
+  padding: 5px 9px;
+  background: var(--mmd-acc-grid-bg);
+}
+.mmd-acc__l3-link {
+  display: block;
+  break-inside: avoid;
+  padding: 6px 0;
+  text-decoration: none;
+  color: var(--mmd-acc-muted);
+  font-weight: var(--mmd-l3-weight, 400);
+  font-size: calc(var(--mmd-l3-size, 13px) * var(--text-size-multiplier, 1));
+  line-height: 1.25;
+}
+.mmd-acc__l3-link--all {
+  color: var(--mmd-acc-ink);
+  font-weight: 600;
+}
+.mmd-acc__l3-arrow {
+  margin-left: 5px;
+}
+
+/* "Ver Tudo" como link direto de nível 2: negrito + seta logo após o texto
+   (igual aos subníveis do nível 3 — "Ver Tudo →" juntos, alinhados à esquerda). */
+.mmd-acc__l2-link--all {
+  color: #000;
+  font-weight: 600;
+}
+.mmd-acc__l2-link--all .mmd-acc__l2-label {
+  flex: 0 0 auto;
+}
+.mmd-acc__l2-arrow {
+  flex-shrink: 0;
+  margin-left: 6px;
+  color: #000;
+}
+
+/* Feedback de toque */
+.mmd-acc__shortcut-link:active,
+.mmd-acc__l2-link:active,
+.mmd-acc__head--link:active,
+.mmd-acc__head--toggle:active,
+.mmd-acc__l3-link:active {
+  background-color: rgba(15, 96, 73, 0.06);
+}
+
+/* Busca: no design o ícone (lupa) fica à direita e o placeholder é
+   "O que você procura?". Reordena sem mexer no markup. */
+.mmd-search__icon {
+  order: 3;
+}
+.mobile-menu-drawer .mmd-search__input {
+  order: 1;
+}
+.mmd-search__clear {
+  order: 2;
+}
+
 /* Hide on desktop */
 @media (min-width: 1025px) {
   .mobile-menu-drawer {

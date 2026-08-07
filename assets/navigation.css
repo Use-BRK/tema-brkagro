@@ -439,3 +439,23 @@
   background: var(--btn-bg);
   border-color: var(--btn-border-color);
 }
+
+/* ============================================================
+   Badges de menu por marcador (#star# / #new#) — desktop.
+   Ícone à esquerda do rótulo, alinhado verticalmente.
+   ============================================================ */
+.menu-lead-badge {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  vertical-align: middle;
+  margin-inline-end: 7px;
+}
+.menu-lead-badge--star {
+  width: 16px;
+  height: 16px;
+}
+.menu-lead-badge--new {
+  width: 29px;
+  height: 15px;
+}

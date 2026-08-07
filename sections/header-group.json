@@ -27,7 +27,16 @@
             "coupon3": "",
             "coupon3_enabled": false,
             "change_every": 3,
-            "hidden_on_mobile": false
+            "hidden_on_mobile": false,
+            "compact_mode": true,
+            "compact_icon_1": "truck",
+            "compact_icon_url_1": "",
+            "compact_text_1": "FRETE FIXO R$9,90",
+            "compact_link_1": "",
+            "compact_icon_2": "bolt",
+            "compact_icon_url_2": "",
+            "compact_text_2": "",
+            "compact_link_2": ""
           }
         }
       },
@@ -183,7 +192,8 @@
           "type": "menu",
           "settings": {
             "menu": "menu",
-            "text_size": 110,
+            "text_size": 100,
+            "expanded_items": "Destaques",
             "show_images": false,
             "highlight_item": "",
             "highlight_item_color": "#d02e2e",
@@ -256,7 +266,7 @@
         "open_below_header": true,
         "drawer_width": 85,
         "drawer_fullwidth": true,
-        "steps_navigation": true,
+        "mobile_menu_mode": "design",
         "steps_breadcrumb": false,
         "menu_uppercase": false,
         "logo": "shopify://shop_images/LOGOBRKAGRO_2026ai_1.svg",

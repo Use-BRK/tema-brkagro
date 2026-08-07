@@ -4,7 +4,11 @@
   assign logo_width_retina = logo_width | times: 2
   assign theme_st = settings
   assign below_header = section.settings.open_below_header
-  assign steps_mode = section.settings.steps_navigation
+  assign nav_mode = section.settings.mobile_menu_mode | default: 'design'
+  assign steps_mode = false
+  if nav_mode == 'steps'
+    assign steps_mode = true
+  endif
   assign steps_breadcrumb = section.settings.steps_breadcrumb
   assign menu_uppercase = section.settings.menu_uppercase
   assign drawer_fullwidth = section.settings.drawer_fullwidth
@@ -49,7 +53,7 @@
           inputmode="search"
           role="searchbox"
           class="mmd-search__input"
-          placeholder="Buscar no menu (camisas, botinas, etc)"
+          placeholder="O que você procura?"
           aria-label="Buscar no menu"
           autocomplete="off"
           autocorrect="off"
@@ -101,7 +105,7 @@
                 endfor
                 assign label_items = label_items_str | split: '||'
               -%}
-              {%- if steps_mode -%}
+              {%- if nav_mode == 'steps' -%}
                 <div class="mmd-steps" style="--text-size-multiplier: {{ text_size | times: 0.01 }}">
                   <div class="mmd-steps__viewport" data-mmd-viewport>
                     <ul class="mmd-steps__panel mmd-steps__panel--root mobile-menu-drawer__list">
@@ -175,7 +179,7 @@
                     {%- endfor -%}
                   </div>
                 </div>
-              {%- else -%}
+              {%- elsif nav_mode == 'classic' -%}
               <ul class="mobile-menu-drawer__list mobile-menu-drawer__list--level-1" style="--text-size-multiplier: {{ text_size | times: 0.01 }}">
                 {%- for link in menu.links -%}
                   {%- liquid
@@ -308,6 +312,126 @@
                       </div>
                     {%- endif -%}
                   </li>
+                {%- endfor -%}
+              </ul>
+              {%- else -%}
+              {%- comment -%} Modo "design" (accordion) — layout Figma (MENU E FILTRO BRK AGRO). {%- endcomment -%}
+              {%- liquid
+                assign expanded_raw = block.settings.expanded_items | default: ''
+                assign expanded_list = expanded_raw | downcase | split: ','
+              -%}
+              <ul class="mmd-acc" style="--text-size-multiplier: {{ text_size | times: 0.01 }};
+                --mmd-l1-size: {{ block.settings.acc_l1_size | default: 14 }}px; --mmd-l1-weight: {{ block.settings.acc_l1_weight | default: 600 }};
+                --mmd-l2-size: {{ block.settings.acc_l2_size | default: 13 }}px; --mmd-l2-weight: {{ block.settings.acc_l2_weight | default: 400 }};
+                --mmd-l3-size: {{ block.settings.acc_l3_size | default: 13 }}px; --mmd-l3-weight: {{ block.settings.acc_l3_weight | default: 400 }};">
+                {%- for link in menu.links -%}
+                  {%- liquid
+                    assign l1_clean = link.title | replace: '#star#', '' | replace: '#new#', '' | replace: '[hot]', '' | replace: '[new]', '' | replace: '[sale]', '' | replace: '[popular]', '' | strip
+                    assign l1_lower = l1_clean | downcase
+                    assign l1_has_children = false
+                    if link.links.size > 0
+                      assign l1_has_children = true
+                    endif
+                    assign l1_open = false
+                    for e in expanded_list
+                      assign et = e | strip
+                      if et != '' and et == l1_lower
+                        assign l1_open = true
+                      endif
+                    endfor
+                    comment
+                      Detecta se algum filho direto tem badge (#star#/#new#) — se sim,
+                      reserva o "gutter" à esquerda para que os rótulos fiquem alinhados.
+                    endcomment
+                    assign list_badged = false
+                    for child in link.links
+                      assign ctl = child.title | downcase
+                      if ctl contains '#star#' or ctl contains '#new#'
+                        assign list_badged = true
+                      endif
+                    endfor
+                  -%}
+                  {%- if l1_has_children == false -%}
+                    <li class="mmd-acc__item mmd-acc__item--l1 mmd-acc__item--link">
+                      <a href="{{ link.url }}" class="mmd-acc__head mmd-acc__head--link">
+                        <span class="mmd-acc__head-title">{{ l1_clean }}</span>
+                        <span class="mmd-acc__chevron" aria-hidden="true"><svg width="7" height="12" viewBox="0 0 8 14" fill="none"><path d="M1 1l6 6-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                      </a>
+                    </li>
+                  {%- else -%}
+                    <li class="mmd-acc__item mmd-acc__item--l1 mmd-acc__item--collapsible mobile-menu-drawer__item--has-children">
+                      <div class="mobile-menu-drawer__link-row mmd-acc__head-row">
+                        <button type="button" class="mmd-acc__head mmd-acc__head--toggle mobile-menu-drawer__link--parent-toggle" data-parent-toggle="mmd-{{ section.id }}-{{ forloop.index }}">
+                          <span class="mmd-acc__head-title">{{ l1_clean }}</span>
+                        </button>
+                        <button type="button" class="mobile-menu-drawer__toggle mmd-acc__plus" aria-expanded="{% if l1_open %}true{% else %}false{% endif %}" aria-controls="mmd-{{ section.id }}-{{ forloop.index }}">
+                          <svg class="mobile-menu-drawer__icon-plus" width="15" height="15" viewBox="0 0 192 192" aria-hidden="true"><path d="M30 96h132M96 30v132" stroke="currentColor" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                          <svg class="mobile-menu-drawer__icon-minus" width="15" height="15" viewBox="0 0 192 192" aria-hidden="true"><path d="M30 96h132" stroke="currentColor" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </button>
+                      </div>
+                      <div class="mobile-menu-drawer__submenu mmd-acc__panel{% if l1_open %} is-open{% endif %}" id="mmd-{{ section.id }}-{{ forloop.index }}">
+                        <ul class="mmd-acc__l2{% if list_badged %} mmd-acc__l2--badged{% endif %}">
+                          {%- for child in link.links -%}
+                            {%- liquid
+                              assign c_clean = child.title | replace: '#star#', '' | replace: '#new#', '' | replace: '[hot]', '' | replace: '[new]', '' | replace: '[sale]', '' | replace: '[popular]', '' | strip
+                              assign c_lower = c_clean | downcase
+                              assign c_all = false
+                              if c_lower == 'ver tudo'
+                                assign c_all = true
+                              endif
+                              assign child_has_children = false
+                              if child.links.size > 0
+                                assign child_has_children = true
+                              endif
+                            -%}
+                            {%- if child_has_children -%}
+                              <li class="mmd-acc__l2-item mmd-acc__l2-item--collapsible mobile-menu-drawer__item--has-children">
+                                <div class="mobile-menu-drawer__link-row mmd-acc__l2-row">
+                                  <button type="button" class="mmd-acc__l2-link mmd-acc__l2-link--toggle mobile-menu-drawer__link--parent-toggle" data-parent-toggle="mmd-{{ section.id }}-{{ forloop.parentloop.index }}-{{ forloop.index }}">
+                                    {%- if list_badged -%}<span class="mmd-acc__lead">{%- render 'menu-lead-badge', title: child.title -%}</span>{%- endif -%}
+                                    <span class="mmd-acc__l2-label">{{ c_clean }}</span>
+                                  </button>
+                                  <button type="button" class="mobile-menu-drawer__toggle mobile-menu-drawer__toggle--level-2 mmd-acc__plus mmd-acc__plus--l2" aria-expanded="false" aria-controls="mmd-{{ section.id }}-{{ forloop.parentloop.index }}-{{ forloop.index }}">
+                                    <svg class="mobile-menu-drawer__icon-plus" width="13" height="13" viewBox="0 0 192 192" aria-hidden="true"><path d="M30 96h132M96 30v132" stroke="currentColor" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                    <svg class="mobile-menu-drawer__icon-minus" width="13" height="13" viewBox="0 0 192 192" aria-hidden="true"><path d="M30 96h132" stroke="currentColor" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                  </button>
+                                </div>
+                                <div class="mobile-menu-drawer__submenu mmd-acc__panel mmd-acc__panel--grid" id="mmd-{{ section.id }}-{{ forloop.parentloop.index }}-{{ forloop.index }}">
+                                  <div class="mmd-acc__grid">
+                                    <div class="mmd-acc__grid-box">
+                                      {%- for gc in child.links -%}
+                                        {%- liquid
+                                          assign gc_clean = gc.title | replace: '#star#', '' | replace: '#new#', '' | replace: '[hot]', '' | replace: '[new]', '' | replace: '[sale]', '' | replace: '[popular]', '' | strip
+                                          assign gc_lower = gc_clean | downcase
+                                          assign gc_all = false
+                                          if gc_lower == 'ver tudo'
+                                            assign gc_all = true
+                                          endif
+                                        -%}
+                                        <a href="{{ gc.url }}" class="mmd-acc__l3-link{% if gc_all %} mmd-acc__l3-link--all{% endif %}"><span>{{ gc_clean }}</span>{% if gc_all %}<span class="mmd-acc__l3-arrow" aria-hidden="true">→</span>{% endif %}</a>
+                                      {%- endfor -%}
+                                    </div>
+                                  </div>
+                                </div>
+                              </li>
+                            {%- else -%}
+                              <li class="mmd-acc__l2-item mmd-acc__l2-item--link">
+                                <a href="{{ child.url }}" class="mmd-acc__l2-link mmd-acc__l2-link--direct{% if c_all %} mmd-acc__l2-link--all{% endif %}">
+                                  {%- if list_badged -%}<span class="mmd-acc__lead">{%- render 'menu-lead-badge', title: child.title -%}</span>{%- endif -%}
+                                  <span class="mmd-acc__l2-label">{{ c_clean }}</span>
+                                  {%- if c_all -%}
+                                    <span class="mmd-acc__l2-arrow" aria-hidden="true">→</span>
+                                  {%- else -%}
+                                    <span class="mmd-acc__chevron" aria-hidden="true"><svg width="7" height="12" viewBox="0 0 8 14" fill="none"><path d="M1 1l6 6-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                                  {%- endif -%}
+                                </a>
+                              </li>
+                            {%- endif -%}
+                          {%- endfor -%}
+                        </ul>
+                      </div>
+                    </li>
+                  {%- endif -%}
                 {%- endfor -%}
               </ul>
               {%- endif -%}
@@ -653,11 +777,16 @@
       "default": false
     },
     {
-      "type": "checkbox",
-      "id": "steps_navigation",
-      "label": "Navegação em etapas",
-      "info": "Ao tocar num item com submenu, desliza para uma página com os filhos (subitens em negrito + netos). Desligado, usa o modo sanfona (collapsible).",
-      "default": true
+      "type": "select",
+      "id": "mobile_menu_mode",
+      "label": "Modo do menu mobile",
+      "info": "Design = accordion + colunas (novo, layout BRK). Etapas = drill-down por página + colunas. Clássico = sanfona simples (tema original).",
+      "default": "design",
+      "options": [
+        { "value": "design", "label": "Design (accordion + colunas)" },
+        { "value": "steps", "label": "Etapas (drill-down + colunas)" },
+        { "value": "classic", "label": "Clássico (sanfona simples)" }
+      ]
     },
     {
       "type": "checkbox",
@@ -815,6 +944,88 @@
           "max": 200,
           "step": 5,
           "unit": "%"
+        },
+        {
+          "type": "text",
+          "id": "expanded_items",
+          "label": "Seções abertas ao abrir o menu",
+          "info": "Modo design (accordion): títulos de nível 1 que já começam expandidos, separados por vírgula. Ex.: Destaques, Mulheres. Deixe vazio para todos fechados.",
+          "default": "Destaques"
+        },
+        {
+          "type": "header",
+          "content": "Tipografia — modo Design",
+          "info": "Tamanho e peso da fonte por nível (só no modo Design/accordion)."
+        },
+        {
+          "type": "range",
+          "id": "acc_l1_size",
+          "label": "Nível 1 — tamanho",
+          "min": 10,
+          "max": 22,
+          "step": 1,
+          "unit": "px",
+          "default": 14
+        },
+        {
+          "type": "select",
+          "id": "acc_l1_weight",
+          "label": "Nível 1 — peso",
+          "default": "600",
+          "options": [
+            { "value": "300", "label": "300 — Light" },
+            { "value": "400", "label": "400 — Regular" },
+            { "value": "500", "label": "500 — Medium" },
+            { "value": "600", "label": "600 — Semibold" },
+            { "value": "700", "label": "700 — Bold" },
+            { "value": "800", "label": "800 — Extrabold" }
+          ]
+        },
+        {
+          "type": "range",
+          "id": "acc_l2_size",
+          "label": "Nível 2 — tamanho",
+          "min": 10,
+          "max": 22,
+          "step": 1,
+          "unit": "px",
+          "default": 13
+        },
+        {
+          "type": "select",
+          "id": "acc_l2_weight",
+          "label": "Nível 2 — peso",
+          "default": "400",
+          "options": [
+            { "value": "300", "label": "300 — Light" },
+            { "value": "400", "label": "400 — Regular" },
+            { "value": "500", "label": "500 — Medium" },
+            { "value": "600", "label": "600 — Semibold" },
+            { "value": "700", "label": "700 — Bold" }
+          ]
+        },
+        {
+          "type": "range",
+          "id": "acc_l3_size",
+          "label": "Nível 3 (colunas) — tamanho",
+          "min": 10,
+          "max": 20,
+          "step": 1,
+          "unit": "px",
+          "default": 13
+        },
+        {
+          "type": "select",
+          "id": "acc_l3_weight",
+          "label": "Nível 3 (colunas) — peso",
+          "default": "400",
+          "options": [
+            { "value": "300", "label": "300 — Light" },
+            { "value": "400", "label": "400 — Regular" },
+            { "value": "500", "label": "500 — Medium" },
+            { "value": "600", "label": "600 — Semibold" },
+            { "value": "700", "label": "700 — Bold" }
+          ]
         },
         {
           "type": "checkbox",

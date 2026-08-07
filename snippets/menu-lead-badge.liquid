@@ -1,0 +1,16 @@
+{%- comment -%}
+  Renderiza um "badge" de ícone à esquerda quando o título do item de menu
+  contém um marcador. Uso no Shopify: escreva o título como
+    #star#Mais Vendidos   -> ícone de estrela
+    #new#Lançamentos      -> selo "NOVO"
+  Funciona no menu mobile (drawer) e no menu desktop.
+  Parâmetro: title (string do título do link, ainda com o marcador).
+{%- endcomment -%}
+{%- liquid
+  assign _t = title | downcase
+-%}
+{%- if _t contains '#star#' -%}
+  <img class="menu-lead-badge menu-lead-badge--star" src="https://cdn.shopify.com/s/files/1/0887/2083/4857/files/BADGE_STAR.svg" alt="" width="16" height="16" loading="lazy">
+{%- elsif _t contains '#new#' -%}
+  <img class="menu-lead-badge menu-lead-badge--new" src="https://cdn.shopify.com/s/files/1/0887/2083/4857/files/BADGE_NOVO.svg" alt="{{ 'Novo' }}" width="29" height="15" loading="lazy">
+{%- endif -%}

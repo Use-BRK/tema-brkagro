@@ -141,9 +141,20 @@
   body.page-links #whatsapp-button-contact { display: none !important; }
   body.page-links mobile-navigation-bar    { display: none !important; }
 
-  /* 10. SEM PADDING EXTRA no conteúdo (o linktree tem o próprio) */
-  body.page-links #MainContent         { padding: 0 !important; }
-  body.page-links .page-default.section { padding: 0 !important; }
+  /* 10. SEM PADDING EXTRA no conteúdo + fundo transparente.
+         O linktree usa margens negativas para ser full-bleed; os wrappers
+         internos (.container, .rte) têm fundo branco por padrão no Glozin
+         e aparecem como caixa branca por baixo do linktree transparente. */
+  body.page-links #MainContent,
+  body.page-links .page-default.section,
+  body.page-links .page-default .container,
+  body.page-links .page-default .fluid_container,
+  body.page-links .page-default .rte {
+    padding: 0 !important;
+    background: transparent !important;
+    background-color: transparent !important;
+    background-image: none !important;
+  }
 
   /* 11. RESERVA ESPAÇO DO H1 (Science Gothic)
          font-display:optional não faz swap após primeiro paint → sem CLS.
@@ -160,5 +171,53 @@
   }
   body.page-links h1 {
     font-family: 'Science Gothic', 'Science Gothic Fallback', sans-serif !important;
+  }
+
+  /* ── CORREÇÕES LINKTREE ──────────────────────────────────────────── */
+
+  /* 12. Remove marcador nativo (+/▶) do <summary> */
+  body.page-links details > summary::marker,
+  body.page-links details > summary::-webkit-details-marker {
+    display: none !important;
+  }
+  body.page-links details > summary::after {
+    display: none !important;
+    content: '' !important;
+  }
+
+  /* 13. Remove sublinhado e border-bottom que o tema aplica ao summary */
+  body.page-links details > summary {
+    text-decoration: none !important;
+    border-bottom: none !important;
+  }
+  body.page-links details > summary:focus,
+  body.page-links details > summary:focus-visible {
+    outline: none !important;
+  }
+  body.page-links details {
+    border-bottom: none !important;
+  }
+
+  /* 14. Navegação mobile opaca + mega menu opaco.
+         --gradient-background: transparent no .header é HERDADO por elementos
+         filhos que usam var(--gradient-background) via classe "gradient".
+         Seletores reais do tema Glozin:
+           - nav.navigation.mobile  → overlay mobile full-screen
+           - .submenu.gradient       → painel do mega menu / dropdown desktop */
+
+  /* Mobile nav overlay: nav.navigation.mobile.fixed.inset-0 (verde escuro do fundo) */
+  body.page-links .header nav.navigation.mobile {
+    --gradient-background: #062318 !important;
+    background: #062318 !important;
+    background-color: #062318 !important;
+    background-image: none !important;
+  }
+
+  /* Mega menu e dropdowns: div.submenu.gradient (sem color-default próprio) */
+  body.page-links .header .submenu.gradient {
+    --gradient-background: #ffffff !important;
+    background: #ffffff !important;
+    background-color: #ffffff !important;
+    background-image: none !important;
   }
 </style>

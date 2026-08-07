@@ -95,6 +95,58 @@
       stroke-linejoin: round;
       vertical-align: middle;
     }
+    /* ---- Topbar compacta: 2 itens (ícone + texto) lado a lado ---- */
+    #topbar .topbar-compact {
+      width: 100%;
+    }
+    #topbar .topbar-compact__grid {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    /* Duas metades: cada item centralizado na sua metade (separação garantida). */
+    #topbar .topbar-compact__cell {
+      flex: 1 1 0;
+      min-width: 0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 0 10px;
+      color: inherit;
+      text-decoration: none;
+      text-align: center;
+      line-height: 1.2;
+      white-space: nowrap;
+    }
+    /* Linha única; se o texto for longo demais, corta com "…" (não sobrepõe). */
+    #topbar .topbar-compact__cell > span {
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    #topbar .topbar-compact__icon {
+      flex-shrink: 0;
+      width: 16px;
+      height: 16px;
+      display: block;
+    }
+    @media (min-width: 1025px) {
+      #topbar .topbar-compact__grid {
+        justify-content: center;
+        gap: 10px;
+      }
+      #topbar .topbar-compact__cell {
+        flex: 0 0 auto;
+        padding: 0 24px;
+        white-space: nowrap;
+        font-size: inherit;
+      }
+      #topbar .topbar-compact__icon {
+        width: 18px;
+        height: 18px;
+      }
+    }
   {%- endstyle -%}
   {%- capture style -%}
     --section-pt: {{ section_st.padding_top }}; --section-pb: {{ section_st.padding_bottom }};--swiper-navigation-color: var(--color-text);
@@ -171,6 +223,32 @@
                 {% endif %}
               </div>
             {%- when 'text_slider' -%}
+              {%- if block_st.compact_mode -%}
+                <div class="topbar-item w-full topbar-compact{% if block_st.hidden_on_mobile %} hidden block-1025{% endif %}">
+                  <div class="topbar-compact__grid">
+                    {%- for i in (1..2) -%}
+                      {%- liquid
+                        assign k_text = 'compact_text_' | append: i
+                        assign k_icon = 'compact_icon_' | append: i
+                        assign k_iurl = 'compact_icon_url_' | append: i
+                        assign k_link = 'compact_link_' | append: i
+                        assign c_text = block_st[k_text]
+                        assign c_link = block_st[k_link]
+                      -%}
+                      {%- if c_text != blank -%}
+                        {%- if c_link != blank -%}
+                          <a class="topbar-compact__cell no-underline" href="{{ c_link }}">
+                        {%- else -%}
+                          <div class="topbar-compact__cell">
+                        {%- endif -%}
+                          {%- render 'topbar-compact-icon', icon: block_st[k_icon], icon_url: block_st[k_iurl] -%}
+                          <span>{{ c_text }}</span>
+                        {%- if c_link != blank -%}</a>{%- else -%}</div>{%- endif -%}
+                      {%- endif -%}
+                    {%- endfor -%}
+                  </div>
+                </div>
+              {%- else -%}
               <div class="topbar-item w-full text-slide{% if block_st.hidden_on_mobile %} hidden block-1025{% endif %}">
                 <slide-section
                   class="swiper bls__swiper text-center text-md-start gap-0 lazy-loading-swiper-before"
@@ -238,6 +316,7 @@
                   </div>
                 </slide-section>
               </div>
+              {%- endif -%}
             {%- when 'cur_lang' -%}
               <div class="lang__currency-desktop justify-content-center justity-md-unset topbar-item{% if block_st.hidden_on_mobile %} hidden flex-1025{% else %} flex{% endif %} flex-wrap gap-10 gap-lg-25 align-center row-gap-0">
                 {%- if block_st.menu_link != blank -%}
@@ -565,6 +644,83 @@
           "type": "checkbox",
           "id": "hidden_on_mobile",
           "label": "t:sections.top-bar.blocks.hidden_on_mobile.label"
+        },
+        {
+          "type": "header",
+          "content": "Versão compacta"
+        },
+        {
+          "type": "checkbox",
+          "id": "compact_mode",
+          "label": "Ativar versão compacta",
+          "info": "Substitui o slogan rotativo por 2 itens fixos (ícone + texto), como na referência.",
+          "default": false
+        },
+        {
+          "type": "paragraph",
+          "content": "Item 1 (esquerda)"
+        },
+        {
+          "type": "select",
+          "id": "compact_icon_1",
+          "label": "Ícone 1",
+          "default": "truck",
+          "options": [
+            { "value": "none", "label": "Nenhum" },
+            { "value": "truck", "label": "Caminhão" },
+            { "value": "bolt", "label": "Raio (envio imediato)" }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "compact_icon_url_1",
+          "label": "Ícone 1 — URL personalizada (opcional)",
+          "info": "Se preenchido, usa esta imagem/SVG no lugar do ícone acima."
+        },
+        {
+          "type": "text",
+          "id": "compact_text_1",
+          "label": "Texto 1",
+          "default": "FRETE FIXO R$9,90"
+        },
+        {
+          "type": "url",
+          "id": "compact_link_1",
+          "label": "Link do Texto 1 (opcional)",
+          "info": "Se preenchido, o Texto 1 (com o ícone) vira um link clicável. Aceita link interno ou externo."
+        },
+        {
+          "type": "paragraph",
+          "content": "Item 2 (direita)"
+        },
+        {
+          "type": "select",
+          "id": "compact_icon_2",
+          "label": "Ícone 2",
+          "default": "bolt",
+          "options": [
+            { "value": "none", "label": "Nenhum" },
+            { "value": "truck", "label": "Caminhão" },
+            { "value": "bolt", "label": "Raio (envio imediato)" }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "compact_icon_url_2",
+          "label": "Ícone 2 — URL personalizada (opcional)",
+          "info": "Se preenchido, usa esta imagem/SVG no lugar do ícone acima."
+        },
+        {
+          "type": "text",
+          "id": "compact_text_2",
+          "label": "Texto 2",
+          "default": "Camisas de Envio Imediato"
+        },
+        {
+          "type": "url",
+          "id": "compact_link_2",
+          "label": "Link do Texto 2 (opcional)",
+          "info": "Se preenchido, o Texto 2 (com o ícone) vira um link clicável. Aceita link interno ou externo."
         }
       ]
     },
