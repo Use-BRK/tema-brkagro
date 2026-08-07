@@ -17,7 +17,7 @@
         "text_slider_LFaC38": {
           "type": "text_slider",
           "settings": {
-            "text1": "<strong>FRETE FIXO R$9,90 — PARA TODO BRASIL</strong>",
+            "text1": "<strong>FRETE FIXO R$0,80 — PARA TODO BRASIL</strong>",
             "coupon1": "",
             "coupon1_enabled": false,
             "text2": "",
@@ -28,14 +28,14 @@
             "coupon3_enabled": false,
             "change_every": 3,
             "hidden_on_mobile": false,
-            "compact_mode": true,
+            "compact_mode": false,
             "compact_icon_1": "truck",
             "compact_icon_url_1": "",
             "compact_text_1": "FRETE FIXO R$9,90",
             "compact_link_1": "",
             "compact_icon_2": "bolt",
             "compact_icon_url_2": "",
-            "compact_text_2": "",
+            "compact_text_2": "Camisas de Envio Imediato",
             "compact_link_2": ""
           }
         }
@@ -194,6 +194,12 @@
             "menu": "menu",
             "text_size": 100,
             "expanded_items": "Destaques",
+            "acc_l1_size": 14,
+            "acc_l1_weight": "600",
+            "acc_l2_size": 13,
+            "acc_l2_weight": "400",
+            "acc_l3_size": 13,
+            "acc_l3_weight": "400",
             "show_images": false,
             "highlight_item": "",
             "highlight_item_color": "#d02e2e",

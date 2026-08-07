@@ -12,6 +12,36 @@
     "slideshow_8KKtNU": {
       "type": "slideshow",
       "blocks": {
+        "slider_item_n3PrkQ": {
+          "type": "slider_item",
+          "name": "08 08 BRK",
+          "settings": {
+            "image": "shopify://shop_images/DESK_BANNER.webp",
+            "image_mobile": "shopify://shop_images/MOB_BANNER.webp",
+            "overlay_opacity": 0,
+            "link_banner": "shopify://collections/8-8-brk",
+            "slider_effect": "fade-in-right",
+            "subheading": "",
+            "heading": "",
+            "description": "",
+            "first_button_label": "",
+            "first_button_link": "",
+            "first_button_style": false,
+            "second_button_label": "",
+            "second_button_link": "",
+            "second_button_style": false,
+            "content_alignment": "center",
+            "content_position": "top-center",
+            "content_width": "full_width",
+            "content_max_width": 100,
+            "content_padding_block": 40,
+            "content_padding_inline": 0,
+            "show_content_background": false,
+            "content_background": "#ffffff",
+            "content_box_opacity": 100,
+            "content_alignment_mobile": "center"
+          }
+        },
         "slider_item_wzBeHe": {
           "type": "slider_item",
           "name": "São Bento 2026",
@@ -102,36 +132,6 @@
             "content_alignment_mobile": "center"
           }
         },
-        "slider_item_n3PrkQ": {
-          "type": "slider_item",
-          "name": "Botas/Botinas",
-          "settings": {
-            "image": "shopify://shop_images/BOTAS_BOTINAS_DESKTOP.webp",
-            "image_mobile": "shopify://shop_images/BOTAS_BOTINAS_MOBILE.webp",
-            "overlay_opacity": 0,
-            "link_banner": "shopify://collections/botinas",
-            "slider_effect": "fade-in-right",
-            "subheading": "",
-            "heading": "",
-            "description": "",
-            "first_button_label": "",
-            "first_button_link": "",
-            "first_button_style": false,
-            "second_button_label": "",
-            "second_button_link": "",
-            "second_button_style": false,
-            "content_alignment": "center",
-            "content_position": "top-center",
-            "content_width": "full_width",
-            "content_max_width": 100,
-            "content_padding_block": 40,
-            "content_padding_inline": 0,
-            "show_content_background": false,
-            "content_background": "#ffffff",
-            "content_box_opacity": 100,
-            "content_alignment_mobile": "center"
-          }
-        },
         "slider_item_rYBq93": {
           "type": "slider_item",
           "name": "Novos Bonés",
@@ -164,10 +164,10 @@
         }
       },
       "block_order": [
+        "slider_item_n3PrkQ",
         "slider_item_wzBeHe",
         "slider_item_K3DbMk",
         "slider_item_GGRrnM",
-        "slider_item_n3PrkQ",
         "slider_item_rYBq93"
       ],
       "custom_css": [
