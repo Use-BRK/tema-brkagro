@@ -28,14 +28,14 @@
             "coupon3_enabled": false,
             "change_every": 3,
             "hidden_on_mobile": false,
-            "compact_mode": false,
+            "compact_mode": true,
             "compact_icon_1": "truck",
             "compact_icon_url_1": "",
-            "compact_text_1": "FRETE FIXO R$9,90",
+            "compact_text_1": "FRETE FIXO R$0,80 — TODO BRASIL",
             "compact_link_1": "",
             "compact_icon_2": "bolt",
             "compact_icon_url_2": "",
-            "compact_text_2": "Camisas de Envio Imediato",
+            "compact_text_2": "",
             "compact_link_2": ""
           }
         }
@@ -44,7 +44,7 @@
         "text_slider_LFaC38"
       ],
       "custom_css": [
-        "* {letter-spacing: 2px; font-weight: 500;}",
+        "* {letter-spacing: 2px; font-weight: 800;}",
         "strong {font-weight: 800;}"
       ],
       "settings": {
@@ -55,7 +55,7 @@
         "uppercase": false,
         "font_size": 12,
         "font_weight": "body_weight",
-        "padding_top": 0,
+        "padding_top": 3,
         "padding_bottom": 0
       }
     },
