@@ -17,7 +17,7 @@
         "text_slider_LFaC38": {
           "type": "text_slider",
           "settings": {
-            "text1": "<strong>FRETE FIXO R$0,80 — PARA TODO BRASIL</strong>",
+            "text1": "<strong>FRETE FIXO R$9,90 — PARA TODO BRASIL</strong>",
             "coupon1": "",
             "coupon1_enabled": false,
             "text2": "",
@@ -31,7 +31,7 @@
             "compact_mode": true,
             "compact_icon_1": "truck",
             "compact_icon_url_1": "",
-            "compact_text_1": "FRETE FIXO R$0,80 — TODO BRASIL",
+            "compact_text_1": "FRETE FIXO R$9,90 — TODO BRASIL",
             "compact_link_1": "",
             "compact_icon_2": "bolt",
             "compact_icon_url_2": "",
@@ -56,7 +56,7 @@
         "font_size": 12,
         "font_weight": "body_weight",
         "padding_top": 3,
-        "padding_bottom": 0
+        "padding_bottom": 3
       }
     },
     "header": {
