@@ -15,6 +15,7 @@
         "slider_item_n3PrkQ": {
           "type": "slider_item",
           "name": "08 08 BRK",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/DESK_BANNER.webp",
             "image_mobile": "shopify://shop_images/MOB_BANNER.webp",
@@ -76,7 +77,6 @@
         "slider_item_K3DbMk": {
           "type": "slider_item",
           "name": "Apache",
-          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/FULLBANNER_APACHE.webp",
             "image_mobile": "shopify://shop_images/APACHE_NEWBANNER_MOBILE.webp",
@@ -107,7 +107,6 @@
         "slider_item_GGRrnM": {
           "type": "slider_item",
           "name": "CALÇAS JEANS",
-          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/Prancheta_2_472af1bb-c8d4-4ce5-a4d6-e8f554bb2367.png",
             "image_mobile": "shopify://shop_images/Prancheta_1_eb934097-955b-4d1b-8a0c-07dae4b1eaeb.png",
