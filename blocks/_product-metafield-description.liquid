@@ -1,0 +1,84 @@
+{% liquid
+  assign block_st = block.settings
+  assign product = closest.product
+  assign section_st = section.settings
+  assign enable_skeleton_loading = section_st.enable_skeleton_loading
+
+  assign mf_ns = block_st.metafield_namespace | default: 'brk'
+  assign mf_key = block_st.metafield_key | default: 'descricao'
+  assign mf = product.metafields[mf_ns][mf_key]
+  assign mf_value = mf.value
+%}
+{%- if mf_value == blank and block_st.hide_if_empty -%}
+  {% comment %} Nada a exibir: metafield {{ mf_ns }}.{{ mf_key }} vazio. {% endcomment %}
+{%- else -%}
+  <collapsible-block
+    tabindex="0"
+    {{ block.shopify_attributes }}
+    class="bls-toggle {% if block_st.open == true %} active {% endif %} relative border-bottom block{% if enable_skeleton_loading %} skeleton-loading{% endif %}"
+  >
+    <h3 class="h6 my-0 pointer py-17 relative collapsible-heading heading-letter-spacing">
+      {{- block_st.heading }}
+      <span class="open-children-toggle absolute inset-0 flex flex-end pointer">
+        <span class="icon_plus-animation"> </span>
+      </span>
+    </h3>
+    <div
+      class="overflow-hidden {% if block_st.open == true %} open_collab {% endif %} collapsible-content"
+      {% if block_st.open != true %}
+        style="display: none;"
+      {% endif %}
+    >
+      <div class="collapsible-content_inner mb-12 rich__text-mt-0 product_description">
+        {{ mf_value }}
+      </div>
+    </div>
+  </collapsible-block>
+{%- endif -%}
+{% schema %}
+{
+  "name": "Descrição (metafield)",
+  "tag": null,
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "default": "Descrição do produto",
+      "label": "Título do collapsible"
+    },
+    {
+      "type": "paragraph",
+      "content": "Renderiza o HTML salvo no metafield abaixo (por padrão brk.descricao). O conteúdo é exibido exatamente como está no metafield."
+    },
+    {
+      "type": "text",
+      "id": "metafield_namespace",
+      "default": "brk",
+      "label": "Namespace do metafield"
+    },
+    {
+      "type": "text",
+      "id": "metafield_key",
+      "default": "descricao",
+      "label": "Chave do metafield"
+    },
+    {
+      "type": "checkbox",
+      "id": "open",
+      "default": false,
+      "label": "Abrir expandido por padrão"
+    },
+    {
+      "type": "checkbox",
+      "id": "hide_if_empty",
+      "default": true,
+      "label": "Ocultar o bloco se o metafield estiver vazio"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Descrição (metafield)"
+    }
+  ]
+}
+{% endschema %}
