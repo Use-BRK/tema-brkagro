@@ -320,18 +320,6 @@
         "reset_spacing": true
       }
     },
-    "custom_liquid_gbRHwy": {
-      "type": "custom-liquid",
-      "name": "Descrição Produto",
-      "settings": {
-        "section_width": "container",
-        "color_scheme": "default",
-        "custom_liquid": "{{ product.description }}",
-        "padding_top": 15,
-        "padding_bottom": 15,
-        "reset_spacing": true
-      }
-    },
     "product-set": {
       "type": "product-set",
       "disabled": true,
@@ -574,30 +562,22 @@
         "reset_spacing": true
       }
     },
-    "178404639084306e5f": {
-      "type": "apps",
-      "blocks": {
-        "judge_me_reviews_review_widget_DwpRgk": {
-          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
-          "settings": {
-            "review_data": "sample_data",
-            "max_width": 1200,
-            "show_shop_reviews": false,
-            "empty_state": "empty_widget"
-          }
-        }
-      },
-      "block_order": [
-        "judge_me_reviews_review_widget_DwpRgk"
-      ],
-      "disabled": true,
-      "settings": {}
+    "custom_liquid_gbRHwy": {
+      "type": "custom-liquid",
+      "name": "Descrição Produto",
+      "settings": {
+        "section_width": "container",
+        "color_scheme": "default",
+        "custom_liquid": "{{ product.description }}",
+        "padding_top": 15,
+        "padding_bottom": 15,
+        "reset_spacing": true
+      }
     }
   },
   "order": [
     "breadcrumb",
     "main",
-    "custom_liquid_gbRHwy",
     "product-set",
     "divider_E3r6ih",
     "scrolling_text_b38KNQ",
@@ -609,6 +589,6 @@
     "1785433041f7474707",
     "divider_TXWjaf",
     "faq_XdwEqr",
-    "178404639084306e5f"
+    "custom_liquid_gbRHwy"
   ]
 }
