@@ -268,18 +268,6 @@
             "open": true
           },
           "blocks": {}
-        },
-        "product_metafield_description_brk": {
-          "type": "_product-metafield-description",
-          "name": "Descrição detalhada",
-          "settings": {
-            "heading": "Descrição do produto",
-            "metafield_namespace": "brk",
-            "metafield_key": "descricao",
-            "open": false,
-            "hide_if_empty": true
-          },
-          "blocks": {}
         }
       },
       "block_order": [
@@ -302,8 +290,7 @@
         "more_colors_3zmxGq",
         "product_collapsible_row_HB7ApJ",
         "product_collapsible_row_PancQ9",
-        "product_collapsible_row_zirPk7",
-        "product_metafield_description_brk"
+        "product_collapsible_row_zirPk7"
       ],
       "custom_css": [
         ".product-detail__title {display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; font-size: 2.29rem;}"
