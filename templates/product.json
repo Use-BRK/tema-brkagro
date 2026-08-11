@@ -320,6 +320,21 @@
         "reset_spacing": true
       }
     },
+    "product_brk_description": {
+      "type": "product-metafield-description",
+      "name": "Descrição detalhada",
+      "settings": {
+        "section_width": "container",
+        "color_scheme": "",
+        "heading": "Descrição do produto",
+        "metafield_namespace": "brk",
+        "metafield_key": "descricao",
+        "open": false,
+        "padding_top": 15,
+        "padding_bottom": 15,
+        "reset_spacing": true
+      }
+    },
     "product-set": {
       "type": "product-set",
       "disabled": true,
@@ -578,6 +593,7 @@
   "order": [
     "breadcrumb",
     "main",
+    "product_brk_description",
     "product-set",
     "divider_E3r6ih",
     "scrolling_text_b38KNQ",

@@ -1,0 +1,138 @@
+{{ 'collapsible.css' | asset_url | stylesheet_tag }}
+{%- liquid
+  assign section_st = section.settings
+  assign section_width = section_st.section_width
+  assign color_scheme = section_st.color_scheme
+  assign mf_ns = section_st.metafield_namespace | default: 'brk'
+  assign mf_key = section_st.metafield_key | default: 'descricao'
+  assign mf = product.metafields[mf_ns][mf_key]
+  assign mf_value = mf.value
+  if section_st.reset_spacing
+    assign reset_spacing = ' remove_spacing'
+  endif
+-%}
+{%- capture style -%}
+  --section-pt: {{ section_st.padding_top }}; --section-pb: {{ section_st.padding_bottom }};
+{%- endcapture -%}
+{%- if mf_value != blank -%}
+  <div
+    class="section{% if section_st.padding_top < 30 %} pt-min{% endif %}{% if section_st.padding_bottom < 30 %} pb-min{% endif %} sec__metafield-description color-{{ color_scheme }} gradient{{ reset_spacing }}"
+    style="{{ style | strip | strip_newlines }}"
+  >
+    <div class="{{ section_width }}">
+      <div class="sec__inner">
+        <collapsible-block
+          tabindex="0"
+          class="bls-toggle{% if section_st.open == true %} active{% endif %} relative border-bottom block"
+        >
+          <h3 class="h6 my-0 pointer py-17 relative collapsible-heading heading-letter-spacing">
+            {{- section_st.heading }}
+            <span class="open-children-toggle absolute inset-0 flex flex-end pointer">
+              <span class="icon_plus-animation"> </span>
+            </span>
+          </h3>
+          <div
+            class="overflow-hidden{% if section_st.open == true %} open_collab{% endif %} collapsible-content"
+            {% if section_st.open != true %}
+              style="display: none;"
+            {% endif %}
+          >
+            <div class="collapsible-content_inner mb-12 rich__text-mt-0 product_description">
+              {{ mf_value }}
+            </div>
+          </div>
+        </collapsible-block>
+      </div>
+    </div>
+  </div>
+{%- endif -%}
+{% schema %}
+{
+  "name": "Descrição (metafield)",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "select",
+      "id": "section_width",
+      "label": "Largura da seção",
+      "default": "container",
+      "options": [
+        { "value": "container", "label": "Container" },
+        { "value": "fluid_container", "label": "Fluid container" },
+        { "value": "stretch_width", "label": "Stretch" },
+        { "value": "full_width", "label": "Full width" }
+      ]
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Esquema de cores",
+      "default": "scheme-1"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "default": "Descrição do produto",
+      "label": "Título do collapsible"
+    },
+    {
+      "type": "paragraph",
+      "content": "Renderiza o HTML salvo no metafield abaixo (por padrão brk.descricao), exatamente como está."
+    },
+    {
+      "type": "text",
+      "id": "metafield_namespace",
+      "default": "brk",
+      "label": "Namespace do metafield"
+    },
+    {
+      "type": "text",
+      "id": "metafield_key",
+      "default": "descricao",
+      "label": "Chave do metafield"
+    },
+    {
+      "type": "checkbox",
+      "id": "open",
+      "default": false,
+      "label": "Abrir expandido por padrão"
+    },
+    {
+      "type": "header",
+      "content": "Espaçamento"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding topo",
+      "default": 15,
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding base",
+      "default": 15,
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px"
+    },
+    {
+      "type": "checkbox",
+      "id": "reset_spacing",
+      "label": "Reset spacing",
+      "default": true
+    }
+  ],
+  "presets": [
+    {
+      "name": "Descrição (metafield)",
+      "category": "Produto"
+    }
+  ]
+}
+{% endschema %}
