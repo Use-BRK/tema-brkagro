@@ -1,0 +1,329 @@
+{{ 'banner-carousel.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'banner-carousel.js' | asset_url }}" defer="defer"></script>
+{%- liquid
+  assign st = section.settings
+
+  assign has_cards = false
+  for block in section.blocks
+    if block.settings.image != blank
+      assign has_cards = true
+      break
+    endif
+  endfor
+-%}
+
+{%- if has_cards -%}
+  {%- capture wrap_style -%}
+    --card-w-desktop: {{ st.card_width_desktop }}px;
+    --per-row-mobile: {{ st.items_per_row_mobile }};
+    --bc-gap: {{ st.column_gap }}px;
+    --bc-radius: {{ st.card_radius }}px;
+    --section-pt: {{ st.padding_top }}px; --section-pb: {{ st.padding_bottom }}px;
+  {%- endcapture -%}
+  <div
+    class="section sec__banner-carousel color-{{ st.color_scheme }} gradient{% if st.padding_top < 30 %} pt-min{% endif %}{% if st.padding_bottom < 30 %} pb-min{% endif %}"
+    style="{{ wrap_style | strip | strip_newlines }}"
+  >
+    <div class="{{ st.section_width }}">
+      {%- if st.heading != blank -%}
+        <div class="section__header mb-20 text-{{ st.header_alignment }}">
+          <h2 class="section__header-heading heading-letter-spacing {{ st.header_size }} mt-0 mb-0">
+            {{ st.heading }}
+          </h2>
+        </div>
+      {%- endif -%}
+
+      <banner-carousel
+        class="banner-carousel block relative"
+        data-gap="{{ st.column_gap }}"
+        data-autoplay="{{ st.autoplay }}"
+        data-autoplay-speed="{{ st.autoplay_speed }}"
+        data-loop="{{ st.loop }}"
+      >
+        {%- if st.show_arrows -%}
+          {%- render 'swiper-navigation', class: 'banner-carousel__nav' -%}
+        {%- endif -%}
+
+        <div class="swiper banner-carousel__swiper">
+          <div class="swiper-wrapper">
+              {%- for block in section.blocks -%}
+                {%- liquid
+                  assign b = block.settings
+                  if b.image == blank
+                    continue
+                  endif
+                  assign link = '#'
+                  if b.collection != blank
+                    assign link = b.collection.url
+                  elsif b.link != blank
+                    assign link = b.link
+                  endif
+                  assign alt = b.label | default: b.image.alt | default: 'banner'
+                -%}
+                <a
+                  class="banner-carousel__card swiper-slide"
+                  href="{{ link }}"
+                  aria-label="{{ alt | escape }}"
+                  {{ block.shopify_attributes }}
+                >
+                  {%- if b.image_mobile != blank -%}
+                    <picture>
+                      <source
+                        media="(max-width: 767px)"
+                        srcset="{{ b.image_mobile | image_url: width: 500 }} 500w, {{ b.image_mobile | image_url: width: 750 }} 750w"
+                      >
+                      <img
+                        class="banner-carousel__img"
+                        src="{{ b.image | image_url: width: 700 }}"
+                        srcset="{{ b.image | image_url: width: 300 }} 300w, {{ b.image | image_url: width: 450 }} 450w, {{ b.image | image_url: width: 600 }} 600w, {{ b.image | image_url: width: 800 }} 800w, {{ b.image | image_url: width: 1000 }} 1000w"
+                        sizes="(max-width: 767px) 70vw, {{ st.card_width_desktop }}px"
+                        width="{{ b.image.width }}"
+                        height="{{ b.image.height }}"
+                        alt="{{ alt | escape }}"
+                        loading="lazy"
+                        decoding="async"
+                      >
+                    </picture>
+                  {%- else -%}
+                    <img
+                      class="banner-carousel__img"
+                      src="{{ b.image | image_url: width: 700 }}"
+                      srcset="{{ b.image | image_url: width: 300 }} 300w, {{ b.image | image_url: width: 450 }} 450w, {{ b.image | image_url: width: 600 }} 600w, {{ b.image | image_url: width: 800 }} 800w, {{ b.image | image_url: width: 1000 }} 1000w"
+                      sizes="(max-width: 767px) 70vw, {{ st.card_width_desktop }}px"
+                      width="{{ b.image.width }}"
+                      height="{{ b.image.height }}"
+                      alt="{{ alt | escape }}"
+                      loading="lazy"
+                      decoding="async"
+                    >
+                  {%- endif -%}
+                </a>
+              {%- endfor -%}
+          </div>
+
+          {%- if st.show_dots != 'none' -%}
+            <div class="swiper-pagination banner-carousel__dots{% if st.show_dots == 'dots_mobile' %} hidden-md{% endif %}"></div>
+          {%- endif -%}
+        </div>
+      </banner-carousel>
+    </div>
+  </div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Banner Carousel",
+  "tag": "section",
+  "class": "banner-carousel-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Cabeçalho"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Título (opcional)"
+    },
+    {
+      "type": "select",
+      "id": "header_size",
+      "label": "Tamanho do título",
+      "default": "h3",
+      "options": [
+        { "value": "h4", "label": "Pequeno" },
+        { "value": "h3", "label": "Médio" },
+        { "value": "h1-size", "label": "Grande" }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "header_alignment",
+      "label": "Alinhamento do título",
+      "default": "left",
+      "options": [
+        { "value": "left", "label": "Esquerda" },
+        { "value": "center", "label": "Centro" },
+        { "value": "right", "label": "Direita" }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "section_width",
+      "label": "Largura da seção",
+      "default": "fluid_container",
+      "options": [
+        { "value": "container", "label": "Container" },
+        { "value": "fluid_container", "label": "Fluido" },
+        { "value": "stretch_width", "label": "Esticado" },
+        { "value": "full_width", "label": "Largura total" }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "card_width_desktop",
+      "label": "Largura de cada card (desktop)",
+      "info": "Vale para todos os cards. No desktop a largura é fixa em px; a quantidade visível se ajusta sozinha.",
+      "min": 140,
+      "max": 560,
+      "step": 10,
+      "unit": "px",
+      "default": 300
+    },
+    {
+      "type": "select",
+      "id": "items_per_row_mobile",
+      "label": "Itens por linha (mobile)",
+      "info": "Controla a largura no mobile. 1.5 mostra uma prévia do próximo card.",
+      "default": "1.5",
+      "options": [
+        { "value": "1", "label": "1" },
+        { "value": "1.5", "label": "1,5" },
+        { "value": "2", "label": "2" }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "column_gap",
+      "label": "Espaço entre cards",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "card_radius",
+      "label": "Arredondamento dos cards",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Esquema de cores",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "Carrossel"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_arrows",
+      "label": "Mostrar setas (desktop)",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "show_dots",
+      "label": "Paginação (dots)",
+      "default": "dots_mobile",
+      "options": [
+        { "value": "none", "label": "Nenhuma" },
+        { "value": "dots", "label": "Sempre" },
+        { "value": "dots_mobile", "label": "Só no mobile" }
+      ]
+    },
+    {
+      "type": "checkbox",
+      "id": "autoplay",
+      "label": "Autoplay",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "autoplay_speed",
+      "label": "Trocar a cada",
+      "min": 2,
+      "max": 8,
+      "step": 1,
+      "unit": "s",
+      "default": 4
+    },
+    {
+      "type": "checkbox",
+      "id": "loop",
+      "label": "Loop infinito",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Espaçamento"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Espaço acima",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Espaço abaixo",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "default": 30
+    }
+  ],
+  "blocks": [
+    {
+      "type": "card",
+      "name": "Card",
+      "limit": 20,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Imagem (desktop)"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_mobile",
+          "label": "Imagem (mobile, opcional)"
+        },
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Coleção (link do card)"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link alternativo (se não usar coleção)"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Descrição/alt (acessibilidade)"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Banner Carousel",
+      "blocks": [
+        { "type": "card" },
+        { "type": "card" },
+        { "type": "card" },
+        { "type": "card" }
+      ]
+    }
+  ]
+}
+{% endschema %}

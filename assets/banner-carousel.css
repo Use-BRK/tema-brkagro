@@ -1,0 +1,82 @@
+/* ============================================================
+   Banner Carousel (cards linkando para coleções)
+   Largura por card via CSS var: px no desktop, itens-por-linha no mobile.
+   ============================================================ */
+.sec__banner-carousel {
+  padding-top: var(--section-pt, 30px);
+  padding-bottom: var(--section-pb, 30px);
+}
+
+.banner-carousel {
+  position: relative;
+}
+
+.banner-carousel__swiper {
+  overflow: hidden;
+}
+
+/* Cada slide = 1 card. Swiper roda em slidesPerView:'auto' e respeita esta largura. */
+.banner-carousel__card {
+  display: block;
+  flex-shrink: 0;
+  /* MOBILE: largura derivada de "itens por linha" (1 / 1.5 / 2) */
+  width: calc(
+    (100% - (var(--per-row-mobile, 1.5) - 1) * var(--bc-gap, 12px)) /
+      var(--per-row-mobile, 1.5)
+  );
+  border-radius: var(--bc-radius, 12px);
+  overflow: hidden;
+  text-decoration: none;
+  background: var(--color-background, #f4f4f4);
+}
+
+.banner-carousel__img {
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: transform 0.4s ease;
+}
+.banner-carousel__card:hover .banner-carousel__img {
+  transform: scale(1.03);
+}
+
+/* DESKTOP: largura fixa em px (vale para todos os cards) */
+@media (min-width: 768px) {
+  .banner-carousel__card {
+    width: var(--card-w-desktop, 300px);
+  }
+}
+
+/* ---- Navegação (setas) ---- */
+.banner-carousel .swiper-actions.banner-carousel__nav {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  pointer-events: none;
+}
+.banner-carousel .swiper-actions.banner-carousel__nav .swiper-arrow {
+  pointer-events: auto;
+  width: 40px;
+  height: 40px;
+}
+.banner-carousel .swiper-arrow.swiper-button-disabled {
+  opacity: 0;
+  pointer-events: none;
+}
+/* Setas só no desktop; no mobile usa swipe + dots */
+@media (max-width: 767.98px) {
+  .banner-carousel .swiper-actions.banner-carousel__nav {
+    display: none;
+  }
+}
+
+/* ---- Dots ---- */
+.banner-carousel__dots {
+  position: static;
+  margin-top: 14px;
+  text-align: center;
+}

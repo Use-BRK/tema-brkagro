@@ -1352,15 +1352,10 @@ sticky-add-cart {
     overflow-y: visible;
   }
 
-  /* Layout "Thumbnail" (desktop) usa Swiper (não o grid). No MOBILE, uma imagem
-     retrato entre quadradas esticava o container do swiper (fica mais alto que a
-     imagem visível) e os solid dots caíam na faixa branca abaixo. Aqui as fotos
-     do carrossel principal assumem a razão da 1ª imagem (--gallery-ratio), então
-     o container = imagem e os dots voltam pra cima da imagem. Só mobile; o
-     desktop (thumbnail_left) não é afetado. */
-  .product-detail__media slide-with-thumbs .media-main-swiper .media-gallery__image {
-    --aspect-ratio: var(--gallery-ratio, 1) !important;
-  }
+  /* Layout "Thumbnail" usa Swiper. Cada slide mantém a SUA razão
+     (product_image_ratio = adapt) e o Swiper roda com autoHeight (theme.js), então
+     o container acompanha a mídia ativa — sem faixa branca nas mídias mais baixas
+     e os solid dots ficam colados na base da imagem. */
 }
 
 /* Galeria do produto nos layouts grid/stack/carrossel (.grid_scroll): imagem
@@ -1372,21 +1367,35 @@ sticky-add-cart {
   object-fit: contain;
 }
 
+/* Vídeos na galeria (local/externo): a MOLDURA (render) assume a altura da 1ª
+   imagem (--gallery-ratio) em vez da razão própria do vídeo — assim um vídeo 9:16
+   não estica o carrossel. As IMAGENS seguem com a própria razão (adapt). O vídeo
+   aparece INTEIRO (object-fit: contain, sem corte) na altura da 1ª imagem, ficando
+   mais estreito e centralizado. Vale mobile e desktop. */
+.product-detail__media slide-with-thumbs .media-main-swiper .media-gallery__local-video,
+.product-detail__media slide-with-thumbs .media-main-swiper .media-gallery__external-video {
+  --aspect-ratio: var(--gallery-ratio, 1) !important;
+  aspect-ratio: var(--gallery-ratio, 1) !important;
+}
+.product-detail__media slide-with-thumbs .media-main-swiper .media-gallery__local-video video,
+.product-detail__media slide-with-thumbs .media-main-swiper .media-gallery__external-video iframe {
+  object-fit: contain;
+}
+
 /* ============================================================
    Layout Thumbnail (left/bottom) no DESKTOP
    ============================================================ */
 @media (min-width: 768px) {
-  /* Imagem principal NÃO corta. Sem o ajuste, uma foto retrato entre quadradas
-     esticava o wrapper do swiper (fica mais alto que a imagem) e o cover cortava
-     as laterais. Aqui a caixa assume a razão da 1ª imagem (--gallery-ratio) e as
-     imagens usam contain (as de razão diferente ficam com faixa, mas sem corte). */
+  /* Imagem principal NÃO corta e cada slide usa a SUA própria razão
+     (product_image_ratio = adapt). Com autoHeight no Swiper (theme.js), o container
+     acompanha a mídia ativa — sem faixa branca e sem corte. */
   .product-detail__media slide-with-thumbs .media-main-swiper .swiper-wrapper {
     align-items: flex-start;
   }
   .product-detail__media slide-with-thumbs .media-main-swiper .swiper-slide,
   .product-detail__media slide-with-thumbs .media-main-swiper .media-gallery__image {
     height: auto !important;
-    aspect-ratio: var(--gallery-ratio, 1);
+    aspect-ratio: var(--aspect-ratio, var(--gallery-ratio, 1));
   }
   .product-detail__media slide-with-thumbs .media-main-swiper .media-gallery__image img {
     object-fit: contain !important;

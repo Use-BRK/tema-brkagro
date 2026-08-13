@@ -8444,6 +8444,9 @@ class SlideWithThumbs extends HTMLElement {
       loop: loop,
       effect: effect,
       speed: speed,
+      // Container acompanha a altura da mídia ativa: cada slide usa sua própria
+      // razão (product_image_ratio = adapt) sem faixa branca nas mais baixas.
+      autoHeight: true,
       watchSlidesProgress: true,
       watchSlidesVisibility: true,
       navigation: {
