@@ -326,21 +326,21 @@
         "collection_tpCKAk": {
           "type": "collection",
           "settings": {
-            "collection": "botinas-femininas",
-            "collection_title": "Femininas"
-          }
-        },
-        "collection_DakUnd": {
-          "type": "collection",
-          "settings": {
             "collection": "botinas-masculinas",
             "collection_title": "Masculinas"
+          }
+        },
+        "collection_yyNLMj": {
+          "type": "collection",
+          "settings": {
+            "collection": "botinas-femininas",
+            "collection_title": "Femininas"
           }
         }
       },
       "block_order": [
         "collection_tpCKAk",
-        "collection_DakUnd"
+        "collection_yyNLMj"
       ],
       "custom_css": [],
       "name": "Novas Botinas",
