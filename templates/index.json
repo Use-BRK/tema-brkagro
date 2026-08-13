@@ -270,6 +270,68 @@
         "reset_spacing": true
       }
     },
+    "banner_carousel_iVEDMG": {
+      "type": "banner-carousel",
+      "blocks": {
+        "card_w8XfBY": {
+          "type": "card",
+          "settings": {
+            "collection": "",
+            "link": "",
+            "label": ""
+          }
+        },
+        "card_AyYQxG": {
+          "type": "card",
+          "settings": {
+            "collection": "",
+            "link": "",
+            "label": ""
+          }
+        },
+        "card_Az3eRR": {
+          "type": "card",
+          "settings": {
+            "collection": "",
+            "link": "",
+            "label": ""
+          }
+        },
+        "card_j4crXK": {
+          "type": "card",
+          "settings": {
+            "collection": "",
+            "link": "",
+            "label": ""
+          }
+        }
+      },
+      "block_order": [
+        "card_w8XfBY",
+        "card_AyYQxG",
+        "card_Az3eRR",
+        "card_j4crXK"
+      ],
+      "name": "Banner Carousel",
+      "settings": {
+        "heading": "",
+        "header_size": "h3",
+        "header_alignment": "left",
+        "section_width": "fluid_container",
+        "card_width_desktop": 300,
+        "items_per_row_mobile": "1.5",
+        "column_gap": 12,
+        "card_radius": 12,
+        "color_scheme": "",
+        "show_arrows": true,
+        "show_dots": "dots_mobile",
+        "autoplay": false,
+        "autoplay_speed": 4,
+        "loop": false,
+        "padding_top": 30,
+        "padding_bottom": 30
+      }
+    },
     "collection_tab_gcdBTy": {
       "type": "collection-tab",
       "blocks": {
@@ -1009,6 +1071,7 @@
   "order": [
     "slideshow_8KKtNU",
     "collection_tab_kENEYA",
+    "banner_carousel_iVEDMG",
     "collection_tab_gcdBTy",
     "collection_tab_9R4n9j",
     "collection_tab_ccYc98",
