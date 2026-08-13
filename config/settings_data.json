@@ -105,7 +105,7 @@
     "enable_cart_item_edit": true,
     "product_recommendations_heading": "Você pode gostar",
     "minicart_type": "show_beside",
-    "show_on_cart_page": true,
+    "show_on_cart_page": false,
     "product_recommendations_type": "auto",
     "select_product_recommendations": [],
     "show_estimate_shipping_rates": false,
