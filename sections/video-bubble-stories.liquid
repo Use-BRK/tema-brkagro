@@ -19,14 +19,17 @@
       assign allowed = true
     elsif pt == 'search' and st.show_search
       assign allowed = true
-    elsif pt == 'cart' and st.show_cart
-      assign allowed = true
     elsif st.show_other_pages
       # any other page type (page, list-collections, 404, customers, etc.)
       unless pt == 'index' or pt == 'collection' or pt == 'product' or pt == 'blog' or pt == 'article' or pt == 'search' or pt == 'cart'
         assign allowed = true
       endunless
     endif
+  endif
+
+  # ---- Hard rule: NEVER render on the cart page ----
+  if pt == 'cart'
+    assign allowed = false
   endif
 
   # ---- Handle allow-list (only restricts within its own page type) ----
@@ -85,13 +88,9 @@
     endif
   endfor
 
-  # ---- Demo/preview mode: renders bundled sample video without any config ----
-  assign demo = st.preview_demo
   assign render_bubble = false
-  if allowed
-    if has_video or demo
-      assign render_bubble = true
-    endif
+  if allowed and has_video
+    assign render_bubble = true
   endif
 -%}
 
@@ -99,36 +98,28 @@
   {%- comment -%} First story poster for the closed mini-bubble {%- endcomment -%}
   {%- assign first_poster = '' -%}
   {%- assign first_video = '' -%}
-  {%- if demo and has_video == false -%}
-    {%- assign first_video = 'vb-sample.mp4' | asset_url -%}
-    {%- assign first_poster = 'vb-sample-poster.jpg' | asset_url -%}
-  {%- else -%}
-    {%- for block in section.blocks -%}
-      {%- if block.settings.local_video != blank -%}
-        {%- assign fv = block.settings.local_video -%}
-        {%- if block.settings.poster_image != blank -%}
-          {%- assign first_poster = block.settings.poster_image | image_url: width: 640 -%}
-        {%- else -%}
-          {%- assign first_poster = fv.preview_image | image_url: width: 640 -%}
-        {%- endif -%}
-        {%- for s in fv.sources -%}
-          {%- if s.format == 'mp4' -%}
-            {%- assign first_video = s.url -%}
-            {%- break -%}
-          {%- endif -%}
-        {%- endfor -%}
-        {%- break -%}
+  {%- for block in section.blocks -%}
+    {%- if block.settings.local_video != blank -%}
+      {%- assign fv = block.settings.local_video -%}
+      {%- if block.settings.poster_image != blank -%}
+        {%- assign first_poster = block.settings.poster_image | image_url: width: 640 -%}
+      {%- else -%}
+        {%- assign first_poster = fv.preview_image | image_url: width: 640 -%}
       {%- endif -%}
-    {%- endfor -%}
-  {%- endif -%}
+      {%- for s in fv.sources -%}
+        {%- if s.format == 'mp4' -%}
+          {%- assign first_video = s.url -%}
+          {%- break -%}
+        {%- endif -%}
+      {%- endfor -%}
+      {%- break -%}
+    {%- endif -%}
+  {%- endfor -%}
 
   {%- comment -%} Lightweight preview clip for the closed bubble (citerol-style) {%- endcomment -%}
   {%- assign preview_src = first_video -%}
   {%- assign preview_light = false -%}
-  {%- if demo and has_video == false -%}
-    {%- assign preview_src = 'vb-sample-preview.webm' | asset_url -%}
-    {%- assign preview_light = true -%}
-  {%- elsif st.preview_video != blank -%}
+  {%- if st.preview_video != blank -%}
     {%- for s in st.preview_video.sources -%}
       {%- if s.format == 'mp4' -%}
         {%- assign preview_src = s.url -%}
@@ -181,17 +172,11 @@
         <div class="vb__backdrop" data-vb-close></div>
         <div class="vb__stage">
           <div class="vb__progress">
-            {%- if demo and has_video == false -%}
-              <span class="vb__progress-bar"><i></i></span>
-              <span class="vb__progress-bar"><i></i></span>
-              <span class="vb__progress-bar"><i></i></span>
-            {%- else -%}
-              {%- for block in section.blocks -%}
-                {%- if block.settings.local_video != blank -%}
-                  <span class="vb__progress-bar"><i></i></span>
-                {%- endif -%}
-              {%- endfor -%}
-            {%- endif -%}
+            {%- for block in section.blocks -%}
+              {%- if block.settings.local_video != blank -%}
+                <span class="vb__progress-bar"><i></i></span>
+              {%- endif -%}
+            {%- endfor -%}
           </div>
 
           <button type="button" class="vb__close" aria-label="Fechar" data-vb-close>
@@ -207,32 +192,6 @@
           </div>
 
           <div class="vb__slides">
-            {%- if demo and has_video == false -%}
-              {%- assign demo_video = 'vb-sample.mp4' | asset_url -%}
-              {%- assign demo_poster = 'vb-sample-poster.jpg' | asset_url -%}
-              {%- assign demo_url = collections.first.url | default: '/collections/all' -%}
-              {%- for i in (1..3) -%}
-                <div
-                  class="vb__slide{% if forloop.first %} is-active{% endif %}"
-                  data-index="{{ forloop.index0 }}"
-                  data-link-type="demo"
-                  data-handle="demo-{{ forloop.index }}"
-                  data-title="Story de demonstração {{ forloop.index }}"
-                >
-                  <video class="vb__video" data-src="{{ demo_video }}" poster="{{ demo_poster }}" playsinline preload="none" muted></video>
-                  <div class="vb__heading">Story {{ forloop.index }} · Demo</div>
-                  <a class="vb__cta" href="{{ demo_url }}" data-vb-cta data-link-type="demo" data-handle="demo-{{ forloop.index }}">
-                    <span class="vb__cta-info">
-                      <span class="vb__cta-title">Apache · Demonstração</span>
-                    </span>
-                    <span class="vb__cta-btn">
-                      Comprar agora
-                      <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="M9 6l6 6-6 6"/></svg>
-                    </span>
-                  </a>
-                </div>
-              {%- endfor -%}
-            {%- else -%}
             {%- assign vindex = 0 -%}
             {%- for block in section.blocks -%}
               {%- liquid
@@ -328,7 +287,6 @@
               </div>
               {%- assign vindex = vindex | plus: 1 -%}
             {%- endfor -%}
-            {%- endif -%}
           </div>
         </div>
       </div>
@@ -351,13 +309,6 @@
       "id": "enable",
       "label": "Ativar video bubble",
       "default": true
-    },
-    {
-      "type": "checkbox",
-      "id": "preview_demo",
-      "label": "Modo demonstração (usa vídeo de teste embutido)",
-      "info": "Só para testes: renderiza 3 stories com o vídeo vb-sample.mp4 quando nenhum bloco de vídeo estiver configurado. Desative em produção.",
-      "default": false
     },
     {
       "type": "header",
@@ -391,12 +342,6 @@
       "type": "checkbox",
       "id": "show_search",
       "label": "Busca",
-      "default": false
-    },
-    {
-      "type": "checkbox",
-      "id": "show_cart",
-      "label": "Carrinho",
       "default": false
     },
     {

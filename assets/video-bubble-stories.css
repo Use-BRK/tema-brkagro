@@ -19,6 +19,13 @@
 .vb--left { left: var(--vb-side-offset, 16px); }
 .vb--right { right: var(--vb-side-offset, 16px); }
 
+/* Nunca acima do minicart: quando o carrinho (drawer/popup) está aberto, o bubble
+   e o viewer recuam para trás do overlay do minicart (drawer = z-15, overlay = z-12). */
+.open-drawer .vb,
+.open-minicart .vb {
+  z-index: 6 !important;
+}
+
 /* Hide the closed mini bubble while the viewer is open */
 .vb.is-open .vb__mini { opacity: 0; pointer-events: none; transform: scale(0.85); }
 
