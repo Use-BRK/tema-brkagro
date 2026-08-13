@@ -267,6 +267,7 @@
       "blocks": {
         "card_Az3eRR": {
           "type": "card",
+          "name": "Calças Jeans",
           "settings": {
             "image": "shopify://shop_images/Card_BRK_AGRO_Calca.webp",
             "collection": "calcas-jeans",
@@ -276,6 +277,7 @@
         },
         "card_w8XfBY": {
           "type": "card",
+          "name": "Camisas de Botão",
           "settings": {
             "image": "shopify://shop_images/Card_BRK_AGRO_Botao.webp",
             "collection": "camisas-de-botao-country",
@@ -285,6 +287,7 @@
         },
         "card_AyYQxG": {
           "type": "card",
+          "name": "Camisas Work",
           "settings": {
             "image": "shopify://shop_images/Card_BRK_AGRO_Work.webp",
             "collection": "camisas-work",
@@ -294,6 +297,7 @@
         },
         "card_j4crXK": {
           "type": "card",
+          "name": "Botinas",
           "settings": {
             "image": "shopify://shop_images/Card_BRK_AGRO_Botinas.webp",
             "collection": "botinas",
@@ -303,6 +307,7 @@
         },
         "card_jHmrEj": {
           "type": "card",
+          "name": "Óculos de Sol",
           "settings": {
             "image": "shopify://shop_images/Card_BRK_AGRO_oculos.webp",
             "collection": "oculos-de-sol",
@@ -312,6 +317,7 @@
         },
         "card_7tezkD": {
           "type": "card",
+          "name": "Bonés",
           "settings": {
             "image": "shopify://shop_images/Card_BRK_AGRO_bones.webp",
             "collection": "bones",
