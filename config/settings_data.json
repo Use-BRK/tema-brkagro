@@ -104,7 +104,7 @@
     "choose_gift_wrap_product": "digital-gift-card",
     "enable_cart_item_edit": true,
     "product_recommendations_heading": "Você pode gostar",
-    "minicart_type": "show_beside",
+    "minicart_type": "disable",
     "show_on_cart_page": false,
     "product_recommendations_type": "auto",
     "select_product_recommendations": [],
