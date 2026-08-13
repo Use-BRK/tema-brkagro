@@ -220,19 +220,11 @@
             "collection": "apache",
             "collection_title": "Apache"
           }
-        },
-        "collection_ep6xRy": {
-          "type": "collection",
-          "settings": {
-            "collection": "camisas-de-botao-country",
-            "collection_title": "Camisas de Botão"
-          }
         }
       },
       "block_order": [
         "collection_REBGpn",
-        "collection_3frNWE",
-        "collection_ep6xRy"
+        "collection_3frNWE"
       ],
       "custom_css": [],
       "name": "Lançamentos",
@@ -273,65 +265,65 @@
     "banner_carousel_iVEDMG": {
       "type": "banner-carousel",
       "blocks": {
+        "card_Az3eRR": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/Card_BRK_AGRO_Calca.webp",
+            "collection": "calcas-jeans",
+            "link": "",
+            "label": "Calça Jeans"
+          }
+        },
         "card_w8XfBY": {
           "type": "card",
           "settings": {
             "image": "shopify://shop_images/Card_BRK_AGRO_Botao.webp",
-            "collection": "",
-            "link": "",
-            "label": ""
+            "collection": "camisas-de-botao-country",
+            "link": "shopify://collections/camisas-de-botao-country",
+            "label": "Camisas de Botão"
           }
         },
         "card_AyYQxG": {
           "type": "card",
           "settings": {
             "image": "shopify://shop_images/Card_BRK_AGRO_Work.webp",
-            "collection": "",
+            "collection": "camisas-work",
             "link": "",
-            "label": ""
-          }
-        },
-        "card_Az3eRR": {
-          "type": "card",
-          "settings": {
-            "image": "shopify://shop_images/Card_BRK_AGRO_Calca.webp",
-            "collection": "",
-            "link": "",
-            "label": ""
+            "label": "Camisas Work"
           }
         },
         "card_j4crXK": {
           "type": "card",
           "settings": {
             "image": "shopify://shop_images/Card_BRK_AGRO_Botinas.webp",
-            "collection": "",
+            "collection": "botinas",
             "link": "",
-            "label": ""
+            "label": "Botinas"
           }
         },
         "card_jHmrEj": {
           "type": "card",
           "settings": {
             "image": "shopify://shop_images/Card_BRK_AGRO_oculos.webp",
-            "collection": "",
+            "collection": "oculos-de-sol",
             "link": "",
-            "label": ""
+            "label": "Óculos de Sol"
           }
         },
         "card_7tezkD": {
           "type": "card",
           "settings": {
             "image": "shopify://shop_images/Card_BRK_AGRO_bones.webp",
-            "collection": "",
+            "collection": "bones",
             "link": "",
-            "label": ""
+            "label": "Bonés"
           }
         }
       },
       "block_order": [
+        "card_Az3eRR",
         "card_w8XfBY",
         "card_AyYQxG",
-        "card_Az3eRR",
         "card_j4crXK",
         "card_jHmrEj",
         "card_7tezkD"
