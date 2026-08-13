@@ -12,6 +12,66 @@
     "slideshow_8KKtNU": {
       "type": "slideshow",
       "blocks": {
+        "slider_item_KnUMfi": {
+          "type": "slider_item",
+          "name": "Work",
+          "settings": {
+            "image": "shopify://shop_images/FULLBANNER_DESKTOP_WORK.webp",
+            "image_mobile": "shopify://shop_images/FULLBANNER_MOBILE_WORK.webp",
+            "overlay_opacity": 0,
+            "link_banner": "shopify://collections/camisas-work",
+            "slider_effect": "fade-in-right",
+            "subheading": "",
+            "heading": "",
+            "description": "",
+            "first_button_label": "",
+            "first_button_link": "",
+            "first_button_style": false,
+            "second_button_label": "",
+            "second_button_link": "",
+            "second_button_style": false,
+            "content_alignment": "center",
+            "content_position": "top-center",
+            "content_width": "full_width",
+            "content_max_width": 100,
+            "content_padding_block": 40,
+            "content_padding_inline": 0,
+            "show_content_background": false,
+            "content_background": "#ffffff",
+            "content_box_opacity": 100,
+            "content_alignment_mobile": "center"
+          }
+        },
+        "slider_item_rYBq93": {
+          "type": "slider_item",
+          "name": "Novos Bonés",
+          "settings": {
+            "image": "shopify://shop_images/NOVOS_BONES_AGRO_DESKTOP.webp",
+            "image_mobile": "shopify://shop_images/NOVOS_BONES_AGRO_MOBILE.webp",
+            "overlay_opacity": 0,
+            "link_banner": "shopify://collections/bones",
+            "slider_effect": "fade-in-right",
+            "subheading": "",
+            "heading": "",
+            "description": "",
+            "first_button_label": "",
+            "first_button_link": "",
+            "first_button_style": false,
+            "second_button_label": "",
+            "second_button_link": "",
+            "second_button_style": false,
+            "content_alignment": "center",
+            "content_position": "top-center",
+            "content_width": "full_width",
+            "content_max_width": 100,
+            "content_padding_block": 40,
+            "content_padding_inline": 0,
+            "show_content_background": false,
+            "content_background": "#ffffff",
+            "content_box_opacity": 100,
+            "content_alignment_mobile": "center"
+          }
+        },
         "slider_item_K3DbMk": {
           "type": "slider_item",
           "name": "Apache",
@@ -72,36 +132,6 @@
             "content_alignment_mobile": "center"
           }
         },
-        "slider_item_KnUMfi": {
-          "type": "slider_item",
-          "name": "Work",
-          "settings": {
-            "image": "shopify://shop_images/FULLBANNER_DESKTOP_WORK.webp",
-            "image_mobile": "shopify://shop_images/FULLBANNER_MOBILE_WORK.webp",
-            "overlay_opacity": 0,
-            "link_banner": "shopify://collections/camisas-work",
-            "slider_effect": "fade-in-right",
-            "subheading": "",
-            "heading": "",
-            "description": "",
-            "first_button_label": "",
-            "first_button_link": "",
-            "first_button_style": false,
-            "second_button_label": "",
-            "second_button_link": "",
-            "second_button_style": false,
-            "content_alignment": "center",
-            "content_position": "top-center",
-            "content_width": "full_width",
-            "content_max_width": 100,
-            "content_padding_block": 40,
-            "content_padding_inline": 0,
-            "show_content_background": false,
-            "content_background": "#ffffff",
-            "content_box_opacity": 100,
-            "content_alignment_mobile": "center"
-          }
-        },
         "slider_item_GGRrnM": {
           "type": "slider_item",
           "name": "CALÇAS JEANS",
@@ -131,45 +161,14 @@
             "content_box_opacity": 100,
             "content_alignment_mobile": "center"
           }
-        },
-        "slider_item_rYBq93": {
-          "type": "slider_item",
-          "name": "Novos Bonés",
-          "disabled": true,
-          "settings": {
-            "image": "shopify://shop_images/NOVOS_BONES_AGRO_DESKTOP.webp",
-            "image_mobile": "shopify://shop_images/NOVOS_BONES_AGRO_MOBILE.webp",
-            "overlay_opacity": 0,
-            "link_banner": "shopify://collections/bones",
-            "slider_effect": "fade-in-right",
-            "subheading": "",
-            "heading": "",
-            "description": "",
-            "first_button_label": "",
-            "first_button_link": "",
-            "first_button_style": false,
-            "second_button_label": "",
-            "second_button_link": "",
-            "second_button_style": false,
-            "content_alignment": "center",
-            "content_position": "top-center",
-            "content_width": "full_width",
-            "content_max_width": 100,
-            "content_padding_block": 40,
-            "content_padding_inline": 0,
-            "show_content_background": false,
-            "content_background": "#ffffff",
-            "content_box_opacity": 100,
-            "content_alignment_mobile": "center"
-          }
         }
       },
       "block_order": [
+        "slider_item_KnUMfi",
+        "slider_item_rYBq93",
         "slider_item_K3DbMk",
         "slider_item_wzBeHe",
-        "slider_item_KnUMfi",
-        "slider_item_GGRrnM",
-        "slider_item_rYBq93"
+        "slider_item_GGRrnM"
       ],
       "custom_css": [],
       "name": "Fullbanners",
@@ -208,31 +207,39 @@
     "collection_tab_kENEYA": {
       "type": "collection-tab",
       "blocks": {
-        "collection_ep6xRy": {
-          "type": "collection",
-          "settings": {
-            "collection": "camisas-de-botao-country",
-            "collection_title": "Camisas"
-          }
-        },
         "collection_REBGpn": {
           "type": "collection",
           "settings": {
             "collection": "sao-bento-2026",
-            "collection_title": "Camisas São Bento"
+            "collection_title": "São Bento"
+          }
+        },
+        "collection_3frNWE": {
+          "type": "collection",
+          "settings": {
+            "collection": "apache",
+            "collection_title": "Apache"
+          }
+        },
+        "collection_ep6xRy": {
+          "type": "collection",
+          "settings": {
+            "collection": "camisas-de-botao-country",
+            "collection_title": "Camisas de Botão"
           }
         }
       },
       "block_order": [
-        "collection_ep6xRy",
-        "collection_REBGpn"
+        "collection_REBGpn",
+        "collection_3frNWE",
+        "collection_ep6xRy"
       ],
       "custom_css": [],
       "name": "Lançamentos",
       "settings": {
         "section_width": "stretch_width",
         "color_scheme": "scheme-accf3b11-ba40-4a3e-bafb-243ece6683ec",
-        "heading": "Lançamentos",
+        "heading": "Novidades",
         "description": "",
         "show_view_all_button": true,
         "header_size": "large",
@@ -269,8 +276,8 @@
         "collection_N3HLDp": {
           "type": "collection",
           "settings": {
-            "collection": "calcas-jeans",
-            "collection_title": "Calças"
+            "collection": "bones",
+            "collection_title": "Nova Coleção"
           }
         }
       },
@@ -278,11 +285,11 @@
         "collection_N3HLDp"
       ],
       "custom_css": [],
-      "name": "Calças Jeans",
+      "name": "Bonés",
       "settings": {
         "section_width": "stretch_width",
         "color_scheme": "scheme-accf3b11-ba40-4a3e-bafb-243ece6683ec",
-        "heading": "Calças Jeans",
+        "heading": "Bonés",
         "description": "",
         "show_view_all_button": true,
         "header_size": "small",
@@ -316,24 +323,24 @@
     "collection_tab_9R4n9j": {
       "type": "collection-tab",
       "blocks": {
-        "collection_DakUnd": {
-          "type": "collection",
-          "settings": {
-            "collection": "botinas-masculinas",
-            "collection_title": "Masculinas"
-          }
-        },
         "collection_tpCKAk": {
           "type": "collection",
           "settings": {
             "collection": "botinas-femininas",
             "collection_title": "Femininas"
           }
+        },
+        "collection_DakUnd": {
+          "type": "collection",
+          "settings": {
+            "collection": "botinas-masculinas",
+            "collection_title": "Masculinas"
+          }
         }
       },
       "block_order": [
-        "collection_DakUnd",
-        "collection_tpCKAk"
+        "collection_tpCKAk",
+        "collection_DakUnd"
       ],
       "custom_css": [],
       "name": "Novas Botinas",
