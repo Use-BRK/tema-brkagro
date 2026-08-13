@@ -90,28 +90,34 @@
           "type": "story",
           "name": "Calça",
           "settings": {
-            "heading": "",
+            "local_video": "shopify://files/videos/calca-story.mp4",
+            "poster_image": "shopify://shop_images/calca-poster_abd3ea4a-0a2a-4ffd-9396-1ca39a7e281b.jpg",
+            "heading": "Calças Jeans do Agro",
             "cta_text": "Comprar agora",
             "product": "",
-            "collection": ""
+            "collection": "calcas-jeans"
           }
         },
         "story_LpDyVw": {
           "type": "story",
           "settings": {
-            "heading": "",
+            "local_video": "shopify://files/videos/apache-story.mp4",
+            "poster_image": "shopify://shop_images/apache-poster.jpg",
+            "heading": "Coleção Apache",
             "cta_text": "Comprar agora",
             "product": "",
-            "collection": ""
+            "collection": "apache"
           }
         },
         "story_wYjkd8": {
           "type": "story",
           "settings": {
-            "heading": "",
+            "local_video": "shopify://files/videos/work-story.mp4",
+            "poster_image": "shopify://shop_images/work-poster.jpg",
+            "heading": "Camisas Work",
             "cta_text": "Comprar agora",
             "product": "",
-            "collection": ""
+            "collection": "camisas-work"
           }
         }
       },
