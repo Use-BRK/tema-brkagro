@@ -142,7 +142,7 @@
         "position_side": "left",
         "bubble_label": "Novidades",
         "bubble_width": 130,
-        "bubble_width_mobile": 95,
+        "bubble_width_mobile": 75,
         "offset_bottom": 16,
         "offset_bottom_mobile": 54,
         "offset_side": 16,
