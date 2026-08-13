@@ -342,6 +342,7 @@
         "section_width": "full_width",
         "card_width_desktop": 400,
         "items_per_row_mobile": "1.5",
+        "card_scale_mobile": 135,
         "column_gap": 8,
         "card_radius": 2,
         "color_scheme": "",
@@ -715,75 +716,6 @@
         "reset_spacing": true
       }
     },
-    "collection_showcase_VG6Ymn": {
-      "type": "collection-showcase",
-      "blocks": {
-        "collection_item_T4jQaW": {
-          "type": "collection_item",
-          "settings": {
-            "collection": "pecuaria",
-            "custom_title": "Pecuária",
-            "custom_image": "shopify://shop_images/Pecuaria_df1acd59-3fb1-470f-a0d2-a2541d382620.webp"
-          }
-        },
-        "collection_item_wEWFqH": {
-          "type": "collection_item",
-          "settings": {
-            "collection": "brasil-e-agro-2026",
-            "custom_title": "Brasil é AGRO",
-            "custom_image": "shopify://shop_images/Brasil_e_Agro_33516ee8-e00a-4520-8783-c89f0414ddf1.webp"
-          }
-        },
-        "collection_item_9Rm6Lm": {
-          "type": "collection_item",
-          "settings": {
-            "collection": "drones",
-            "custom_title": "Drones do Agro",
-            "custom_image": "shopify://shop_images/Drones.webp"
-          }
-        },
-        "collection_item_xjXqBG": {
-          "type": "collection_item",
-          "settings": {
-            "collection": "cavalos",
-            "custom_title": "",
-            "custom_image": "shopify://shop_images/Cavalos_e_Rodeios.webp"
-          }
-        },
-        "collection_item_xmD36t": {
-          "type": "collection_item",
-          "settings": {
-            "collection": "sao-bento-e-nossa-senhora-1",
-            "custom_title": "",
-            "custom_image": "shopify://shop_images/Sao_Bento.webp"
-          }
-        }
-      },
-      "block_order": [
-        "collection_item_T4jQaW",
-        "collection_item_wEWFqH",
-        "collection_item_9Rm6Lm",
-        "collection_item_xjXqBG",
-        "collection_item_xmD36t"
-      ],
-      "name": "Collection Showcase",
-      "settings": {
-        "section_width": "stretch_width",
-        "heading": "Nossas coleções",
-        "columns_desktop": 5,
-        "columns_mobile": 2,
-        "image_ratio": "2 / 3",
-        "caption_font_size": 16,
-        "bg_color": "#ffffff",
-        "heading_color": "#085b47",
-        "show_view_all": false,
-        "view_all_text": "Ver Todas",
-        "view_all_url": "",
-        "view_all_style": "outline",
-        "padding_top": 32,
-        "padding_bottom": 32
-      }
-    },
     "icon_box_LjTRcj": {
       "type": "icon-box",
       "blocks": {
@@ -1102,7 +1034,6 @@
     "scrolling_text_DNNJAq",
     "divider_GQPnca",
     "image_with_text_overlay_BBzj67",
-    "collection_showcase_VG6Ymn",
     "icon_box_LjTRcj",
     "blog_posts_hmzMP6",
     "banner_packery_4RYN8d",
