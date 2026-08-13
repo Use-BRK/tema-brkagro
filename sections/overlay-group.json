@@ -81,9 +81,32 @@
         "pill_horizontal": 16,
         "pill_side": "left"
       }
+    },
+    "video_bubble_test": {
+      "type": "video-bubble-stories",
+      "settings": {
+        "enable": true,
+        "preview_demo": true,
+        "show_home": true,
+        "show_collections": true,
+        "show_products": true,
+        "position_side": "left",
+        "bubble_label": "Novidades",
+        "bubble_width": 130,
+        "bubble_width_mobile": 95,
+        "offset_bottom": 24,
+        "offset_bottom_mobile": 84,
+        "offset_side": 16,
+        "color_scheme": "scheme-1",
+        "autoplay_preview": true,
+        "loop_stories": true,
+        "story_duration": 6,
+        "enable_tracking": true
+      }
     }
   },
   "order": [
-    "mobile_navigation_bar_GG8UWc"
+    "mobile_navigation_bar_GG8UWc",
+    "video_bubble_test"
   ]
 }

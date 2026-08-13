@@ -1,0 +1,600 @@
+{{ 'video-bubble-stories.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'video-bubble-stories.js' | asset_url }}" defer="defer"></script>
+{%- liquid
+  assign st = section.settings
+
+  # ---- Route targeting ----
+  assign pt = request.page_type
+  assign allowed = false
+  if st.enable
+    if pt == 'index' and st.show_home
+      assign allowed = true
+    elsif pt == 'collection' and st.show_collections
+      assign allowed = true
+    elsif pt == 'product' and st.show_products
+      assign allowed = true
+    elsif pt == 'blog' and st.show_blog
+      assign allowed = true
+    elsif pt == 'article' and st.show_blog
+      assign allowed = true
+    elsif pt == 'search' and st.show_search
+      assign allowed = true
+    elsif pt == 'cart' and st.show_cart
+      assign allowed = true
+    elsif st.show_other_pages
+      # any other page type (page, list-collections, 404, customers, etc.)
+      unless pt == 'index' or pt == 'collection' or pt == 'product' or pt == 'blog' or pt == 'article' or pt == 'search' or pt == 'cart'
+        assign allowed = true
+      endunless
+    endif
+  endif
+
+  # ---- Handle allow-list (only restricts within its own page type) ----
+  if allowed and pt == 'collection' and st.collection_handles != blank
+    assign allowed = false
+    assign col_list = st.collection_handles | newline_to_br | strip_newlines | replace: '<br />', ',' | replace: ' ', '' | downcase | split: ','
+    for h in col_list
+      if h == collection.handle
+        assign allowed = true
+        break
+      endif
+    endfor
+  endif
+  if allowed and pt == 'product' and st.product_handles != blank
+    assign allowed = false
+    assign prod_list = st.product_handles | newline_to_br | strip_newlines | replace: '<br />', ',' | replace: ' ', '' | downcase | split: ','
+    for h in prod_list
+      if h == product.handle
+        assign allowed = true
+        break
+      endif
+    endfor
+  endif
+
+  # ---- Global exclude list (matches product/collection/page handle) ----
+  if allowed and st.exclude_handles != blank
+    assign current_handle = ''
+    if pt == 'product'
+      assign current_handle = product.handle
+    elsif pt == 'collection'
+      assign current_handle = collection.handle
+    elsif pt == 'blog'
+      assign current_handle = blog.handle
+    elsif pt == 'article'
+      assign current_handle = article.handle
+    elsif pt == 'page'
+      assign current_handle = page.handle
+    endif
+    if current_handle != blank
+      assign ex_list = st.exclude_handles | newline_to_br | strip_newlines | replace: '<br />', ',' | replace: ' ', '' | downcase | split: ','
+      for h in ex_list
+        if h == current_handle
+          assign allowed = false
+          break
+        endif
+      endfor
+    endif
+  endif
+
+  # ---- Require at least one story with a video ----
+  assign has_video = false
+  for block in section.blocks
+    if block.settings.local_video != blank
+      assign has_video = true
+      break
+    endif
+  endfor
+
+  # ---- Demo/preview mode: renders bundled sample video without any config ----
+  assign demo = st.preview_demo
+  assign render_bubble = false
+  if allowed
+    if has_video or demo
+      assign render_bubble = true
+    endif
+  endif
+-%}
+
+{%- if render_bubble -%}
+  {%- comment -%} First story poster for the closed mini-bubble {%- endcomment -%}
+  {%- assign first_poster = '' -%}
+  {%- assign first_video = '' -%}
+  {%- if demo and has_video == false -%}
+    {%- assign first_video = 'vb-sample.mp4' | asset_url -%}
+    {%- assign first_poster = 'vb-sample-poster.jpg' | asset_url -%}
+  {%- else -%}
+    {%- for block in section.blocks -%}
+      {%- if block.settings.local_video != blank -%}
+        {%- assign fv = block.settings.local_video -%}
+        {%- if block.settings.poster_image != blank -%}
+          {%- assign first_poster = block.settings.poster_image | image_url: width: 640 -%}
+        {%- else -%}
+          {%- assign first_poster = fv.preview_image | image_url: width: 640 -%}
+        {%- endif -%}
+        {%- for s in fv.sources -%}
+          {%- if s.format == 'mp4' -%}
+            {%- assign first_video = s.url -%}
+            {%- break -%}
+          {%- endif -%}
+        {%- endfor -%}
+        {%- break -%}
+      {%- endif -%}
+    {%- endfor -%}
+  {%- endif -%}
+
+  {%- comment -%} Lightweight preview clip for the closed bubble (citerol-style) {%- endcomment -%}
+  {%- assign preview_src = first_video -%}
+  {%- assign preview_light = false -%}
+  {%- if demo and has_video == false -%}
+    {%- assign preview_src = 'vb-sample-preview.webm' | asset_url -%}
+    {%- assign preview_light = true -%}
+  {%- elsif st.preview_video != blank -%}
+    {%- for s in st.preview_video.sources -%}
+      {%- if s.format == 'mp4' -%}
+        {%- assign preview_src = s.url -%}
+        {%- assign preview_light = true -%}
+        {%- break -%}
+      {%- endif -%}
+    {%- endfor -%}
+  {%- endif -%}
+
+  {%- capture bubble_style -%}
+    --vb-bottom: {{ st.offset_bottom }}px;
+    --vb-bottom-mb: {{ st.offset_bottom_mobile }}px;
+    --vb-side-offset: {{ st.offset_side }}px;
+    --vb-w: {{ st.bubble_width }}px;
+    --vb-w-mb: {{ st.bubble_width_mobile }}px;
+  {%- endcapture -%}
+
+  <video-bubble
+    class="vb vb--{{ st.position_side }}"
+    data-story-duration="{{ st.story_duration }}"
+    data-autoplay-preview="{{ st.autoplay_preview }}"
+    data-tracking="{{ st.enable_tracking }}"
+    data-loop-stories="{{ st.loop_stories }}"
+    style="{{ bubble_style | strip | strip_newlines }}"
+    hidden
+  >
+    {%- comment -%} ---- Closed mini bubble (lightweight: poster image only) ---- {%- endcomment -%}
+    <div class="vb__mini" role="button" tabindex="0" aria-label="{{ 'Abrir stories' }}">
+      <button type="button" class="vb__mini-close" aria-label="Fechar" data-vb-dismiss>
+        <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+      <div class="vb__mini-media">
+        {%- if first_poster != blank -%}
+          <img class="vb__mini-poster" src="{{ first_poster }}" alt="" loading="lazy" decoding="async" width="200" height="356">
+        {%- endif -%}
+        <video class="vb__mini-video" data-src="{{ preview_src }}" data-light="{{ preview_light }}" muted loop playsinline preload="none" tabindex="-1"></video>
+        <span class="vb__mini-shine" aria-hidden="true"></span>
+      </div>
+      <span class="vb__mini-play" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M8 5v14l11-7z"/></svg>
+      </span>
+      {%- if st.bubble_label != blank -%}
+        <span class="vb__mini-label">{{ st.bubble_label }}</span>
+      {%- endif -%}
+    </div>
+
+    {%- comment -%} ---- Stories viewer (cloned into DOM on open) ---- {%- endcomment -%}
+    <template class="vb__template">
+      <div class="vb__viewer color-{{ st.color_scheme }}" role="dialog" aria-modal="true" aria-label="Stories">
+        <div class="vb__backdrop" data-vb-close></div>
+        <div class="vb__stage">
+          <div class="vb__progress">
+            {%- if demo and has_video == false -%}
+              <span class="vb__progress-bar"><i></i></span>
+              <span class="vb__progress-bar"><i></i></span>
+              <span class="vb__progress-bar"><i></i></span>
+            {%- else -%}
+              {%- for block in section.blocks -%}
+                {%- if block.settings.local_video != blank -%}
+                  <span class="vb__progress-bar"><i></i></span>
+                {%- endif -%}
+              {%- endfor -%}
+            {%- endif -%}
+          </div>
+
+          <button type="button" class="vb__close" aria-label="Fechar" data-vb-close>
+            <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" d="M6 6l12 12M18 6L6 18"/></svg>
+          </button>
+
+          <div class="vb__audio" data-vb-audio>
+            <button type="button" class="vb__audio-toggle" aria-label="Ativar ou desativar som">
+              <svg class="vb__ic-on" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M3 9v6h4l5 5V4L7 9H3z"/><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" d="M16 8.5a4 4 0 0 1 0 7M18.7 6a7 7 0 0 1 0 12"/></svg>
+              <svg class="vb__ic-off" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M3 9v6h4l5 5V4L7 9H3z"/><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" d="M16 9l6 6M22 9l-6 6"/></svg>
+            </button>
+            <input class="vb__volume" type="range" min="0" max="1" step="0.05" value="1" orient="vertical" aria-label="Volume" data-vb-volume>
+          </div>
+
+          <div class="vb__slides">
+            {%- if demo and has_video == false -%}
+              {%- assign demo_video = 'vb-sample.mp4' | asset_url -%}
+              {%- assign demo_poster = 'vb-sample-poster.jpg' | asset_url -%}
+              {%- assign demo_url = collections.first.url | default: '/collections/all' -%}
+              {%- for i in (1..3) -%}
+                <div
+                  class="vb__slide{% if forloop.first %} is-active{% endif %}"
+                  data-index="{{ forloop.index0 }}"
+                  data-link-type="demo"
+                  data-handle="demo-{{ forloop.index }}"
+                  data-title="Story de demonstração {{ forloop.index }}"
+                >
+                  <video class="vb__video" data-src="{{ demo_video }}" poster="{{ demo_poster }}" playsinline preload="none" muted></video>
+                  <div class="vb__heading">Story {{ forloop.index }} · Demo</div>
+                  <a class="vb__cta" href="{{ demo_url }}" data-vb-cta data-link-type="demo" data-handle="demo-{{ forloop.index }}">
+                    <span class="vb__cta-info">
+                      <span class="vb__cta-title">Apache · Demonstração</span>
+                    </span>
+                    <span class="vb__cta-btn">
+                      Comprar agora
+                      <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="M9 6l6 6-6 6"/></svg>
+                    </span>
+                  </a>
+                </div>
+              {%- endfor -%}
+            {%- else -%}
+            {%- assign vindex = 0 -%}
+            {%- for block in section.blocks -%}
+              {%- liquid
+                assign b = block.settings
+                if b.local_video == blank
+                  continue
+                endif
+
+                assign video_url = ''
+                for s in b.local_video.sources
+                  if s.format == 'mp4'
+                    assign video_url = s.url
+                    break
+                  endif
+                endfor
+
+                if b.poster_image != blank
+                  assign poster = b.poster_image | image_url: width: 720
+                else
+                  assign poster = b.local_video.preview_image | image_url: width: 720
+                endif
+
+                assign link_url = ''
+                assign link_type = ''
+                assign link_handle = ''
+                assign link_title = ''
+                assign link_image = ''
+                assign link_price = ''
+                if b.product != blank
+                  assign link_type = 'product'
+                  assign link_url = b.product.url
+                  assign link_handle = b.product.handle
+                  assign link_title = b.product.title
+                  assign link_price = b.product.price | money
+                  if b.product.featured_image
+                    assign link_image = b.product.featured_image | image_url: width: 120
+                  endif
+                elsif b.collection != blank
+                  assign link_type = 'collection'
+                  assign link_url = b.collection.url
+                  assign link_handle = b.collection.handle
+                  assign link_title = b.collection.title
+                  if b.collection.image
+                    assign link_image = b.collection.image | image_url: width: 120
+                  elsif b.collection.featured_image
+                    assign link_image = b.collection.featured_image | image_url: width: 120
+                  endif
+                endif
+              -%}
+              <div
+                class="vb__slide{% if vindex == 0 %} is-active{% endif %}"
+                data-index="{{ vindex }}"
+                data-link-type="{{ link_type }}"
+                data-handle="{{ link_handle }}"
+                data-title="{{ link_title | escape }}"
+              >
+                <video
+                  class="vb__video"
+                  data-src="{{ video_url }}"
+                  poster="{{ poster }}"
+                  playsinline
+                  preload="none"
+                  muted
+                ></video>
+
+                {%- if b.heading != blank -%}
+                  <div class="vb__heading">{{ b.heading }}</div>
+                {%- endif -%}
+
+                {%- if link_url != blank -%}
+                  <a
+                    class="vb__cta"
+                    href="{{ link_url }}"
+                    data-vb-cta
+                    data-link-type="{{ link_type }}"
+                    data-handle="{{ link_handle }}"
+                  >
+                    {%- if link_image != blank -%}
+                      <img class="vb__cta-thumb" src="{{ link_image }}" alt="" loading="lazy" decoding="async" width="48" height="48">
+                    {%- endif -%}
+                    <span class="vb__cta-info">
+                      <span class="vb__cta-title">{{ link_title }}</span>
+                      {%- if link_price != blank -%}
+                        <span class="vb__cta-price">{{ link_price }}</span>
+                      {%- endif -%}
+                    </span>
+                    <span class="vb__cta-btn">
+                      {{ b.cta_text | default: 'Ver agora' }}
+                      <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="M9 6l6 6-6 6"/></svg>
+                    </span>
+                  </a>
+                {%- endif -%}
+              </div>
+              {%- assign vindex = vindex | plus: 1 -%}
+            {%- endfor -%}
+            {%- endif -%}
+          </div>
+        </div>
+      </div>
+    </template>
+  </video-bubble>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Video Bubble Stories",
+  "tag": "section",
+  "class": "video-bubble-section",
+  "limit": 1,
+  "enabled_on": {
+    "groups": ["custom.overlay"]
+  },
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "enable",
+      "label": "Ativar video bubble",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "preview_demo",
+      "label": "Modo demonstração (usa vídeo de teste embutido)",
+      "info": "Só para testes: renderiza 3 stories com o vídeo vb-sample.mp4 quando nenhum bloco de vídeo estiver configurado. Desative em produção.",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Onde aparecer (tipo de página)"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_home",
+      "label": "Homepage",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_collections",
+      "label": "Páginas de coleção",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_products",
+      "label": "Páginas de produto",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_blog",
+      "label": "Blog e artigos",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_search",
+      "label": "Busca",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_cart",
+      "label": "Carrinho",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_other_pages",
+      "label": "Outras páginas (páginas, lista de coleções, etc.)",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Restringir por handle (opcional)"
+    },
+    {
+      "type": "textarea",
+      "id": "collection_handles",
+      "label": "Só nestas coleções",
+      "info": "Handles separados por vírgula ou linha. Se vazio, aparece em todas as coleções permitidas acima. Ex: sao-bento-2026, colecao-femininas-2026"
+    },
+    {
+      "type": "textarea",
+      "id": "product_handles",
+      "label": "Só nestes produtos",
+      "info": "Handles de produto separados por vírgula ou linha. Se vazio, aparece em todos os produtos permitidos acima."
+    },
+    {
+      "type": "textarea",
+      "id": "exclude_handles",
+      "label": "Nunca aparecer nestes handles",
+      "info": "Handles de produto/coleção/página onde o bubble nunca deve aparecer."
+    },
+    {
+      "type": "header",
+      "content": "Aparência"
+    },
+    {
+      "type": "select",
+      "id": "position_side",
+      "label": "Canto",
+      "default": "left",
+      "options": [
+        { "value": "left", "label": "Inferior esquerdo" },
+        { "value": "right", "label": "Inferior direito" }
+      ]
+    },
+    {
+      "type": "text",
+      "id": "bubble_label",
+      "label": "Texto curto sobre o bubble (opcional)",
+      "info": "Ex: Novidades, Ofertas"
+    },
+    {
+      "type": "range",
+      "id": "bubble_width",
+      "label": "Largura do bubble (desktop)",
+      "min": 90,
+      "max": 200,
+      "step": 5,
+      "unit": "px",
+      "default": 130
+    },
+    {
+      "type": "range",
+      "id": "bubble_width_mobile",
+      "label": "Largura do bubble (mobile)",
+      "min": 70,
+      "max": 160,
+      "step": 5,
+      "unit": "px",
+      "default": 95
+    },
+    {
+      "type": "range",
+      "id": "offset_bottom",
+      "label": "Distância da base (desktop)",
+      "min": 0,
+      "max": 120,
+      "step": 2,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "offset_bottom_mobile",
+      "label": "Distância da base (mobile)",
+      "info": "Aumente para não colidir com a barra de navegação mobile.",
+      "min": 0,
+      "max": 180,
+      "step": 2,
+      "unit": "px",
+      "default": 84
+    },
+    {
+      "type": "range",
+      "id": "offset_side",
+      "label": "Distância da lateral",
+      "min": 0,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Esquema de cores",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "Comportamento"
+    },
+    {
+      "type": "video",
+      "id": "preview_video",
+      "label": "Clipe de prévia (leve) para o bubble fechado",
+      "info": "Recomendado para autoplay: suba um clipe curto e pequeno (ex.: 320–480px de largura, 3–6s, ~100–400KB). Se preenchido, o bubble dá autoplay dele ~2,5s após a página carregar, em qualquer dispositivo, sem pesar. Se vazio, o autoplay usa o 1º vídeo (pesado) só no desktop ao passar o mouse."
+    },
+    {
+      "type": "checkbox",
+      "id": "autoplay_preview",
+      "label": "Autoplay da prévia no bubble fechado",
+      "info": "Ligado + com 'Clipe de prévia' acima = autoplay leve estilo stories (~2,5s após load). Ligado sem clipe leve = só desktop no hover. Desligado = só poster (imagem).",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "loop_stories",
+      "label": "Reiniciar do primeiro story ao terminar",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "story_duration",
+      "label": "Duração de cada story",
+      "info": "Usado como fallback quando a duração real do vídeo não estiver disponível.",
+      "min": 3,
+      "max": 15,
+      "step": 1,
+      "unit": "s",
+      "default": 6
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_tracking",
+      "label": "Ativar tracking de cliques (Clarity / dataLayer)",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "story",
+      "name": "Story",
+      "limit": 12,
+      "settings": [
+        {
+          "type": "video",
+          "id": "local_video",
+          "label": "Vídeo (Shopify Files)"
+        },
+        {
+          "type": "image_picker",
+          "id": "poster_image",
+          "label": "Poster (opcional)",
+          "info": "Se vazio, usa o preview do vídeo."
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Título sobreposto (opcional)"
+        },
+        {
+          "type": "text",
+          "id": "cta_text",
+          "label": "Texto do botão (CTA)",
+          "default": "Comprar agora"
+        },
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Produto (link do CTA)"
+        },
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Coleção (se não houver produto)"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Video Bubble Stories",
+      "category": "Popup",
+      "blocks": [
+        { "type": "story" },
+        { "type": "story" }
+      ]
+    }
+  ]
+}
+{% endschema %}
