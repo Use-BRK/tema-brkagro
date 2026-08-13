@@ -16,6 +16,7 @@
   {%- capture wrap_style -%}
     --card-w-desktop: {{ st.card_width_desktop }}px;
     --per-row-mobile: {{ st.items_per_row_mobile }};
+    --bc-mobile-scale: {{ st.card_scale_mobile }};
     --bc-gap: {{ st.column_gap }}px;
     --bc-radius: {{ st.card_radius }}px;
     --section-pt: {{ st.padding_top }}px; --section-pb: {{ st.padding_bottom }}px;
@@ -185,6 +186,17 @@
         { "value": "1.5", "label": "1,5" },
         { "value": "2", "label": "2" }
       ]
+    },
+    {
+      "type": "range",
+      "id": "card_scale_mobile",
+      "label": "Tamanho dos cards (mobile)",
+      "info": "Mantém os 'itens por linha' mas aumenta/diminui a imagem. 100% = padrão; acima de 100% a imagem fica maior (mostra um pouco menos por vez).",
+      "min": 80,
+      "max": 160,
+      "step": 5,
+      "unit": "%",
+      "default": 100
     },
     {
       "type": "range",

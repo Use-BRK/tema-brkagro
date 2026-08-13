@@ -19,10 +19,11 @@
 .banner-carousel__card {
   display: block;
   flex-shrink: 0;
-  /* MOBILE: largura derivada de "itens por linha" (1 / 1.5 / 2) */
+  /* MOBILE: largura derivada de "itens por linha" (1 / 1.5 / 2),
+     multiplicada pela escala mobile (--bc-mobile-scale, em %). */
   width: calc(
     (100% - (var(--per-row-mobile, 1.5) - 1) * var(--bc-gap, 12px)) /
-      var(--per-row-mobile, 1.5)
+      var(--per-row-mobile, 1.5) * var(--bc-mobile-scale, 100) / 100
   );
   border-radius: var(--bc-radius, 12px);
   overflow: hidden;
