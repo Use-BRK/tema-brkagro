@@ -143,6 +143,7 @@
         "product_whatsapp_cta_QD4eY3": {
           "type": "_product-whatsapp-cta",
           "name": "Compre pelo WhatsApp",
+          "disabled": true,
           "settings": {
             "enable_button": true,
             "button_text": "Ou se preferir [whatsapp] <strong>COMPRE PELO WHATSAPP</strong>",
@@ -410,7 +411,7 @@
         "mobile_pagination_style": "solid_dots",
         "mobile_media_layout": "carousel",
         "padding_top": 20,
-        "padding_bottom": 0,
+        "padding_bottom": 20,
         "reset_spacing": true
       }
     },
@@ -502,7 +503,7 @@
       ],
       "name": "BRK Benefícios",
       "settings": {
-        "bg_color": "#EFEFE8",
+        "bg_color": "#efefe8",
         "accent_color": "#085b47",
         "eyebrow_color": "#a06a24",
         "eyebrow": "Roupas feitas para o campo",
@@ -611,6 +612,7 @@
     },
     "related_products": {
       "type": "related-products",
+      "disabled": true,
       "name": "Produtos Relacionados",
       "settings": {
         "section_width": "container",
@@ -630,6 +632,7 @@
     },
     "divider_HtLXd3": {
       "type": "divider",
+      "disabled": true,
       "settings": {
         "section_width": "container",
         "border_height": 1,
@@ -639,6 +642,7 @@
     },
     "products_recently_viewed_GdCNUL": {
       "type": "products-recently-viewed",
+      "disabled": true,
       "name": "Vistos Recentemente",
       "settings": {
         "section_width": "container",
