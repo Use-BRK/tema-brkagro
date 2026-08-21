@@ -224,19 +224,63 @@
             "eyebrow": "",
             "heading": "Quem usa, recomenda",
             "v1_src": "https://cdn.shopify.com/videos/c/o/v/f771b820581b4e3c957f2fb850c771f6.mp4",
+            "v1_product": "",
             "v2_src": "https://cdn.shopify.com/videos/c/o/v/b9df390658e7441dad50c4daed971906.mp4",
+            "v2_product": "",
             "v3_src": "https://cdn.shopify.com/videos/c/o/v/f17ec86cb3674b09a9a8a6b786ab20aa.mp4",
-            "v4_src": "https://cdn.shopify.com/videos/c/o/v/08b459b3a33544f9b47528a1b340cb1e.mp4"
+            "v3_product": "",
+            "v4_src": "https://cdn.shopify.com/videos/c/o/v/08b459b3a33544f9b47528a1b340cb1e.mp4",
+            "v4_product": "",
+            "v5_src": "",
+            "v5_product": "",
+            "v6_src": "",
+            "v6_product": ""
           },
           "blocks": {}
         },
         "brk_specs_buybox": {
           "type": "_brk-specs",
           "name": "BRK Especificações (buy box)",
+          "disabled": true,
           "settings": {
             "accent_color": "#085b47",
             "heading": "Detalhes técnicos",
-            "show_sku": true
+            "open": false,
+            "mf_namespace": "brk",
+            "show_sku": true,
+            "sku_label": "Código",
+            "s1_icon": "cotton",
+            "s1_label": "Composição",
+            "s1_value": "",
+            "s1_mf": "composicao",
+            "s2_icon": "feather",
+            "s2_label": "Tecido",
+            "s2_value": "Poliéster microfilamentado",
+            "s2_mf": "tecido",
+            "s3_icon": "dry",
+            "s3_label": "Tecnologia",
+            "s3_value": "Secagem rápida + Proteção UV50+",
+            "s3_mf": "tecnologia",
+            "s4_icon": "ruler",
+            "s4_label": "Modelagem",
+            "s4_value": "Ergonômica e confortável",
+            "s4_mf": "modelagem",
+            "s5_icon": "sun",
+            "s5_label": "Proteção",
+            "s5_value": "UV50+ permanente (não sai na lavagem)",
+            "s5_mf": "protecao",
+            "s6_icon": "boot",
+            "s6_label": "Feito para",
+            "s6_value": "",
+            "s6_mf": "feito_para",
+            "s7_icon": "medal",
+            "s7_label": "Gênero",
+            "s7_value": "Masculina e Feminina",
+            "s7_mf": "genero",
+            "s8_icon": "refresh",
+            "s8_label": "Cuidados",
+            "s8_value": "Lavar em água fria, secar à sombra",
+            "s8_mf": "cuidados"
           },
           "blocks": {}
         },
@@ -372,24 +416,98 @@
     },
     "brk_benefits": {
       "type": "brk-product-benefits",
-      "name": "BRK Benefícios",
       "blocks": {
-        "b_uv1": { "type": "benefit", "settings": { "icon": "sun", "title": "Proteção UV50+", "text": "Bloqueia até 98% dos raios UVA/UVB", "presets": "uv50" } },
-        "b_uv2": { "type": "benefit", "settings": { "icon": "dry", "title": "Secagem Rápida", "text": "Evapora o suor e mantém você seco", "presets": "uv50" } },
-        "b_uv3": { "type": "benefit", "settings": { "icon": "feather", "title": "Leve e Respirável", "text": "Toque macio, fresco o dia todo", "presets": "uv50" } },
-        "b_uv4": { "type": "benefit", "settings": { "icon": "ruler", "title": "Modelagem Ergonômica", "text": "Liberdade de movimento no campo", "presets": "uv50" } },
-        "b_jn1": { "type": "benefit", "settings": { "icon": "cotton", "title": "100% Algodão", "text": "Fibra natural, resistente e confortável", "presets": "jeans" } },
-        "b_jn2": { "type": "benefit", "settings": { "icon": "ruler", "title": "Modelagem Cowboy", "text": "Corte tradicional, caimento perfeito", "presets": "jeans" } },
-        "b_jn3": { "type": "benefit", "settings": { "icon": "boot", "title": "Feita para Bota/Botina", "text": "Barra e caimento pensados pro uso com botas", "presets": "jeans" } },
-        "b_jn4": { "type": "benefit", "settings": { "icon": "seam", "title": "Costura Reforçada", "text": "Bolsos e pontos de tensão reforçados", "presets": "jeans" } }
+        "b_uv1": {
+          "type": "benefit",
+          "settings": {
+            "icon": "sun",
+            "title": "Proteção UV50+",
+            "text": "Bloqueia até 98% dos raios UVA/UVB",
+            "presets": "uv50"
+          }
+        },
+        "b_uv2": {
+          "type": "benefit",
+          "settings": {
+            "icon": "dry",
+            "title": "Secagem Rápida",
+            "text": "Evapora o suor e mantém você seco",
+            "presets": "uv50"
+          }
+        },
+        "b_uv3": {
+          "type": "benefit",
+          "settings": {
+            "icon": "feather",
+            "title": "Leve e Respirável",
+            "text": "Toque macio, fresco o dia todo",
+            "presets": "uv50"
+          }
+        },
+        "b_uv4": {
+          "type": "benefit",
+          "settings": {
+            "icon": "ruler",
+            "title": "Modelagem Ergonômica",
+            "text": "Liberdade de movimento no campo",
+            "presets": "uv50"
+          }
+        },
+        "b_jn1": {
+          "type": "benefit",
+          "settings": {
+            "icon": "cotton",
+            "title": "100% Algodão",
+            "text": "Fibra natural, resistente e confortável",
+            "presets": "jeans"
+          }
+        },
+        "b_jn2": {
+          "type": "benefit",
+          "settings": {
+            "icon": "ruler",
+            "title": "Modelagem Cowboy",
+            "text": "Corte tradicional, caimento perfeito",
+            "presets": "jeans"
+          }
+        },
+        "b_jn3": {
+          "type": "benefit",
+          "settings": {
+            "icon": "boot",
+            "title": "Feita para Bota/Botina",
+            "text": "Barra e caimento pensados pro uso com botas",
+            "presets": "jeans"
+          }
+        },
+        "b_jn4": {
+          "type": "benefit",
+          "settings": {
+            "icon": "seam",
+            "title": "Costura Reforçada",
+            "text": "Bolsos e pontos de tensão reforçados",
+            "presets": "jeans"
+          }
+        }
       },
-      "block_order": ["b_uv1","b_uv2","b_uv3","b_uv4","b_jn1","b_jn2","b_jn3","b_jn4"],
+      "block_order": [
+        "b_uv1",
+        "b_uv2",
+        "b_uv3",
+        "b_uv4",
+        "b_jn1",
+        "b_jn2",
+        "b_jn3",
+        "b_jn4"
+      ],
+      "name": "BRK Benefícios",
       "settings": {
-        "bg_color": "#f4efe4",
+        "bg_color": "#EFEFE8",
         "accent_color": "#085b47",
         "eyebrow_color": "#a06a24",
         "eyebrow": "Roupas feitas para o campo",
         "heading": "",
+        "mf_namespace": "brk",
         "preset_metafield": "beneficios_preset",
         "default_preset": "uv50"
       }
@@ -400,6 +518,7 @@
       "settings": {
         "section_width": "container",
         "color_scheme": "",
+        "accent_color": "#085b47",
         "heading": "Descrição do produto",
         "metafield_namespace": "brk",
         "metafield_key": "descricao",
