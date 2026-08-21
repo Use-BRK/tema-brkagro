@@ -1,8 +1,8 @@
-{{ 'collapsible.css' | asset_url | stylesheet_tag }}
 {%- liquid
   assign section_st = section.settings
   assign section_width = section_st.section_width
   assign color_scheme = section_st.color_scheme
+  assign accent = section_st.accent_color | default: '#085b47'
   assign mf_ns = section_st.metafield_namespace | default: 'brk'
   assign mf_key = section_st.metafield_key | default: 'descricao'
   assign mf = product.metafields[mf_ns][mf_key]
@@ -12,7 +12,7 @@
   endif
 -%}
 {%- capture style -%}
-  --section-pt: {{ section_st.padding_top }}; --section-pb: {{ section_st.padding_bottom }};
+  --section-pt: {{ section_st.padding_top }}; --section-pb: {{ section_st.padding_bottom }}; --brk-accent: {{ accent }};
 {%- endcapture -%}
 {%- if mf_value != blank -%}
   <div
@@ -20,32 +20,64 @@
     style="{{ style | strip | strip_newlines }}"
   >
     <div class="{{ section_width }}">
-      <div class="sec__inner">
-        <collapsible-block
-          tabindex="0"
-          class="bls-toggle{% if section_st.open == true %} active{% endif %} relative border-bottom block"
-        >
-          <h3 class="h6 my-0 pointer py-17 relative collapsible-heading heading-letter-spacing">
-            {{- section_st.heading }}
-            <span class="open-children-toggle absolute inset-0 flex flex-end pointer">
-              <span class="icon_plus-animation"> </span>
-            </span>
-          </h3>
-          <div
-            class="overflow-hidden{% if section_st.open == true %} open_collab{% endif %} collapsible-content"
-            {% if section_st.open != true %}
-              style="display: none;"
-            {% endif %}
-          >
-            <div class="collapsible-content_inner mb-12 rich__text-mt-0 product_description">
-              {{ mf_value }}
-            </div>
-          </div>
-        </collapsible-block>
-      </div>
+      <details class="brk-desc"{% if section_st.open %} open{% endif %}>
+        <summary class="brk-desc__head">
+          <span class="brk-desc__title">{{ section_st.heading }}</span>
+          <span class="brk-desc__toggle" aria-hidden="true"></span>
+        </summary>
+        <div class="brk-desc__body rich__text-mt-0 product_description">
+          {{ mf_value }}
+        </div>
+      </details>
     </div>
   </div>
 {%- endif -%}
+
+{% stylesheet %}
+.sec__metafield-description .brk-desc {
+  --brk-accent: #085b47;
+}
+.sec__metafield-description .brk-desc__head {
+  list-style: none; cursor: pointer;
+  display: flex; align-items: center; justify-content: space-between; gap: 1.6rem;
+  padding: 1.9rem 0.2rem;
+  font-family: var(--heading-font); font-weight: 600; color: #26241d;
+  transition: color .2s ease;
+}
+.sec__metafield-description .brk-desc__head::-webkit-details-marker { display: none; }
+.sec__metafield-description .brk-desc__head:hover { color: var(--brk-accent); }
+.sec__metafield-description .brk-desc__title {
+  font-size: 1.55rem; letter-spacing: .01em;
+}
+.sec__metafield-description .brk-desc__toggle {
+  position: relative; flex: 0 0 auto; width: 1.8rem; height: 1.8rem;
+}
+.sec__metafield-description .brk-desc__toggle::before,
+.sec__metafield-description .brk-desc__toggle::after {
+  content: ""; position: absolute; top: 50%; left: 50%;
+  width: 1.4rem; height: 2px; border-radius: 2px;
+  background: var(--brk-accent);
+  transform: translate(-50%, -50%);
+  transition: transform .28s cubic-bezier(.25,.8,.3,1), opacity .28s ease;
+}
+.sec__metafield-description .brk-desc__toggle::after { transform: translate(-50%, -50%) rotate(90deg); }
+.sec__metafield-description .brk-desc[open] .brk-desc__toggle::after { transform: translate(-50%, -50%) rotate(0); opacity: 0; }
+.sec__metafield-description .brk-desc__body {
+  padding: 0 0.2rem 2.2rem;
+  font-family: var(--body-font); font-size: 1.4rem; line-height: 1.65; color: #55524a;
+  animation: brk-desc-reveal .35s ease;
+}
+.sec__metafield-description .brk-desc__body > :first-child { margin-top: 0; }
+.sec__metafield-description .brk-desc__body > :last-child { margin-bottom: 0; }
+.sec__metafield-description .brk-desc__body a { color: var(--brk-accent); }
+@keyframes brk-desc-reveal { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: translateY(0); } }
+@media (prefers-reduced-motion: reduce) {
+  .sec__metafield-description .brk-desc__body { animation: none; }
+  .sec__metafield-description .brk-desc__toggle::before,
+  .sec__metafield-description .brk-desc__toggle::after { transition: none; }
+}
+{% endstylesheet %}
+
 {% schema %}
 {
   "name": "Descrição (metafield)",
@@ -68,6 +100,12 @@
       "id": "color_scheme",
       "label": "Esquema de cores",
       "default": "scheme-1"
+    },
+    {
+      "type": "color",
+      "id": "accent_color",
+      "label": "Cor de destaque (título/ícone)",
+      "default": "#085b47"
     },
     {
       "type": "text",

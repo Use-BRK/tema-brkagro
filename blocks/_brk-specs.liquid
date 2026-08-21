@@ -1,0 +1,235 @@
+{%- comment -%}
+  BRK AGRO — "Detalhes técnicos" compacto no buy box (abaixo do trust).
+  Orientado por metafields (namespace custom, SEM defaults): a linha só aparece
+  se o metafield tiver valor real — vazio/ausente ou sentinela (nao/-/off) = oculta.
+  Cada linha: label + ícone + chave do metafield editáveis no editor.
+  custom.especificacoes (rich text) substitui a tabela inteira.
+  Ex.: calças setam custom.composicao, custom.modelagem, custom.feito_para;
+       camisas setam custom.tecido, custom.protecao, custom.manga.
+{%- endcomment -%}
+{%- liquid
+  assign st = block.settings
+  assign product = closest.product
+  assign green = st.accent_color | default: '#085b47'
+  assign ns = st.mf_namespace | default: 'brk'
+  assign mf_full = product.metafields[ns].especificacoes
+  assign variant = product.selected_or_first_available_variant
+  assign sentinels = 'nao,não,off,false,none,no,0,-,—'
+
+  assign has_rows = false
+  for i in (1..8)
+    assign klabel = 's' | append: i | append: '_label'
+    assign kval = 's' | append: i | append: '_value'
+    assign kmfk = 's' | append: i | append: '_mf'
+    assign label = st[klabel]
+    assign value = st[kval]
+    assign mfk = st[kmfk]
+    if mfk != blank
+      assign mv = product.metafields[ns][mfk]
+      if mv != blank
+        assign raw = mv.value | join: ', '
+        assign raws = raw | downcase | strip
+        if sentinels contains raws
+          assign value = ''
+        else
+          assign value = raw
+        endif
+      endif
+    endif
+    if label != blank and value != blank
+      assign has_rows = true
+      break
+    endif
+  endfor
+  if st.show_sku and variant.sku != blank
+    assign has_rows = true
+  endif
+-%}
+{%- if mf_full != blank or has_rows -%}
+  <div class="brk-bbspecs" style="--brk-green: {{ green }};" {{ block.shopify_attributes }}>
+    <details class="brk-bbspecs__acc"{% if st.open %} open{% endif %}>
+      <summary class="brk-bbspecs__head">
+        <span class="brk-bbspecs__title">{{ st.heading | default: 'Detalhes técnicos' }}</span>
+        <span class="brk-bbspecs__toggle" aria-hidden="true"></span>
+      </summary>
+      {%- if mf_full != blank -%}
+      <div class="brk-bbspecs__card brk-bbspecs__rte rte">{{ mf_full }}</div>
+    {%- else -%}
+      <dl class="brk-bbspecs__card">
+        {%- for i in (1..8) -%}
+          {%- liquid
+            assign klabel = 's' | append: i | append: '_label'
+            assign kval = 's' | append: i | append: '_value'
+            assign kicon = 's' | append: i | append: '_icon'
+            assign kmfk = 's' | append: i | append: '_mf'
+            assign label = st[klabel]
+            assign icon = st[kicon]
+            assign mfk = st[kmfk]
+            assign value = st[kval]
+            if mfk != blank
+              assign mv = product.metafields[ns][mfk]
+              if mv != blank
+                assign raw = mv.value | join: ', '
+                assign raws = raw | downcase | strip
+                if sentinels contains raws
+                  assign value = ''
+                else
+                  assign value = raw
+                endif
+              endif
+            endif
+          -%}
+          {%- if label != blank and value != blank -%}
+            <div class="brk-bbspecs__row">
+              <dt class="brk-bbspecs__label"><span class="brk-bbspecs__icon">{% render 'brk-icon', name: icon %}</span><span>{{ label }}</span></dt>
+              <dd class="brk-bbspecs__value">{{ value }}</dd>
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+
+        {%- if st.show_sku and variant.sku != blank -%}
+          <div class="brk-bbspecs__row">
+            <dt class="brk-bbspecs__label"><span class="brk-bbspecs__icon">{% render 'brk-icon', name: 'tag' %}</span><span>{{ st.sku_label | default: 'Código' }}</span></dt>
+            <dd class="brk-bbspecs__value"><span class="product__sku" role="status">{{ variant.sku }}</span></dd>
+          </div>
+        {%- endif -%}
+      </dl>
+    {%- endif -%}
+    </details>
+  </div>
+{%- endif -%}
+<style>
+  .brk-bbspecs { --brk-green: #085b47; margin-top: 1.8rem; }
+  .brk-bbspecs__head {
+    list-style: none; cursor: pointer;
+    display: flex; align-items: center; justify-content: space-between; gap: 1.4rem;
+    padding: 1.2rem 0; margin: 0;
+    transition: color .2s ease;
+  }
+  .brk-bbspecs__head::-webkit-details-marker { display: none; }
+  .brk-bbspecs__head:hover { color: var(--brk-green); }
+  .brk-bbspecs__title {
+    font-family: var(--heading-font); font-weight: 600; line-height: 1.2;
+    font-size: 1.4rem; color: #1f2320;
+  }
+  .brk-bbspecs__head:hover .brk-bbspecs__title { color: var(--brk-green); }
+  .brk-bbspecs__toggle { position: relative; flex: 0 0 auto; width: 1.6rem; height: 1.6rem; }
+  .brk-bbspecs__toggle::before,
+  .brk-bbspecs__toggle::after {
+    content: ""; position: absolute; top: 50%; left: 50%;
+    width: 1.2rem; height: 2px; border-radius: 2px; background: var(--brk-green);
+    transform: translate(-50%, -50%);
+    transition: transform .28s cubic-bezier(.25,.8,.3,1), opacity .28s ease;
+  }
+  .brk-bbspecs__toggle::after { transform: translate(-50%, -50%) rotate(90deg); }
+  .brk-bbspecs__acc[open] .brk-bbspecs__toggle::after { transform: translate(-50%, -50%) rotate(0); opacity: 0; }
+  .brk-bbspecs__card { margin: 0 0 1rem; animation: brk-bbspecs-reveal .3s ease; }
+  @keyframes brk-bbspecs-reveal { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: translateY(0); } }
+  .brk-bbspecs__row {
+    display: flex; align-items: center; justify-content: space-between; gap: 1.4rem;
+    padding: 1rem 0; border-bottom: 1px solid #ecebe6;
+  }
+  .brk-bbspecs__row:first-child { border-top: 1px solid #ecebe6; }
+  .brk-bbspecs__label {
+    display: flex; align-items: center; gap: .8rem; margin: 0; min-width: 0;
+    font-family: var(--body-font); font-size: 1.3rem; color: #6f736d;
+  }
+  .brk-bbspecs__icon { color: var(--brk-green); line-height: 0; flex: 0 0 auto; }
+  .brk-bbspecs__icon svg { width: 1.7rem; height: 1.7rem; display: block; }
+  .brk-bbspecs__value {
+    margin: 0; text-align: right; font-family: var(--body-font); font-weight: 600;
+    font-size: 1.3rem; color: #2c2f2b; line-height: 1.3;
+  }
+  .brk-bbspecs__rte { padding: 0; font-size: 1.3rem; }
+  @media (max-width: 480px) {
+    .brk-bbspecs__label, .brk-bbspecs__value { font-size: 1.26rem; }
+  }
+</style>
+{% schema %}
+{
+  "name": "BRK Especificações",
+  "tag": null,
+  "settings": [
+    { "type": "color", "id": "accent_color", "label": "Cor de destaque", "default": "#085b47" },
+    { "type": "text", "id": "heading", "label": "Título", "default": "Detalhes técnicos" },
+    { "type": "checkbox", "id": "open", "label": "Abrir expandido por padrão", "default": false },
+    { "type": "text", "id": "mf_namespace", "label": "Namespace dos metafields", "default": "brk" },
+    { "type": "paragraph", "content": "Mostra o Valor padrão; o metafield <namespace>.<key> do produto sobrescreve, e sentinela (nao/off/-) oculta a linha. Deixe o Valor padrão vazio para a linha só aparecer via metafield. <namespace>.especificacoes (rich text) substitui a tabela inteira." },
+    { "type": "checkbox", "id": "show_sku", "label": "Mostrar código (SKU)", "default": true },
+    { "type": "text", "id": "sku_label", "label": "Rótulo do SKU", "default": "Código" },
+
+    { "type": "header", "content": "Linha 1" },
+    { "type": "select", "id": "s1_icon", "label": "Ícone", "default": "cotton", "options": [
+      {"value":"cotton","label":"Algodão"},{"value":"feather","label":"Tecido"},{"value":"dry","label":"Secagem"},{"value":"ruler","label":"Modelagem"},
+      {"value":"shield","label":"Proteção"},{"value":"sun","label":"UV"},{"value":"boot","label":"Bota"},{"value":"seam","label":"Costura"},
+      {"value":"medal","label":"Selo"},{"value":"refresh","label":"Cuidados"},{"value":"thermo","label":"Térmico"},{"value":"drop","label":"Repelente"},{"value":"tag","label":"Etiqueta"} ] },
+    { "type": "text", "id": "s1_label", "label": "Item", "default": "Composição" },
+    { "type": "text", "id": "s1_value", "label": "Valor padrão" },
+    { "type": "text", "id": "s1_mf", "label": "Metafield (key)", "default": "composicao" },
+
+    { "type": "header", "content": "Linha 2" },
+    { "type": "select", "id": "s2_icon", "label": "Ícone", "default": "feather", "options": [
+      {"value":"cotton","label":"Algodão"},{"value":"feather","label":"Tecido"},{"value":"dry","label":"Secagem"},{"value":"ruler","label":"Modelagem"},
+      {"value":"shield","label":"Proteção"},{"value":"sun","label":"UV"},{"value":"boot","label":"Bota"},{"value":"seam","label":"Costura"},
+      {"value":"medal","label":"Selo"},{"value":"refresh","label":"Cuidados"},{"value":"thermo","label":"Térmico"},{"value":"drop","label":"Repelente"},{"value":"tag","label":"Etiqueta"} ] },
+    { "type": "text", "id": "s2_label", "label": "Item", "default": "Tecido" },
+    { "type": "text", "id": "s2_value", "label": "Valor padrão", "default": "Poliéster microfilamentado" },
+    { "type": "text", "id": "s2_mf", "label": "Metafield (key)", "default": "tecido" },
+
+    { "type": "header", "content": "Linha 3" },
+    { "type": "select", "id": "s3_icon", "label": "Ícone", "default": "dry", "options": [
+      {"value":"cotton","label":"Algodão"},{"value":"feather","label":"Tecido"},{"value":"dry","label":"Secagem"},{"value":"ruler","label":"Modelagem"},
+      {"value":"shield","label":"Proteção"},{"value":"sun","label":"UV"},{"value":"boot","label":"Bota"},{"value":"seam","label":"Costura"},
+      {"value":"medal","label":"Selo"},{"value":"refresh","label":"Cuidados"},{"value":"thermo","label":"Térmico"},{"value":"drop","label":"Repelente"},{"value":"tag","label":"Etiqueta"} ] },
+    { "type": "text", "id": "s3_label", "label": "Item", "default": "Tecnologia" },
+    { "type": "text", "id": "s3_value", "label": "Valor padrão", "default": "Secagem rápida + Proteção UV50+" },
+    { "type": "text", "id": "s3_mf", "label": "Metafield (key)", "default": "tecnologia" },
+
+    { "type": "header", "content": "Linha 4" },
+    { "type": "select", "id": "s4_icon", "label": "Ícone", "default": "ruler", "options": [
+      {"value":"cotton","label":"Algodão"},{"value":"feather","label":"Tecido"},{"value":"dry","label":"Secagem"},{"value":"ruler","label":"Modelagem"},
+      {"value":"shield","label":"Proteção"},{"value":"sun","label":"UV"},{"value":"boot","label":"Bota"},{"value":"seam","label":"Costura"},
+      {"value":"medal","label":"Selo"},{"value":"refresh","label":"Cuidados"},{"value":"thermo","label":"Térmico"},{"value":"drop","label":"Repelente"},{"value":"tag","label":"Etiqueta"} ] },
+    { "type": "text", "id": "s4_label", "label": "Item", "default": "Modelagem" },
+    { "type": "text", "id": "s4_value", "label": "Valor padrão", "default": "Ergonômica e confortável" },
+    { "type": "text", "id": "s4_mf", "label": "Metafield (key)", "default": "modelagem" },
+
+    { "type": "header", "content": "Linha 5" },
+    { "type": "select", "id": "s5_icon", "label": "Ícone", "default": "sun", "options": [
+      {"value":"cotton","label":"Algodão"},{"value":"feather","label":"Tecido"},{"value":"dry","label":"Secagem"},{"value":"ruler","label":"Modelagem"},
+      {"value":"shield","label":"Proteção"},{"value":"sun","label":"UV"},{"value":"boot","label":"Bota"},{"value":"seam","label":"Costura"},
+      {"value":"medal","label":"Selo"},{"value":"refresh","label":"Cuidados"},{"value":"thermo","label":"Térmico"},{"value":"drop","label":"Repelente"},{"value":"tag","label":"Etiqueta"} ] },
+    { "type": "text", "id": "s5_label", "label": "Item", "default": "Proteção" },
+    { "type": "text", "id": "s5_value", "label": "Valor padrão", "default": "UV50+ permanente (não sai na lavagem)" },
+    { "type": "text", "id": "s5_mf", "label": "Metafield (key)", "default": "protecao" },
+
+    { "type": "header", "content": "Linha 6" },
+    { "type": "select", "id": "s6_icon", "label": "Ícone", "default": "boot", "options": [
+      {"value":"cotton","label":"Algodão"},{"value":"feather","label":"Tecido"},{"value":"dry","label":"Secagem"},{"value":"ruler","label":"Modelagem"},
+      {"value":"shield","label":"Proteção"},{"value":"sun","label":"UV"},{"value":"boot","label":"Bota"},{"value":"seam","label":"Costura"},
+      {"value":"medal","label":"Selo"},{"value":"refresh","label":"Cuidados"},{"value":"thermo","label":"Térmico"},{"value":"drop","label":"Repelente"},{"value":"tag","label":"Etiqueta"} ] },
+    { "type": "text", "id": "s6_label", "label": "Item", "default": "Feito para" },
+    { "type": "text", "id": "s6_value", "label": "Valor padrão" },
+    { "type": "text", "id": "s6_mf", "label": "Metafield (key)", "default": "feito_para" },
+
+    { "type": "header", "content": "Linha 7" },
+    { "type": "select", "id": "s7_icon", "label": "Ícone", "default": "medal", "options": [
+      {"value":"cotton","label":"Algodão"},{"value":"feather","label":"Tecido"},{"value":"dry","label":"Secagem"},{"value":"ruler","label":"Modelagem"},
+      {"value":"shield","label":"Proteção"},{"value":"sun","label":"UV"},{"value":"boot","label":"Bota"},{"value":"seam","label":"Costura"},
+      {"value":"medal","label":"Selo"},{"value":"refresh","label":"Cuidados"},{"value":"thermo","label":"Térmico"},{"value":"drop","label":"Repelente"},{"value":"tag","label":"Etiqueta"} ] },
+    { "type": "text", "id": "s7_label", "label": "Item", "default": "Gênero" },
+    { "type": "text", "id": "s7_value", "label": "Valor padrão", "default": "Masculina e Feminina" },
+    { "type": "text", "id": "s7_mf", "label": "Metafield (key)", "default": "genero" },
+
+    { "type": "header", "content": "Linha 8" },
+    { "type": "select", "id": "s8_icon", "label": "Ícone", "default": "refresh", "options": [
+      {"value":"cotton","label":"Algodão"},{"value":"feather","label":"Tecido"},{"value":"dry","label":"Secagem"},{"value":"ruler","label":"Modelagem"},
+      {"value":"shield","label":"Proteção"},{"value":"sun","label":"UV"},{"value":"boot","label":"Bota"},{"value":"seam","label":"Costura"},
+      {"value":"medal","label":"Selo"},{"value":"refresh","label":"Cuidados"},{"value":"thermo","label":"Térmico"},{"value":"drop","label":"Repelente"},{"value":"tag","label":"Etiqueta"} ] },
+    { "type": "text", "id": "s8_label", "label": "Item", "default": "Cuidados" },
+    { "type": "text", "id": "s8_value", "label": "Valor padrão", "default": "Lavar em água fria, secar à sombra" },
+    { "type": "text", "id": "s8_mf", "label": "Metafield (key)", "default": "cuidados" }
+  ],
+  "presets": [ { "name": "BRK Especificações" } ]
+}
+{% endschema %}

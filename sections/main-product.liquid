@@ -82,6 +82,42 @@
   {% else %}
     <div class="{{ section_width }}">
   {% endif %}
+  {%- if template.name == 'product' -%}
+    {%- liquid
+      assign bc_col = collection
+      if bc_col == blank or bc_col.url == blank
+        assign bc_col = product.collections.first
+      endif
+    -%}
+    <nav class="brk-breadcrumbs" aria-label="breadcrumb">
+      <a href="{{ routes.root_url }}">{{ 'general.breadcrumb.home' | t | default: 'Início' }}</a>
+      {%- if bc_col and bc_col.url != blank -%}
+        <span class="brk-breadcrumbs__sep" aria-hidden="true">›</span>
+        <a href="{{ bc_col.url }}">{{ bc_col.title }}</a>
+      {%- endif -%}
+      <span class="brk-breadcrumbs__sep" aria-hidden="true">›</span>
+      <span class="brk-breadcrumbs__current" aria-current="page">{{ product.title | truncate: 48 }}</span>
+    </nav>
+    <style>
+      .brk-breadcrumbs {
+        display: flex; flex-wrap: nowrap; align-items: center; gap: .6rem;
+        margin-top: 1.4rem; margin-bottom: 2rem; overflow: hidden;
+        font-family: var(--body-font); font-size: 1.3rem; line-height: 1.4;
+      }
+      .brk-breadcrumbs a,
+      .brk-breadcrumbs__sep { flex: 0 0 auto; white-space: nowrap; }
+      .brk-breadcrumbs a { color: #7c7a70; text-decoration: none; transition: color .2s ease; }
+      .brk-breadcrumbs a:hover { color: #085b47; }
+      .brk-breadcrumbs__sep { color: #c3c0b6; font-size: 1.25rem; }
+      .brk-breadcrumbs__current {
+        flex: 0 1 auto; min-width: 0; color: #3a382f; font-weight: 500;
+        white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+      }
+      @media (max-width: 767px) {
+        .brk-breadcrumbs { font-size: 1.2rem; margin-top: 1rem; margin-bottom: 1.5rem; gap: .5rem; }
+      }
+    </style>
+  {%- endif -%}
   <div
     class="flex flex-cols gap flex-wrap main-product"
     style="--col-gap: 30px;--col-width: {{ desktop_media_width }}%"
@@ -765,6 +801,15 @@
     },
     {
       "type": "_product-stock-countdown"
+    },
+    {
+      "type": "_brk-trust"
+    },
+    {
+      "type": "_brk-specs"
+    },
+    {
+      "type": "_brk-ugc"
     }
   ]
 }

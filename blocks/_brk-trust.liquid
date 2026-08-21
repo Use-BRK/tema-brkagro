@@ -1,0 +1,117 @@
+{%- comment -%}
+  BRK AGRO — Trust bar dentro do buy box (substitui o bloco delivery-return).
+  5 quebras de objeção (config) + prazo (por tag do produto) = 6 células no grid 2x3.
+  Estilo minimalista: hairlines finas, ícones verdes discretos.
+{%- endcomment -%}
+{%- liquid
+  assign st = block.settings
+  assign product = closest.product
+  assign accent = st.accent_color | default: '#085b47'
+  assign prazo_producao = st.producao | default: '9'
+  assign prazo_algodao = st.algodao | default: '1'
+  assign is_producao = false
+  if product.tags contains 'prazo_algodao'
+    assign dias = prazo_algodao
+    assign is_producao = true
+  elsif product.tags contains 'prazo_imediato'
+    assign dias = ''
+  else
+    assign dias = prazo_producao
+    assign is_producao = true
+  endif
+-%}
+<div class="brk-trust brk-trust--buybox" style="--brk-accent: {{ accent }};" {{ block.shopify_attributes }}>
+  <ul class="brk-trust__grid">
+    {%- for i in (1..5) -%}
+      {%- liquid
+        assign kt = 't' | append: i | append: '_title'
+        assign ki = 't' | append: i | append: '_icon'
+        assign title = st[kt]
+        assign icon = st[ki]
+      -%}
+      {%- if title != blank -%}
+        <li class="brk-trust__item">
+          <span class="brk-trust__icon">{% render 'brk-icon', name: icon %}</span>
+          <span class="brk-trust__title">{{ title }}</span>
+        </li>
+      {%- endif -%}
+    {%- endfor -%}
+    {%- if st.show_production_deadline -%}
+      <li class="brk-trust__item">
+        <span class="brk-trust__icon">
+          {%- if is_producao -%}{% render 'brk-icon', name: 'refresh' %}{%- else -%}{% render 'brk-icon', name: 'bolt' %}{%- endif -%}
+        </span>
+        <span class="brk-trust__title">
+          {%- if is_producao -%}Produção em {{ dias }}{% if dias == '1' %} dia útil{% else %} dias úteis{% endif %}
+          {%- else -%}Envio Imediato{%- endif -%}
+        </span>
+      </li>
+    {%- endif -%}
+  </ul>
+  {%- if st.show_production_deadline and is_producao -%}
+    <p class="brk-trust__note">*prazo de produção, não incluso o prazo da transportadora</p>
+  {%- endif -%}
+</div>
+<style>
+  .brk-trust--buybox { --brk-accent: #085b47; margin-block: 1.8rem; }
+  .brk-trust__grid {
+    list-style: none; margin: 0; padding: 1.8rem 0;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1.6rem 1.8rem;
+    border-block: 1px solid #ecebe6;
+  }
+  .brk-trust__item { display: flex; align-items: center; gap: .9rem; min-width: 0; }
+  .brk-trust__icon { flex: 0 0 auto; color: var(--brk-accent); line-height: 0; }
+  .brk-trust__icon svg { width: 2rem; height: 2rem; display: block; }
+  .brk-trust__title {
+    font-family: var(--body-font); font-weight: 500; line-height: 1.25;
+    font-size: 1.3rem; color: #2c2f2b;
+  }
+  .brk-trust__note {
+    margin: .9rem 0 0; font-family: var(--body-font);
+    font-size: 1.1rem; line-height: 1.35; color: #9a9a92;
+  }
+  @media (max-width: 480px) {
+    .brk-trust__grid { gap: 1.4rem 1.2rem; padding: 1.5rem 0; }
+    .brk-trust__title { font-size: 1.24rem; }
+  }
+</style>
+{% schema %}
+{
+  "name": "BRK Trust (buy box)",
+  "tag": null,
+  "settings": [
+    { "type": "color", "id": "accent_color", "label": "Cor de destaque", "default": "#085b47" },
+    { "type": "header", "content": "Quebra de objeção 1" },
+    { "type": "select", "id": "t1_icon", "label": "Ícone", "default": "lock", "options": [
+      {"value":"lock","label":"Cadeado"},{"value":"refresh","label":"Troca"},{"value":"medal","label":"Selo"},
+      {"value":"truck","label":"Frete"},{"value":"shield","label":"Proteção"},{"value":"star","label":"Estrela"},{"value":"tag","label":"Etiqueta"} ] },
+    { "type": "text", "id": "t1_title", "label": "Título", "default": "Compra 100% Segura" },
+    { "type": "header", "content": "Quebra de objeção 2" },
+    { "type": "select", "id": "t2_icon", "label": "Ícone", "default": "refresh", "options": [
+      {"value":"lock","label":"Cadeado"},{"value":"refresh","label":"Troca"},{"value":"medal","label":"Selo"},
+      {"value":"truck","label":"Frete"},{"value":"shield","label":"Proteção"},{"value":"star","label":"Estrela"},{"value":"tag","label":"Etiqueta"} ] },
+    { "type": "text", "id": "t2_title", "label": "Título", "default": "1ª Troca Grátis" },
+    { "type": "header", "content": "Quebra de objeção 3" },
+    { "type": "select", "id": "t3_icon", "label": "Ícone", "default": "medal", "options": [
+      {"value":"lock","label":"Cadeado"},{"value":"refresh","label":"Troca"},{"value":"medal","label":"Selo"},
+      {"value":"truck","label":"Frete"},{"value":"shield","label":"Proteção"},{"value":"star","label":"Estrela"},{"value":"tag","label":"Etiqueta"} ] },
+    { "type": "text", "id": "t3_title", "label": "Título", "default": "Qualidade Garantida" },
+    { "type": "header", "content": "Quebra de objeção 4" },
+    { "type": "select", "id": "t4_icon", "label": "Ícone", "default": "truck", "options": [
+      {"value":"lock","label":"Cadeado"},{"value":"refresh","label":"Troca"},{"value":"medal","label":"Selo"},
+      {"value":"truck","label":"Frete"},{"value":"shield","label":"Proteção"},{"value":"star","label":"Estrela"},{"value":"tag","label":"Etiqueta"} ] },
+    { "type": "text", "id": "t4_title", "label": "Título", "default": "Frete Fixo R$9,90" },
+    { "type": "header", "content": "Quebra de objeção 5" },
+    { "type": "select", "id": "t5_icon", "label": "Ícone", "default": "tag", "options": [
+      {"value":"lock","label":"Cadeado"},{"value":"refresh","label":"Troca"},{"value":"medal","label":"Selo"},
+      {"value":"truck","label":"Frete"},{"value":"shield","label":"Proteção"},{"value":"star","label":"Estrela"},{"value":"tag","label":"Etiqueta"} ] },
+    { "type": "text", "id": "t5_title", "label": "Título", "default": "Parcele em até 3x" },
+    { "type": "header", "content": "Prazo de disponibilidade (6ª célula)" },
+    { "type": "checkbox", "id": "show_production_deadline", "label": "Exibir prazo", "default": true },
+    { "type": "text", "id": "producao", "label": "Prazo de produção (tag: prazo_producao)", "default": "9" },
+    { "type": "text", "id": "algodao", "label": "Prazo algodão (tag: prazo_algodao)", "default": "1" },
+    { "type": "text", "id": "imediato", "label": "Prazo imediato (tag: prazo_imediato)", "default": "0" }
+  ],
+  "presets": [ { "name": "BRK Trust (buy box)" } ]
+}
+{% endschema %}

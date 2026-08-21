@@ -1,0 +1,183 @@
+{%- comment -%}
+  BRK AGRO — Faixa de benefícios (abaixo do produto, antes da descrição).
+  Modular por PRESET via metafield: o produto seta custom.beneficios_preset (ex.: "uv50" ou "jeans")
+  e a faixa renderiza só os benefícios (blocos) marcados com esse preset.
+   - Bloco SEM preset  -> sempre aparece.
+   - Bloco COM preset  -> aparece só quando o preset do produto casa (lista separada por vírgula).
+   - Sem metafield -> usa o preset padrão (fallback) definido nas settings.
+   - Se nenhum benefício resolver como visível -> a seção não renderiza nada.
+  Estilo minimalista: fundo claro, verde só como acento nos ícones.
+{%- endcomment -%}
+{%- liquid
+  assign st = section.settings
+  assign product = product | default: closest.product
+  assign accent = st.accent_color | default: '#085b47'
+  assign bg = st.bg_color | default: '#f4efe4'
+  assign eyebrow_color = st.eyebrow_color | default: '#a06a24'
+  assign ns = st.mf_namespace | default: 'brk'
+  assign mfkey = st.preset_metafield | default: 'beneficios_preset'
+  assign active = product.metafields[ns][mfkey] | downcase | strip
+  if active == blank
+    assign active = st.default_preset | downcase | strip
+  endif
+
+  assign visible = 0
+  for block in section.blocks
+    assign presets = block.settings.presets | downcase | strip
+    if presets == blank
+      assign visible = visible | plus: 1
+    else
+      assign list = presets | split: ','
+      for p in list
+        assign pv = p | strip
+        if pv == active and active != blank
+          assign visible = visible | plus: 1
+          break
+        endif
+      endfor
+    endif
+  endfor
+-%}
+{%- if visible > 0 -%}
+  <div class="brk-benefits" style="--brk-accent: {{ accent }}; --brk-bg: {{ bg }}; --brk-eyebrow: {{ eyebrow_color }};" {{ section.shopify_attributes }}>
+    <div class="brk-benefits__wrap">
+      {%- if st.eyebrow != blank or st.heading != blank -%}
+        <header class="brk-benefits__head">
+          {%- if st.eyebrow != blank -%}<span class="brk-benefits__eyebrow">{{ st.eyebrow }}</span>{%- endif -%}
+          {%- if st.heading != blank -%}<h2 class="brk-benefits__title">{{ st.heading }}</h2>{%- endif -%}
+        </header>
+      {%- endif -%}
+      <ul class="brk-benefits__grid" data-count="{{ visible }}">
+        {%- for block in section.blocks -%}
+          {%- liquid
+            assign presets = block.settings.presets | downcase | strip
+            assign show = false
+            if presets == blank
+              assign show = true
+            elsif active != blank
+              assign list = presets | split: ','
+              for p in list
+                assign pv = p | strip
+                if pv == active
+                  assign show = true
+                  break
+                endif
+              endfor
+            endif
+          -%}
+          {%- if show and block.settings.title != blank -%}
+            <li class="brk-benefits__item" {{ block.shopify_attributes }}>
+              <span class="brk-benefits__icon">{% render 'brk-icon', name: block.settings.icon %}</span>
+              <span class="brk-benefits__body">
+                <span class="brk-benefits__item-title">{{ block.settings.title }}</span>
+                {%- if block.settings.text != blank -%}<span class="brk-benefits__text">{{ block.settings.text }}</span>{%- endif -%}
+              </span>
+            </li>
+          {%- endif -%}
+        {%- endfor -%}
+      </ul>
+    </div>
+  </div>
+{%- endif -%}
+
+{% stylesheet %}
+.brk-benefits { --brk-accent: #085b47; --brk-bg: #f4efe4; --brk-eyebrow: #a06a24; background: var(--brk-bg); border-block: 1px solid rgba(0,0,0,.06); }
+.brk-benefits__wrap { width: 100%; max-width: 120rem; margin-inline: auto; padding: 3.6rem 3rem; }
+.brk-benefits__head { margin-bottom: 2.8rem; }
+.brk-benefits__eyebrow {
+  display: inline-flex; align-items: center; gap: .8rem; font-family: var(--body-font);
+  font-size: 1.2rem; letter-spacing: .18em; text-transform: uppercase;
+  color: var(--brk-eyebrow); font-weight: 600; margin-bottom: .5rem;
+}
+.brk-benefits__eyebrow::before {
+  content: ""; width: 2.6rem; height: 1px; background: currentColor; opacity: .6;
+}
+.brk-benefits__title {
+  margin: 0; font-family: var(--heading-font); font-weight: 600; line-height: 1.15;
+  font-size: clamp(1.9rem, 2.6vw, 2.4rem); color: #26241d;
+}
+.brk-benefits__grid {
+  list-style: none; margin: 0; padding: 0;
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 2.6rem 3.2rem;
+}
+.brk-benefits__grid[data-count="1"] { grid-template-columns: 1fr; max-width: 46rem; }
+.brk-benefits__grid[data-count="2"] { grid-template-columns: repeat(2, 1fr); }
+.brk-benefits__grid[data-count="3"] { grid-template-columns: repeat(3, 1fr); }
+.brk-benefits__item { display: flex; align-items: flex-start; gap: 1.3rem; }
+.brk-benefits__icon { flex: 0 0 auto; color: var(--brk-accent); line-height: 0; padding-top: .1rem; }
+.brk-benefits__icon svg { width: 2.4rem; height: 2.4rem; display: block; }
+.brk-benefits__body { display: flex; flex-direction: column; gap: .3rem; }
+.brk-benefits__item-title {
+  font-family: var(--heading-font); font-weight: 600; line-height: 1.25;
+  font-size: 1.45rem; color: #26241d;
+}
+.brk-benefits__text { font-family: var(--body-font); font-size: 1.3rem; line-height: 1.45; color: #6b665b; }
+
+@media (max-width: 1024px) {
+  .brk-benefits__wrap { padding: 2.8rem 1.6rem; }
+  .brk-benefits__grid,
+  .brk-benefits__grid[data-count="3"] { grid-template-columns: repeat(2, 1fr); gap: 2.2rem 2rem; }
+}
+@media (max-width: 480px) {
+  .brk-benefits__grid { gap: 2rem 1.4rem; }
+  .brk-benefits__item-title { font-size: 1.38rem; }
+}
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "BRK Benefícios",
+  "tag": "section",
+  "class": "sec__brk-benefits",
+  "settings": [
+    { "type": "color", "id": "bg_color", "label": "Fundo da faixa", "default": "#f4efe4" },
+    { "type": "color", "id": "accent_color", "label": "Cor de destaque (ícones)", "default": "#085b47" },
+    { "type": "color", "id": "eyebrow_color", "label": "Cor do eyebrow", "default": "#a06a24" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Roupas feitas para o campo" },
+    { "type": "text", "id": "heading", "label": "Título" },
+    { "type": "text", "id": "mf_namespace", "label": "Namespace dos metafields", "default": "brk" },
+    { "type": "text", "id": "preset_metafield", "label": "Metafield de preset (key)", "default": "beneficios_preset",
+      "info": "O produto seta <namespace>.<esse valor> (ex.: brk.beneficios_preset = uv50 ou jeans) para escolher quais benefícios aparecem." },
+    { "type": "text", "id": "default_preset", "label": "Preset padrão (fallback)", "default": "uv50",
+      "info": "Usado quando o produto ainda não tem o metafield acima. Deixe vazio para não mostrar nada por padrão." }
+  ],
+  "blocks": [
+    {
+      "type": "benefit",
+      "name": "Benefício",
+      "settings": [
+        { "type": "select", "id": "icon", "label": "Ícone", "default": "leaf", "options": [
+          {"value":"sun","label":"Sol (UV)"},{"value":"dry","label":"Secagem"},
+          {"value":"feather","label":"Leve/Respirável"},{"value":"shield","label":"Proteção"},
+          {"value":"lock","label":"Cadeado"},{"value":"truck","label":"Frete"},
+          {"value":"refresh","label":"Troca"},{"value":"medal","label":"Selo/Qualidade"},
+          {"value":"ruler","label":"Modelagem"},{"value":"cotton","label":"Algodão"},
+          {"value":"boot","label":"Bota/Botina"},{"value":"seam","label":"Costura"},
+          {"value":"thermo","label":"Térmico"},{"value":"drop","label":"Repelente/Água"},
+          {"value":"tag","label":"Etiqueta"},{"value":"leaf","label":"Folha (Agro)"},{"value":"star","label":"Estrela"}
+        ] },
+        { "type": "text", "id": "title", "label": "Título" },
+        { "type": "text", "id": "text", "label": "Descrição (1 linha)" },
+        { "type": "text", "id": "presets", "label": "Aparece nos presets (separados por vírgula)",
+          "info": "Ex.: uv50  ou  jeans  ou  uv50,jeans. Vazio = aparece sempre." }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "BRK Benefícios",
+      "settings": { "eyebrow": "Roupas feitas para o campo" },
+      "blocks": [
+        { "type": "benefit", "settings": { "icon": "sun", "title": "Proteção UV50+", "text": "Bloqueia até 98% dos raios UVA/UVB", "presets": "uv50" } },
+        { "type": "benefit", "settings": { "icon": "dry", "title": "Secagem Rápida", "text": "Evapora o suor e mantém você seco", "presets": "uv50" } },
+        { "type": "benefit", "settings": { "icon": "feather", "title": "Leve e Respirável", "text": "Toque macio, fresco o dia todo", "presets": "uv50" } },
+        { "type": "benefit", "settings": { "icon": "ruler", "title": "Modelagem Ergonômica", "text": "Liberdade de movimento no campo", "presets": "uv50" } },
+        { "type": "benefit", "settings": { "icon": "cotton", "title": "100% Algodão", "text": "Fibra natural, resistente e confortável", "presets": "jeans" } },
+        { "type": "benefit", "settings": { "icon": "ruler", "title": "Modelagem Cowboy", "text": "Corte tradicional, caimento perfeito", "presets": "jeans" } },
+        { "type": "benefit", "settings": { "icon": "boot", "title": "Feita para Bota/Botina", "text": "Barra e caimento pensados pro uso com botas", "presets": "jeans" } },
+        { "type": "benefit", "settings": { "icon": "seam", "title": "Costura Reforçada", "text": "Bolsos e pontos de tensão reforçados", "presets": "jeans" } }
+      ]
+    }
+  ]
+}
+{% endschema %}
