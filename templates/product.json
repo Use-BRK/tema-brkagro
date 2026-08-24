@@ -38,7 +38,7 @@
           "type": "_product-meta",
           "settings": {
             "show_barcode": false,
-            "show_sku": false,
+            "show_sku": true,
             "show_available": false,
             "show_tags": false,
             "show_type": false,
