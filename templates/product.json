@@ -522,7 +522,7 @@
         "heading": "Descrição do produto",
         "metafield_namespace": "brk",
         "metafield_key": "descricao",
-        "open": false,
+        "open": true,
         "padding_top": 15,
         "padding_bottom": 15,
         "reset_spacing": true
