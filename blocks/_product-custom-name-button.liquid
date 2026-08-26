@@ -70,6 +70,12 @@
           rel="noopener"
           class="btn btn-primary w-full product-form__submit word-wrap relative no-underline custom-name-button__link"
           style="--btn-padding-x: 1.4rem;"
+          data-cnm-track
+          data-product-id="{{ product.id }}"
+          data-product-title="{{ product.title | escape }}"
+          data-product-handle="{{ product.handle }}"
+          data-product-url="{{ product_url | escape }}"
+          data-button-text="{{ button_label | escape }}"
         >
           <span class="btn-label hidden-on-load inline-flex align-center content-center gap-10 custom-name-button__label">
             <img class="custom-name-button__icon" src="https://cdn.shopify.com/s/files/1/0887/2083/4857/files/customize_cinza.svg" alt="" width="16" height="16" loading="lazy">
@@ -78,24 +84,35 @@
         </a>
       </div>
       <script>
-        (() => {
-          const button = document.getElementById('custom-name-button-{{ block.id }}');
-          if (!button) return;
-          button.addEventListener('click', () => {
-            if (typeof window.clarity === 'function') {
-              window.clarity('event', 'nome_personalizado_click');
-              window.clarity('set', 'botao_nome_camisa', {{ product.handle | json }});
-            }
-            if (window.Shopify && Shopify.analytics && typeof Shopify.analytics.publish === 'function') {
-              Shopify.analytics.publish('brkagro:nome_personalizado_click', {
-                productId: {{ product.id | json }},
-                productTitle: {{ product.title | json }},
-                productHandle: {{ product.handle | json }},
-                productUrl: {{ product_url | json }},
-                buttonText: {{ button_label | json }},
-              });
-            }
-          });
+        {%- comment -%}
+          Trackeamento do clique via delegação no document (vinculado uma única vez).
+          Resiliente a re-render por AJAX (troca de variante): não perde nenhum clique,
+          pois lê os dados do próprio link em vez de depender de um listener por elemento.
+        {%- endcomment -%}
+        (function () {
+          if (window.__brkCnmClarity) return;
+          window.__brkCnmClarity = true;
+          document.addEventListener('click', function (e) {
+            var link = e.target.closest && e.target.closest('a[data-cnm-track]');
+            if (!link) return;
+            try {
+              if (typeof window.clarity === 'function') {
+                window.clarity('event', 'nome_personalizado_click');
+                window.clarity('set', 'botao_nome_camisa', link.getAttribute('data-product-handle') || '');
+              }
+            } catch (err) { /* ignore */ }
+            try {
+              if (window.Shopify && Shopify.analytics && typeof Shopify.analytics.publish === 'function') {
+                Shopify.analytics.publish('brkagro:nome_personalizado_click', {
+                  productId: link.getAttribute('data-product-id'),
+                  productTitle: link.getAttribute('data-product-title'),
+                  productHandle: link.getAttribute('data-product-handle'),
+                  productUrl: link.getAttribute('data-product-url'),
+                  buttonText: link.getAttribute('data-button-text'),
+                });
+              }
+            } catch (err) { /* ignore */ }
+          }, true);
         })();
       </script>
     </div>

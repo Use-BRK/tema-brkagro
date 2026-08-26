@@ -107,6 +107,26 @@
       })();
     </script>
   {% endif %}
+
+  <script>
+    {%- comment -%}
+      Trackeamento do clique via delegação no document (vinculado uma única vez).
+      Resiliente a re-render por AJAX: não perde nenhum clique.
+    {%- endcomment -%}
+    (function () {
+      if (window.__brkWaCtaClarity) return;
+      window.__brkWaCtaClarity = true;
+      document.addEventListener('click', function (e) {
+        var link = e.target.closest && e.target.closest('.product-detail__whatsapp-cta a');
+        if (!link) return;
+        try {
+          if (typeof window.clarity === 'function') {
+            window.clarity('event', 'whatsapp_cta_click');
+          }
+        } catch (err) { /* ignore */ }
+      }, true);
+    })();
+  </script>
 {% endif %}
 
 {% stylesheet %}
