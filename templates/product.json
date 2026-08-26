@@ -148,7 +148,7 @@
             "button_text": "Ou se preferir [whatsapp] <strong>COMPRE PELO WHATSAPP</strong>",
             "text_color": "#128c4a",
             "whatsapp_number": "553432194697",
-            "whatsapp_message": "Olá, tenho interesse nesse produto:",
+            "whatsapp_message": "Vim da loja online, tenho interesse nesse produto:",
             "append_product_link": true,
             "enable_schedule": true,
             "hours_start": "08:00",
