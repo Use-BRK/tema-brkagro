@@ -430,10 +430,35 @@
     endif
   -%}
 
+  {%- liquid
+    assign price_valid_until = 'today' | date: '%s' | plus: 2592000 | date: '%Y-%m-%d'
+  -%}
+  {%- capture offer_policies -%}
+    "hasMerchantReturnPolicy": {
+      "@type": "MerchantReturnPolicy",
+      "applicableCountry": "BR",
+      "returnPolicyCountry": "BR",
+      "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
+      "merchantReturnDays": 7,
+      "returnMethod": "https://schema.org/ReturnByMail",
+      "returnFees": "https://schema.org/FreeReturn"
+    },
+    "shippingDetails": {
+      "@type": "OfferShippingDetails",
+      "shippingRate": { "@type": "MonetaryAmount", "value": "9.90", "currency": "BRL" },
+      "shippingDestination": { "@type": "DefinedRegion", "addressCountry": "BR" },
+      "deliveryTime": {
+        "@type": "ShippingDeliveryTime",
+        "handlingTime": { "@type": "QuantitativeValue", "minValue": 1, "maxValue": 10, "unitCode": "DAY" },
+        "transitTime": { "@type": "QuantitativeValue", "minValue": 3, "maxValue": 10, "unitCode": "DAY" }
+      }
+    }
+  {%- endcapture -%}
   <script type="application/ld+json">
     {
-      "@context": "http://schema.org/",
+      "@context": "https://schema.org/",
       "@type": "Product",
+      "@id": {{ request.origin | append: product.url | append: '#product' | json }},
       "name": {{ product.title | json }},
       "url": {{ request.origin | append: product.url | json }},
       {% if seo_media -%}
@@ -449,26 +474,41 @@
         "@type": "Brand",
         "name": {{ product.vendor | json }}
       },
+      "itemCondition": "https://schema.org/NewCondition",
+      {%- if product.metafields.reviews.rating_count and product.metafields.reviews.rating_count != "0" %}
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": {{ product.metafields.reviews.rating.value }},
+        "reviewCount": {{ product.metafields.reviews.rating_count }}
+      },
+      {%- endif %}
       "offers": [
         {%- for variant in product.variants -%}
           {
-            "@type" : "Offer",
+            "@type": "Offer",
             {%- if variant.sku != blank -%}
               "sku": {{ variant.sku | json }},
             {% endif %}
             {%- if variant.barcode.size == 12 -%}
-              "gtin12": {{ variant.barcode }},
+              "gtin12": {{ variant.barcode | json }},
             {% endif %}
             {%- if variant.barcode.size == 13 -%}
-              "gtin13": {{ variant.barcode }},
+              "gtin13": {{ variant.barcode | json }},
             {% endif %}
             {%- if variant.barcode.size == 14 -%}
-              "gtin14": {{ variant.barcode }},
+              "gtin14": {{ variant.barcode | json }},
             {% endif %}
-            "availability" : "http://schema.org/{% if variant.available %}InStock{% else %}OutOfStock{% endif %}",
-            "price" : {{ variant.price | divided_by: 100.00 | json }},
-            "priceCurrency" : {{ cart.currency.iso_code | json }},
-            "url" : {{ request.origin | append: variant.url | json }}
+            "availability": "https://schema.org/{% if variant.available %}InStock{% else %}OutOfStock{% endif %}",
+            "itemCondition": "https://schema.org/NewCondition",
+            "price": {{ variant.price | divided_by: 100.00 | json }},
+            "priceCurrency": {{ cart.currency.iso_code | json }},
+            "priceValidUntil": {{ price_valid_until | json }},
+            "url": {{ request.origin | append: variant.url | json }},
+            {{ offer_policies | strip }},
+            "seller": {
+              "@type": "Organization",
+              "name": {{ shop.name | json }}
+            }
           }{% unless forloop.last %},{% endunless %}
         {%- endfor -%}
       ]

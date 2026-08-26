@@ -1,0 +1,61 @@
+{%- comment -%}
+  BRK AGRO — Dados estruturados globais: WebSite (SearchAction) + Organization.
+  Substitui o schema que vinha do app Booster. SEM aggregateRating no Organization
+  (o Google ignora rating em Organization). O rating fica só no Product (PDP).
+{%- endcomment -%}
+{%- liquid
+  assign same_as = ''
+  if settings.facebook != blank
+    assign same_as = same_as | append: settings.facebook | append: '|'
+  endif
+  if settings.instagram != blank
+    assign same_as = same_as | append: settings.instagram | append: '|'
+  endif
+  if settings.youtube != blank
+    assign same_as = same_as | append: settings.youtube | append: '|'
+  endif
+  if settings.twitter != blank
+    assign same_as = same_as | append: settings.twitter | append: '|'
+  endif
+  if settings.tiktok != blank
+    assign same_as = same_as | append: settings.tiktok | append: '|'
+  endif
+  if settings.pinterest != blank
+    assign same_as = same_as | append: settings.pinterest | append: '|'
+  endif
+  if settings.linkedin != blank
+    assign same_as = same_as | append: settings.linkedin | append: '|'
+  endif
+  assign same_as = same_as | split: '|'
+-%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": {{ shop.name | json }},
+  "url": {{ shop.secure_url | json }},
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "{{ shop.secure_url }}/search?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": {{ shop.name | json }},
+  "url": {{ shop.secure_url | json }}
+  {%- if settings.logo != blank -%}
+  ,"logo": {{ settings.logo | image_url: width: 500 | prepend: 'https:' | json }}
+  {%- endif -%}
+  {%- if same_as.size > 0 -%}
+  ,"sameAs": [
+    {%- for u in same_as -%}
+      {{ u | json }}{%- unless forloop.last -%},{%- endunless -%}
+    {%- endfor -%}
+  ]
+  {%- endif -%}
+}
+</script>
