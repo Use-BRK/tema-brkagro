@@ -207,24 +207,24 @@
     "collection_tab_kENEYA": {
       "type": "collection-tab",
       "blocks": {
-        "collection_3frNWE": {
-          "type": "collection",
-          "settings": {
-            "collection": "apache",
-            "collection_title": "Apache"
-          }
-        },
         "collection_REBGpn": {
           "type": "collection",
           "settings": {
             "collection": "sao-bento-2026",
             "collection_title": "São Bento"
           }
+        },
+        "collection_3frNWE": {
+          "type": "collection",
+          "settings": {
+            "collection": "apache",
+            "collection_title": "Apache"
+          }
         }
       },
       "block_order": [
-        "collection_3frNWE",
-        "collection_REBGpn"
+        "collection_REBGpn",
+        "collection_3frNWE"
       ],
       "custom_css": [],
       "name": "Lançamentos",
