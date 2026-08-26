@@ -98,6 +98,44 @@
       <span class="brk-breadcrumbs__sep" aria-hidden="true">›</span>
       <span class="brk-breadcrumbs__current" aria-current="page">{{ product.title | truncate: 48 }}</span>
     </nav>
+    {%- liquid
+      assign bc_home_url = request.origin | append: routes.root_url
+      assign bc_prod_url = request.origin | append: product.url
+    -%}
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": {{ 'general.breadcrumb.home' | t | default: 'Início' | json }},
+          "item": {{ bc_home_url | json }}
+        }{%- if bc_col and bc_col.url != blank -%},
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": {{ bc_col.title | json }},
+          "item": {{ request.origin | append: bc_col.url | json }}
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": {{ product.title | json }},
+          "item": {{ bc_prod_url | json }}
+        }
+        {%- else -%},
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": {{ product.title | json }},
+          "item": {{ bc_prod_url | json }}
+        }
+        {%- endif -%}
+      ]
+    }
+    </script>
     <style>
       .brk-breadcrumbs {
         display: flex; flex-wrap: nowrap; align-items: center; gap: .6rem;

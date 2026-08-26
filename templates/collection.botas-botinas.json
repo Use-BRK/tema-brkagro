@@ -194,12 +194,25 @@
         "padding_top": 30,
         "padding_bottom": 40
       }
+    },
+    "collection_description": {
+      "type": "collection-description",
+      "settings": {
+        "heading": "",
+        "section_width": "container",
+        "header_alignment": "left",
+        "color_scheme": "",
+        "padding_top": 24,
+        "padding_bottom": 24,
+        "reset_spacing": false
+      }
     }
   },
   "order": [
     "banner",
     "scrolling_text_L4EgPy",
     "subcollection",
-    "main"
+    "main",
+    "collection_description"
   ]
 }

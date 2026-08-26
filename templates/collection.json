@@ -230,6 +230,18 @@
         "padding_bottom": 40
       }
     },
+    "collection_description": {
+      "type": "collection-description",
+      "settings": {
+        "heading": "",
+        "section_width": "container",
+        "header_alignment": "left",
+        "color_scheme": "",
+        "padding_top": 24,
+        "padding_bottom": 24,
+        "reset_spacing": false
+      }
+    },
     "faq_agDxgP": {
       "type": "faq",
       "blocks": {
@@ -308,6 +320,7 @@
     "scrolling_text_L4EgPy",
     "subcollection",
     "main",
+    "collection_description",
     "faq_agDxgP"
   ]
 }

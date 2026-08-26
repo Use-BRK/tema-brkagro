@@ -1,0 +1,121 @@
+{%- comment -%}
+  BRK AGRO — Bloco de texto SEO no rodapé da coleção.
+  Renderiza collection.description (corpo/rich text da coleção), não a meta description.
+  Só aparece quando a coleção tem descrição preenchida. Ideal posicionar acima do FAQ.
+{%- endcomment -%}
+{%- liquid
+  assign st = section.settings
+  assign section_width = st.section_width
+  assign color_scheme = st.color_scheme
+  assign reset_spacing = ''
+  if st.reset_spacing
+    assign reset_spacing = ' remove_spacing'
+  endif
+-%}
+{%- if collection.description != blank or request.design_mode -%}
+  {%- capture style -%}--section-pt: {{ st.padding_top }}; --section-pb: {{ st.padding_bottom }};{%- endcapture -%}
+  <div
+    class="section{% if st.padding_top < 30 %} pt-min{% endif %}{% if st.padding_bottom < 30 %} pb-min{% endif %} sec__collection-description color-{{ color_scheme }} gradient{{ reset_spacing }}"
+    style="{{ style | strip | strip_newlines }}"
+  >
+    <div class="{{ section_width }}">
+      {%- if collection.description != blank -%}
+        {%- if st.heading != blank -%}
+          <h2 class="section__header-heading heading-letter-spacing h4 mt-0 mb-15 text-{{ st.header_alignment }}">
+            {{ st.heading }}
+          </h2>
+        {%- endif -%}
+        <div class="collection-description rich__text text-{{ st.header_alignment }}">
+          {{ collection.description }}
+        </div>
+      {%- else -%}
+        <p class="collection-description__placeholder" style="opacity:.55;font-style:italic;margin:0">
+          Bloco “Descrição da coleção”: adicione um texto no corpo desta coleção (Admin → Coleções → esta coleção → Descrição) para exibir aqui. Este aviso aparece somente no editor de temas.
+        </p>
+      {%- endif -%}
+    </div>
+  </div>
+{%- endif -%}
+{% schema %}
+{
+  "name": "Descrição da coleção",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Renderiza a descrição (corpo) da coleção — bom para SEO. Edite o texto em cada coleção no admin (Coleções → Descrição). Só aparece quando a coleção tem descrição preenchida."
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Título (opcional)"
+    },
+    {
+      "type": "select",
+      "id": "section_width",
+      "label": "Largura",
+      "default": "container",
+      "options": [
+        { "value": "container", "label": "Container" },
+        { "value": "fluid_container", "label": "Fluid container" },
+        { "value": "stretch_width", "label": "Stretch" },
+        { "value": "full_width", "label": "Full width" }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "header_alignment",
+      "label": "Alinhamento do texto",
+      "default": "left",
+      "options": [
+        { "value": "left", "label": "Esquerda" },
+        { "value": "center", "label": "Centro" },
+        { "value": "right", "label": "Direita" }
+      ]
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Esquema de cores",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "Espaçamento"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Topo",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Base",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "checkbox",
+      "id": "reset_spacing",
+      "label": "Remover espaçamento externo",
+      "default": false
+    }
+  ],
+  "presets": [
+    {
+      "name": "Descrição da coleção",
+      "category": "Collection"
+    }
+  ]
+}
+{% endschema %}

@@ -32,6 +32,14 @@
           assign src = st[ks]
           assign poster = st[kp]
           assign prod = st[kpr]
+          assign v_thumb = poster
+          if v_thumb == blank and prod.featured_image != blank
+            assign v_thumb = prod.featured_image
+          endif
+          if v_thumb == blank
+            assign v_thumb = product.featured_image
+          endif
+          assign v_name = prod.title | default: product.title
         -%}
         {%- if src != blank -%}
           <div class="brk-ugc__card">
@@ -55,6 +63,19 @@
               </a>
             {%- endif -%}
           </div>
+          {%- if v_thumb != blank and product != blank -%}
+            <script type="application/ld+json">
+              {
+                "@context": "https://schema.org",
+                "@type": "VideoObject",
+                "name": {{ v_name | append: ' — avaliação em vídeo de cliente BRK Agro' | json }},
+                "description": {{ v_name | prepend: 'Vídeo de cliente da BRK Agro mostrando ' | json }},
+                "thumbnailUrl": {{ v_thumb | image_url: width: 720 | prepend: 'https:' | json }},
+                "uploadDate": {{ product.published_at | date: '%Y-%m-%dT%H:%M:%S%z' | json }},
+                "contentUrl": {{ src | json }}
+              }
+            </script>
+          {%- endif -%}
         {%- endif -%}
       {%- endfor -%}
     </div>
