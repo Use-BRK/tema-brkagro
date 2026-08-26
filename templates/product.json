@@ -611,14 +611,13 @@
     },
     "related_products": {
       "type": "related-products",
-      "disabled": true,
       "name": "Produtos Relacionados",
       "settings": {
         "section_width": "container",
         "color_scheme": "",
-        "heading": "Produtos Semelhantes",
+        "heading": "Conheça outros produtos",
         "description": "",
-        "header_size": "medium",
+        "header_size": "small",
         "header_alignment": "center",
         "items_to_show": 4,
         "items_per_row": 4,
@@ -637,32 +636,6 @@
         "border_height": 1,
         "border_color": "#ebebeb",
         "reset_spacing": true
-      }
-    },
-    "products_recently_viewed_GdCNUL": {
-      "type": "products-recently-viewed",
-      "disabled": true,
-      "name": "Vistos Recentemente",
-      "settings": {
-        "section_width": "container",
-        "color_scheme": "",
-        "heading": "Vistos Recentemente",
-        "description": "",
-        "header_size": "medium",
-        "header_alignment": "center",
-        "items_to_show": 8,
-        "items_per_row": 4,
-        "column_gap": 10,
-        "show_arrow": true,
-        "carousel_pagination": "show_dots_on_mobile",
-        "infinite": false,
-        "autoplay": false,
-        "autorotate_speed": 5,
-        "reveal": false,
-        "items_per_row_mobile": 1.5,
-        "padding_top": 25,
-        "padding_bottom": 25,
-        "reset_spacing": false
       }
     },
     "divider_cftdT4": {
@@ -698,6 +671,31 @@
         "section_width": "full_width",
         "border_height": 20,
         "border_color": "#fff",
+        "reset_spacing": false
+      }
+    },
+    "products_recently_viewed_GdCNUL": {
+      "type": "products-recently-viewed",
+      "name": "Vistos Recentemente",
+      "settings": {
+        "section_width": "container",
+        "color_scheme": "",
+        "heading": "Vistos Recentemente",
+        "description": "",
+        "header_size": "medium",
+        "header_alignment": "center",
+        "items_to_show": 8,
+        "items_per_row": 4,
+        "column_gap": 10,
+        "show_arrow": true,
+        "carousel_pagination": "show_dots_on_mobile",
+        "infinite": false,
+        "autoplay": false,
+        "autorotate_speed": 5,
+        "reveal": false,
+        "items_per_row_mobile": 1.5,
+        "padding_top": 25,
+        "padding_bottom": 25,
         "reset_spacing": false
       }
     },
@@ -797,10 +795,10 @@
     "divider_TKLM6L",
     "related_products",
     "divider_HtLXd3",
-    "products_recently_viewed_GdCNUL",
     "divider_cftdT4",
     "1785433041f7474707",
     "divider_TXWjaf",
+    "products_recently_viewed_GdCNUL",
     "faq_XdwEqr",
     "custom_liquid_gbRHwy"
   ]
