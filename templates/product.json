@@ -152,7 +152,7 @@
             "append_product_link": true,
             "enable_schedule": true,
             "hours_start": "08:00",
-            "hours_end": "17:32",
+            "hours_end": "17:15",
             "collections": []
           },
           "blocks": {}
