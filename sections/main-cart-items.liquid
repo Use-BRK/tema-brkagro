@@ -884,7 +884,10 @@
                 </cart-estimate>
               {% endif %}
               {% if enable_discount_code %}
-                <cart-discount class="cart__discount mt-15 pb-15 no-js-hidden mb-20 mb-lg-40 lh-normal">
+                <cart-discount
+                  class="cart__discount mt-15 pb-15 no-js-hidden mb-20 mb-lg-40 lh-normal"
+                  data-logged-in="{% if customer %}true{% else %}false{% endif %}"
+                >
                   <h6 class="mt-25 mb-12">
                     {{ 'general.cart.coupon.title' | t }}
                   </h6>

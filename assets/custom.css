@@ -594,6 +594,15 @@ mobile-navigation-bar.nav-pill > div:active {
   transform: translateY(-1px);
 }
 
+/* Botão de login do cupom de troca: mesmo VISUAL do "Resgatar brindes"
+   (gift-bar-redeem), mas em largura cheia e centralizado (não inline). */
+.troca-login-prompt .gift-bar-redeem {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  text-align: center;
+}
+
 body .tingle-modal.gift-progress-modal .tingle-modal-box {
   border-radius: 0;
   max-width: min(92vw, 46rem);

@@ -202,6 +202,14 @@ class MinicartDiscount extends HTMLElement {
     const discountCodeValue = discountCode.value.trim();
     if (!discountCodeValue) return;
 
+    // Cupons de troca (código contém "TROCA") são restritos ao cliente que fez
+    // a compra original e só aplicam autenticado no checkout. Tratamos à parte
+    // para não cair no erro genérico de "cupom inválido".
+    if (discountCodeValue.toUpperCase().includes("TROCA")) {
+      this.#handleExchangeDiscount(discountCodeValue);
+      return;
+    }
+
     // Check if discount already exists
     const existingDiscounts = this.#existingDiscounts();
     if (existingDiscounts.includes(discountCodeValue)) {
@@ -299,6 +307,64 @@ class MinicartDiscount extends HTMLElement {
       removeButton.closest("[data-discount-code]")?.dataset.discountCode ||
       null
     );
+  }
+
+  /**
+   * Trata cupons de troca (código contém "TROCA"). São restritos ao cliente da
+   * compra original e só aplicam autenticado no checkout (cupom manual não
+   * aplica no cart). Levamos ao /discount -> checkout.
+   * - Logado: redireciona direto.
+   * - Deslogado: orienta o login com return_to encadeando pro /discount ->
+   *   checkout (mecanismo oficial, compatível com as novas contas de clientes).
+   * @param {string} code - Código do cupom de troca.
+   */
+  #handleExchangeDiscount(code) {
+    // Cupom manual só aplica no checkout (não no cart), e cupom de troca exige
+    // o cliente autenticado. Levamos direto ao /discount -> checkout.
+    const target = `/discount/${encodeURIComponent(code)}?redirect=/checkout`;
+
+    if (this.dataset.loggedIn === "true") {
+      window.location.href = target;
+      return;
+    }
+
+    // Deslogado: manda pro login e, ao autenticar, o Shopify segue pro return_to
+    // (/discount -> checkout). Mecanismo oficial, compatível com as novas contas.
+    const loginUrl = `/customer_authentication/login?return_to=${encodeURIComponent(
+      target
+    )}`;
+    this.#showExchangeLoginPrompt(loginUrl);
+  }
+
+  /**
+   * Renderiza a mensagem explicativa + botão de login para cupons de troca.
+   * @param {string} loginUrl - URL da página de login.
+   */
+  #showExchangeLoginPrompt(loginUrl) {
+    const message =
+      cartStrings?.exchange_login_required ||
+      "Cupons de troca só funcionam quando você está logado na conta que fez a compra original. Faça login para aplicar seu cupom.";
+    const cta =
+      cartStrings?.exchange_login_cta || "Fazer login e aplicar cupom";
+
+    const html = `
+      <div class="troca-login-prompt mt-10 mb-10" role="alert">
+        <div class="error form__message p-10 mb-10">
+          <p class="m-0">${message}</p>
+        </div>
+        <a href="${loginUrl}" class="gift-bar-redeem no-underline">${cta}</a>
+      </div>`;
+
+    const container = this.querySelector("#coupon-messages");
+    if (container) {
+      container.innerHTML = html;
+      return;
+    }
+
+    const existing = this.querySelector(".troca-login-prompt");
+    if (existing) existing.remove();
+    const form = this.querySelector("form");
+    if (form) form.insertAdjacentHTML("afterend", html);
   }
 
   /**
