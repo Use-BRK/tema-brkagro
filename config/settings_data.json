@@ -325,6 +325,11 @@
           "storefrontAccessToken": "",
           "scriptInitMode": "immediate"
         }
+      },
+      "848591003871763955": {
+        "type": "shopify://apps/shortly/blocks/app-embed-block/4c3d9aaa-3566-4200-9c43-34b476f6332a",
+        "disabled": false,
+        "settings": {}
       }
     },
     "color_schemes": {
