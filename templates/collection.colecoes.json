@@ -1,0 +1,326 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "banner": {
+      "type": "main-collection-heading",
+      "blocks": {
+        "breadcrumb_tAe9LK": {
+          "type": "breadcrumb",
+          "disabled": true,
+          "settings": {}
+        },
+        "heading_fntt9G": {
+          "type": "heading",
+          "settings": {
+            "page_title": "{{ collection.title }}",
+            "header_size": "default"
+          }
+        }
+      },
+      "block_order": [
+        "breadcrumb_tAe9LK",
+        "heading_fntt9G"
+      ],
+      "custom_css": [
+        "* {margin-bottom: 0 !important;}",
+        "h1 {display: none;}"
+      ],
+      "settings": {
+        "section_width": "full_width",
+        "color_scheme": "scheme-4faf0e4d-27f4-4d02-bc51-617383bab1a9",
+        "alignment": "center",
+        "show_collection_image": true,
+        "overlay_opacity": 0,
+        "height": "adapt",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "scrolling_text_L4EgPy": {
+      "type": "scrolling-text",
+      "blocks": {
+        "scrolling_text_Y3pj8N": {
+          "type": "scrolling_text",
+          "settings": {
+            "content": "<strong>FRETE FIXO R$9,90</strong>"
+          }
+        },
+        "scrolling_text_7MqMwU": {
+          "type": "scrolling_text",
+          "settings": {
+            "content": "<strong>FRETE FIXO R$9,90</strong>"
+          }
+        }
+      },
+      "block_order": [
+        "scrolling_text_Y3pj8N",
+        "scrolling_text_7MqMwU"
+      ],
+      "disabled": true,
+      "custom_css": [
+        "* {letter-spacing: 2.9px;}"
+      ],
+      "name": "t:sections.scrolling_text.name",
+      "settings": {
+        "section_width": "full_width",
+        "color_scheme": "scheme-bb1431b0-be4a-4b03-a450-f572c07e3904",
+        "direction": "right",
+        "icon_between_item": "star",
+        "icon_width": 20,
+        "speed": 8,
+        "space_between_text": 50,
+        "font_size": 14,
+        "font_weight": "heading_weight",
+        "uppercase": true,
+        "use_heading_font": true,
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": false
+      }
+    },
+    "subcollection": {
+      "type": "subcollection-list",
+      "settings": {
+        "section_width": "stretch_width",
+        "color_scheme": "",
+        "heading": "Confira outras coleções",
+        "description": "",
+        "header_size": "medium",
+        "header_alignment": "center",
+        "image_ratio": "adapt",
+        "custom_ratio": "",
+        "image_source": "first_product",
+        "media_horizontal_margin": 0,
+        "image_border": true,
+        "image_border_width": 4,
+        "image_border_color": "#efe9da",
+        "items_per_row": 6,
+        "column_gap": 5,
+        "center_insufficient": true,
+        "collection_information_position": "below_image",
+        "design": "default",
+        "text_alignment": "center",
+        "show_product_count": false,
+        "font_size": 14,
+        "font_weight": "heading_weight",
+        "information_spacing": 12,
+        "rounded_image": true,
+        "image_custom_width": true,
+        "image_width": 185,
+        "show_arrow": true,
+        "carousel_pagination": "show_progress_bar",
+        "infinite": false,
+        "autoplay": false,
+        "autorotate_speed": 5,
+        "reveal": false,
+        "items_per_row_mobile": 3,
+        "padding_top": 16,
+        "padding_bottom": 0
+      }
+    },
+    "main": {
+      "type": "main-collection-product",
+      "blocks": {
+        "gender_filter_WjhFKQ": {
+          "type": "gender_filter",
+          "settings": {
+            "label_masculino": "Masculino",
+            "label_feminino": "Feminino",
+            "filter_collection_list": [
+              "forca-do-agro-v2",
+              "mais-vendidos",
+              "lancamentos-1",
+              "sistema-bruto",
+              "envio-imediato-camisas",
+              "copa-2026",
+              "copa-2026-camisas-de-algodao",
+              "copa-2026-manga-curta",
+              "sao-bento-2026",
+              "mes-de-sao-bento-2026",
+              "patriota",
+              "essenciais-sem-estampa",
+              "apache",
+              "envio-imediato-agro",
+              "camisas-de-botao-country",
+              "nossa-senhora-aparecida"
+            ]
+          }
+        },
+        "size_filter_beBB4b": {
+          "type": "size_filter",
+          "settings": {
+            "title": "Filtre por Tamanho",
+            "start_open": false,
+            "filter_collection_list": [
+              "envio-imediato",
+              "envio-imediato-camisas",
+              "envio-imediato-femininas",
+              "colecao-camisa-infantil-revista-para-colorir-e-envio-full",
+              "envio-imediato-agro"
+            ]
+          }
+        },
+        "categories_LYDr6p": {
+          "type": "categories",
+          "disabled": true,
+          "settings": {
+            "title": "Products Category",
+            "menu": "menu"
+          }
+        },
+        "popular_product_Xwjqcf": {
+          "type": "popular_product",
+          "disabled": true,
+          "settings": {
+            "title": "Featured product",
+            "collection": "acessorios",
+            "items_to_show": 3
+          }
+        },
+        "filter_giBtHK": {
+          "type": "filter",
+          "name": "Filtros",
+          "settings": {}
+        },
+        "image_banner_UUJxtT": {
+          "type": "image_banner",
+          "disabled": true,
+          "settings": {
+            "url": "shopify://collections",
+            "open_link": true
+          }
+        }
+      },
+      "block_order": [
+        "gender_filter_WjhFKQ",
+        "size_filter_beBB4b",
+        "categories_LYDr6p",
+        "popular_product_Xwjqcf",
+        "filter_giBtHK",
+        "image_banner_UUJxtT"
+      ],
+      "settings": {
+        "section_width": "stretch_width",
+        "enable_filtering": true,
+        "show_filter_counts": true,
+        "default_filter": "close_all",
+        "filter_layout": "drawer",
+        "vertical_posion": "left",
+        "number_products_per_page": true,
+        "sorting": true,
+        "grid_list": false,
+        "items_to_show": 24,
+        "items_per_row": 5,
+        "column_gap": 10,
+        "mobile_product_image_layout": "edge_bleed",
+        "pagination": "load_more_button",
+        "button_show_more": "Ver mais",
+        "promotion_link": "",
+        "promotion_postion": 6,
+        "items_per_row_mobile": "2",
+        "padding_top": 10,
+        "padding_bottom": 40
+      }
+    },
+    "collection_description": {
+      "type": "collection-description",
+      "settings": {
+        "heading": "",
+        "section_width": "container",
+        "header_alignment": "left",
+        "color_scheme": "",
+        "padding_top": 24,
+        "padding_bottom": 24,
+        "reset_spacing": false
+      }
+    },
+    "faq_agDxgP": {
+      "type": "faq",
+      "blocks": {
+        "faq_items_QXAFbn": {
+          "type": "faq-items",
+          "name": "Proteção UV50",
+          "settings": {
+            "faq_title": "Os produtos da BRK possuem proteção solar real?",
+            "faq_content": "Sim. Nossas camisas contam com a tecnologia <strong>UV50+</strong>, que bloqueia até 98% dos raios UVA e UVB. Essa proteção é aplicada diretamente nas fibras do tecido, o que garante que a eficácia não saia nas lavagens, mantendo você seguro durante toda a vida útil da peça."
+          }
+        },
+        "faq_items_YRnp6q": {
+          "type": "faq-items",
+          "name": "Tecidos das Camisas",
+          "settings": {
+            "faq_title": "Diferencial do tecido das camisas BRK",
+            "faq_content": "Utilizamos tecidos de alta tecnologia, que permite a rápida evaporação do suor, mantendo o corpo seco e em temperatura agradável, mesmo em atividades sob sol intenso ou práticas esportivas."
+          }
+        },
+        "faq_items_89HqMG": {
+          "type": "faq-items",
+          "name": "Tamanho Ideal",
+          "settings": {
+            "faq_title": "Como escolher o tamanho ideal?",
+            "faq_content": "Em cada página de produto, disponibilizamos uma <strong>Tabela de Medidas</strong>. Recomendamos comparar as medidas de uma peça que você já usa com os nossos valores."
+          }
+        },
+        "faq_items_LMUj4V": {
+          "type": "faq-items",
+          "name": "Cores das Camisas",
+          "settings": {
+            "faq_title": "As camisas desbotam com o tempo?",
+            "faq_content": "Não. Utilizamos um processo de sublimação de alta definição. Isso garante que as estampas e cores permaneçam vivas e vibrantes mesmo após diversas lavagens e exposição prolongada ao sol."
+          }
+        },
+        "faq_items_i3e4wD": {
+          "type": "faq-items",
+          "name": "Formas de Pagamento",
+          "settings": {
+            "faq_title": "Quais são as formas de pagamento e prazos de entrega?",
+            "faq_content": "Aceitamos as principais bandeiras de cartão de crédito (com parcelamento) e PIX. O prazo de entrega varia de acordo com a sua região e a modalidade de frete escolhida no carrinho."
+          }
+        },
+        "faq_items_hHXYXx": {
+          "type": "faq-items",
+          "settings": {
+            "faq_title": "Posso trocar o produto se não servir?",
+            "faq_content": "Se você recebeu um produto e não ficou satisfeito ou ele simplesmente não serviu, é possível fazer a solicitação devolução para estorno <strong>em até 7 dias corridos após a entrega</strong>. Para isso, o produto deverá estar em sua embalagem original, sem indícios de uso e com todos os itens e acessórios recebidos. Para os casos de insatisfação com o produto adquirido, solicite a troca, através do nosso Portal de Trocas e Devoluções, pelo endereço <a href=\"https://brkagro.troque.app.br/\" target=\"_blank\">https://brkagro.troque.app.br/</a>"
+          }
+        }
+      },
+      "block_order": [
+        "faq_items_QXAFbn",
+        "faq_items_YRnp6q",
+        "faq_items_89HqMG",
+        "faq_items_LMUj4V",
+        "faq_items_i3e4wD",
+        "faq_items_hHXYXx"
+      ],
+      "name": "t:sections.faq.presets.name",
+      "settings": {
+        "section_width": "container",
+        "color_scheme": "default",
+        "heading": "Perguntas Frequentes",
+        "description": "",
+        "header_size": "medium",
+        "header_alignment": "center",
+        "padding_top": 35,
+        "padding_bottom": 35,
+        "reset_spacing": true
+      }
+    }
+  },
+  "order": [
+    "banner",
+    "scrolling_text_L4EgPy",
+    "subcollection",
+    "main",
+    "collection_description",
+    "faq_agDxgP"
+  ]
+}
