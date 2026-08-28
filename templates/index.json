@@ -216,11 +216,25 @@
             "collection_title": "Nossa Senhora"
           }
         },
+        "collection_MbFTjX": {
+          "type": "collection",
+          "settings": {
+            "collection": "essenciais-sem-estampa",
+            "collection_title": "Lisas"
+          }
+        },
         "collection_REBGpn": {
           "type": "collection",
           "settings": {
             "collection": "sao-bento-2026",
             "collection_title": "São Bento"
+          }
+        },
+        "collection_Li4TCd": {
+          "type": "collection",
+          "settings": {
+            "collection": "colecao-brasil",
+            "collection_title": "Brasil"
           }
         },
         "collection_3frNWE": {
@@ -233,7 +247,9 @@
       },
       "block_order": [
         "collection_4yUXdU",
+        "collection_MbFTjX",
         "collection_REBGpn",
+        "collection_Li4TCd",
         "collection_3frNWE"
       ],
       "custom_css": [],
