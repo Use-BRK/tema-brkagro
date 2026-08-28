@@ -61,7 +61,7 @@
           "type": "collection",
           "name": "Long Horn",
           "settings": {
-            "collection": "",
+            "collection": "camisas-longhorn",
             "collection_image": "shopify://shop_images/LONGHORN.webp",
             "collection_title": ""
           }
