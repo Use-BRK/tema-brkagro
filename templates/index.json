@@ -291,26 +291,6 @@
     "banner_carousel_iVEDMG": {
       "type": "banner-carousel",
       "blocks": {
-        "card_AyYQxG": {
-          "type": "card",
-          "name": "Camisas Work",
-          "settings": {
-            "image": "shopify://shop_images/Card_BRK_AGRO_Work.webp",
-            "collection": "camisas-work",
-            "link": "",
-            "label": "Camisas Work"
-          }
-        },
-        "card_w8XfBY": {
-          "type": "card",
-          "name": "Camisas de Botão",
-          "settings": {
-            "image": "shopify://shop_images/Card_BRK_AGRO_Botao.webp",
-            "collection": "camisas-de-botao-country",
-            "link": "shopify://collections/camisas-de-botao-country",
-            "label": "Camisas de Botão"
-          }
-        },
         "card_j4crXK": {
           "type": "card",
           "name": "Botinas",
@@ -341,6 +321,26 @@
             "label": "Óculos de Sol"
           }
         },
+        "card_AyYQxG": {
+          "type": "card",
+          "name": "Camisas Work",
+          "settings": {
+            "image": "shopify://shop_images/Card_BRK_AGRO_Work.webp",
+            "collection": "camisas-work",
+            "link": "",
+            "label": "Camisas Work"
+          }
+        },
+        "card_w8XfBY": {
+          "type": "card",
+          "name": "Camisas de Botão",
+          "settings": {
+            "image": "shopify://shop_images/Card_BRK_AGRO_Botao.webp",
+            "collection": "camisas-de-botao-country",
+            "link": "shopify://collections/camisas-de-botao-country",
+            "label": "Camisas de Botão"
+          }
+        },
         "card_Az3eRR": {
           "type": "card",
           "name": "Calças Jeans",
@@ -353,11 +353,11 @@
         }
       },
       "block_order": [
-        "card_AyYQxG",
-        "card_w8XfBY",
         "card_j4crXK",
         "card_7tezkD",
         "card_jHmrEj",
+        "card_AyYQxG",
+        "card_w8XfBY",
         "card_Az3eRR"
       ],
       "name": "Banner Carousel",
