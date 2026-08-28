@@ -128,7 +128,7 @@
       "cart_thres2_html": "Gastar <span class=\"price\">{{ price }}</span> mais para aproveitar <span class=\"subheading_weight primary-color\">Frete grátis!</span>",
       "cart_thres3_html": "<span class=\"congratulations\">Parabéns!</span> Você tem frete grátis!",
       "free_shipping": "Gastar <span class=\"price\">{{ amount }}</span> mais para aproveitar <span class=\"subheading_weight primary-color\">Frete grátis!</span>",
-      "free_shipping_avaiable": "Parabéns! ",
+      "free_shipping_avaiable": "Parabéns! Ganhou <strong>frete grátis<strong>! ",
       "terms_conditions_text": "Termos de Serviço",
       "taxes_and_shipping_policy_at_checkout_html": "Impostos e <a href=\"{{ link }}\">envio</a> e descontos calculados na finalização da compra",
       "taxes_included_but_shipping_at_checkout": "Imposto incluído e frete calculado na finalização da compra",
