@@ -204,6 +204,99 @@
         "reset_spacing": true
       }
     },
+    "banner_carousel_iVEDMG": {
+      "type": "banner-carousel",
+      "blocks": {
+        "card_AyYQxG": {
+          "type": "card",
+          "name": "Camisas Work",
+          "settings": {
+            "image": "shopify://shop_images/Card_BRK_AGRO_Work.webp",
+            "collection": "camisas-work",
+            "link": "",
+            "label": "Camisas Work"
+          }
+        },
+        "card_w8XfBY": {
+          "type": "card",
+          "name": "Camisas de Botão",
+          "settings": {
+            "image": "shopify://shop_images/Card_BRK_AGRO_Botao.webp",
+            "collection": "camisas-de-botao-country",
+            "link": "shopify://collections/camisas-de-botao-country",
+            "label": "Camisas de Botão"
+          }
+        },
+        "card_j4crXK": {
+          "type": "card",
+          "name": "Botinas",
+          "settings": {
+            "image": "shopify://shop_images/Card_BRK_AGRO_Botinas.webp",
+            "collection": "botinas",
+            "link": "",
+            "label": "Botinas"
+          }
+        },
+        "card_7tezkD": {
+          "type": "card",
+          "name": "Bonés",
+          "settings": {
+            "image": "shopify://shop_images/Card_BRK_AGRO_bones.webp",
+            "collection": "bones",
+            "link": "",
+            "label": "Bonés"
+          }
+        },
+        "card_jHmrEj": {
+          "type": "card",
+          "name": "Óculos de Sol",
+          "settings": {
+            "image": "shopify://shop_images/Card_BRK_AGRO_oculos.webp",
+            "collection": "oculos-de-sol",
+            "link": "",
+            "label": "Óculos de Sol"
+          }
+        },
+        "card_Az3eRR": {
+          "type": "card",
+          "name": "Calças Jeans",
+          "settings": {
+            "image": "shopify://shop_images/Card_BRK_AGRO_Calca.webp",
+            "collection": "calcas-jeans",
+            "link": "",
+            "label": "Calça Jeans"
+          }
+        }
+      },
+      "block_order": [
+        "card_AyYQxG",
+        "card_w8XfBY",
+        "card_j4crXK",
+        "card_7tezkD",
+        "card_jHmrEj",
+        "card_Az3eRR"
+      ],
+      "name": "Banner Carousel",
+      "settings": {
+        "heading": "",
+        "header_size": "h3",
+        "header_alignment": "left",
+        "section_width": "full_width",
+        "card_width_desktop": 400,
+        "items_per_row_mobile": "1.5",
+        "card_scale_mobile": 135,
+        "column_gap": 8,
+        "card_radius": 2,
+        "color_scheme": "",
+        "show_arrows": true,
+        "show_dots": "dots_mobile",
+        "autoplay": false,
+        "autoplay_speed": 4,
+        "loop": false,
+        "padding_top": 46,
+        "padding_bottom": 16
+      }
+    },
     "collection_tab_kENEYA": {
       "type": "collection-tab",
       "blocks": {
@@ -260,99 +353,6 @@
         "padding_top": 50,
         "padding_bottom": 50,
         "reset_spacing": true
-      }
-    },
-    "banner_carousel_iVEDMG": {
-      "type": "banner-carousel",
-      "blocks": {
-        "card_j4crXK": {
-          "type": "card",
-          "name": "Botinas",
-          "settings": {
-            "image": "shopify://shop_images/Card_BRK_AGRO_Botinas.webp",
-            "collection": "botinas",
-            "link": "",
-            "label": "Botinas"
-          }
-        },
-        "card_7tezkD": {
-          "type": "card",
-          "name": "Bonés",
-          "settings": {
-            "image": "shopify://shop_images/Card_BRK_AGRO_bones.webp",
-            "collection": "bones",
-            "link": "",
-            "label": "Bonés"
-          }
-        },
-        "card_AyYQxG": {
-          "type": "card",
-          "name": "Camisas Work",
-          "settings": {
-            "image": "shopify://shop_images/Card_BRK_AGRO_Work.webp",
-            "collection": "camisas-work",
-            "link": "",
-            "label": "Camisas Work"
-          }
-        },
-        "card_jHmrEj": {
-          "type": "card",
-          "name": "Óculos de Sol",
-          "settings": {
-            "image": "shopify://shop_images/Card_BRK_AGRO_oculos.webp",
-            "collection": "oculos-de-sol",
-            "link": "",
-            "label": "Óculos de Sol"
-          }
-        },
-        "card_Az3eRR": {
-          "type": "card",
-          "name": "Calças Jeans",
-          "settings": {
-            "image": "shopify://shop_images/Card_BRK_AGRO_Calca.webp",
-            "collection": "calcas-jeans",
-            "link": "",
-            "label": "Calça Jeans"
-          }
-        },
-        "card_w8XfBY": {
-          "type": "card",
-          "name": "Camisas de Botão",
-          "settings": {
-            "image": "shopify://shop_images/Card_BRK_AGRO_Botao.webp",
-            "collection": "camisas-de-botao-country",
-            "link": "shopify://collections/camisas-de-botao-country",
-            "label": "Camisas de Botão"
-          }
-        }
-      },
-      "block_order": [
-        "card_j4crXK",
-        "card_7tezkD",
-        "card_AyYQxG",
-        "card_jHmrEj",
-        "card_Az3eRR",
-        "card_w8XfBY"
-      ],
-      "name": "Banner Carousel",
-      "settings": {
-        "heading": "",
-        "header_size": "h3",
-        "header_alignment": "left",
-        "section_width": "full_width",
-        "card_width_desktop": 400,
-        "items_per_row_mobile": "1.5",
-        "card_scale_mobile": 135,
-        "column_gap": 8,
-        "card_radius": 2,
-        "color_scheme": "",
-        "show_arrows": true,
-        "show_dots": "dots_mobile",
-        "autoplay": false,
-        "autoplay_speed": 4,
-        "loop": false,
-        "padding_top": 0,
-        "padding_bottom": 0
       }
     },
     "collection_tab_gcdBTy": {
@@ -1024,8 +1024,8 @@
   },
   "order": [
     "slideshow_8KKtNU",
-    "collection_tab_kENEYA",
     "banner_carousel_iVEDMG",
+    "collection_tab_kENEYA",
     "collection_tab_gcdBTy",
     "collection_tab_9R4n9j",
     "collection_tab_ccYc98",
