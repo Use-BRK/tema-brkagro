@@ -370,7 +370,7 @@
           "type": "collection",
           "settings": {
             "collection": "essenciais-sem-estampa",
-            "collection_title": "Essenciais & Lisas"
+            "collection_title": "Lisas"
           }
         }
       },
@@ -382,7 +382,7 @@
       "settings": {
         "section_width": "stretch_width",
         "color_scheme": "scheme-accf3b11-ba40-4a3e-bafb-243ece6683ec",
-        "heading": "Essenciais",
+        "heading": "Essenciais & Lisas",
         "description": "",
         "show_view_all_button": true,
         "header_size": "large",
