@@ -17,7 +17,7 @@
         "shipping_countdown_F86tnm": {
           "type": "shipping_countdown",
           "settings": {
-            "message": "FRETE GRÁTIS ACIMA DE R$199 - PARA TODO BRASIL",
+            "message": "FRETE GRÁTIS ACIMA DE R$199",
             "label_before": "Termina em:",
             "start_date": "2026-08-28",
             "start_time": "00:00",
@@ -25,7 +25,7 @@
             "end_time": "23:59",
             "expired_message": "",
             "custom_colors": true,
-            "bg_color": "#0C0C0C",
+            "bg_color": "#0c0c0c",
             "text_color": "#ffffff",
             "timer_color": "#ffed00",
             "hidden_on_mobile": false
