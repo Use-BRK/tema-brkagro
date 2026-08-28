@@ -14,8 +14,26 @@
     "top_bar_CbXNYj": {
       "type": "top-bar",
       "blocks": {
+        "shipping_countdown_F86tnm": {
+          "type": "shipping_countdown",
+          "settings": {
+            "message": "FRETE GRÁTIS ACIMA DE R$199",
+            "label_before": "Termina em:",
+            "start_date": "2026-08-28",
+            "start_time": "00:00",
+            "end_date": "2026-08-31",
+            "end_time": "23:59",
+            "expired_message": "",
+            "custom_colors": true,
+            "bg_color": "#0c0c0c",
+            "text_color": "#ffffff",
+            "timer_color": "#ffed00",
+            "hidden_on_mobile": false
+          }
+        },
         "text_slider_LFaC38": {
           "type": "text_slider",
+          "disabled": true,
           "settings": {
             "text1": "<strong>FRETE FIXO R$9,90 — PARA TODO BRASIL</strong>",
             "coupon1": "",
@@ -41,6 +59,7 @@
         }
       },
       "block_order": [
+        "shipping_countdown_F86tnm",
         "text_slider_LFaC38"
       ],
       "custom_css": [
