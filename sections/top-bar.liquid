@@ -185,6 +185,8 @@
       letter-spacing: 0;
       white-space: nowrap;
       color: var(--topbar-shipping-accent, inherit);
+      font-size: var(--topbar-shipping-timer-size, 1.4em);
+      line-height: 1;
     }
     #topbar .topbar-shipping__seg {
       min-width: 2ch;
@@ -407,7 +409,8 @@
                   #topbar.topbar { background: {{ block_st.bg_color }} !important; }
                 {%- endstyle -%}
               {%- endif -%}
-              {%- capture shipping_color_vars -%}
+              {%- capture shipping_style_vars -%}
+                {%- if block_st.timer_font_size != blank -%}--topbar-shipping-timer-size: {{ block_st.timer_font_size }}px;{%- endif -%}
                 {%- if block_st.custom_colors -%}
                   {%- if block_st.text_color != blank -%}--topbar-shipping-text: {{ block_st.text_color }};{%- endif -%}
                   {%- if block_st.timer_color != blank -%}--topbar-shipping-accent: {{ block_st.timer_color }};{%- endif -%}
@@ -419,7 +422,7 @@
                 data-end="{{ end_dt }}"
                 data-expired-message="{{ block_st.expired_message | escape }}"
                 {% if out_of_window %}hidden{% endif %}
-                {% if shipping_color_vars != blank %}style="{{ shipping_color_vars | strip | strip_newlines }}"{% endif %}
+                {% if shipping_style_vars != blank %}style="{{ shipping_style_vars | strip | strip_newlines }}"{% endif %}
               >
                 {%- if block_st.message != blank -%}
                   <div class="topbar-shipping__message">{{ block_st.message }}</div>
@@ -945,6 +948,16 @@
           "id": "label_before",
           "label": "Texto antes do contador",
           "default": "Termina em:"
+        },
+        {
+          "type": "range",
+          "id": "timer_font_size",
+          "label": "Tamanho do timer",
+          "min": 12,
+          "max": 48,
+          "step": 1,
+          "unit": "px",
+          "default": 18
         },
         {
           "type": "text",
