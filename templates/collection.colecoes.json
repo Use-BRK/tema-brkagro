@@ -34,7 +34,7 @@
           "type": "collection",
           "name": "Femininas 2026",
           "settings": {
-            "collection": "",
+            "collection": "colecao-femininas-2026",
             "collection_image": "shopify://shop_images/FEMININAS.webp",
             "collection_title": ""
           }
