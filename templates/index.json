@@ -207,6 +207,13 @@
     "collection_tab_kENEYA": {
       "type": "collection-tab",
       "blocks": {
+        "collection_4yUXdU": {
+          "type": "collection",
+          "settings": {
+            "collection": "nossa-senhora-aparecida",
+            "collection_title": "Nossa Senhora"
+          }
+        },
         "collection_REBGpn": {
           "type": "collection",
           "settings": {
@@ -220,19 +227,12 @@
             "collection": "apache",
             "collection_title": "Apache"
           }
-        },
-        "collection_4yUXdU": {
-          "type": "collection",
-          "settings": {
-            "collection": "nossa-senhora-aparecida",
-            "collection_title": "Nossa Senhora"
-          }
         }
       },
       "block_order": [
+        "collection_4yUXdU",
         "collection_REBGpn",
-        "collection_3frNWE",
-        "collection_4yUXdU"
+        "collection_3frNWE"
       ],
       "custom_css": [],
       "name": "Lançamentos",
