@@ -105,6 +105,7 @@
         "slider_item_wzBeHe": {
           "type": "slider_item",
           "name": "Camisas Country",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/FULLBANNER_DESKTOP_COUNTRYXADREZ.png",
             "image_mobile": "shopify://shop_images/FULLBANNER_MOBILE_COUNTRYXADREZ.png",
@@ -135,6 +136,7 @@
         "slider_item_GGRrnM": {
           "type": "slider_item",
           "name": "CALÇAS JEANS",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/Prancheta_2_472af1bb-c8d4-4ce5-a4d6-e8f554bb2367.png",
             "image_mobile": "shopify://shop_images/Prancheta_1_eb934097-955b-4d1b-8a0c-07dae4b1eaeb.png",
