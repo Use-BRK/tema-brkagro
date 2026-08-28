@@ -147,6 +147,58 @@
         height: 18px;
       }
     }
+    /* ---- Frete grátis + contagem regressiva ---- */
+    topbar-shipping-timer[hidden] {
+      display: none !important;
+    }
+    #topbar .topbar-shipping {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1px;
+      flex: 1 1 auto;
+      min-width: 0;
+      text-align: center;
+      line-height: 1.2;
+      color: var(--topbar-shipping-text, inherit);
+    }
+    #topbar .topbar-shipping__message {
+      white-space: normal;
+    }
+    #topbar .topbar-shipping__timer-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    #topbar .topbar-shipping__label {
+      font-weight: var(--body-weight);
+      opacity: 0.9;
+    }
+    #topbar .topbar-shipping__countdown {
+      display: inline-flex;
+      align-items: center;
+      font-weight: var(--heading-weight, 700);
+      font-variant-numeric: tabular-nums;
+      letter-spacing: 0;
+      white-space: nowrap;
+      color: var(--topbar-shipping-accent, inherit);
+    }
+    #topbar .topbar-shipping__seg {
+      min-width: 2ch;
+      text-align: center;
+    }
+    #topbar .topbar-shipping__seg:not(:last-child)::after {
+      content: ':';
+      padding: 0 3px;
+      font-weight: var(--body-weight);
+      opacity: 0.7;
+    }
+    #topbar .topbar-shipping__expired {
+      font-weight: var(--heading-weight, 700);
+    }
   {%- endstyle -%}
   {%- capture style -%}
     --section-pt: {{ section_st.padding_top }}; --section-pb: {{ section_st.padding_bottom }};--swiper-navigation-color: var(--color-text);
@@ -317,6 +369,70 @@
                 </slide-section>
               </div>
               {%- endif -%}
+            {%- when 'shipping_countdown' -%}
+              {%- liquid
+                # Deadline fixado no fuso da loja para todos os visitantes verem o mesmo tempo
+                assign tz = 'now' | date: '%z'
+                assign tz_h = tz | slice: 0, 3
+                assign tz_m = tz | slice: 3, 2
+                assign tz_colon = tz_h | append: ':' | append: tz_m
+                assign s_time = block_st.start_time | default: '00:00'
+                assign e_time = block_st.end_time | default: '23:59'
+                assign start_dt = ''
+                if block_st.start_date != blank
+                  assign start_dt = block_st.start_date | append: 'T' | append: s_time | append: ':00' | append: tz_colon
+                endif
+                assign end_dt = ''
+                if block_st.end_date != blank
+                  assign end_dt = block_st.end_date | append: 'T' | append: e_time | append: ':59' | append: tz_colon
+                endif
+                # Estado inicial (aproximado, servidor) só p/ evitar flash; o JS corrige a cada segundo
+                assign now_ts = 'now' | date: '%s' | plus: 0
+                assign out_of_window = false
+                if start_dt != blank
+                  assign start_ts = start_dt | date: '%s' | plus: 0
+                  if now_ts < start_ts
+                    assign out_of_window = true
+                  endif
+                endif
+                if end_dt != blank
+                  assign end_ts = end_dt | date: '%s' | plus: 0
+                  if now_ts > end_ts and block_st.expired_message == blank
+                    assign out_of_window = true
+                  endif
+                endif
+              -%}
+              {%- if block_st.custom_colors and block_st.bg_color != blank -%}
+                {%- style -%}
+                  #topbar.topbar { background: {{ block_st.bg_color }} !important; }
+                {%- endstyle -%}
+              {%- endif -%}
+              {%- capture shipping_color_vars -%}
+                {%- if block_st.custom_colors -%}
+                  {%- if block_st.text_color != blank -%}--topbar-shipping-text: {{ block_st.text_color }};{%- endif -%}
+                  {%- if block_st.timer_color != blank -%}--topbar-shipping-accent: {{ block_st.timer_color }};{%- endif -%}
+                {%- endif -%}
+              {%- endcapture -%}
+              <topbar-shipping-timer
+                class="topbar-item topbar-shipping{% if block_st.hidden_on_mobile %} hidden block-1025{% endif %}"
+                data-start="{{ start_dt }}"
+                data-end="{{ end_dt }}"
+                data-expired-message="{{ block_st.expired_message | escape }}"
+                {% if out_of_window %}hidden{% endif %}
+                {% if shipping_color_vars != blank %}style="{{ shipping_color_vars | strip | strip_newlines }}"{% endif %}
+              >
+                {%- if block_st.message != blank -%}
+                  <div class="topbar-shipping__message">{{ block_st.message }}</div>
+                {%- endif -%}
+                {%- if end_dt != blank -%}
+                  <div class="topbar-shipping__timer-row">
+                    {%- if block_st.label_before != blank -%}
+                      <span class="topbar-shipping__label">{{ block_st.label_before | escape }}</span>
+                    {%- endif -%}
+                    <div class="topbar-shipping__countdown"></div>
+                  </div>
+                {%- endif -%}
+              </topbar-shipping-timer>
             {%- when 'cur_lang' -%}
               <div class="lang__currency-desktop justify-content-center justity-md-unset topbar-item{% if block_st.hidden_on_mobile %} hidden flex-1025{% else %} flex{% endif %} flex-wrap gap-10 gap-lg-25 align-center row-gap-0">
                 {%- if block_st.menu_link != blank -%}
@@ -390,6 +506,87 @@
       });
     });
   });
+
+  if (!customElements.get('topbar-shipping-timer')) {
+    class TopbarShippingTimer extends HTMLElement {
+      connectedCallback() {
+        this.countdownEl = this.querySelector('.topbar-shipping__countdown');
+        this.timerRow = this.querySelector('.topbar-shipping__timer-row');
+        this.start = this.parseDate(this.dataset.start);
+        this.end = this.parseDate(this.dataset.end);
+        this.expiredMessage = (this.dataset.expiredMessage || '').trim();
+
+        // Sem data de fim válida: mantém apenas a mensagem, sem contador.
+        if (!this.end) {
+          if (this.timerRow) this.timerRow.remove();
+          this.hidden = false;
+          return;
+        }
+
+        this.update = this.update.bind(this);
+        this.update();
+        this.interval = setInterval(this.update, 1000);
+      }
+
+      disconnectedCallback() {
+        if (this.interval) clearInterval(this.interval);
+      }
+
+      parseDate(value) {
+        if (!value) return null;
+        var d = new Date(value);
+        return isNaN(d.getTime()) ? null : d;
+      }
+
+      update() {
+        var now = Date.now();
+
+        // Ainda não começou -> esconde a barra inteira (mostra sozinha ao iniciar).
+        if (this.start && now < this.start.getTime()) {
+          this.hidden = true;
+          return;
+        }
+
+        var diff = this.end.getTime() - now;
+
+        // Terminou.
+        if (diff <= 0) {
+          if (this.interval) clearInterval(this.interval);
+          if (this.expiredMessage) {
+            this.hidden = false;
+            if (this.timerRow) {
+              this.timerRow.innerHTML =
+                '<span class="topbar-shipping__expired"></span>';
+              this.timerRow.firstChild.textContent = this.expiredMessage;
+            }
+          } else {
+            this.hidden = true;
+          }
+          return;
+        }
+
+        this.hidden = false;
+        var d = Math.floor(diff / 86400000);
+        var h = Math.floor((diff / 3600000) % 24);
+        var m = Math.floor((diff / 60000) % 60);
+        var s = Math.floor((diff / 1000) % 60);
+        var pad = function (n) { return String(n).padStart(2, '0'); };
+
+        var segs = [];
+        if (d > 0) segs.push(d);
+        segs.push(h, m, s);
+
+        if (this.countdownEl) {
+          this.countdownEl.innerHTML = segs
+            .map(function (v) {
+              return '<span class="topbar-shipping__seg">' + pad(v) + '</span>';
+            })
+            .join('');
+        }
+      }
+    }
+    customElements.define('topbar-shipping-timer', TopbarShippingTimer);
+  }
 {% endjavascript %}
 {% schema %}
 {
@@ -721,6 +918,98 @@
           "id": "compact_link_2",
           "label": "Link do Texto 2 (opcional)",
           "info": "Se preenchido, o Texto 2 (com o ícone) vira um link clicável. Aceita link interno ou externo."
+        }
+      ]
+    },
+    {
+      "type": "shipping_countdown",
+      "name": "Frete grátis + contagem",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "message",
+          "label": "Mensagem",
+          "default": "FRETE GRÁTIS ACIMA DE R$299 - PARA TODO BRASIL"
+        },
+        {
+          "type": "header",
+          "content": "Contagem regressiva"
+        },
+        {
+          "type": "paragraph",
+          "content": "O tempo é calculado no fuso da loja e roda ao vivo no navegador. Formato de data: AAAA-MM-DD. Formato de hora: HH:MM."
+        },
+        {
+          "type": "text",
+          "id": "label_before",
+          "label": "Texto antes do contador",
+          "default": "Termina em:"
+        },
+        {
+          "type": "text",
+          "id": "start_date",
+          "label": "Data de início (AAAA-MM-DD)",
+          "info": "Deixe em branco para começar imediatamente. Antes dessa data a barra fica oculta."
+        },
+        {
+          "type": "text",
+          "id": "start_time",
+          "label": "Hora de início (HH:MM)",
+          "default": "00:00"
+        },
+        {
+          "type": "text",
+          "id": "end_date",
+          "label": "Data de término (AAAA-MM-DD)",
+          "default": "2026-12-31"
+        },
+        {
+          "type": "text",
+          "id": "end_time",
+          "label": "Hora de término (HH:MM)",
+          "default": "23:59"
+        },
+        {
+          "type": "text",
+          "id": "expired_message",
+          "label": "Mensagem ao terminar",
+          "info": "Exibida no lugar do contador quando a promoção acabar. Deixe em branco para esconder a barra automaticamente."
+        },
+        {
+          "type": "header",
+          "content": "Cores"
+        },
+        {
+          "type": "checkbox",
+          "id": "custom_colors",
+          "label": "Usar cores personalizadas",
+          "info": "Se desligado, usa o Esquema de cores da barra superior.",
+          "default": false
+        },
+        {
+          "type": "color",
+          "id": "bg_color",
+          "label": "Fundo da barra",
+          "default": "#085b47"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Cor do texto (mensagem)",
+          "default": "#ffffff"
+        },
+        {
+          "type": "color",
+          "id": "timer_color",
+          "label": "Cor do timer",
+          "default": "#ffed00"
+        },
+        {
+          "type": "checkbox",
+          "id": "hidden_on_mobile",
+          "label": "t:sections.top-bar.blocks.hidden_on_mobile.label",
+          "default": false
         }
       ]
     },
