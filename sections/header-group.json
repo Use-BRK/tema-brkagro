@@ -166,7 +166,7 @@
         "logo_position": "left",
         "separator_line": "unset",
         "enable_login_popup": true,
-        "sticky_header_type": "always",
+        "sticky_header_type": "none",
         "sticky_header_mobile": true,
         "transparent_header": false,
         "transparent_mobile": false,
@@ -239,6 +239,17 @@
             "pin_to_bottom": false
           }
         },
+        "button_NRWNdw": {
+          "type": "button",
+          "name": "Minha Conta",
+          "settings": {
+            "button_text": "Coleções do Agro",
+            "button_link": "shopify://collections/colecoes-do-agro",
+            "button_style": "primary",
+            "padding_bottom": 0,
+            "pin_to_bottom": true
+          }
+        },
         "button_X8Eebj": {
           "type": "button",
           "name": "Minha Conta",
@@ -282,6 +293,7 @@
       },
       "block_order": [
         "menu_9XmD4T",
+        "button_NRWNdw",
         "button_X8Eebj",
         "button_xzXqHb",
         "login_WcQMag",
