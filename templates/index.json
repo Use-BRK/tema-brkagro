@@ -12,6 +12,36 @@
     "slideshow_8KKtNU": {
       "type": "slideshow",
       "blocks": {
+        "slider_item_wzBeHe": {
+          "type": "slider_item",
+          "name": "Brasil Patriota",
+          "settings": {
+            "image": "shopify://shop_images/fullbanner_desktop_brasilpatriota.webp",
+            "image_mobile": "shopify://shop_images/fullbanner_mobile_brasilpatriota.webp",
+            "overlay_opacity": 0,
+            "link_banner": "shopify://collections/brasil-patriota-2026",
+            "slider_effect": "fade-in-right",
+            "subheading": "",
+            "heading": "",
+            "description": "",
+            "first_button_label": "",
+            "first_button_link": "",
+            "first_button_style": false,
+            "second_button_label": "",
+            "second_button_link": "",
+            "second_button_style": false,
+            "content_alignment": "center",
+            "content_position": "top-center",
+            "content_width": "full_width",
+            "content_max_width": 100,
+            "content_padding_block": 40,
+            "content_padding_inline": 0,
+            "show_content_background": false,
+            "content_background": "#ffffff",
+            "content_box_opacity": 100,
+            "content_alignment_mobile": "center"
+          }
+        },
         "slider_item_rYBq93": {
           "type": "slider_item",
           "name": "Nossa Senhora",
@@ -101,73 +131,13 @@
             "content_box_opacity": 100,
             "content_alignment_mobile": "center"
           }
-        },
-        "slider_item_wzBeHe": {
-          "type": "slider_item",
-          "name": "Camisas Country",
-          "settings": {
-            "image": "shopify://shop_images/FULLBANNER_DESKTOP_COUNTRYXADREZ.png",
-            "image_mobile": "shopify://shop_images/FULLBANNER_MOBILE_COUNTRYXADREZ.png",
-            "overlay_opacity": 0,
-            "link_banner": "shopify://collections/camisas-de-botao-country",
-            "slider_effect": "fade-in-right",
-            "subheading": "",
-            "heading": "",
-            "description": "",
-            "first_button_label": "",
-            "first_button_link": "",
-            "first_button_style": false,
-            "second_button_label": "",
-            "second_button_link": "",
-            "second_button_style": false,
-            "content_alignment": "center",
-            "content_position": "top-center",
-            "content_width": "full_width",
-            "content_max_width": 100,
-            "content_padding_block": 40,
-            "content_padding_inline": 0,
-            "show_content_background": false,
-            "content_background": "#ffffff",
-            "content_box_opacity": 100,
-            "content_alignment_mobile": "center"
-          }
-        },
-        "slider_item_GGRrnM": {
-          "type": "slider_item",
-          "name": "FRETE ZERO",
-          "disabled": true,
-          "settings": {
-            "overlay_opacity": 0,
-            "link_banner": "shopify://collections/colecoes-do-agro",
-            "slider_effect": "fade-in-right",
-            "subheading": "",
-            "heading": "",
-            "description": "",
-            "first_button_label": "",
-            "first_button_link": "",
-            "first_button_style": false,
-            "second_button_label": "",
-            "second_button_link": "",
-            "second_button_style": false,
-            "content_alignment": "center",
-            "content_position": "top-center",
-            "content_width": "full_width",
-            "content_max_width": 100,
-            "content_padding_block": 40,
-            "content_padding_inline": 0,
-            "show_content_background": false,
-            "content_background": "#ffffff",
-            "content_box_opacity": 100,
-            "content_alignment_mobile": "center"
-          }
         }
       },
       "block_order": [
+        "slider_item_wzBeHe",
         "slider_item_rYBq93",
         "slider_item_K3DbMk",
-        "slider_item_KnUMfi",
-        "slider_item_wzBeHe",
-        "slider_item_GGRrnM"
+        "slider_item_KnUMfi"
       ],
       "custom_css": [],
       "name": "Fullbanners",
@@ -206,6 +176,13 @@
     "collection_tab_kENEYA": {
       "type": "collection-tab",
       "blocks": {
+        "collection_Li4TCd": {
+          "type": "collection",
+          "settings": {
+            "collection": "brasil-patriota-2026",
+            "collection_title": "Brasil"
+          }
+        },
         "collection_MbFTjX": {
           "type": "collection",
           "settings": {
@@ -227,13 +204,6 @@
             "collection_title": "São Bento"
           }
         },
-        "collection_Li4TCd": {
-          "type": "collection",
-          "settings": {
-            "collection": "colecao-brasil",
-            "collection_title": "Brasil"
-          }
-        },
         "collection_3frNWE": {
           "type": "collection",
           "settings": {
@@ -243,10 +213,10 @@
         }
       },
       "block_order": [
+        "collection_Li4TCd",
         "collection_MbFTjX",
         "collection_4yUXdU",
         "collection_REBGpn",
-        "collection_Li4TCd",
         "collection_3frNWE"
       ],
       "custom_css": [],
