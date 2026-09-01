@@ -20,43 +20,151 @@
 
 {%- if show_gender_filter -%}
 <style>
-  /* Gender bar vive DENTRO da .toolbar; controles alinhados na mesma altura */
-  .gender-filter-bar {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    flex-shrink: 0;
+  /* ===========================================================
+     Barra de filtro — chips minimalistas (Filtrar + Masc/Fem)
+     Pílulas com borda verde fina; preenchem no hover/ativo.
+     Cor da marca = var(--btn-primary-bg-color) (#085b47).
+     =========================================================== */
+  .toolbar-products.toolbar--gender {
+    --chip-green: var(--btn-primary-bg-color, #085b47);
+    /* alinha Filtro, pills e Ordenar pela MESMA base (o rótulo fica como
+       legenda acima das pills sem empurrar os outros controles) */
+    align-items: flex-end;
+    row-gap: 10px;
   }
-  .gender-filter-btn {
+
+  /* Desenho compartilhado: Filtrar + botões de gênero */
+  .toolbar--gender .btn-filter,
+  .toolbar--gender .gender-filter-btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-height: 42px;
-    padding: 0 26px;
+    min-height: 40px;
+    padding: 0 20px;
     box-sizing: border-box;
+    gap: 8px;
     font-size: 13px;
-    font-weight: 700;
-    letter-spacing: 1px;
+    font-weight: 600;
+    letter-spacing: 0.2px;
     line-height: normal;
-    text-transform: uppercase;
-    border: 2px solid var(--color-heading, #222);
+    text-transform: none;
+    border: 1.5px solid var(--chip-green);
+    border-radius: 50px;
     background: transparent;
-    color: var(--color-heading, #222);
+    color: var(--chip-green);
     cursor: pointer;
-    transition: all 0.25s ease;
-    border-radius: 0;
     white-space: nowrap;
+    box-shadow: none;
+    transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
   }
-  .gender-filter-btn:hover,
-  .gender-filter-btn.active {
-    background: var(--color-heading, #222);
-    color: var(--color-background, #fff);
+  /* Ícone do funil acompanha a cor do texto (era fill=#fff fixo) */
+  .toolbar--gender .btn-filter svg path {
+    fill: currentColor;
   }
-  /* Botão de Filtro na mesma altura dos de gênero (desktop) */
-  .toolbar--gender .btn-filter {
-    min-height: 42px;
+  .toolbar--gender .btn-filter:hover,
+  .toolbar--gender .gender-filter-btn:hover {
+    background: var(--chip-green);
+    color: #fff;
+  }
+  .toolbar--gender .gender-filter-btn.active {
+    background: var(--chip-green);
+    color: #fff;
+    box-shadow: 0 4px 12px -4px rgba(8, 91, 71, 0.5);
+  }
+
+  /* Grupo de gênero: rótulo "ESCOLHA O MODELO" em cima, pills embaixo.
+     Usa wrap com rótulo em linha cheia (em vez de column) para que as
+     pills NUNCA empilhem, mesmo no estado filtrado sem o wrapper. */
+  .gender-filter-bar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 6px 10px;
+    flex-shrink: 0;
+  }
+  .gender-filter-label {
+    flex-basis: 100%;
+    text-align: center;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #6b6b6b;
+    line-height: 1;
+  }
+  .gender-filter-btns {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  /* Contagem de produtos mais discreta ao lado do chip */
+  .toolbar--gender .toolbar-amount {
+    color: #6b6b6b;
+    font-size: 13px;
+  }
+
+  /* Ordenar por: mesma pílula outline dos chips */
+  .toolbar--gender .toolbar-sorter .select-selected {
+    min-height: 40px;
+    padding: 0 18px;
     box-sizing: border-box;
+    border: 1.5px solid var(--chip-green);
+    border-radius: 50px;
+    color: var(--chip-green);
+    transition: background-color 0.2s ease, color 0.2s ease;
   }
+  .toolbar--gender .toolbar-sorter .select-selected:hover {
+    background: var(--chip-green);
+    color: #fff;
+  }
+  /* neutraliza a borda interna do label pra não duplicar contorno */
+  .toolbar--gender .toolbar-sorter .select-selected label {
+    border: 0;
+    padding: 0;
+    min-height: 0;
+  }
+  /* valor selecionado ("Em destaque") herda a cor da pílula */
+  .toolbar--gender .toolbar-sorter .select-selected .heading-color {
+    color: inherit;
+  }
+
+  /* ===========================================================
+     Filtros ativos (filter-current) no mesmo idioma dos chips
+     =========================================================== */
+  .sec__collection-main .filter-current .link-filter {
+    border: 1.5px solid var(--btn-primary-bg-color, #085b47);
+    border-radius: 50px;
+    background: transparent;
+    color: var(--btn-primary-bg-color, #085b47);
+    padding: 8px 16px;
+    gap: 10px;
+    font-weight: 600;
+  }
+  .sec__collection-main .filter-current .link-filter svg,
+  .sec__collection-main .filter-current .link-filter svg * {
+    color: currentColor;
+    fill: currentColor;
+  }
+  .sec__collection-main .filter-current .link-filter:hover {
+    background: var(--btn-primary-bg-color, #085b47);
+    color: #fff;
+  }
+  /* "Limpar tudo" permanece como ação preenchida, mas em pílula coerente */
+  .sec__collection-main .filter-current .filters_clear {
+    border: 1.5px solid var(--btn-primary-bg-color, #085b47);
+    border-radius: 50px;
+    background: var(--btn-primary-bg-color, #085b47);
+    color: #fff;
+    padding: 8px 18px;
+  }
+  .sec__collection-main .filter-current .filters_clear:hover {
+    background: transparent;
+    color: var(--btn-primary-bg-color, #085b47);
+  }
+
   @media (max-width: 749px) {
     /* Mobile: Filtro + gênero + Ordenar numa linha só */
     .toolbar-products.toolbar--gender {
@@ -65,10 +173,10 @@
     .gender-filter-bar {
       gap: 6px;
     }
-    .gender-filter-btn {
+    .toolbar--gender .btn-filter,
+    .toolbar--gender .gender-filter-btn {
       padding: 0 16px;
       font-size: 12px;
-      letter-spacing: 0.5px;
     }
   }
   @media (max-width: 575.98px) {
@@ -88,18 +196,19 @@
     /* Todos os controles com a MESMA altura no mobile */
     .toolbar--gender .gender-filter-btn,
     .toolbar--gender .btn-filter,
-    .toolbar--gender .toolbar-sorter label {
-      min-height: 40px;
+    .toolbar--gender .toolbar-sorter .select-selected {
+      min-height: 38px;
       box-sizing: border-box;
     }
-    .toolbar--gender .gender-filter-btn {
+    .toolbar--gender .gender-filter-btn,
+    .toolbar--gender .btn-filter,
+    .toolbar--gender .toolbar-sorter .select-selected {
       padding: 0 14px;
     }
-    .toolbar--gender .btn-filter {
-      padding: 0 12px;
-    }
-    .toolbar--gender .toolbar-sorter label {
-      padding: 0 11px;
+    /* rótulo do grupo de gênero um pouco menor no mobile */
+    .gender-filter-label {
+      font-size: 10px;
+      letter-spacing: 1px;
     }
   }
 </style>

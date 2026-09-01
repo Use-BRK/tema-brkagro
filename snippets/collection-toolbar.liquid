@@ -135,8 +135,11 @@
   {%- endif -%}
   {%- if show_gender_filter -%}
     <div class="gender-filter-bar" id="gender-filter-bar" {{ gender_attrs }}>
-      <button class="gender-filter-btn{% if masc_active %} active{% endif %}" data-filter-value="{{ masc_value }}" type="button">{{ gender_label_masc }}</button>
-      <button class="gender-filter-btn{% if fem_active %} active{% endif %}" data-filter-value="{{ fem_value }}" type="button">{{ gender_label_fem }}</button>
+      <span class="gender-filter-label">Escolha o modelo</span>
+      <div class="gender-filter-btns">
+        <button class="gender-filter-btn{% if masc_active %} active{% endif %}" data-filter-value="{{ masc_value }}" type="button">{{ gender_label_masc }}</button>
+        <button class="gender-filter-btn{% if fem_active %} active{% endif %}" data-filter-value="{{ fem_value }}" type="button">{{ gender_label_fem }}</button>
+      </div>
     </div>
   {%- endif -%}
   {%- if sorting -%}
