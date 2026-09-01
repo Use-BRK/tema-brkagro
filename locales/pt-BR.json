@@ -850,7 +850,7 @@
       "marketing": {
         "accept_marketing_checkbox_label": "Receba rastreio dos seus pedidos por e-mail",
         "post_accept_marketing_checkbox_label": "Você se inscreveu para receber descontos e ofertas por e-mail",
-        "accept_sms_checkbox_label": "Receba rastreio dos seus pedidos por SMS"
+        "accept_sms_checkbox_label": "Receba rastreio dos seus pedidos pelo WhatsApp"
       },
       "order_summary": {
         "discount_discovery": {
