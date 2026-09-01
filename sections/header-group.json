@@ -16,9 +16,11 @@
       "blocks": {
         "shipping_countdown_F86tnm": {
           "type": "shipping_countdown",
+          "disabled": true,
           "settings": {
             "message": "FRETE GRÁTIS ACIMA DE R$199",
             "label_before": "Termina em:",
+            "timer_font_size": 18,
             "start_date": "2026-08-28",
             "start_time": "00:00",
             "end_date": "2026-08-31",
@@ -33,7 +35,6 @@
         },
         "text_slider_LFaC38": {
           "type": "text_slider",
-          "disabled": true,
           "settings": {
             "text1": "<strong>FRETE FIXO R$9,90 — PARA TODO BRASIL</strong>",
             "coupon1": "",
