@@ -73,18 +73,17 @@
   }
 
   /* Grupo de gênero: rótulo "ESCOLHA O MODELO" em cima, pills embaixo.
-     Usa wrap com rótulo em linha cheia (em vez de column) para que as
-     pills NUNCA empilhem, mesmo no estado filtrado sem o wrapper. */
+     Coluna (largura = conteúdo). As pills ficam dentro de .gender-filter-btns,
+     então não empilham. Evita o flex-basis:100% no rótulo, que inflava a
+     largura do grupo (bug de porcentagem em container shrink-to-fit). */
   .gender-filter-bar {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    gap: 6px 10px;
+    gap: 6px;
     flex-shrink: 0;
   }
   .gender-filter-label {
-    flex-basis: 100%;
     text-align: center;
     font-size: 11px;
     font-weight: 700;
@@ -92,6 +91,7 @@
     text-transform: uppercase;
     color: #6b6b6b;
     line-height: 1;
+    white-space: nowrap;
   }
   .gender-filter-btns {
     display: flex;
@@ -180,9 +180,29 @@
     }
   }
   @media (max-width: 575.98px) {
-    /* Centraliza o grupo Filtro + gênero + Ordenar */
+    /* Uma linha só: Filtro (esquerda) — [ESCOLHA O MODELO / pills] (centro)
+       — Ordenar (direita), tudo na MESMA linha das pills.
+       As laterais (flex:1) centram o grupo de gênero e encostam
+       Filtro/Ordenar nas pontas. */
     .toolbar-products.toolbar--gender {
-      justify-content: center;
+      flex-wrap: nowrap;
+      gap: 6px;
+    }
+    .toolbar--gender .toolbar-left,
+    .toolbar--gender .toolbar-sorter {
+      flex: 1 1 0;
+      min-width: 0;
+    }
+    .toolbar--gender .toolbar-sorter {
+      justify-content: flex-end;
+    }
+    .toolbar--gender .gender-filter-bar {
+      flex: 0 0 auto;
+    }
+    /* Filtro e Ordenar (os chips) não encolhem */
+    .toolbar--gender .btn-filter,
+    .toolbar--gender .toolbar-sorter .select-selected {
+      flex-shrink: 0;
     }
     /* Filtro e Ordenar viram só ícone p/ tudo caber numa linha */
     .toolbar--gender .btn-filter__label,
@@ -193,22 +213,34 @@
     .toolbar--gender .sort-icon-mobile {
       display: inline-flex;
     }
-    /* Todos os controles com a MESMA altura no mobile */
+    /* Mesma altura; padding enxuto p/ caber */
     .toolbar--gender .gender-filter-btn,
     .toolbar--gender .btn-filter,
     .toolbar--gender .toolbar-sorter .select-selected {
       min-height: 38px;
       box-sizing: border-box;
+      padding: 0 12px;
     }
-    .toolbar--gender .gender-filter-btn,
-    .toolbar--gender .btn-filter,
-    .toolbar--gender .toolbar-sorter .select-selected {
-      padding: 0 14px;
-    }
-    /* rótulo do grupo de gênero um pouco menor no mobile */
     .gender-filter-label {
       font-size: 10px;
       letter-spacing: 1px;
+    }
+  }
+  @media (max-width: 379.98px) {
+    /* Telas bem estreitas: aperta pills e gaps p/ continuar na mesma linha */
+    .toolbar-products.toolbar--gender {
+      gap: 4px;
+    }
+    .toolbar--gender .gender-filter-btns {
+      gap: 6px;
+    }
+    .toolbar--gender .gender-filter-btn {
+      padding: 0 9px;
+      font-size: 11px;
+    }
+    .toolbar--gender .btn-filter,
+    .toolbar--gender .toolbar-sorter .select-selected {
+      padding: 0 10px;
     }
   }
 </style>
