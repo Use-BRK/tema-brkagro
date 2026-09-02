@@ -16,8 +16,8 @@
           "type": "slider_item",
           "name": "Brasil Patriota",
           "settings": {
-            "image": "shopify://shop_images/fullbanner_desktop_brasilpatriota.webp",
-            "image_mobile": "shopify://shop_images/fullbanner_mobile_brasilpatriota.webp",
+            "image": "shopify://shop_images/fullbanner_desktop_brasilpatriota2026.webp",
+            "image_mobile": "shopify://shop_images/fullbanner_mobile_brasilpatriota2026.webp",
             "overlay_opacity": 0,
             "link_banner": "shopify://collections/brasil-patriota-2026",
             "slider_effect": "fade-in-right",
@@ -176,18 +176,18 @@
     "collection_tab_kENEYA": {
       "type": "collection-tab",
       "blocks": {
-        "collection_Li4TCd": {
-          "type": "collection",
-          "settings": {
-            "collection": "brasil-patriota-2026",
-            "collection_title": "Brasil"
-          }
-        },
         "collection_MbFTjX": {
           "type": "collection",
           "settings": {
             "collection": "essenciais-sem-estampa",
             "collection_title": "Lisas"
+          }
+        },
+        "collection_Li4TCd": {
+          "type": "collection",
+          "settings": {
+            "collection": "brasil-patriota-2026",
+            "collection_title": "Brasil"
           }
         },
         "collection_4yUXdU": {
@@ -213,8 +213,8 @@
         }
       },
       "block_order": [
-        "collection_Li4TCd",
         "collection_MbFTjX",
+        "collection_Li4TCd",
         "collection_4yUXdU",
         "collection_REBGpn",
         "collection_3frNWE"
