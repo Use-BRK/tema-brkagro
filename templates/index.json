@@ -399,26 +399,34 @@
         "reset_spacing": true
       }
     },
-    "collection_tab_gcdBTy": {
+    "collection_tab_9R4n9j": {
       "type": "collection-tab",
       "blocks": {
-        "collection_N3HLDp": {
+        "collection_tpCKAk": {
           "type": "collection",
           "settings": {
-            "collection": "bones",
-            "collection_title": "Nova Coleção"
+            "collection": "botinas-masculinas",
+            "collection_title": "Masculinas"
+          }
+        },
+        "collection_yyNLMj": {
+          "type": "collection",
+          "settings": {
+            "collection": "botinas-femininas",
+            "collection_title": "Femininas"
           }
         }
       },
       "block_order": [
-        "collection_N3HLDp"
+        "collection_tpCKAk",
+        "collection_yyNLMj"
       ],
       "custom_css": [],
-      "name": "Bonés",
+      "name": "Novas Botinas",
       "settings": {
         "section_width": "stretch_width",
         "color_scheme": "scheme-accf3b11-ba40-4a3e-bafb-243ece6683ec",
-        "heading": "Bonés",
+        "heading": "Botas e Botinas",
         "description": "",
         "show_view_all_button": true,
         "header_size": "small",
@@ -449,34 +457,26 @@
         "reset_spacing": true
       }
     },
-    "collection_tab_9R4n9j": {
+    "collection_tab_gcdBTy": {
       "type": "collection-tab",
       "blocks": {
-        "collection_tpCKAk": {
+        "collection_N3HLDp": {
           "type": "collection",
           "settings": {
-            "collection": "botinas-masculinas",
-            "collection_title": "Masculinas"
-          }
-        },
-        "collection_yyNLMj": {
-          "type": "collection",
-          "settings": {
-            "collection": "botinas-femininas",
-            "collection_title": "Femininas"
+            "collection": "bones",
+            "collection_title": "Nova Coleção"
           }
         }
       },
       "block_order": [
-        "collection_tpCKAk",
-        "collection_yyNLMj"
+        "collection_N3HLDp"
       ],
       "custom_css": [],
-      "name": "Novas Botinas",
+      "name": "Bonés",
       "settings": {
         "section_width": "stretch_width",
         "color_scheme": "scheme-accf3b11-ba40-4a3e-bafb-243ece6683ec",
-        "heading": "Botas e Botinas",
+        "heading": "Bonés",
         "description": "",
         "show_view_all_button": true,
         "header_size": "small",
@@ -1070,8 +1070,8 @@
     "collection_tab_kENEYA",
     "banner_carousel_iVEDMG",
     "collection_tab_tmATLQ",
-    "collection_tab_gcdBTy",
     "collection_tab_9R4n9j",
+    "collection_tab_gcdBTy",
     "collection_tab_ccYc98",
     "divider_kpy84P",
     "collection_tab_9W4tF6",
