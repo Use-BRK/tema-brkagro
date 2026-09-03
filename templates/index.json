@@ -262,7 +262,7 @@
           "type": "card",
           "name": "Botinas",
           "settings": {
-            "image": "shopify://shop_images/Card_BRK_AGRO_Botinas.webp",
+            "image": "shopify://shop_images/Card_BRK_AGRO_Botinas_b2c8c85d-4f97-41a2-b766-48189687ea3b.webp",
             "collection": "botinas",
             "link": "",
             "label": "Botinas"
@@ -272,7 +272,7 @@
           "type": "card",
           "name": "Bonés",
           "settings": {
-            "image": "shopify://shop_images/Card_BRK_AGRO_bones.webp",
+            "image": "shopify://shop_images/Card_BRK_AGRO_bones_49559ed0-580c-45d5-9c5b-e5031720a4dd.webp",
             "collection": "bones",
             "link": "",
             "label": "Bonés"
@@ -282,7 +282,7 @@
           "type": "card",
           "name": "Óculos de Sol",
           "settings": {
-            "image": "shopify://shop_images/Card_BRK_AGRO_oculos.webp",
+            "image": "shopify://shop_images/Card_BRK_AGRO_oculos_ed50e41b-5e46-4708-9882-b7650bec48e0.webp",
             "collection": "oculos-de-sol",
             "link": "",
             "label": "Óculos de Sol"
