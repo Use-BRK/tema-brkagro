@@ -176,13 +176,6 @@
     "collection_tab_kENEYA": {
       "type": "collection-tab",
       "blocks": {
-        "collection_MbFTjX": {
-          "type": "collection",
-          "settings": {
-            "collection": "essenciais-sem-estampa",
-            "collection_title": "Lisas"
-          }
-        },
         "collection_Li4TCd": {
           "type": "collection",
           "settings": {
@@ -210,14 +203,21 @@
             "collection": "apache",
             "collection_title": "Apache"
           }
+        },
+        "collection_MbFTjX": {
+          "type": "collection",
+          "settings": {
+            "collection": "essenciais-sem-estampa",
+            "collection_title": "Lisas"
+          }
         }
       },
       "block_order": [
-        "collection_MbFTjX",
         "collection_Li4TCd",
         "collection_4yUXdU",
         "collection_REBGpn",
-        "collection_3frNWE"
+        "collection_3frNWE",
+        "collection_MbFTjX"
       ],
       "custom_css": [],
       "name": "Lançamentos",
