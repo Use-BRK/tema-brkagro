@@ -86,17 +86,6 @@
     "video_bubble_test": {
       "type": "video-bubble-stories",
       "blocks": {
-        "story_wYjkd8": {
-          "type": "story",
-          "settings": {
-            "local_video": "shopify://files/videos/work-story.mp4",
-            "poster_image": "shopify://shop_images/work-poster.jpg",
-            "heading": "Camisas Work",
-            "cta_text": "Comprar agora",
-            "product": "",
-            "collection": "camisas-work"
-          }
-        },
         "story_dPpdae": {
           "type": "story",
           "name": "Calça",
@@ -108,25 +97,11 @@
             "product": "",
             "collection": "calcas-jeans"
           }
-        },
-        "story_LpDyVw": {
-          "type": "story",
-          "settings": {
-            "local_video": "shopify://files/videos/apache-story.mp4",
-            "poster_image": "shopify://shop_images/apache-poster.jpg",
-            "heading": "Coleção Apache",
-            "cta_text": "Comprar agora",
-            "product": "",
-            "collection": "apache"
-          }
         }
       },
       "block_order": [
-        "story_wYjkd8",
-        "story_dPpdae",
-        "story_LpDyVw"
+        "story_dPpdae"
       ],
-      "disabled": true,
       "settings": {
         "enable": true,
         "show_home": true,
