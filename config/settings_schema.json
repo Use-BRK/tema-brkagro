@@ -868,6 +868,22 @@
         "id": "custom_badge_background",
         "label": "t:settings_schema.badges.settings.background_color.label",
         "default": "#D0473E"
+      },
+      {
+        "type": "header",
+        "content": "Badge VIP"
+      },
+      {
+        "type": "color",
+        "id": "vip_badge_color",
+        "label": "Cor do texto",
+        "default": "#063b45"
+      },
+      {
+        "type": "color",
+        "id": "vip_badge_background",
+        "label": "Cor de fundo",
+        "default": "#5be3f0"
       }
     ]
   },

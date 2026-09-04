@@ -711,6 +711,10 @@ collapsible-block + product-recommendations {
 variant-radios-detail fieldset:last-of-type {
   margin-bottom: 0;
 }
+/* Botoes de variante (tamanho / opcoes de texto) arredondados nas paginas de produto */
+variant-radios-detail .product__item-option {
+  border-radius: 50px;
+}
 
 /* featured product */
 .feature_product-center .product-detail__information{

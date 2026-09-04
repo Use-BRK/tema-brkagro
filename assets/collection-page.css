@@ -86,6 +86,7 @@
     margin-right: calc(var(--collection-product-media-bleed) * -1);
     width: calc(100% + var(--collection-product-media-bleed) * 2);
   }
+
 }
 
 :where(.grid-mode) {

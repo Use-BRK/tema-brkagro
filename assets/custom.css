@@ -58,9 +58,14 @@ border-radius: 30%;
 
 /* Header */
 
-/* .section-header {
-  box-shadow: 0 5px 10px -5px rgba(0, 0, 0, 0.2) !important;
-} */
+/* Sombra bem sutil abaixo do header pra separar do conteudo (nada intrusivo) */
+.section-header {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+/* Sem sombra quando o header esta transparente sobre um banner (ex.: homepage) e ainda nao virou sticky */
+.section-header:not(.shopify-section-header-sticky):has(.transparent:not(:hover)) {
+  box-shadow: none;
+}
 
 /* Página de Produto */
 
@@ -105,7 +110,7 @@ padding: 15px !important;
 }
 
 .product-detail__meta {
-  font-size: 1.5rem;
+  font-size: 1rem;
   width: 100%;
   color: gray;
   font-weight: 500;
@@ -130,6 +135,54 @@ padding: 15px !important;
 
 .installment-payment p {
   margin: 0;
+}
+
+/* PDP: preco em 2 linhas — "De" riscado + selo (-X%) na 1a linha; "Por" grande + parcelamento na 2a */
+.card-product-price--detail {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  line-height: 1.1;
+}
+.card-product-price--detail .pdp-price-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  line-height: 1;
+}
+.card-product-price--detail .pdp-price-row--bottom {
+  align-items: baseline;
+  gap: 0.5rem;
+}
+/* Preco final: tamanho do bloco "Preco" (como antes), so em destaque com negrito */
+.card-product-price--detail .price {
+  font-size: var(--pdp-price-size, 24px);
+  font-weight: 700;
+  line-height: 1;
+}
+/* Preco "De": bem menor (no maximo 1.4rem) */
+.card-product-price--detail .compare-price {
+  font-size: min(1.4rem, var(--pdp-compare-size, 1.4rem));
+  line-height: 1;
+}
+.card-product-price--detail .installment-payment {
+  flex: 0 1 auto;
+  width: auto;
+  margin: 0;
+  color: #6b7280;
+  line-height: 1;
+}
+.pdp-discount-badge {
+  display: inline-flex;
+  align-items: center;
+  background-color: #d0473e;
+  color: #fff;
+  font-weight: 700;
+  line-height: 1;
+  padding: 0.3rem 0.7rem;
+  border-radius: 0.4rem;
+  font-size: 1.3rem;
 }
 
 /* Delivery availability alignment */

@@ -184,6 +184,9 @@
                 data-view-mode="{{ products_column }}"
               >
                 {%- for product in search.results -%}
+                  {%- if product.object_type == 'product' and product.tags contains 'VIP' -%}
+                    {%- continue -%}
+                  {%- endif -%}
                   {%- case product.object_type -%}
                     {%- when 'product' -%}
                       <div

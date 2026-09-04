@@ -487,6 +487,20 @@
           </div>
         {% endif %}
       </div>
+      {% comment %} Tarja "Envio Imediato" abaixo da imagem (somente card em grid) {% endcomment %}
+      {%- if type != 'list' and type != 'sticky' and type != 'product-set' -%}
+        {%- if card_product.tags contains 'Envio Imediato' or card_product.tags contains 'prazo_imediato' -%}
+          <div class="product-item__shipping-strip" role="note" aria-label="Envio imediato">
+            <svg class="product-item__shipping-strip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+              <path d="M3 5h11v10H3z" />
+              <path d="M14 8.5h3.4L21 12v3h-7z" />
+              <circle cx="7" cy="17.2" r="1.7" />
+              <circle cx="17.2" cy="17.2" r="1.7" />
+            </svg>
+            <span>Envio Imediato</span>
+          </div>
+        {%- endif -%}
+      {%- endif -%}
       {% comment %} Product information {% endcomment %}
       <div class="product-item__information{% if template_layout_horizontal %} product-item__information--horizontal{% endif %} word-break{% if type == 'list' or type == 'sticky' %} text-start align-self-center type-list{% else %} text-{{ settings.product_alignment }} mt-15{% endif %}">
         {% if template_layout_horizontal %}
@@ -513,34 +527,54 @@
             {{- card_product.title -}}
           </a>
         {% endif %}
-        {% comment %} Product item rating {% endcomment %}
-
-        {%- if template_enable_rate == true -%}
-          {%- if show_rate -%}
-            {%- if card_product.metafields.judgeme.badge -%}
+        {%- liquid
+          assign show_inline_rating = false
+          if template_enable_rate == true and show_rate and card_product.metafields.judgeme.badge
+            assign show_inline_rating = true
+          endif
+          assign show_price_block = false
+          if template_enable_price == true and hidden_price != true
+            assign show_price_block = true
+          endif
+          assign stack_layout = false
+          if type == 'list' or type == 'sticky'
+            assign stack_layout = true
+          endif
+        -%}
+        {% comment %} Rating: em list/sticky continua acima do preco (layout antigo) {% endcomment %}
+        {%- if show_inline_rating and stack_layout -%}
+          <review-product
+            class="review-product-added inline-loading inline-flex"
+            data-product-handle="{{ card_product.handle }}"
+          >
+            <script type="application/json" class="product-review-json">
+              {%- render 'review' | product: card_product -%}
+            </script>
+          </review-product>
+        {%- endif -%}
+        {% comment %} Product item price (no grid, estrelas na mesma linha, alinhadas a direita) {% endcomment %}
+        {%- if show_price_block or show_inline_rating and stack_layout == false -%}
+          <div class="product-item__price-rating">
+            {%- if show_price_block -%}
+              <div
+                class="product-item__price{% if type == 'list' or type == 'sticky' %} text-start{% else %} justify-content-{{ settings.product_alignment }} fs-custom fw-custom{% endif %} flex gap-custom lh-normal {{ priceclass }}"
+                style="--font-size: {{ settings.price_size }}; --gap: 3px;--heading-weight: {{ settings.price_font_weight }}"
+              >
+                {%- render 'price', scope: 'item', product: card_product, show_badges: false, class: priceclass -%}
+              </div>
+            {%- endif -%}
+            {%- if show_inline_rating and stack_layout == false -%}
               <review-product
-                class="review-product-added inline-loading inline-flex"
+                class="review-product-added inline-loading inline-flex product-item__rating-inline"
                 data-product-handle="{{ card_product.handle }}"
               >
-                {% comment %} {{- 'products.product.loading' | t -}} {% endcomment %}
                 <script type="application/json" class="product-review-json">
                   {%- render 'review' | product: card_product -%}
                 </script>
               </review-product>
             {%- endif -%}
-          {%- endif -%}
+          </div>
         {%- endif -%}
-        {% comment %} Product item price {% endcomment %}
-        {% if template_enable_price == true %}
-          {% if hidden_price != true %}
-            <div
-              class="product-item__price{% if type == 'list' or type == 'sticky' %} text-start{% else %} justify-content-{{ settings.product_alignment }} fs-custom fw-custom{% endif %} flex gap-custom lh-normal {{ priceclass }}"
-              style="--font-size: {{ settings.price_size }}; --gap: 3px;--heading-weight: {{ settings.price_font_weight }}"
-            >
-              {%- render 'price', scope: 'item', product: card_product, show_badges: false, class: priceclass -%}
-            </div>
-          {% endif %}
-        {% endif %}
         {% comment %} Product item color swatches {% endcomment %}
         {% if template_enable_color_swatches == true %}
           {%- if show_variant -%}

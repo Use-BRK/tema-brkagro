@@ -193,7 +193,7 @@
         "menu_mobile_color": "#efe9da",
         "menu_mobile_background": "#0f6049",
         "show_search": true,
-        "show_mobile_search_bar": true,
+        "show_mobile_search_bar": false,
         "show_account_icon": true,
         "show_wishlist_icon": true,
         "show_wishlist_mobile": false,
