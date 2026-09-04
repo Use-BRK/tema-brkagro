@@ -174,26 +174,6 @@
           },
           "blocks": {}
         },
-        "delivery_return_iJHeMD": {
-          "type": "_product-delivery-return",
-          "name": "Prazo de Disponibilidade + Cupom",
-          "disabled": true,
-          "settings": {
-            "delivery_design": "vertical",
-            "disable_outline": true,
-            "delivery_content_icon": "truck",
-            "delivery_content": "<p><strong>Frete Fixo R$9,90 — Para todo o Brasil!</strong></p>",
-            "discount_content_icon": "none",
-            "discount_content": "",
-            "return_content_icon": "none",
-            "return_content": "",
-            "show_production_deadline": true,
-            "producao": "10",
-            "algodao": "1",
-            "imediato": "0"
-          },
-          "blocks": {}
-        },
         "brk_trust_buybox": {
           "type": "_brk-trust",
           "name": "BRK Trust (buy box)",
@@ -210,6 +190,25 @@
             "t5_icon": "tag",
             "t5_title": "",
             "show_production_deadline": false,
+            "producao": "10",
+            "algodao": "1",
+            "imediato": "0"
+          },
+          "blocks": {}
+        },
+        "delivery_return_iJHeMD": {
+          "type": "_product-delivery-return",
+          "name": "Prazo de Disponibilidade + Cupom",
+          "settings": {
+            "delivery_design": "vertical",
+            "disable_outline": true,
+            "delivery_content_icon": "none",
+            "delivery_content": "",
+            "discount_content_icon": "none",
+            "discount_content": "",
+            "return_content_icon": "none",
+            "return_content": "",
+            "show_production_deadline": true,
             "producao": "10",
             "algodao": "1",
             "imediato": "0"
@@ -255,7 +254,7 @@
             "s1_mf": "composicao",
             "s2_icon": "feather",
             "s2_label": "Tecido",
-            "s2_value": "Poliéster microfilamentado",
+            "s2_value": "",
             "s2_mf": "tecido",
             "s3_icon": "dry",
             "s3_label": "Tecnologia",
@@ -275,11 +274,11 @@
             "s6_mf": "feito_para",
             "s7_icon": "medal",
             "s7_label": "Gênero",
-            "s7_value": "Masculina e Feminina",
+            "s7_value": "",
             "s7_mf": "genero",
             "s8_icon": "refresh",
             "s8_label": "Cuidados",
-            "s8_value": "Lavar em água fria, secar à sombra",
+            "s8_value": "",
             "s8_mf": "cuidados"
           },
           "blocks": {}
@@ -375,8 +374,8 @@
         "product_custom_name_button_ya3Yfz",
         "product_whatsapp_cta_QD4eY3",
         "product_benefits_hWMhBF",
-        "delivery_return_iJHeMD",
         "brk_trust_buybox",
+        "delivery_return_iJHeMD",
         "brk_ugc_buybox",
         "brk_specs_buybox",
         "frete_no_produto_shipping_calc_mfbXjr",
