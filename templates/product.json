@@ -218,6 +218,7 @@
         "brk_ugc_buybox": {
           "type": "_brk-ugc",
           "name": "BRK Prova Social",
+          "disabled": true,
           "settings": {
             "accent_color": "#085b47",
             "eyebrow": "",
@@ -499,6 +500,7 @@
         "b_jn3",
         "b_jn4"
       ],
+      "disabled": true,
       "name": "BRK Benefícios",
       "settings": {
         "bg_color": "#efefe8",
