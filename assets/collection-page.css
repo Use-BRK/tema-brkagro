@@ -89,6 +89,64 @@
 
 }
 
+/* ===========================================================
+   Botões "Filtro" + "Ordenar por": pílula outline verde em TODAS
+   as collections (mesmo visual das que têm filtro de gênero).
+   =========================================================== */
+.toolbar-products {
+  --chip-green: var(--btn-primary-bg-color, #085b47);
+}
+.toolbar-products .btn-filter {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  padding: 0 20px;
+  box-sizing: border-box;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  line-height: normal;
+  text-transform: none;
+  border: 1.5px solid var(--chip-green);
+  border-radius: 50px;
+  background: transparent;
+  color: var(--chip-green);
+  cursor: pointer;
+  white-space: nowrap;
+  box-shadow: none;
+  transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+}
+.toolbar-products .btn-filter svg path {
+  fill: currentColor;
+}
+.toolbar-products .btn-filter:hover {
+  background: var(--chip-green);
+  color: #fff;
+}
+.toolbar-products .toolbar-sorter .select-selected {
+  min-height: 40px;
+  padding: 0 18px;
+  box-sizing: border-box;
+  border: 1.5px solid var(--chip-green);
+  border-radius: 50px;
+  color: var(--chip-green);
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+.toolbar-products .toolbar-sorter .select-selected:hover {
+  background: var(--chip-green);
+  color: #fff;
+}
+.toolbar-products .toolbar-sorter .select-selected label {
+  border: 0;
+  padding: 0;
+  min-height: 0;
+}
+.toolbar-products .toolbar-sorter .select-selected .heading-color {
+  color: inherit;
+}
+
 :where(.grid-mode) {
   color: #cbcbcb;
 }
