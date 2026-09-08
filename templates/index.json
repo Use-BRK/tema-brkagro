@@ -72,6 +72,66 @@
             "content_alignment_mobile": "center"
           }
         },
+        "slider_item_D43AJr": {
+          "type": "slider_item",
+          "name": "Camisas",
+          "settings": {
+            "image": "shopify://shop_images/FULLBANNER_DESKTOP_COUNTRYXADREZ.png",
+            "image_mobile": "shopify://shop_images/FULLBANNER_MOBILE_COUNTRYXADREZ.png",
+            "overlay_opacity": 0,
+            "link_banner": "shopify://collections/camisas-de-botao-country",
+            "slider_effect": "fade-in-right",
+            "subheading": "",
+            "heading": "",
+            "description": "",
+            "first_button_label": "",
+            "first_button_link": "",
+            "first_button_style": false,
+            "second_button_label": "",
+            "second_button_link": "",
+            "second_button_style": false,
+            "content_alignment": "center",
+            "content_position": "top-center",
+            "content_width": "full_width",
+            "content_max_width": 100,
+            "content_padding_block": 40,
+            "content_padding_inline": 0,
+            "show_content_background": false,
+            "content_background": "#ffffff",
+            "content_box_opacity": 100,
+            "content_alignment_mobile": "center"
+          }
+        },
+        "slider_item_MMEAVn": {
+          "type": "slider_item",
+          "name": "Calças",
+          "settings": {
+            "image": "shopify://shop_images/Prancheta_2_472af1bb-c8d4-4ce5-a4d6-e8f554bb2367.png",
+            "image_mobile": "shopify://shop_images/Prancheta_1_eb934097-955b-4d1b-8a0c-07dae4b1eaeb.png",
+            "overlay_opacity": 0,
+            "link_banner": "shopify://collections/calcas-jeans",
+            "slider_effect": "fade-in-right",
+            "subheading": "",
+            "heading": "",
+            "description": "",
+            "first_button_label": "",
+            "first_button_link": "",
+            "first_button_style": false,
+            "second_button_label": "",
+            "second_button_link": "",
+            "second_button_style": false,
+            "content_alignment": "center",
+            "content_position": "top-center",
+            "content_width": "full_width",
+            "content_max_width": 100,
+            "content_padding_block": 40,
+            "content_padding_inline": 0,
+            "show_content_background": false,
+            "content_background": "#ffffff",
+            "content_box_opacity": 100,
+            "content_alignment_mobile": "center"
+          }
+        },
         "slider_item_KnUMfi": {
           "type": "slider_item",
           "name": "Work",
@@ -106,6 +166,8 @@
       "block_order": [
         "slider_item_rYBq93",
         "slider_item_K3DbMk",
+        "slider_item_D43AJr",
+        "slider_item_MMEAVn",
         "slider_item_KnUMfi"
       ],
       "custom_css": [],
