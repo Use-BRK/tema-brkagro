@@ -196,48 +196,6 @@
           },
           "blocks": {}
         },
-        "delivery_return_iJHeMD": {
-          "type": "_product-delivery-return",
-          "name": "Prazo de Disponibilidade + Cupom",
-          "settings": {
-            "delivery_design": "vertical",
-            "disable_outline": true,
-            "delivery_content_icon": "none",
-            "delivery_content": "",
-            "discount_content_icon": "none",
-            "discount_content": "",
-            "return_content_icon": "none",
-            "return_content": "",
-            "show_production_deadline": true,
-            "producao": "10",
-            "algodao": "1",
-            "imediato": "0"
-          },
-          "blocks": {}
-        },
-        "brk_ugc_buybox": {
-          "type": "_brk-ugc",
-          "name": "BRK Prova Social",
-          "disabled": true,
-          "settings": {
-            "accent_color": "#085b47",
-            "eyebrow": "",
-            "heading": "Quem usa, recomenda",
-            "v1_src": "https://cdn.shopify.com/videos/c/o/v/f771b820581b4e3c957f2fb850c771f6.mp4",
-            "v1_product": "",
-            "v2_src": "https://cdn.shopify.com/videos/c/o/v/b9df390658e7441dad50c4daed971906.mp4",
-            "v2_product": "",
-            "v3_src": "https://cdn.shopify.com/videos/c/o/v/f17ec86cb3674b09a9a8a6b786ab20aa.mp4",
-            "v3_product": "",
-            "v4_src": "https://cdn.shopify.com/videos/c/o/v/08b459b3a33544f9b47528a1b340cb1e.mp4",
-            "v4_product": "",
-            "v5_src": "",
-            "v5_product": "",
-            "v6_src": "",
-            "v6_product": ""
-          },
-          "blocks": {}
-        },
         "brk_specs_buybox": {
           "type": "_brk-specs",
           "name": "BRK Especificações (buy box)",
@@ -280,6 +238,48 @@
             "s8_label": "Cuidados",
             "s8_value": "",
             "s8_mf": "cuidados"
+          },
+          "blocks": {}
+        },
+        "delivery_return_iJHeMD": {
+          "type": "_product-delivery-return",
+          "name": "Prazo de Disponibilidade + Cupom",
+          "settings": {
+            "delivery_design": "vertical",
+            "disable_outline": true,
+            "delivery_content_icon": "none",
+            "delivery_content": "",
+            "discount_content_icon": "none",
+            "discount_content": "",
+            "return_content_icon": "none",
+            "return_content": "",
+            "show_production_deadline": true,
+            "producao": "10",
+            "algodao": "1",
+            "imediato": "0"
+          },
+          "blocks": {}
+        },
+        "brk_ugc_buybox": {
+          "type": "_brk-ugc",
+          "name": "BRK Prova Social",
+          "disabled": true,
+          "settings": {
+            "accent_color": "#085b47",
+            "eyebrow": "",
+            "heading": "Quem usa, recomenda",
+            "v1_src": "https://cdn.shopify.com/videos/c/o/v/f771b820581b4e3c957f2fb850c771f6.mp4",
+            "v1_product": "",
+            "v2_src": "https://cdn.shopify.com/videos/c/o/v/b9df390658e7441dad50c4daed971906.mp4",
+            "v2_product": "",
+            "v3_src": "https://cdn.shopify.com/videos/c/o/v/f17ec86cb3674b09a9a8a6b786ab20aa.mp4",
+            "v3_product": "",
+            "v4_src": "https://cdn.shopify.com/videos/c/o/v/08b459b3a33544f9b47528a1b340cb1e.mp4",
+            "v4_product": "",
+            "v5_src": "",
+            "v5_product": "",
+            "v6_src": "",
+            "v6_product": ""
           },
           "blocks": {}
         },
@@ -375,9 +375,9 @@
         "product_whatsapp_cta_QD4eY3",
         "product_benefits_hWMhBF",
         "brk_trust_buybox",
+        "brk_specs_buybox",
         "delivery_return_iJHeMD",
         "brk_ugc_buybox",
-        "brk_specs_buybox",
         "frete_no_produto_shipping_calc_mfbXjr",
         "product_grouped_6epkNf",
         "more_colors_3zmxGq",
