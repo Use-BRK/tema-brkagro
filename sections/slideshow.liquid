@@ -88,6 +88,10 @@
   style="{{ style | strip | strip_newlines }}"
   data-id="{{ section.id }}"
 >
+  {%- comment -%} H1 da home para SEO/acessibilidade (a home nao tinha nenhum H1). Oculto visualmente. {%- endcomment -%}
+  {%- if request.page_type == 'index' -%}
+    <h1 class="visually-hidden">Camisas Agro UV50+, Botinas, Bonés e Vestuário para o Campo | BRK Agro</h1>
+  {%- endif -%}
   <div class="{{ section_width }}  {% if section_st.section_width == "full_width" and section_st.reveal_slideshow == true %} reveal-full-width{% endif %}">
     {% if section.blocks.size > 0 %}
       <slideshow-section
@@ -186,9 +190,17 @@
                         else
                           assign image_alt = block.settings.image.alt
                         endif
+                        # Nome acessivel do link do banner: usa alt/heading; senao deriva do handle do link; nunca fica vazio
+                        assign banner_link_label = image_alt
+                        if banner_link_label == blank
+                          assign banner_link_label = block_st.link_banner | split: '?' | first | split: '/' | last | replace: '-', ' '
+                        endif
+                        if banner_link_label == blank
+                          assign banner_link_label = 'Ver banner'
+                        endif
                       -%}
                       {% if block_st.link_banner != blank %}
-                        <a href="{{ block_st.link_banner }}">
+                        <a href="{{ block_st.link_banner }}" aria-label="{{ banner_link_label | escape }}">
                       {% endif %}
                       {% render 'responsive-image',
                         type: 'banner',
