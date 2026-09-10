@@ -20,15 +20,15 @@
     assign special_class = 'price--special'
   endif
 
-  # Desconto (%) e parcelamento (min 3x, parcela minima R$50) — usados no layout da PDP
+  # Desconto (%) e parcelamento (min 3x, max 6x, parcela minima R$45) — usados no layout da PDP
   assign discount_percent = 0
   if compare_at_price > price
     assign discount_percent = compare_at_price | minus: price | times: 100 | divided_by: compare_at_price
   endif
-  assign parcela_minima = 5000
+  assign parcela_minima = 4500
   assign num_parcelas = price | divided_by: parcela_minima
-  if num_parcelas > 3
-    assign num_parcelas = 3
+  if num_parcelas > 6
+    assign num_parcelas = 6
   endif
   assign valor_parcela = 0
   if num_parcelas >= 3
@@ -161,11 +161,11 @@
     </div>
   {%- endif -%}
   {%- liquid
-    # Parcelamento: só exibe a partir de 3x (valor mínimo de R$ 50 por parcela)
-    assign parcela_minima = 5000
+    # Parcelamento: só exibe a partir de 3x, até 6x (valor mínimo de R$ 45 por parcela)
+    assign parcela_minima = 4500
     assign num_parcelas = price | divided_by: parcela_minima
-    if num_parcelas > 3
-      assign num_parcelas = 3
+    if num_parcelas > 6
+      assign num_parcelas = 6
     endif
   -%}
   {%- if num_parcelas >= 3 -%}
