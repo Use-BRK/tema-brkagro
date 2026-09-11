@@ -207,18 +207,18 @@
     "collection_tab_kENEYA": {
       "type": "collection-tab",
       "blocks": {
-        "collection_4yUXdU": {
-          "type": "collection",
-          "settings": {
-            "collection": "nossa-senhora-aparecida",
-            "collection_title": "Nossa Senhora"
-          }
-        },
         "collection_REBGpn": {
           "type": "collection",
           "settings": {
             "collection": "sao-bento-2026",
             "collection_title": "São Bento"
+          }
+        },
+        "collection_4yUXdU": {
+          "type": "collection",
+          "settings": {
+            "collection": "nossa-senhora-aparecida",
+            "collection_title": "Nossa Senhora"
           }
         },
         "collection_3frNWE": {
@@ -230,8 +230,8 @@
         }
       },
       "block_order": [
-        "collection_4yUXdU",
         "collection_REBGpn",
+        "collection_4yUXdU",
         "collection_3frNWE"
       ],
       "custom_css": [],
