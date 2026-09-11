@@ -328,6 +328,13 @@
                   {%- liquid
                     assign l1_clean = link.title | replace: '#star#', '' | replace: '#new#', '' | replace: '[hot]', '' | replace: '[new]', '' | replace: '[sale]', '' | replace: '[popular]', '' | strip
                     assign l1_lower = l1_clean | downcase
+                    assign l1_hot = false
+                    if link.title contains '🔥' or link.title contains '[hot]'
+                      assign l1_hot = true
+                    endif
+                    if highlight_item != blank and l1_lower == highlight_item
+                      assign l1_hot = true
+                    endif
                     assign l1_has_children = false
                     if link.links.size > 0
                       assign l1_has_children = true
@@ -352,14 +359,14 @@
                     endfor
                   -%}
                   {%- if l1_has_children == false -%}
-                    <li class="mmd-acc__item mmd-acc__item--l1 mmd-acc__item--link">
+                    <li class="mmd-acc__item mmd-acc__item--l1 mmd-acc__item--link{% if l1_hot %} mmd-acc__item--hot{% endif %}">
                       <a href="{{ link.url }}" class="mmd-acc__head mmd-acc__head--link">
                         <span class="mmd-acc__head-title">{{ l1_clean }}</span>
                         <span class="mmd-acc__chevron" aria-hidden="true"><svg width="7" height="12" viewBox="0 0 8 14" fill="none"><path d="M1 1l6 6-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
                       </a>
                     </li>
                   {%- else -%}
-                    <li class="mmd-acc__item mmd-acc__item--l1 mmd-acc__item--collapsible mobile-menu-drawer__item--has-children">
+                    <li class="mmd-acc__item mmd-acc__item--l1 mmd-acc__item--collapsible mobile-menu-drawer__item--has-children{% if l1_hot %} mmd-acc__item--hot{% endif %}">
                       <div class="mobile-menu-drawer__link-row mmd-acc__head-row">
                         <button type="button" class="mmd-acc__head mmd-acc__head--toggle mobile-menu-drawer__link--parent-toggle" data-parent-toggle="mmd-{{ section.id }}-{{ forloop.index }}">
                           <span class="mmd-acc__head-title">{{ l1_clean }}</span>

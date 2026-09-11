@@ -89,7 +89,7 @@
         assign bc_col = product.collections.first
       endif
     -%}
-    <nav class="brk-breadcrumbs" aria-label="breadcrumb">
+    <nav class="brk-breadcrumbs" id="brk-breadcrumbs" aria-label="breadcrumb">
       <a href="{{ routes.root_url }}">{{ 'general.breadcrumb.home' | t | default: 'Início' }}</a>
       {%- if bc_col and bc_col.url != blank -%}
         <span class="brk-breadcrumbs__sep" aria-hidden="true">›</span>
@@ -154,7 +154,58 @@
       @media (max-width: 767px) {
         .brk-breadcrumbs { font-size: 1.2rem; margin-top: 1rem; margin-bottom: 1.5rem; gap: .5rem; }
       }
+      /* Estado mobile: breadcrumb movido para dentro do header (abaixo da linha do logo) */
+      .brk-breadcrumbs--in-header {
+        position: relative;
+        z-index: 2;
+        width: 100%;
+        margin: .4rem 0 0;
+        padding: 0;
+        font-size: 1.2rem;
+        gap: .5rem;
+        color: inherit;
+      }
+      /* Herda a cor de texto do header p/ garantir contraste em qualquer esquema */
+      .brk-breadcrumbs--in-header a,
+      .brk-breadcrumbs--in-header .brk-breadcrumbs__sep,
+      .brk-breadcrumbs--in-header .brk-breadcrumbs__current {
+        color: inherit;
+      }
+      .brk-breadcrumbs--in-header .brk-breadcrumbs__sep { opacity: .5; }
+      .brk-breadcrumbs--in-header .brk-breadcrumbs__current { font-weight: 600; }
+      .brk-breadcrumbs--in-header a:hover { color: #085b47; opacity: 1; }
     </style>
+    <script>
+      (function () {
+        var bc = document.getElementById('brk-breadcrumbs');
+        if (!bc) return;
+        var headerInner =
+          document.querySelector('#header-sticky > div') ||
+          document.getElementById('header-sticky');
+        if (!headerInner) return;
+        // Âncora para restaurar a posição original no desktop
+        var anchor = document.createComment('brk-breadcrumbs-anchor');
+        bc.parentNode.insertBefore(anchor, bc);
+        var mql = window.matchMedia('(max-width: 1024px)');
+        function apply(e) {
+          if (e.matches) {
+            if (bc.parentNode !== headerInner) {
+              bc.classList.add('brk-breadcrumbs--in-header');
+              headerInner.appendChild(bc);
+            }
+          } else if (bc.previousSibling !== anchor) {
+            bc.classList.remove('brk-breadcrumbs--in-header');
+            anchor.parentNode.insertBefore(bc, anchor.nextSibling);
+          }
+        }
+        apply(mql);
+        if (mql.addEventListener) {
+          mql.addEventListener('change', apply);
+        } else {
+          mql.addListener(apply);
+        }
+      })();
+    </script>
   {%- endif -%}
   <div
     class="flex flex-cols gap flex-wrap main-product"

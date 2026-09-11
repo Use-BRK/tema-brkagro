@@ -573,10 +573,10 @@ html.mobile-menu-drawer-open .section-header {
   gap: 6px;
   flex: 1;
   min-width: 0;
-  height: 3.4rem;
-  padding: 0 10px;
+  height: 3.8rem;
+  padding: 0 12px;
   border: 1px solid var(--color-border, #085b47);
-  border-radius: 6px;
+  border-radius: 10px;
 }
 .mmd-search__icon {
   flex-shrink: 0;
@@ -719,13 +719,16 @@ html.mobile-menu-drawer-open .section-header {
    ============================================================ */
 .mmd-acc {
   --mmd-acc-green: #0f6049;
-  --mmd-acc-ink: #38372f;
-  --mmd-acc-muted: #6f6e63;
-  --mmd-acc-line: #d9d6ca;
-  --mmd-acc-grid-bg: #f9f9f9;
+  --mmd-acc-green-soft: rgba(15, 96, 73, 0.09);
+  --mmd-acc-ink: #22302a;
+  --mmd-acc-muted: #7c8079;
+  --mmd-acc-line: #ece9e0;
+  --mmd-acc-grid-bg: #f7f8f6;
+  --mmd-acc-hot-bg: #fff4ec;
+  --mmd-acc-hot-accent: #e2611f;
   list-style: none;
   margin: 0;
-  padding: 2px 0;
+  padding: 6px 0 4px;
   font-weight: 400;
 }
 
@@ -734,14 +737,14 @@ html.mobile-menu-drawer-open .section-header {
   display: none;
 }
 
-/* ---- Nível 1: cabeçalho de seção (verde, caixa alta, leve) ---- */
+/* ---- Nível 1: linha limpa, rótulo escuro, verde só como acento ---- */
 .mmd-acc__head {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   width: 100%;
   margin: 0;
-  padding: 13px 20px;
+  padding: 15px 20px;
   background: none;
   border: 0;
   cursor: pointer;
@@ -749,11 +752,11 @@ html.mobile-menu-drawer-open .section-header {
   text-decoration: none;
   font-family: inherit;
   font-weight: var(--mmd-l1-weight, 600);
-  letter-spacing: 0.03em;
-  text-transform: uppercase;
-  color: var(--mmd-acc-green);
-  font-size: calc(var(--mmd-l1-size, 14px) * var(--text-size-multiplier, 1));
-  line-height: 1.2;
+  letter-spacing: 0.005em;
+  text-transform: none;
+  color: var(--mmd-acc-ink);
+  font-size: calc((var(--mmd-l1-size, 14px) + 1px) * var(--text-size-multiplier, 1));
+  line-height: 1.25;
 }
 .mmd-acc__head-title {
   flex: 1;
@@ -778,29 +781,57 @@ html.mobile-menu-drawer-open .section-header {
   position: relative;
 }
 
-/* Chevron ">" — discreto, à direita */
+/* Chevron "›" — acento verde: indica "navega" */
 .mmd-acc__chevron {
   flex-shrink: 0;
   display: inline-flex;
   align-items: center;
   margin-left: auto;
-  color: #b6b4a8;
+  color: var(--mmd-acc-green);
+  opacity: 0.9;
+  transition: transform 0.15s ease;
+}
+.mmd-acc__head--link:active .mmd-acc__chevron {
+  transform: translateX(3px);
 }
 
-/* Botão +/− (reaproveita .mobile-menu-drawer__toggle) — fino e discreto */
+/* Botão +/− como chip arredondado verde-suave: indica "expande" */
 .mmd-acc__plus {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--mmd-acc-green-soft);
   color: var(--mmd-acc-green);
-  opacity: 0.75;
+  opacity: 1;
+  transition: background-color 0.18s ease, color 0.18s ease;
+}
+.mmd-acc__plus[aria-expanded="true"] {
+  background: var(--mmd-acc-green);
+  color: #fff;
 }
 .mmd-acc__plus--l2 {
+  width: 26px;
+  height: 26px;
+  background: rgba(0, 0, 0, 0.04);
   color: var(--mmd-acc-muted);
 }
-/* O botão +/− de nível 2 tinha altura fixa de 44px e "esticava" a linha,
-   anulando o padding compacto do link. Aqui ele acompanha a altura da linha
-   (definida pelo padding do link), mantendo a área de toque na largura. */
+.mmd-acc__plus--l2[aria-expanded="true"] {
+  background: var(--mmd-acc-green-soft);
+  color: var(--mmd-acc-green);
+}
+/* Seção de nível 1 aberta: rótulo passa a verde (acento de "ativo"). */
+.mmd-acc__item--collapsible:has(.mmd-acc__plus[aria-expanded="true"]) .mmd-acc__head {
+  color: var(--mmd-acc-green);
+}
+/* Botão +/− de nível 2: mantém o círculo (não estica com a linha). A área de
+   toque continua ampla porque o próprio rótulo ao lado também alterna. */
 .mmd-acc__l2-row .mobile-menu-drawer__toggle {
-  height: auto;
-  align-self: stretch;
+  align-self: center;
+}
+.mmd-acc__l2-row .mmd-acc__plus--l2 {
+  width: 26px;
+  height: 26px;
+  flex: 0 0 26px;
 }
 
 /* ---- Nível 2 (dentro da seção) ---- */
@@ -816,7 +847,7 @@ html.mobile-menu-drawer-open .section-header {
   align-items: center;
   width: 100%;
   margin: 0;
-  padding: 5px 20px;
+  padding: 11px 20px 11px 16px;
   background: none;
   border: 0;
   cursor: pointer;
@@ -824,9 +855,17 @@ html.mobile-menu-drawer-open .section-header {
   text-decoration: none;
   font-family: inherit;
   font-weight: var(--mmd-l2-weight, 400);
-  color: #000;
-  font-size: calc(var(--mmd-l2-size, 13px) * var(--text-size-multiplier, 1));
+  color: var(--mmd-acc-ink);
+  font-size: calc((var(--mmd-l2-size, 13px) + 1px) * var(--text-size-multiplier, 1));
   line-height: 1.3;
+}
+/* chevron dos itens de nível 2 (links diretos) — cinza discreto, verde ao tocar */
+.mmd-acc__l2-link .mmd-acc__chevron {
+  color: #c2ccc6;
+  opacity: 1;
+}
+.mmd-acc__l2-link:active .mmd-acc__chevron {
+  color: var(--mmd-acc-green);
 }
 .mmd-acc__l2-label {
   flex: 1;
@@ -881,32 +920,56 @@ html.mobile-menu-drawer-open .section-header {
 .mmd-acc__grid-box {
   column-count: 2;
   column-gap: 16px;
-  margin: 4px 16px 14px;
-  padding: 5px 9px;
+  margin: 2px 16px 12px;
+  padding: 10px 14px;
   background: var(--mmd-acc-grid-bg);
+  border: 1px solid var(--mmd-acc-line);
+  border-radius: 12px;
 }
+/* Nível 3 como "pílulas" clicáveis: fundo branco, borda e "›" verde deixam
+   claro que cada item é tocável (não é texto solto). */
 .mmd-acc__l3-link {
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
   break-inside: avoid;
-  padding: 6px 0;
+  margin: 0 0 7px;
+  padding: 8px 11px;
   text-decoration: none;
-  color: var(--mmd-acc-muted);
-  font-weight: var(--mmd-l3-weight, 400);
-  font-size: calc(var(--mmd-l3-size, 13px) * var(--text-size-multiplier, 1));
-  line-height: 1.25;
-}
-.mmd-acc__l3-link--all {
   color: var(--mmd-acc-ink);
+  background: #fff;
+  border: 1px solid #e3e0d6;
+  border-radius: 9px;
+  font-weight: 500;
+  font-size: calc(var(--mmd-l3-size, 13px) * var(--text-size-multiplier, 1));
+  line-height: 1.2;
+}
+.mmd-acc__l3-link:not(.mmd-acc__l3-link--all)::after {
+  content: "›";
+  flex-shrink: 0;
+  margin-left: 4px;
+  color: var(--mmd-acc-green);
+  font-size: 1.15em;
+  line-height: 1;
+}
+/* "Ver Tudo" — pílula verde preenchida (ação principal da seção). */
+.mmd-acc__l3-link--all {
+  justify-content: center;
+  background: var(--mmd-acc-green);
+  border-color: var(--mmd-acc-green);
+  color: #fff;
   font-weight: 600;
 }
 .mmd-acc__l3-arrow {
   margin-left: 5px;
+  color: #fff;
 }
 
 /* "Ver Tudo" como link direto de nível 2: negrito + seta logo após o texto
    (igual aos subníveis do nível 3 — "Ver Tudo →" juntos, alinhados à esquerda). */
 .mmd-acc__l2-link--all {
-  color: #000;
+  color: var(--mmd-acc-green);
   font-weight: 600;
 }
 .mmd-acc__l2-link--all .mmd-acc__l2-label {
@@ -915,7 +978,7 @@ html.mobile-menu-drawer-open .section-header {
 .mmd-acc__l2-arrow {
   flex-shrink: 0;
   margin-left: 6px;
-  color: #000;
+  color: var(--mmd-acc-green);
 }
 
 /* Feedback de toque */
@@ -925,6 +988,53 @@ html.mobile-menu-drawer-open .section-header {
 .mmd-acc__head--toggle:active,
 .mmd-acc__l3-link:active {
   background-color: rgba(15, 96, 73, 0.06);
+}
+
+/* Margem à direita dos chips +/− (não colar na borda). */
+.mmd-acc__head-row .mmd-acc__plus {
+  margin-right: 12px;
+}
+.mmd-acc__l2-row .mmd-acc__plus--l2 {
+  margin-right: 12px;
+}
+
+/* Trilho suave de aninhamento do nível 2 (hierarquia clara). */
+.mmd-acc__panel > .mmd-acc__l2 {
+  margin: 2px 0 8px 18px;
+  border-left: 2px solid #e6ebe7;
+}
+
+/* ---- Item em destaque (ex.: "🔥 Mais Vendidos") — atalho quente ---- */
+.mmd-acc__item--hot {
+  position: relative;
+}
+.mmd-acc__item--hot > .mmd-acc__head--link,
+.mmd-acc__item--hot > .mmd-acc__head-row {
+  background: var(--mmd-acc-hot-bg);
+}
+.mmd-acc__item--hot::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 7px;
+  bottom: 7px;
+  width: 3px;
+  border-radius: 0 3px 3px 0;
+  background: var(--mmd-acc-hot-accent);
+}
+.mmd-acc__item--hot .mmd-acc__chevron {
+  color: var(--mmd-acc-hot-accent);
+  opacity: 1;
+}
+.mmd-acc__item--hot .mmd-acc__head {
+  color: var(--mmd-acc-ink);
+}
+
+/* ---- Rodapé — botões arredondados e com respiro ---- */
+.mobile-menu-drawer__footer a[class*="btn-"] {
+  border-radius: 12px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
 }
 
 /* Busca: no design o ícone (lupa) fica à direita e o placeholder é
