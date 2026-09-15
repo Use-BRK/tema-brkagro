@@ -46,6 +46,7 @@
     },
     "subcollection": {
       "type": "subcollection-list",
+      "disabled": true,
       "settings": {
         "section_width": "stretch_width",
         "color_scheme": "",
