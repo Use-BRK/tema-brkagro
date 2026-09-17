@@ -1732,11 +1732,11 @@ minicart-item-edit.loading .edit-icon {
   height: 100vh;
 }
 
-/* Ícone de alerta piscando somente no primeiro item do menu */
-.navigation__menu-content > ul > li:first-child > a span:first-child::before {
+/* Ícone OFERTA-AGRO piscando */
+menu-item:first-child > a span:first-child::before {
   content: "⚠️";
   display: inline-block;
-  margin-right: 4px;
+  margin-right: 5px;
   animation: ofertaAlerta 1s infinite;
 }
 
@@ -1748,7 +1748,6 @@ minicart-item-edit.loading .edit-icon {
 
   50% {
     opacity: 0.25;
-    transform: scale(1.15);
+    transform: scale(1.2);
   }
-}
 }
