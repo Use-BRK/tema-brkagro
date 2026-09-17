@@ -150,7 +150,12 @@
                       {% endif %}
                       <div class="flex align-center">
                         {%- render 'menu-category-icon', menu_link: link -%}
-                        <span>{{ link.title }}</span>
+                        <span>
+  {% if link.title contains 'OFERTA' %}
+    <span class="icone-oferta">⚠️</span>
+  {% endif %}
+  {{ link.title }}
+</span>
                       </div>
                     </back-menu>
                     <close-menu class="close-menu lh-1 ms-10">
