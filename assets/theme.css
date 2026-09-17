@@ -1732,3 +1732,17 @@ minicart-item-edit.loading .edit-icon {
   height: 100vh;
 }
 
+.icone-oferta {
+  display: inline-block;
+  animation: piscarOferta 1s infinite;
+}
+
+@keyframes piscarOferta {
+  0%, 100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.25;
+  }
+}
