@@ -1733,19 +1733,19 @@ minicart-item-edit.loading .edit-icon {
 }
 
 .icone-oferta {
-  display:inline-block;
-  margin-right:5px;
-  animation: ofertaAlerta 1s infinite;
+  display: inline-block;
+  margin-right: 5px;
+  animation: piscarOferta 1s infinite;
 }
 
-@keyframes ofertaAlerta {
+@keyframes piscarOferta {
   0%,100% {
-    opacity:1;
-    transform:scale(1);
+    opacity: 1;
+    transform: scale(1);
   }
 
   50% {
-    opacity:.25;
-    transform:scale(1.2);
+    opacity: .25;
+    transform: scale(1.2);
   }
 }
