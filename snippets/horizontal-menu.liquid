@@ -97,7 +97,7 @@
               <a class="no-underline py-10 relative lh-normal inline-flex min-h-55 min-h-1025-50 z-1 align-center{% if theme_st.menu_font == 'heading_font' %} heading-style{% endif %}{% if uppercase_first %} uppercase{% endif %}{% if link.links.size > 0 and redirect_to_link == blank %} redirect-to-link{% endif %}" href="{{ link.url }}"{% if block_st.open-link-newtab == true %} target="_blank"{% endif %}>
 {%- render 'menu-category-icon', menu_link: link -%}
 <span>
-{% if forloop.first %}
+{% if link.title contains 'OFERTA' %}
   <span class="icone-oferta">⚠️</span>
 {% endif %}
 {{ link.title }}
