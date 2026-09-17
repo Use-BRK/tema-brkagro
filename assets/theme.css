@@ -1735,17 +1735,17 @@ minicart-item-edit.loading .edit-icon {
 .icone-oferta {
   display: inline-block;
   margin-right: 5px;
-  animation: piscarOferta 1s infinite;
+  animation: glozinOferta 1s infinite;
 }
 
-@keyframes piscarOferta {
-  0%,100% {
+@keyframes glozinOferta {
+  0%, 100% {
     opacity: 1;
     transform: scale(1);
   }
 
   50% {
     opacity: .25;
-    transform: scale(1.2);
+    transform: scale(1.15);
   }
 }
