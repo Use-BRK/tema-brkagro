@@ -1732,17 +1732,23 @@ minicart-item-edit.loading .edit-icon {
   height: 100vh;
 }
 
-.icone-oferta {
+/* Ícone de alerta piscando somente no primeiro item do menu */
+.navigation__menu-content > ul > li:first-child > a span:first-child::before {
+  content: "⚠️";
   display: inline-block;
-  animation: piscarOferta 1s infinite;
+  margin-right: 4px;
+  animation: ofertaAlerta 1s infinite;
 }
 
-@keyframes piscarOferta {
+@keyframes ofertaAlerta {
   0%, 100% {
     opacity: 1;
+    transform: scale(1);
   }
 
   50% {
-    opacity: 0.2;
+    opacity: 0.25;
+    transform: scale(1.15);
   }
+}
 }
