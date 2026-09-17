@@ -1732,22 +1732,3 @@ minicart-item-edit.loading .edit-icon {
   height: 100vh;
 }
 
-/* Ícone OFERTA-AGRO piscando */
-menu-item:first-child > a span:first-child::before {
-  content: "⚠️";
-  display: inline-block;
-  margin-right: 5px;
-  animation: ofertaAlerta 1s infinite;
-}
-
-@keyframes ofertaAlerta {
-  0%, 100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-
-  50% {
-    opacity: 0.25;
-    transform: scale(1.2);
-  }
-}
