@@ -15,6 +15,7 @@
         "slider_item_MMEAVn": {
           "type": "slider_item",
           "name": "Calças",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/Prancheta_1_fd29a091-6e32-4597-a075-92e10ad9c7e3.png",
             "image_mobile": "shopify://shop_images/Prancheta_2_09bc1a82-9e31-4759-88de-a843306b0304.png",
