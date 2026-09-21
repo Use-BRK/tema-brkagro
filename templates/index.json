@@ -47,8 +47,8 @@
           "type": "slider_item",
           "name": "Nossa Senhora",
           "settings": {
-            "image": "shopify://shop_images/BANNER_NOSSA_SENHORA.jpg",
-            "image_mobile": "shopify://shop_images/MOBILE_NOSSA_SENHORA.jpg",
+            "image": "shopify://shop_images/BANNER_NOSSA_SENHORA_10065bd1-c264-4bbc-9525-6da4329133ef.jpg",
+            "image_mobile": "shopify://shop_images/MOBILE_NOSSA_SENHORA_01b32db8-ff98-4f61-a4b2-19c4d1946333.jpg",
             "overlay_opacity": 0,
             "link_banner": "shopify://collections/nossa-senhora-aparecida",
             "slider_effect": "fade-in-right",
@@ -77,8 +77,8 @@
           "type": "slider_item",
           "name": "Apache",
           "settings": {
-            "image": "shopify://shop_images/BANNER_APACHE.jpg",
-            "image_mobile": "shopify://shop_images/MOBILE_APACHE.jpg",
+            "image": "shopify://shop_images/BANNER_APACHE_e7356957-76c2-4151-98fe-f5eca270270f.jpg",
+            "image_mobile": "shopify://shop_images/MOBILE_APACHE_5e01a1fe-183f-4317-b1ab-82937f16a9d3.jpg",
             "overlay_opacity": 0,
             "link_banner": "shopify://collections/apache",
             "slider_effect": "fade-in-right",
@@ -107,8 +107,8 @@
           "type": "slider_item",
           "name": "Camisas",
           "settings": {
-            "image": "shopify://shop_images/BANNER_CAMISAS_COUNTRY.jpg",
-            "image_mobile": "shopify://shop_images/MOBILE_CAMISA_COUNTRY.jpg",
+            "image": "shopify://shop_images/Layer_28.jpg",
+            "image_mobile": "shopify://shop_images/MOBILE_CAMISA_COUNTRY_3a25326a-6f1d-4965-9577-b1c0ff74d173.jpg",
             "overlay_opacity": 0,
             "link_banner": "shopify://collections/camisas-de-botao-country",
             "slider_effect": "fade-in-right",
@@ -137,8 +137,8 @@
           "type": "slider_item",
           "name": "Work",
           "settings": {
-            "image": "shopify://shop_images/BANNER_CAMISAS_WORK.jpg",
-            "image_mobile": "shopify://shop_images/MOBILE_CAMISA_WORK.jpg",
+            "image": "shopify://shop_images/BANNER_CAMISAS_WORK_c56d248a-50b0-463c-a2aa-aad03ecfd78f.jpg",
+            "image_mobile": "shopify://shop_images/MOBILE_CAMISA_WORK_d58633df-cac6-4b1e-a552-8db55185b0ac.jpg",
             "overlay_opacity": 0,
             "link_banner": "shopify://collections/camisas-work",
             "slider_effect": "fade-in-right",
