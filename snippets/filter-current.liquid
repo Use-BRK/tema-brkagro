@@ -2,6 +2,8 @@
   assign total_active_values = 0
 %}
 {% for filter in collection.filters %}
+  {%- comment -%} Disponibilidade é automática com o filtro de tamanho, não vira etiqueta {%- endcomment -%}
+  {%- if filter.param_name == 'filter.v.availability' -%}{%- continue -%}{%- endif -%}
   {% liquid
     assign total_active_values = total_active_values | plus: filter.active_values.size
   %}
@@ -21,6 +23,7 @@
       class="filters list-none my-0 px-0 flex gap-10 flex-wrap"
     >
       {%- for filter in collection.filters -%}
+        {%- if filter.param_name == 'filter.v.availability' -%}{%- continue -%}{%- endif -%}
         {%- if filter.type == 'price_range' -%}
           {%- if filter.min_value.value != null or filter.max_value.value != null -%}
             <li

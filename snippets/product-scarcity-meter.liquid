@@ -1,0 +1,49 @@
+{%- doc -%}
+  Medidor de escassez no rodapé da imagem do card.
+  Soma o estoque de todas as variantes e aparece quando o total fica igual ou abaixo de
+  settings.scarcity_threshold. Não aparece se alguma variante não rastreia estoque ou
+  permite vender sem estoque (estoque "infinito"), nem se o produto estiver esgotado.
+
+  @param {product} card_product - Produto do card
+
+  @example
+  {% render 'product-scarcity-meter', card_product: card_product %}
+{%- enddoc -%}
+{%- liquid
+  assign scarcity_show = false
+  if settings.show_scarcity_meter and card_product.available
+    assign scarcity_threshold = settings.scarcity_threshold | default: 20
+    assign scarcity_total = 0
+    assign scarcity_tracked = true
+    for scarcity_variant in card_product.variants
+      if scarcity_variant.inventory_management == blank or scarcity_variant.inventory_policy == 'continue'
+        assign scarcity_tracked = false
+        break
+      endif
+      if scarcity_variant.inventory_quantity > 0
+        assign scarcity_total = scarcity_total | plus: scarcity_variant.inventory_quantity
+      endif
+    endfor
+    if scarcity_tracked and scarcity_total > 0 and scarcity_total <= scarcity_threshold
+      assign scarcity_show = true
+    endif
+  endif
+-%}
+{%- if scarcity_show -%}
+  {%- liquid
+    assign scarcity_fill = scarcity_total | times: 100 | divided_by: scarcity_threshold | at_least: 8 | at_most: 100
+    assign scarcity_count_html = '<strong class="scarcity-meter__count">' | append: scarcity_total | append: '</strong>'
+    if scarcity_total == 1
+      assign scarcity_label = settings.scarcity_text_single | default: 'Última unidade' | escape
+    else
+      assign scarcity_label = settings.scarcity_text | default: 'Últimas [count] unidades' | escape | replace: '[count]', scarcity_count_html
+    endif
+  -%}
+  <div class="scarcity-meter" role="status" style="--scarcity-fill: {{ scarcity_fill }}%;">
+    <span class="scarcity-meter__ember" aria-hidden="true"></span>
+    <span class="scarcity-meter__body">
+      <span class="scarcity-meter__text">{{ scarcity_label }}</span>
+      <span class="scarcity-meter__track" aria-hidden="true"><span class="scarcity-meter__fill"></span></span>
+    </span>
+  </div>
+{%- endif -%}

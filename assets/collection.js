@@ -394,7 +394,30 @@ var eventCollectionShopify = (function () {
       return url;
     },
 
+    // Filtro de tamanho da Shopify casa só a existência da variante (inclui esgotadas).
+    // Com um tamanho ativo, força "em estoque" (filter.v.availability=1), que a Shopify
+    // cruza na MESMA variante; sem tamanho ativo, remove. O filtro de disponibilidade
+    // fica oculto no painel (collection-sidebar / filter-current).
+    syncSizeAvailability: function (query) {
+      const params = new URLSearchParams(query);
+      const hasSize = Array.from(params.keys()).some(
+        (key) => /^filter\.v\.option\./i.test(key) && /tamanho|size/i.test(key)
+      );
+      if (hasSize) {
+        params.set('filter.v.availability', '1');
+      } else {
+        params.delete('filter.v.availability');
+      }
+      return params.toString();
+    },
+
     renderSectionFilter: function (url, searchParams) {
+      const parsedUrl = new URL(url, window.location.origin);
+      const syncedQuery = this.syncSizeAvailability(parsedUrl.search);
+      url = parsedUrl.pathname + (syncedQuery ? '?' + syncedQuery : '');
+      if (searchParams) {
+        searchParams = this.syncSizeAvailability(searchParams);
+      }
       this.toggleLoading(document.body, true);
       fetch(`${url}`)
         .then((response) => {
