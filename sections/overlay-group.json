@@ -90,12 +90,11 @@
           "type": "story",
           "name": "Calça",
           "settings": {
-            "local_video": "shopify://files/videos/calca-story.mp4",
-            "poster_image": "shopify://shop_images/calca-poster_abd3ea4a-0a2a-4ffd-9396-1ca39a7e281b.jpg",
-            "heading": "Calças Jeans do Agro",
+            "local_video": "shopify://files/videos/1ofertalive.mp4",
+            "heading": "1° Oferta Agro",
             "cta_text": "Comprar agora",
             "product": "",
-            "collection": "calcas-jeans"
+            "collection": "1ª-oferta-agro"
           }
         }
       },
@@ -114,13 +113,14 @@
         "product_handles": "",
         "exclude_handles": "",
         "position_side": "left",
-        "bubble_label": "Novidades",
+        "bubble_label": "Novidade",
         "bubble_width": 130,
-        "bubble_width_mobile": 75,
+        "bubble_width_mobile": 85,
         "offset_bottom": 16,
         "offset_bottom_mobile": 54,
         "offset_side": 16,
         "color_scheme": "scheme-1",
+        "preview_video": "shopify://files/videos/1ofertalive.mp4",
         "autoplay_preview": true,
         "loop_stories": true,
         "story_duration": 6,

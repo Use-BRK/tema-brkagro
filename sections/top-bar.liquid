@@ -156,26 +156,36 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
+      flex-wrap: nowrap;
       gap: 1px;
       flex: 1 1 auto;
       min-width: 0;
-      text-align: center;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
       line-height: 1.2;
       color: var(--topbar-shipping-text, inherit);
     }
     #topbar .topbar-shipping__message {
-      white-space: normal;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      min-width: 0;
+      font-size: var(--topbar-shipping-message-size, inherit);
     }
     #topbar .topbar-shipping__timer-row {
       display: flex;
       align-items: center;
       justify-content: center;
-      flex-wrap: wrap;
+      flex-wrap: nowrap;
+      flex-shrink: 0;
       gap: 6px;
     }
     #topbar .topbar-shipping__label {
       font-weight: var(--body-weight);
       opacity: 0.9;
+      white-space: nowrap;
+      font-size: var(--topbar-shipping-label-size, inherit);
     }
     #topbar .topbar-shipping__countdown {
       display: inline-flex;
@@ -184,6 +194,7 @@
       font-variant-numeric: tabular-nums;
       letter-spacing: 0;
       white-space: nowrap;
+      flex-shrink: 0;
       color: var(--topbar-shipping-accent, inherit);
       font-size: var(--topbar-shipping-timer-size, 1.4em);
       line-height: 1;
@@ -191,6 +202,12 @@
     #topbar .topbar-shipping__seg {
       min-width: 2ch;
       text-align: center;
+    }
+    #topbar .topbar-shipping__seg--days {
+      min-width: auto;
+      white-space: nowrap;
+      font-variant-numeric: normal;
+      letter-spacing: normal;
     }
     #topbar .topbar-shipping__seg:not(:last-child)::after {
       content: ':';
@@ -200,6 +217,7 @@
     }
     #topbar .topbar-shipping__expired {
       font-weight: var(--heading-weight, 700);
+      white-space: nowrap;
     }
   {%- endstyle -%}
   {%- capture style -%}
@@ -411,6 +429,8 @@
               {%- endif -%}
               {%- capture shipping_style_vars -%}
                 {%- if block_st.timer_font_size != blank -%}--topbar-shipping-timer-size: {{ block_st.timer_font_size }}px;{%- endif -%}
+                {%- if block_st.message_font_size != blank -%}--topbar-shipping-message-size: {{ block_st.message_font_size }}px;{%- endif -%}
+                {%- if block_st.label_font_size != blank -%}--topbar-shipping-label-size: {{ block_st.label_font_size }}px;{%- endif -%}
                 {%- if block_st.custom_colors -%}
                   {%- if block_st.text_color != blank -%}--topbar-shipping-text: {{ block_st.text_color }};{%- endif -%}
                   {%- if block_st.timer_color != blank -%}--topbar-shipping-accent: {{ block_st.timer_color }};{%- endif -%}
@@ -569,20 +589,30 @@
         }
 
         this.hidden = false;
-        var d = Math.floor(diff / 86400000);
-        var h = Math.floor((diff / 3600000) % 24);
-        var m = Math.floor((diff / 60000) % 60);
-        var s = Math.floor((diff / 1000) % 60);
+
         var pad = function (n) { return String(n).padStart(2, '0'); };
+        var ONE_DAY = 86400000;
+        var HOURS_THRESHOLD = 2 * ONE_DAY; // abaixo de 48h mostra hh:mm:ss
 
-        var segs = [];
-        if (d > 0) segs.push(d);
-        segs.push(h, m, s);
+        if (!this.countdownEl) return;
 
-        if (this.countdownEl) {
+        if (diff >= HOURS_THRESHOLD) {
+          // 48h ou mais restando: mostra só em dias
+          var d = Math.floor(diff / ONE_DAY);
+          var label = d === 1 ? 'dia' : 'dias';
+          this.countdownEl.innerHTML =
+            '<span class="topbar-shipping__seg topbar-shipping__seg--days">' + d + ' ' + label + '</span>';
+        } else {
+          // menos de 48h restando: muda para horas:minutos:segundos
+          var h = Math.floor(diff / 3600000);
+          var m = Math.floor((diff / 60000) % 60);
+          var s = Math.floor((diff / 1000) % 60);
+          var segs = [h, m, s];
+          var units = ['h', 'm', 's'];
+
           this.countdownEl.innerHTML = segs
-            .map(function (v) {
-              return '<span class="topbar-shipping__seg">' + pad(v) + '</span>';
+            .map(function (v, i) {
+              return '<span class="topbar-shipping__seg">' + pad(v) + units[i] + '</span>';
             })
             .join('');
         }
@@ -936,6 +966,16 @@
           "default": "FRETE GRÁTIS ACIMA DE R$299 - PARA TODO BRASIL"
         },
         {
+          "type": "range",
+          "id": "message_font_size",
+          "label": "Tamanho do texto da mensagem",
+          "min": 10,
+          "max": 32,
+          "step": 1,
+          "unit": "px",
+          "default": 14
+        },
+        {
           "type": "header",
           "content": "Contagem regressiva"
         },
@@ -948,6 +988,16 @@
           "id": "label_before",
           "label": "Texto antes do contador",
           "default": "Termina em:"
+        },
+        {
+          "type": "range",
+          "id": "label_font_size",
+          "label": "Tamanho do texto antes do contador",
+          "min": 10,
+          "max": 32,
+          "step": 1,
+          "unit": "px",
+          "default": 14
         },
         {
           "type": "range",

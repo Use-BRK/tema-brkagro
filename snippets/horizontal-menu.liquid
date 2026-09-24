@@ -1,4 +1,9 @@
 <link rel="stylesheet" href="{{ 'navigation.css' | asset_url }}" media="print" onload="this.media='all'">
+<style>
+  .menu-oferta-blink{display:inline-block;animation:brk-menu-oferta-blink 1.1s ease-in-out infinite;}
+  @keyframes brk-menu-oferta-blink{0%,100%{opacity:1;}50%{opacity:.35;}}
+  @media (prefers-reduced-motion: reduce){.menu-oferta-blink{animation:none;}}
+</style>
 {%- liquid
   assign section_st = section.settings
   assign theme_st = settings
@@ -46,6 +51,11 @@
           {%- liquid
             assign last_block = null
             assign title = link.title | downcase
+            assign link_handle = link.handle | downcase
+            assign menu_oferta = false
+            if title contains 'oferta' or link_handle contains 'oferta'
+              assign menu_oferta = true
+            endif
             for block in section.blocks
               assign text = block.settings.text | downcase
               if text == title
@@ -95,8 +105,8 @@
               -%}
               <menu-item class="relative static-1025 flex justify-between align-center border-bottom border-bottom-1025-0 header-color px-15">
               <a class="no-underline py-10 relative lh-normal inline-flex min-h-55 min-h-1025-50 z-1 align-center{% if theme_st.menu_font == 'heading_font' %} heading-style{% endif %}{% if uppercase_first %} uppercase{% endif %}{% if link.links.size > 0 and redirect_to_link == blank %} redirect-to-link{% endif %}" href="{{ link.url }}"{% if block_st.open-link-newtab == true %} target="_blank"{% endif %}>
-{%- render 'menu-category-icon', menu_link: link -%}
-<span>{{ link.title }}</span>
+                {%- render 'menu-category-icon', menu_link: link -%}
+                <span{% if menu_oferta %} class="menu-oferta-blink"{% endif %}>{{ link.title }}</span>
                 {%- if label != blank and label != 'unset' -%}
                   <span class="menu_label rounded-2 text-center heading_weight relative absolute-1025 whitespace-nowrap uppercase  {{ label }}">{{ section_st[label] }}</span>
                 {%- endif -%}
@@ -150,12 +160,7 @@
                       {% endif %}
                       <div class="flex align-center">
                         {%- render 'menu-category-icon', menu_link: link -%}
-                        <span>
-  {% if link.title contains 'OFERTA' %}
-    <span class="icone-oferta">⚠️</span>
-  {% endif %}
-  {{ link.title }}
-</span>
+                        <span{% if menu_oferta %} class="menu-oferta-blink"{% endif %}>{{ link.title }}</span>
                       </div>
                     </back-menu>
                     <close-menu class="close-menu lh-1 ms-10">
@@ -404,7 +409,7 @@
                   arial-label="{{ link.title }}"
                 >
                   {%- render 'menu-category-icon', menu_link: link -%}
-                <span>{{ link.title }}</span>
+                <span{% if menu_oferta %} class="menu-oferta-blink"{% endif %}>{{ link.title }}</span>
                   {%- if link.links.size > 0 -%}
                     <open-children-toggle class="inline-flex flex-end align-center ms-5{% if section_st.redirect_to_link == blank %} absolute inset-0 static-1025{% else %} touch-target-mb{% endif %}">
                       <svg class="icon-down hidden block-1025" width="10" height="6">
@@ -445,7 +450,7 @@
                       {% endif %}
                       <div class="flex align-center">
                         {%- render 'menu-category-icon', menu_link: link -%}
-                        <span>{{ link.title }}</span>
+                        <span{% if menu_oferta %} class="menu-oferta-blink"{% endif %}>{{ link.title }}</span>
                       </div>
                     </back-menu>
                     <close-menu class="close-menu lh-1 ms-10">
@@ -561,6 +566,11 @@
           {%- liquid
             assign last_block = null
             assign title = link.title | downcase
+            assign link_handle = link.handle | downcase
+            assign menu_oferta = false
+            if title contains 'oferta' or link_handle contains 'oferta'
+              assign menu_oferta = true
+            endif
             for block in section.blocks
               assign text = block.settings.text | downcase
               if text == title
@@ -611,7 +621,7 @@
               <menu-item class="relative static-1025 flex justify-between align-center border-bottom border-bottom-1025-0 header-color px-15">
               <a class="no-underline py-10 relative lh-normal inline-flex min-h-55 min-h-1025-50 z-1 align-center{% if theme_st.menu_font == 'heading_font' %} heading-style{% endif %}{% if uppercase_first %} uppercase{% endif %}{% if link.links.size > 0 and redirect_to_link == blank %} redirect-to-link{% endif %}" href="{{ link.url }}"{% if block_st.open-link-newtab == true %} target="_blank"{% endif %}>
                 {%- render 'menu-category-icon', menu_link: link -%}
-                <span>{{ link.title }}</span>
+                <span{% if menu_oferta %} class="menu-oferta-blink"{% endif %}>{{ link.title }}</span>
                 {%- if label != blank and label != 'unset' -%}
                   <span class="menu_label rounded-2 text-center heading_weight relative absolute-1025 whitespace-nowrap uppercase  {{ label }}">{{ section_st[label] }}</span>
                 {%- endif -%}
@@ -665,7 +675,7 @@
                       {% endif %}
                       <div class="flex align-center">
                         {%- render 'menu-category-icon', menu_link: link -%}
-                        <span>{{ link.title }}</span>
+                        <span{% if menu_oferta %} class="menu-oferta-blink"{% endif %}>{{ link.title }}</span>
                       </div>
                     </back-menu>
                     <close-menu class="close-menu lh-1 ms-10">
@@ -914,7 +924,7 @@
                   arial-label="{{ link.title }}"
                 >
                   {%- render 'menu-category-icon', menu_link: link -%}
-                <span>{{ link.title }}</span>
+                <span{% if menu_oferta %} class="menu-oferta-blink"{% endif %}>{{ link.title }}</span>
                   {%- if link.links.size > 0 -%}
                     <open-children-toggle class="inline-flex flex-end align-center ms-5{% if section_st.redirect_to_link == blank %} absolute inset-0 static-1025{% else %} touch-target-mb{% endif %}">
                       <svg class="icon-down hidden block-1025" width="10" height="6">
@@ -955,7 +965,7 @@
                       {% endif %}
                       <div class="flex align-center">
                         {%- render 'menu-category-icon', menu_link: link -%}
-                        <span>{{ link.title }}</span>
+                        <span{% if menu_oferta %} class="menu-oferta-blink"{% endif %}>{{ link.title }}</span>
                       </div>
                     </back-menu>
                     <close-menu class="close-menu lh-1 ms-10">

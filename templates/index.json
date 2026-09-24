@@ -15,12 +15,11 @@
         "slider_item_MMEAVn": {
           "type": "slider_item",
           "name": "Calças",
-          "disabled": true,
           "settings": {
-            "image": "shopify://shop_images/Prancheta_1_fd29a091-6e32-4597-a075-92e10ad9c7e3.png",
-            "image_mobile": "shopify://shop_images/Prancheta_2_09bc1a82-9e31-4759-88de-a843306b0304.png",
+            "image": "shopify://shop_images/BANNER_V3.jpg",
+            "image_mobile": "shopify://shop_images/MOBILE_V3.jpg",
             "overlay_opacity": 0,
-            "link_banner": "shopify://collections/exclusivas-brkagro",
+            "link_banner": "shopify://collections/1ª-oferta-agro",
             "slider_effect": "fade-in-right",
             "subheading": "",
             "heading": "",
@@ -46,6 +45,7 @@
         "slider_item_rYBq93": {
           "type": "slider_item",
           "name": "Nossa Senhora",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/BANNER_NOSSA_SENHORA_10065bd1-c264-4bbc-9525-6da4329133ef.jpg",
             "image_mobile": "shopify://shop_images/MOBILE_NOSSA_SENHORA_01b32db8-ff98-4f61-a4b2-19c4d1946333.jpg",
@@ -76,6 +76,7 @@
         "slider_item_K3DbMk": {
           "type": "slider_item",
           "name": "Apache",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/BANNER_APACHE_e7356957-76c2-4151-98fe-f5eca270270f.jpg",
             "image_mobile": "shopify://shop_images/MOBILE_APACHE_5e01a1fe-183f-4317-b1ab-82937f16a9d3.jpg",
@@ -106,6 +107,7 @@
         "slider_item_D43AJr": {
           "type": "slider_item",
           "name": "Camisas",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/Layer_28.jpg",
             "image_mobile": "shopify://shop_images/MOBILE_CAMISA_COUNTRY_3a25326a-6f1d-4965-9577-b1c0ff74d173.jpg",
@@ -136,6 +138,7 @@
         "slider_item_KnUMfi": {
           "type": "slider_item",
           "name": "Work",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/BANNER_CAMISAS_WORK_c56d248a-50b0-463c-a2aa-aad03ecfd78f.jpg",
             "image_mobile": "shopify://shop_images/MOBILE_CAMISA_WORK_d58633df-cac6-4b1e-a552-8db55185b0ac.jpg",
@@ -274,24 +277,24 @@
     "banner_carousel_iVEDMG": {
       "type": "banner-carousel",
       "blocks": {
-        "card_j4crXK": {
+        "card_Az3eRR": {
           "type": "card",
-          "name": "Botinas",
+          "name": "Calças Jeans",
           "settings": {
-            "image": "shopify://shop_images/Card_BRK_AGRO_Botinas_b2c8c85d-4f97-41a2-b766-48189687ea3b.webp",
-            "collection": "botinas",
+            "image": "shopify://shop_images/Card_BRK_AGRO_Calca.webp",
+            "collection": "calcas-jeans",
             "link": "",
-            "label": "Botinas"
+            "label": "Calça Jeans"
           }
         },
-        "card_7tezkD": {
+        "card_w8XfBY": {
           "type": "card",
-          "name": "Bonés",
+          "name": "Camisas de Botão",
           "settings": {
-            "image": "shopify://shop_images/Card_BRK_AGRO_bones_49559ed0-580c-45d5-9c5b-e5031720a4dd.webp",
-            "collection": "bones",
-            "link": "",
-            "label": "Bonés"
+            "image": "shopify://shop_images/Card_BRK_AGRO_Botao.webp",
+            "collection": "camisas-de-botao-country",
+            "link": "shopify://collections/camisas-de-botao-country",
+            "label": "Camisas de Botão"
           }
         },
         "card_jHmrEj": {
@@ -314,34 +317,34 @@
             "label": "Camisas Work"
           }
         },
-        "card_w8XfBY": {
+        "card_j4crXK": {
           "type": "card",
-          "name": "Camisas de Botão",
+          "name": "Botinas",
           "settings": {
-            "image": "shopify://shop_images/Card_BRK_AGRO_Botao.webp",
-            "collection": "camisas-de-botao-country",
-            "link": "shopify://collections/camisas-de-botao-country",
-            "label": "Camisas de Botão"
+            "image": "shopify://shop_images/Card_BRK_AGRO_Botinas_b2c8c85d-4f97-41a2-b766-48189687ea3b.webp",
+            "collection": "botinas",
+            "link": "",
+            "label": "Botinas"
           }
         },
-        "card_Az3eRR": {
+        "card_7tezkD": {
           "type": "card",
-          "name": "Calças Jeans",
+          "name": "Bonés",
           "settings": {
-            "image": "shopify://shop_images/Card_BRK_AGRO_Calca.webp",
-            "collection": "calcas-jeans",
+            "image": "shopify://shop_images/Card_BRK_AGRO_bones_49559ed0-580c-45d5-9c5b-e5031720a4dd.webp",
+            "collection": "bones",
             "link": "",
-            "label": "Calça Jeans"
+            "label": "Bonés"
           }
         }
       },
       "block_order": [
-        "card_j4crXK",
-        "card_7tezkD",
+        "card_Az3eRR",
+        "card_w8XfBY",
         "card_jHmrEj",
         "card_AyYQxG",
-        "card_w8XfBY",
-        "card_Az3eRR"
+        "card_j4crXK",
+        "card_7tezkD"
       ],
       "name": "Banner Carousel",
       "settings": {

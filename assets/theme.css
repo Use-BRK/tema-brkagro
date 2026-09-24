@@ -1732,20 +1732,3 @@ minicart-item-edit.loading .edit-icon {
   height: 100vh;
 }
 
-.icone-oferta {
-  display: inline-block;
-  margin-right: 5px;
-  animation: glozinOferta 1s infinite;
-}
-
-@keyframes glozinOferta {
-  0%, 100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-
-  50% {
-    opacity: .25;
-    transform: scale(1.15);
-  }
-}

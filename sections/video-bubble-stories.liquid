@@ -1,5 +1,109 @@
 {{ 'video-bubble-stories.css' | asset_url | stylesheet_tag }}
 <script src="{{ 'video-bubble-stories.js' | asset_url }}" defer="defer"></script>
+<style>
+  /* Play: ícone branco sólido, só o círculo transparente */
+  .vb__mini-play,
+.vb__mini-play::before,
+.vb__mini-play::after {
+  backdrop-filter: blur(1px) !important;
+  -webkit-backdrop-filter: blur(1px) !important;
+  filter: none !important;
+}
+
+.vb__mini-play {
+  opacity: 1 !important;
+  color: #fff !important;
+  background: rgba(255, 255, 255, 0.15) !important;
+  box-shadow: none !important;
+}
+
+.vb__mini-play::before,
+.vb__mini-play::after {
+  background: transparent !important;
+}
+
+.vb__mini-play svg {
+  opacity: 1 !important;
+  color: #fff !important;
+  filter: none !important;
+}
+
+  /* X: encostado no canto do vídeo */
+  video-bubble .vb__mini .vb__mini-close {
+    width: 16px !important;
+    height: 16px !important;
+    min-width: 0 !important;
+    min-height: 0 !important;
+    padding: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    transform: none !important;
+    top: 10px !important;
+    right: 10px !important;
+    left: auto !important;
+    pointer-events: none !important;
+  }
+
+  video-bubble .vb__mini .vb__mini-close svg {
+    width: 10px !important;
+    height: 10px !important;
+  }
+</style>
+<script>
+  (function () {
+    var KEY = 'vb-fake-x-dismissed';
+
+    function getBubble() {
+      return document.querySelector('video-bubble');
+    }
+
+    function hideBubble() {
+      var b = getBubble();
+      if (b) b.style.setProperty('display', 'none', 'important');
+      try { sessionStorage.setItem(KEY, '1'); } catch (e) {}
+    }
+
+    // Se já dispensou nesta visita, não mostra mais
+    document.addEventListener('DOMContentLoaded', function () {
+      try {
+        if (sessionStorage.getItem(KEY) === '1') hideBubble();
+      } catch (e) {}
+    });
+
+    function closeAfterFakeX() {
+      var b = getBubble();
+      if (b && b.dataset.fakeX === '1') {
+        setTimeout(hideBubble, 50);
+      }
+    }
+
+    document.addEventListener('click', function (e) {
+      // 1. Clique no bubble: verifica se foi em cima do X
+      var mini = e.target.closest('.vb__mini');
+      if (mini) {
+        var x = mini.querySelector('.vb__mini-close');
+        var b = getBubble();
+        if (x && b) {
+          var r = x.getBoundingClientRect();
+          var pad = 6; // área extra em volta do X
+          var hit =
+            e.clientX >= r.left - pad && e.clientX <= r.right + pad &&
+            e.clientY >= r.top - pad && e.clientY <= r.bottom + pad;
+          b.dataset.fakeX = hit ? '1' : '0';
+        }
+      }
+
+      // 2. Fechou os stories: esconde o bubble se abriu pelo X
+      if (e.target.closest('[data-vb-close]')) closeAfterFakeX();
+    }, true);
+
+    // Fechar com a tecla Esc também conta
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') closeAfterFakeX();
+    }, true);
+  })();
+</script>
 {%- liquid
   assign st = section.settings
 

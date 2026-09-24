@@ -16,14 +16,15 @@
       "blocks": {
         "shipping_countdown_F86tnm": {
           "type": "shipping_countdown",
-          "disabled": true,
           "settings": {
-            "message": "FRETE GRÁTIS ACIMA DE R$199",
+            "message": "1ª Oferta Agro - BRK",
+            "message_font_size": 17,
             "label_before": "Termina em:",
-            "timer_font_size": 18,
-            "start_date": "2026-08-28",
-            "start_time": "00:00",
-            "end_date": "2026-08-31",
+            "label_font_size": 16,
+            "timer_font_size": 20,
+            "start_date": "",
+            "start_time": "",
+            "end_date": "2026-09-25",
             "end_time": "23:59",
             "expired_message": "",
             "custom_colors": true,
@@ -35,6 +36,7 @@
         },
         "text_slider_LFaC38": {
           "type": "text_slider",
+          "disabled": true,
           "settings": {
             "text1": "<strong>FRETE FIXO R$9,90 — PARA TODO BRASIL</strong>",
             "coupon1": "",
@@ -72,11 +74,11 @@
         "color_scheme": "scheme-a07f02f4-f1f2-4ea3-9eeb-577115ec9f47",
         "show_mobile": true,
         "show_separator_line": false,
-        "uppercase": false,
-        "font_size": 12,
+        "uppercase": true,
+        "font_size": 16,
         "font_weight": "body_weight",
-        "padding_top": 3,
-        "padding_bottom": 3
+        "padding_top": 7,
+        "padding_bottom": 7
       }
     },
     "header": {

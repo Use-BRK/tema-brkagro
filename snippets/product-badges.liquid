@@ -193,6 +193,15 @@
       data-show-preorder="{{ show_pre_order }}"
       data-sale-badge-type="{{ sale_badge_type }}"
     >
+      {%- comment -%} Badge custom (metacampo custom.custom_product_badge) sempre no topo das demais {%- endcomment -%}
+      {% if card_product.metafields.custom.custom_product_badge %}
+        <div
+          class="product__badges-custom product__badges-inner align-self-start px-15 pre-order inline-flex content-center subheading_weight text-center lh-normal"
+          style="--badges-color: {{ settings.custom_badge_color }};--badges-bg:{{ settings.custom_badge_background }};"
+        >
+          {{ card_product.metafields.custom.custom_product_badge }}
+        </div>
+      {% endif %}
       {%- if card_product.tags contains 'VIP' -%}
         {%- comment -%} Badge VIP: cores em Configurações do tema > Badges > Badge VIP {%- endcomment -%}
         <div
@@ -252,14 +261,6 @@
           style="--badges-color: {{ settings.new_color }};--badges-bg:{{ settings.new_background }};"
         >
           {{ 'products.product.label.new_label' | t }}
-        </div>
-      {% endif %}
-      {% if card_product.metafields.custom.custom_product_badge %}
-        <div
-          class="product__badges-custom product__badges-inner align-self-start px-15 pre-order inline-flex content-center subheading_weight text-center lh-normal"
-          style="--badges-color: {{ settings.custom_badge_color }};--badges-bg:{{ settings.custom_badge_background }};"
-        >
-          {{ card_product.metafields.custom.custom_product_badge }}
         </div>
       {% endif %}
       {% if subscription > 0 %}
