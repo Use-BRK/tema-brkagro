@@ -207,6 +207,135 @@
   opacity: 0.9;
 }
 
+/* ===========================================================
+   Mobile/tablet: toolbar "Filtro | Ordenar por" vira cápsula
+   flutuante no rodapé central da tela.
+   Ligado pela opção "Toolbar flutuante no mobile" da seção
+   (classe .toolbar-products--floating em collection-toolbar.liquid).
+   Sem transform/backdrop-filter aqui: o #SortBy (folha fixa que sobe
+   do rodapé) é filho da toolbar e quebraria com um containing block.
+   =========================================================== */
+/* Cópia do filtro de gênero fora da cápsula: só existe no modo flutuante e só aparece no mobile */
+.gender-filter-standalone {
+  --chip-green: var(--btn-primary-bg-color, #085b47);
+  display: none;
+}
+@media (max-width: 1024.98px) {
+  .sec__collection-main .toolbar-products--floating {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: calc(1.6rem + env(safe-area-inset-bottom, 0px));
+    z-index: 10;
+    flex-wrap: nowrap;
+    align-items: center;
+    width: max-content;
+    max-width: calc(100% - 3.2rem);
+    margin: 0 auto;
+    padding: 0.3rem;
+    gap: 0;
+    border-radius: 5rem;
+    background: rgba(255, 255, 255, 0.8);
+    border: 1.5px solid rgba(0, 0, 0, 0.14);
+    box-shadow: 0 0.6rem 1.8rem rgba(0, 0, 0, 0.1);
+    animation: toolbar-float-in 0.35s ease-out both;
+  }
+  /* Vidro fosco num pseudo-elemento de fundo: backdrop-filter direto na toolbar
+     viraria containing block e quebraria o #SortBy fixo (filho dela) */
+  .sec__collection-main .toolbar-products--floating::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: inherit;
+    -webkit-backdrop-filter: blur(12px) saturate(160%);
+    backdrop-filter: blur(12px) saturate(160%);
+    pointer-events: none;
+  }
+  .sec__collection-main .toolbar-products--floating .toolbar-left,
+  .sec__collection-main .toolbar-products--floating .toolbar-sorter {
+    flex: 0 0 auto;
+    min-width: 0;
+    gap: 0;
+  }
+  .sec__collection-main .toolbar-products--floating .toolbar-sorter {
+    position: static;
+    justify-content: flex-start;
+  }
+  .sec__collection-main .toolbar-products--floating .toolbar-sorter::before {
+    content: '';
+    align-self: center;
+    width: 1px;
+    height: 1.6rem;
+    background: rgba(0, 0, 0, 0.12);
+  }
+  .sec__collection-main .toolbar-products--floating .btn-filter,
+  .sec__collection-main .toolbar-products--floating .toolbar-sorter .select-selected {
+    min-height: 3.8rem;
+    padding: 0 1.6rem;
+    gap: 0.6rem;
+    border: 0;
+    border-radius: 5rem;
+    background: transparent;
+    color: var(--color-heading, #111);
+    font-size: 1.35rem;
+    font-weight: 500;
+  }
+  .sec__collection-main .toolbar-products--floating .btn-filter svg {
+    width: 1.3rem;
+    height: 1.3rem;
+  }
+  .sec__collection-main .toolbar-products--floating .btn-filter:hover,
+  .sec__collection-main .toolbar-products--floating .toolbar-sorter .select-selected:hover {
+    background: rgba(0, 0, 0, 0.05);
+    color: var(--color-heading, #111);
+  }
+  .sec__collection-main .toolbar-products--floating .toolbar-sorter .select-selected label {
+    color: inherit;
+    font-weight: 500;
+  }
+  /* Coleções com gênero: as regras de .toolbar--gender (main-collection-product.liquid)
+     escondem os textos em telas estreitas; na cápsula eles voltam */
+  .sec__collection-main .toolbar-products--floating .btn-filter__label,
+  .sec__collection-main .toolbar-products--floating .sort-label-text {
+    display: inline;
+  }
+  .sec__collection-main .toolbar-products--floating .toolbar-sorter .icon-down.hidden-1025 {
+    display: block;
+  }
+  .sec__collection-main .toolbar-products--floating .sort-icon-mobile {
+    display: none;
+  }
+  .sec__collection-main .toolbar-products--floating .gender-filter-bar--in-toolbar {
+    display: none;
+  }
+  .sec__collection-main .gender-filter-standalone {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+  }
+  /* Respiro no fim da grade para a cápsula não cobrir o último produto/paginação */
+  .sec__collection-main:has(.toolbar-products--floating) {
+    padding-bottom: 8rem;
+  }
+}
+/* Entrada só com opacity/margin (translate criaria containing block p/ o #SortBy fixo) */
+@keyframes toolbar-float-in {
+  from {
+    opacity: 0;
+    margin-bottom: -1.2rem;
+  }
+  to {
+    opacity: 1;
+    margin-bottom: 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .sec__collection-main .toolbar-products--floating {
+    animation: none;
+  }
+}
+
 :where(.grid-mode) {
   color: #cbcbcb;
 }
