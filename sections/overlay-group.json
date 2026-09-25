@@ -95,6 +95,15 @@
             "collection": ""
           }
         },
+        "story_T3rLVc": {
+          "type": "story",
+          "settings": {
+            "heading": "",
+            "cta_text": "Comprar agora",
+            "product": "",
+            "collection": ""
+          }
+        },
         "story_dPpdae": {
           "type": "story",
           "name": "Calça",
@@ -109,6 +118,7 @@
       },
       "block_order": [
         "story_TKH3hj",
+        "story_T3rLVc",
         "story_dPpdae"
       ],
       "settings": {
@@ -130,7 +140,7 @@
         "offset_bottom_mobile": 54,
         "offset_side": 16,
         "color_scheme": "scheme-1",
-        "preview_video": "shopify://files/videos/1ofertalive.mp4",
+        "preview_video": "shopify://files/videos/COMPILADO_VIDEOS_LIVE.mp4",
         "autoplay_preview": true,
         "loop_stories": true,
         "story_duration": 6,
