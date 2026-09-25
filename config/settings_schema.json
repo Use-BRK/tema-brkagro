@@ -884,6 +884,40 @@
         "id": "vip_badge_background",
         "label": "Cor de fundo",
         "default": "#5be3f0"
+      },
+      {
+        "type": "header",
+        "content": "Medidor de escassez",
+        "info": "Aparece no rodapé da imagem do produto (vitrines e coleções) quando o estoque somado de todas as variantes rastreadas fica igual ou abaixo do limite."
+      },
+      {
+        "type": "checkbox",
+        "id": "show_scarcity_meter",
+        "label": "Mostrar medidor de escassez",
+        "default": true
+      },
+      {
+        "type": "range",
+        "id": "scarcity_threshold",
+        "label": "Mostrar quando o estoque total for até",
+        "min": 3,
+        "max": 50,
+        "step": 1,
+        "unit": "un",
+        "default": 20
+      },
+      {
+        "type": "text",
+        "id": "scarcity_text",
+        "label": "Texto (várias unidades)",
+        "info": "Use [count] para a quantidade.",
+        "default": "Últimas [count] unidades"
+      },
+      {
+        "type": "text",
+        "id": "scarcity_text_single",
+        "label": "Texto (1 unidade)",
+        "default": "Última unidade"
       }
     ]
   },

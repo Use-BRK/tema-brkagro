@@ -400,6 +400,8 @@
           filter_layout: filter_layout,
           products_column: products_column,
           show_gender_filter: show_gender_filter,
+          floating_toolbar: section_st.floating_toolbar_mobile,
+          capsule_toolbar: section_st.capsule_toolbar_desktop,
           masc_active: masc_active,
           fem_active: fem_active,
           masc_value: masc_value,
@@ -617,6 +619,11 @@
       var fetchUrl = window.location.pathname + '?section_id=' + sectionId + (searchParams ? '&' + searchParams : '');
       var browserUrl = window.location.pathname + (searchParams ? '?' + searchParams : '');
 
+      // No mobile a toolbar não é re-renderizada (só a grade), então o estado ativo é atualizado aqui
+      document.querySelectorAll('.gender-filter-btn').forEach(function (b) {
+        b.classList.toggle('active', !isActive && b.getAttribute('data-filter-value') === filterValue);
+      });
+
       document.body.classList.add('start', 'loading');
 
       fetch(fetchUrl)
@@ -775,6 +782,20 @@
       "type": "checkbox",
       "id": "grid_list",
       "label": "t:sections.collection-main.settings.toolbar.grid_list",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "floating_toolbar_mobile",
+      "label": "Toolbar flutuante no mobile",
+      "info": "No mobile/tablet, a toolbar vira uma cápsula fixa no rodapé da tela: Filtro | Masculino/Feminino | Ordenar. Desmarque para voltar à toolbar horizontal.",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "capsule_toolbar_desktop",
+      "label": "Toolbar em cápsula no desktop",
+      "info": "Nas coleções com filtro de gênero, a toolbar do desktop vira uma cápsula centralizada: Filtro | Masculino/Feminino | Ordenar. Desmarque para voltar à toolbar horizontal.",
       "default": true
     },
     {

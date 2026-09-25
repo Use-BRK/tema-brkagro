@@ -267,6 +267,11 @@
             sticky: type
           %}
         {% endif %}
+        {%- comment -%} Medidor de escassez em STANDBY (descomentar para reativar; snippet + CSS em product-card.css e collection-page.css)
+        {%- if type != 'list' and type != 'sticky' and type != 'product-set' -%}
+          {%- render 'product-scarcity-meter', card_product: card_product -%}
+        {%- endif -%}
+        {%- endcomment -%}
         {% if type == 'product-set' and product_set_badge %}
           <div class="label-set px-15 py-5 absolute z-1 subheading_weight pointer-none {% if settings.rtl %} right-10 right-1025-15 {% else %} left-10 left-1025-15 {% endif %} top-1025-15 top-10 btn-rounded color-white fs-11">
             <span>{{ 'products.product.label_set' | t: index: indexFor }}</span>

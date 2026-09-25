@@ -19,7 +19,7 @@
     endif
   endif
 %}
-<div class="toolbar toolbar-products flex gap-15 gap-md-30 align-center mb-20{% if filter_layout == 'horizontal' %} mt-1025-60{% endif %}{% if show_gender_filter %} toolbar--gender{% endif %}">
+<div class="toolbar toolbar-products flex gap-15 gap-md-30 align-center mb-20{% if filter_layout == 'horizontal' %} mt-1025-60{% endif %}{% if show_gender_filter %} toolbar--gender{% endif %}{% if floating_toolbar %} toolbar-products--floating{% endif %}{% if capsule_toolbar and show_gender_filter %} toolbar-products--capsule{% endif %}">
   {%- if enable_filtering or number_products_per_page -%}
     {% if number_products_per_page %}
       <div class="toolbar-left flex gap-15 gap-md-30 align-center flex-1">
