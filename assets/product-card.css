@@ -350,6 +350,26 @@ review-product.inline-loading:after {
 .product-item__price-rating .product-item__rating-inline {
   flex-shrink: 0;
 }
+/* Card em grid: o preco final fica SEMPRE abaixo do compare-price.
+   Forcando o "de" (riscado) a ocupar a linha inteira, o preco atual quebra
+   para a linha de baixo com ou sem as estrelas do Judge.me ao lado — quando
+   o produto recebe a primeira avaliacao o layout do preco nao muda. */
+.product-item__price-rating .product-item__price:not(.text-start) .card-product-price {
+  flex-wrap: wrap;
+}
+.product-item__price-rating
+  .product-item__price:not(.text-start)
+  .card-product-price
+  > .price-regular:first-child {
+  flex: 0 0 100%;
+  max-width: 100%;
+}
+.product-item__price-rating
+  .product-item__price:not(.text-start)
+  .card-product-price.justify-center
+  > .price-regular:first-child {
+  text-align: center;
+}
 .shopify-payment-button {
   width: 100%;
 }
