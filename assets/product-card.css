@@ -95,7 +95,7 @@ variant-radios-detail {
   font-size: clamp(2.4rem, 3vw, 2.6rem);
 }
 .price-large .compare-price {
-  font-size: 1.8rem;
+  font-size: 1.6rem;
 }
 review-product.inline-loading {
   margin-top: 2px;
