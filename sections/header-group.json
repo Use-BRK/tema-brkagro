@@ -16,11 +16,12 @@
       "blocks": {
         "shipping_countdown_F86tnm": {
           "type": "shipping_countdown",
+          "name": "Timer",
           "settings": {
             "message": "1ª Oferta Agro - BRK",
-            "message_font_size": 17,
+            "message_font_size": 18,
             "label_before": "Termina em:",
-            "label_font_size": 16,
+            "label_font_size": 14,
             "timer_font_size": 20,
             "start_date": "",
             "start_time": "",
@@ -75,7 +76,7 @@
         "show_mobile": true,
         "show_separator_line": false,
         "uppercase": true,
-        "font_size": 16,
+        "font_size": 12,
         "font_weight": "body_weight",
         "padding_top": 7,
         "padding_bottom": 7
