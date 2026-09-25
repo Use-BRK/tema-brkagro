@@ -26,13 +26,13 @@
             "start_date": "",
             "start_time": "",
             "end_date": "2026-09-25",
-            "end_time": "14:18",
+            "end_time": "23:59",
             "expired_message": "",
             "switch_to_slider": true,
             "custom_colors": true,
-            "bg_color": "#0c0c0c",
+            "bg_color": "#0F6049",
             "text_color": "#ffffff",
-            "timer_color": "#ffed00",
+            "timer_color": "#FFFFFF",
             "hidden_on_mobile": false
           }
         },
