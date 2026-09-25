@@ -238,47 +238,114 @@
     endfor
   -%}
   {%- liquid
-    # Timer com "trocar pelo slider ao terminar": define o estado inicial do slider
-    # (aproximado no servidor, só p/ evitar flash; o JS corrige a cada segundo).
-    assign switch_slider = false
-    assign slider_hidden_init = false
+    # Timer: janela principal + "reagendar" opcional (data e hora no mesmo campo).
+    # Datas fixadas no fuso da loja para todos os visitantes verem o mesmo tempo.
+    assign tb_timer = false
     for block in section.blocks
-      if block.type == 'shipping_countdown' and block.settings.switch_to_slider
-        assign switch_slider = true
-        assign sw_tz = 'now' | date: '%z'
-        assign sw_tz_h = sw_tz | slice: 0, 3
-        assign sw_tz_m = sw_tz | slice: 3, 2
-        assign sw_tz_colon = sw_tz_h | append: ':' | append: sw_tz_m
-        assign sw_now = 'now' | date: '%s' | plus: 0
-        assign sw_started = true
-        assign sw_ended = false
-        if block.settings.start_date != blank
-          assign sw_s_time = block.settings.start_time | default: '00:00'
-          assign sw_start = block.settings.start_date | append: 'T' | append: sw_s_time | append: ':00' | append: sw_tz_colon
-          assign sw_start_ts = sw_start | date: '%s' | plus: 0
-          if sw_now < sw_start_ts
-            assign sw_started = false
-          endif
-        endif
-        if block.settings.end_date != blank
-          assign sw_e_time = block.settings.end_time | default: '23:59'
-          assign sw_end = block.settings.end_date | append: 'T' | append: sw_e_time | append: ':59' | append: sw_tz_colon
-          assign sw_end_ts = sw_end | date: '%s' | plus: 0
-          if sw_now > sw_end_ts
-            assign sw_ended = true
-          endif
-        endif
-        if sw_started and sw_ended == false
-          assign slider_hidden_init = true
-        endif
+      if block.type == 'shipping_countdown'
+        assign tb_timer = block
         break
       endif
     endfor
+    assign tb_tz = 'now' | date: '%z'
+    assign tb_tz_h = tb_tz | slice: 0, 3
+    assign tb_tz_m = tb_tz | slice: 3, 2
+    assign tb_tz_colon = tb_tz_h | append: ':' | append: tb_tz_m
+    assign tb_now = 'now' | date: '%s' | plus: 0
+    assign tb_wins = ''
+
+    # Janela principal (campos separados de data e hora).
+    if tb_timer and tb_timer.settings.end_date != blank
+      assign w_s = ''
+      if tb_timer.settings.start_date != blank
+        assign w_t = tb_timer.settings.start_time | default: '00:00' | prepend: '00000' | slice: -5, 5
+        assign w_s = tb_timer.settings.start_date | append: 'T' | append: w_t | append: ':00' | append: tb_tz_colon
+      endif
+      assign w_t = tb_timer.settings.end_time | default: '23:59' | prepend: '00000' | slice: -5, 5
+      assign w_e = tb_timer.settings.end_date | append: 'T' | append: w_t | append: ':59' | append: tb_tz_colon
+      assign tb_wins = w_s | append: '~' | append: w_e
+    endif
+
+    # Reagendamento opcional: "AAAA-MM-DD HH:MM" em um campo só.
+    if tb_timer and tb_timer.settings.resume_end != blank
+      assign r_p = tb_timer.settings.resume_start | strip | replace: 'T', ' ' | split: ' '
+      assign r_s = ''
+      if r_p.size > 0
+        assign r_t = '00:00'
+        if r_p.size > 1
+          assign r_t = r_p[1] | prepend: '00000' | slice: -5, 5
+        endif
+        assign r_s = r_p[0] | append: 'T' | append: r_t | append: ':00' | append: tb_tz_colon
+      endif
+      assign e_p = tb_timer.settings.resume_end | strip | replace: 'T', ' ' | split: ' '
+      assign e_t = '23:59'
+      if e_p.size > 1
+        assign e_t = e_p[1] | prepend: '00000' | slice: -5, 5
+      endif
+      assign r_e = e_p[0] | append: 'T' | append: e_t | append: ':59' | append: tb_tz_colon
+      assign r_pair = r_s | append: '~' | append: r_e
+      if tb_wins != blank
+        assign tb_wins = tb_wins | append: ';' | append: r_pair
+      else
+        assign tb_wins = r_pair
+      endif
+    endif
+
+    # Estado atual: alguma janela rodando agora? alguma ainda por começar?
+    assign tb_win_list = tb_wins | split: ';'
+    assign tb_has_windows = false
+    assign tb_active = false
+    assign tb_future = false
+    for w in tb_win_list
+      assign p = w | split: '~'
+      assign tb_has_windows = true
+      assign e_ts = p[1] | date: '%s' | plus: 0
+      assign s_ts = 0
+      if p[0] != blank
+        assign s_ts = p[0] | date: '%s' | plus: 0
+      endif
+      if tb_now < e_ts
+        if tb_now < s_ts
+          assign tb_future = true
+        else
+          assign tb_active = true
+        endif
+      endif
+    endfor
+  -%}
+  {%- capture tb_windows_json -%}
+    [
+    {%- for w in tb_win_list -%}
+      {%- assign p = w | split: '~' -%}
+      {%- unless forloop.first %},{% endunless -%}
+      {"s":{{ p[0] | json }},"e":{{ p[1] | json }}}
+    {%- endfor -%}
+    ]
+  {%- endcapture -%}
+  {%- liquid
+    # Visibilidade inicial (aproximada, servidor) só p/ evitar flash; o JS corrige a cada segundo.
+    assign tb_switch = false
+    if tb_timer and tb_timer.settings.switch_to_slider
+      assign tb_switch = true
+    endif
+    assign tb_timer_visible = true
+    if tb_has_windows
+      if tb_active
+        assign tb_timer_visible = true
+      elsif tb_future
+        assign tb_timer_visible = false
+      else
+        assign tb_timer_visible = false
+        if tb_switch == false and tb_timer.settings.expired_message != blank
+          assign tb_timer_visible = true
+        endif
+      endif
+    endif
     assign slider_switch_class = ''
     assign slider_switch_attr = ''
-    if switch_slider
+    if tb_switch
       assign slider_switch_attr = 'data-topbar-slider="true"'
-      if slider_hidden_init
+      if tb_timer_visible
         assign slider_switch_class = ' is-switch-hidden'
       endif
     endif
@@ -446,38 +513,6 @@
               </div>
               {%- endif -%}
             {%- when 'shipping_countdown' -%}
-              {%- liquid
-                # Deadline fixado no fuso da loja para todos os visitantes verem o mesmo tempo
-                assign tz = 'now' | date: '%z'
-                assign tz_h = tz | slice: 0, 3
-                assign tz_m = tz | slice: 3, 2
-                assign tz_colon = tz_h | append: ':' | append: tz_m
-                assign s_time = block_st.start_time | default: '00:00'
-                assign e_time = block_st.end_time | default: '23:59'
-                assign start_dt = ''
-                if block_st.start_date != blank
-                  assign start_dt = block_st.start_date | append: 'T' | append: s_time | append: ':00' | append: tz_colon
-                endif
-                assign end_dt = ''
-                if block_st.end_date != blank
-                  assign end_dt = block_st.end_date | append: 'T' | append: e_time | append: ':59' | append: tz_colon
-                endif
-                # Estado inicial (aproximado, servidor) só p/ evitar flash; o JS corrige a cada segundo
-                assign now_ts = 'now' | date: '%s' | plus: 0
-                assign out_of_window = false
-                if start_dt != blank
-                  assign start_ts = start_dt | date: '%s' | plus: 0
-                  if now_ts < start_ts
-                    assign out_of_window = true
-                  endif
-                endif
-                if end_dt != blank
-                  assign end_ts = end_dt | date: '%s' | plus: 0
-                  if now_ts > end_ts and block_st.expired_message == blank
-                    assign out_of_window = true
-                  endif
-                endif
-              -%}
               {%- if block_st.custom_colors and block_st.bg_color != blank -%}
                 {%- style -%}
                   #topbar.topbar { background: {{ block_st.bg_color }} !important; }
@@ -494,17 +529,16 @@
               {%- endcapture -%}
               <topbar-shipping-timer
                 class="topbar-item topbar-shipping{% if block_st.hidden_on_mobile %} hidden block-1025{% endif %}"
-                data-start="{{ start_dt }}"
-                data-end="{{ end_dt }}"
+                data-windows='{{ tb_windows_json | strip | strip_newlines }}'
                 data-expired-message="{{ block_st.expired_message | escape }}"
                 data-switch-slider="{% if block_st.switch_to_slider %}true{% else %}false{% endif %}"
-                {% if out_of_window %}hidden{% endif %}
+                {% unless tb_timer_visible %}hidden{% endunless %}
                 {% if shipping_style_vars != blank %}style="{{ shipping_style_vars | strip | strip_newlines }}"{% endif %}
               >
                 {%- if block_st.message != blank -%}
                   <div class="topbar-shipping__message">{{ block_st.message }}</div>
                 {%- endif -%}
-                {%- if end_dt != blank -%}
+                {%- if tb_has_windows -%}
                   <div class="topbar-shipping__timer-row">
                     {%- if block_st.label_before != blank -%}
                       <span class="topbar-shipping__label">{{ block_st.label_before | escape }}</span>
@@ -592,13 +626,12 @@
       connectedCallback() {
         this.countdownEl = this.querySelector('.topbar-shipping__countdown');
         this.timerRow = this.querySelector('.topbar-shipping__timer-row');
-        this.start = this.parseDate(this.dataset.start);
-        this.end = this.parseDate(this.dataset.end);
+        this.windows = this.parseWindows(this.dataset.windows);
         this.expiredMessage = (this.dataset.expiredMessage || '').trim();
         this.switchSlider = this.dataset.switchSlider === 'true';
 
-        // Sem data de fim válida: mantém apenas a mensagem, sem contador.
-        if (!this.end) {
+        // Sem nenhuma janela com data de fim: mantém apenas a mensagem, sem contador.
+        if (!this.windows.length) {
           if (this.timerRow) this.timerRow.remove();
           this.hidden = false;
           this.setSliderVisible(false);
@@ -614,10 +647,34 @@
         if (this.interval) clearInterval(this.interval);
       }
 
-      parseDate(value) {
-        if (!value) return null;
-        var d = new Date(value);
-        return isNaN(d.getTime()) ? null : d;
+      // Lista de janelas [{s, e}] já fixadas no fuso da loja, ordenadas por término.
+      parseWindows(raw) {
+        var list;
+        try {
+          list = JSON.parse(raw || '[]');
+        } catch (e) {
+          list = [];
+        }
+        if (!Array.isArray(list)) return [];
+
+        return list
+          .map(function (w) {
+            var end = w && w.e ? new Date(w.e) : null;
+            if (!end || isNaN(end.getTime())) return null;
+            var start = w.s ? new Date(w.s) : null;
+            if (start && isNaN(start.getTime())) start = null;
+            return { start: start ? start.getTime() : null, end: end.getTime() };
+          })
+          .filter(Boolean)
+          .sort(function (a, b) { return a.end - b.end; });
+      }
+
+      // Janela em andamento agora ou, se não houver, a próxima agendada.
+      currentWindow(now) {
+        for (var i = 0; i < this.windows.length; i++) {
+          if (now < this.windows[i].end) return this.windows[i];
+        }
+        return null;
       }
 
       // Mostra/esconde o bloco "Slider de texto" quando a troca está ativada.
@@ -631,18 +688,10 @@
 
       update() {
         var now = Date.now();
+        var win = this.currentWindow(now);
 
-        // Ainda não começou -> esconde a barra inteira (mostra sozinha ao iniciar).
-        if (this.start && now < this.start.getTime()) {
-          this.hidden = true;
-          this.setSliderVisible(true);
-          return;
-        }
-
-        var diff = this.end.getTime() - now;
-
-        // Terminou.
-        if (diff <= 0) {
+        // Todas as janelas terminaram.
+        if (!win) {
           if (this.interval) clearInterval(this.interval);
 
           // Troca pelo slider: esconde este bloco e revela o slider de texto.
@@ -664,6 +713,15 @@
           }
           return;
         }
+
+        // Próxima janela ainda não começou -> barra oculta até a hora marcada.
+        if (win.start && now < win.start) {
+          this.hidden = true;
+          this.setSliderVisible(true);
+          return;
+        }
+
+        var diff = win.end - now;
 
         this.hidden = false;
         this.setSliderVisible(false);
@@ -1123,6 +1181,18 @@
           "label": "Trocar pelo bloco 'Slider de texto' ao terminar",
           "info": "Ao acabar a contagem, este bloco é ocultado e o bloco 'Slider de texto' aparece no lugar. Enquanto a contagem estiver rodando, o slider fica oculto. Requer o bloco 'Slider de texto' adicionado na barra superior. Ignora a 'Mensagem ao terminar'.",
           "default": false
+        },
+        {
+          "type": "text",
+          "id": "resume_start",
+          "label": "Reagendar — volta em (AAAA-MM-DD HH:MM)",
+          "info": "Opcional. Só preencha quando a contagem precisar ser interrompida e voltar depois. Entre o término acima e esse horário o timer fica oculto e volta sozinho. Ex.: 2026-09-26 06:00"
+        },
+        {
+          "type": "text",
+          "id": "resume_end",
+          "label": "Reagendar — novo término (AAAA-MM-DD HH:MM)",
+          "info": "Deixe em branco para desligar o reagendamento."
         },
         {
           "type": "header",
