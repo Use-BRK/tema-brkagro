@@ -30,9 +30,9 @@
             "expired_message": "",
             "switch_to_slider": true,
             "custom_colors": true,
-            "bg_color": "#0F6049",
-            "text_color": "#F4F0E9",
-            "timer_color": "#F4F0E9",
+            "bg_color": "#191818",
+            "text_color": "#FFFFFF",
+            "timer_color": "#F4CE0F",
             "hidden_on_mobile": false
           }
         },
