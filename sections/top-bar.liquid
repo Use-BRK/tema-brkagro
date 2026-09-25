@@ -46,6 +46,10 @@
     #topbar .px-15 {
       display: inline;
       white-space: nowrap;
+      font-size: var(--topbar-textslide-font-size, inherit) !important;
+    }
+    #topbar .is-hidden-by-timer {
+      display: none !important;
     }
     .topbar-copy-btn {
       display: inline;
@@ -118,6 +122,7 @@
       text-align: center;
       line-height: 1.2;
       white-space: nowrap;
+      font-size: var(--topbar-textslide-font-size, inherit) !important;
     }
     /* Linha única; se o texto for longo demais, corta com "…" (não sobrepõe). */
     #topbar .topbar-compact__cell > span {
@@ -171,7 +176,7 @@
       overflow: hidden;
       text-overflow: ellipsis;
       min-width: 0;
-      font-size: var(--topbar-shipping-message-size, inherit);
+      font-size: var(--topbar-shipping-message-size, inherit) !important;
     }
     #topbar .topbar-shipping__timer-row {
       display: flex;
@@ -185,7 +190,7 @@
       font-weight: var(--body-weight);
       opacity: 0.9;
       white-space: nowrap;
-      font-size: var(--topbar-shipping-label-size, inherit);
+      font-size: var(--topbar-shipping-label-size, inherit) !important;
     }
     #topbar .topbar-shipping__countdown {
       display: inline-flex;
@@ -196,7 +201,7 @@
       white-space: nowrap;
       flex-shrink: 0;
       color: var(--topbar-shipping-accent, inherit);
-      font-size: var(--topbar-shipping-timer-size, 1.4em);
+      font-size: var(--topbar-shipping-timer-size, 18px) !important;
       line-height: 1;
     }
     #topbar .topbar-shipping__seg {
@@ -220,9 +225,6 @@
       white-space: nowrap;
     }
   {%- endstyle -%}
-  {%- capture style -%}
-    --section-pt: {{ section_st.padding_top }}; --section-pb: {{ section_st.padding_bottom }};--swiper-navigation-color: var(--color-text);
-  {%- endcapture -%}
   {%- liquid
     assign hidden_block = true
     for block in section.blocks
@@ -232,7 +234,64 @@
         break
       endif
     endfor
+
+    # Deadline fixado no fuso da loja para todos os visitantes verem o mesmo tempo
+    assign tz = 'now' | date: '%z'
+    assign tz_h = tz | slice: 0, 3
+    assign tz_m = tz | slice: 3, 2
+    assign tz_colon = tz_h | append: ':' | append: tz_m
+    assign now_ts = 'now' | date: '%s' | plus: 0
+
+    # Pré-cálculo (evita flash antes do JS assumir a cada segundo):
+    # - fundo da barra do timer atualmente visível (se houver mais de 1 timer, cada um pode ter sua cor)
+    # - se algum timer está marcado p/ "reexibir texto rotativo ao expirar" e está visível agora
+    assign topbar_bg_override = ''
+    assign topbar_slider_managed = false
+    assign topbar_slider_should_hide = false
+    for block in section.blocks
+      if block.type == 'shipping_countdown'
+        assign ts_st = block.settings
+        assign ts_s_time = ts_st.start_time | default: '00:00'
+        assign ts_e_time = ts_st.end_time | default: '23:59'
+        assign ts_start_dt = ''
+        if ts_st.start_date != blank
+          assign ts_start_dt = ts_st.start_date | append: 'T' | append: ts_s_time | append: ':00' | append: tz_colon
+        endif
+        assign ts_end_dt = ''
+        if ts_st.end_date != blank
+          assign ts_end_dt = ts_st.end_date | append: 'T' | append: ts_e_time | append: ':59' | append: tz_colon
+        endif
+        assign ts_visible = true
+        if ts_start_dt != blank
+          assign ts_start_ts = ts_start_dt | date: '%s' | plus: 0
+          if now_ts < ts_start_ts
+            assign ts_visible = false
+          endif
+        endif
+        if ts_visible and ts_end_dt != blank
+          assign ts_end_ts = ts_end_dt | date: '%s' | plus: 0
+          if now_ts > ts_end_ts and ts_st.expired_message == blank
+            assign ts_visible = false
+          endif
+        endif
+
+        if ts_visible and ts_st.custom_colors and ts_st.bg_color != blank
+          assign topbar_bg_override = ts_st.bg_color
+        endif
+
+        if ts_st.reveal_slider_on_expire
+          assign topbar_slider_managed = true
+          if ts_visible
+            assign topbar_slider_should_hide = true
+          endif
+        endif
+      endif
+    endfor
   -%}
+  {%- capture style -%}
+    --section-pt: {{ section_st.padding_top }}; --section-pb: {{ section_st.padding_bottom }};--swiper-navigation-color: var(--color-text);
+    {%- if topbar_bg_override != blank -%}background: {{ topbar_bg_override }} !important;{%- endif -%}
+  {%- endcapture -%}
   <div
     id="topbar"
     class="topbar gradient{% if section_st.padding_top < 30 %} pt-min{% endif %}{% if section_st.padding_bottom < 30 %} pb-min{% endif %} section remove_spacing color-{{ color_scheme }}{% if hidden_block == true %} hidden block-1025{% endif %}{% if section_st.show_separator_line %} border-bottom{% endif %}{% if section_st.uppercase %} uppercase{% endif %}{% if section_st.show_mobile == blank %} hidden block-1025{% endif %}"
@@ -295,8 +354,14 @@
                 {% endif %}
               </div>
             {%- when 'text_slider' -%}
+              {%- capture slider_style_vars -%}
+                {%- if block_st.font_size != blank -%}--topbar-textslide-font-size: {{ block_st.font_size }}px;{%- endif -%}
+              {%- endcapture -%}
               {%- if block_st.compact_mode -%}
-                <div class="topbar-item w-full topbar-compact{% if block_st.hidden_on_mobile %} hidden block-1025{% endif %}">
+                <div
+                  class="topbar-item w-full topbar-compact{% if block_st.hidden_on_mobile %} hidden block-1025{% endif %}{% if topbar_slider_managed and topbar_slider_should_hide %} is-hidden-by-timer{% endif %}"
+                  {% if slider_style_vars != blank %}style="{{ slider_style_vars | strip | strip_newlines }}"{% endif %}
+                >
                   <div class="topbar-compact__grid">
                     {%- for i in (1..2) -%}
                       {%- liquid
@@ -321,7 +386,10 @@
                   </div>
                 </div>
               {%- else -%}
-              <div class="topbar-item w-full text-slide{% if block_st.hidden_on_mobile %} hidden block-1025{% endif %}">
+              <div
+                class="topbar-item w-full text-slide{% if block_st.hidden_on_mobile %} hidden block-1025{% endif %}{% if topbar_slider_managed and topbar_slider_should_hide %} is-hidden-by-timer{% endif %}"
+                {% if slider_style_vars != blank %}style="{{ slider_style_vars | strip | strip_newlines }}"{% endif %}
+              >
                 <slide-section
                   class="swiper bls__swiper text-center text-md-start gap-0 lazy-loading-swiper-before"
                   data-section-id="{{ section.id }}"
@@ -391,11 +459,7 @@
               {%- endif -%}
             {%- when 'shipping_countdown' -%}
               {%- liquid
-                # Deadline fixado no fuso da loja para todos os visitantes verem o mesmo tempo
-                assign tz = 'now' | date: '%z'
-                assign tz_h = tz | slice: 0, 3
-                assign tz_m = tz | slice: 3, 2
-                assign tz_colon = tz_h | append: ':' | append: tz_m
+                # tz_colon e now_ts já calculados no topo do arquivo (compartilhados c/ o pré-cálculo do slider)
                 assign s_time = block_st.start_time | default: '00:00'
                 assign e_time = block_st.end_time | default: '23:59'
                 assign start_dt = ''
@@ -407,7 +471,6 @@
                   assign end_dt = block_st.end_date | append: 'T' | append: e_time | append: ':59' | append: tz_colon
                 endif
                 # Estado inicial (aproximado, servidor) só p/ evitar flash; o JS corrige a cada segundo
-                assign now_ts = 'now' | date: '%s' | plus: 0
                 assign out_of_window = false
                 if start_dt != blank
                   assign start_ts = start_dt | date: '%s' | plus: 0
@@ -422,11 +485,6 @@
                   endif
                 endif
               -%}
-              {%- if block_st.custom_colors and block_st.bg_color != blank -%}
-                {%- style -%}
-                  #topbar.topbar { background: {{ block_st.bg_color }} !important; }
-                {%- endstyle -%}
-              {%- endif -%}
               {%- capture shipping_style_vars -%}
                 {%- if block_st.timer_font_size != blank -%}--topbar-shipping-timer-size: {{ block_st.timer_font_size }}px;{%- endif -%}
                 {%- if block_st.message_font_size != blank -%}--topbar-shipping-message-size: {{ block_st.message_font_size }}px;{%- endif -%}
@@ -441,6 +499,8 @@
                 data-start="{{ start_dt }}"
                 data-end="{{ end_dt }}"
                 data-expired-message="{{ block_st.expired_message | escape }}"
+                data-reveal-slider="{{ block_st.reveal_slider_on_expire }}"
+                {% if block_st.custom_colors and block_st.bg_color != blank %}data-bg-color="{{ block_st.bg_color | escape }}"{% endif %}
                 {% if out_of_window %}hidden{% endif %}
                 {% if shipping_style_vars != blank %}style="{{ shipping_style_vars | strip | strip_newlines }}"{% endif %}
               >
@@ -531,6 +591,38 @@
   });
 
   if (!customElements.get('topbar-shipping-timer')) {
+    var sliderManagedTimers = new Set();
+    var bgManagedTimers = new Set();
+
+    var syncSlider = function () {
+      var slider = document.querySelector('#topbar .text-slide, #topbar .topbar-compact');
+      if (!slider) return;
+      var anyVisible = false;
+      sliderManagedTimers.forEach(function (el) {
+        if (!el.hidden) anyVisible = true;
+      });
+      slider.classList.toggle('is-hidden-by-timer', anyVisible);
+    };
+
+    var syncBackground = function () {
+      var topbarEl = document.getElementById('topbar');
+      if (!topbarEl) return;
+      var activeColor = null;
+      bgManagedTimers.forEach(function (el) {
+        if (!el.hidden) activeColor = el.dataset.bgColor;
+      });
+      if (activeColor) {
+        topbarEl.style.setProperty('background', activeColor, 'important');
+      } else {
+        topbarEl.style.removeProperty('background');
+      }
+    };
+
+    var syncAll = function () {
+      syncSlider();
+      syncBackground();
+    };
+
     class TopbarShippingTimer extends HTMLElement {
       connectedCallback() {
         this.countdownEl = this.querySelector('.topbar-shipping__countdown');
@@ -538,11 +630,16 @@
         this.start = this.parseDate(this.dataset.start);
         this.end = this.parseDate(this.dataset.end);
         this.expiredMessage = (this.dataset.expiredMessage || '').trim();
+        this.revealSlider = this.dataset.revealSlider === 'true';
+
+        if (this.revealSlider) sliderManagedTimers.add(this);
+        if (this.dataset.bgColor) bgManagedTimers.add(this);
 
         // Sem data de fim válida: mantém apenas a mensagem, sem contador.
         if (!this.end) {
           if (this.timerRow) this.timerRow.remove();
           this.hidden = false;
+          syncAll();
           return;
         }
 
@@ -553,6 +650,9 @@
 
       disconnectedCallback() {
         if (this.interval) clearInterval(this.interval);
+        sliderManagedTimers.delete(this);
+        bgManagedTimers.delete(this);
+        syncAll();
       }
 
       parseDate(value) {
@@ -562,6 +662,11 @@
       }
 
       update() {
+        this.tick();
+        syncAll();
+      }
+
+      tick() {
         var now = Date.now();
 
         // Ainda não começou -> esconde a barra inteira (mostra sozinha ao iniciar).
@@ -734,7 +839,7 @@
       "unit": "px"
     }
   ],
-  "max_blocks": 3,
+  "max_blocks": 5,
   "blocks": [
     {
       "type": "store_information",
@@ -877,6 +982,20 @@
         },
         {
           "type": "header",
+          "content": "Tamanho da fonte"
+        },
+        {
+          "type": "range",
+          "id": "font_size",
+          "label": "Tamanho da fonte deste bloco",
+          "min": 10,
+          "max": 32,
+          "step": 1,
+          "unit": "px",
+          "default": 16
+        },
+        {
+          "type": "header",
           "content": "Versão compacta"
         },
         {
@@ -957,7 +1076,7 @@
     {
       "type": "shipping_countdown",
       "name": "Frete grátis + contagem",
-      "limit": 1,
+      "limit": 2,
       "settings": [
         {
           "type": "inline_richtext",
@@ -1038,6 +1157,13 @@
           "id": "expired_message",
           "label": "Mensagem ao terminar",
           "info": "Exibida no lugar do contador quando a promoção acabar. Deixe em branco para esconder a barra automaticamente."
+        },
+        {
+          "type": "checkbox",
+          "id": "reveal_slider_on_expire",
+          "label": "Ao este timer não estar em exibição, reexibir o bloco de texto rotativo",
+          "info": "Use isso para alternar entre dois timers sem intervalo em branco na barra: enquanto este timer estiver visível, o bloco \"Texto rotativo\" fica oculto; quando ele sumir (expirar ou ainda não ter começado), o texto rotativo reaparece. Se você usa dois timers em sequência, ative esta opção nos dois blocos. Requer um bloco \"Texto rotativo\" ativo na barra.",
+          "default": false
         },
         {
           "type": "header",
