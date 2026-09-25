@@ -26,7 +26,7 @@
             "start_date": "",
             "start_time": "",
             "end_date": "2026-09-25",
-            "end_time": "23:59",
+            "end_time": "14:18",
             "expired_message": "",
             "switch_to_slider": true,
             "custom_colors": true,
@@ -38,7 +38,6 @@
         },
         "text_slider_LFaC38": {
           "type": "text_slider",
-          "disabled": true,
           "settings": {
             "text1": "<strong>FRETE FIXO R$9,90 — PARA TODO BRASIL</strong>",
             "coupon1": "",
