@@ -208,40 +208,44 @@
 }
 
 /* ===========================================================
-   Mobile/tablet: toolbar "Filtro | Ordenar por" vira cápsula
-   flutuante no rodapé central da tela.
+   Mobile/tablet: toolbar vira cápsula flutuante no rodapé central da tela.
    Ligado pela opção "Toolbar flutuante no mobile" da seção
    (classe .toolbar-products--floating em collection-toolbar.liquid).
-   Sem transform/backdrop-filter aqui: o #SortBy (folha fixa que sobe
-   do rodapé) é filho da toolbar e quebraria com um containing block.
+   - Com gênero (.toolbar--gender): ( Filtro | Masculino Feminino | Ordenar ),
+     aba "Escolha o modelo" sobre o centro; Filtro/Ordenar viram ícones.
+   - Sem gênero: ( Filtro | Ordenar por ) com texto.
+   Sem transform/backdrop-filter na toolbar: o #SortBy (folha fixa que sobe
+   do rodapé) é filho dela e quebraria com um containing block.
    =========================================================== */
-/* Cópia do filtro de gênero fora da cápsula: só existe no modo flutuante e só aparece no mobile */
-.gender-filter-standalone {
-  --chip-green: var(--btn-primary-bg-color, #085b47);
-  display: none;
-}
 @media (max-width: 1024.98px) {
-  .sec__collection-main .toolbar-products--floating {
+  .sec__collection-main .toolbar-products.toolbar-products--floating {
+    --ft-bg: rgba(255, 255, 255, 0.92);
+    --ft-border: rgba(0, 0, 0, 0.12);
+    --ft-accent: var(--btn-primary-bg-color, #085b47);
+    --ft-offset: 1.6rem;
+    --ft-pad: 0.4rem;
     position: fixed;
     left: 0;
     right: 0;
-    bottom: calc(1.6rem + env(safe-area-inset-bottom, 0px));
+    bottom: calc(var(--ft-offset) + env(safe-area-inset-bottom, 0px));
     z-index: 10;
+    display: flex;
     flex-wrap: nowrap;
     align-items: center;
+    justify-content: center;
     width: max-content;
-    max-width: calc(100% - 3.2rem);
+    max-width: calc(100% - 2.4rem);
     margin: 0 auto;
-    padding: 0.3rem;
+    padding: var(--ft-pad);
     gap: 0;
     border-radius: 5rem;
-    background: rgba(255, 255, 255, 0.8);
-    border: 1.5px solid rgba(0, 0, 0, 0.14);
-    box-shadow: 0 0.6rem 1.8rem rgba(0, 0, 0, 0.1);
-    animation: toolbar-float-in 0.35s ease-out both;
+    background: var(--ft-bg);
+    border: 1px solid var(--ft-border);
+    box-shadow: 0 0.8rem 2.4rem rgba(0, 0, 0, 0.14);
+    /* backwards (não both): opacity animada persistindo impede o backdrop-filter do ::after */
+    animation: toolbar-float-in 0.35s ease-out backwards;
   }
-  /* Vidro fosco num pseudo-elemento de fundo: backdrop-filter direto na toolbar
-     viraria containing block e quebraria o #SortBy fixo (filho dela) */
+  /* Vidro fosco num pseudo-elemento de fundo (ver nota do #SortBy acima) */
   .sec__collection-main .toolbar-products--floating::after {
     content: '';
     position: absolute;
@@ -252,26 +256,44 @@
     backdrop-filter: blur(12px) saturate(160%);
     pointer-events: none;
   }
+  /* Grade/lista não cabe na cápsula */
+  .sec__collection-main .toolbar-products--floating .show-type-products {
+    display: none;
+  }
   .sec__collection-main .toolbar-products--floating .toolbar-left,
-  .sec__collection-main .toolbar-products--floating .toolbar-sorter {
+  .sec__collection-main .toolbar-products--floating .toolbar-sorter,
+  .sec__collection-main .toolbar-products--floating .gender-filter-bar {
+    position: relative;
     flex: 0 0 auto;
     min-width: 0;
     gap: 0;
   }
   .sec__collection-main .toolbar-products--floating .toolbar-sorter {
-    position: static;
     justify-content: flex-start;
   }
-  .sec__collection-main .toolbar-products--floating .toolbar-sorter::before {
-    content: '';
-    align-self: center;
-    width: 1px;
-    height: 1.6rem;
-    background: rgba(0, 0, 0, 0.12);
+  /* Divisórias finas entre os grupos */
+  .sec__collection-main .toolbar-products--floating :is(.toolbar-left, .btn-filter, .gender-filter-bar) ~ :is(.gender-filter-bar, .toolbar-sorter) {
+    padding-left: calc(var(--ft-pad) + 1px);
   }
+  .sec__collection-main .toolbar-products--floating :is(.toolbar-left, .btn-filter, .gender-filter-bar) ~ :is(.gender-filter-bar, .toolbar-sorter)::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 1px;
+    height: 2rem;
+    margin-top: -1rem;
+    background: var(--ft-border);
+  }
+  .sec__collection-main .toolbar-products--floating .gender-filter-bar ~ .toolbar-sorter,
+  .sec__collection-main .toolbar-products--floating :is(.toolbar-left, .btn-filter) ~ .gender-filter-bar {
+    margin-left: var(--ft-pad);
+  }
+
+  /* Filtro e Ordenar: botões transparentes com texto (modo sem gênero) */
   .sec__collection-main .toolbar-products--floating .btn-filter,
   .sec__collection-main .toolbar-products--floating .toolbar-sorter .select-selected {
-    min-height: 3.8rem;
+    min-height: 4.2rem;
     padding: 0 1.6rem;
     gap: 0.6rem;
     border: 0;
@@ -280,45 +302,326 @@
     color: var(--color-heading, #111);
     font-size: 1.35rem;
     font-weight: 500;
+    transition: background-color 0.2s ease;
   }
-  .sec__collection-main .toolbar-products--floating .btn-filter svg {
-    width: 1.3rem;
-    height: 1.3rem;
-  }
-  .sec__collection-main .toolbar-products--floating .btn-filter:hover,
-  .sec__collection-main .toolbar-products--floating .toolbar-sorter .select-selected:hover {
-    background: rgba(0, 0, 0, 0.05);
-    color: var(--color-heading, #111);
+  .sec__collection-main .toolbar-products--floating .btn-filter svg path {
+    fill: currentColor;
   }
   .sec__collection-main .toolbar-products--floating .toolbar-sorter .select-selected label {
+    padding: 0;
+    border: 0;
     color: inherit;
     font-weight: 500;
   }
-  /* Coleções com gênero: as regras de .toolbar--gender (main-collection-product.liquid)
-     escondem os textos em telas estreitas; na cápsula eles voltam */
-  .sec__collection-main .toolbar-products--floating .btn-filter__label,
-  .sec__collection-main .toolbar-products--floating .sort-label-text {
-    display: inline;
+  /* Neutraliza o hover verde dos chips (<style> de main-collection-product.liquid) */
+  .sec__collection-main .toolbar-products--floating .btn-filter:hover,
+  .sec__collection-main .toolbar-products--floating .toolbar-sorter .select-selected:hover {
+    background: transparent;
+    color: var(--color-heading, #111);
   }
-  .sec__collection-main .toolbar-products--floating .toolbar-sorter .icon-down.hidden-1025 {
-    display: block;
+  .sec__collection-main .toolbar-products--floating .btn-filter:active,
+  .sec__collection-main .toolbar-products--floating .toolbar-sorter .select-selected:active {
+    background: rgba(0, 0, 0, 0.06);
   }
-  .sec__collection-main .toolbar-products--floating .sort-icon-mobile {
-    display: none;
-  }
-  .sec__collection-main .toolbar-products--floating .gender-filter-bar--in-toolbar {
-    display: none;
-  }
-  .sec__collection-main .gender-filter-standalone {
-    display: flex;
+
+  /* Modo com gênero: Filtro e Ordenar viram ícones redondos */
+  .sec__collection-main .toolbar-products--floating.toolbar--gender .btn-filter,
+  .sec__collection-main .toolbar-products--floating.toolbar--gender .toolbar-sorter .select-selected {
+    width: 4.2rem;
+    height: 4.2rem;
+    padding: 0;
     justify-content: center;
-    margin-bottom: 2rem;
+    border-radius: 50%;
+  }
+  .sec__collection-main .toolbar-products--floating.toolbar--gender .toolbar-sorter .select-selected label {
+    min-height: 0;
+  }
+  .sec__collection-main .toolbar-products--floating.toolbar--gender .btn-filter__label,
+  .sec__collection-main .toolbar-products--floating.toolbar--gender .sort-label-text,
+  .sec__collection-main .toolbar-products--floating.toolbar--gender .toolbar-sorter .icon-down {
+    display: none;
+  }
+  .sec__collection-main .toolbar-products--floating.toolbar--gender .sort-icon-mobile {
+    display: block;
+    width: 1.8rem;
+    height: 1.8rem;
+  }
+  .sec__collection-main .toolbar-products--floating.toolbar--gender .btn-filter svg {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  /* Gênero: segmento com a opção ativa preenchida na cor da marca */
+  .sec__collection-main .toolbar-products--floating .gender-filter-bar,
+  .sec__collection-main .toolbar-products--floating .gender-filter-btns {
+    gap: 0.2rem;
+  }
+  .sec__collection-main .toolbar-products--floating .gender-filter-btn {
+    min-height: 4.2rem;
+    padding: 0 1.7rem;
+    border: 0;
+    border-radius: 5rem;
+    background: transparent;
+    color: var(--color-heading, #111);
+    font-size: 1.4rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    text-transform: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .sec__collection-main .toolbar-products--floating .gender-filter-btn:hover {
+    background: transparent;
+    color: var(--color-heading, #111);
+  }
+  .sec__collection-main .toolbar-products--floating .gender-filter-btn:active {
+    background: rgba(0, 0, 0, 0.06);
+  }
+  .sec__collection-main .toolbar-products--floating .gender-filter-btn.active {
+    background: var(--ft-accent);
+    color: #fff;
+    box-shadow: 0 0.4rem 1.2rem rgba(8, 91, 71, 0.32);
+  }
+  /* Aba "Escolha o modelo" saindo do topo da cápsula, cobrindo a borda dela */
+  .sec__collection-main .toolbar-products--floating .gender-filter-label {
+    display: block;
+    position: absolute;
+    left: 50%;
+    bottom: calc(100% + var(--ft-pad));
+    transform: translateX(-50%);
+    padding: 0.5rem 1.4rem 0.2rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    color: var(--color-heading, #111);
+    background: var(--ft-bg);
+    border: 1px solid var(--ft-border);
+    border-bottom: 0;
+    border-radius: 1.2rem 1.2rem 0 0;
+    -webkit-backdrop-filter: blur(12px) saturate(160%);
+    backdrop-filter: blur(12px) saturate(160%);
+    pointer-events: none;
+  }
+
+  /* A folha de ordenação fica no contexto da cápsula (z 10), abaixo do WhatsApp (z 14) */
+  body:has(.toolbar-products--floating .select-custom.active) #whatsapp-button-contact {
+    display: none;
   }
   /* Respiro no fim da grade para a cápsula não cobrir o último produto/paginação */
   .sec__collection-main:has(.toolbar-products--floating) {
-    padding-bottom: 8rem;
+    padding-bottom: 9rem;
   }
 }
+/* Mobile com a barra de navegação do rodapé: cápsula sobe acima dela e o WhatsApp acima da cápsula */
+@media (max-width: 767.98px) {
+  body.mobi-navigation-bar .sec__collection-main .toolbar-products.toolbar-products--floating {
+    --ft-offset: 7.2rem;
+  }
+  body.mobi-navigation-bar:has(.toolbar-products--floating) #whatsapp-button-contact {
+    bottom: calc(14.4rem + env(safe-area-inset-bottom, 0px));
+  }
+  body:not(.mobi-navigation-bar):has(.toolbar-products--floating) #whatsapp-button-contact {
+    bottom: calc(8.8rem + env(safe-area-inset-bottom, 0px));
+  }
+}
+/* ===========================================================
+   Desktop, coleções com gênero: toolbar vira uma cápsula centralizada.
+   Ligado pela opção "Toolbar em cápsula no desktop" da seção
+   (classe .toolbar-products--capsule em collection-toolbar.liquid)
+   ( Filtro | Masculino Feminino | grade/lista | Ordenar por / valor + ícone )
+   com a aba "Escolha o modelo" sobre os gêneros.
+   Especificidade (0,3,0) para vencer o <style> inline de main-collection-product.liquid.
+   =========================================================== */
+@media (min-width: 1025px) {
+  .sec__collection-main .toolbar-products.toolbar-products--capsule {
+    --ft-border: rgba(0, 0, 0, 0.1);
+    --ft-accent: var(--btn-primary-bg-color, #085b47);
+    --ft-pad: 0.6rem;
+    position: relative;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    width: max-content;
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    /* respiro p/ a aba do gênero não encostar no header */
+    margin-top: 3.2rem;
+    margin-bottom: 3rem;
+    padding: var(--ft-pad);
+    border-radius: 6rem;
+    background: #fff;
+    border: 1px solid var(--ft-border);
+    box-shadow: 0 0.6rem 2.4rem rgba(0, 0, 0, 0.07);
+  }
+  .sec__collection-main .toolbar-products.toolbar-products--capsule > * {
+    position: relative;
+    flex: 0 0 auto;
+    min-width: 0;
+    grid-column: auto;
+  }
+  /* Ordem: Filtro | gênero | grade/lista | Ordenar */
+  .sec__collection-main .toolbar-products.toolbar-products--capsule .toolbar-left { order: 1; gap: 1.6rem; padding: 0 0.6rem; }
+  .sec__collection-main .toolbar-products.toolbar-products--capsule > .btn-filter { order: 1; }
+  .sec__collection-main .toolbar-products.toolbar-products--capsule .gender-filter-bar { order: 2; }
+  .sec__collection-main .toolbar-products.toolbar-products--capsule .show-type-products { order: 3; flex-grow: 0; padding: 0 1rem; }
+  .sec__collection-main .toolbar-products.toolbar-products--capsule .toolbar-sorter { order: 4; gap: 0; justify-content: flex-start; }
+
+  /* Divisórias entre os grupos (o primeiro grupo visível não tem) */
+  .sec__collection-main .toolbar-products.toolbar-products--capsule > :is(.gender-filter-bar, .show-type-products, .toolbar-sorter) {
+    margin-left: var(--ft-pad);
+    padding-left: calc(var(--ft-pad) + 1px);
+  }
+  .sec__collection-main .toolbar-products.toolbar-products--capsule > :is(.gender-filter-bar, .show-type-products, .toolbar-sorter)::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 1px;
+    height: 2.8rem;
+    margin-top: -1.4rem;
+    background: var(--ft-border);
+  }
+  .sec__collection-main .toolbar-products.toolbar-products--capsule > .gender-filter-bar:not(:is(.toolbar-left, .btn-filter.drawer) ~ .gender-filter-bar) {
+    margin-left: 0;
+    padding-left: 0;
+  }
+  .sec__collection-main .toolbar-products.toolbar-products--capsule > .gender-filter-bar:not(:is(.toolbar-left, .btn-filter.drawer) ~ .gender-filter-bar)::before {
+    display: none;
+  }
+
+  /* Filtro (layout drawer) */
+  .sec__collection-main .toolbar-products.toolbar-products--capsule .btn-filter {
+    min-height: 5.2rem;
+    padding: 0 2rem;
+    gap: 0.8rem;
+    border: 0;
+    border-radius: 5rem;
+    background: transparent;
+    color: var(--color-heading, #111);
+    font-size: 1.5rem;
+    font-weight: 500;
+    transition: background-color 0.2s ease;
+  }
+  .sec__collection-main .toolbar-products.toolbar-products--capsule .btn-filter svg path {
+    fill: currentColor;
+  }
+  .sec__collection-main .toolbar-products.toolbar-products--capsule .btn-filter:hover {
+    background: rgba(0, 0, 0, 0.04);
+    color: var(--color-heading, #111);
+  }
+
+  /* Gênero */
+  .sec__collection-main .toolbar-products.toolbar-products--capsule .gender-filter-bar,
+  .sec__collection-main .toolbar-products.toolbar-products--capsule .gender-filter-btns {
+    gap: 0.4rem;
+  }
+  .sec__collection-main .toolbar-products.toolbar-products--capsule .gender-filter-btn {
+    min-height: 5.2rem;
+    padding: 0 3.2rem;
+    border: 0;
+    border-radius: 5rem;
+    background: transparent;
+    color: var(--color-heading, #111);
+    font-size: 1.6rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    text-transform: none;
+    transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+  }
+  .sec__collection-main .toolbar-products.toolbar-products--capsule .gender-filter-btn:hover {
+    background: rgba(0, 0, 0, 0.04);
+    color: var(--color-heading, #111);
+  }
+  .sec__collection-main .toolbar-products.toolbar-products--capsule .gender-filter-btn.active {
+    background: var(--ft-accent);
+    color: #fff;
+    box-shadow: 0 0.4rem 1.2rem rgba(8, 91, 71, 0.3);
+  }
+  .sec__collection-main .toolbar-products.toolbar-products--capsule .gender-filter-label {
+    display: block;
+    position: absolute;
+    left: 50%;
+    bottom: calc(100% + var(--ft-pad));
+    transform: translateX(-50%);
+    padding: 0.6rem 1.8rem 0.25rem;
+    font-size: 1.05rem;
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    color: var(--color-heading, #111);
+    background: #fff;
+    border: 1px solid var(--ft-border);
+    border-bottom: 0;
+    border-radius: 1.2rem 1.2rem 0 0;
+    pointer-events: none;
+  }
+
+  /* Ordenar: "Ordenar por:" em cima, valor atual embaixo, ícone redondo à direita */
+  .sec__collection-main .toolbar-products.toolbar-products--capsule .toolbar-sorter .select-selected {
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-areas: 'lbl ico' 'val ico';
+    align-items: center;
+    column-gap: 1.4rem;
+    row-gap: 0.1rem;
+    min-height: 5.2rem;
+    padding: 0.4rem 0.4rem 0.4rem 2rem;
+    border: 0;
+    border-radius: 5rem;
+    color: var(--color-heading, #111);
+    transition: background-color 0.2s ease;
+  }
+  .sec__collection-main .toolbar-products.toolbar-products--capsule .toolbar-sorter .select-selected:hover {
+    background: rgba(0, 0, 0, 0.04);
+    color: var(--color-heading, #111);
+  }
+  .sec__collection-main .toolbar-products.toolbar-products--capsule .toolbar-sorter .select-selected label {
+    display: contents;
+  }
+  .sec__collection-main .toolbar-products.toolbar-products--capsule .sort-label-text {
+    grid-area: lbl;
+    align-self: end;
+    font-size: 1.2rem;
+    line-height: 1.2;
+    color: rgba(17, 17, 17, 0.7);
+  }
+  .sec__collection-main .toolbar-products.toolbar-products--capsule .toolbar-sorter .select-selected > span {
+    grid-area: val;
+    align-self: start;
+    display: block;
+    font-size: 1.45rem;
+    font-weight: 600;
+    line-height: 1.25;
+    white-space: nowrap;
+  }
+  .sec__collection-main .toolbar-products.toolbar-products--capsule .sort-icon-mobile {
+    grid-area: ico;
+    display: block;
+    box-sizing: content-box;
+    width: 1.8rem;
+    height: 1.8rem;
+    padding: 1.3rem;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.05);
+    color: var(--color-heading, #111);
+  }
+  .sec__collection-main .toolbar-products.toolbar-products--capsule .toolbar-sorter .icon-down {
+    display: none;
+  }
+  /* Dropdown alinhado à direita da cápsula, com respiro */
+  .sec__collection-main .toolbar-products.toolbar-products--capsule .select-custom.active .select-custom__content {
+    top: calc(100% + 1.4rem);
+    min-width: 24rem;
+  }
+}
+
 /* Entrada só com opacity/margin (translate criaria containing block p/ o #SortBy fixo) */
 @keyframes toolbar-float-in {
   from {

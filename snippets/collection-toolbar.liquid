@@ -19,7 +19,7 @@
     endif
   endif
 %}
-<div class="toolbar toolbar-products flex gap-15 gap-md-30 align-center mb-20{% if filter_layout == 'horizontal' %} mt-1025-60{% endif %}{% if show_gender_filter %} toolbar--gender{% endif %}{% if floating_toolbar %} toolbar-products--floating{% endif %}">
+<div class="toolbar toolbar-products flex gap-15 gap-md-30 align-center mb-20{% if filter_layout == 'horizontal' %} mt-1025-60{% endif %}{% if show_gender_filter %} toolbar--gender{% endif %}{% if floating_toolbar %} toolbar-products--floating{% endif %}{% if capsule_toolbar and show_gender_filter %} toolbar-products--capsule{% endif %}">
   {%- if enable_filtering or number_products_per_page -%}
     {% if number_products_per_page %}
       <div class="toolbar-left flex gap-15 gap-md-30 align-center flex-1">
@@ -134,7 +134,7 @@
     </div>
   {%- endif -%}
   {%- if show_gender_filter -%}
-    <div class="gender-filter-bar gender-filter-bar--in-toolbar" id="gender-filter-bar" {{ gender_attrs }}>
+    <div class="gender-filter-bar" id="gender-filter-bar" {{ gender_attrs }}>
       <span class="gender-filter-label">Escolha o modelo</span>
       <div class="gender-filter-btns">
         <button class="gender-filter-btn{% if masc_active %} active{% endif %}" data-filter-value="{{ masc_value }}" type="button">{{ gender_label_masc }}</button>
@@ -193,19 +193,3 @@
     </div>
   {%- endif -%}
 </div>
-{%- if floating_toolbar and show_gender_filter -%}
-  {%- comment -%}
-    Toolbar flutuante (mobile): o gênero sai da cápsula e fica aqui, no topo, no fluxo normal.
-    No desktop esta cópia fica oculta e vale a de dentro da toolbar (collection-page.css).
-    O clique é delegado por .gender-filter-btn (main-collection-product.liquid), então as duas cópias funcionam.
-  {%- endcomment -%}
-  <div class="toolbar--gender gender-filter-standalone">
-    <div class="gender-filter-bar">
-      <span class="gender-filter-label">Escolha o modelo</span>
-      <div class="gender-filter-btns">
-        <button class="gender-filter-btn{% if masc_active %} active{% endif %}" data-filter-value="{{ masc_value }}" type="button">{{ gender_label_masc }}</button>
-        <button class="gender-filter-btn{% if fem_active %} active{% endif %}" data-filter-value="{{ fem_value }}" type="button">{{ gender_label_fem }}</button>
-      </div>
-    </div>
-  </div>
-{%- endif -%}
