@@ -219,6 +219,10 @@
       font-weight: var(--heading-weight, 700);
       white-space: nowrap;
     }
+    /* Alternância timer -> slider de texto */
+    #topbar .is-switch-hidden {
+      display: none !important;
+    }
   {%- endstyle -%}
   {%- capture style -%}
     --section-pt: {{ section_st.padding_top }}; --section-pb: {{ section_st.padding_bottom }};--swiper-navigation-color: var(--color-text);
@@ -232,6 +236,52 @@
         break
       endif
     endfor
+  -%}
+  {%- liquid
+    # Timer com "trocar pelo slider ao terminar": define o estado inicial do slider
+    # (aproximado no servidor, só p/ evitar flash; o JS corrige a cada segundo).
+    assign switch_slider = false
+    assign slider_hidden_init = false
+    for block in section.blocks
+      if block.type == 'shipping_countdown' and block.settings.switch_to_slider
+        assign switch_slider = true
+        assign sw_tz = 'now' | date: '%z'
+        assign sw_tz_h = sw_tz | slice: 0, 3
+        assign sw_tz_m = sw_tz | slice: 3, 2
+        assign sw_tz_colon = sw_tz_h | append: ':' | append: sw_tz_m
+        assign sw_now = 'now' | date: '%s' | plus: 0
+        assign sw_started = true
+        assign sw_ended = false
+        if block.settings.start_date != blank
+          assign sw_s_time = block.settings.start_time | default: '00:00'
+          assign sw_start = block.settings.start_date | append: 'T' | append: sw_s_time | append: ':00' | append: sw_tz_colon
+          assign sw_start_ts = sw_start | date: '%s' | plus: 0
+          if sw_now < sw_start_ts
+            assign sw_started = false
+          endif
+        endif
+        if block.settings.end_date != blank
+          assign sw_e_time = block.settings.end_time | default: '23:59'
+          assign sw_end = block.settings.end_date | append: 'T' | append: sw_e_time | append: ':59' | append: sw_tz_colon
+          assign sw_end_ts = sw_end | date: '%s' | plus: 0
+          if sw_now > sw_end_ts
+            assign sw_ended = true
+          endif
+        endif
+        if sw_started and sw_ended == false
+          assign slider_hidden_init = true
+        endif
+        break
+      endif
+    endfor
+    assign slider_switch_class = ''
+    assign slider_switch_attr = ''
+    if switch_slider
+      assign slider_switch_attr = 'data-topbar-slider="true"'
+      if slider_hidden_init
+        assign slider_switch_class = ' is-switch-hidden'
+      endif
+    endif
   -%}
   <div
     id="topbar"
@@ -296,7 +346,10 @@
               </div>
             {%- when 'text_slider' -%}
               {%- if block_st.compact_mode -%}
-                <div class="topbar-item w-full topbar-compact{% if block_st.hidden_on_mobile %} hidden block-1025{% endif %}">
+                <div
+                  class="topbar-item w-full topbar-compact{% if block_st.hidden_on_mobile %} hidden block-1025{% endif %}{{ slider_switch_class }}"
+                  {{ slider_switch_attr }}
+                >
                   <div class="topbar-compact__grid">
                     {%- for i in (1..2) -%}
                       {%- liquid
@@ -321,7 +374,10 @@
                   </div>
                 </div>
               {%- else -%}
-              <div class="topbar-item w-full text-slide{% if block_st.hidden_on_mobile %} hidden block-1025{% endif %}">
+              <div
+                class="topbar-item w-full text-slide{% if block_st.hidden_on_mobile %} hidden block-1025{% endif %}{{ slider_switch_class }}"
+                {{ slider_switch_attr }}
+              >
                 <slide-section
                   class="swiper bls__swiper text-center text-md-start gap-0 lazy-loading-swiper-before"
                   data-section-id="{{ section.id }}"
@@ -441,6 +497,7 @@
                 data-start="{{ start_dt }}"
                 data-end="{{ end_dt }}"
                 data-expired-message="{{ block_st.expired_message | escape }}"
+                data-switch-slider="{% if block_st.switch_to_slider %}true{% else %}false{% endif %}"
                 {% if out_of_window %}hidden{% endif %}
                 {% if shipping_style_vars != blank %}style="{{ shipping_style_vars | strip | strip_newlines }}"{% endif %}
               >
@@ -538,11 +595,13 @@
         this.start = this.parseDate(this.dataset.start);
         this.end = this.parseDate(this.dataset.end);
         this.expiredMessage = (this.dataset.expiredMessage || '').trim();
+        this.switchSlider = this.dataset.switchSlider === 'true';
 
         // Sem data de fim válida: mantém apenas a mensagem, sem contador.
         if (!this.end) {
           if (this.timerRow) this.timerRow.remove();
           this.hidden = false;
+          this.setSliderVisible(false);
           return;
         }
 
@@ -561,12 +620,22 @@
         return isNaN(d.getTime()) ? null : d;
       }
 
+      // Mostra/esconde o bloco "Slider de texto" quando a troca está ativada.
+      setSliderVisible(visible) {
+        if (!this.switchSlider) return;
+        var root = this.closest('#topbar') || document;
+        root.querySelectorAll('[data-topbar-slider]').forEach(function (el) {
+          el.classList.toggle('is-switch-hidden', !visible);
+        });
+      }
+
       update() {
         var now = Date.now();
 
         // Ainda não começou -> esconde a barra inteira (mostra sozinha ao iniciar).
         if (this.start && now < this.start.getTime()) {
           this.hidden = true;
+          this.setSliderVisible(true);
           return;
         }
 
@@ -575,6 +644,14 @@
         // Terminou.
         if (diff <= 0) {
           if (this.interval) clearInterval(this.interval);
+
+          // Troca pelo slider: esconde este bloco e revela o slider de texto.
+          if (this.switchSlider) {
+            this.hidden = true;
+            this.setSliderVisible(true);
+            return;
+          }
+
           if (this.expiredMessage) {
             this.hidden = false;
             if (this.timerRow) {
@@ -589,6 +666,7 @@
         }
 
         this.hidden = false;
+        this.setSliderVisible(false);
 
         var pad = function (n) { return String(n).padStart(2, '0'); };
         var ONE_DAY = 86400000;
@@ -1038,6 +1116,13 @@
           "id": "expired_message",
           "label": "Mensagem ao terminar",
           "info": "Exibida no lugar do contador quando a promoção acabar. Deixe em branco para esconder a barra automaticamente."
+        },
+        {
+          "type": "checkbox",
+          "id": "switch_to_slider",
+          "label": "Trocar pelo bloco 'Slider de texto' ao terminar",
+          "info": "Ao acabar a contagem, este bloco é ocultado e o bloco 'Slider de texto' aparece no lugar. Enquanto a contagem estiver rodando, o slider fica oculto. Requer o bloco 'Slider de texto' adicionado na barra superior. Ignora a 'Mensagem ao terminar'.",
+          "default": false
         },
         {
           "type": "header",
