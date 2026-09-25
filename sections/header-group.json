@@ -31,8 +31,8 @@
             "switch_to_slider": true,
             "custom_colors": true,
             "bg_color": "#0F6049",
-            "text_color": "#ffffff",
-            "timer_color": "#FFFFFF",
+            "text_color": "#F4F0E9",
+            "timer_color": "#F4F0E9",
             "hidden_on_mobile": false
           }
         },
