@@ -238,7 +238,11 @@
         "collection_4yUXdU",
         "collection_3frNWE"
       ],
-      "custom_css": [],
+      "custom_css": [
+        ".collection-tab__ta {flex-wrap: nowrap; gap: clamp(6px, 2vw, 15px);}",
+        ".collection-tab__ta .collection-tab__tab-item {flex: 0 1 auto; min-width: 0; padding-left: clamp(8px, 3vw, 20px); padding-right: clamp(8px, 3vw, 20px); font-size: clamp(11.5px, 3.6vw, 15px);}",
+        "@media (max-width: 767.98px) {.collection-tab-postion_horizontal_header ~ .btn_view-all {flex-basis: 100%; justify-content: center;}}"
+      ],
       "name": "Lançamentos",
       "settings": {
         "section_width": "stretch_width",
