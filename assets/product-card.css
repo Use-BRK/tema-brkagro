@@ -225,6 +225,44 @@ review-product.inline-loading:after {
     height: 1.4rem;
   }
 }
+/* Tarja de escassez "Restam apenas XX unidades" — rodapé da imagem do card */
+.product-item__stock-strip {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.7rem;
+  padding: 0.9rem 1.2rem;
+  background-color: #ff6200;
+  color: #f9f5f1;
+  font-size: clamp(1rem, 2.6vw, 1.2rem);
+  font-weight: 700;
+  letter-spacing: 0.12rem;
+  line-height: 1;
+  text-transform: uppercase;
+  pointer-events: none;
+}
+.product-item__stock-strip-icon {
+  width: 1.1rem;
+  height: 1.8rem;
+  flex-shrink: 0;
+}
+@media (max-width: 575.98px) {
+  .product-item__stock-strip {
+    gap: 0.55rem;
+    padding: 0.8rem 1rem;
+    letter-spacing: 0.08rem;
+    font-size: clamp(0.9rem, 3vw, 1.1rem);
+  }
+  .product-item__stock-strip-icon {
+    width: 1rem;
+    height: 1.6rem;
+  }
+}
 /* STANDBY: medidor de escassez (descomentar para reativar)
 -- Medidor de escassez: pílula de vidro escuro no rodapé central da imagem do card --
 .scarcity-meter {

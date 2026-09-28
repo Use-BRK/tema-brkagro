@@ -18,6 +18,27 @@
   {%- endif -%}
 {%- endfor -%}
 
+{%- comment -%}
+  Tarja de escassez ("Restam apenas XX unidades") - verificacao de colecao.
+  Se nenhuma colecao for selecionada nas configuracoes, vale para todas.
+{%- endcomment -%}
+{%- liquid
+  assign show_stock_strip = false
+  if section.settings.show_stock_strip
+    if section.settings.stock_strip_collections == blank
+      assign show_stock_strip = true
+    else
+      for col in section.settings.stock_strip_collections
+        if col.handle == collection.handle
+          assign show_stock_strip = true
+          break
+        endif
+      endfor
+    endif
+  endif
+  assign stock_strip_threshold = section.settings.stock_strip_threshold | default: 9
+-%}
+
 {%- if show_gender_filter -%}
 <style>
   /* ===========================================================
@@ -569,6 +590,8 @@
                         colunm_mobile: section_st.items_per_row_mobile,
                         padding: section_st.column_gap,
                         collection_product: true,
+                        show_stock_strip: show_stock_strip,
+                        stock_strip_threshold: stock_strip_threshold,
                         class: 'motion-item'
                       %}
                     {% endif %}
@@ -895,6 +918,29 @@
       "max": 7,
       "step": 1,
       "default": 3
+    },
+    {
+      "type": "header",
+      "content": "Tarja de escassez (estoque baixo)"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_stock_strip",
+      "label": "Ativar tarja \"Restam apenas XX unidades\"",
+      "default": false
+    },
+    {
+      "type": "number",
+      "id": "stock_strip_threshold",
+      "label": "Mostrar quando o estoque for igual ou menor que",
+      "default": 9,
+      "info": "Soma o estoque de todas as variantes do produto (o mesmo número da coluna Estoque no admin da Shopify). A tarja não aparece em produtos esgotados nem em produtos sem controle de estoque."
+    },
+    {
+      "type": "collection_list",
+      "id": "stock_strip_collections",
+      "label": "Coleções",
+      "info": "Selecione as coleções onde a tarja deve aparecer. Se vazio, aparecerá em todas as coleções."
     },
     {
       "type": "header",

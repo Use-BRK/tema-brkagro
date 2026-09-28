@@ -1,0 +1,68 @@
+{%- doc -%}
+  Tarja laranja de escassez ("RESTAM APENAS XX UNIDADES") no rodape da imagem do card.
+
+  Soma o estoque de TODAS as variantes do produto (mesmo numero que aparece na coluna
+  "Estoque" do admin da Shopify) e aparece quando o total fica entre 1 e o limite informado.
+  Nao aparece se o produto estiver esgotado, se alguma variante nao rastrear estoque ou
+  se alguma variante permitir venda sem estoque (estoque "infinito").
+
+  @param {product} card_product - Produto do card
+  @param {number} threshold - Estoque maximo para exibir a tarja (padrao: 9)
+
+  @example
+  {% render 'product-stock-strip', card_product: card_product, threshold: 9 %}
+{%- enddoc -%}
+{%- liquid
+  assign stock_strip_limit = threshold | plus: 0
+  if stock_strip_limit < 1
+    assign stock_strip_limit = 9
+  endif
+
+  assign stock_strip_total = 0
+  assign stock_strip_tracked = true
+  for stock_strip_variant in card_product.variants
+    if stock_strip_variant.inventory_management == blank or stock_strip_variant.inventory_policy == 'continue'
+      assign stock_strip_tracked = false
+      break
+    endif
+    if stock_strip_variant.inventory_quantity > 0
+      assign stock_strip_total = stock_strip_total | plus: stock_strip_variant.inventory_quantity
+    endif
+  endfor
+
+  assign stock_strip_show = false
+  if card_product.available and stock_strip_tracked and stock_strip_total > 0 and stock_strip_total <= stock_strip_limit
+    assign stock_strip_show = true
+  endif
+-%}
+{%- if stock_strip_show -%}
+  {%- liquid
+    comment
+      Formata com dois digitos (01, 07, 12) como no layout aprovado.
+    endcomment
+    assign stock_strip_count = stock_strip_total | append: ''
+    if stock_strip_total < 10
+      assign stock_strip_count = '0' | append: stock_strip_count
+    endif
+    if stock_strip_total == 1
+      assign stock_strip_label = 'Resta apenas ' | append: stock_strip_count | append: ' unidade'
+    else
+      assign stock_strip_label = 'Restam apenas ' | append: stock_strip_count | append: ' unidades'
+    endif
+  -%}
+  <div class="product-item__stock-strip" role="status">
+    <svg
+      class="product-item__stock-strip-icon"
+      width="14"
+      height="23"
+      viewBox="0 0 14 23"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+      focusable="false"
+    >
+      <path d="M6.9997 23C5.59698 22.9999 4.22665 22.5167 3.06638 21.6133C1.90611 20.7098 1.00941 19.4277 0.492548 17.9331C-0.0243122 16.4385 -0.137495 14.8004 0.167675 13.2312C0.472845 11.662 1.18229 10.2341 2.20403 9.1326C3.45662 7.78149 6.53302 5.34884 6.06633 0C11.6666 4.27907 14.4667 8.55814 8.86645 14.9767C9.79982 14.9767 11.1999 14.9767 13.5333 12.3344C13.7853 13.1613 14 14.0503 14 14.9767C14 17.1046 13.2625 19.1454 11.9497 20.65C10.6368 22.1547 8.8563 23 6.9997 23Z" fill="currentColor"/>
+    </svg>
+    <span>{{ stock_strip_label }}</span>
+  </div>
+{%- endif -%}
