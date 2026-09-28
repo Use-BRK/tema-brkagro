@@ -233,12 +233,11 @@ review-product.inline-loading:after {
   container-type: inline-size;
 }
 .product-item__stock-strip {
-  /* deslocamento lateral usado no mobile quando a imagem sangra (collection-page.css) */
-  --stock-strip-shift: 0px;
   position: absolute;
+  /* centralizada na foto do produto (inclusive quando a imagem sangra no mobile) */
   left: 50%;
   bottom: 0;
-  transform: translateX(calc(-50% + var(--stock-strip-shift)));
+  transform: translateX(-50%);
   margin-bottom: clamp(0.8rem, 7.9cqw, 3rem);
   z-index: 4;
   display: inline-flex;
