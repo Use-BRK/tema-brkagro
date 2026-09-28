@@ -225,43 +225,42 @@ review-product.inline-loading:after {
     height: 1.4rem;
   }
 }
-/* Tarja de escassez "Restam apenas XX unidades" — rodapé da imagem do card */
+/* Tarja de escassez "Restam apenas XX unidades" — flutua sobre a imagem do card.
+   Dimensoes proporcionais a largura do card (cqw/em), medidas no layout aprovado
+   (card de 342px): barra 69,3% da largura e 31px de altura, 27px de folga ate a
+   base da imagem, fonte ~12,7px, icone 10x17, padding 7px/18px, gap 10px. */
+.product-item__inner:has(.product-item__stock-strip) {
+  container-type: inline-size;
+}
 .product-item__stock-strip {
+  /* deslocamento lateral usado no mobile quando a imagem sangra (collection-page.css) */
+  --stock-strip-shift: 0px;
   position: absolute;
-  left: 0;
-  right: 0;
+  left: 50%;
   bottom: 0;
+  transform: translateX(calc(-50% + var(--stock-strip-shift)));
+  margin-bottom: clamp(0.8rem, 7.9cqw, 3rem);
   z-index: 4;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.7rem;
-  padding: 0.9rem 1.2rem;
+  width: max-content;
+  gap: 0.79em;
+  padding: 0.55em 1.42em;
   background-color: #ff6200;
   color: #f9f5f1;
-  font-size: clamp(1rem, 2.6vw, 1.2rem);
+  font-size: clamp(0.85rem, 3.7cqw, 1.3rem);
   font-weight: 700;
-  letter-spacing: 0.12rem;
+  letter-spacing: 0.03em;
   line-height: 1;
   text-transform: uppercase;
+  white-space: nowrap;
   pointer-events: none;
 }
 .product-item__stock-strip-icon {
-  width: 1.1rem;
-  height: 1.8rem;
+  width: 0.79em;
+  height: 1.34em;
   flex-shrink: 0;
-}
-@media (max-width: 575.98px) {
-  .product-item__stock-strip {
-    gap: 0.55rem;
-    padding: 0.8rem 1rem;
-    letter-spacing: 0.08rem;
-    font-size: clamp(0.9rem, 3vw, 1.1rem);
-  }
-  .product-item__stock-strip-icon {
-    width: 1rem;
-    height: 1.6rem;
-  }
 }
 /* STANDBY: medidor de escassez (descomentar para reativar)
 -- Medidor de escassez: pílula de vidro escuro no rodapé central da imagem do card --
