@@ -123,6 +123,16 @@ padding: 15px !important;
   align-items: baseline;
 }
 
+/* Só na página de produto (.main-product-section): o preço é tratado como um
+   bloco único (De riscado + selo, Por + parcelamento), então o respiro acima
+   fica entre as avaliações e o bloco inteiro — nunca entre o "De" e o "Por" —
+   e é igual ao respiro de baixo (mb-10 = 1rem) que separa o preço do seletor
+   de variantes ("Modelo:"). O mesmo bloco de preço é usado em featured-product
+   e no quickview, que ficam inalterados. */
+.main-product-section .product-detail__price {
+  margin-top: 1rem;
+}
+
 /* Parcelamento sempre numa linha PRÓPRIA, logo abaixo do preço (content-after),
    colado — sem o gap longo. flex-basis:100% quebra a linha; o espaçamento
    vertical fica só o row-gap do container (pequeno). */
