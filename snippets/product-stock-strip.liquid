@@ -1,5 +1,5 @@
 {%- doc -%}
-  Tarja laranja de escassez ("RESTAM APENAS XX UNIDADES") no rodape da imagem do card.
+  Tarja laranja de escassez ("RESTAM XX UNIDADES") no rodape da imagem do card.
 
   Soma o estoque de TODAS as variantes do produto (mesmo numero que aparece na coluna
   "Estoque" do admin da Shopify) e aparece quando o total fica entre 1 e o limite informado.
@@ -45,9 +45,9 @@
       assign stock_strip_count = '0' | append: stock_strip_count
     endif
     if stock_strip_total == 1
-      assign stock_strip_label = 'Resta apenas ' | append: stock_strip_count | append: ' unidade'
+      assign stock_strip_label = 'Resta ' | append: stock_strip_count | append: ' unidade'
     else
-      assign stock_strip_label = 'Restam apenas ' | append: stock_strip_count | append: ' unidades'
+      assign stock_strip_label = 'Restam ' | append: stock_strip_count | append: ' unidades'
     endif
   -%}
   <div class="product-item__stock-strip" role="status">
