@@ -16,8 +16,8 @@
           "type": "slider_item",
           "name": "Calças",
           "settings": {
-            "image": "shopify://shop_images/BANNER_V3.jpg",
-            "image_mobile": "shopify://shop_images/MOBILE_V3.jpg",
+            "image": "shopify://shop_images/BANNER_PRORROGACAO.jpg",
+            "image_mobile": "shopify://shop_images/MOBILE_PRORROGACAO.jpg",
             "overlay_opacity": 0,
             "link_banner": "shopify://collections/1ª-oferta-agro",
             "slider_effect": "fade-in-right",
