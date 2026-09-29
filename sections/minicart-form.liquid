@@ -266,9 +266,12 @@
       {% if action_after_add_cart == 'open_drawer' %}
         {%- render 'cart-addons' -%}
       {% endif %}
+      {%- render 'cart-collection-upsell', context: 'minicart' -%}
       <div class="drawer-bottom cart__ctas p-10 grey-bg border-top">
         {% if theme_st.enable_discount_code %}
           {%- render 'minicart-coupon-inline' -%}
+        {% elsif theme_st.show_coupon_checkout_note and theme_st.coupon_checkout_note != blank %}
+          <p class="minicart-coupon-note fs-small dark-grey text-center mt-0 mb-10">{{ theme_st.coupon_checkout_note | escape }}</p>
         {% endif %}
         {% if hidden_price == false %}
           <div class="cart-summary {% if enable_rtl %}text-left{% else %}text-right{% endif %}" data-cart-summary>
