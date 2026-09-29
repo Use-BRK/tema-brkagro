@@ -1,5 +1,7 @@
 {%- liquid
   assign section_st = section.settings
+  assign show_stock_strip = section_st.show_stock_strip
+  assign stock_strip_threshold = section_st.stock_strip_threshold | default: 9
   assign section_width = section_st.section_width
   assign color_scheme = section_st.color_scheme
   if section_st.reset_spacing
@@ -353,6 +355,8 @@
                       >
                         {% for product in collection.products %}
                           {% render 'product-item',
+                            show_stock_strip: show_stock_strip,
+                            stock_strip_threshold: stock_strip_threshold,
                             card_product: product,
                             container: section_width,
                             colunm: items_per_row,
@@ -439,6 +443,8 @@
                         {%- endif -%}
                         {%- assign tab_shown = tab_shown | plus: 1 -%}
                         {% render 'product-item',
+                          show_stock_strip: show_stock_strip,
+                          stock_strip_threshold: stock_strip_threshold,
                           card_product: product,
                           section_id: section.id,
                           container: section_width,
@@ -491,6 +497,8 @@
                   >
                     {% for i in (1..all_product_visible) %}
                       {% render 'product-item',
+                        show_stock_strip: show_stock_strip,
+                        stock_strip_threshold: stock_strip_threshold,
                         section_id: section.id,
                         class: ' grid-custom-item',
                         template_enable_action: true,
@@ -581,6 +589,8 @@
                           {%- endif -%}
                           {%- assign tab_shown = tab_shown | plus: 1 -%}
                           {% render 'product-item',
+                            show_stock_strip: show_stock_strip,
+                            stock_strip_threshold: stock_strip_threshold,
                             card_product: product,
                             section_id: section.id,
                             class: ' swiper-slide',
@@ -647,6 +657,8 @@
                     <div class="swiper-wrapper">
                       {% for i in (1..items_to_show) %}
                         {% render 'product-item',
+                          show_stock_strip: show_stock_strip,
+                          stock_strip_threshold: stock_strip_threshold,
                           section_id: section.id,
                           class: ' swiper-slide',
                           indexFor: i,
@@ -1053,6 +1065,23 @@
       "id": "reset_spacing",
       "label": "t:sections.all.section_padding.reset_spacing.label",
       "default": false
+    },
+    {
+      "type": "header",
+      "content": "Tarja de escassez (estoque baixo)"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_stock_strip",
+      "label": "Ativar tarja \"Restam XX unidades\"",
+      "default": true
+    },
+    {
+      "type": "number",
+      "id": "stock_strip_threshold",
+      "label": "Mostrar quando o estoque for igual ou menor que",
+      "default": 9,
+      "info": "Soma o estoque de todas as variantes do produto. A tarja não aparece em produtos esgotados nem em produtos sem controle de estoque."
     }
   ],
   "blocks": [
