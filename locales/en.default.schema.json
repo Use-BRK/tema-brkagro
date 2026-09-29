@@ -3959,7 +3959,7 @@
         },
         "link": {
           "label": "Link",
-          "info": "Used by the tab's \"View all\" button. Leave blank to use the collection's URL. Without a collection, clicking the tab opens this link"
+          "info": "Used by the tab's \"View all\" button. Filters in a collection link (e.g. ?filter.p.m.custom.genero=Feminino) are applied to the tab's products. With no collection selected, the link's collection is used; if the link isn't a collection, clicking the tab opens it"
         },
         "collection_title": {
           "label": "Collection title",
