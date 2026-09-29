@@ -191,7 +191,13 @@
                   {% for block in section.blocks %}
                     {% liquid
                       assign block_st = block.settings
-                      assign collection_title = block_st.collection.title
+                      assign collection = collections[block_st.collection]
+                      # Sem coleção escolhida: usa a coleção do caminho do link (/collections/<handle>)
+                      if collection == blank and block_st.link contains '/collections/'
+                        assign link_handle = block_st.link | split: '/collections/' | last | split: '?' | first | split: '#' | first | split: '/' | first | url_decode
+                        assign collection = collections[link_handle]
+                      endif
+                      assign collection_title = collection.title
                       assign collection_title = block_st.collection_title | default: collection_title
                     %}
                     {% if forloop.first == true %}
@@ -211,14 +217,20 @@
                 {% liquid
                   assign block_st = block.settings
                   assign collection = collections[block_st.collection]
+                  # Sem coleção escolhida: usa a coleção do caminho do link (/collections/<handle>)
+                  if collection == blank and block_st.link contains '/collections/'
+                    assign link_handle = block_st.link | split: '/collections/' | last | split: '?' | first | split: '#' | first | split: '/' | first | url_decode
+                    assign collection = collections[link_handle]
+                  endif
                   assign collection_title = block_st.collection_title | default: collection.title
-                  assign collection_url = collection.url | default: '#'
+                  assign collection_url = block_st.link | default: collection.url | default: '#'
                 %}
 
                 {% if tab_header_style == 'horizontal' -%}
                   <div
                     data-block-id="{{ block.id }}"
                     data-collection-url="{{ collection_url }}"
+                    {% if collection == blank and block_st.link != blank %}data-link="{{ block_st.link }}"{% endif %}
                     class="collection-tab__tab-item whitespace-nowrap pointer px-20 pb-8 transition text-center heading-style{% if horizontal_tab_style == 'underline' %} fs-16 border-animation{% else %} btn-outline btn-hover btn-rounded px-20 py-10{% endif %}{% if forloop.first %} active{% if horizontal_tab_style != 'underline' %} btn-active{% endif %}{% endif %}"
                     {{ block.shopify_attributes }}
                     data-style="{{ horizontal_tab_style }}"
@@ -235,6 +247,7 @@
                     class="py-5 hover-heading-color pointer collection_title_input"
                     data-id="{{ block.id }}"
                     data-collection-url="{{ collection_url }}"
+                    {% if collection == blank and block_st.link != blank %}data-link="{{ block_st.link }}"{% endif %}
                   >
                     {{ collection_title }}
                   </li>
@@ -291,6 +304,11 @@
               {% liquid
                 assign block_st = block.settings
                 assign collection = collections[block_st.collection]
+                # Sem coleção escolhida: usa a coleção do caminho do link (/collections/<handle>)
+                if collection == blank and block_st.link contains '/collections/'
+                  assign link_handle = block_st.link | split: '/collections/' | last | split: '?' | first | split: '#' | first | split: '/' | first | url_decode
+                  assign collection = collections[link_handle]
+                endif
                 assign all_products_to_show = 0
                 if collection.products.size >= items_to_show
                   assign all_products_to_show = items_to_show
@@ -304,14 +322,21 @@
                 else
                   assign limit_products_paginate = all_products_to_show
                 endif
+                # Link com filtros (filter.*): filtra os produtos da coleção em Liquid (sem load more)
+                assign tab_filtered = false
+                assign tab_paginate = limit_products_paginate
+                if block_st.link contains '?' and block_st.link contains 'filter.'
+                  assign tab_filtered = true
+                  assign tab_paginate = 250
+                endif
               %}
               {% if collection.products.size > 0 %}
-                {% if show_load_more_button == true %}
+                {% if show_load_more_button == true and tab_filtered == false %}
                   {%- paginate collection.products by limit_products_paginate -%}
                     <div
                       class="collection-tab__tab-content collection-tab-{{ block.id }} {% if forloop.first %} active{% else %} hidden{% endif %}"
                       data-block-id="{{ block.id }}"
-                      data-collection-url="{{ collection.url }}"
+                      data-collection-url="{{ block_st.link | default: collection.url | default: '#' }}"
                     >
                       {% if section_st.items_per_row_mobile > 1
                         and section_st.items_per_row_mobile < 2
@@ -390,10 +415,11 @@
                     {% endif %}
                   {% endpaginate %}
                 {% else %}
+                  {%- paginate collection.products by tab_paginate -%}
                   <div
                     class="collection-tab__tab-content{% if forloop.first %} active{% else %} hidden{% endif %}"
                     data-block-id="{{ block.id }}"
-                    data-collection-url="{{ collection.url }}"
+                    data-collection-url="{{ block_st.link | default: collection.url | default: '#' }}"
                   >
                     {% if section_st.items_per_row_mobile > 1
                       and section_st.items_per_row_mobile < 2
@@ -409,7 +435,13 @@
                       data-spacing="{{ column_gap }}"
                       data-free-scroll="{{ data_free_scroll }}"
                     >
-                      {% for product in collection.products limit: limit_products_paginate %}
+                      {%- assign tab_shown = 0 -%}
+                      {% for product in collection.products %}
+                        {%- if tab_filtered -%}
+                          {%- capture tab_match -%}{%- render 'collection-tab-filter-match', product: product, link: block_st.link -%}{%- endcapture -%}
+                          {%- if tab_match != 'true' -%}{%- continue -%}{%- endif -%}
+                        {%- endif -%}
+                        {%- assign tab_shown = tab_shown | plus: 1 -%}
                         {% render 'product-item',
                           show_stock_strip: show_stock_strip,
                           stock_strip_threshold: stock_strip_threshold,
@@ -429,8 +461,9 @@
                           template_enable_add_cart: true,
                           template_enable_product_badges: true,
                           scroll_animation: scroll_animation,
-                          indexFor: forloop.index
+                          indexFor: tab_shown
                         %}
+                        {%- if tab_shown >= limit_products_paginate -%}{%- break -%}{%- endif -%}
                       {% endfor %}
                     </grid-custom>
                     {% if section_st.items_per_row_mobile > 1
@@ -440,12 +473,13 @@
                       </div>
                     {% endif %}
                   </div>
+                  {%- endpaginate -%}
                 {% endif %}
               {% else -%}
                 <div
                   class="collection-tab__tab-content{% if forloop.first %} active{% else %} hidden{% endif %}"
                   data-block-id="{{ block.id }}"
-                  data-collection-url="#"
+                  data-collection-url="{{ block_st.link | default: '#' }}"
                 >
                   {% if section_st.items_per_row_mobile > 1
                     and section_st.items_per_row_mobile < 2
@@ -493,21 +527,34 @@
             {% for block in section.blocks %}
               {% liquid
                 assign block_st = block.settings
+                assign collection = collections[block_st.collection]
+                # Sem coleção escolhida: usa a coleção do caminho do link (/collections/<handle>)
+                if collection == blank and block_st.link contains '/collections/'
+                  assign link_handle = block_st.link | split: '/collections/' | last | split: '?' | first | split: '#' | first | split: '/' | first | url_decode
+                  assign collection = collections[link_handle]
+                endif
                 assign all_products_to_show = 0
-                if block_st.collection.products.size >= items_to_show
+                if collection.products.size >= items_to_show
                   assign all_products_to_show = items_to_show
                 else
-                  assign all_products_to_show = block_st.collection.products.size
+                  assign all_products_to_show = collection.products.size
                 endif
                 assign all_product_visible = rows | times: items_per_row
+                # Link com filtros (filter.*): filtra os produtos da coleção em Liquid
+                assign tab_filtered = false
+                assign tab_paginate = all_products_to_show
+                if block_st.link contains '?' and block_st.link contains 'filter.'
+                  assign tab_filtered = true
+                  assign tab_paginate = 250
+                endif
               %}
-              {% if block_st.collection.products.size > 0 %}
+              {% if collection.products.size > 0 %}
                 {%- comment -%} Carousel shows up to "items to show" products (rows is a grid-only setting). {%- endcomment -%}
-                {%- paginate block_st.collection.products by all_products_to_show -%}
+                {%- paginate collection.products by tab_paginate -%}
                   <div
                     class="collection-tab__tab-content{% if forloop.first %} active{% else %} hidden{% endif %}"
                     data-block-id="{{ block.id }}"
-                    data-collection-url="{{ block_st.collection.url }}"
+                    data-collection-url="{{ block_st.link | default: collection.url | default: '#' }}"
                   >
                     {% if section_st.items_per_row_mobile > 1 and section_st.items_per_row_mobile < 2 %}
                       <div class="free-scroll">
@@ -534,7 +581,13 @@
                         {%- render 'swiper-navigation' -%}
                       {% endif %}
                       <div class="swiper-wrapper">
-                        {% for product in block_st.collection.products %}
+                        {%- assign tab_shown = 0 -%}
+                        {% for product in collection.products %}
+                          {%- if tab_filtered -%}
+                            {%- capture tab_match -%}{%- render 'collection-tab-filter-match', product: product, link: block_st.link -%}{%- endcapture -%}
+                            {%- if tab_match != 'true' -%}{%- continue -%}{%- endif -%}
+                          {%- endif -%}
+                          {%- assign tab_shown = tab_shown | plus: 1 -%}
                           {% render 'product-item',
                             show_stock_strip: show_stock_strip,
                             stock_strip_threshold: stock_strip_threshold,
@@ -550,8 +603,9 @@
                             template_enable_add_cart: true,
                             template_enable_product_badges: true,
                             scroll_animation: scroll_animation,
-                            indexFor: forloop.index
+                            indexFor: tab_shown
                           %}
+                          {%- if tab_shown >= all_products_to_show -%}{%- break -%}{%- endif -%}
                         {% endfor %}
                       </div>
                       {%- if carousel_pagination == 'show_dots'
@@ -574,7 +628,7 @@
                 <div
                   class="collection-tab__tab-content {% if forloop.first %} active{% else %} hidden{% endif %}"
                   data-block-id="{{ block.id }}"
-                  data-collection-url="#"
+                  data-collection-url="{{ block_st.link | default: '#' }}"
                 >
                   {% if section_st.items_per_row_mobile > 1
                     and section_st.items_per_row_mobile < 2
@@ -1040,6 +1094,12 @@
           "type": "collection",
           "id": "collection",
           "label": "t:sections.collection-tab.blocks.collection"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "t:sections.collection-tab.blocks.link.label",
+          "info": "t:sections.collection-tab.blocks.link.info"
         },
         {
           "type": "text",

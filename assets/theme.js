@@ -8157,6 +8157,8 @@ class TabItems extends HTMLElement {
     this.addEventListener("click", (e) => {
       const tab = e.target.closest(".collection-tab__tab-item");
       if (!tab || this.type !== "horizontal") return;
+      // Tab só com link (sem coleção): navega em vez de trocar o conteúdo
+      if (tab.dataset.link) { window.location.assign(tab.dataset.link); return; }
       this.setActive(tab.dataset.blockId);
     });
   }
@@ -8172,6 +8174,7 @@ class TabItems extends HTMLElement {
           dd.classList.toggle("invisible");
         }
         const opt = e.target.closest(".collection_title_input");
+        if (opt && opt.dataset.link) { window.location.assign(opt.dataset.link); return; }
         if (opt) {
           const title = this.querySelector(".select__selected_title");
           if (title) {

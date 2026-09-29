@@ -3957,6 +3957,10 @@
           "label": "Image",
           "info": "Leave blank to use collection's image"
         },
+        "link": {
+          "label": "Link",
+          "info": "Used by the tab's \"View all\" button. Filters in a collection link (e.g. ?filter.p.m.custom.genero=Feminino) are applied to the tab's products. With no collection selected, the link's collection is used; if the link isn't a collection, clicking the tab opens it"
+        },
         "collection_title": {
           "label": "Collection title",
           "info": "Leave blank to use collection's title"
