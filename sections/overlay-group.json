@@ -86,24 +86,6 @@
     "video_bubble_test": {
       "type": "video-bubble-stories",
       "blocks": {
-        "story_TKH3hj": {
-          "type": "story",
-          "settings": {
-            "heading": "",
-            "cta_text": "Comprar agora",
-            "product": "",
-            "collection": ""
-          }
-        },
-        "story_T3rLVc": {
-          "type": "story",
-          "settings": {
-            "heading": "",
-            "cta_text": "Comprar agora",
-            "product": "",
-            "collection": ""
-          }
-        },
         "story_dPpdae": {
           "type": "story",
           "name": "Calça",
@@ -117,8 +99,6 @@
         }
       },
       "block_order": [
-        "story_TKH3hj",
-        "story_T3rLVc",
         "story_dPpdae"
       ],
       "settings": {
