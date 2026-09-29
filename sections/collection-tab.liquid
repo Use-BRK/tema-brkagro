@@ -210,13 +210,14 @@
                   assign block_st = block.settings
                   assign collection = collections[block_st.collection]
                   assign collection_title = block_st.collection_title | default: collection.title
-                  assign collection_url = collection.url | default: '#'
+                  assign collection_url = block_st.link | default: collection.url | default: '#'
                 %}
 
                 {% if tab_header_style == 'horizontal' -%}
                   <div
                     data-block-id="{{ block.id }}"
                     data-collection-url="{{ collection_url }}"
+                    {% if collection == blank and block_st.link != blank %}data-link="{{ block_st.link }}"{% endif %}
                     class="collection-tab__tab-item whitespace-nowrap pointer px-20 pb-8 transition text-center heading-style{% if horizontal_tab_style == 'underline' %} fs-16 border-animation{% else %} btn-outline btn-hover btn-rounded px-20 py-10{% endif %}{% if forloop.first %} active{% if horizontal_tab_style != 'underline' %} btn-active{% endif %}{% endif %}"
                     {{ block.shopify_attributes }}
                     data-style="{{ horizontal_tab_style }}"
@@ -233,6 +234,7 @@
                     class="py-5 hover-heading-color pointer collection_title_input"
                     data-id="{{ block.id }}"
                     data-collection-url="{{ collection_url }}"
+                    {% if collection == blank and block_st.link != blank %}data-link="{{ block_st.link }}"{% endif %}
                   >
                     {{ collection_title }}
                   </li>
@@ -309,7 +311,7 @@
                     <div
                       class="collection-tab__tab-content collection-tab-{{ block.id }} {% if forloop.first %} active{% else %} hidden{% endif %}"
                       data-block-id="{{ block.id }}"
-                      data-collection-url="{{ collection.url }}"
+                      data-collection-url="{{ block_st.link | default: collection.url | default: '#' }}"
                     >
                       {% if section_st.items_per_row_mobile > 1
                         and section_st.items_per_row_mobile < 2
@@ -389,7 +391,7 @@
                   <div
                     class="collection-tab__tab-content{% if forloop.first %} active{% else %} hidden{% endif %}"
                     data-block-id="{{ block.id }}"
-                    data-collection-url="{{ collection.url }}"
+                    data-collection-url="{{ block_st.link | default: collection.url | default: '#' }}"
                   >
                     {% if section_st.items_per_row_mobile > 1
                       and section_st.items_per_row_mobile < 2
@@ -439,7 +441,7 @@
                 <div
                   class="collection-tab__tab-content{% if forloop.first %} active{% else %} hidden{% endif %}"
                   data-block-id="{{ block.id }}"
-                  data-collection-url="#"
+                  data-collection-url="{{ block_st.link | default: '#' }}"
                 >
                   {% if section_st.items_per_row_mobile > 1
                     and section_st.items_per_row_mobile < 2
@@ -499,7 +501,7 @@
                   <div
                     class="collection-tab__tab-content{% if forloop.first %} active{% else %} hidden{% endif %}"
                     data-block-id="{{ block.id }}"
-                    data-collection-url="{{ block_st.collection.url }}"
+                    data-collection-url="{{ block_st.link | default: block_st.collection.url | default: '#' }}"
                   >
                     {% if section_st.items_per_row_mobile > 1 and section_st.items_per_row_mobile < 2 %}
                       <div class="free-scroll">
@@ -564,7 +566,7 @@
                 <div
                   class="collection-tab__tab-content {% if forloop.first %} active{% else %} hidden{% endif %}"
                   data-block-id="{{ block.id }}"
-                  data-collection-url="#"
+                  data-collection-url="{{ block_st.link | default: '#' }}"
                 >
                   {% if section_st.items_per_row_mobile > 1
                     and section_st.items_per_row_mobile < 2
@@ -1011,6 +1013,12 @@
           "type": "collection",
           "id": "collection",
           "label": "t:sections.collection-tab.blocks.collection"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "t:sections.collection-tab.blocks.link.label",
+          "info": "t:sections.collection-tab.blocks.link.info"
         },
         {
           "type": "text",

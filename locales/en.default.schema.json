@@ -3957,6 +3957,10 @@
           "label": "Image",
           "info": "Leave blank to use collection's image"
         },
+        "link": {
+          "label": "Link",
+          "info": "Used by the tab's \"View all\" button. Leave blank to use the collection's URL. Without a collection, clicking the tab opens this link"
+        },
         "collection_title": {
           "label": "Collection title",
           "info": "Leave blank to use collection's title"
