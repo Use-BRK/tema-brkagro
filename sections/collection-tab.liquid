@@ -16,7 +16,9 @@
       assign heading_note = heading | remove_first: heading_parts[0] | remove: '(' | remove: ')' | strip
       assign heading_stacked = ' section__header-heading--stacked'
       capture heading_html
+        echo '<span class="section__header-heading-main">'
         echo heading_main
+        echo '</span>'
         echo '<span class="section__header-heading-sub">'
         echo heading_note
         echo '</span>'
@@ -79,13 +81,22 @@
   .sec__collection-tab .section__header-heading--stacked {
     text-align: center;
   }
+  .sec__collection-tab .section__header-heading-main {
+    font-weight: 700;
+  }
   .sec__collection-tab .section__header-heading-sub {
     display: block;
     text-align: center;
     font-size: 0.62em;
     line-height: 1.25;
     margin-top: 4px;
-    color: #211b15;
+    color: #666666;
+  }
+  @media (min-width: 1025px) {
+    .sec__collection-tab .section__header-heading--stacked,
+    .sec__collection-tab .section__header-heading-sub {
+      text-align: left;
+    }
   }
 {%- endstyle -%}
 <div
