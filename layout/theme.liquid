@@ -30,10 +30,11 @@
     {%- if meta_desc != blank -%}
       <meta name="description" content="{{ meta_desc | strip_html | strip_newlines | truncate: 160 | escape }}">
     {%- endif -%}
-    {% render 'meta-tags' %}
-    {% render 'structured-data' %}
-    {{ content_for_header }}
-    {%- comment -%} perf: critical styles render-blocking, theme.css now sync to avoid FOUC {%- endcomment -%}
+    {%- comment -%}
+      perf: first-paint resources (CSS, fonts, CSS vars, deferred theme JS) stay ABOVE content_for_header
+      so they download during Shopify's streamed first chunk. Anything reading Shopify.* inline stays below.
+      critical styles render-blocking, theme.css sync to avoid FOUC
+    {%- endcomment -%}
     {{ 'critical.css' | asset_url | stylesheet_tag }}
     {{ 'custom.css' | asset_url | stylesheet_tag }}
     {% if enable_rtl %}{{ 'rtl.css' | asset_url | stylesheet_tag: preload: true }}{% endif %}
@@ -192,6 +193,9 @@
     {% if settings.scroll_animation or settings.zoom_image %}
       <script src="{{ 'motion-effect.js' | asset_url }}" defer="defer"></script>
     {% endif %}
+    {% render 'meta-tags' %}
+    {% render 'structured-data' %}
+    {{ content_for_header }}
     <script>
       document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
       if (Shopify.designMode) {
