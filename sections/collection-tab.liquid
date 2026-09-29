@@ -7,6 +7,20 @@
   endif
   assign heading = section_st.heading
   assign description = section_st.description
+  assign heading_html = heading
+  if heading contains '('
+    assign heading_parts = heading | split: '('
+    assign heading_main = heading_parts[0] | strip
+    if heading_main != blank
+      assign heading_note = heading | remove_first: heading_parts[0] | remove: '(' | remove: ')' | strip
+      capture heading_html
+        echo heading_main
+        echo '<span class="section__header-heading-sub">'
+        echo heading_note
+        echo '</span>'
+      endcapture
+    endif
+  endif
   assign header_size = ''
   if section_st.header_size == 'small'
     assign header_size = 'h3'
@@ -60,6 +74,13 @@
   .select-collection-tab {
     border-bottom: 2px solid var(--color-heading);
   }
+  .sec__collection-tab .section__header-heading-sub {
+    display: block;
+    font-size: 0.62em;
+    line-height: 1.25;
+    margin-top: 4px;
+    color: #211b15;
+  }
 {%- endstyle -%}
 <div
   class="section{% if section_st.padding_top < 30 %} pt-min{% endif %}{% if section_st.padding_bottom < 30 %} pb-min{% endif %} sec__collection-tab {% if show_load_more_button == true %}sec__products-loadmore {% endif %}color-{{ color_scheme }} gradient{{ reset_spacing }}{% if reveal %} overflow-hidden{% endif %}"
@@ -82,7 +103,7 @@
                 class="section__header-heading heading-letter-spacing   {{ header_size  }} mt-0{% if section_st.description != blank %} mb-10{% else %} mb-0{% endif %}"
                 style="font-size: {{ section_st.heading_font_size }}px; overflow-wrap: normal; word-break: keep-all;"
               >
-                {{ section.settings.heading }}
+                {{ heading_html }}
               </h2>
             </motion-element>
           {% endif %}
@@ -125,7 +146,7 @@
                   class="block"
                 >
                   <h2 class="section__header-heading heading-letter-spacing {{ header_size  }}{% if section_st.inline_header_tabs %} mt-0 mb-0{% else %} mt-0{% if section_st.description != blank %} mb-10{% else %} mb-0{% endif %}{% endif %}{% if show_view_all_button and section_st.header_alignment == "left" and section_st.tab_header_postion == 'default'%} text-right{% endif %}{% if show_view_all_button and section_st.header_alignment == "right" and section_st.tab_header_postion == 'default'%} text-left{% endif %}" style="font-size: {{ section_st.heading_font_size }}px; overflow-wrap: normal; word-break: keep-all;">
-                    {{ section.settings.heading }}
+                    {{ heading_html }}
                   </h2>
                 </motion-element>
               {% endif %}
