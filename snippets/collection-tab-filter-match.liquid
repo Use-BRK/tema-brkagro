@@ -1,0 +1,114 @@
+{%- comment -%}
+  Retorna "true"/"false": se o produto casa com os filtros storefront (filter.*) do link do bloco da collection tab.
+  Mesma chave repetida = OU; chaves diferentes = E (igual aos filtros nativos).
+  Suportado: filter.p.m.<namespace>.<key>, filter.p.vendor, filter.p.product_type, filter.p.tag,
+  filter.v.availability, filter.v.price.gte/lte, filter.v.option.<nome>. Chaves não suportadas são ignoradas.
+
+  Params:
+  - product: produto
+  - link: URL do bloco (ex: /collections/x?filter.p.m.custom.genero=Feminino)
+{%- endcomment -%}
+{%- liquid
+  assign query = link | split: '?' | last | split: '#' | first
+  assign all_pairs = query | split: '&'
+  assign pairs_str = ''
+  assign keys_str = ''
+  for pair in all_pairs
+    assign pair_key = pair | split: '=' | first | url_decode
+    assign pair_prefix = pair_key | slice: 0, 7
+    if pair_prefix == 'filter.'
+      assign pairs_str = pairs_str | append: pair | append: '&'
+      assign keys_str = keys_str | append: pair_key | append: '|'
+    endif
+  endfor
+  assign pairs = pairs_str | split: '&'
+  assign keys = keys_str | split: '|' | uniq
+  assign ok = true
+
+  for fkey in keys
+    assign key_ok = false
+
+    for pair in pairs
+      assign kv = pair | split: '='
+      assign pk = kv[0] | url_decode
+      if pk != fkey
+        continue
+      endif
+      assign pv = kv[1] | url_decode | strip
+      assign hit = false
+
+      if pk contains 'filter.p.m.'
+        assign mfpath = pk | remove_first: 'filter.p.m.' | split: '.'
+        assign mf_ns = mfpath[0]
+        assign mf_key = mfpath[1]
+        assign mf = product.metafields[mf_ns][mf_key]
+        if mf != blank
+          if mf.type contains 'list.'
+            if mf.value contains pv
+              assign hit = true
+            endif
+          else
+            assign mf_value = mf.value | append: ''
+            if mf_value == pv
+              assign hit = true
+            endif
+          endif
+        endif
+      elsif pk == 'filter.p.vendor'
+        if product.vendor == pv
+          assign hit = true
+        endif
+      elsif pk == 'filter.p.product_type'
+        if product.type == pv
+          assign hit = true
+        endif
+      elsif pk == 'filter.p.tag'
+        if product.tags contains pv
+          assign hit = true
+        endif
+      elsif pk == 'filter.v.availability'
+        if pv == '1' and product.available
+          assign hit = true
+        elsif pv == '0' and product.available == false
+          assign hit = true
+        endif
+      elsif pk == 'filter.v.price.gte' or pk == 'filter.v.price.lte'
+        assign price_cents = pv | replace: ',', '.' | times: 100
+        if pv == blank
+          assign hit = true
+        elsif pk == 'filter.v.price.gte' and product.price >= price_cents
+          assign hit = true
+        elsif pk == 'filter.v.price.lte' and product.price <= price_cents
+          assign hit = true
+        endif
+      elsif pk contains 'filter.v.option.'
+        assign opt_name = pk | remove_first: 'filter.v.option.' | handleize
+        for option in product.options_with_values
+          assign this_opt = option.name | handleize
+          if this_opt == opt_name
+            for opt_value in option.values
+              if opt_value.name == pv
+                assign hit = true
+                break
+              endif
+            endfor
+          endif
+        endfor
+      else
+        assign hit = true
+      endif
+
+      if hit
+        assign key_ok = true
+        break
+      endif
+    endfor
+
+    unless key_ok
+      assign ok = false
+      break
+    endunless
+  endfor
+
+  echo ok
+-%}

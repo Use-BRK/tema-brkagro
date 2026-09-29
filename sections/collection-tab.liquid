@@ -304,9 +304,16 @@
                 else
                   assign limit_products_paginate = all_products_to_show
                 endif
+                # Link com filtros (filter.*): filtra os produtos da coleção em Liquid (sem load more)
+                assign tab_filtered = false
+                assign tab_paginate = limit_products_paginate
+                if block_st.link contains '?' and block_st.link contains 'filter.'
+                  assign tab_filtered = true
+                  assign tab_paginate = 250
+                endif
               %}
               {% if collection.products.size > 0 %}
-                {% if show_load_more_button == true %}
+                {% if show_load_more_button == true and tab_filtered == false %}
                   {%- paginate collection.products by limit_products_paginate -%}
                     <div
                       class="collection-tab__tab-content collection-tab-{{ block.id }} {% if forloop.first %} active{% else %} hidden{% endif %}"
@@ -388,6 +395,7 @@
                     {% endif %}
                   {% endpaginate %}
                 {% else %}
+                  {%- paginate collection.products by tab_paginate -%}
                   <div
                     class="collection-tab__tab-content{% if forloop.first %} active{% else %} hidden{% endif %}"
                     data-block-id="{{ block.id }}"
@@ -407,7 +415,13 @@
                       data-spacing="{{ column_gap }}"
                       data-free-scroll="{{ data_free_scroll }}"
                     >
-                      {% for product in collection.products limit: limit_products_paginate %}
+                      {%- assign tab_shown = 0 -%}
+                      {% for product in collection.products %}
+                        {%- if tab_filtered -%}
+                          {%- capture tab_match -%}{%- render 'collection-tab-filter-match', product: product, link: block_st.link -%}{%- endcapture -%}
+                          {%- if tab_match != 'true' -%}{%- continue -%}{%- endif -%}
+                        {%- endif -%}
+                        {%- assign tab_shown = tab_shown | plus: 1 -%}
                         {% render 'product-item',
                           card_product: product,
                           section_id: section.id,
@@ -425,8 +439,9 @@
                           template_enable_add_cart: true,
                           template_enable_product_badges: true,
                           scroll_animation: scroll_animation,
-                          indexFor: forloop.index
+                          indexFor: tab_shown
                         %}
+                        {%- if tab_shown >= limit_products_paginate -%}{%- break -%}{%- endif -%}
                       {% endfor %}
                     </grid-custom>
                     {% if section_st.items_per_row_mobile > 1
@@ -436,6 +451,7 @@
                       </div>
                     {% endif %}
                   </div>
+                  {%- endpaginate -%}
                 {% endif %}
               {% else -%}
                 <div
@@ -494,10 +510,17 @@
                   assign all_products_to_show = block_st.collection.products.size
                 endif
                 assign all_product_visible = rows | times: items_per_row
+                # Link com filtros (filter.*): filtra os produtos da coleção em Liquid
+                assign tab_filtered = false
+                assign tab_paginate = all_products_to_show
+                if block_st.link contains '?' and block_st.link contains 'filter.'
+                  assign tab_filtered = true
+                  assign tab_paginate = 250
+                endif
               %}
               {% if block_st.collection.products.size > 0 %}
                 {%- comment -%} Carousel shows up to "items to show" products (rows is a grid-only setting). {%- endcomment -%}
-                {%- paginate block_st.collection.products by all_products_to_show -%}
+                {%- paginate block_st.collection.products by tab_paginate -%}
                   <div
                     class="collection-tab__tab-content{% if forloop.first %} active{% else %} hidden{% endif %}"
                     data-block-id="{{ block.id }}"
@@ -528,7 +551,13 @@
                         {%- render 'swiper-navigation' -%}
                       {% endif %}
                       <div class="swiper-wrapper">
+                        {%- assign tab_shown = 0 -%}
                         {% for product in block_st.collection.products %}
+                          {%- if tab_filtered -%}
+                            {%- capture tab_match -%}{%- render 'collection-tab-filter-match', product: product, link: block_st.link -%}{%- endcapture -%}
+                            {%- if tab_match != 'true' -%}{%- continue -%}{%- endif -%}
+                          {%- endif -%}
+                          {%- assign tab_shown = tab_shown | plus: 1 -%}
                           {% render 'product-item',
                             card_product: product,
                             section_id: section.id,
@@ -542,8 +571,9 @@
                             template_enable_add_cart: true,
                             template_enable_product_badges: true,
                             scroll_animation: scroll_animation,
-                            indexFor: forloop.index
+                            indexFor: tab_shown
                           %}
+                          {%- if tab_shown >= all_products_to_show -%}{%- break -%}{%- endif -%}
                         {% endfor %}
                       </div>
                       {%- if carousel_pagination == 'show_dots'
