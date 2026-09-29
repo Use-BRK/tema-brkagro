@@ -211,34 +211,26 @@
     "collection_tab_kENEYA": {
       "type": "collection-tab",
       "blocks": {
-        "collection_REBGpn": {
-          "type": "collection",
-          "disabled": true,
-          "settings": {
-            "collection": "sao-bento-2026",
-            "collection_title": "São Bento"
-          }
-        },
-        "collection_4yUXdU": {
-          "type": "collection",
-          "disabled": true,
-          "settings": {
-            "collection": "nossa-senhora-aparecida",
-            "collection_title": "Nossa Senhora"
-          }
-        },
         "collection_3frNWE": {
           "type": "collection",
           "settings": {
-            "collection": "1ª-oferta-agro",
-            "collection_title": "1‘ OFERTA AGRO"
+            "collection": "",
+            "link": "https://www.brkagro.com.br/collections/1%C2%AA-oferta-agro?filter.p.m.custom.genero=Masculino",
+            "collection_title": "Masculinas"
+          }
+        },
+        "collection_P7y9m3": {
+          "type": "collection",
+          "settings": {
+            "collection": "",
+            "link": "https://www.brkagro.com.br/collections/1%C2%AA-oferta-agro?filter.p.m.custom.genero=Feminino",
+            "collection_title": "Femininas"
           }
         }
       },
       "block_order": [
-        "collection_REBGpn",
-        "collection_4yUXdU",
-        "collection_3frNWE"
+        "collection_3frNWE",
+        "collection_P7y9m3"
       ],
       "custom_css": [
         ".collection-tab__ta {flex-wrap: nowrap; gap: clamp(7px, 2.2vw, 15px);}",
@@ -286,6 +278,7 @@
           "type": "collection",
           "settings": {
             "collection": "sao-bento-2026",
+            "link": "",
             "collection_title": "São Bento"
           }
         },
@@ -293,6 +286,7 @@
           "type": "collection",
           "settings": {
             "collection": "nossa-senhora-aparecida",
+            "link": "",
             "collection_title": "Nossa Senhora"
           }
         },
@@ -300,6 +294,7 @@
           "type": "collection",
           "settings": {
             "collection": "apache",
+            "link": "",
             "collection_title": "Apache"
           }
         }
@@ -449,6 +444,7 @@
           "type": "collection",
           "settings": {
             "collection": "essenciais-sem-estampa",
+            "link": "",
             "collection_title": "Lisas"
           }
         }
@@ -500,6 +496,7 @@
           "type": "collection",
           "settings": {
             "collection": "botinas-masculinas",
+            "link": "",
             "collection_title": "Masculinas"
           }
         },
@@ -507,6 +504,7 @@
           "type": "collection",
           "settings": {
             "collection": "botinas-femininas",
+            "link": "",
             "collection_title": "Femininas"
           }
         }
@@ -558,6 +556,7 @@
           "type": "collection",
           "settings": {
             "collection": "bones",
+            "link": "",
             "collection_title": "Nova Coleção"
           }
         }
@@ -608,6 +607,7 @@
           "type": "collection",
           "settings": {
             "collection": "bones",
+            "link": "",
             "collection_title": ""
           }
         }
@@ -672,6 +672,7 @@
           "type": "collection",
           "settings": {
             "collection": "botinas-masculinas",
+            "link": "",
             "collection_title": "Masculinas"
           }
         },
@@ -679,6 +680,7 @@
           "type": "collection",
           "settings": {
             "collection": "botinas-femininas",
+            "link": "",
             "collection_title": "Femininas"
           }
         }
