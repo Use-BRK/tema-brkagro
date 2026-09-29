@@ -79,10 +79,6 @@
           {%- else -%}
             {{ 'product-1' | placeholder_svg_tag: 'cart-upsell__img' }}
           {%- endif -%}
-          {%- if up_old_price > up_price -%}
-            {%- assign up_off = up_old_price | minus: up_price | money_without_trailing_zeros -%}
-            <span class="cart-upsell__off">-{{ up_off }}</span>
-          {%- endif -%}
         </span>
         <span class="cart-upsell__info">
           <span class="cart-upsell__title heading-color">{{ product.title | escape }}</span>
@@ -265,18 +261,6 @@
     gap: 0.5rem;
     flex: 1;
     padding: 0.2rem 0.8rem 0.8rem;
-  }
-  .cart-upsell__off {
-    position: absolute;
-    top: 0.5rem;
-    left: 0.5rem;
-    background: #d62828;
-    color: #fff;
-    font-size: 1rem;
-    font-weight: 700;
-    line-height: 1;
-    padding: 0.35rem 0.5rem;
-    border-radius: var(--bages-radius, 3px);
   }
   .cart-upsell__title {
     font-size: 1.2rem;
