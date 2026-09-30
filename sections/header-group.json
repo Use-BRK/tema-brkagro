@@ -19,9 +19,9 @@
           "name": "Timer",
           "settings": {
             "message": "1ª Oferta Agro - BRK",
-            "message_font_size": 18,
+            "message_font_size": 21,
             "label_before": "Termina em:",
-            "label_font_size": 14,
+            "label_font_size": 13,
             "timer_font_size": 20,
             "start_date": "",
             "start_time": "",
@@ -69,7 +69,7 @@
         "text_slider_LFaC38"
       ],
       "custom_css": [
-        "* {letter-spacing: 2px; font-weight: 800;}",
+        "* {letter-spacing: 1px; font-weight: 800;}",
         "strong {font-weight: 800;}"
       ],
       "settings": {
