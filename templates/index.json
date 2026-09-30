@@ -45,6 +45,7 @@
         "slider_item_nrmHUV": {
           "type": "slider_item",
           "name": "Infantis + Livro",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/BannerGIFagro.gif",
             "image_mobile": "shopify://shop_images/Mobile.png",
