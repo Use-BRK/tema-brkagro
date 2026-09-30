@@ -1,0 +1,333 @@
+{%- comment -%}
+  Upsell de coleção no minicart / página do carrinho.
+  Configurado em Configurações do tema > Carrinho > "Upsell de coleção no carrinho".
+
+  Params:
+  - context: 'minicart' | 'cart'
+{%- endcomment -%}
+{%- liquid
+  assign up_context = context | default: 'minicart'
+  assign up_enabled = settings.cart_upsell_show_minicart
+  if up_context == 'cart'
+    assign up_enabled = settings.cart_upsell_show_cart
+  endif
+
+  assign up_collection = collections[settings.cart_upsell_collection]
+  assign up_link = settings.cart_upsell_link
+  if up_collection == blank and up_link contains '/collections/'
+    assign up_link_handle = up_link | split: '/collections/' | last | split: '?' | first | split: '#' | first | split: '/' | first | url_decode
+    assign up_collection = collections[up_link_handle]
+  endif
+
+  assign up_filtered = false
+  if up_link contains '?' and up_link contains 'filter.'
+    assign up_filtered = true
+  endif
+
+  assign up_limit = settings.cart_upsell_limit | default: 4
+  # Renderiza um pool maior; o navegador sorteia up_limit a cada carregamento (o HTML do Liquid fica em cache)
+  assign up_pool = 24
+  assign up_url = up_link | default: up_collection.url
+
+  assign up_cart_ids = cart.items | map: 'product_id' | join: ','
+  assign up_cart_ids = ',' | append: up_cart_ids | append: ','
+-%}
+{%- if up_enabled and up_collection != blank and up_collection.products_count > 0 -%}
+  {%- capture up_items -%}
+    {%- assign up_shown = 0 -%}
+    {%- for product in up_collection.products -%}
+      {%- liquid
+        unless product.available
+          continue
+        endunless
+        if settings.cart_upsell_hide_in_cart
+          assign up_pid = ',' | append: product.id | append: ','
+          if up_cart_ids contains up_pid
+            continue
+          endif
+        endif
+        if up_filtered
+          capture up_match
+            render 'collection-tab-filter-match', product: product, link: up_link
+          endcapture
+          if up_match != 'true'
+            continue
+          endif
+        endif
+        assign up_shown = up_shown | plus: 1
+
+        # Preço já vem com o desconto da coleção; o riscado é o preço comparativo
+        assign up_price = product.price
+        assign up_old_price = 0
+        if product.compare_at_price > product.price
+          assign up_old_price = product.compare_at_price
+        endif
+      -%}
+      <a href="{{ product.url }}" class="cart-upsell__item no-underline">
+        <span class="cart-upsell__media">
+          {%- if product.featured_media != blank -%}
+            {{
+              product.featured_media
+              | image_url: width: 300
+              | image_tag:
+                loading: 'lazy',
+                widths: '150, 300',
+                sizes: '150px',
+                alt: product.featured_media.alt,
+                class: 'cart-upsell__img'
+            }}
+          {%- else -%}
+            {{ 'product-1' | placeholder_svg_tag: 'cart-upsell__img' }}
+          {%- endif -%}
+        </span>
+        <span class="cart-upsell__info">
+          <span class="cart-upsell__title heading-color">{{ product.title | escape }}</span>
+          <span class="cart-upsell__prices">
+            {%- if up_old_price > up_price -%}
+              <s class="cart-upsell__old">{{ up_old_price | money }}</s>
+            {%- endif -%}
+            <span class="cart-upsell__price">{{ up_price | money }}</span>
+          </span>
+        </span>
+      </a>
+      {%- if up_shown >= up_pool -%}{%- break -%}{%- endif -%}
+    {%- endfor -%}
+  {%- endcapture -%}
+
+  {%- if up_shown > 0 -%}
+    <div class="cart-upsell cart-upsell--{{ up_context }}">
+      <div class="cart-upsell__head">
+        <span class="cart-upsell__icon" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20.59 13.41 13.42 20.58a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82Z"/><circle cx="7" cy="7" r="1.5" fill="currentColor"/>
+          </svg>
+        </span>
+        <div class="cart-upsell__texts">
+          {%- if settings.cart_upsell_badge != blank -%}
+            <span class="cart-upsell__badge">{{ settings.cart_upsell_badge | escape }}</span>
+          {%- endif -%}
+          {%- if settings.cart_upsell_heading != blank -%}
+            <p class="cart-upsell__heading heading-color">{{ settings.cart_upsell_heading | escape }}</p>
+          {%- endif -%}
+        </div>
+      </div>
+      <cart-upsell-list class="cart-upsell__list" data-limit="{{ up_limit }}">
+        {{ up_items }}
+      </cart-upsell-list>
+      <script>
+        if (!customElements.get('cart-upsell-list')) {
+          customElements.define('cart-upsell-list', class extends HTMLElement {
+            // connectedCallback: roda de novo quando o minicart é re-renderizado via AJAX
+            connectedCallback() {
+              const limit = parseInt(this.dataset.limit, 10) || 4;
+              const items = [...this.querySelectorAll('.cart-upsell__item')];
+              for (let i = items.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [items[i], items[j]] = [items[j], items[i]];
+              }
+              items.forEach((item, i) => {
+                if (i < limit) this.appendChild(item);
+                else item.remove();
+              });
+              this.setAttribute('ready', '');
+            }
+          });
+        }
+      </script>
+      {%- if settings.cart_upsell_button_label != blank -%}
+        <a href="{{ up_url }}" class="cart-upsell__btn no-underline">
+          <span>{{ settings.cart_upsell_button_label | escape }}</span>
+          <svg width="12" height="10" fill="none" aria-hidden="true"><use href="#icon-view-all"></use></svg>
+        </a>
+      {%- endif -%}
+    </div>
+  {%- endif -%}
+{%- endif -%}
+
+{% stylesheet %}
+  .cart-upsell {
+    --up-primary: rgb(var(--color-primary-rgb));
+    --up-tint: rgba(var(--color-primary-rgb), 0.06);
+    --up-line: rgba(var(--color-primary-rgb), 0.18);
+    --up-radius: var(--rounded-radius, 8px);
+    background: var(--up-tint);
+    border: 1px solid var(--up-line);
+    border-radius: var(--up-radius);
+    padding: 1.4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+  .cart-upsell--minicart {
+    margin: 1rem 1rem 0;
+  }
+  .cart-upsell--cart {
+    margin-top: 4rem;
+    padding: 2rem;
+  }
+  .cart-upsell__head {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .cart-upsell__icon {
+    flex-shrink: 0;
+    width: 3.2rem;
+    height: 3.2rem;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--up-primary);
+    color: #fff;
+  }
+  .cart-upsell__texts {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.3rem;
+    min-width: 0;
+  }
+  .cart-upsell__badge {
+    font-size: 1rem;
+    line-height: 1;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--up-primary);
+  }
+  .cart-upsell__heading {
+    margin: 0;
+    font-family: var(--heading-font, inherit);
+    font-weight: var(--heading-weight, 600);
+    font-size: 1.4rem;
+    line-height: 1.3;
+  }
+  .cart-upsell--cart .cart-upsell__heading {
+    font-size: 1.7rem;
+  }
+  .cart-upsell__list {
+    display: flex;
+    min-width: 0;
+    gap: 1rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    overscroll-behavior-x: contain;
+    padding-bottom: 0.4rem;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0, 0, 0, 0.18) transparent;
+  }
+  .cart-upsell__item {
+    flex: 0 0 calc((100% - 2rem) / 3);
+    min-width: 9rem;
+    scroll-snap-align: start;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    background: var(--color-background, #fff);
+    border-radius: calc(var(--up-radius) * 0.75);
+    overflow: hidden;
+    padding: 0;
+    color: inherit;
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+  }
+  .cart-upsell--cart .cart-upsell__item {
+    flex-basis: calc((100% - 3rem) / 4);
+  }
+  .cart-upsell__item:hover {
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+    transform: translateY(-2px);
+  }
+  .cart-upsell__media {
+    position: relative;
+    display: block;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    background: var(--grey-color, #f5f5f5);
+  }
+  .cart-upsell__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  /* Antes do sorteio (JS) não mostra nada, para não "pular" a lista */
+  cart-upsell-list:not([ready]) .cart-upsell__item {
+    display: none;
+  }
+  .cart-upsell__info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    flex: 1;
+    padding: 0.2rem 0.8rem 0.8rem;
+  }
+  .cart-upsell__title {
+    font-size: 1.2rem;
+    line-height: 1.3;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    min-height: 2.6em;
+  }
+  .cart-upsell__prices {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    column-gap: 0.5rem;
+    margin-top: auto;
+  }
+  .cart-upsell__old {
+    font-size: 1.1rem;
+    color: rgba(var(--color-text-rgb, 0, 0, 0), 0.55);
+  }
+  .cart-upsell__price {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--up-primary);
+  }
+  /* Preto suave e pill, para não competir com o botão de finalizar compra */
+  .cart-upsell__btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+    width: 100%;
+    min-height: 4.4rem;
+    padding: 1rem 2.4rem;
+    border-radius: 999px;
+    background: #2b2b2b;
+    color: #fff;
+    font-family: var(--btn-font, inherit);
+    font-size: 1.4rem;
+    font-weight: 600;
+    letter-spacing: var(--btn-letter-spacing, 0);
+    transition: background-color 0.2s ease, transform 0.2s ease;
+  }
+  .cart-upsell__btn:hover,
+  .cart-upsell__btn:focus-visible {
+    background: #444;
+    color: #fff;
+  }
+  .cart-upsell__btn:active {
+    transform: scale(0.98);
+  }
+  .cart-upsell--minicart .cart-upsell__btn {
+    min-height: 4rem;
+    padding-top: 0.8rem;
+    padding-bottom: 0.8rem;
+  }
+  .cart-upsell--cart .cart-upsell__btn {
+    width: auto;
+    align-self: flex-start;
+  }
+  @media (max-width: 767px) {
+    .cart-upsell--cart .cart-upsell__item {
+      flex-basis: calc((100% - 2rem) / 2.4);
+    }
+    .cart-upsell--cart .cart-upsell__btn {
+      width: 100%;
+    }
+  }
+{% endstylesheet %}

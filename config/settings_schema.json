@@ -1539,6 +1539,19 @@
       },
       {
         "type": "checkbox",
+        "id": "show_coupon_checkout_note",
+        "label": "Mostrar aviso de cupom no lugar do campo",
+        "info": "Aparece no minicart quando o cupom (opção acima) está desativado.",
+        "default": false
+      },
+      {
+        "type": "text",
+        "id": "coupon_checkout_note",
+        "label": "Texto do aviso de cupom",
+        "default": "Caso tenha algum cupom utilize no momento de finalizar a compra"
+      },
+      {
+        "type": "checkbox",
         "id": "enable_gift_wrap",
         "label": "t:settings_schema.cart.settings.cart_addons.enable_gift_wrap.label",
         "default": true
@@ -1635,6 +1648,66 @@
         "type": "checkbox",
         "id": "show_delivery_day",
         "label": "t:settings_schema.cart.settings.shipping_rate_calculator.show_delivery_day.label",
+        "default": true
+      },
+      {
+        "type": "header",
+        "content": "Upsell de coleção no carrinho"
+      },
+      {
+        "type": "checkbox",
+        "id": "cart_upsell_show_minicart",
+        "label": "Mostrar no minicart",
+        "default": false
+      },
+      {
+        "type": "checkbox",
+        "id": "cart_upsell_show_cart",
+        "label": "Mostrar na página do carrinho",
+        "default": false
+      },
+      {
+        "type": "collection",
+        "id": "cart_upsell_collection",
+        "label": "Coleção"
+      },
+      {
+        "type": "url",
+        "id": "cart_upsell_link",
+        "label": "Link (opcional)",
+        "info": "Destino do botão. Filtros no link (ex.: ?filter.p.m.custom.genero=Feminino) também filtram as miniaturas. Sem coleção escolhida, usa a coleção do link."
+      },
+      {
+        "type": "text",
+        "id": "cart_upsell_badge",
+        "label": "Selo",
+        "default": "Oferta especial"
+      },
+      {
+        "type": "text",
+        "id": "cart_upsell_heading",
+        "label": "Texto de chamada",
+        "default": "Camisas de Envio Imediato com R$40 de desconto!"
+      },
+      {
+        "type": "range",
+        "id": "cart_upsell_limit",
+        "label": "Quantidade de produtos",
+        "min": 2,
+        "max": 8,
+        "step": 1,
+        "default": 4
+      },
+      {
+        "type": "text",
+        "id": "cart_upsell_button_label",
+        "label": "Texto do botão",
+        "default": "CLIQUE PARA VER OFERTAS"
+      },
+      {
+        "type": "checkbox",
+        "id": "cart_upsell_hide_in_cart",
+        "label": "Esconder produtos que já estão no carrinho",
         "default": true
       }
     ]

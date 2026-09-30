@@ -14,12 +14,42 @@
       "blocks": {
         "slider_item_MMEAVn": {
           "type": "slider_item",
-          "name": "Calças",
+          "name": "1 Oferta",
           "settings": {
             "image": "shopify://shop_images/BANNER_PRORROGACAO.jpg",
             "image_mobile": "shopify://shop_images/MOBILE_PRORROGACAO.jpg",
             "overlay_opacity": 0,
             "link_banner": "shopify://collections/1ª-oferta-agro",
+            "slider_effect": "fade-in-right",
+            "subheading": "",
+            "heading": "",
+            "description": "",
+            "first_button_label": "",
+            "first_button_link": "",
+            "first_button_style": false,
+            "second_button_label": "",
+            "second_button_link": "",
+            "second_button_style": false,
+            "content_alignment": "center",
+            "content_position": "top-center",
+            "content_width": "full_width",
+            "content_max_width": 100,
+            "content_padding_block": 40,
+            "content_padding_inline": 0,
+            "show_content_background": false,
+            "content_background": "#ffffff",
+            "content_box_opacity": 100,
+            "content_alignment_mobile": "center"
+          }
+        },
+        "slider_item_nrmHUV": {
+          "type": "slider_item",
+          "name": "Infantis + Livro",
+          "settings": {
+            "image": "shopify://shop_images/BannerGIFagro.gif",
+            "image_mobile": "shopify://shop_images/Mobile.png",
+            "overlay_opacity": 0,
+            "link_banner": "shopify://collections/agro-kids",
             "slider_effect": "fade-in-right",
             "subheading": "",
             "heading": "",
@@ -134,45 +164,14 @@
             "content_box_opacity": 100,
             "content_alignment_mobile": "center"
           }
-        },
-        "slider_item_KnUMfi": {
-          "type": "slider_item",
-          "name": "Work",
-          "disabled": true,
-          "settings": {
-            "image": "shopify://shop_images/BANNER_CAMISAS_WORK_c56d248a-50b0-463c-a2aa-aad03ecfd78f.jpg",
-            "image_mobile": "shopify://shop_images/MOBILE_CAMISA_WORK_d58633df-cac6-4b1e-a552-8db55185b0ac.jpg",
-            "overlay_opacity": 0,
-            "link_banner": "shopify://collections/camisas-work",
-            "slider_effect": "fade-in-right",
-            "subheading": "",
-            "heading": "",
-            "description": "",
-            "first_button_label": "",
-            "first_button_link": "",
-            "first_button_style": false,
-            "second_button_label": "",
-            "second_button_link": "",
-            "second_button_style": false,
-            "content_alignment": "center",
-            "content_position": "top-center",
-            "content_width": "full_width",
-            "content_max_width": 100,
-            "content_padding_block": 40,
-            "content_padding_inline": 0,
-            "show_content_background": false,
-            "content_background": "#ffffff",
-            "content_box_opacity": 100,
-            "content_alignment_mobile": "center"
-          }
         }
       },
       "block_order": [
         "slider_item_MMEAVn",
+        "slider_item_nrmHUV",
         "slider_item_rYBq93",
         "slider_item_K3DbMk",
-        "slider_item_D43AJr",
-        "slider_item_KnUMfi"
+        "slider_item_D43AJr"
       ],
       "custom_css": [],
       "name": "Fullbanners",
@@ -268,7 +267,9 @@
         "items_per_row_mobile": 1.5,
         "padding_top": 50,
         "padding_bottom": 50,
-        "reset_spacing": true
+        "reset_spacing": true,
+        "show_stock_strip": true,
+        "stock_strip_threshold": 9
       }
     },
     "collection_tab_yDRJNb": {
@@ -341,7 +342,9 @@
         "items_per_row_mobile": 1.5,
         "padding_top": 50,
         "padding_bottom": 50,
-        "reset_spacing": true
+        "reset_spacing": true,
+        "show_stock_strip": true,
+        "stock_strip_threshold": 9
       }
     },
     "banner_carousel_iVEDMG": {
@@ -486,7 +489,9 @@
         "items_per_row_mobile": 1.5,
         "padding_top": 50,
         "padding_bottom": 50,
-        "reset_spacing": true
+        "reset_spacing": true,
+        "show_stock_strip": true,
+        "stock_strip_threshold": 9
       }
     },
     "collection_tab_9R4n9j": {
@@ -546,7 +551,9 @@
         "items_per_row_mobile": 1.5,
         "padding_top": 50,
         "padding_bottom": 50,
-        "reset_spacing": true
+        "reset_spacing": true,
+        "show_stock_strip": true,
+        "stock_strip_threshold": 9
       }
     },
     "collection_tab_gcdBTy": {
@@ -597,7 +604,9 @@
         "items_per_row_mobile": 1.5,
         "padding_top": 50,
         "padding_bottom": 50,
-        "reset_spacing": true
+        "reset_spacing": true,
+        "show_stock_strip": true,
+        "stock_strip_threshold": 9
       }
     },
     "collection_tab_ccYc98": {
@@ -652,7 +661,9 @@
         "items_per_row_mobile": 1.5,
         "padding_top": 50,
         "padding_bottom": 50,
-        "reset_spacing": true
+        "reset_spacing": true,
+        "show_stock_strip": true,
+        "stock_strip_threshold": 9
       }
     },
     "divider_kpy84P": {
@@ -723,7 +734,9 @@
         "items_per_row_mobile": 1.5,
         "padding_top": 50,
         "padding_bottom": 50,
-        "reset_spacing": true
+        "reset_spacing": true,
+        "show_stock_strip": true,
+        "stock_strip_threshold": 9
       }
     },
     "scrolling_text_DNNJAq": {
