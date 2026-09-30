@@ -11,6 +11,9 @@
   "sections": {
     "main": {
       "type": "main-search",
+      "custom_css": [
+        ".breadcrumbs {display:none;}"
+      ],
       "settings": {
         "section_width": "stretch_width",
         "enable_filtering": true,
