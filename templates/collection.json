@@ -113,7 +113,7 @@
               "brasil-e-agro-2026",
               "colecao-brasil",
               "brasil-patriota-2026",
-              "1ª-oferta-agro"
+              "envios-imediatos"
             ]
           }
         },
@@ -165,7 +165,7 @@
         "show_stock_strip": true,
         "stock_strip_threshold": 9,
         "stock_strip_collections": [
-          "1ª-oferta-agro"
+          "envios-imediatos"
         ],
         "items_per_row_mobile": "2",
         "padding_top": 10,
