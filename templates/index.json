@@ -349,14 +349,24 @@
     "banner_carousel_iVEDMG": {
       "type": "banner-carousel",
       "blocks": {
-        "card_Az3eRR": {
+        "card_jHmrEj": {
           "type": "card",
-          "name": "Calças Jeans",
+          "name": "Óculos de Sol",
           "settings": {
-            "image": "shopify://shop_images/Card_BRK_AGRO_Calca.webp",
-            "collection": "calcas-jeans",
+            "image": "shopify://shop_images/Card_BRK_AGRO_oculos_ed50e41b-5e46-4708-9882-b7650bec48e0.webp",
+            "collection": "oculos-de-sol",
             "link": "",
-            "label": "Calça Jeans"
+            "label": "Óculos de Sol"
+          }
+        },
+        "card_j4crXK": {
+          "type": "card",
+          "name": "Botinas",
+          "settings": {
+            "image": "shopify://shop_images/Card_BRK_AGRO_Botinas_b2c8c85d-4f97-41a2-b766-48189687ea3b.webp",
+            "collection": "botinas",
+            "link": "",
+            "label": "Botinas"
           }
         },
         "card_w8XfBY": {
@@ -369,14 +379,14 @@
             "label": "Camisas de Botão"
           }
         },
-        "card_jHmrEj": {
+        "card_Az3eRR": {
           "type": "card",
-          "name": "Óculos de Sol",
+          "name": "Calças Jeans",
           "settings": {
-            "image": "shopify://shop_images/Card_BRK_AGRO_oculos_ed50e41b-5e46-4708-9882-b7650bec48e0.webp",
-            "collection": "oculos-de-sol",
+            "image": "shopify://shop_images/Card_BRK_AGRO_Calca.webp",
+            "collection": "calcas-jeans",
             "link": "",
-            "label": "Óculos de Sol"
+            "label": "Calça Jeans"
           }
         },
         "card_AyYQxG": {
@@ -387,16 +397,6 @@
             "collection": "camisas-work",
             "link": "",
             "label": "Camisas Work"
-          }
-        },
-        "card_j4crXK": {
-          "type": "card",
-          "name": "Botinas",
-          "settings": {
-            "image": "shopify://shop_images/Card_BRK_AGRO_Botinas_b2c8c85d-4f97-41a2-b766-48189687ea3b.webp",
-            "collection": "botinas",
-            "link": "",
-            "label": "Botinas"
           }
         },
         "card_7tezkD": {
@@ -411,11 +411,11 @@
         }
       },
       "block_order": [
-        "card_Az3eRR",
-        "card_w8XfBY",
         "card_jHmrEj",
-        "card_AyYQxG",
         "card_j4crXK",
+        "card_w8XfBY",
+        "card_Az3eRR",
+        "card_AyYQxG",
         "card_7tezkD"
       ],
       "name": "Banner Carousel",
@@ -496,24 +496,33 @@
     "collection_tab_gcdBTy": {
       "type": "collection-tab",
       "blocks": {
+        "collection_rY9HQK": {
+          "type": "collection",
+          "settings": {
+            "collection": "oculos-de-sol",
+            "link": "",
+            "collection_title": "Masculino"
+          }
+        },
         "collection_N3HLDp": {
           "type": "collection",
           "settings": {
-            "collection": "calcas-jeans",
+            "collection": "oculos-de-sol-feminino",
             "link": "",
-            "collection_title": "Nova Coleção"
+            "collection_title": "Feminino"
           }
         }
       },
       "block_order": [
+        "collection_rY9HQK",
         "collection_N3HLDp"
       ],
       "custom_css": [],
-      "name": "Bonés",
+      "name": "Óculos de Sol",
       "settings": {
         "section_width": "stretch_width",
         "color_scheme": "scheme-accf3b11-ba40-4a3e-bafb-243ece6683ec",
-        "heading": "Calças Jeans",
+        "heading": "Óculos de Sol",
         "description": "",
         "show_view_all_button": true,
         "header_size": "small",
