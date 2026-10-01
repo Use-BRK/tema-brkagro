@@ -77,8 +77,8 @@
           "type": "slider_item",
           "name": "Nossa Senhora",
           "settings": {
-            "image": "shopify://shop_images/BANNER_NOSSA_SENHORA_10065bd1-c264-4bbc-9525-6da4329133ef.jpg",
-            "image_mobile": "shopify://shop_images/MOBILE_NOSSA_SENHORA_01b32db8-ff98-4f61-a4b2-19c4d1946333.jpg",
+            "image": "shopify://shop_images/banner_desktop.png",
+            "image_mobile": "shopify://shop_images/MOBILE_18a38775-0712-4515-be31-c0aef534d26d.png",
             "overlay_opacity": 0,
             "link_banner": "shopify://collections/nossa-senhora-aparecida",
             "slider_effect": "fade-in-right",
