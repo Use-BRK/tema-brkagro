@@ -32,7 +32,7 @@
             "resume_start": "",
             "resume_end": "",
             "custom_colors": true,
-            "bg_color": "#191818",
+            "bg_color": "#0F6049",
             "text_color": "#ffffff",
             "timer_color": "#f4ce0f",
             "hidden_on_mobile": false
