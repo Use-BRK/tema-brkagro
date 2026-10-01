@@ -43,14 +43,14 @@
             "content_alignment_mobile": "center"
           }
         },
-        "slider_item_nrmHUV": {
+        "slider_item_rYBq93": {
           "type": "slider_item",
-          "name": "Infantis + Livro",
+          "name": "Nossa Senhora",
           "settings": {
-            "image": "shopify://shop_images/BannerGIFagro.gif",
-            "image_mobile": "shopify://shop_images/Mobile.png",
+            "image": "shopify://shop_images/banner_desktop.png",
+            "image_mobile": "shopify://shop_images/MOBILE_18a38775-0712-4515-be31-c0aef534d26d.png",
             "overlay_opacity": 0,
-            "link_banner": "shopify://collections/agro-kids",
+            "link_banner": "shopify://collections/nossa-senhora-aparecida",
             "slider_effect": "fade-in-right",
             "subheading": "",
             "heading": "",
@@ -73,14 +73,14 @@
             "content_alignment_mobile": "center"
           }
         },
-        "slider_item_rYBq93": {
+        "slider_item_nrmHUV": {
           "type": "slider_item",
-          "name": "Nossa Senhora",
+          "name": "Infantis + Livro",
           "settings": {
-            "image": "shopify://shop_images/banner_desktop.png",
-            "image_mobile": "shopify://shop_images/MOBILE_18a38775-0712-4515-be31-c0aef534d26d.png",
+            "image": "shopify://shop_images/BannerGIFagro.gif",
+            "image_mobile": "shopify://shop_images/Mobile.png",
             "overlay_opacity": 0,
-            "link_banner": "shopify://collections/nossa-senhora-aparecida",
+            "link_banner": "shopify://collections/agro-kids",
             "slider_effect": "fade-in-right",
             "subheading": "",
             "heading": "",
@@ -167,8 +167,8 @@
       },
       "block_order": [
         "slider_item_MMEAVn",
-        "slider_item_nrmHUV",
         "slider_item_rYBq93",
+        "slider_item_nrmHUV",
         "slider_item_K3DbMk",
         "slider_item_D43AJr"
       ],
