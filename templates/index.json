@@ -213,7 +213,7 @@
           "type": "collection",
           "settings": {
             "collection": "calcas-jeans",
-            "link": "https://www.brkagro.com.br/collections/destaques-da-semana?filter.p.m.custom.genero=Masculino",
+            "link": "",
             "collection_title": "Calças Jeans"
           }
         },
@@ -221,7 +221,7 @@
           "type": "collection",
           "settings": {
             "collection": "camisas-de-botao-country",
-            "link": "https://www.brkagro.com.br/collections/destaques-da-semana?filter.p.m.custom.genero=Feminino",
+            "link": "",
             "collection_title": "Camisas de Botão"
           }
         }
