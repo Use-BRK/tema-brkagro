@@ -46,7 +46,6 @@
         "slider_item_nrmHUV": {
           "type": "slider_item",
           "name": "Infantis + Livro",
-          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/BannerGIFagro.gif",
             "image_mobile": "shopify://shop_images/Mobile.png",
@@ -137,6 +136,7 @@
         "slider_item_D43AJr": {
           "type": "slider_item",
           "name": "Camisas",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/Layer_28.jpg",
             "image_mobile": "shopify://shop_images/MOBILE_CAMISA_COUNTRY_3a25326a-6f1d-4965-9577-b1c0ff74d173.jpg",
