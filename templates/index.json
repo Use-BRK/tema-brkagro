@@ -46,6 +46,7 @@
         "slider_item_nrmHUV": {
           "type": "slider_item",
           "name": "Infantis + Livro",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/BannerGIFagro.gif",
             "image_mobile": "shopify://shop_images/Mobile.png",
@@ -106,7 +107,6 @@
         "slider_item_K3DbMk": {
           "type": "slider_item",
           "name": "Apache",
-          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/BANNER_APACHE_e7356957-76c2-4151-98fe-f5eca270270f.jpg",
             "image_mobile": "shopify://shop_images/MOBILE_APACHE_5e01a1fe-183f-4317-b1ab-82937f16a9d3.jpg",
@@ -349,14 +349,24 @@
     "banner_carousel_iVEDMG": {
       "type": "banner-carousel",
       "blocks": {
-        "card_jHmrEj": {
+        "card_7tezkD": {
           "type": "card",
-          "name": "Óculos de Sol",
+          "name": "Bonés",
           "settings": {
-            "image": "shopify://shop_images/Card_BRK_AGRO_oculos_ed50e41b-5e46-4708-9882-b7650bec48e0.webp",
-            "collection": "oculos-de-sol",
+            "image": "shopify://shop_images/Card_BRK_AGRO_bones_49559ed0-580c-45d5-9c5b-e5031720a4dd.webp",
+            "collection": "bones",
             "link": "",
-            "label": "Óculos de Sol"
+            "label": "Bonés"
+          }
+        },
+        "card_AyYQxG": {
+          "type": "card",
+          "name": "Camisas Work",
+          "settings": {
+            "image": "shopify://shop_images/Card_BRK_AGRO_Work.webp",
+            "collection": "camisas-work",
+            "link": "",
+            "label": "Camisas Work"
           }
         },
         "card_j4crXK": {
@@ -379,6 +389,16 @@
             "label": "Camisas de Botão"
           }
         },
+        "card_jHmrEj": {
+          "type": "card",
+          "name": "Óculos de Sol",
+          "settings": {
+            "image": "shopify://shop_images/Card_BRK_AGRO_oculos_ed50e41b-5e46-4708-9882-b7650bec48e0.webp",
+            "collection": "oculos-de-sol",
+            "link": "",
+            "label": "Óculos de Sol"
+          }
+        },
         "card_Az3eRR": {
           "type": "card",
           "name": "Calças Jeans",
@@ -388,35 +408,15 @@
             "link": "",
             "label": "Calça Jeans"
           }
-        },
-        "card_AyYQxG": {
-          "type": "card",
-          "name": "Camisas Work",
-          "settings": {
-            "image": "shopify://shop_images/Card_BRK_AGRO_Work.webp",
-            "collection": "camisas-work",
-            "link": "",
-            "label": "Camisas Work"
-          }
-        },
-        "card_7tezkD": {
-          "type": "card",
-          "name": "Bonés",
-          "settings": {
-            "image": "shopify://shop_images/Card_BRK_AGRO_bones_49559ed0-580c-45d5-9c5b-e5031720a4dd.webp",
-            "collection": "bones",
-            "link": "",
-            "label": "Bonés"
-          }
         }
       },
       "block_order": [
-        "card_jHmrEj",
+        "card_7tezkD",
+        "card_AyYQxG",
         "card_j4crXK",
         "card_w8XfBY",
-        "card_Az3eRR",
-        "card_AyYQxG",
-        "card_7tezkD"
+        "card_jHmrEj",
+        "card_Az3eRR"
       ],
       "name": "Banner Carousel",
       "settings": {
