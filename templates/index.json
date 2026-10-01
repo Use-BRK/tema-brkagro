@@ -46,7 +46,6 @@
         "slider_item_nrmHUV": {
           "type": "slider_item",
           "name": "Infantis + Livro",
-          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/BannerGIFagro.gif",
             "image_mobile": "shopify://shop_images/Mobile.png",
@@ -494,36 +493,27 @@
         "stock_strip_threshold": 9
       }
     },
-    "collection_tab_9R4n9j": {
+    "collection_tab_gcdBTy": {
       "type": "collection-tab",
       "blocks": {
-        "collection_tpCKAk": {
+        "collection_N3HLDp": {
           "type": "collection",
           "settings": {
-            "collection": "botinas-masculinas",
+            "collection": "calcas-jeans",
             "link": "",
-            "collection_title": "Masculinas"
-          }
-        },
-        "collection_yyNLMj": {
-          "type": "collection",
-          "settings": {
-            "collection": "botinas-femininas",
-            "link": "",
-            "collection_title": "Femininas"
+            "collection_title": "Nova Coleção"
           }
         }
       },
       "block_order": [
-        "collection_tpCKAk",
-        "collection_yyNLMj"
+        "collection_N3HLDp"
       ],
       "custom_css": [],
-      "name": "Novas Botinas",
+      "name": "Bonés",
       "settings": {
         "section_width": "stretch_width",
         "color_scheme": "scheme-accf3b11-ba40-4a3e-bafb-243ece6683ec",
-        "heading": "Botas e Botinas",
+        "heading": "Calças Jeans",
         "description": "",
         "show_view_all_button": true,
         "header_size": "small",
@@ -556,27 +546,36 @@
         "stock_strip_threshold": 9
       }
     },
-    "collection_tab_gcdBTy": {
+    "collection_tab_9R4n9j": {
       "type": "collection-tab",
       "blocks": {
-        "collection_N3HLDp": {
+        "collection_tpCKAk": {
           "type": "collection",
           "settings": {
-            "collection": "calcas-jeans",
+            "collection": "botinas-masculinas",
             "link": "",
-            "collection_title": "Nova Coleção"
+            "collection_title": "Masculinas"
+          }
+        },
+        "collection_yyNLMj": {
+          "type": "collection",
+          "settings": {
+            "collection": "botinas-femininas",
+            "link": "",
+            "collection_title": "Femininas"
           }
         }
       },
       "block_order": [
-        "collection_N3HLDp"
+        "collection_tpCKAk",
+        "collection_yyNLMj"
       ],
       "custom_css": [],
-      "name": "Bonés",
+      "name": "Novas Botinas",
       "settings": {
         "section_width": "stretch_width",
         "color_scheme": "scheme-accf3b11-ba40-4a3e-bafb-243ece6683ec",
-        "heading": "Calças Jeans",
+        "heading": "Botas e Botinas",
         "description": "",
         "show_view_all_button": true,
         "header_size": "small",
@@ -1180,8 +1179,8 @@
     "collection_tab_yDRJNb",
     "banner_carousel_iVEDMG",
     "collection_tab_tmATLQ",
-    "collection_tab_9R4n9j",
     "collection_tab_gcdBTy",
+    "collection_tab_9R4n9j",
     "collection_tab_ccYc98",
     "divider_kpy84P",
     "collection_tab_9W4tF6",
