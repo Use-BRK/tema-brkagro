@@ -101,6 +101,7 @@
       "block_order": [
         "story_dPpdae"
       ],
+      "disabled": true,
       "settings": {
         "enable": true,
         "show_home": true,

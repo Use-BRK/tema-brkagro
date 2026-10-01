@@ -215,7 +215,7 @@
           "type": "collection",
           "settings": {
             "collection": "",
-            "link": "https://www.brkagro.com.br/collections/1%C2%AA-oferta-agro?filter.p.m.custom.genero=Masculino",
+            "link": "https://www.brkagro.com.br/collections/destaques-da-semana?filter.p.m.custom.genero=Masculino",
             "collection_title": "Masculinas"
           }
         },
@@ -223,7 +223,7 @@
           "type": "collection",
           "settings": {
             "collection": "",
-            "link": "https://www.brkagro.com.br/collections/1%C2%AA-oferta-agro?filter.p.m.custom.genero=Feminino",
+            "link": "https://www.brkagro.com.br/collections/destaques-da-semana?filter.p.m.custom.genero=Feminino",
             "collection_title": "Femininas"
           }
         }
