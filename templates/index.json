@@ -15,8 +15,9 @@
         "slider_item_MMEAVn": {
           "type": "slider_item",
           "name": "1 Oferta",
+          "disabled": true,
           "settings": {
-            "image": "shopify://shop_images/BANNER_PRORROGACAO.jpg",
+            "image": "shopify://shop_images/Layer_28.jpg",
             "image_mobile": "shopify://shop_images/MOBILE_PRORROGACAO.jpg",
             "overlay_opacity": 0,
             "link_banner": "shopify://collections/1ª-oferta-agro",
@@ -76,7 +77,6 @@
         "slider_item_rYBq93": {
           "type": "slider_item",
           "name": "Nossa Senhora",
-          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/BANNER_NOSSA_SENHORA_10065bd1-c264-4bbc-9525-6da4329133ef.jpg",
             "image_mobile": "shopify://shop_images/MOBILE_NOSSA_SENHORA_01b32db8-ff98-4f61-a4b2-19c4d1946333.jpg",
@@ -138,7 +138,6 @@
         "slider_item_D43AJr": {
           "type": "slider_item",
           "name": "Camisas",
-          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/Layer_28.jpg",
             "image_mobile": "shopify://shop_images/MOBILE_CAMISA_COUNTRY_3a25326a-6f1d-4965-9577-b1c0ff74d173.jpg",
@@ -563,7 +562,7 @@
         "collection_N3HLDp": {
           "type": "collection",
           "settings": {
-            "collection": "bones",
+            "collection": "calcas-jeans",
             "link": "",
             "collection_title": "Nova Coleção"
           }
@@ -577,7 +576,7 @@
       "settings": {
         "section_width": "stretch_width",
         "color_scheme": "scheme-accf3b11-ba40-4a3e-bafb-243ece6683ec",
-        "heading": "Bonés",
+        "heading": "Calças Jeans",
         "description": "",
         "show_view_all_button": true,
         "header_size": "small",
