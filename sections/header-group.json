@@ -29,7 +29,7 @@
           "type": "shipping_countdown",
           "name": "Timer",
           "settings": {
-            "timer_font_size": 20,
+            "timer_font_size": 24,
             "label_font_size": 10,
             "start_date": "",
             "start_time": "",
@@ -40,7 +40,7 @@
             "custom_colors": true,
             "bg_color": "#007c00",
             "text_color": "#ffffff",
-            "timer_color": "#FFFFFF",
+            "timer_color": "#ffffff",
             "hidden_on_mobile": false
           }
         },
