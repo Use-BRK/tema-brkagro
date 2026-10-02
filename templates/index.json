@@ -135,13 +135,13 @@
         },
         "slider_item_D43AJr": {
           "type": "slider_item",
-          "name": "Camisas",
+          "name": "Rotativo",
           "disabled": true,
           "settings": {
-            "image": "shopify://shop_images/Layer_28.jpg",
-            "image_mobile": "shopify://shop_images/MOBILE_CAMISA_COUNTRY_3a25326a-6f1d-4965-9577-b1c0ff74d173.jpg",
+            "image": "shopify://shop_images/Desk.png",
+            "image_mobile": "shopify://shop_images/Mobile_1.png",
             "overlay_opacity": 0,
-            "link_banner": "shopify://collections/camisas-de-botao-country",
+            "link_banner": "shopify://collections/envio-imediato-22",
             "slider_effect": "fade-in-right",
             "subheading": "",
             "heading": "",
