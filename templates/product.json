@@ -145,7 +145,8 @@
           "name": "Torneira de Lead",
           "settings": {
             "enable_button": true,
-            "button_text": "Ou se preferir [whatsapp] <strong>COMPRE PELO WHATSAPP</strong>",
+            "divider_text": "Ou",
+            "button_text": "[whatsapp] Comprar pelo WhatsApp",
             "text_color": "#128c4a",
             "whatsapp_number": "553432194697",
             "whatsapp_message": "Vim da loja online e tenho interesse nesse produto:",
