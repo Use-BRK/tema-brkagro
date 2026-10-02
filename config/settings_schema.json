@@ -1133,6 +1133,40 @@
         "default": true
       },
       {
+        "type": "checkbox",
+        "id": "show_card_installment",
+        "label": "Mostrar parcelamento",
+        "info": "Exibe o parcelamento (ex: 3x R$ 49,90) abaixo do preço nos cards de produto.",
+        "default": true
+      },
+      {
+        "type": "header",
+        "content": "Envio Imediato"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_envio_imediato",
+        "label": "Mostrar selo Envio Imediato",
+        "info": "Aparece em produtos com a tag \"Envio Imediato\" ou \"prazo_imediato\".",
+        "default": true
+      },
+      {
+        "type": "select",
+        "id": "envio_imediato_style",
+        "label": "Estilo do selo",
+        "default": "strip",
+        "options": [
+          {
+            "value": "strip",
+            "label": "Tarja abaixo da imagem"
+          },
+          {
+            "value": "badge",
+            "label": "Badge sobre a imagem"
+          }
+        ]
+      },
+      {
         "type": "header",
         "content": "t:settings_schema.product_card.settings.product_image.label"
       },

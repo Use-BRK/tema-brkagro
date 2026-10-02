@@ -502,8 +502,8 @@
           </div>
         {% endif %}
       </div>
-      {% comment %} Tarja "Envio Imediato" abaixo da imagem (somente card em grid) {% endcomment %}
-      {%- if type != 'list' and type != 'sticky' and type != 'product-set' -%}
+      {% comment %} Tarja "Envio Imediato" abaixo da imagem (somente card em grid). Controle em Configurações do tema > Product cards > Envio Imediato {% endcomment %}
+      {%- if settings.show_envio_imediato and settings.envio_imediato_style == 'strip' and type != 'list' and type != 'sticky' and type != 'product-set' -%}
         {%- if card_product.tags contains 'Envio Imediato' or card_product.tags contains 'prazo_imediato' -%}
           <div class="product-item__shipping-strip" role="note" aria-label="Envio imediato">
             <svg class="product-item__shipping-strip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">

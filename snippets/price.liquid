@@ -168,7 +168,8 @@
       assign num_parcelas = 6
     endif
   -%}
-  {%- if num_parcelas >= 3 -%}
+  {%- comment -%} Toggle em Configurações do tema > Product cards > Mostrar parcelamento {%- endcomment -%}
+  {%- if num_parcelas >= 3 and theme_st.show_card_installment != false -%}
   <div class="installment-payment">
     {% if template.name == 'product' and product %}
       {% comment %} <p>

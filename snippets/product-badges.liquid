@@ -167,6 +167,13 @@
   if sticky == 'sticky'
     assign show_product_badges = false
   endif
+  # Badge "Envio Imediato" sobre a imagem: Configurações do tema > Product cards > Envio Imediato
+  assign show_envio_imediato_badge = false
+  if settings.show_envio_imediato and settings.envio_imediato_style == 'badge'
+    if card_product.tags contains 'Envio Imediato' or card_product.tags contains 'prazo_imediato'
+      assign show_envio_imediato_badge = true
+    endif
+  endif
 -%}
 {%- if sale
   or sold_out
@@ -174,8 +181,7 @@
   or card_product.metafields.custom.custom_product_badge
   or show_new
   or subscription > 0
-  or card_product.tags contains 'Envio Imediato'
-  or card_product.tags contains 'prazo_imediato'
+  or show_envio_imediato_badge
   or card_product.tags contains 'VIP'
 -%}
   {% if show_product_badges %}
@@ -271,12 +277,8 @@
           {{- 'products.product.label.subscription' | t -}}
         </div>
       {% endif %}
-      {%- comment -%}
-        Badge "Envio Imediato" no TOPO da imagem DESATIVADA (teste: usando apenas a tarja abaixo da imagem).
-        Para reativar, troque o "{% if false %}" abaixo pela condicao original:
-        {% if card_product.tags contains 'Envio Imediato' or card_product.tags contains 'prazo_imediato' %}
-      {%- endcomment -%}
-      {% if false %}
+      {%- comment -%} Badge "Envio Imediato" no TOPO da imagem (estilo "Badge sobre a imagem" nas configs do tema) {%- endcomment -%}
+      {% if show_envio_imediato_badge %}
         <div
           class="product__badges-custom subscription product__badges-inner align-self-start px-15 pre-order inline-flex content-center subheading_weight text-center lh-normal"
           style="--badges-color: #FFF;--badges-bg: #1E1E1E;"
