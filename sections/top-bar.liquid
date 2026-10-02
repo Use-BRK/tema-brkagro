@@ -229,17 +229,22 @@
       #topbar .topbar-shipping__cap { font-size: var(--cd-cap, 8px); }
       #topbar .topbar-shipping__sep { font-size: calc(var(--cd-num, 26px) * 0.85); }
     }
-    /* Link do timer: cobre a barra inteira enquanto o timer está visível */
-    #topbar {
+    /* Link da barra (config da seção): cobre a barra inteira; links/botões dos blocos continuam clicáveis por cima */
+    #topbar.topbar--linked {
       position: relative;
     }
-    #topbar .topbar-timer-link {
+    #topbar .topbar-link {
       position: absolute;
       inset: 0;
-      z-index: 4;
+      z-index: 1;
     }
-    #topbar .topbar-timer-link[hidden] {
-      display: none !important;
+    #topbar.topbar--linked .topbar__section-inner {
+      position: relative;
+      z-index: 2;
+      pointer-events: none;
+    }
+    #topbar.topbar--linked .topbar__section-inner :is(a, button, select, input, label, summary, details, .swiper-arrow) {
+      pointer-events: auto;
     }
     /* Alternância timer -> slider de texto */
     #topbar .is-switch-hidden {
@@ -380,9 +385,16 @@
   -%}
   <div
     id="topbar"
-    class="topbar gradient{% if section_st.padding_top < 30 %} pt-min{% endif %}{% if section_st.padding_bottom < 30 %} pb-min{% endif %} section remove_spacing color-{{ color_scheme }}{% if hidden_block == true %} hidden block-1025{% endif %}{% if section_st.show_separator_line %} border-bottom{% endif %}{% if section_st.uppercase %} uppercase{% endif %}{% if section_st.show_mobile == blank %} hidden block-1025{% endif %}"
+    class="topbar gradient{% if section_st.padding_top < 30 %} pt-min{% endif %}{% if section_st.padding_bottom < 30 %} pb-min{% endif %} section remove_spacing color-{{ color_scheme }}{% if hidden_block == true %} hidden block-1025{% endif %}{% if section_st.show_separator_line %} border-bottom{% endif %}{% if section_st.uppercase %} uppercase{% endif %}{% if section_st.show_mobile == blank %} hidden block-1025{% endif %}{% if section_st.link != blank %} topbar--linked{% endif %}"
     style="{{ style | strip | strip_newlines }}"
   >
+    {%- if section_st.link != blank -%}
+      <a
+        class="topbar-link"
+        href="{{ section_st.link }}"
+        aria-label="{{ section_st.link_label | default: 'Ver promoção' | escape }}"
+      ></a>
+    {%- endif -%}
     <div class="{{ section_width }}">
       <div
         class="flex flex-wrap flex-md-nowrap gap justify-center justify-between-1025 align-center topbar__section-inner gap-10 gap-lg-25 fs-custom {{ section_st.font_weight }}"
@@ -620,16 +632,6 @@
         {%- endfor -%}
       </div>
     </div>
-    {%- comment -%} Link do bloco Timer: some/aparece junto com o timer (data-topbar-timer-part) {%- endcomment -%}
-    {%- if tb_timer and tb_timer.settings.link != blank -%}
-      <a
-        class="topbar-timer-link"
-        href="{{ tb_timer.settings.link }}"
-        aria-label="{{ tb_timer.settings.link_label | default: 'Ver promoção' | escape }}"
-        data-topbar-timer-part
-        {% unless tb_timer_visible and tb_has_windows %}hidden{% endunless %}
-      ></a>
-    {%- endif -%}
   </div>
 {% endif %}
 {% javascript %}
@@ -867,6 +869,23 @@
       "type": "checkbox",
       "id": "show_separator_line",
       "label": "t:sections.top-bar.settings.show_separator_line.label"
+    },
+    {
+      "type": "header",
+      "content": "Link"
+    },
+    {
+      "type": "url",
+      "id": "link",
+      "label": "Link da barra",
+      "info": "Opcional. A barra inteira vira clicável e leva para este link. Aceita coleção, produto, página ou URL externa. Links e botões dos blocos continuam funcionando."
+    },
+    {
+      "type": "text",
+      "id": "link_label",
+      "label": "Descrição do link (acessibilidade)",
+      "info": "Lida por leitores de tela. Ex.: Ver produtos em promoção",
+      "default": "Ver promoção"
     },
     {
       "type": "header",
@@ -1272,23 +1291,6 @@
           "label": "Trocar pelo bloco 'Slider de texto' ao terminar",
           "info": "Ao acabar a contagem, este bloco é ocultado e o bloco 'Slider de texto' aparece no lugar. Enquanto a contagem estiver rodando, o slider fica oculto. Requer o bloco 'Slider de texto' adicionado na barra superior. Ignora a 'Mensagem ao terminar'.",
           "default": false
-        },
-        {
-          "type": "header",
-          "content": "Link"
-        },
-        {
-          "type": "url",
-          "id": "link",
-          "label": "Link da barra",
-          "info": "Opcional. Enquanto o timer estiver visível, a barra inteira (timer + Texto do timer) leva para este link. Aceita coleção, produto, página ou URL externa."
-        },
-        {
-          "type": "text",
-          "id": "link_label",
-          "label": "Descrição do link (acessibilidade)",
-          "info": "Lida por leitores de tela. Ex.: Ver produtos em promoção",
-          "default": "Ver promoção"
         },
         {
           "type": "header",

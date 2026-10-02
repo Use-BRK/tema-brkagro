@@ -1179,13 +1179,13 @@
       {
         "type": "range",
         "id": "card_border_padding",
-        "label": "Espaçamento interno",
-        "info": "Distância entre a borda e o conteúdo do card.",
+        "label": "Espaçamento das informações",
+        "info": "Distância entre a borda e as informações do produto (nome, preço...). A imagem fica sempre colada na borda.",
         "min": 0,
         "max": 20,
         "step": 1,
         "unit": "px",
-        "default": 8
+        "default": 10
       },
       {
         "type": "header",

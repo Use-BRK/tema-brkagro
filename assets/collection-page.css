@@ -122,9 +122,14 @@
 
   /* Imagem sangrando até a borda da tela: a borda do card não combina, então fica desligada aqui */
   .sec__collection-main #product-grid.product-grid.collection-product-media--edge-bleed > .grid__item:not(.promotion) .product-item--bordered > .product-item__wrapper.product-grid {
-    padding: 0;
     border: 0;
     border-radius: 0;
+  }
+  .sec__collection-main #product-grid.product-grid.collection-product-media--edge-bleed > .grid__item:not(.promotion) .product-item--bordered > .product-item__wrapper.product-grid > .product-item__inner {
+    border-radius: 0;
+  }
+  .sec__collection-main #product-grid.product-grid.collection-product-media--edge-bleed > .grid__item:not(.promotion) .product-item--bordered > .product-item__wrapper.product-grid > .product-item__information {
+    padding: 0;
   }
 
 }

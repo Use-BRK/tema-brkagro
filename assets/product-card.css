@@ -938,13 +938,22 @@ variant-radios-bundle .option-swatch-js.active .product__item-option {
 :where(.product-item) .product-item__media--ratio {
   border-radius: var(--card-img-radius, 0);
 }
-/* Borda do card (somente em grade): Configurações do tema > Product cards > Borda do card */
+/* Borda do card (somente em grade): Configurações do tema > Product cards > Borda do card.
+   A imagem fica colada na borda (sem espaço); o espaçamento interno vale só para o que vem abaixo dela. */
 .product-item--bordered {
   height: 100%;
 }
 .product-item--bordered > .product-item__wrapper.product-grid {
   height: 100%;
-  padding: var(--card-padding);
   border: var(--card-border-width) solid var(--card-border-color);
   border-radius: var(--card-radius);
+}
+.product-item--bordered > .product-item__wrapper.product-grid > .product-item__inner {
+  border-radius: calc(var(--card-radius) - var(--card-border-width)) calc(var(--card-radius) - var(--card-border-width)) 0 0;
+}
+.product-item--bordered > .product-item__wrapper.product-grid > .product-item__shipping-strip {
+  margin-inline: var(--card-padding);
+}
+.product-item--bordered > .product-item__wrapper.product-grid > .product-item__information {
+  padding: 0 var(--card-padding) var(--card-padding);
 }
