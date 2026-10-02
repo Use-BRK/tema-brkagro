@@ -101,18 +101,6 @@
           },
           "blocks": {}
         },
-        "brk_apps_agro_bundle_addon_qKaPkE": {
-          "type": "shopify://apps/brk-apps-agro/blocks/bundle-addon/019f0471-1a7f-7d87-ace2-a886cbd950ee",
-          "settings": {
-            "title_size": 15,
-            "border_radius": 12,
-            "margin_y": 16,
-            "border_color": "#e1e3e5",
-            "accent_color": "#085b47",
-            "label_bg": "#085b47",
-            "label_text_color": "#ffffff"
-          }
-        },
         "buy_buttons_LcQGtR": {
           "type": "_product-buy-buttons",
           "settings": {
@@ -120,23 +108,6 @@
             "show_gift_card_recipient": false,
             "show_wishlist": false,
             "show_compare": false
-          },
-          "blocks": {}
-        },
-        "product_custom_name_button_ya3Yfz": {
-          "type": "_product-custom-name-button",
-          "name": "Botão nome na camisa",
-          "settings": {
-            "enable_button": true,
-            "button_mode": "personalization",
-            "button_label": "Quero meu nome na Camisa (+R$29,90)",
-            "whatsapp_number": "553432194697",
-            "perso_variant_id": "53224470479145",
-            "perso_price": "29,90",
-            "collections": [
-              "camisas-uv50-femininas",
-              "camisas-uv50-masculinas"
-            ]
           },
           "blocks": {}
         },
@@ -157,6 +128,35 @@
             "collections": []
           },
           "blocks": {}
+        },
+        "product_custom_name_button_ya3Yfz": {
+          "type": "_product-custom-name-button",
+          "name": "Botão nome na camisa",
+          "settings": {
+            "enable_button": true,
+            "button_mode": "personalization",
+            "button_label": "Quero meu nome na Camisa (+R$29,90)",
+            "whatsapp_number": "553432194697",
+            "perso_variant_id": "53224470479145",
+            "perso_price": "29,90",
+            "collections": [
+              "camisas-uv50-femininas",
+              "camisas-uv50-masculinas"
+            ]
+          },
+          "blocks": {}
+        },
+        "brk_apps_agro_bundle_addon_qKaPkE": {
+          "type": "shopify://apps/brk-apps-agro/blocks/bundle-addon/019f0471-1a7f-7d87-ace2-a886cbd950ee",
+          "settings": {
+            "title_size": 15,
+            "border_radius": 12,
+            "margin_y": 16,
+            "border_color": "#e1e3e5",
+            "accent_color": "#085b47",
+            "label_bg": "#085b47",
+            "label_text_color": "#ffffff"
+          }
         },
         "product_benefits_hWMhBF": {
           "type": "_product-benefits",
@@ -313,7 +313,8 @@
             "pickup": "",
             "dont_show_products": [],
             "show_dont_know_cep": false,
-            "dont_know_cep_text": "Não sei meu CEP"
+            "dont_know_cep_text": "Não sei meu CEP",
+            "no_rates_message": "Chame nossa equipe no WhatsApp para cotar"
           }
         },
         "product_grouped_6epkNf": {
@@ -374,10 +375,10 @@
         "price_VJ4N8m",
         "brk_apps_agro_combined_listing_6xbDqi",
         "variant_picker_tcCihG",
-        "brk_apps_agro_bundle_addon_qKaPkE",
         "buy_buttons_LcQGtR",
-        "product_custom_name_button_ya3Yfz",
         "product_whatsapp_cta_QD4eY3",
+        "product_custom_name_button_ya3Yfz",
+        "brk_apps_agro_bundle_addon_qKaPkE",
         "product_benefits_hWMhBF",
         "brk_trust_buybox",
         "brk_specs_buybox",
