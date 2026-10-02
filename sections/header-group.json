@@ -19,11 +19,6 @@
           "name": "Timer",
           "disabled": true,
           "settings": {
-            "message": "",
-            "message_font_size": 20,
-            "label_before": "Termina em:",
-            "label_font_size": 13,
-            "timer_font_size": 20,
             "start_date": "",
             "start_time": "",
             "end_date": "",

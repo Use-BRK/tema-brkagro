@@ -147,77 +147,86 @@
         height: 18px;
       }
     }
-    /* ---- Frete grátis + contagem regressiva ---- */
-    topbar-shipping-timer[hidden] {
+    /* ---- Timer: bloco "Texto do timer" + bloco "Timer" ---- */
+    topbar-shipping-timer[hidden],
+    #topbar .topbar-cd-text[hidden] {
       display: none !important;
     }
+    /* Enquanto o timer está visível, os dois blocos ficam lado a lado numa linha só. */
+    #topbar .topbar__section-inner:has(> .topbar-cd-text:not([hidden]), > topbar-shipping-timer:not([hidden])) {
+      flex-wrap: nowrap;
+      justify-content: space-evenly;
+      gap: 12px;
+    }
+    #topbar .topbar-cd-text,
     #topbar .topbar-shipping {
+      display: flex;
+      align-items: center;
+      flex: 0 0 auto;
+      white-space: nowrap;
+      line-height: 1;
+      color: var(--topbar-shipping-text, inherit);
+    }
+    #topbar .topbar-cd-text {
+      gap: 0.35em;
+    }
+    #topbar .topbar-cd-text__big {
+      font-size: min(11vw, calc(var(--cd-big, 40px) * 1.2));
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 0.9;
+    }
+    #topbar .topbar-cd-text__lines {
+      display: flex;
+      flex-direction: column;
+      font-size: min(4.4vw, calc(var(--cd-lines, 15px) * 1.2));
+      line-height: 1.05;
+      letter-spacing: 0.01em;
+    }
+    #topbar .topbar-shipping__countdown {
+      display: flex;
+      align-items: flex-start;
+    }
+    #topbar .topbar-shipping__unit {
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
-      flex-wrap: nowrap;
-      gap: 1px;
-      flex: 1 1 auto;
-      min-width: 0;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      line-height: 1.2;
-      color: var(--topbar-shipping-text, inherit);
+      gap: 0.3em;
     }
-    #topbar .topbar-shipping__message {
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      min-width: 0;
-      font-size: var(--topbar-shipping-message-size, inherit);
-    }
-    #topbar .topbar-shipping__timer-row {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-wrap: nowrap;
-      flex-shrink: 0;
-      gap: 6px;
-    }
-    #topbar .topbar-shipping__label {
-      font-weight: var(--body-weight);
-      opacity: 0.9;
-      white-space: nowrap;
-      font-size: var(--topbar-shipping-label-size, inherit);
-    }
-    #topbar .topbar-shipping__countdown {
-      display: inline-flex;
-      align-items: center;
-      font-weight: var(--heading-weight, 700);
-      font-variant-numeric: tabular-nums;
-      letter-spacing: 0;
-      white-space: nowrap;
-      flex-shrink: 0;
-      color: var(--topbar-shipping-accent, inherit);
-      font-size: var(--topbar-shipping-timer-size, 1.4em);
-      line-height: 1;
-    }
-    #topbar .topbar-shipping__seg {
+    #topbar .topbar-shipping__num {
       min-width: 2ch;
       text-align: center;
+      font-size: min(7.4vw, calc(var(--cd-num, 26px) * 1.2));
+      font-weight: 800;
+      font-variant-numeric: tabular-nums;
+      letter-spacing: 0.04em;
+      color: var(--topbar-shipping-accent, inherit);
     }
-    #topbar .topbar-shipping__seg--days {
-      min-width: auto;
-      white-space: nowrap;
-      font-variant-numeric: normal;
-      letter-spacing: normal;
+    #topbar .topbar-shipping__cap {
+      font-size: min(2.3vw, calc(var(--cd-cap, 8px) * 1.2));
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
     }
-    #topbar .topbar-shipping__seg:not(:last-child)::after {
-      content: ':';
-      padding: 0 3px;
-      font-weight: var(--body-weight);
-      opacity: 0.7;
+    #topbar .topbar-shipping__sep {
+      padding: 0 0.3em;
+      font-size: min(6.3vw, calc(var(--cd-num, 26px) * 1.02));
+      font-weight: 800;
+      line-height: 1.1;
     }
     #topbar .topbar-shipping__expired {
       font-weight: var(--heading-weight, 700);
       white-space: nowrap;
+    }
+    @media (min-width: 1025px) {
+      #topbar .topbar__section-inner:has(> .topbar-cd-text:not([hidden]), > topbar-shipping-timer:not([hidden])) {
+        justify-content: center;
+        gap: 70px;
+      }
+      #topbar .topbar-cd-text__big { font-size: var(--cd-big, 40px); }
+      #topbar .topbar-cd-text__lines { font-size: var(--cd-lines, 15px); }
+      #topbar .topbar-shipping__num { font-size: var(--cd-num, 26px); }
+      #topbar .topbar-shipping__cap { font-size: var(--cd-cap, 8px); }
+      #topbar .topbar-shipping__sep { font-size: calc(var(--cd-num, 26px) * 0.85); }
     }
     /* Alternância timer -> slider de texto */
     #topbar .is-switch-hidden {
@@ -518,37 +527,45 @@
                 </slide-section>
               </div>
               {%- endif -%}
+            {%- when 'countdown_text' -%}
+              {%- if block_st.highlight != blank or block_st.line_1 != blank or block_st.line_2 != blank -%}
+                <div
+                  class="topbar-item topbar-cd-text{% if block_st.hidden_on_mobile %} hidden block-1025{% endif %}"
+                  data-topbar-timer-part
+                  {% unless tb_timer_visible %}hidden{% endunless %}
+                  style="--cd-big: {{ block_st.highlight_size }}px; --cd-lines: {{ block_st.lines_size }}px;"
+                >
+                  {%- if block_st.highlight != blank -%}
+                    <span class="topbar-cd-text__big">{{ block_st.highlight | escape }}</span>
+                  {%- endif -%}
+                  <span class="topbar-cd-text__lines">
+                    {%- if block_st.line_1 != blank -%}<span>{{ block_st.line_1 | escape }}</span>{%- endif -%}
+                    {%- if block_st.line_2 != blank -%}<span>{{ block_st.line_2 | escape }}</span>{%- endif -%}
+                  </span>
+                </div>
+              {%- endif -%}
             {%- when 'shipping_countdown' -%}
-              {%- if block_st.custom_colors and block_st.bg_color != blank -%}
+              {%- if block_st.custom_colors -%}
                 {%- style -%}
-                  #topbar.topbar { background: {{ block_st.bg_color }} !important; }
+                  #topbar {
+                    {%- if block_st.text_color != blank -%}--topbar-shipping-text: {{ block_st.text_color }};{%- endif -%}
+                    {%- if block_st.timer_color != blank -%}--topbar-shipping-accent: {{ block_st.timer_color }};{%- endif -%}
+                  }
+                  {%- if block_st.bg_color != blank -%}
+                    #topbar.topbar { background: {{ block_st.bg_color }} !important; }
+                  {%- endif -%}
                 {%- endstyle -%}
               {%- endif -%}
-              {%- capture shipping_style_vars -%}
-                {%- if block_st.timer_font_size != blank -%}--topbar-shipping-timer-size: {{ block_st.timer_font_size }}px;{%- endif -%}
-                {%- if block_st.message_font_size != blank -%}--topbar-shipping-message-size: {{ block_st.message_font_size }}px;{%- endif -%}
-                {%- if block_st.label_font_size != blank -%}--topbar-shipping-label-size: {{ block_st.label_font_size }}px;{%- endif -%}
-                {%- if block_st.custom_colors -%}
-                  {%- if block_st.text_color != blank -%}--topbar-shipping-text: {{ block_st.text_color }};{%- endif -%}
-                  {%- if block_st.timer_color != blank -%}--topbar-shipping-accent: {{ block_st.timer_color }};{%- endif -%}
-                {%- endif -%}
-              {%- endcapture -%}
               <topbar-shipping-timer
                 class="topbar-item topbar-shipping{% if block_st.hidden_on_mobile %} hidden block-1025{% endif %}"
                 data-windows='{{ tb_windows_json | strip | strip_newlines }}'
                 data-expired-message="{{ block_st.expired_message | escape }}"
                 data-switch-slider="{% if block_st.switch_to_slider %}true{% else %}false{% endif %}"
-                {% unless tb_timer_visible %}hidden{% endunless %}
-                {% if shipping_style_vars != blank %}style="{{ shipping_style_vars | strip | strip_newlines }}"{% endif %}
+                {% unless tb_timer_visible and tb_has_windows %}hidden{% endunless %}
+                style="--cd-num: {{ block_st.timer_font_size }}px; --cd-cap: {{ block_st.label_font_size }}px;"
               >
-                {%- if block_st.message != blank -%}
-                  <div class="topbar-shipping__message">{{ block_st.message }}</div>
-                {%- endif -%}
                 {%- if tb_has_windows -%}
                   <div class="topbar-shipping__timer-row">
-                    {%- if block_st.label_before != blank -%}
-                      <span class="topbar-shipping__label">{{ block_st.label_before | escape }}</span>
-                    {%- endif -%}
                     <div class="topbar-shipping__countdown"></div>
                   </div>
                 {%- endif -%}
@@ -636,10 +653,9 @@
         this.expiredMessage = (this.dataset.expiredMessage || '').trim();
         this.switchSlider = this.dataset.switchSlider === 'true';
 
-        // Sem nenhuma janela com data de fim: mantém apenas a mensagem, sem contador.
+        // Sem nenhuma janela com data de fim: some o contador, o "Texto do timer" fica.
         if (!this.windows.length) {
-          if (this.timerRow) this.timerRow.remove();
-          this.hidden = false;
+          this.hidden = true;
           this.setSliderVisible(false);
           return;
         }
@@ -692,6 +708,15 @@
         });
       }
 
+      // Timer + bloco "Texto do timer" aparecem e somem juntos.
+      setVisible(visible) {
+        this.hidden = !visible;
+        var root = this.closest('#topbar') || document;
+        root.querySelectorAll('[data-topbar-timer-part]').forEach(function (el) {
+          el.hidden = !visible;
+        });
+      }
+
       update() {
         var now = Date.now();
         var win = this.currentWindow(now);
@@ -702,62 +727,70 @@
 
           // Troca pelo slider: esconde este bloco e revela o slider de texto.
           if (this.switchSlider) {
-            this.hidden = true;
+            this.setVisible(false);
             this.setSliderVisible(true);
             return;
           }
 
           if (this.expiredMessage) {
-            this.hidden = false;
+            this.setVisible(true);
             if (this.timerRow) {
               this.timerRow.innerHTML =
                 '<span class="topbar-shipping__expired"></span>';
               this.timerRow.firstChild.textContent = this.expiredMessage;
             }
           } else {
-            this.hidden = true;
+            this.setVisible(false);
           }
           return;
         }
 
         // Próxima janela ainda não começou -> barra oculta até a hora marcada.
         if (win.start && now < win.start) {
-          this.hidden = true;
+          this.setVisible(false);
           this.setSliderVisible(true);
           return;
         }
 
         var diff = win.end - now;
 
-        this.hidden = false;
+        this.setVisible(true);
         this.setSliderVisible(false);
 
         var pad = function (n) { return String(n).padStart(2, '0'); };
         var ONE_DAY = 86400000;
-        var HOURS_THRESHOLD = 2 * ONE_DAY; // abaixo de 48h mostra hh:mm:ss
+        var HOURS_THRESHOLD = 2 * ONE_DAY; // abaixo de 48h mostra horas:minutos:segundos
 
         if (!this.countdownEl) return;
 
+        var segs, caps;
         if (diff >= HOURS_THRESHOLD) {
-          // 48h ou mais restando: mostra só em dias
-          var d = Math.floor(diff / ONE_DAY);
-          var label = d === 1 ? 'dia' : 'dias';
-          this.countdownEl.innerHTML =
-            '<span class="topbar-shipping__seg topbar-shipping__seg--days">' + d + ' ' + label + '</span>';
+          // 48h ou mais restando: dias:horas:minutos
+          segs = [
+            Math.floor(diff / ONE_DAY),
+            Math.floor((diff / 3600000) % 24),
+            Math.floor((diff / 60000) % 60)
+          ];
+          caps = [segs[0] === 1 ? 'Dia' : 'Dias', 'Horas', 'Minutos'];
         } else {
-          // menos de 48h restando: muda para horas:minutos:segundos
-          var h = Math.floor(diff / 3600000);
-          var m = Math.floor((diff / 60000) % 60);
-          var s = Math.floor((diff / 1000) % 60);
-          var segs = [h, m, s];
-          var units = ['h', 'm', 's'];
-
-          this.countdownEl.innerHTML = segs
-            .map(function (v, i) {
-              return '<span class="topbar-shipping__seg">' + pad(v) + units[i] + '</span>';
-            })
-            .join('');
+          segs = [
+            Math.floor(diff / 3600000),
+            Math.floor((diff / 60000) % 60),
+            Math.floor((diff / 1000) % 60)
+          ];
+          caps = ['Horas', 'Minutos', 'Segundos'];
         }
+
+        this.countdownEl.innerHTML = segs
+          .map(function (v, i) {
+            return (
+              '<span class="topbar-shipping__unit">' +
+              '<span class="topbar-shipping__num">' + pad(v) + '</span>' +
+              '<span class="topbar-shipping__cap">' + caps[i] + '</span>' +
+              '</span>'
+            );
+          })
+          .join('<span class="topbar-shipping__sep">:</span>');
       }
     }
     customElements.define('topbar-shipping-timer', TopbarShippingTimer);
@@ -876,7 +909,7 @@
       "unit": "px"
     }
   ],
-  "max_blocks": 3,
+  "max_blocks": 4,
   "blocks": [
     {
       "type": "store_information",
@@ -1097,59 +1130,88 @@
       ]
     },
     {
-      "type": "shipping_countdown",
-      "name": "Frete grátis + contagem",
+      "type": "countdown_text",
+      "name": "Texto do timer",
       "limit": 1,
       "settings": [
         {
-          "type": "inline_richtext",
-          "id": "message",
-          "label": "Mensagem",
-          "default": "FRETE GRÁTIS ACIMA DE R$299 - PARA TODO BRASIL"
+          "type": "paragraph",
+          "content": "Fica ao lado do bloco 'Timer' e some junto com ele. Cores no bloco 'Timer'. Tamanhos são do desktop; no mobile ficam 20% maiores e se ajustam à tela."
+        },
+        {
+          "type": "text",
+          "id": "highlight",
+          "label": "Destaque",
+          "default": "22"
+        },
+        {
+          "type": "text",
+          "id": "line_1",
+          "label": "Linha 1",
+          "default": "% OFF"
+        },
+        {
+          "type": "text",
+          "id": "line_2",
+          "label": "Linha 2",
+          "default": "PRODUTOS"
         },
         {
           "type": "range",
-          "id": "message_font_size",
-          "label": "Tamanho do texto da mensagem",
+          "id": "highlight_size",
+          "label": "Tamanho do destaque",
+          "min": 20,
+          "max": 80,
+          "step": 1,
+          "unit": "px",
+          "default": 40
+        },
+        {
+          "type": "range",
+          "id": "lines_size",
+          "label": "Tamanho das linhas",
           "min": 10,
           "max": 32,
           "step": 1,
           "unit": "px",
-          "default": 14
+          "default": 15
         },
         {
-          "type": "header",
-          "content": "Contagem regressiva"
-        },
+          "type": "checkbox",
+          "id": "hidden_on_mobile",
+          "label": "t:sections.top-bar.blocks.hidden_on_mobile.label",
+          "default": false
+        }
+      ]
+    },
+    {
+      "type": "shipping_countdown",
+      "name": "Timer",
+      "limit": 1,
+      "settings": [
         {
           "type": "paragraph",
           "content": "O tempo é calculado no fuso da loja e roda ao vivo no navegador. Formato de data: AAAA-MM-DD. Formato de hora: HH:MM."
         },
         {
-          "type": "text",
-          "id": "label_before",
-          "label": "Texto antes do contador",
-          "default": "Termina em:"
+          "type": "range",
+          "id": "timer_font_size",
+          "label": "Tamanho dos números",
+          "min": 14,
+          "max": 60,
+          "step": 1,
+          "unit": "px",
+          "default": 26
         },
         {
           "type": "range",
           "id": "label_font_size",
-          "label": "Tamanho do texto antes do contador",
-          "min": 10,
-          "max": 32,
+          "label": "Tamanho de HORAS / MINUTOS / SEGUNDOS",
+          "min": 6,
+          "max": 20,
           "step": 1,
           "unit": "px",
-          "default": 14
-        },
-        {
-          "type": "range",
-          "id": "timer_font_size",
-          "label": "Tamanho do timer",
-          "min": 12,
-          "max": 48,
-          "step": 1,
-          "unit": "px",
-          "default": 18
+          "default": 8
         },
         {
           "type": "text",
@@ -1208,13 +1270,13 @@
         {
           "type": "color",
           "id": "text_color",
-          "label": "Cor do texto (mensagem)",
+          "label": "Cor do texto",
           "default": "#ffffff"
         },
         {
           "type": "color",
           "id": "timer_color",
-          "label": "Cor do timer",
+          "label": "Cor dos números do timer",
           "default": "#ffed00"
         },
         {
