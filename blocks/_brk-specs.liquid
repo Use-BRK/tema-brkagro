@@ -17,6 +17,28 @@
   assign sentinels = 'nao,não,off,false,none,no,0,-,—'
 
   assign has_rows = false
+
+  comment
+    Prazo de produção: tag prazo_imediato (ou custom.disponibilidade = 0) = pronta entrega;
+    senão usa custom.disponibilidade (dias úteis), com fallback no prazo padrão do bloco.
+  endcomment
+  assign prazo_text = ''
+  if st.show_prazo
+    assign prazo_dias = st.prazo_padrao | default: '10' | plus: 0
+    assign mf_disp = product.metafields.custom.disponibilidade
+    if mf_disp != blank
+      assign prazo_dias = mf_disp.value | plus: 0
+    endif
+    if product.tags contains 'prazo_imediato' or prazo_dias <= 0
+      assign prazo_text = st.prazo_imediato_label | default: 'Pronta entrega'
+    elsif prazo_dias == 1
+      assign prazo_text = '1 dia útil'
+    else
+      assign prazo_text = prazo_dias | append: ' dias úteis'
+    endif
+    assign has_rows = true
+  endif
+
   for i in (1..8)
     assign klabel = 's' | append: i | append: '_label'
     assign kval = 's' | append: i | append: '_value'
@@ -56,6 +78,20 @@
       <div class="brk-bbspecs__card brk-bbspecs__rte rte">{{ mf_full }}</div>
     {%- else -%}
       <dl class="brk-bbspecs__card">
+        {%- if prazo_text != blank -%}
+          <div class="brk-bbspecs__row brk-bbspecs__row--prazo">
+            <dt class="brk-bbspecs__label">
+              <span class="brk-bbspecs__icon">
+                <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+                  <path d="M15.3125 5.6875L14.4375 6.5625M2.625 18.375C2.04166 17.7917 5.47896 12.9182 12.9369 3.75463C13.2027 3.42818 13.5329 3.16005 13.907 2.96697C14.2811 2.77389 14.691 2.66 15.1111 2.63243C15.5311 2.60486 15.9524 2.66419 16.3485 2.80672C16.7446 2.94924 17.1071 3.17191 17.4133 3.46081C17.7195 3.7497 17.9629 4.09863 18.1282 4.48579C18.2935 4.87296 18.3772 5.29004 18.3741 5.71101C18.371 6.13198 18.2811 6.54778 18.1101 6.93245C17.9391 7.31713 17.6906 7.66242 17.3801 7.94675C8.12729 15.4823 3.20891 18.9583 2.625 18.375Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M14.875 6.125C12.8336 3.79137 11.8125 2.625 10.5 2.625C9.1875 2.625 8.75 3.5 8.75 4.375C8.75 7.875 15.8909 11.7302 14 14C13.076 15.1095 11.0574 15.1244 8.96875 14.707M5.02162 13.4969C3.80275 13.0025 1.75 11.8125 1.75 10.5M17.0625 8.3125L18.375 9.625" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+              <span>{{ st.prazo_label | default: 'Prazo de Produção' }}</span>
+            </dt>
+            <dd class="brk-bbspecs__value">{{ prazo_text }}</dd>
+          </div>
+        {%- endif -%}
         {%- for i in (1..8) -%}
           {%- liquid
             assign klabel = 's' | append: i | append: '_label'
@@ -157,6 +193,13 @@
     { "type": "paragraph", "content": "Mostra o Valor padrão; o metafield <namespace>.<key> do produto sobrescreve, e sentinela (nao/off/-) oculta a linha. Deixe o Valor padrão vazio para a linha só aparecer via metafield. <namespace>.especificacoes (rich text) substitui a tabela inteira." },
     { "type": "checkbox", "id": "show_sku", "label": "Mostrar código (SKU)", "default": true },
     { "type": "text", "id": "sku_label", "label": "Rótulo do SKU", "default": "Código" },
+
+    { "type": "header", "content": "Prazo de produção (topo)" },
+    { "type": "paragraph", "content": "Lê custom.disponibilidade (dias úteis). Tag prazo_imediato ou valor 0 = pronta entrega. Sem metafield, usa o prazo padrão." },
+    { "type": "checkbox", "id": "show_prazo", "label": "Mostrar prazo de produção", "default": true },
+    { "type": "text", "id": "prazo_label", "label": "Rótulo", "default": "Prazo de Produção" },
+    { "type": "text", "id": "prazo_imediato_label", "label": "Texto para envio imediato", "default": "Pronta entrega" },
+    { "type": "text", "id": "prazo_padrao", "label": "Prazo padrão (dias úteis)", "default": "10" },
 
     { "type": "header", "content": "Linha 1" },
     { "type": "select", "id": "s1_icon", "label": "Ícone", "default": "cotton", "options": [
