@@ -20,7 +20,7 @@
             "highlight": "22",
             "line_1": "% OFF",
             "line_2": "produtos",
-            "highlight_size": 40,
+            "highlight_size": 45,
             "lines_size": 18,
             "hidden_on_mobile": false
           }
@@ -29,8 +29,8 @@
           "type": "shipping_countdown",
           "name": "Timer",
           "settings": {
-            "timer_font_size": 26,
-            "label_font_size": 8,
+            "timer_font_size": 20,
+            "label_font_size": 10,
             "start_date": "",
             "start_time": "",
             "end_date": "2026-10-04",
