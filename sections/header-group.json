@@ -17,6 +17,7 @@
         "shipping_countdown_F86tnm": {
           "type": "shipping_countdown",
           "name": "Timer",
+          "disabled": true,
           "settings": {
             "message": "",
             "message_font_size": 20,
