@@ -225,6 +225,25 @@ review-product.inline-loading:after {
     height: 1.4rem;
   }
 }
+/* "Envio imediato" discreto abaixo do preco/parcelamento do card */
+.product-item__shipping-note {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 0.4rem;
+  color: #7a7a7a;
+  font-size: 1.2rem;
+  font-weight: 400;
+  line-height: 1.2;
+}
+.product-item__information.text-center .product-item__shipping-note {
+  justify-content: center;
+}
+.product-item__shipping-note-icon {
+  width: 1.4rem;
+  height: 1.4rem;
+  flex-shrink: 0;
+}
 /* Tarja de escassez "Restam XX unidades" — flutua sobre a imagem do card.
    Dimensoes proporcionais a largura do card (cqw/em), medidas no layout aprovado
    (card de 342px): barra 69,3% da largura e 31px de altura, 27px de folga ate a
