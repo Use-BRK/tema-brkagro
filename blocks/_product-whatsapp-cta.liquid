@@ -139,7 +139,7 @@
     display: flex;
     align-items: center;
     gap: 1.2rem;
-    margin-bottom: 1.2rem;
+    margin-bottom: 2rem; /* mesmo respiro do mb-20 do botão de sacola acima do divisor */
     font-size: 1.3rem;
     color: #8a8a8a;
   }
@@ -155,6 +155,8 @@
     align-items: center;
     justify-content: center;
     width: 100%;
+    min-height: 5.6rem; /* mesma altura do botão Adicionar à Sacola */
+    box-sizing: border-box;
     padding: var(--btn-padding-y) var(--btn-padding-x);
     border: 1px solid var(--wa-color, #128c4a);
     border-radius: var(--btn-radius);
