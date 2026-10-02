@@ -229,6 +229,18 @@
       #topbar .topbar-shipping__cap { font-size: var(--cd-cap, 8px); }
       #topbar .topbar-shipping__sep { font-size: calc(var(--cd-num, 26px) * 0.85); }
     }
+    /* Link do timer: cobre a barra inteira enquanto o timer está visível */
+    #topbar {
+      position: relative;
+    }
+    #topbar .topbar-timer-link {
+      position: absolute;
+      inset: 0;
+      z-index: 4;
+    }
+    #topbar .topbar-timer-link[hidden] {
+      display: none !important;
+    }
     /* Alternância timer -> slider de texto */
     #topbar .is-switch-hidden {
       display: none !important;
@@ -608,6 +620,16 @@
         {%- endfor -%}
       </div>
     </div>
+    {%- comment -%} Link do bloco Timer: some/aparece junto com o timer (data-topbar-timer-part) {%- endcomment -%}
+    {%- if tb_timer and tb_timer.settings.link != blank -%}
+      <a
+        class="topbar-timer-link"
+        href="{{ tb_timer.settings.link }}"
+        aria-label="{{ tb_timer.settings.link_label | default: 'Ver promoção' | escape }}"
+        data-topbar-timer-part
+        {% unless tb_timer_visible and tb_has_windows %}hidden{% endunless %}
+      ></a>
+    {%- endif -%}
   </div>
 {% endif %}
 {% javascript %}
@@ -1250,6 +1272,23 @@
           "label": "Trocar pelo bloco 'Slider de texto' ao terminar",
           "info": "Ao acabar a contagem, este bloco é ocultado e o bloco 'Slider de texto' aparece no lugar. Enquanto a contagem estiver rodando, o slider fica oculto. Requer o bloco 'Slider de texto' adicionado na barra superior. Ignora a 'Mensagem ao terminar'.",
           "default": false
+        },
+        {
+          "type": "header",
+          "content": "Link"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link da barra",
+          "info": "Opcional. Enquanto o timer estiver visível, a barra inteira (timer + Texto do timer) leva para este link. Aceita coleção, produto, página ou URL externa."
+        },
+        {
+          "type": "text",
+          "id": "link_label",
+          "label": "Descrição do link (acessibilidade)",
+          "info": "Lida por leitores de tela. Ex.: Ver produtos em promoção",
+          "default": "Ver promoção"
         },
         {
           "type": "header",

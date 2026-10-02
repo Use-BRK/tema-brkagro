@@ -65,7 +65,8 @@
 {% comment %} Case card product has data, handle data {% endcomment %}
 {% if card_product and card_product != empty %}
   <div
-    class="product-item product__item-js {{ class }} style-as-{{ product_style }}"
+    class="product-item product__item-js {{ class }} style-as-{{ product_style }}{% if theme_st.show_card_border %} product-item--bordered{% endif %}"
+    style="--card-img-radius: {{ theme_st.product_image_radius | default: 0 }}px;{% if theme_st.show_card_border %} --card-border-color: {{ theme_st.card_border_color }}; --card-border-width: {{ theme_st.card_border_width }}px; --card-radius: {{ theme_st.card_border_radius }}px; --card-padding: {{ theme_st.card_border_padding }}px;{% endif %}"
     {% if type == 'sticky' %}
       data-section="{{ section_id }}"
       data-color-trigger="{{ settings.color_swatch_trigger }}"

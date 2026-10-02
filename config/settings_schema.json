@@ -1141,6 +1141,54 @@
       },
       {
         "type": "header",
+        "content": "Borda do card"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_card_border",
+        "label": "Mostrar borda ao redor do card",
+        "info": "Vale para cards em grade (coleções, carrosséis). No mobile, a grade de coleção com imagem 'sangrando' até a borda da tela não mostra a borda.",
+        "default": true
+      },
+      {
+        "type": "color",
+        "id": "card_border_color",
+        "label": "Cor da borda",
+        "default": "#ececec"
+      },
+      {
+        "type": "range",
+        "id": "card_border_width",
+        "label": "Espessura da borda",
+        "min": 1,
+        "max": 3,
+        "step": 1,
+        "unit": "px",
+        "default": 1
+      },
+      {
+        "type": "range",
+        "id": "card_border_radius",
+        "label": "Arredondamento do card",
+        "min": 0,
+        "max": 30,
+        "step": 1,
+        "unit": "px",
+        "default": 8
+      },
+      {
+        "type": "range",
+        "id": "card_border_padding",
+        "label": "Espaçamento interno",
+        "info": "Distância entre a borda e o conteúdo do card.",
+        "min": 0,
+        "max": 20,
+        "step": 1,
+        "unit": "px",
+        "default": 8
+      },
+      {
+        "type": "header",
         "content": "Envio Imediato"
       },
       {
@@ -1169,6 +1217,16 @@
       {
         "type": "header",
         "content": "t:settings_schema.product_card.settings.product_image.label"
+      },
+      {
+        "type": "range",
+        "id": "product_image_radius",
+        "label": "Arredondamento da imagem",
+        "min": 0,
+        "max": 30,
+        "step": 1,
+        "unit": "px",
+        "default": 0
       },
       {
         "type": "checkbox",

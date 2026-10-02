@@ -934,3 +934,17 @@ variant-radios-bundle .option-swatch-js.active .product__item-option {
   --btn-bg: var(--btn-primary-hover-bg-color);
   --btn-bg-gradient: var(--btn-primary-hover-bg-color-graident);
 }
+/* Arredondamento da imagem do card: Configurações do tema > Product cards */
+:where(.product-item) .product-item__media--ratio {
+  border-radius: var(--card-img-radius, 0);
+}
+/* Borda do card (somente em grade): Configurações do tema > Product cards > Borda do card */
+.product-item--bordered {
+  height: 100%;
+}
+.product-item--bordered > .product-item__wrapper.product-grid {
+  height: 100%;
+  padding: var(--card-padding);
+  border: var(--card-border-width) solid var(--card-border-color);
+  border-radius: var(--card-radius);
+}
