@@ -14,21 +14,33 @@
     "top_bar_CbXNYj": {
       "type": "top-bar",
       "blocks": {
+        "countdown_text_XF7cFC": {
+          "type": "countdown_text",
+          "settings": {
+            "highlight": "22",
+            "line_1": "% OFF",
+            "line_2": "produtos",
+            "highlight_size": 40,
+            "lines_size": 15,
+            "hidden_on_mobile": false
+          }
+        },
         "shipping_countdown_F86tnm": {
           "type": "shipping_countdown",
           "name": "Timer",
-          "disabled": true,
           "settings": {
+            "timer_font_size": 26,
+            "label_font_size": 8,
             "start_date": "",
             "start_time": "",
-            "end_date": "",
-            "end_time": "",
+            "end_date": "2026-10-03",
+            "end_time": "23:59",
             "expired_message": "",
             "switch_to_slider": true,
             "custom_colors": true,
-            "bg_color": "#007C00",
-            "text_color": "#FFFFFF",
-            "timer_color": "#f4ce0f",
+            "bg_color": "#007c00",
+            "text_color": "#ffffff",
+            "timer_color": "#FFFFFF",
             "hidden_on_mobile": false
           }
         },
@@ -59,6 +71,7 @@
         }
       },
       "block_order": [
+        "countdown_text_XF7cFC",
         "shipping_countdown_F86tnm",
         "text_slider_LFaC38"
       ],
