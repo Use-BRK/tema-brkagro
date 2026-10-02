@@ -253,7 +253,7 @@
             "discount_content": "",
             "return_content_icon": "none",
             "return_content": "",
-            "show_production_deadline": true,
+            "show_production_deadline": false,
             "producao": "10",
             "algodao": "1",
             "imediato": "0"
