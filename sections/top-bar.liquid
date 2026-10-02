@@ -267,6 +267,12 @@
     endif
 
     # Reagendamento opcional: "AAAA-MM-DD HH:MM" em um campo só.
+    # Oculto do editor (campos fora do schema). Para reativar, cole no schema do
+    # bloco shipping_countdown, logo após "switch_to_slider":
+    #   { "type": "text", "id": "resume_start", "label": "Reagendar — volta em (AAAA-MM-DD HH:MM)",
+    #     "info": "Opcional. Só preencha quando a contagem precisar ser interrompida e voltar depois. Entre o término acima e esse horário o timer fica oculto e volta sozinho. Ex.: 2026-09-26 06:00" },
+    #   { "type": "text", "id": "resume_end", "label": "Reagendar — novo término (AAAA-MM-DD HH:MM)",
+    #     "info": "Deixe em branco para desligar o reagendamento." },
     if tb_timer and tb_timer.settings.resume_end != blank
       assign r_p = tb_timer.settings.resume_start | strip | replace: 'T', ' ' | split: ' '
       assign r_s = ''
@@ -1181,18 +1187,6 @@
           "label": "Trocar pelo bloco 'Slider de texto' ao terminar",
           "info": "Ao acabar a contagem, este bloco é ocultado e o bloco 'Slider de texto' aparece no lugar. Enquanto a contagem estiver rodando, o slider fica oculto. Requer o bloco 'Slider de texto' adicionado na barra superior. Ignora a 'Mensagem ao terminar'.",
           "default": false
-        },
-        {
-          "type": "text",
-          "id": "resume_start",
-          "label": "Reagendar — volta em (AAAA-MM-DD HH:MM)",
-          "info": "Opcional. Só preencha quando a contagem precisar ser interrompida e voltar depois. Entre o término acima e esse horário o timer fica oculto e volta sozinho. Ex.: 2026-09-26 06:00"
-        },
-        {
-          "type": "text",
-          "id": "resume_end",
-          "label": "Reagendar — novo término (AAAA-MM-DD HH:MM)",
-          "info": "Deixe em branco para desligar o reagendamento."
         },
         {
           "type": "header",
