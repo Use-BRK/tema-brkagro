@@ -84,6 +84,8 @@
         "color_scheme": "scheme-a07f02f4-f1f2-4ea3-9eeb-577115ec9f47",
         "show_mobile": true,
         "show_separator_line": false,
+        "link": "shopify://collections/envio-imediato-22",
+        "link_label": "Ver promoção",
         "uppercase": true,
         "font_size": 12,
         "font_weight": "body_weight",
