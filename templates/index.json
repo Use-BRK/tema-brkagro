@@ -15,11 +15,73 @@
         "slider_item_MMEAVn": {
           "type": "slider_item",
           "name": "1 Oferta",
+          "disabled": true,
           "settings": {
-            "image": "shopify://shop_images/BANNER_PRORROGACAO.jpg",
+            "image": "shopify://shop_images/Layer_28.jpg",
             "image_mobile": "shopify://shop_images/MOBILE_PRORROGACAO.jpg",
             "overlay_opacity": 0,
-            "link_banner": "shopify://collections/1ª-oferta-agro",
+            "link_banner": "shopify://collections/envios-imediatos",
+            "slider_effect": "fade-in-right",
+            "subheading": "",
+            "heading": "",
+            "description": "",
+            "first_button_label": "",
+            "first_button_link": "",
+            "first_button_style": false,
+            "second_button_label": "",
+            "second_button_link": "",
+            "second_button_style": false,
+            "content_alignment": "center",
+            "content_position": "top-center",
+            "content_width": "full_width",
+            "content_max_width": 100,
+            "content_padding_block": 40,
+            "content_padding_inline": 0,
+            "show_content_background": false,
+            "content_background": "#ffffff",
+            "content_box_opacity": 100,
+            "content_alignment_mobile": "center"
+          }
+        },
+        "slider_item_D43AJr": {
+          "type": "slider_item",
+          "name": "Rotativo",
+          "settings": {
+            "image": "shopify://shop_images/Desk.png",
+            "image_mobile": "shopify://shop_images/Mobile_1.png",
+            "overlay_opacity": 0,
+            "link_banner": "shopify://collections/envio-imediato-22",
+            "slider_effect": "fade-in-right",
+            "subheading": "",
+            "heading": "",
+            "description": "",
+            "first_button_label": "",
+            "first_button_link": "",
+            "first_button_style": false,
+            "second_button_label": "",
+            "second_button_link": "",
+            "second_button_style": false,
+            "content_alignment": "center",
+            "content_position": "top-center",
+            "content_width": "full_width",
+            "content_max_width": 100,
+            "content_padding_block": 40,
+            "content_padding_inline": 0,
+            "show_content_background": false,
+            "content_background": "#ffffff",
+            "content_box_opacity": 100,
+            "content_alignment_mobile": "center"
+          }
+        },
+        "slider_item_rYBq93": {
+          "type": "slider_item",
+          "name": "Nossa Senhora",
+          "disabled": true,
+          "settings": {
+            "image": "shopify://shop_images/banner_desktop.png",
+            "image_mobile": "shopify://shop_images/MOBILE_18a38775-0712-4515-be31-c0aef534d26d.png",
+            "overlay_opacity": 0,
+            "link_banner": "shopify://collections/nossa-senhora-aparecida",
             "slider_effect": "fade-in-right",
             "subheading": "",
             "heading": "",
@@ -73,37 +135,6 @@
             "content_alignment_mobile": "center"
           }
         },
-        "slider_item_rYBq93": {
-          "type": "slider_item",
-          "name": "Nossa Senhora",
-          "disabled": true,
-          "settings": {
-            "image": "shopify://shop_images/BANNER_NOSSA_SENHORA_10065bd1-c264-4bbc-9525-6da4329133ef.jpg",
-            "image_mobile": "shopify://shop_images/MOBILE_NOSSA_SENHORA_01b32db8-ff98-4f61-a4b2-19c4d1946333.jpg",
-            "overlay_opacity": 0,
-            "link_banner": "shopify://collections/nossa-senhora-aparecida",
-            "slider_effect": "fade-in-right",
-            "subheading": "",
-            "heading": "",
-            "description": "",
-            "first_button_label": "",
-            "first_button_link": "",
-            "first_button_style": false,
-            "second_button_label": "",
-            "second_button_link": "",
-            "second_button_style": false,
-            "content_alignment": "center",
-            "content_position": "top-center",
-            "content_width": "full_width",
-            "content_max_width": 100,
-            "content_padding_block": 40,
-            "content_padding_inline": 0,
-            "show_content_background": false,
-            "content_background": "#ffffff",
-            "content_box_opacity": 100,
-            "content_alignment_mobile": "center"
-          }
-        },
         "slider_item_K3DbMk": {
           "type": "slider_item",
           "name": "Apache",
@@ -134,45 +165,14 @@
             "content_box_opacity": 100,
             "content_alignment_mobile": "center"
           }
-        },
-        "slider_item_D43AJr": {
-          "type": "slider_item",
-          "name": "Camisas",
-          "disabled": true,
-          "settings": {
-            "image": "shopify://shop_images/Layer_28.jpg",
-            "image_mobile": "shopify://shop_images/MOBILE_CAMISA_COUNTRY_3a25326a-6f1d-4965-9577-b1c0ff74d173.jpg",
-            "overlay_opacity": 0,
-            "link_banner": "shopify://collections/camisas-de-botao-country",
-            "slider_effect": "fade-in-right",
-            "subheading": "",
-            "heading": "",
-            "description": "",
-            "first_button_label": "",
-            "first_button_link": "",
-            "first_button_style": false,
-            "second_button_label": "",
-            "second_button_link": "",
-            "second_button_style": false,
-            "content_alignment": "center",
-            "content_position": "top-center",
-            "content_width": "full_width",
-            "content_max_width": 100,
-            "content_padding_block": 40,
-            "content_padding_inline": 0,
-            "show_content_background": false,
-            "content_background": "#ffffff",
-            "content_box_opacity": 100,
-            "content_alignment_mobile": "center"
-          }
         }
       },
       "block_order": [
         "slider_item_MMEAVn",
-        "slider_item_nrmHUV",
+        "slider_item_D43AJr",
         "slider_item_rYBq93",
-        "slider_item_K3DbMk",
-        "slider_item_D43AJr"
+        "slider_item_nrmHUV",
+        "slider_item_K3DbMk"
       ],
       "custom_css": [],
       "name": "Fullbanners",
@@ -214,17 +214,17 @@
         "collection_3frNWE": {
           "type": "collection",
           "settings": {
-            "collection": "",
-            "link": "https://www.brkagro.com.br/collections/1%C2%AA-oferta-agro?filter.p.m.custom.genero=Masculino",
-            "collection_title": "Masculinas"
+            "collection": "calcas-jeans",
+            "link": "",
+            "collection_title": "Calças Jeans"
           }
         },
         "collection_P7y9m3": {
           "type": "collection",
           "settings": {
-            "collection": "",
-            "link": "https://www.brkagro.com.br/collections/1%C2%AA-oferta-agro?filter.p.m.custom.genero=Feminino",
-            "collection_title": "Femininas"
+            "collection": "camisas-de-botao-country",
+            "link": "",
+            "collection_title": "Camisas de Botão"
           }
         }
       },
@@ -236,15 +236,15 @@
         ".collection-tab__ta {flex-wrap: nowrap; gap: clamp(7px, 2.2vw, 15px);}",
         ".collection-tab__ta .collection-tab__tab-item {flex: 0 1 auto; min-width: 0; padding-left: clamp(10px, 3.2vw, 20px); padding-right: clamp(10px, 3.2vw, 20px); font-size: clamp(13px, 4vw, 15px);}"
       ],
-      "name": "1ª OFERTA AGRO",
+      "name": "Destaques da semana",
       "settings": {
         "section_width": "stretch_width",
         "color_scheme": "scheme-accf3b11-ba40-4a3e-bafb-243ece6683ec",
-        "heading": "1ª OFERTA AGRO (  Envio Imediato e R$40 OFF )",
+        "heading": "Novidades",
         "description": "",
         "show_view_all_button": true,
         "header_size": "medium",
-        "heading_font_size": 26,
+        "heading_font_size": 35,
         "header_alignment": "right",
         "tab_header_style": "horizontal",
         "horizontal_tab_style": "fill",
@@ -351,34 +351,14 @@
     "banner_carousel_iVEDMG": {
       "type": "banner-carousel",
       "blocks": {
-        "card_Az3eRR": {
+        "card_7tezkD": {
           "type": "card",
-          "name": "Calças Jeans",
+          "name": "Bonés",
           "settings": {
-            "image": "shopify://shop_images/Card_BRK_AGRO_Calca.webp",
-            "collection": "calcas-jeans",
+            "image": "shopify://shop_images/Card_BRK_AGRO_bones_49559ed0-580c-45d5-9c5b-e5031720a4dd.webp",
+            "collection": "bones",
             "link": "",
-            "label": "Calça Jeans"
-          }
-        },
-        "card_w8XfBY": {
-          "type": "card",
-          "name": "Camisas de Botão",
-          "settings": {
-            "image": "shopify://shop_images/Card_BRK_AGRO_Botao.webp",
-            "collection": "camisas-de-botao-country",
-            "link": "shopify://collections/camisas-de-botao-country",
-            "label": "Camisas de Botão"
-          }
-        },
-        "card_jHmrEj": {
-          "type": "card",
-          "name": "Óculos de Sol",
-          "settings": {
-            "image": "shopify://shop_images/Card_BRK_AGRO_oculos_ed50e41b-5e46-4708-9882-b7650bec48e0.webp",
-            "collection": "oculos-de-sol",
-            "link": "",
-            "label": "Óculos de Sol"
+            "label": "Bonés"
           }
         },
         "card_AyYQxG": {
@@ -401,24 +381,44 @@
             "label": "Botinas"
           }
         },
-        "card_7tezkD": {
+        "card_w8XfBY": {
           "type": "card",
-          "name": "Bonés",
+          "name": "Camisas de Botão",
           "settings": {
-            "image": "shopify://shop_images/Card_BRK_AGRO_bones_49559ed0-580c-45d5-9c5b-e5031720a4dd.webp",
-            "collection": "bones",
+            "image": "shopify://shop_images/Card_BRK_AGRO_Botao.webp",
+            "collection": "camisas-de-botao-country",
+            "link": "shopify://collections/camisas-de-botao-country",
+            "label": "Camisas de Botão"
+          }
+        },
+        "card_jHmrEj": {
+          "type": "card",
+          "name": "Óculos de Sol",
+          "settings": {
+            "image": "shopify://shop_images/Card_BRK_AGRO_oculos_ed50e41b-5e46-4708-9882-b7650bec48e0.webp",
+            "collection": "oculos-de-sol",
             "link": "",
-            "label": "Bonés"
+            "label": "Óculos de Sol"
+          }
+        },
+        "card_Az3eRR": {
+          "type": "card",
+          "name": "Calças Jeans",
+          "settings": {
+            "image": "shopify://shop_images/Card_BRK_AGRO_Calca.webp",
+            "collection": "calcas-jeans",
+            "link": "",
+            "label": "Calça Jeans"
           }
         }
       },
       "block_order": [
-        "card_Az3eRR",
-        "card_w8XfBY",
-        "card_jHmrEj",
+        "card_7tezkD",
         "card_AyYQxG",
         "card_j4crXK",
-        "card_7tezkD"
+        "card_w8XfBY",
+        "card_jHmrEj",
+        "card_Az3eRR"
       ],
       "name": "Banner Carousel",
       "settings": {
@@ -495,36 +495,36 @@
         "stock_strip_threshold": 9
       }
     },
-    "collection_tab_9R4n9j": {
+    "collection_tab_gcdBTy": {
       "type": "collection-tab",
       "blocks": {
-        "collection_tpCKAk": {
+        "collection_rY9HQK": {
           "type": "collection",
           "settings": {
-            "collection": "botinas-masculinas",
+            "collection": "oculos-de-sol",
             "link": "",
-            "collection_title": "Masculinas"
+            "collection_title": "Masculino"
           }
         },
-        "collection_yyNLMj": {
+        "collection_N3HLDp": {
           "type": "collection",
           "settings": {
-            "collection": "botinas-femininas",
+            "collection": "oculos-de-sol-feminino",
             "link": "",
-            "collection_title": "Femininas"
+            "collection_title": "Feminino"
           }
         }
       },
       "block_order": [
-        "collection_tpCKAk",
-        "collection_yyNLMj"
+        "collection_rY9HQK",
+        "collection_N3HLDp"
       ],
       "custom_css": [],
-      "name": "Novas Botinas",
+      "name": "Óculos de Sol",
       "settings": {
         "section_width": "stretch_width",
         "color_scheme": "scheme-accf3b11-ba40-4a3e-bafb-243ece6683ec",
-        "heading": "Botas e Botinas",
+        "heading": "Óculos de Sol",
         "description": "",
         "show_view_all_button": true,
         "header_size": "small",
@@ -557,27 +557,36 @@
         "stock_strip_threshold": 9
       }
     },
-    "collection_tab_gcdBTy": {
+    "collection_tab_9R4n9j": {
       "type": "collection-tab",
       "blocks": {
-        "collection_N3HLDp": {
+        "collection_tpCKAk": {
           "type": "collection",
           "settings": {
-            "collection": "bones",
+            "collection": "botinas-masculinas",
             "link": "",
-            "collection_title": "Nova Coleção"
+            "collection_title": "Masculinas"
+          }
+        },
+        "collection_yyNLMj": {
+          "type": "collection",
+          "settings": {
+            "collection": "botinas-femininas",
+            "link": "",
+            "collection_title": "Femininas"
           }
         }
       },
       "block_order": [
-        "collection_N3HLDp"
+        "collection_tpCKAk",
+        "collection_yyNLMj"
       ],
       "custom_css": [],
-      "name": "Bonés",
+      "name": "Novas Botinas",
       "settings": {
         "section_width": "stretch_width",
         "color_scheme": "scheme-accf3b11-ba40-4a3e-bafb-243ece6683ec",
-        "heading": "Bonés",
+        "heading": "Botas e Botinas",
         "description": "",
         "show_view_all_button": true,
         "header_size": "small",
@@ -1181,8 +1190,8 @@
     "collection_tab_yDRJNb",
     "banner_carousel_iVEDMG",
     "collection_tab_tmATLQ",
-    "collection_tab_9R4n9j",
     "collection_tab_gcdBTy",
+    "collection_tab_9R4n9j",
     "collection_tab_ccYc98",
     "divider_kpy84P",
     "collection_tab_9W4tF6",
