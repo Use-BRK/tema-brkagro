@@ -43,6 +43,36 @@
             "content_alignment_mobile": "center"
           }
         },
+        "slider_item_D43AJr": {
+          "type": "slider_item",
+          "name": "Rotativo",
+          "settings": {
+            "image": "shopify://shop_images/Desk.png",
+            "image_mobile": "shopify://shop_images/Mobile_1.png",
+            "overlay_opacity": 0,
+            "link_banner": "shopify://collections/envio-imediato-22",
+            "slider_effect": "fade-in-right",
+            "subheading": "",
+            "heading": "",
+            "description": "",
+            "first_button_label": "",
+            "first_button_link": "",
+            "first_button_style": false,
+            "second_button_label": "",
+            "second_button_link": "",
+            "second_button_style": false,
+            "content_alignment": "center",
+            "content_position": "top-center",
+            "content_width": "full_width",
+            "content_max_width": 100,
+            "content_padding_block": 40,
+            "content_padding_inline": 0,
+            "show_content_background": false,
+            "content_background": "#ffffff",
+            "content_box_opacity": 100,
+            "content_alignment_mobile": "center"
+          }
+        },
         "slider_item_rYBq93": {
           "type": "slider_item",
           "name": "Nossa Senhora",
@@ -106,6 +136,7 @@
         "slider_item_K3DbMk": {
           "type": "slider_item",
           "name": "Apache",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/BANNER_APACHE_e7356957-76c2-4151-98fe-f5eca270270f.jpg",
             "image_mobile": "shopify://shop_images/MOBILE_APACHE_5e01a1fe-183f-4317-b1ab-82937f16a9d3.jpg",
@@ -132,45 +163,14 @@
             "content_box_opacity": 100,
             "content_alignment_mobile": "center"
           }
-        },
-        "slider_item_D43AJr": {
-          "type": "slider_item",
-          "name": "Rotativo",
-          "disabled": true,
-          "settings": {
-            "image": "shopify://shop_images/Desk.png",
-            "image_mobile": "shopify://shop_images/Mobile_1.png",
-            "overlay_opacity": 0,
-            "link_banner": "shopify://collections/envio-imediato-22",
-            "slider_effect": "fade-in-right",
-            "subheading": "",
-            "heading": "",
-            "description": "",
-            "first_button_label": "",
-            "first_button_link": "",
-            "first_button_style": false,
-            "second_button_label": "",
-            "second_button_link": "",
-            "second_button_style": false,
-            "content_alignment": "center",
-            "content_position": "top-center",
-            "content_width": "full_width",
-            "content_max_width": 100,
-            "content_padding_block": 40,
-            "content_padding_inline": 0,
-            "show_content_background": false,
-            "content_background": "#ffffff",
-            "content_box_opacity": 100,
-            "content_alignment_mobile": "center"
-          }
         }
       },
       "block_order": [
         "slider_item_MMEAVn",
+        "slider_item_D43AJr",
         "slider_item_rYBq93",
         "slider_item_nrmHUV",
-        "slider_item_K3DbMk",
-        "slider_item_D43AJr"
+        "slider_item_K3DbMk"
       ],
       "custom_css": [],
       "name": "Fullbanners",
