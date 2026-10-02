@@ -42,7 +42,7 @@
     "secondary_notification": "",
     "badges_rounded_corner": 0,
     "show_sale": true,
-    "sale_background": "#00AE00",
+    "sale_background": "#039D00",
     "sale_badge_type": "percent",
     "sale_badge_addons": "none",
     "scrolling_text": "Hot Sale [percent_sale]",
