@@ -225,15 +225,21 @@ review-product.inline-loading:after {
     height: 1.4rem;
   }
 }
-/* Tamanhos do produto no card (pills), acima do "Pronta Entrega" */
+/* Tamanhos do produto no card (pills), acima do "Pronta Entrega".
+   Espacamento uniforme: o mesmo valor (--size-gap) entre as pills, acima do bloco
+   e ate o "Pronta Entrega". */
 .product-item__sizes {
+  --size-gap: 0.6rem;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 0.8rem;
-  margin: 1rem 0 0;
+  gap: var(--size-gap);
+  margin: var(--size-gap) 0 0;
   padding: 0;
   list-style: none;
+}
+.product-item__sizes + .product-item__shipping-note {
+  margin-top: 0.6rem;
 }
 .product-item__information.text-center .product-item__sizes {
   justify-content: center;
@@ -242,8 +248,10 @@ review-product.inline-loading:after {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 3.2rem;
-  padding: 0.4rem 1.6rem;
+  box-sizing: border-box;
+  height: 3.2rem;
+  margin: 0;
+  padding: 0 1.6rem;
   border: 1px solid #505050;
   border-radius: 999px;
   color: #505050;
@@ -252,21 +260,18 @@ review-product.inline-loading:after {
   white-space: nowrap;
 }
 .product-item__size--more {
-  min-width: 3.2rem;
-  padding: 0.4rem 0.8rem;
+  width: 3.2rem;
+  padding: 0;
 }
 @media (max-width: 575.98px) {
-  .product-item__sizes {
-    gap: 0.5rem;
-  }
   .product-item__size {
-    min-height: 2.8rem;
-    padding: 0.3rem 1rem;
+    height: 2.8rem;
+    padding: 0 1rem;
     font-size: 1.1rem;
   }
   .product-item__size--more {
-    min-width: 2.8rem;
-    padding: 0.3rem 0.6rem;
+    width: 2.8rem;
+    padding: 0;
   }
 }
 /* "Pronta Entrega" discreto abaixo do preco/parcelamento do card */

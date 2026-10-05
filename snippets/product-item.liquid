@@ -595,7 +595,7 @@
           Tamanhos do produto (opcao listada em Configuracoes do tema > Product cards > size_trigger).
           Ate 3 tamanhos: mostra todos. Acima de 3: mostra os 2 primeiros + "+N".
         {% endcomment %}
-        {%- unless card_product.has_only_default_variant -%}
+        {%- unless card_product.has_only_default_variant or show_sizes == false -%}
           {%- liquid
             assign size_option_names = settings.size_trigger | default: 'Size' | replace: ' ', '' | split: ','
             assign card_size_option = nil

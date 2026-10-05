@@ -552,6 +552,7 @@
                       padding: section_st.column_gap,
                       collection_product: true,
                       show_stock_strip: show_stock_strip,
+                      show_sizes: section.settings.show_card_sizes,
                       stock_strip_threshold: stock_strip_threshold,
                       class: 'motion-item'
                     %}
@@ -651,6 +652,7 @@
                         padding: section_st.column_gap,
                         collection_product: true,
                         show_stock_strip: show_stock_strip,
+                        show_sizes: section.settings.show_card_sizes,
                         stock_strip_threshold: stock_strip_threshold,
                         class: 'motion-item'
                       %}
@@ -1000,6 +1002,17 @@
       "id": "featured_product_collections",
       "label": "Coleções",
       "info": "Selecione as coleções onde o destaque deve aparecer (ex.: Chapéus Importados). Se vazio, aparecerá em todas as coleções."
+    },
+    {
+      "type": "header",
+      "content": "Tamanhos no card"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_card_sizes",
+      "label": "Mostrar tamanhos no card do produto",
+      "info": "Exibe os tamanhos (ex.: SM (P), MD (M)) abaixo do preço. Acima de 3 tamanhos, mostra os 2 primeiros e \"+N\".",
+      "default": true
     },
     {
       "type": "header",
