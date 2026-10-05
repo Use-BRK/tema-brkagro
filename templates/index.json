@@ -47,8 +47,8 @@
           "type": "slider_item",
           "name": "Chapéus",
           "settings": {
-            "image": "shopify://shop_images/Banner_Chapeus_Home_desktop_3123afdd-5a55-4842-8270-e66dae51fe8b.png",
-            "image_mobile": "shopify://shop_images/Banner_Chapeus_Home_mobile_a930d3f0-8a40-4741-9bea-ebf9193450c9.png",
+            "image": "shopify://shop_images/Banner_Chapeus_Home_desktop.png",
+            "image_mobile": "shopify://shop_images/Banner_Chapeus_Home_mobile.png",
             "overlay_opacity": 0,
             "link_banner": "shopify://collections/chapeus-importados",
             "slider_effect": "fade-in-right",
@@ -359,6 +359,16 @@
     "banner_carousel_iVEDMG": {
       "type": "banner-carousel",
       "blocks": {
+        "card_Az3eRR": {
+          "type": "card",
+          "name": "Calças Jeans",
+          "settings": {
+            "image": "shopify://shop_images/Card_BRK_AGRO_Calca.webp",
+            "collection": "calcas-jeans",
+            "link": "",
+            "label": "Calça Jeans"
+          }
+        },
         "card_7tezkD": {
           "type": "card",
           "name": "Bonés",
@@ -367,6 +377,16 @@
             "collection": "bones",
             "link": "",
             "label": "Bonés"
+          }
+        },
+        "card_jHmrEj": {
+          "type": "card",
+          "name": "Óculos de Sol",
+          "settings": {
+            "image": "shopify://shop_images/Card_BRK_AGRO_oculos_ed50e41b-5e46-4708-9882-b7650bec48e0.webp",
+            "collection": "oculos-de-sol",
+            "link": "",
+            "label": "Óculos de Sol"
           }
         },
         "card_AyYQxG": {
@@ -398,35 +418,15 @@
             "link": "shopify://collections/camisas-de-botao-country",
             "label": "Camisas de Botão"
           }
-        },
-        "card_jHmrEj": {
-          "type": "card",
-          "name": "Óculos de Sol",
-          "settings": {
-            "image": "shopify://shop_images/Card_BRK_AGRO_oculos_ed50e41b-5e46-4708-9882-b7650bec48e0.webp",
-            "collection": "oculos-de-sol",
-            "link": "",
-            "label": "Óculos de Sol"
-          }
-        },
-        "card_Az3eRR": {
-          "type": "card",
-          "name": "Calças Jeans",
-          "settings": {
-            "image": "shopify://shop_images/Card_BRK_AGRO_Calca.webp",
-            "collection": "calcas-jeans",
-            "link": "",
-            "label": "Calça Jeans"
-          }
         }
       },
       "block_order": [
+        "card_Az3eRR",
         "card_7tezkD",
+        "card_jHmrEj",
         "card_AyYQxG",
         "card_j4crXK",
-        "card_w8XfBY",
-        "card_jHmrEj",
-        "card_Az3eRR"
+        "card_w8XfBY"
       ],
       "name": "Banner Carousel",
       "settings": {
