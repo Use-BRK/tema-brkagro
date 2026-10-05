@@ -210,14 +210,6 @@
     "collection_tab_kENEYA": {
       "type": "collection-tab",
       "blocks": {
-        "collection_btxCia": {
-          "type": "collection",
-          "settings": {
-            "collection": "chapeus-importados",
-            "link": "",
-            "collection_title": "Chapéus Importados"
-          }
-        },
         "collection_3frNWE": {
           "type": "collection",
           "settings": {
@@ -226,8 +218,17 @@
             "collection_title": "Calças Jeans"
           }
         },
+        "collection_btxCia": {
+          "type": "collection",
+          "settings": {
+            "collection": "chapeus-importados",
+            "link": "",
+            "collection_title": "Chapéus Importados"
+          }
+        },
         "collection_P7y9m3": {
           "type": "collection",
+          "disabled": true,
           "settings": {
             "collection": "camisas-de-botao-country",
             "link": "",
@@ -236,8 +237,8 @@
         }
       },
       "block_order": [
-        "collection_btxCia",
         "collection_3frNWE",
+        "collection_btxCia",
         "collection_P7y9m3"
       ],
       "custom_css": [
