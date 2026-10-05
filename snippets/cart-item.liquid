@@ -18,6 +18,96 @@
       assign is_gift_progress_item = true
     endif
   endfor
+
+  comment
+    BRK Bundles — isenção com "Mostrar desconto do add-on no carrinho" (só visual).
+    O desconto real fica no produto vinculado; aqui ele é exibido no add-on e
+    escondido do vinculado. O título da alocação é o label do add-on.
+  endcomment
+  assign brk_final = item.final_price
+  assign brk_final_line = item.final_line_price
+  assign brk_hide_titles = '|'
+  assign brk_addon_title = ''
+  assign brk_addon_amount = 0
+  assign brk_live = shop.metafields.brk_bundles.live.value
+  if brk_live
+    assign brk_item_pid = item.product_id | append: ''
+    assign brk_own_bundle = item.properties['_brk_bundle']
+    assign brk_labels = '|'
+    for brk_line in cart.items
+      assign brk_line_bundle = brk_line.properties['_brk_bundle']
+      if brk_line_bundle == blank
+        continue
+      endif
+      if brk_own_bundle != blank
+        if brk_line.key != item.key
+          continue
+        endif
+      else
+        assign brk_line_trigger = brk_line.properties['_brk_bundle_trigger'] | append: ''
+        if brk_line_trigger != brk_item_pid
+          continue
+        endif
+      endif
+      assign brk_line_item = brk_line.properties['_brk_bundle_item'] | append: ''
+      for brk_b in brk_live
+        if brk_b.id == brk_line_bundle and brk_b.exemption and brk_b.showAddonDiscount
+          for brk_a in brk_b.addons
+            assign brk_a_pid = brk_a.productId | append: ''
+            if brk_a_pid == brk_line_item
+              assign brk_lbl = brk_a.label | default: brk_a.title | default: 'Bundle'
+              if brk_a.mode == 'percent'
+                assign brk_lbl = brk_lbl | replace: '{{brk_discount_percentage}}', brk_a.value
+              elsif brk_a.mode == 'fixed'
+                assign brk_lbl = brk_lbl | replace: '{{brk_discount_flat}}', brk_a.value
+              endif
+              assign brk_labels = brk_labels | append: brk_lbl | append: '|'
+            endif
+          endfor
+        endif
+      endfor
+    endfor
+
+    if brk_labels != '|'
+      if brk_own_bundle != blank
+        assign brk_trigger = item.properties['_brk_bundle_trigger'] | append: ''
+        for brk_line in cart.items
+          assign brk_line_pid = brk_line.product_id | append: ''
+          if brk_line_pid != brk_trigger or brk_line.properties['_brk_bundle'] != blank
+            continue
+          endif
+          for brk_alloc in brk_line.line_level_discount_allocations
+            assign brk_parts = brk_alloc.discount_application.title | split: ' + '
+            for brk_part in brk_parts
+              assign brk_needle = '|' | append: brk_part | append: '|'
+              if brk_labels contains brk_needle
+                assign brk_addon_amount = brk_addon_amount | plus: brk_alloc.amount
+                assign brk_addon_title = brk_alloc.discount_application.title
+                break
+              endif
+            endfor
+          endfor
+        endfor
+        assign brk_addon_amount = brk_addon_amount | at_most: item.final_line_price
+        assign brk_final_line = item.final_line_price | minus: brk_addon_amount
+      else
+        assign brk_restore = 0
+        for brk_alloc in item.line_level_discount_allocations
+          assign brk_parts = brk_alloc.discount_application.title | split: ' + '
+          for brk_part in brk_parts
+            assign brk_needle = '|' | append: brk_part | append: '|'
+            if brk_labels contains brk_needle
+              assign brk_restore = brk_restore | plus: brk_alloc.amount
+              assign brk_hide_titles = brk_hide_titles | append: brk_alloc.discount_application.title | append: '|'
+              break
+            endif
+          endfor
+        endfor
+        assign brk_final_line = item.final_line_price | plus: brk_restore
+      endif
+      assign brk_final = brk_final_line | divided_by: item.quantity
+    endif
+  endif
 -%}
 <div
   id="minicart__product-{{ item.key }}"
@@ -90,9 +180,9 @@
       {% if hidden_price == false %}
         <div class="minicart__item-prices flex flex-column align-end flex-shrink-0">
           {%- assign current_variant = item.variant -%}
-          {%- if item.original_price != item.final_price -%}
+          {%- if item.original_price != brk_final -%}
             <span class="minicart__item-price heading_weight primary-color">
-              {% if show_currency_code %}{{ item.final_price | money_with_currency }}{% else %}{{ item.final_price | money }}{% endif %}
+              {% if show_currency_code %}{{ brk_final | money_with_currency }}{% else %}{{ brk_final | money }}{% endif %}
             </span>
             <s class="minicart__item-original-price fs-small">
               {% if show_currency_code %}{{ item.original_price | money_with_currency }}{% else %}{{ item.original_price | money }}{% endif %}
@@ -117,7 +207,24 @@
       role="list"
       aria-label="{{ 'customer.order.discount' | t }}"
     >
+      {%- if brk_addon_amount > 0 -%}
+        <li class="discounts__discount fs-14 inline-flex align-center gap-5">
+          <svg
+            aria-hidden="true"
+            focusable="false"
+            class="icon icon-discount w-custom"
+            style="--custom-width: 12px;"
+            viewBox="0 0 12 12"
+          >
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M7 0h3a2 2 0 012 2v3a1 1 0 01-.3.7l-6 6a1 1 0 01-1.4 0l-4-4a1 1 0 010-1.4l6-6A1 1 0 017 0zm2 2a1 1 0 102 0 1 1 0 00-2 0z" fill="currentColor">
+          </svg>
+          {{ brk_addon_title }}
+          (-{{ brk_addon_amount | money }})
+        </li>
+      {%- endif -%}
       {%- for discount in item.line_level_discount_allocations -%}
+        {%- assign brk_needle = '|' | append: discount.discount_application.title | append: '|' -%}
+        {%- if brk_hide_titles contains brk_needle -%}{%- continue -%}{%- endif -%}
         <li class="discounts__discount fs-14 inline-flex align-center gap-5">
           <svg
             aria-hidden="true"
