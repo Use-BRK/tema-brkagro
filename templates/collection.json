@@ -163,10 +163,16 @@
         "button_show_more": "Ver mais",
         "promotion_link": "",
         "promotion_postion": 6,
+        "featured_product_enable": true,
+        "featured_product": "chapeu-american-hat-cattleman-black",
+        "featured_product_collections": [
+          "chapeus-importados"
+        ],
         "show_stock_strip": true,
         "stock_strip_threshold": 9,
         "stock_strip_collections": [
-          "envios-imediatos"
+          "envios-imediatos",
+          "brasil-patriota-2026"
         ],
         "items_per_row_mobile": "2",
         "padding_top": 10,

@@ -149,6 +149,24 @@ window.showMinicartMessage = (options = {}) => {
   MinicartMessage.show(options);
 };
 
+// BRK Bundles: soma `quantity` unidades da variante numa linha SEM o bundle.
+// Se já existe uma linha normal dela, aumenta essa linha (apps como a Intelipost
+// põem properties nas linhas, então um add sem properties criaria outra linha).
+function brkAddUnbundled(variantId, quantity) {
+  return fetch("/cart.js")
+    .then((r) => r.json())
+    .then((cart) => {
+      const line = (cart.items || []).find(
+        (item) => item.variant_id === variantId && !(item.properties || {})._brk_bundle
+      );
+      const changeUrl = `${routes?.cart_change_url || "/cart/change"}.js`;
+      const addUrl = `${routes?.cart_add_url || "/cart/add"}.js`;
+      return line
+        ? fetch(changeUrl, { ...fetchConfig(), body: JSON.stringify({ id: line.key, quantity: line.quantity + quantity }) })
+        : fetch(addUrl, { ...fetchConfig(), body: JSON.stringify({ items: [{ id: variantId, quantity }] }) });
+    });
+}
+
 class CartNotification extends HTMLElement {
   constructor() {
     super();
@@ -739,6 +757,7 @@ class CartNotification extends HTMLElement {
 
   onChange(event) {
     const target = event.target;
+    if (target.getAttribute("name") == "updates[]" && this.splitBrkAddon(target)) return;
     if (target.getAttribute("name") == "updates[]")
       this.updateQuantity(
         target.dataset.id,
@@ -747,6 +766,24 @@ class CartNotification extends HTMLElement {
         target,
         document.activeElement.getAttribute("name")
       );
+  }
+
+  // BRK Bundles: a linha do add-on (data-brk-max) não passa do limite do bundle.
+  // O excedente vai para uma linha nova, sem as properties do bundle, a preço cheio.
+  splitBrkAddon(target) {
+    const row = target.closest("[data-brk-max]");
+    if (!row) return false;
+    const max = Number(row.dataset.brkMax) || 0;
+    const quantity = Number(target.value) || 0;
+    if (max <= 0 || quantity <= max) return false;
+
+    const extra = quantity - max;
+    const variantId = Number(row.dataset.brkVariant);
+    this.updateQuantity(target.dataset.id, max, target.dataset.value, target, "updates[]")
+      .then(() => brkAddUnbundled(variantId, extra))
+      .catch((e) => console.error(e))
+      .finally(() => this.refreshMinicartSection());
+    return true;
   }
 
   disableCartButtons() {
@@ -800,7 +837,7 @@ class CartNotification extends HTMLElement {
     if (cartRecommend && cartRecommend.classList.contains("open")) {
       cartRecommend.classList.remove("open");
     }
-    fetch('/cart.js')
+    return fetch('/cart.js')
       .then((r) => r.json())
       .then((cart) => {
         const freshItem = cart.items.find((item) => item.key === lineId)

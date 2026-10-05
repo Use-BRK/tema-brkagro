@@ -48,7 +48,7 @@
     "scrolling_text": "Hot Sale [percent_sale]",
     "countdown_style": "normal",
     "show_new": false,
-    "new_background": "#3456e6",
+    "new_background": "#000000",
     "show_pre_order": false,
     "pre_order_background": "#6a33d8",
     "show_sold_out": false,
