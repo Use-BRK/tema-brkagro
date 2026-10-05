@@ -210,6 +210,14 @@
     "collection_tab_kENEYA": {
       "type": "collection-tab",
       "blocks": {
+        "collection_btxCia": {
+          "type": "collection",
+          "settings": {
+            "collection": "chapeus-importados",
+            "link": "",
+            "collection_title": "Chapéus Importados"
+          }
+        },
         "collection_3frNWE": {
           "type": "collection",
           "settings": {
@@ -228,6 +236,7 @@
         }
       },
       "block_order": [
+        "collection_btxCia",
         "collection_3frNWE",
         "collection_P7y9m3"
       ],
