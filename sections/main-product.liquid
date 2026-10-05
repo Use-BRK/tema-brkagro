@@ -93,7 +93,7 @@
       <a href="{{ routes.root_url }}">{{ 'general.breadcrumb.home' | t | default: 'Início' }}</a>
       {%- if bc_col and bc_col.url != blank -%}
         <span class="brk-breadcrumbs__sep" aria-hidden="true">›</span>
-        <a href="{{ bc_col.url }}">{{ bc_col.title }}</a>
+        <a href="{{ bc_col.url }}" data-brk-bc-col>{{ bc_col.title }}</a>
       {%- endif -%}
       <span class="brk-breadcrumbs__sep" aria-hidden="true">›</span>
       <span class="brk-breadcrumbs__current" aria-current="page">{{ product.title | truncate: 48 }}</span>
@@ -179,6 +179,26 @@
       (function () {
         var bc = document.getElementById('brk-breadcrumbs');
         if (!bc) return;
+        // Volta para a listagem do último clique (gravada em layout/theme.liquid)
+        try {
+          var last = JSON.parse(sessionStorage.getItem('brk:lastListing') || 'null');
+          if (last && last.url && last.handle === {{ product.handle | json }}) {
+            var colLink = bc.querySelector('a[data-brk-bc-col]');
+            if (!colLink) {
+              var sep = document.createElement('span');
+              sep.className = 'brk-breadcrumbs__sep';
+              sep.setAttribute('aria-hidden', 'true');
+              sep.textContent = '›';
+              colLink = document.createElement('a');
+              colLink.setAttribute('data-brk-bc-col', '');
+              var current = bc.querySelector('.brk-breadcrumbs__current');
+              bc.insertBefore(sep, current.previousElementSibling);
+              bc.insertBefore(colLink, current.previousElementSibling);
+            }
+            colLink.href = last.url;
+            colLink.textContent = last.title;
+          }
+        } catch (err) {}
         var headerInner =
           document.querySelector('#header-sticky > div') ||
           document.getElementById('header-sticky');

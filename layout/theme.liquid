@@ -232,6 +232,43 @@
     {%- render 'whatsapp-button' -%}
     {%- if settings.enable_phone_capture -%}{%- render 'phone-capture' -%}{%- endif -%}
     <script src="{{ 'standard-events.js' | asset_url }}" defer></script>
+    {%- liquid
+      assign brk_src_title = blank
+      if template.name == 'collection' and collection.title != blank
+        assign brk_src_title = collection.title
+      elsif template.name == 'search'
+        assign brk_src_title = 'Busca'
+        if search.terms != blank
+          assign brk_src_title = 'Busca: ' | append: search.terms
+        endif
+      endif
+    -%}
+    <script>
+      // Breadcrumb do produto: guarda a listagem (coleção/busca) de onde veio o último clique em produto
+      (function () {
+        var srcTitle = {{ brk_src_title | json }};
+        document.addEventListener('click', function (e) {
+          var a = e.target.closest && e.target.closest('a[href*="/products/"]');
+          if (!a) return;
+          var m = a.pathname.match(/\/products\/([^\/?#]+)/);
+          if (!m) return;
+          try {
+            if (!srcTitle) {
+              // Clique fora de uma listagem: só mantém o registro se for navegação entre produtos
+              {% if template.name != 'product' %}sessionStorage.removeItem('brk:lastListing');{% endif %}
+              var prev = JSON.parse(sessionStorage.getItem('brk:lastListing') || 'null');
+              if (prev) { prev.handle = m[1]; sessionStorage.setItem('brk:lastListing', JSON.stringify(prev)); }
+              return;
+            }
+            sessionStorage.setItem('brk:lastListing', JSON.stringify({
+              url: location.pathname + location.search,
+              title: srcTitle,
+              handle: m[1]
+            }));
+          } catch (err) {}
+        }, true);
+      })();
+    </script>
     {% comment %}
     <script type="speculationrules">
       {
