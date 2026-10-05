@@ -29,10 +29,33 @@
   assign brk_hide_titles = '|'
   assign brk_addon_title = ''
   assign brk_addon_amount = 0
+  assign brk_max = 0
   assign brk_live = shop.metafields.brk_bundles.live.value
   if brk_live
     assign brk_item_pid = item.product_id | append: ''
     assign brk_own_bundle = item.properties['_brk_bundle']
+
+    comment
+      Limite do add-on (maxQty, padrão 1; 0 = ilimitado): o JS do carrinho manda
+      o excedente para uma linha nova, sem as properties do bundle.
+    endcomment
+    if brk_own_bundle != blank
+      assign brk_own_item = item.properties['_brk_bundle_item'] | append: ''
+      for brk_b in brk_live
+        if brk_b.id == brk_own_bundle
+          for brk_a in brk_b.addons
+            assign brk_a_pid = brk_a.productId | append: ''
+            if brk_a_pid == brk_own_item
+              assign brk_max = 1
+              if brk_a.maxQty != nil and brk_a.maxQty != ''
+                assign brk_max = brk_a.maxQty | plus: 0
+              endif
+            endif
+          endfor
+        endif
+      endfor
+    endif
+
     assign brk_labels = '|'
     for brk_line in cart.items
       assign brk_line_bundle = brk_line.properties['_brk_bundle']
@@ -116,6 +139,7 @@
   data-gift-progress-item="{{ is_gift_progress_item }}"
   data-shipping-protection-key="{{ item.key }}"
   data-shipping-protection-quantity="{{ item.quantity }}"
+  {% if brk_max > 0 %}data-brk-max="{{ brk_max }}" data-brk-variant="{{ item.variant_id }}"{% endif %}
   class="cart-item{% if is_gift_progress_item %} cart-item--gift-progress{% endif %}{% if item.parent_relationship %} cart-item--child{% endif %} flex mb-20 pb-20 gap-15 border-bottom-dashed"
 >
   <div class="minicart__product__image global-media-settings w-custom fs-0 relative" style="--custom-width: 8rem">

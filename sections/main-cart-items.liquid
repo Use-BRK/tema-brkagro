@@ -192,10 +192,33 @@
                         assign brk_hide_titles = '|'
                         assign brk_addon_title = ''
                         assign brk_addon_amount = 0
+                        assign brk_max = 0
                         assign brk_live = shop.metafields.brk_bundles.live.value
                         if brk_live
                           assign brk_item_pid = item.product_id | append: ''
                           assign brk_own_bundle = item.properties['_brk_bundle']
+
+                          comment
+                            Limite do add-on (maxQty, padrão 1; 0 = ilimitado): o JS do carrinho manda
+                            o excedente para uma linha nova, sem as properties do bundle.
+                          endcomment
+                          if brk_own_bundle != blank
+                            assign brk_own_item = item.properties['_brk_bundle_item'] | append: ''
+                            for brk_b in brk_live
+                              if brk_b.id == brk_own_bundle
+                                for brk_a in brk_b.addons
+                                  assign brk_a_pid = brk_a.productId | append: ''
+                                  if brk_a_pid == brk_own_item
+                                    assign brk_max = 1
+                                    if brk_a.maxQty != nil and brk_a.maxQty != ''
+                                      assign brk_max = brk_a.maxQty | plus: 0
+                                    endif
+                                  endif
+                                endfor
+                              endif
+                            endfor
+                          endif
+
                           assign brk_labels = '|'
                           for brk_line in cart.items
                             assign brk_line_bundle = brk_line.properties['_brk_bundle']
@@ -277,6 +300,7 @@
                         id="CartItem-{{ item.index | plus: 1 }}"
                         data-shipping-protection-item="{{ is_shipping_protection_item }}"
                         data-gift-progress-item="{{ is_gift_progress_item }}"
+                        {% if brk_max > 0 %}data-brk-max="{{ brk_max }}" data-brk-variant="{{ item.variant_id }}"{% endif %}
                         data-shipping-protection-line="{{ item.index | plus: 1 }}"
                         data-shipping-protection-quantity="{{ item.quantity }}"
                         style="--custom-width: 10rem"
