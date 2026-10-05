@@ -225,7 +225,7 @@ review-product.inline-loading:after {
     height: 1.4rem;
   }
 }
-/* "Envio imediato" discreto abaixo do preco/parcelamento do card */
+/* "Pronta Entrega" discreto abaixo do preco/parcelamento do card */
 .product-item__shipping-note {
   display: flex;
   align-items: center;
