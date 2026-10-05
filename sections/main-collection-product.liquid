@@ -39,6 +39,27 @@
   assign stock_strip_threshold = section.settings.stock_strip_threshold | default: 9
 -%}
 
+{%- comment -%}
+  Produto em destaque (card maior no topo da grade) - verificacao de colecao.
+  Desligado por padrao. Se nenhuma colecao for selecionada, vale para todas.
+{%- endcomment -%}
+{%- liquid
+  assign show_featured_product = false
+  assign featured_product = section.settings.featured_product
+  if section.settings.featured_product_enable and featured_product != blank
+    if section.settings.featured_product_collections == blank
+      assign show_featured_product = true
+    else
+      for col in section.settings.featured_product_collections
+        if col.handle == collection.handle
+          assign show_featured_product = true
+          break
+        endif
+      endfor
+    endif
+  endif
+-%}
+
 {%- if show_gender_filter -%}
 <style>
   /* ===========================================================
@@ -484,10 +505,16 @@
                 </div>
               </div>
             {%- else -%}
+              {%- liquid
+                assign featured_on_page = false
+                if show_featured_product and view != 'list' and paginate.current_page == 1
+                  assign featured_on_page = true
+                endif
+              -%}
               <div
                 id="product-grid"
                 data-id="{{ section.id }}"
-                class="{% if view == 'list' %}list product-type-list flex flex-column {% else %}grid grid-cols row-gap-custom product-grid grid-columns-{{ products_column }} {% if section_st.mobile_product_image_layout == blank or section_st.mobile_product_image_layout == 'edge_bleed' %}collection-product-media--edge-bleed {% endif %}{% endif %}gap container-products-switch{% if pagination == 'load_more_button' or pagination == 'infinit_scrolling' %} loadmore-lists{% endif %}"
+                class="{% if view == 'list' %}list product-type-list flex flex-column {% else %}grid grid-cols row-gap-custom product-grid grid-columns-{{ products_column }} {% if section_st.mobile_product_image_layout == blank or section_st.mobile_product_image_layout == 'edge_bleed' %}collection-product-media--edge-bleed {% endif %}{% if featured_on_page %}has-featured-product {% endif %}{% endif %}gap container-products-switch{% if pagination == 'load_more_button' or pagination == 'infinit_scrolling' %} loadmore-lists{% endif %}"
                 {% if view == 'list' %}
                   style="--gap: 3rem;"
                 {% else %}
@@ -501,8 +528,41 @@
                   assign midnum = section_st.items_to_show | times: cp
                   assign found = false
                 -%}
+                {%- if featured_on_page -%}
+                  {%- assign featured_colunm = column | divided_by: 2 | at_least: 1 -%}
+                  <div class="grid__item grid__item--featured">
+                    {% render 'product-item',
+                      scroll_animation: scroll_animation,
+                      card_product: featured_product,
+                      section_id: section.id,
+                      template_enable_action: true,
+                      template_enable_price: true,
+                      template_enable_product_vendor: true,
+                      template_enable_rate: true,
+                      template_enable_add_cart: true,
+                      template_enable_color_swatches: true,
+                      template_enable_product_badges: true,
+                      template_enable_product_short_description: true,
+                      type: 'grid',
+                      type_collections: 'true',
+                      indexFor: 0,
+                      container: section_width,
+                      colunm: featured_colunm,
+                      colunm_mobile: 1,
+                      padding: section_st.column_gap,
+                      collection_product: true,
+                      show_stock_strip: show_stock_strip,
+                      stock_strip_threshold: stock_strip_threshold,
+                      class: 'motion-item'
+                    %}
+                  </div>
+                {%- endif -%}
                 {%- for product in collection.products -%}
                   {%- if product.tags contains 'VIP' -%}
+                    {%- continue -%}
+                  {%- endif -%}
+                  {%- comment -%} Produto em destaque ja aparece no topo: nao repete na grade {%- endcomment -%}
+                  {%- if show_featured_product and view != 'list' and product.id == featured_product.id -%}
                     {%- continue -%}
                   {%- endif -%}
                   {%- liquid
@@ -918,6 +978,28 @@
       "max": 7,
       "step": 1,
       "default": 3
+    },
+    {
+      "type": "header",
+      "content": "Produto em destaque"
+    },
+    {
+      "type": "checkbox",
+      "id": "featured_product_enable",
+      "label": "Ativar produto em destaque",
+      "info": "Mostra o produto escolhido no topo da grade (1ª página), em tamanho maior que os outros.",
+      "default": false
+    },
+    {
+      "type": "product",
+      "id": "featured_product",
+      "label": "Produto"
+    },
+    {
+      "type": "collection_list",
+      "id": "featured_product_collections",
+      "label": "Coleções",
+      "info": "Selecione as coleções onde o destaque deve aparecer (ex.: Chapéus Importados). Se vazio, aparecerá em todas as coleções."
     },
     {
       "type": "header",

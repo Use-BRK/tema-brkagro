@@ -135,6 +135,63 @@
 }
 
 /* ===========================================================
+   Produto em destaque: card maior no topo da grade
+   (desktop 2x2 colunas; mobile linha inteira)
+   =========================================================== */
+.sec__collection-main #product-grid.has-featured-product > .grid__item--featured {
+  grid-column: 1 / -1;
+}
+.sec__collection-main #product-grid > .grid__item--featured .product-item__name {
+  font-size: calc(var(--font-size) * 1.3px);
+}
+.sec__collection-main #product-grid > .grid__item--featured .product-item__price {
+  font-size: calc(var(--font-size) * 1.3px);
+}
+.sec__collection-main #product-grid > .grid__item--featured .product-item__price .price {
+  font-size: inherit;
+}
+@media screen and (min-width: 768px) {
+  .sec__collection-main #product-grid.has-featured-product > .grid__item--featured {
+    grid-column: span 2;
+    grid-row: span 2;
+  }
+}
+
+@media (max-width: 575.98px) {
+  /* Destaque ocupa a linha inteira: imagem sangra dos dois lados */
+  .sec__collection-main #product-grid.product-grid.collection-product-media--edge-bleed > .grid__item--featured .product-item__inner {
+    margin-left: calc(var(--collection-product-media-bleed) * -1);
+    margin-right: calc(var(--collection-product-media-bleed) * -1);
+    width: calc(100% + var(--collection-product-media-bleed) * 2);
+  }
+  .sec__collection-main #product-grid.product-grid.collection-product-media--edge-bleed > .grid__item--featured :is(.product-item__shipping-strip, .product-item__information) {
+    margin-left: calc(var(--collection-product-visible-bleed) * -1 + var(--collection-product-strip-inset));
+    width: calc(100% + var(--collection-product-visible-bleed) * 2 - var(--collection-product-strip-inset) * 2);
+  }
+
+  /* O destaque é o 1º filho: inverte par/ímpar dos demais p/ a sangria
+     continuar do lado certo (esquerda/direita) na grade de 2 colunas */
+  .sec__collection-main #product-grid.product-grid.collection-product-media--edge-bleed.has-featured-product:not([style*="--col-number: 1"]) > .grid__item:not(.promotion):not(.grid__item--featured):nth-child(even) .product-item__inner {
+    margin-left: calc(var(--collection-product-media-bleed) * -1);
+    margin-right: 0;
+    width: calc(100% + var(--collection-product-media-bleed));
+  }
+  .sec__collection-main #product-grid.product-grid.collection-product-media--edge-bleed.has-featured-product:not([style*="--col-number: 1"]) > .grid__item:not(.promotion):not(.grid__item--featured):nth-child(odd) .product-item__inner {
+    margin-left: 0;
+    margin-right: calc(var(--collection-product-media-bleed) * -1);
+    width: calc(100% + var(--collection-product-media-bleed));
+  }
+  .sec__collection-main #product-grid.product-grid.collection-product-media--edge-bleed.has-featured-product:not([style*="--col-number: 1"]) > .grid__item:not(.promotion):not(.grid__item--featured):nth-child(even) :is(.product-item__shipping-strip, .product-item__information) {
+    margin-left: calc(var(--collection-product-visible-bleed) * -1 + var(--collection-product-strip-inset));
+    width: calc(100% + var(--collection-product-visible-bleed) - var(--collection-product-strip-inset) * 2);
+  }
+  .sec__collection-main #product-grid.product-grid.collection-product-media--edge-bleed.has-featured-product:not([style*="--col-number: 1"]) > .grid__item:not(.promotion):not(.grid__item--featured):nth-child(odd) :is(.product-item__shipping-strip, .product-item__information) {
+    margin-left: var(--collection-product-strip-inset);
+    width: calc(100% + var(--collection-product-visible-bleed) - var(--collection-product-strip-inset) * 2);
+  }
+}
+
+/* ===========================================================
    Botões "Filtro" + "Ordenar por": pílula outline verde em TODAS
    as collections (mesmo visual das que têm filtro de gênero).
    =========================================================== */
