@@ -171,7 +171,8 @@
         "show_stock_strip": true,
         "stock_strip_threshold": 9,
         "stock_strip_collections": [
-          "envios-imediatos"
+          "envios-imediatos",
+          "brasil-patriota-2026"
         ],
         "items_per_row_mobile": "2",
         "padding_top": 10,
