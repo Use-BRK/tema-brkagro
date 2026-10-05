@@ -183,115 +183,181 @@
                         endfor
 
                         comment
-                          BRK Bundles — isenção com "Mostrar desconto do add-on no carrinho" (só visual).
-                          O desconto real fica no produto vinculado; aqui ele é exibido no add-on e
-                          escondido do vinculado. O título da alocação é o label do add-on.
+                          BRK Bundles (lê o metafield `live` do app):
+                          - Isenção com "Mostrar desconto do add-on no carrinho" (só visual): o desconto
+                            real fica no(s) produto(s) do bundle, numa alocação com o label do add-on como
+                            título. Aqui ele some desses produtos e aparece nas linhas do add-on: o total
+                            de cada label é repartido entre elas na ordem do carrinho. Desconto misto (com
+                            brinde que não tem "Mostrar desconto") fica com a exibição normal.
+                          - brk_max: quantas unidades a linha do add-on ainda aceita com desconto (o JS do
+                            carrinho manda o excedente para uma linha sem o bundle). Com "Limite por
+                            produto do bundle", o máximo vale por unidade dos produtos que puxaram o add-on.
                         endcomment
                         assign brk_final = item.final_price
                         assign brk_final_line = item.final_line_price
                         assign brk_hide_titles = '|'
                         assign brk_addon_title = ''
                         assign brk_addon_amount = 0
+                        assign brk_limited = false
                         assign brk_max = 0
                         assign brk_live = shop.metafields.brk_bundles.live.value
                         if brk_live
-                          assign brk_item_pid = item.product_id | append: ''
                           assign brk_own_bundle = item.properties['_brk_bundle']
-
-                          comment
-                            Limite do add-on (maxQty, padrão 1; 0 = ilimitado): o JS do carrinho manda
-                            o excedente para uma linha nova, sem as properties do bundle.
-                          endcomment
+                          assign brk_own_item = item.properties['_brk_bundle_item'] | append: ''
+                          assign brk_own_label = ''
+                          assign brk_per = 0
+                          assign brk_per_trigger = false
                           if brk_own_bundle != blank
-                            assign brk_own_item = item.properties['_brk_bundle_item'] | append: ''
                             for brk_b in brk_live
-                              if brk_b.id == brk_own_bundle
-                                for brk_a in brk_b.addons
-                                  assign brk_a_pid = brk_a.productId | append: ''
-                                  if brk_a_pid == brk_own_item
-                                    assign brk_max = 1
-                                    if brk_a.maxQty != nil and brk_a.maxQty != ''
-                                      assign brk_max = brk_a.maxQty | plus: 0
-                                    endif
-                                  endif
-                                endfor
+                              if brk_b.id != brk_own_bundle
+                                continue
                               endif
+                              for brk_a in brk_b.addons
+                                assign brk_a_pid = brk_a.productId | append: ''
+                                if brk_a_pid != brk_own_item
+                                  continue
+                                endif
+                                assign brk_per = 1
+                                if brk_a.maxQty != nil and brk_a.maxQty != ''
+                                  assign brk_per = brk_a.maxQty | plus: 0
+                                endif
+                                if brk_b.limitPerTrigger
+                                  assign brk_per_trigger = true
+                                endif
+                                if brk_b.exemption and brk_b.showAddonDiscount
+                                  assign brk_own_label = brk_a.label | default: brk_a.title | default: 'Bundle'
+                                  if brk_a.mode == 'percent'
+                                    assign brk_own_label = brk_own_label | replace: '{{brk_discount_percentage}}', brk_a.value
+                                  elsif brk_a.mode == 'fixed'
+                                    assign brk_own_label = brk_own_label | replace: '{{brk_discount_flat}}', brk_a.value
+                                  endif
+                                endif
+                              endfor
                             endfor
                           endif
 
+                          comment
+                            Uma passada no carrinho: labels exibidos no add-on (brk_labels), gatilhos do
+                            mesmo bundle (brk_triggers), unidades do mesmo add-on em outras linhas e o
+                            quanto as linhas anteriores com o mesmo label já consomem do total (brk_before).
+                          endcomment
                           assign brk_labels = '|'
+                          assign brk_triggers = '|'
+                          assign brk_other_units = 0
+                          assign brk_before = 0
+                          assign brk_seen_self = false
                           for brk_line in cart.items
+                            if brk_line.key == item.key
+                              assign brk_seen_self = true
+                            endif
                             assign brk_line_bundle = brk_line.properties['_brk_bundle']
                             if brk_line_bundle == blank
                               continue
                             endif
-                            if brk_own_bundle != blank
-                              if brk_line.key != item.key
-                                continue
-                              endif
-                            else
+                            assign brk_line_item = brk_line.properties['_brk_bundle_item'] | append: ''
+                            if brk_line_bundle == brk_own_bundle
                               assign brk_line_trigger = brk_line.properties['_brk_bundle_trigger'] | append: ''
-                              if brk_line_trigger != brk_item_pid
-                                continue
+                              assign brk_triggers = brk_triggers | append: brk_line_trigger | append: '|'
+                              if brk_line_item == brk_own_item and brk_line.key != item.key
+                                assign brk_other_units = brk_other_units | plus: brk_line.quantity
                               endif
                             endif
-                            assign brk_line_item = brk_line.properties['_brk_bundle_item'] | append: ''
                             for brk_b in brk_live
-                              if brk_b.id == brk_line_bundle and brk_b.exemption and brk_b.showAddonDiscount
-                                for brk_a in brk_b.addons
-                                  assign brk_a_pid = brk_a.productId | append: ''
-                                  if brk_a_pid == brk_line_item
-                                    assign brk_lbl = brk_a.label | default: brk_a.title | default: 'Bundle'
-                                    if brk_a.mode == 'percent'
-                                      assign brk_lbl = brk_lbl | replace: '{{brk_discount_percentage}}', brk_a.value
-                                    elsif brk_a.mode == 'fixed'
-                                      assign brk_lbl = brk_lbl | replace: '{{brk_discount_flat}}', brk_a.value
-                                    endif
-                                    assign brk_labels = brk_labels | append: brk_lbl | append: '|'
-                                  endif
-                                endfor
+                              if brk_b.id != brk_line_bundle
+                                continue
                               endif
+                              unless brk_b.exemption and brk_b.showAddonDiscount
+                                continue
+                              endunless
+                              for brk_a in brk_b.addons
+                                assign brk_a_pid = brk_a.productId | append: ''
+                                if brk_a_pid != brk_line_item
+                                  continue
+                                endif
+                                assign brk_lbl = brk_a.label | default: brk_a.title | default: 'Bundle'
+                                if brk_a.mode == 'percent'
+                                  assign brk_lbl = brk_lbl | replace: '{{brk_discount_percentage}}', brk_a.value
+                                elsif brk_a.mode == 'fixed'
+                                  assign brk_lbl = brk_lbl | replace: '{{brk_discount_flat}}', brk_a.value
+                                endif
+                                assign brk_labels = brk_labels | append: brk_lbl | append: '|'
+                                if brk_seen_self == false and brk_lbl == brk_own_label
+                                  assign brk_before = brk_before | plus: brk_line.final_line_price
+                                endif
+                              endfor
                             endfor
                           endfor
 
-                          if brk_labels != '|'
-                            if brk_own_bundle != blank
-                              assign brk_trigger = item.properties['_brk_bundle_trigger'] | append: ''
+                          if brk_per > 0
+                            assign brk_limited = true
+                            assign brk_allowed = brk_per
+                            if brk_per_trigger
+                              assign brk_units = 0
                               for brk_line in cart.items
-                                assign brk_line_pid = brk_line.product_id | append: ''
-                                if brk_line_pid != brk_trigger or brk_line.properties['_brk_bundle'] != blank
+                                if brk_line.properties['_brk_bundle'] != blank
+                                  continue
+                                endif
+                                assign brk_needle = '|' | append: brk_line.product_id | append: '|'
+                                if brk_triggers contains brk_needle
+                                  assign brk_units = brk_units | plus: brk_line.quantity
+                                endif
+                              endfor
+                              assign brk_allowed = brk_per | times: brk_units
+                            endif
+                            assign brk_max = brk_allowed | minus: brk_other_units | at_least: 0
+                          endif
+
+                          if brk_own_bundle != blank
+                            if brk_own_label != ''
+                              assign brk_total = 0
+                              for brk_line in cart.items
+                                if brk_line.properties['_brk_bundle'] != blank
                                   continue
                                 endif
                                 for brk_alloc in brk_line.line_level_discount_allocations
                                   assign brk_parts = brk_alloc.discount_application.title | split: ' + '
+                                  unless brk_parts contains brk_own_label
+                                    continue
+                                  endunless
+                                  assign brk_all_shown = true
                                   for brk_part in brk_parts
                                     assign brk_needle = '|' | append: brk_part | append: '|'
-                                    if brk_labels contains brk_needle
-                                      assign brk_addon_amount = brk_addon_amount | plus: brk_alloc.amount
-                                      assign brk_addon_title = brk_alloc.discount_application.title
-                                      break
-                                    endif
+                                    unless brk_labels contains brk_needle
+                                      assign brk_all_shown = false
+                                    endunless
                                   endfor
-                                endfor
-                              endfor
-                              assign brk_addon_amount = brk_addon_amount | at_most: item.final_line_price
-                              assign brk_final_line = item.final_line_price | minus: brk_addon_amount
-                            else
-                              assign brk_restore = 0
-                              for brk_alloc in item.line_level_discount_allocations
-                                assign brk_parts = brk_alloc.discount_application.title | split: ' + '
-                                for brk_part in brk_parts
-                                  assign brk_needle = '|' | append: brk_part | append: '|'
-                                  if brk_labels contains brk_needle
-                                    assign brk_restore = brk_restore | plus: brk_alloc.amount
-                                    assign brk_hide_titles = brk_hide_titles | append: brk_alloc.discount_application.title | append: '|'
-                                    break
+                                  if brk_all_shown
+                                    assign brk_total = brk_total | plus: brk_alloc.amount
                                   endif
                                 endfor
                               endfor
-                              assign brk_final_line = item.final_line_price | plus: brk_restore
+                              assign brk_addon_amount = brk_total | minus: brk_before | at_least: 0 | at_most: item.final_line_price
+                              if brk_addon_amount > 0
+                                assign brk_addon_title = brk_own_label
+                                assign brk_final_line = item.final_line_price | minus: brk_addon_amount
+                                assign brk_final = brk_final_line | divided_by: item.quantity
+                              endif
                             endif
-                            assign brk_final = brk_final_line | divided_by: item.quantity
+                          elsif brk_labels != '|'
+                            assign brk_restore = 0
+                            for brk_alloc in item.line_level_discount_allocations
+                              assign brk_parts = brk_alloc.discount_application.title | split: ' + '
+                              assign brk_all_shown = true
+                              for brk_part in brk_parts
+                                assign brk_needle = '|' | append: brk_part | append: '|'
+                                unless brk_labels contains brk_needle
+                                  assign brk_all_shown = false
+                                endunless
+                              endfor
+                              if brk_all_shown
+                                assign brk_restore = brk_restore | plus: brk_alloc.amount
+                                assign brk_hide_titles = brk_hide_titles | append: brk_alloc.discount_application.title | append: '|'
+                              endif
+                            endfor
+                            if brk_restore > 0
+                              assign brk_final_line = item.final_line_price | plus: brk_restore
+                              assign brk_final = brk_final_line | divided_by: item.quantity
+                            endif
                           endif
                         endif
                       -%}
@@ -300,7 +366,7 @@
                         id="CartItem-{{ item.index | plus: 1 }}"
                         data-shipping-protection-item="{{ is_shipping_protection_item }}"
                         data-gift-progress-item="{{ is_gift_progress_item }}"
-                        {% if brk_max > 0 %}data-brk-max="{{ brk_max }}" data-brk-variant="{{ item.variant_id }}"{% endif %}
+                        {% if brk_limited %}data-brk-max="{{ brk_max }}" data-brk-variant="{{ item.variant_id }}"{% endif %}
                         data-shipping-protection-line="{{ item.index | plus: 1 }}"
                         data-shipping-protection-quantity="{{ item.quantity }}"
                         style="--custom-width: 10rem"

@@ -775,11 +775,14 @@ class CartNotification extends HTMLElement {
     if (!row) return false;
     const max = Number(row.dataset.brkMax) || 0;
     const quantity = Number(target.value) || 0;
-    if (max <= 0 || quantity <= max) return false;
+    const previous = Number(target.dataset.value) || 0;
+    // só quando aumenta além do que o bundle ainda aceita (data-brk-max)
+    if (quantity <= previous || quantity <= max) return false;
 
-    const extra = quantity - max;
+    const keep = Math.max(max, Math.min(previous, quantity));
+    const extra = quantity - keep;
     const variantId = Number(row.dataset.brkVariant);
-    this.updateQuantity(target.dataset.id, max, target.dataset.value, target, "updates[]")
+    this.updateQuantity(target.dataset.id, keep, target.dataset.value, target, "updates[]")
       .then(() => brkAddUnbundled(variantId, extra))
       .catch((e) => console.error(e))
       .finally(() => this.refreshMinicartSection());

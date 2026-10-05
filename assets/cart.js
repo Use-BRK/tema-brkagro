@@ -373,13 +373,16 @@ class CartItems extends HTMLElement {
     if (!row || target.getAttribute("name") !== "updates[]") return false;
     const max = Number(row.dataset.brkMax) || 0;
     const quantity = Number(target.value) || 0;
-    if (max <= 0 || quantity <= max) return false;
+    const previous = Number(target.dataset.value) || 0;
+    // só quando aumenta além do que o bundle ainda aceita (data-brk-max)
+    if (quantity <= previous || quantity <= max) return false;
 
-    const extra = quantity - max;
+    const keep = Math.max(max, Math.min(previous, quantity));
+    const extra = quantity - keep;
     const variantId = Number(row.dataset.brkVariant);
     const sectionId = this.getSectionsToRender()[0].section;
     // brkAddUnbundled vem do cart-components.js (carregado em todas as páginas)
-    this.updateQuantity(target.dataset.index, target.dataset.key, max, "updates[]", target)
+    this.updateQuantity(target.dataset.index, target.dataset.key, keep, "updates[]", target)
       .then(() => brkAddUnbundled(variantId, extra))
       .then(() =>
         Promise.all([
