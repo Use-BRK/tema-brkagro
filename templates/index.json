@@ -12,15 +12,15 @@
     "slideshow_8KKtNU": {
       "type": "slideshow",
       "blocks": {
-        "slider_item_MMEAVn": {
+        "slider_item_D43AJr": {
           "type": "slider_item",
-          "name": "1 Oferta",
+          "name": "Rotativo",
           "disabled": true,
           "settings": {
-            "image": "shopify://shop_images/Layer_28.jpg",
-            "image_mobile": "shopify://shop_images/MOBILE_PRORROGACAO.jpg",
+            "image": "shopify://shop_images/Desk.png",
+            "image_mobile": "shopify://shop_images/Mobile_1.png",
             "overlay_opacity": 0,
-            "link_banner": "shopify://collections/envios-imediatos",
+            "link_banner": "shopify://collections/envio-imediato-22",
             "slider_effect": "fade-in-right",
             "subheading": "",
             "heading": "",
@@ -43,15 +43,14 @@
             "content_alignment_mobile": "center"
           }
         },
-        "slider_item_D43AJr": {
+        "slider_item_MMEAVn": {
           "type": "slider_item",
-          "name": "Rotativo",
-          "disabled": true,
+          "name": "Chapéus",
           "settings": {
-            "image": "shopify://shop_images/Desk.png",
-            "image_mobile": "shopify://shop_images/Mobile_1.png",
+            "image": "shopify://shop_images/Banner_Chapeus_Home_desktop_3123afdd-5a55-4842-8270-e66dae51fe8b.png",
+            "image_mobile": "shopify://shop_images/Banner_Chapeus_Home_mobile_a930d3f0-8a40-4741-9bea-ebf9193450c9.png",
             "overlay_opacity": 0,
-            "link_banner": "shopify://collections/envio-imediato-22",
+            "link_banner": "shopify://collections/chapeus-importados",
             "slider_effect": "fade-in-right",
             "subheading": "",
             "heading": "",
@@ -167,8 +166,8 @@
         }
       },
       "block_order": [
-        "slider_item_MMEAVn",
         "slider_item_D43AJr",
+        "slider_item_MMEAVn",
         "slider_item_rYBq93",
         "slider_item_nrmHUV",
         "slider_item_K3DbMk"
