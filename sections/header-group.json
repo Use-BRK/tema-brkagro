@@ -38,9 +38,9 @@
             "expired_message": "",
             "switch_to_slider": true,
             "custom_colors": true,
-            "bg_color": "#007c00",
-            "text_color": "#ffffff",
-            "timer_color": "#ffffff",
+            "bg_color": "#0F6049",
+            "text_color": "#F4F0E9",
+            "timer_color": "#F4F0E9",
             "hidden_on_mobile": false
           }
         },
@@ -84,7 +84,7 @@
         "color_scheme": "scheme-a07f02f4-f1f2-4ea3-9eeb-577115ec9f47",
         "show_mobile": true,
         "show_separator_line": false,
-        "link": "shopify://collections/envio-imediato-22",
+        "link": "",
         "link_label": "Ver promoção",
         "uppercase": true,
         "font_size": 12,
