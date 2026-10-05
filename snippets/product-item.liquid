@@ -591,6 +591,41 @@
             {%- endif -%}
           </div>
         {%- endif -%}
+        {% comment %}
+          Tamanhos do produto (opcao listada em Configuracoes do tema > Product cards > size_trigger).
+          Ate 3 tamanhos: mostra todos. Acima de 3: mostra os 2 primeiros + "+N".
+        {% endcomment %}
+        {%- unless card_product.has_only_default_variant -%}
+          {%- liquid
+            assign size_option_names = settings.size_trigger | default: 'Size' | replace: ' ', '' | split: ','
+            assign card_size_option = nil
+            for opt in card_product.options_with_values
+              assign opt_name_nospace = opt.name | replace: ' ', ''
+              if size_option_names contains opt_name_nospace
+                assign card_size_option = opt
+                break
+              endif
+            endfor
+          -%}
+          {%- if card_size_option and card_size_option.values.size > 0 -%}
+            {%- liquid
+              assign size_count = card_size_option.values.size
+              assign size_limit = size_count
+              if size_count > 3
+                assign size_limit = 2
+              endif
+              assign size_rest = size_count | minus: size_limit
+            -%}
+            <ul class="product-item__sizes" aria-label="{{ card_size_option.name | escape }}">
+              {%- for value in card_size_option.values limit: size_limit -%}
+                <li class="product-item__size">{{ value | escape }}</li>
+              {%- endfor -%}
+              {%- if size_rest > 0 -%}
+                <li class="product-item__size product-item__size--more" aria-label="Mais {{ size_rest }} tamanhos">+{{ size_rest }}</li>
+              {%- endif -%}
+            </ul>
+          {%- endif -%}
+        {%- endunless -%}
         {% comment %} "Pronta Entrega" abaixo do preco/parcelamento (tag prazo_imediato) {% endcomment %}
         {%- if card_product.tags contains 'prazo_imediato' -%}
           <div class="product-item__shipping-note">
