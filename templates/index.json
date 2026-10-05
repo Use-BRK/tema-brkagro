@@ -212,17 +212,17 @@
         "collection_3frNWE": {
           "type": "collection",
           "settings": {
-            "collection": "calcas-jeans",
-            "link": "",
-            "collection_title": "Calças Jeans"
+            "collection": "",
+            "link": "https://www.brkagro.com.br/collections/brasil-patriota-2026?filter.p.m.custom.genero=Masculino",
+            "collection_title": "Masculinas"
           }
         },
         "collection_btxCia": {
           "type": "collection",
           "settings": {
-            "collection": "chapeus-importados",
-            "link": "",
-            "collection_title": "Chapéus Importados"
+            "collection": "",
+            "link": "https://www.brkagro.com.br/collections/brasil-patriota-2026?filter.p.m.custom.genero=Feminino",
+            "collection_title": "Femininas"
           }
         },
         "collection_P7y9m3": {
@@ -231,7 +231,7 @@
           "settings": {
             "collection": "camisas-de-botao-country",
             "link": "",
-            "collection_title": "Camisas de Botão"
+            "collection_title": ""
           }
         }
       },
@@ -248,7 +248,7 @@
       "settings": {
         "section_width": "stretch_width",
         "color_scheme": "scheme-accf3b11-ba40-4a3e-bafb-243ece6683ec",
-        "heading": "Novidades",
+        "heading": "Brasil 🇧🇷",
         "description": "",
         "show_view_all_button": true,
         "header_size": "medium",
