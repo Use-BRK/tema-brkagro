@@ -245,6 +245,9 @@
           while (bcKeys.length > 30) delete bcMap[bcKeys.shift()];
           localStorage.setItem('brk:pdpBc', JSON.stringify(bcMap));
         } catch (err) {}
+        {%- unless section.settings.breadcrumb_mobile_in_header -%}
+        return;
+        {%- endunless -%}
         var headerInner =
           document.querySelector('#header-sticky > div') ||
           document.getElementById('header-sticky');
@@ -672,6 +675,13 @@
       "id": "color_scheme",
       "label": "t:sections.all.color_scheme.label",
       "default": "scheme-1"
+    },
+    {
+      "type": "checkbox",
+      "id": "breadcrumb_mobile_in_header",
+      "label": "Breadcrumb dentro do header no mobile",
+      "info": "Desmarcado: no mobile o breadcrumb fica acima da foto do produto, igual ao desktop.",
+      "default": true
     },
     {
       "type": "checkbox",
