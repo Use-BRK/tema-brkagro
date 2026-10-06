@@ -607,9 +607,27 @@
               endif
             endfor
           -%}
-          {%- if card_size_option and card_size_option.values.size > 0 -%}
+          {%- liquid
+            comment
+              So lista tamanhos com variante disponivel para compra neste produto.
+              Produtos x e x_FULL tem variantes/estoques proprios; usar option.values
+              mostraria tamanhos cadastrados mas sem estoque.
+            endcomment
+            assign card_sizes = ''
+            if card_size_option
+              assign size_option_key = 'option' | append: card_size_option.position
+              for variant in card_product.variants
+                if variant.available
+                  assign size_value = variant[size_option_key]
+                  assign card_sizes = card_sizes | append: size_value | append: '|~|'
+                endif
+              endfor
+            endif
+            assign card_sizes = card_sizes | split: '|~|' | uniq
+          -%}
+          {%- if card_sizes.size > 0 -%}
             {%- liquid
-              assign size_count = card_size_option.values.size
+              assign size_count = card_sizes.size
               assign size_limit = size_count
               if size_count > 3
                 assign size_limit = 2
@@ -617,7 +635,7 @@
               assign size_rest = size_count | minus: size_limit
             -%}
             <ul class="product-item__sizes" aria-label="{{ card_size_option.name | escape }}">
-              {%- for value in card_size_option.values limit: size_limit -%}
+              {%- for value in card_sizes limit: size_limit -%}
                 <li class="product-item__size">{{ value | escape }}</li>
               {%- endfor -%}
               {%- if size_rest > 0 -%}
