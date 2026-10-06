@@ -111,6 +111,23 @@
           },
           "blocks": {}
         },
+        "product_custom_name_button_ya3Yfz": {
+          "type": "_product-custom-name-button",
+          "name": "Botão nome na camisa",
+          "settings": {
+            "enable_button": true,
+            "button_mode": "personalization",
+            "button_label": "Quero meu nome na Camisa (+R$29,90)",
+            "whatsapp_number": "553432194697",
+            "perso_variant_id": "53224470479145",
+            "perso_price": "29,90",
+            "collections": [
+              "camisas-uv50-femininas",
+              "camisas-uv50-masculinas"
+            ]
+          },
+          "blocks": {}
+        },
         "product_whatsapp_cta_QD4eY3": {
           "type": "_product-whatsapp-cta",
           "name": "Torneira de Lead",
@@ -126,23 +143,6 @@
             "hours_start": "08:00",
             "hours_end": "17:15",
             "collections": []
-          },
-          "blocks": {}
-        },
-        "product_custom_name_button_ya3Yfz": {
-          "type": "_product-custom-name-button",
-          "name": "Botão nome na camisa",
-          "settings": {
-            "enable_button": true,
-            "button_mode": "personalization",
-            "button_label": "Quero meu nome na Camisa (+R$29,90)",
-            "whatsapp_number": "553432194697",
-            "perso_variant_id": "53224470479145",
-            "perso_price": "29,90",
-            "collections": [
-              "camisas-uv50-femininas",
-              "camisas-uv50-masculinas"
-            ]
           },
           "blocks": {}
         },
@@ -376,8 +376,8 @@
         "brk_apps_agro_combined_listing_6xbDqi",
         "variant_picker_tcCihG",
         "buy_buttons_LcQGtR",
-        "product_whatsapp_cta_QD4eY3",
         "product_custom_name_button_ya3Yfz",
+        "product_whatsapp_cta_QD4eY3",
         "brk_apps_agro_bundle_addon_qKaPkE",
         "product_benefits_hWMhBF",
         "brk_trust_buybox",
