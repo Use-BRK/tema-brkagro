@@ -31,8 +31,8 @@
           "type": "_product-title",
           "settings": {
             "show_vendor": false,
-            "title_size_desktop": 23,
-            "title_size_mobile": 23
+            "title_size_desktop": 21,
+            "title_size_mobile": 20
           },
           "blocks": {}
         },
