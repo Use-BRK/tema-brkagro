@@ -38,9 +38,9 @@
             "expired_message": "",
             "switch_to_slider": true,
             "custom_colors": true,
-            "bg_color": "#0F6049",
-            "text_color": "#F4F0E9",
-            "timer_color": "#F4F0E9",
+            "bg_color": "#0f6049",
+            "text_color": "#f4f0e9",
+            "timer_color": "#f4f0e9",
             "hidden_on_mobile": false
           }
         },
@@ -178,7 +178,8 @@
         "section_width": "stretch_width",
         "color_scheme": "scheme-6a9d954b-0454-4f9a-9a46-168c51be1b2d",
         "logo_position": "left",
-        "separator_line": "all-page",
+        "separator_line": "unset",
+        "enable_header_shadow": true,
         "enable_login_popup": true,
         "sticky_header_type": "none",
         "sticky_header_mobile": true,

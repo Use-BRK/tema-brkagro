@@ -30,7 +30,9 @@
         "title_G6tU8U": {
           "type": "_product-title",
           "settings": {
-            "show_vendor": false
+            "show_vendor": false,
+            "title_size_desktop": 23,
+            "title_size_mobile": 23
           },
           "blocks": {}
         },
@@ -403,10 +405,12 @@
         "desktop_media_width": 40,
         "desktop_layout": "thumbnail_bottom",
         "thumbnail_size": 100,
+        "media_border_radius": 5,
         "show_media_arrows": true,
         "image_zoom": "open_lightbox",
         "enable_video_looping": false,
         "enable_video_autoplay": false,
+        "buttons_border_radius": 10,
         "enable_frequently_bought_together": false,
         "enable_on_desktop": false,
         "enable_on_mobile": true,
