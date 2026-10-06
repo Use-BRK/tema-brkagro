@@ -1,0 +1,34 @@
+{%- comment -%}
+  Variáveis CSS de um esquema de cores (mesma lógica de layout/theme.liquid),
+  para aplicar um esquema a um elemento que usa outro (ex.: header no template de chapéus).
+
+  Accepts:
+  - scheme {Object}: esquema de cores (settings.color_schemes[id] ou setting do tipo color_scheme)
+{%- endcomment -%}
+{%- assign s = scheme.settings -%}
+--color-background: {{ s.background }};
+--gradient-background: {% if s.background_gradient != empty %}{{ s.background_gradient }}{% else %}{{ s.background }}{% endif %};
+--color-primary: {{ s.primary_color }};
+--color-primary-rgb: {{ s.primary_color.red }}, {{ s.primary_color.green }}, {{ s.primary_color.blue }};
+--color-text: {{ s.text_color }};
+--color-text-rgb: {{ s.text_color.red }}, {{ s.text_color.green }}, {{ s.text_color.blue }};
+--color-heading: {{ s.heading_color }};
+--color-heading-rgb: {{ s.heading_color.red }}, {{ s.heading_color.green }}, {{ s.heading_color.blue }};
+--color-link: {{ s.text_color }};
+--color-link-hover: {{ s.primary_color }};
+--color-border: {{ s.border_color }};
+--btn-primary-color: {{ s.btn_primary_color }};
+--btn-primary-hover-color: {{ s.btn_primary_hover_color }};
+--btn-primary-bg-color: {{ s.btn_primary_background }};
+--btn-primary-bg-graident-color: {% if s.btn_primary_gradient != blank %}{{ s.btn_primary_gradient }}{% else %}{{ s.btn_primary_background }}{% endif %};
+--btn-primary-hover-bg-color: {{ s.btn_primary_hover_background }};
+--btn-primary-hover-bg-color-graident: {% if s.btn_primary_hover_background_gradient != blank %}{{ s.btn_primary_hover_background_gradient }}{% else %}{{ s.btn_primary_hover_background }}{% endif %};
+--btn-outline-color: {{ s.btn_outline_color }};
+--btn-outline-border-color: {{ s.btn_outline_border_color }};
+--btn-link-color: {{ s.button_link_color }};
+--btn-link-hover-color: {{ s.button_link_hover_color }};
+--input-color: var(--color-text);
+--input-placeholder-color: rgba(var(--color-heading-rgb), 0.55);
+--input-bg: rgba({{ s.background.red }}, {{ s.background.green }}, {{ s.background.blue }}, 0.6);
+background-color: {{ s.background }};
+color: {{ s.text_color }};

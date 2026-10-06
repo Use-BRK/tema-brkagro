@@ -451,7 +451,11 @@
         "reset_spacing": true,
         "brk_premium_style": true,
         "brk_premium_gap": 28,
-        "brk_premium_gap_sm": 14
+        "brk_premium_gap_sm": 14,
+        "brk_header_style": true,
+        "brk_header_scheme": "scheme-0f294b-chapeus-importados",
+        "brk_topbar_scheme": "scheme-ffffff-chapeus-topbar",
+        "brk_header_logo_color": "text"
       }
     },
     "brk_benefits": {
