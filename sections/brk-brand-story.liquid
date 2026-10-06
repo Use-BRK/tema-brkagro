@@ -19,7 +19,8 @@
 >
   <div class="{{ st.section_width }}">
     {%- if icon_blocks.size > 0 -%}
-      <ul class="brk-story__icons" role="list">
+      {%- assign icon_rows = icon_blocks.size | divided_by: 2.0 | ceil -%}
+      <ul class="brk-story__icons" role="list" style="--brk-story-icon-rows: {{ icon_rows }};">
         {%- for block in icon_blocks -%}
           <li class="brk-story__icon-item" {{ block.shopify_attributes }}>
             <span class="brk-story__icon" aria-hidden="true">
@@ -27,7 +28,7 @@
                 {%- when 'diamond' -%}
                   <svg viewBox="0 0 32 32" fill="currentColor"><path d="M9.2 4h13.6l6.7 8.1L16 28.6 2.5 12.1 9.2 4Z"/><path d="M2.5 12.1h27M12.3 4 9.6 12.1 16 28.6l6.4-16.5L19.7 4M9.6 12.1 16 4.6l6.4 7.5" fill="none" stroke="#fff" stroke-width="1.3" stroke-linejoin="round" opacity=".9"/></svg>
                 {%- when 'hat' -%}
-                  <svg viewBox="0 0 32 32" fill="currentColor"><path d="M10.6 8.4c1.4-1.2 3.3-.6 5.4.4 2.1-1 4-1.6 5.4-.4 1.5 1.3 2 5 2.1 8.6-2.4.9-4.9 1.3-7.5 1.3s-5.1-.4-7.5-1.3c.1-3.6.6-7.3 2.1-8.6Z"/><path d="M1.5 15.6c1.7-.6 3 .2 4.6 1.2 2.8 1.6 6.1 2.4 9.9 2.4s7.1-.8 9.9-2.4c1.6-1 2.9-1.8 4.6-1.2-1.1 4.6-6.6 8-14.5 8S2.6 20.2 1.5 15.6Z"/></svg>
+                  <svg viewBox="1 5 30 21" fill="currentColor"><path d="M10.6 8.4c1.4-1.2 3.3-.6 5.4.4 2.1-1 4-1.6 5.4-.4 1.5 1.3 2 5 2.1 8.6-2.4.9-4.9 1.3-7.5 1.3s-5.1-.4-7.5-1.3c.1-3.6.6-7.3 2.1-8.6Z"/><path d="M1.5 15.6c1.7-.6 3 .2 4.6 1.2 2.8 1.6 6.1 2.4 9.9 2.4s7.1-.8 9.9-2.4c1.6-1 2.9-1.8 4.6-1.2-1.1 4.6-6.6 8-14.5 8S2.6 20.2 1.5 15.6Z"/></svg>
                 {%- when 'badge' -%}
                   <svg viewBox="0 0 32 32" fill="currentColor"><path d="M16 2.5l3.3 2.4 4.1-.2 1.3 3.9 3.3 2.4-1.2 3.9 1.2 3.9-3.3 2.4-1.3 3.9-4.1-.2L16 25.3l-3.3-2.4-4.1.2-1.3-3.9L4 16.8l1.2-3.9L4 9l3.3-2.4 1.3-3.9 4.1.2L16 2.5Z" transform="translate(0 2)"/><path d="m11 16.6 3.4 3.4 6.8-7.2" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
                 {%- when 'globe' -%}
@@ -38,7 +39,14 @@
                   <svg viewBox="0 0 32 32" fill="currentColor"><path d="M16 3 27 7.5v7.8c0 6.4-4.6 11.6-11 13.7C9.6 26.9 5 21.7 5 15.3V7.5L16 3Z"/><path d="m11 15.8 3.4 3.4 6.6-7" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
               {%- endcase -%}
             </span>
-            <span class="brk-story__icon-text">{{ block.settings.text | newline_to_br }}</span>
+            <span class="brk-story__icon-text{% if block.settings.text_mobile != blank %} brk-story__icon-text--desktop{% endif %}">
+              {{- block.settings.text | newline_to_br -}}
+            </span>
+            {%- if block.settings.text_mobile != blank -%}
+              <span class="brk-story__icon-text brk-story__icon-text--mobile">
+                {{- block.settings.text_mobile | newline_to_br -}}
+              </span>
+            {%- endif -%}
           </li>
         {%- endfor -%}
       </ul>
@@ -128,16 +136,20 @@
 {% stylesheet %}
   .brk-story { padding-top: var(--brk-story-pt); padding-bottom: var(--brk-story-pb); color: var(--color-text); }
   .brk-story__icons {
-    list-style: none; margin: 0 auto 4rem; padding: 0;
-    display: flex; flex-wrap: wrap; justify-content: center; gap: 2.4rem 5.6rem;
+    list-style: none; margin: 0 auto 4rem; padding: 0; max-width: 96rem;
+    display: flex; flex-wrap: wrap; justify-content: space-evenly; align-items: center; gap: 2.4rem 4rem;
   }
   .brk-story__icon-item { display: flex; align-items: center; gap: 1.6rem; }
-  .brk-story__icon { flex: 0 0 auto; width: 3.4rem; height: 3.4rem; color: var(--brk-story-accent); line-height: 0; }
+  .brk-story__icon {
+    flex: 0 0 auto; width: 3.6rem; height: 3.6rem; color: var(--brk-story-accent);
+    display: flex; align-items: center; justify-content: center; line-height: 0;
+  }
   .brk-story__icon svg { width: 100%; height: 100%; display: block; }
   .brk-story__icon-text {
     font-size: 1.5rem; line-height: 1.15; text-transform: uppercase; letter-spacing: .02em;
-    color: var(--brk-story-accent);
+    color: var(--brk-story-accent); text-align: left;
   }
+  .brk-story__icon-text--mobile { display: none; }
   .brk-story__intro { max-width: 100rem; margin: 0 auto 4.8rem; text-align: center; }
   .brk-story__subheading { margin: 0 0 .4rem; font-size: 1.2rem; text-transform: uppercase; letter-spacing: .04em; }
   .brk-story__heading {
@@ -182,12 +194,17 @@
 
   @media (max-width: 749.98px) {
     .brk-story__icons {
-      display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.8rem 1.6rem;
+      display: grid; grid-auto-flow: column;
+      grid-template-columns: repeat(2, max-content);
+      grid-template-rows: repeat(var(--brk-story-icon-rows, 2), auto);
+      justify-content: space-between; gap: 2.4rem 2rem;
       max-width: 36rem; margin-bottom: 3.2rem;
     }
-    .brk-story__icon-item { gap: 1rem; }
-    .brk-story__icon { width: 2.6rem; height: 2.6rem; }
-    .brk-story__icon-text { font-size: 1.2rem; }
+    .brk-story__icon-item { gap: 1.2rem; }
+    .brk-story__icon { width: 3rem; height: 3rem; }
+    .brk-story__icon-text { font-size: 1.3rem; }
+    .brk-story__icon-text--desktop { display: none; }
+    .brk-story__icon-text--mobile { display: block; }
     .brk-story__intro { margin-bottom: 3.2rem; }
     .brk-story__heading { font-size: 1.6rem; margin-bottom: 1.6rem; }
     .brk-story__text { font-size: 1.3rem; }
@@ -244,11 +261,12 @@
             { "value": "badge", "label": "Selo com check" },
             { "value": "globe", "label": "Globo (importado)" },
             { "value": "star", "label": "Estrela" },
-            { "value": "shield", "label": "Escudo" }
+            { "value": "shield", "label": "Escudo com check" }
           ],
           "default": "diamond"
         },
-        { "type": "textarea", "id": "text", "label": "Texto", "info": "Quebre a linha para dividir em duas linhas.", "default": "Qualidade\npremium" }
+        { "type": "textarea", "id": "text", "label": "Texto", "info": "Quebre a linha para dividir em duas linhas.", "default": "Qualidade\npremium" },
+        { "type": "textarea", "id": "text_mobile", "label": "Texto no mobile (opcional)", "info": "Vazio = mesmo texto do desktop." }
       ]
     },
     {

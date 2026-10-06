@@ -376,7 +376,9 @@
         },
         "brk_size_guide": {
           "type": "_brk-size-guide",
-          "settings": {},
+          "settings": {
+            "button_label": "Guia de tamanho"
+          },
           "blocks": {}
         },
         "brk_official_badge": {
@@ -831,29 +833,33 @@
         "icon_1": {
           "type": "icon",
           "settings": {
-            "icon": "diamond",
-            "text": "Qualidade\npremium"
+            "icon": "globe",
+            "text": "Produto\nimportado",
+            "text_mobile": ""
           }
         },
         "icon_2": {
           "type": "icon",
           "settings": {
             "icon": "hat",
-            "text": "Essência\nwestern"
+            "text": "Essência\nwestern",
+            "text_mobile": ""
           }
         },
         "icon_3": {
           "type": "icon",
           "settings": {
             "icon": "badge",
-            "text": "De 50 anos\nde tradição"
+            "text": "De 50 anos\nde tradição",
+            "text_mobile": "50 anos de\ntradição"
           }
         },
         "icon_4": {
           "type": "icon",
           "settings": {
-            "icon": "globe",
-            "text": "Produto\nimportado"
+            "icon": "shield",
+            "text": "Resistência\ne proteção",
+            "text_mobile": ""
           }
         },
         "card_estilo": {
