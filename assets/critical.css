@@ -51,7 +51,9 @@ body {
   -webkit-font-smoothing: antialiased;
   -webkit-text-size-adjust: 100%;
   text-rendering: optimizeSpeed;
+  /* clip (não hidden): hidden no body + html vira scroll container e quebra position:sticky */
   overflow-x: hidden;
+  overflow-x: clip;
   max-width: 100%;
   overflow-wrap: break-word;
   display: flex;
