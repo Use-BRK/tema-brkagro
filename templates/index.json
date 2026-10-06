@@ -107,8 +107,8 @@
           "type": "slider_item",
           "name": "Infantis + Livro",
           "settings": {
-            "image": "shopify://shop_images/BannerGIFagro.gif",
-            "image_mobile": "shopify://shop_images/Mobile.png",
+            "image": "shopify://shop_images/Desk_ecfcb221-1f70-4a2b-80f9-a5938eb7f89c.png",
+            "image_mobile": "shopify://shop_images/Mobile_4d1e7b66-6fbc-4b7b-b6a0-ffeef418e870.png",
             "overlay_opacity": 0,
             "link_banner": "shopify://collections/agro-kids",
             "slider_effect": "fade-in-right",
