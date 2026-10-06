@@ -36,6 +36,8 @@
 -%}
 {%- capture style -%}
   --section-pt: {{ section_st.padding_top }}; --section-pb: {{ section_st.padding_bottom }};--speed: {{ section_st.speed }}s; --font-size: {{ section_st.font_size }};
+  {%- if section_st.media_border_radius > 0 -%}--pdp-media-radius: {{ section_st.media_border_radius }}px;{%- endif -%}
+  --pdp-btn-radius: {{ section_st.buttons_border_radius | default: 0 }}px;
 {%- endcapture -%}
 <div
   id="MainProduct-{{ section.id }}"
@@ -84,6 +86,12 @@
   {% endif %}
   {%- if template.name == 'product' -%}
     {%- liquid
+      comment
+        Visual: só mostra coleção quando a URL traz o contexto (/collections/x/products/y);
+        o JS abaixo troca pela listagem de onde o cliente realmente veio (referrer).
+        JSON-LD: mantém fallback na 1ª coleção do produto (Google não tem referrer).
+      endcomment
+      assign bc_ctx_col = collection
       assign bc_col = collection
       if bc_col == blank or bc_col.url == blank
         assign bc_col = product.collections.first
@@ -91,9 +99,9 @@
     -%}
     <nav class="brk-breadcrumbs" id="brk-breadcrumbs" aria-label="breadcrumb">
       <a href="{{ routes.root_url }}">{{ 'general.breadcrumb.home' | t | default: 'Início' }}</a>
-      {%- if bc_col and bc_col.url != blank -%}
+      {%- if bc_ctx_col and bc_ctx_col.url != blank -%}
         <span class="brk-breadcrumbs__sep" aria-hidden="true">›</span>
-        <a href="{{ bc_col.url }}" data-brk-bc-col>{{ bc_col.title }}</a>
+        <a href="{{ bc_ctx_col.url }}" data-brk-bc-col>{{ bc_ctx_col.title }}</a>
       {%- endif -%}
       <span class="brk-breadcrumbs__sep" aria-hidden="true">›</span>
       <span class="brk-breadcrumbs__current" aria-current="page">{{ product.title | truncate: 48 }}</span>
@@ -179,11 +187,42 @@
       (function () {
         var bc = document.getElementById('brk-breadcrumbs');
         if (!bc) return;
-        // Volta para a listagem do último clique (gravada em layout/theme.liquid)
+        // Coleção do breadcrumb = página de onde o cliente veio (document.referrer):
+        // - listagem (coleção/busca): ela, com o título registrado em layout/theme.liquid
+        // - outro produto: herda o breadcrumb que aquele produto mostrava
+        // - home/páginas/carrinho: sem coleção
+        // - sem referrer interno (Google, link direto): mantém o que veio do Liquid
         try {
-          var last = JSON.parse(sessionStorage.getItem('brk:lastListing') || 'null');
-          if (last && last.url && last.handle === {{ product.handle | json }}) {
-            var colLink = bc.querySelector('a[data-brk-bc-col]');
+          var handle = {{ product.handle | json }};
+          var bcMap = JSON.parse(localStorage.getItem('brk:pdpBc') || '{}');
+          var src;
+          var ref = document.referrer ? new URL(document.referrer) : null;
+          if (ref && ref.origin === location.origin) {
+            var path = ref.pathname;
+            var prodMatch = path.match(/\/products\/([^\/?#]+)/);
+            var colMatch = path.match(/^(.*\/collections\/[^\/]+)/);
+            if (prodMatch) {
+              src = bcMap[prodMatch[1]] || null;
+            } else if (colMatch || /\/search\/?$/.test(path)) {
+              var title;
+              if (colMatch) {
+                var listings = JSON.parse(localStorage.getItem('brk:listings') || '{}');
+                title = listings[colMatch[1]] ||
+                  decodeURIComponent(colMatch[1].split('/').pop()).replace(/[-_]+/g, ' ').replace(/^./, function (c) { return c.toUpperCase(); });
+              } else {
+                var q = ref.searchParams.get('q');
+                title = q ? 'Busca: ' + q : 'Busca';
+              }
+              src = { url: (colMatch ? colMatch[1] : path) + ref.search, title: title };
+            } else {
+              src = null;
+            }
+          }
+          var colLink = bc.querySelector('a[data-brk-bc-col]');
+          if (src === null && colLink) {
+            colLink.previousElementSibling.remove();
+            colLink.remove();
+          } else if (src) {
             if (!colLink) {
               var sep = document.createElement('span');
               sep.className = 'brk-breadcrumbs__sep';
@@ -195,9 +234,16 @@
               bc.insertBefore(sep, current.previousElementSibling);
               bc.insertBefore(colLink, current.previousElementSibling);
             }
-            colLink.href = last.url;
-            colLink.textContent = last.title;
+            colLink.href = src.url;
+            colLink.textContent = src.title;
           }
+          // Guarda o que este produto mostrou, p/ o próximo produto herdar
+          colLink = bc.querySelector('a[data-brk-bc-col]');
+          delete bcMap[handle];
+          bcMap[handle] = colLink ? { url: colLink.getAttribute('href'), title: colLink.textContent } : null;
+          var bcKeys = Object.keys(bcMap);
+          while (bcKeys.length > 30) delete bcMap[bcKeys.shift()];
+          localStorage.setItem('brk:pdpBc', JSON.stringify(bcMap));
         } catch (err) {}
         var headerInner =
           document.querySelector('#header-sticky > div') ||
@@ -698,6 +744,17 @@
       "default": 100
     },
     {
+      "type": "range",
+      "id": "media_border_radius",
+      "min": 0,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "label": "Borda arredondada das imagens",
+      "info": "Arredonda as imagens principais e as miniaturas da galeria. 0 = padrão do tema.",
+      "default": 0
+    },
+    {
       "type": "checkbox",
       "id": "show_media_arrows",
       "label": "Show next/back arrows",
@@ -744,6 +801,21 @@
       "default": true,
       "label": "t:sections.main-product.settings.media.enable_video_autoplay.label",
       "info": "t:sections.main-product.settings.media.enable_video_autoplay.info"
+    },
+    {
+      "type": "header",
+      "content": "Botões"
+    },
+    {
+      "type": "range",
+      "id": "buttons_border_radius",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Borda arredondada dos botões",
+      "info": "Adicionar ao carrinho, nome na camisa e WhatsApp.",
+      "default": 10
     },
     {
       "type": "header",

@@ -133,10 +133,19 @@
 {% comment %} End check setting font {% endcomment %}
 
 {% style %}
+  /* Bandeira 🇧🇷 no Windows: a Segoe UI Emoji não tem bandeiras (mostra "BR").
+     Recorte da Twemoji (só U+1F1E7/U+1F1F7, ~1KB); o unicode-range faz o resto do
+     texto seguir na fonte do tema. Para outras bandeiras, gerar novo recorte. */
+  @font-face {
+    font-family: 'BRK Flag Emoji';
+    src: url('{{ 'flag-emoji-br.woff2' | asset_url }}') format('woff2');
+    unicode-range: U+1F1E7, U+1F1F7;
+    font-display: swap;
+  }
   :root {
-    --body-font: {{ font_family_body }}, sans-serif;
-    --heading-font: {{ font_family_heading }}, sans-serif;
-    --menu-font: {{ font_menu_family }}, sans-serif;
-    --btn-font: {{ font_button_family }}, sans-serif;
+    --body-font: 'BRK Flag Emoji', {{ font_family_body }}, sans-serif;
+    --heading-font: 'BRK Flag Emoji', {{ font_family_heading }}, sans-serif;
+    --menu-font: 'BRK Flag Emoji', {{ font_menu_family }}, sans-serif;
+    --btn-font: 'BRK Flag Emoji', {{ font_button_family }}, sans-serif;
   }
 {% endstyle %}

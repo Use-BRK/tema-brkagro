@@ -135,50 +135,68 @@
   </div>
 {%- endif -%}
 <style>
-  .brk-bbspecs { --brk-green: #085b47; margin-top: 1.8rem; }
+  .brk-bbspecs { --brk-green: #085b47; margin-top: 1.6rem; }
+  .brk-bbspecs__acc {
+    border: 1px solid #ecebe6; border-radius: 14px; background: #fff; overflow: hidden;
+  }
   .brk-bbspecs__head {
     list-style: none; cursor: pointer;
     display: flex; align-items: center; justify-content: space-between; gap: 1.4rem;
-    padding: 1.2rem 0; margin: 0;
-    transition: color .2s ease;
+    padding: 1.5rem 1.8rem; margin: 0;
+    transition: background-color .2s ease;
+    -webkit-tap-highlight-color: transparent;
   }
   .brk-bbspecs__head::-webkit-details-marker { display: none; }
-  .brk-bbspecs__head:hover { color: var(--brk-green); }
+  .brk-bbspecs__head:hover { background: #fafaf7; }
+  .brk-bbspecs__head:focus-visible { outline: 2px solid var(--brk-green); outline-offset: -2px; border-radius: 14px; }
   .brk-bbspecs__title {
     font-family: var(--heading-font); font-weight: 600; line-height: 1.2;
-    font-size: 1.4rem; color: #1f2320;
+    font-size: 1.45rem; color: #1f2320;
   }
-  .brk-bbspecs__head:hover .brk-bbspecs__title { color: var(--brk-green); }
-  .brk-bbspecs__toggle { position: relative; flex: 0 0 auto; width: 1.6rem; height: 1.6rem; }
+  .brk-bbspecs__toggle {
+    position: relative; flex: 0 0 auto; width: 2.6rem; height: 2.6rem; border-radius: 50%;
+    background: color-mix(in srgb, var(--brk-green) 9%, #fff);
+    transition: background-color .2s ease;
+  }
+  .brk-bbspecs__head:hover .brk-bbspecs__toggle { background: color-mix(in srgb, var(--brk-green) 15%, #fff); }
   .brk-bbspecs__toggle::before,
   .brk-bbspecs__toggle::after {
     content: ""; position: absolute; top: 50%; left: 50%;
-    width: 1.2rem; height: 2px; border-radius: 2px; background: var(--brk-green);
+    width: 1rem; height: 1.6px; border-radius: 2px; background: var(--brk-green);
     transform: translate(-50%, -50%);
     transition: transform .28s cubic-bezier(.25,.8,.3,1), opacity .28s ease;
   }
   .brk-bbspecs__toggle::after { transform: translate(-50%, -50%) rotate(90deg); }
   .brk-bbspecs__acc[open] .brk-bbspecs__toggle::after { transform: translate(-50%, -50%) rotate(0); opacity: 0; }
-  .brk-bbspecs__card { margin: 0 0 1rem; animation: brk-bbspecs-reveal .3s ease; }
+  .brk-bbspecs__card {
+    margin: 0; padding: 0 1.8rem .4rem;
+    animation: brk-bbspecs-reveal .3s ease;
+  }
   @keyframes brk-bbspecs-reveal { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: translateY(0); } }
   .brk-bbspecs__row {
-    display: flex; align-items: center; justify-content: space-between; gap: 1.4rem;
-    padding: 1rem 0; border-bottom: 1px solid #ecebe6;
+    display: grid; grid-template-columns: minmax(0, 42%) minmax(0, 1fr); align-items: center; gap: 1.6rem;
+    padding: 1.15rem 0; border-top: 1px solid #f0efea;
   }
-  .brk-bbspecs__row:first-child { border-top: 1px solid #ecebe6; }
   .brk-bbspecs__label {
-    display: flex; align-items: center; gap: .8rem; margin: 0; min-width: 0;
-    font-family: var(--body-font); font-size: 1.3rem; color: #6f736d;
+    display: flex; align-items: center; gap: .9rem; margin: 0; min-width: 0;
+    font-family: var(--body-font); font-size: 1.3rem; line-height: 1.3; color: #6f736d;
   }
   .brk-bbspecs__icon { color: var(--brk-green); line-height: 0; flex: 0 0 auto; }
   .brk-bbspecs__icon svg { width: 1.7rem; height: 1.7rem; display: block; }
   .brk-bbspecs__value {
-    margin: 0; text-align: right; font-family: var(--body-font); font-weight: 600;
-    font-size: 1.3rem; color: #2c2f2b; line-height: 1.3;
+    margin: 0; text-align: left; font-family: var(--body-font); font-weight: 600;
+    font-size: 1.3rem; color: #2c2f2b; line-height: 1.35; overflow-wrap: anywhere;
   }
-  .brk-bbspecs__rte { padding: 0; font-size: 1.3rem; }
+  .brk-bbspecs__rte { padding: 0 1.8rem 1.4rem; font-size: 1.3rem; }
   @media (max-width: 480px) {
-    .brk-bbspecs__label, .brk-bbspecs__value { font-size: 1.26rem; }
+    .brk-bbspecs__acc { border-radius: 12px; }
+    .brk-bbspecs__head { padding: 1.3rem 1.4rem; }
+    .brk-bbspecs__card { padding: 0 1.4rem .2rem; }
+    .brk-bbspecs__rte { padding: 0 1.4rem 1.2rem; }
+    .brk-bbspecs__row { grid-template-columns: minmax(0, 45%) minmax(0, 1fr); gap: 1.2rem; padding: 1.05rem 0; }
+    .brk-bbspecs__label { gap: .7rem; }
+    .brk-bbspecs__label, .brk-bbspecs__value { font-size: 1.24rem; }
+    .brk-bbspecs__icon svg { width: 1.6rem; height: 1.6rem; }
   }
 </style>
 {% schema %}

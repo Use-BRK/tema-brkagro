@@ -202,7 +202,7 @@
   {%- endstyle -%}
 {% endif %}
 <header
-  class="header relative section{% if section_st.padding_top < 30 %} pt-min{% endif %}{% if section_st.padding_bottom < 30 %} pb-min{% endif %} gradient remove_spacing color-{{ color_scheme }}{{ transparent_class }}{% if transparent_mobile %}{{ transparent_mobile_class }}{% endif %}{% if request.page_type == 'index' and section_st.separator_line == 'homepage' %} border-bottom{% endif %}{% if section_st.separator_line == 'all-page' %} border-bottom{% endif %}{% if request.page_type != 'index' and section_st.separator_line == 'inner_page' %} border-bottom{% endif %} popup-search-mobile{% if top_search and mobile_search_bar %} has-mobile-search-bar{% endif %}"
+  class="header relative section{% if section_st.padding_top < 30 %} pt-min{% endif %}{% if section_st.padding_bottom < 30 %} pb-min{% endif %} gradient remove_spacing color-{{ color_scheme }}{{ transparent_class }}{% if transparent_mobile %}{{ transparent_mobile_class }}{% endif %}{% if request.page_type == 'index' and section_st.separator_line == 'homepage' %} border-bottom{% endif %}{% if section_st.separator_line == 'all-page' %} border-bottom{% endif %}{% if request.page_type != 'index' and section_st.separator_line == 'inner_page' %} border-bottom{% endif %}{% if section_st.enable_header_shadow %} header--shadow{% endif %} popup-search-mobile{% if top_search and mobile_search_bar %} has-mobile-search-bar{% endif %}"
   data-section-id="{{ section.id }}"
   data-sticky="{% if request.page_type == 'page' and page.handle == 'links' %}none{% else %}{{ sticky_header_type }}{% endif %}"
   data-sticky-mobile="{% if request.page_type == 'page' and page.handle == 'links' %}false{% else %}{{ sticky_mobile }}{% endif %}"
@@ -421,6 +421,13 @@
           "label": "t:sections.footer.settings.separator_line.show_all_page.label"
         }
       ]
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_header_shadow",
+      "default": true,
+      "label": "Sombra abaixo do header",
+      "info": "Sombra suave abaixo do header para separar do conteúdo. Não aparece com o header transparente sobre banner."
     },
     {
       "type": "checkbox",

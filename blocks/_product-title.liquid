@@ -9,8 +9,13 @@
     {{- product.vendor | link_to_vendor -}}
   </p>
 {% endif %}
+{%- comment -%}
+  Tamanho do título pelos ranges do bloco (desktop/mobile). Vai em style inline para
+  vencer o "CSS personalizado" da seção (que fixa font-size: 2.29rem).
+{%- endcomment -%}
 <h1
   class="product-detail__title heading-letter-spacing fs-26 mt-0 mb-10{% if enable_skeleton_loading %} skeleton-loading{% endif %}"
+  style="--pdp-title-d: {{ block_st.title_size_desktop | default: 23 }}px; --pdp-title-m: {{ block_st.title_size_mobile | default: 23 }}px; font-size: var(--pdp-title-fs, var(--pdp-title-d));"
   {{ block.shopify_attributes }}
 >
   {%- if product.title != blank -%}
@@ -19,6 +24,12 @@
     {{ 'onboarding.product_title_example' | t }}
   {% endif %}
 </h1>
+{% stylesheet %}
+  .product-detail__title { --pdp-title-fs: var(--pdp-title-d); }
+  @media (max-width: 767px) {
+    .product-detail__title { --pdp-title-fs: var(--pdp-title-m); }
+  }
+{% endstylesheet %}
 {% schema %}
 {
   "name": "t:blocks.product.title.name",
@@ -28,6 +39,26 @@
       "type": "checkbox",
       "id": "show_vendor",
       "label": "t:sections.product-single-layout.blocks.product_meta.settings.show_vendor"
+    },
+    {
+      "type": "range",
+      "id": "title_size_desktop",
+      "min": 14,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "label": "Tamanho do título (desktop)",
+      "default": 23
+    },
+    {
+      "type": "range",
+      "id": "title_size_mobile",
+      "min": 14,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "label": "Tamanho do título (mobile)",
+      "default": 23
     }
   ],
   "presets": [

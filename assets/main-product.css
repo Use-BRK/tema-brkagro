@@ -736,3 +736,26 @@ variant-radios-detail .product__item-option {
   padding-left: 0;
   padding-right: 0;
 }
+
+/* Product information > Media > "Borda arredondada das imagens" (--pdp-media-radius
+   só é emitida quando o range > 0; sem ela vale o rounded-5 padrão do tema) */
+[style*="--pdp-media-radius"] .product-detail__media .media-gallery__image,
+[style*="--pdp-media-radius"] .product-detail__media .media-gallery__external-video,
+[style*="--pdp-media-radius"] .product-detail__media .media-gallery__local-video,
+[style*="--pdp-media-radius"] .product-detail__media .media-gallery__model,
+[style*="--pdp-media-radius"] .product-detail__media .cloudimage-360,
+[style*="--pdp-media-radius"] .product-detail__media .media-video,
+[style*="--pdp-media-radius"] .product-detail__media .deferred-media {
+  border-radius: var(--pdp-media-radius);
+  overflow: hidden;
+}
+
+/* Product information > Botões > "Borda arredondada dos botões" (--pdp-btn-radius) */
+.product-detail__buy-buttons,
+.product-detail__custom-name-button,
+.product-detail__whatsapp-cta {
+  --btn-radius: var(--pdp-btn-radius, 10px);
+}
+.product-detail__buy-buttons .shopify-payment-button__button {
+  border-radius: var(--pdp-btn-radius, 10px);
+}

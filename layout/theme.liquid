@@ -232,43 +232,24 @@
     {%- render 'whatsapp-button' -%}
     {%- if settings.enable_phone_capture -%}{%- render 'phone-capture' -%}{%- endif -%}
     <script src="{{ 'standard-events.js' | asset_url }}" defer></script>
-    {%- liquid
-      assign brk_src_title = blank
-      if template.name == 'collection' and collection.title != blank
-        assign brk_src_title = collection.title
-      elsif template.name == 'search'
-        assign brk_src_title = 'Busca'
-        if search.terms != blank
-          assign brk_src_title = 'Busca: ' | append: search.terms
-        endif
-      endif
-    -%}
-    <script>
-      // Breadcrumb do produto: guarda a listagem (coleção/busca) de onde veio o último clique em produto
-      (function () {
-        var srcTitle = {{ brk_src_title | json }};
-        document.addEventListener('click', function (e) {
-          var a = e.target.closest && e.target.closest('a[href*="/products/"]');
-          if (!a) return;
-          var m = a.pathname.match(/\/products\/([^\/?#]+)/);
-          if (!m) return;
+    {%- if template.name == 'collection' and collection.title != blank -%}
+      <script>
+        // Breadcrumb do produto: registra o título desta coleção; a PDP identifica de onde
+        // o cliente veio pelo document.referrer (sections/main-product.liquid)
+        (function () {
           try {
-            if (!srcTitle) {
-              // Clique fora de uma listagem: só mantém o registro se for navegação entre produtos
-              {% if template.name != 'product' %}sessionStorage.removeItem('brk:lastListing');{% endif %}
-              var prev = JSON.parse(sessionStorage.getItem('brk:lastListing') || 'null');
-              if (prev) { prev.handle = m[1]; sessionStorage.setItem('brk:lastListing', JSON.stringify(prev)); }
-              return;
-            }
-            sessionStorage.setItem('brk:lastListing', JSON.stringify({
-              url: location.pathname + location.search,
-              title: srcTitle,
-              handle: m[1]
-            }));
+            var path = location.pathname.replace(/\/$/, '');
+            var key = (path.match(/^(.*\/collections\/[^\/]+)/) || [, path])[1];
+            var map = JSON.parse(localStorage.getItem('brk:listings') || '{}');
+            delete map[key];
+            map[key] = {{ collection.title | json }};
+            var keys = Object.keys(map);
+            while (keys.length > 30) delete map[keys.shift()];
+            localStorage.setItem('brk:listings', JSON.stringify(map));
           } catch (err) {}
-        }, true);
-      })();
-    </script>
+        })();
+      </script>
+    {%- endif -%}
     {% comment %}
     <script type="speculationrules">
       {

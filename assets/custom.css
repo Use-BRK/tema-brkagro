@@ -58,15 +58,25 @@ border-radius: 30%;
 
 /* Header */
 
-/* Sombra bem sutil abaixo do header pra separar do conteudo (nada intrusivo) */
-.section-header {
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+/* Sombra abaixo do header: checkbox "Sombra abaixo do header" na seção Header
+   (classe header--shadow). Vai no <header> (relative + z-index 10) para ficar
+   por cima do conteúdo; a sombra só cai pra baixo (spread negativo, sem laterais). */
+header.header.header--shadow,
+.shopify-section-header-sticky header.header.header--shadow {
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.04), 0 8px 18px -10px rgba(0, 0, 0, 0.22);
 }
 /* Sem sombra quando o header esta transparente sobre um banner (ex.: homepage) e ainda nao virou sticky */
-.section-header:not(.shopify-section-header-sticky):has(.transparent:not(:hover)) {
+.section-header:not(.shopify-section-header-sticky) header.header--shadow.transparent:not(:hover) {
   box-shadow: none;
 }
-
+@media (max-width: 1024px) {
+  .section-header:not(.shopify-section-header-sticky) header.header--shadow.transparent-mobile {
+    box-shadow: none;
+  }
+}
+html.mobile-menu-drawer-open header.header--shadow {
+  box-shadow: none !important;
+}
 /* Página de Produto */
 
 .button_buy-now button {
@@ -1560,5 +1570,55 @@ sticky-add-cart {
   .submenu-horizontal .sub-children-menu,
   .submenu-horizontal .sub-children-menu .gradient {
     background: transparent;
+  }
+}
+
+/* Guia de medidas (product-addons data-custom-class="size_chart"): pílula com ícone de régua.
+   Ícone = assets/icon-size-chart.svg usado como máscara → segue a cor do texto. */
+product-addons[data-custom-class="size_chart"] {
+  display: inline-flex;
+  align-items: center;
+  gap: .6rem;
+  flex: 0 0 auto;
+  align-self: center;
+  padding: .5rem 1.2rem .5rem 1rem;
+  border: 1px solid rgba(17, 17, 17, .18);
+  border-radius: 999px;
+  font-size: 1.3rem;
+  line-height: 1.2;
+  font-weight: 500;
+  white-space: nowrap;
+  text-decoration: none;
+  color: var(--color-heading, #111);
+  background: transparent;
+  transition: border-color .2s ease, background-color .2s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+product-addons[data-custom-class="size_chart"]::before {
+  content: '';
+  flex: 0 0 auto;
+  width: 1.9rem;
+  height: 1.5rem;
+  background-color: currentColor;
+  -webkit-mask: url('icon-size-chart.svg') center / contain no-repeat;
+  mask: url('icon-size-chart.svg') center / contain no-repeat;
+}
+product-addons[data-custom-class="size_chart"]:hover {
+  border-color: currentColor;
+  background-color: rgba(17, 17, 17, .04);
+}
+product-addons[data-custom-class="size_chart"]:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+@media (max-width: 767px) {
+  product-addons[data-custom-class="size_chart"] {
+    font-size: 1.2rem;
+    padding: .5rem 1.1rem .5rem .9rem;
+    gap: .5rem;
+  }
+  product-addons[data-custom-class="size_chart"]::before {
+    width: 1.7rem;
+    height: 1.35rem;
   }
 }
