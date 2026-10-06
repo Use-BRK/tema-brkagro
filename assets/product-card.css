@@ -454,6 +454,16 @@ review-product.inline-loading:after {
 .product-item__price-rating .product-item__rating-inline {
   flex-shrink: 0;
 }
+/* Sem compare-price: a 1a linha e o preco real (1.8rem / lh 1.15, ver custom.css),
+   entao as estrelas ganham a altura dessa linha e centralizam nela. */
+.product-item__price-rating:not(:has(.compare-price)) .product-item__rating-inline {
+  min-height: calc(1.8rem * 1.15);
+  margin-top: 0;
+  align-items: center;
+}
+.product-item__price-rating:not(:has(.compare-price)) .product-item__rating-inline .jdgm-widget {
+  margin-top: 0;
+}
 /* Card em grid: o preco final fica SEMPRE abaixo do compare-price.
    Forcando o "de" (riscado) a ocupar a linha inteira, o preco atual quebra
    para a linha de baixo com ou sem as estrelas do Judge.me ao lado — quando
