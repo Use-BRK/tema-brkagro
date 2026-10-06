@@ -242,9 +242,9 @@
             "s7_value": "",
             "s7_mf": "genero",
             "s8_icon": "refresh",
-            "s8_label": "Cuidados",
+            "s8_label": "",
             "s8_value": "",
-            "s8_mf": "cuidados"
+            "s8_mf": ""
           },
           "blocks": {}
         },
