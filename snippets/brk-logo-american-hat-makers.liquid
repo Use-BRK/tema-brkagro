@@ -1,0 +1,20 @@
+{%- comment -%}
+  Logo American Hat Makers em SVG (cor = currentColor). Fallback do bloco _brk-official-badge.
+
+  Accepts:
+  - uid {String}: sufixo único para o id da máscara
+{%- endcomment -%}
+{%- assign mask_id = 'brk-ahm-stripes-' | append: uid -%}
+<svg class="brk-ahm-logo" viewBox="0 0 260 112" fill="currentColor" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="American Hat Makers, est. 1972">
+  <defs>
+    <mask id="{{ mask_id }}">
+      <rect width="260" height="80" fill="#fff"/>
+      <path d="M90 27h80v3H90zm0 9h80v3H90zm0 9h80v3H90z" fill="#000"/>
+    </mask>
+  </defs>
+  <path d="M40.0,2.0 L48.5,28.3 L76.1,28.3 L53.8,44.5 L62.3,70.7 L40.0,54.5 L17.7,70.7 L26.2,44.5 L3.9,28.3 L31.5,28.3Z"/>
+  <path mask="url(#{{ mask_id }})" d="M130.0,2.0 L138.5,28.3 L166.1,28.3 L143.8,44.5 L152.3,70.7 L130.0,54.5 L107.7,70.7 L116.2,44.5 L93.9,28.3 L121.5,28.3Z"/>
+  <path d="M220.0,2.0 L228.5,28.3 L256.1,28.3 L233.8,44.5 L242.3,70.7 L220.0,54.5 L197.7,70.7 L206.2,44.5 L183.9,28.3 L211.5,28.3Z"/>
+  <text x="130" y="96" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-weight="700" font-size="17.5" textLength="236" lengthAdjust="spacingAndGlyphs">AMERICAN HAT MAKERS</text>
+  <text x="130" y="110" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-weight="700" font-size="8.5" letter-spacing=".6">EST. 1972</text>
+</svg>

@@ -1,0 +1,45 @@
+{%- comment -%}
+  Divisor + descrição do produto dentro do buybox (usado no template product.chapeu-importado).
+{%- endcomment -%}
+{%- liquid
+  assign st = block.settings
+  assign product = closest.product
+-%}
+<div class="brk-desc" {{ block.shopify_attributes }}>
+  {%- if st.show_divider -%}
+    <hr class="brk-desc__divider">
+  {%- endif -%}
+  {%- if product.description != blank -%}
+    <div class="brk-desc__text rte">{{ product.description }}</div>
+  {%- endif -%}
+</div>
+
+{% stylesheet %}
+  .brk-desc { margin: 0 0 2.2rem; }
+  .brk-desc__divider {
+    margin: 0 0 1.8rem; border: 0;
+    border-top: 1px solid rgba(var(--color-text-rgb), 0.28);
+  }
+  .brk-desc__text { font-size: 1.4rem; line-height: 1.5; color: var(--color-text); }
+  .brk-desc__text p:last-child { margin-bottom: 0; }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Divisor + descrição",
+  "tag": null,
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_divider",
+      "label": "Exibir divisor",
+      "default": true
+    },
+    {
+      "type": "paragraph",
+      "content": "Mostra a descrição do produto. Se a descrição estiver vazia, aparece só o divisor."
+    }
+  ],
+  "presets": [{ "name": "Divisor + descrição" }]
+}
+{% endschema %}

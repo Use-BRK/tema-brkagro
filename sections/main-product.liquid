@@ -1,4 +1,7 @@
 {{ 'main-product.css' | asset_url | stylesheet_tag }}
+{%- if section.settings.brk_premium_style -%}
+  {{ 'brk-pdp-premium.css' | asset_url | stylesheet_tag }}
+{%- endif -%}
 {%- liquid
   assign theme_st = settings
   assign section_st = section.settings
@@ -38,10 +41,11 @@
   --section-pt: {{ section_st.padding_top }}; --section-pb: {{ section_st.padding_bottom }};--speed: {{ section_st.speed }}s; --font-size: {{ section_st.font_size }};
   {%- if section_st.media_border_radius > 0 -%}--pdp-media-radius: {{ section_st.media_border_radius }}px;{%- endif -%}
   --pdp-btn-radius: {{ section_st.buttons_border_radius | default: 0 }}px;
+  {%- if section_st.brk_premium_style -%}--brk-pm-gap: {{ section_st.brk_premium_gap | default: 28 }}px;--brk-pm-gap-sm: {{ section_st.brk_premium_gap_sm | default: 14 }}px;{%- endif -%}
 {%- endcapture -%}
 <div
   id="MainProduct-{{ section.id }}"
-  class="section sec__featured-product product__item-js {% if section_st.padding_top < 30 %} pt-min{% endif %}{% if section_st.padding_bottom < 30 %} pb-min{% endif %} color-{{ color_scheme }} gradient{{ reset_spacing }}"
+  class="section sec__featured-product product__item-js {% if section_st.padding_top < 30 %} pt-min{% endif %}{% if section_st.padding_bottom < 30 %} pb-min{% endif %} color-{{ color_scheme }} gradient{{ reset_spacing }}{% if section_st.brk_premium_style %} brk-premium{% endif %}"
   data-section="{{ section.id }}"
   data-color-trigger="{{ settings.color_swatch_trigger }}"
   data-desktop-layout="{{ desktop_layout }}"
@@ -417,7 +421,7 @@
   {% comment %} Not done {% endcomment %}
   {% if enable_sticky_add_cart_on_desktop == true or enable_sticky_add_cart_on_mobile == true %}
     {%- assign product_form_id = 'sticky-addcart-form-' | append: section.id -%}
-    <sticky-add-cart class="fixed z-10 inset-x-0 bottom-0 py-15 shadow color-default transition-popup invisible {% if enable_sticky_add_cart_on_desktop == true %}sticky_desktop--show{% else %} hidden-md{% endif %}{% if enable_sticky_add_cart_on_mobile == true %} sticky_mobile--show{% else %} hidden{% endif %}">
+    <sticky-add-cart class="fixed z-10 inset-x-0 bottom-0 py-15 shadow color-{% if section_st.brk_premium_style %}{{ color_scheme }}{% else %}default{% endif %} transition-popup invisible {% if enable_sticky_add_cart_on_desktop == true %}sticky_desktop--show{% else %} hidden-md{% endif %}{% if enable_sticky_add_cart_on_mobile == true %} sticky_mobile--show{% else %} hidden{% endif %}">
       <div class="full_width">
         <div class="flex gap-15 justify-between align-center">
           {% render 'product-item',
@@ -682,6 +686,34 @@
       "label": "Breadcrumb dentro do header no mobile",
       "info": "Desmarcado: no mobile o breadcrumb fica acima da foto do produto, igual ao desktop.",
       "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "brk_premium_style",
+      "label": "Estilo premium",
+      "info": "Aplica o esquema de cores a toda a área de compra (preço, tamanhos, selos, especificações, WhatsApp, breadcrumb e barra fixa). Usado nos Chapéus Importados.",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "brk_premium_gap",
+      "label": "Respiro entre blocos (estilo premium)",
+      "min": 0,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "brk_premium_gap_sm",
+      "label": "Respiro interno (estilo premium)",
+      "info": "Entre o SKU e o preço, e entre o rótulo \"Tamanho\" e as opções.",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 14
     },
     {
       "type": "checkbox",
@@ -1038,6 +1070,15 @@
     },
     {
       "type": "_brk-specs"
+    },
+    {
+      "type": "_brk-description"
+    },
+    {
+      "type": "_brk-size-guide"
+    },
+    {
+      "type": "_brk-official-badge"
     },
     {
       "type": "_brk-ugc"

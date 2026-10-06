@@ -1,0 +1,72 @@
+{%- comment -%}
+  Selo "Produto Oficial" + logo da marca, abaixo dos botões de compra.
+  Cores seguem o esquema de cores da seção (texto e divisor).
+{%- endcomment -%}
+{%- liquid
+  assign st = block.settings
+-%}
+<div
+  class="brk-official"
+  style="--brk-official-logo-w: {{ st.logo_width }}px; --brk-official-gap: {{ st.spacing }}px; --brk-official-logo-gap: {{ st.logo_spacing }}px; margin-bottom: {{ st.spacing }}px !important;"
+  {{ block.shopify_attributes }}
+>
+  {%- if st.show_divider -%}
+    <hr class="brk-official__divider">
+  {%- endif -%}
+  {%- if st.text != blank -%}
+    <p class="brk-official__text">{{ st.text }}</p>
+  {%- endif -%}
+  {%- capture logo -%}
+    {%- if st.logo != blank -%}
+      {{ st.logo | image_url: width: 600 | image_tag: class: 'brk-official__img', loading: 'lazy', widths: '200, 300, 400, 600', alt: st.logo.alt }}
+    {%- else -%}
+      {%- render 'brk-logo-american-hat-makers', uid: block.id -%}
+    {%- endif -%}
+  {%- endcapture -%}
+  {%- if st.link != blank -%}
+    <a class="brk-official__logo" href="{{ st.link }}">{{ logo }}</a>
+  {%- else -%}
+    <div class="brk-official__logo">{{ logo }}</div>
+  {%- endif -%}
+</div>
+
+{% stylesheet %}
+  .brk-official {
+    display: flow-root; text-align: center; color: var(--color-text);
+    padding-top: max(0px, calc(var(--brk-official-gap) - var(--brk-pm-gap, 0px)));
+  }
+  .brk-official__divider {
+    margin: 0 0 var(--brk-official-gap); border: 0;
+    border-top: 1px solid rgba(var(--color-text-rgb), 0.28);
+  }
+  .brk-official__text { margin: 0 0 var(--brk-official-logo-gap); font-family: var(--body-font); font-size: 1.5rem; font-weight: 300; color: inherit; }
+  .brk-official__logo { display: block; width: var(--brk-official-logo-w, 140px); max-width: 100%; margin-inline: auto; color: inherit; line-height: 0; }
+  .brk-official__logo svg,
+  .brk-official__img { display: block; width: 100%; height: auto; }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Produto oficial",
+  "tag": null,
+  "settings": [
+    { "type": "checkbox", "id": "show_divider", "label": "Exibir divisor acima", "default": true },
+    { "type": "text", "id": "text", "label": "Texto", "default": "Produto Oficial" },
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo",
+      "info": "Vazio = logo American Hat Makers (acompanha a cor do texto do esquema). Use PNG/SVG com fundo transparente."
+    },
+    { "type": "range", "id": "logo_width", "label": "Largura do logo", "min": 60, "max": 260, "step": 2, "unit": "px", "default": 140 },
+    { "type": "url", "id": "link", "label": "Link do logo" },
+    { "type": "header", "content": "Respiros" },
+    {
+      "type": "range", "id": "spacing", "label": "Respiro externo", "min": 0, "max": 80, "step": 2, "unit": "px", "default": 40,
+      "info": "Espaço acima do divisor, entre o divisor e o texto, e abaixo do logo."
+    },
+    { "type": "range", "id": "logo_spacing", "label": "Respiro entre texto e logo", "min": 0, "max": 60, "step": 2, "unit": "px", "default": 24 }
+  ],
+  "presets": [{ "name": "Produto oficial" }]
+}
+{% endschema %}
