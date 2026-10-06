@@ -185,7 +185,8 @@
     <style>
       .brk-breadcrumbs {
         display: flex; flex-wrap: nowrap; align-items: center; gap: .6rem;
-        margin-top: 1.4rem; margin-bottom: 2rem; overflow: hidden;
+        /* padding (não margin) no topo: margin colapsa p/ fora da seção e expõe o fundo da página */
+        padding-top: 1.4rem; margin-bottom: 2rem; overflow: hidden;
         font-family: var(--body-font); font-size: 1.3rem; line-height: 1.4;
       }
       .brk-breadcrumbs a,
@@ -198,7 +199,7 @@
         white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
       }
       @media (max-width: 767px) {
-        .brk-breadcrumbs { font-size: 1.2rem; margin-top: 1rem; margin-bottom: 1.5rem; gap: .5rem; }
+        .brk-breadcrumbs { font-size: 1.2rem; padding-top: 1rem; margin-bottom: 1.5rem; gap: .5rem; }
       }
       /* Estado mobile: breadcrumb movido para dentro do header (abaixo da linha do logo) */
       .brk-breadcrumbs--in-header {
@@ -283,6 +284,9 @@
           while (bcKeys.length > 30) delete bcMap[bcKeys.shift()];
           localStorage.setItem('brk:pdpBc', JSON.stringify(bcMap));
         } catch (err) {}
+        {%- unless section.settings.breadcrumb_mobile_in_header -%}
+        return;
+        {%- endunless -%}
         var headerInner =
           document.querySelector('#header-sticky > div') ||
           document.getElementById('header-sticky');
@@ -710,6 +714,13 @@
       "id": "color_scheme",
       "label": "t:sections.all.color_scheme.label",
       "default": "scheme-1"
+    },
+    {
+      "type": "checkbox",
+      "id": "breadcrumb_mobile_in_header",
+      "label": "Breadcrumb dentro do header no mobile",
+      "info": "Desmarcado: no mobile o breadcrumb fica acima da foto do produto, igual ao desktop.",
+      "default": true
     },
     {
       "type": "checkbox",
