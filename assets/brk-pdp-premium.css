@@ -1,0 +1,155 @@
+/*
+ * Estilo premium da página de produto (ex.: Chapéus Importados).
+ * Carregado pela seção main-product quando "Estilo premium" está ligado.
+ * Todas as cores vêm do esquema de cores da seção (editável no editor de temas):
+ *   texto       -> --color-text
+ *   fundo       -> --color-background
+ *   botão/realce -> --btn-primary-bg-color
+ */
+.brk-premium {
+  --brk-pm-line: rgba(var(--color-text-rgb), 0.16);
+  --brk-pm-panel: rgba(var(--color-text-rgb), 0.06);
+}
+
+/* Breadcrumb (desktop; no mobile ele vai para o header e herda a cor de lá) */
+.brk-premium .brk-breadcrumbs:not(.brk-breadcrumbs--in-header) a,
+.brk-premium .brk-breadcrumbs:not(.brk-breadcrumbs--in-header) .brk-breadcrumbs__current {
+  color: var(--color-text);
+}
+.brk-premium .brk-breadcrumbs:not(.brk-breadcrumbs--in-header) .brk-breadcrumbs__sep {
+  color: var(--color-text);
+  opacity: 0.6;
+}
+.brk-premium .brk-breadcrumbs:not(.brk-breadcrumbs--in-header) a:hover {
+  color: var(--btn-primary-bg-color);
+}
+
+/* Preço e parcelamento (custom.css força .price com !important) */
+.brk-premium .price,
+.brk-premium .compare-price,
+.brk-premium .installment-payment,
+.brk-premium .installment-payment p,
+.brk-premium .installment-payment strong {
+  color: var(--color-text) !important;
+}
+
+/* Ícone da sacola no botão de compra acompanha a cor do texto do botão */
+.brk-premium .product_submit_button svg path {
+  fill: currentColor !important;
+}
+
+/* Tamanhos: selecionado = mesmo efeito do hover (preenchido, texto vazado na cor do fundo) */
+.brk-premium .product-form__input input[type="radio"] + label.product__item-option {
+  color: var(--color-text);
+  background: transparent;
+  border-color: var(--color-text);
+}
+.brk-premium .product-form__input input[type="radio"]:checked + label.product__item-option,
+.brk-premium .product-form__input input[type="radio"] + label.product__item-option:hover {
+  color: var(--color-background) !important;
+  background: var(--color-text) !important;
+  border-color: var(--color-text) !important;
+}
+.brk-premium .product-form__input input[type="radio"]:checked + label.product__item-option *,
+.brk-premium .product-form__input input[type="radio"] + label.product__item-option:hover * {
+  color: var(--color-background) !important;
+}
+
+/* WhatsApp: a cor do botão vem do bloco ("Cor do texto e borda"); ícone vazado na cor do fundo */
+.brk-premium .whatsapp-cta__icon svg {
+  background: var(--wa-color);
+  fill: var(--color-background);
+}
+.brk-premium .whatsapp-cta__divider {
+  color: var(--color-text);
+}
+.brk-premium .whatsapp-cta__divider::before,
+.brk-premium .whatsapp-cta__divider::after {
+  background: rgba(var(--color-text-rgb), 0.3);
+}
+
+/* Selos de confiança ("Cor de destaque" do bloco = fundo do ícone) */
+.brk-premium .brk-trust__grid {
+  background: var(--brk-pm-panel);
+  border-color: var(--brk-pm-line);
+}
+.brk-premium .brk-trust__icon {
+  color: var(--color-background);
+  background: var(--brk-accent);
+}
+.brk-premium .brk-trust__title,
+.brk-premium .brk-trust__note {
+  color: var(--color-text);
+}
+
+/* Detalhes técnicos ("Cor de destaque" do bloco = ícones e botão +/−) */
+.brk-premium .brk-bbspecs__acc {
+  background: var(--brk-pm-panel);
+  border-color: var(--brk-pm-line);
+}
+.brk-premium .brk-bbspecs__head:hover {
+  background: rgba(var(--color-text-rgb), 0.04);
+}
+.brk-premium .brk-bbspecs__toggle,
+.brk-premium .brk-bbspecs__head:hover .brk-bbspecs__toggle {
+  background: var(--brk-green);
+}
+.brk-premium .brk-bbspecs__toggle::before,
+.brk-premium .brk-bbspecs__toggle::after {
+  background: var(--color-background);
+}
+.brk-premium .brk-bbspecs__row {
+  border-top-color: var(--brk-pm-line);
+}
+.brk-premium .brk-bbspecs__title,
+.brk-premium .brk-bbspecs__label,
+.brk-premium .brk-bbspecs__value,
+.brk-premium .brk-bbspecs__rte {
+  color: var(--color-text);
+}
+.brk-premium .brk-bbspecs__icon {
+  color: var(--brk-green);
+}
+
+/* Respiros: espaçamento uniforme entre os blocos da área de compra
+   ("Respiro entre blocos" na seção; padrão 28px) */
+.brk-premium .product-detail__price {
+  margin-top: var(--brk-pm-gap-sm, 14px) !important;
+  margin-bottom: var(--brk-pm-gap, 28px) !important;
+}
+.brk-premium .product-detail__price ~ * {
+  margin-top: 0 !important;
+  margin-bottom: var(--brk-pm-gap, 28px) !important;
+}
+.brk-premium .product-detail__price ~ .brk-sg-anchor {
+  margin-bottom: 0 !important;
+}
+.brk-premium .brk-desc__divider {
+  margin-bottom: var(--brk-pm-gap, 28px);
+}
+.brk-premium .whatsapp-cta__divider {
+  margin-bottom: var(--brk-pm-gap, 28px);
+}
+
+/* Respiro interno: rótulo "Tamanho:" -> opções ("Respiro interno" na seção) */
+.brk-premium .product-form__input_size .form__label {
+  margin-bottom: calc(var(--brk-pm-gap-sm, 14px) - 0.6rem);
+}
+
+/* Judge.me: badge de avaliações na mesma linha do preço, à direita; estrelas na cor do texto */
+.brk-premium .shopify-app-block:has(.jdgm-preview-badge) {
+  float: right;
+  margin: var(--brk-pm-gap-sm, 14px) 0 0 1.6rem !important;
+  min-height: 2.4rem;
+  display: flex;
+  align-items: center;
+}
+.brk-premium .shopify-app-block:has(.jdgm-preview-badge) ~ .brk-desc {
+  clear: both;
+}
+.brk-premium .jdgm-preview-badge,
+.brk-premium .jdgm-preview-badge .jdgm-prev-badge__text,
+.brk-premium .jdgm-preview-badge .jdgm-prev-badge__stars .jdgm-star,
+.brk-premium .jdgm-preview-badge .jdgm-prev-badge__stars .jdgm-star::before {
+  color: var(--color-text) !important;
+}

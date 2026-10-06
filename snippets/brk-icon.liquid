@@ -1,7 +1,7 @@
 {%- comment -%}
   BRK AGRO — thin-line icon set (stroke, currentColor). Uso: {% render 'brk-icon', name: 'sun' %}
   Nomes: sun, dry, feather, shield, lock, truck, refresh, medal, ruler,
-         cotton, boot, seam, thermo, drop, tag, leaf, star
+         cotton, boot, seam, thermo, drop, tag, leaf, star, scissors, sparkle, cloud
 {%- endcomment -%}
 {%- case name -%}
 {%- when 'sun' -%}
@@ -40,6 +40,12 @@
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 4.5 13.2c-.3.4 0 1 .5 1H11l-1 7.8 8.5-11.2c.3-.4 0-1-.5-1H12l1-7.8Z"/></svg>
 {%- when 'star' -%}
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 2.6 5.6 6 .8-4.4 4.2 1.1 6L12 17.8 6.7 19.6l1.1-6L3.4 9.4l6-.8L12 3Z"/></svg>
+{%- when 'scissors' -%}
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="6" r="2.8"/><circle cx="6" cy="18" r="2.8"/><path d="M8.3 7.6 20 18M8.3 16.4 20 6M12.8 12h.01"/></svg>
+{%- when 'sparkle' -%}
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3c.6 4.6 2.4 6.4 7 7-4.6.6-6.4 2.4-7 7-.6-4.6-2.4-6.4-7-7 4.6-.6 6.4-2.4 7-7Z"/><path d="M19 16.5c.2 1.4.8 2 2.2 2.2-1.4.2-2 .8-2.2 2.2-.2-1.4-.8-2-2.2-2.2 1.4-.2 2-.8 2.2-2.2Z"/></svg>
+{%- when 'cloud' -%}
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.5 18.5h9.8a4.2 4.2 0 0 0 .5-8.4 5.8 5.8 0 0 0-11.2 1.4 3.5 3.5 0 0 0 .9 7Z"/><path d="M10 18.5v2.8"/></svg>
 {%- else -%}
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m8.5 12 2.4 2.4 4.6-4.8"/></svg>
 {%- endcase -%}

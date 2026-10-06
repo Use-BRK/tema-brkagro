@@ -1,0 +1,938 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "breadcrumb": {
+      "type": "breadcrumb",
+      "disabled": true,
+      "settings": {
+        "section_width": "container",
+        "color_scheme": "",
+        "next_prev": false
+      }
+    },
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "badges_RwfTMp": {
+          "type": "_product-badges",
+          "disabled": true,
+          "settings": {},
+          "blocks": {}
+        },
+        "title_G6tU8U": {
+          "type": "_product-title",
+          "settings": {
+            "show_vendor": false,
+            "title_size_desktop": 21,
+            "title_size_mobile": 20
+          },
+          "blocks": {}
+        },
+        "product_meta_kiKPhW": {
+          "type": "_product-meta",
+          "settings": {
+            "show_barcode": false,
+            "show_sku": true,
+            "show_available": false,
+            "show_tags": false,
+            "show_type": false,
+            "show_collections": false
+          },
+          "blocks": {}
+        },
+        "judge_me_reviews_preview_badge_nzUTHB": {
+          "type": "shopify://apps/judge-me-reviews/blocks/preview_badge/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {}
+        },
+        "review_and_sold_AAbJC9": {
+          "type": "_product-review-sold",
+          "disabled": true,
+          "settings": {
+            "show_review": true,
+            "show_sold_products": false,
+            "sold": "",
+            "hours": ""
+          },
+          "blocks": {}
+        },
+        "price_VJ4N8m": {
+          "type": "_product-price",
+          "settings": {
+            "price_size": 24,
+            "price_weight": "600",
+            "compare_size": 18,
+            "compare_weight": "400",
+            "installment_size": 15,
+            "installment_weight": "400"
+          },
+          "blocks": {}
+        },
+        "brk_apps_agro_combined_listing_6xbDqi": {
+          "type": "shopify://apps/brk-apps-agro/blocks/combined-listing/019f0471-1a7f-7d87-ace2-a886cbd950ee",
+          "settings": {
+            "show_option_name": true,
+            "show_label": true,
+            "swatch_size": 86,
+            "border_radius": 0,
+            "border_width": 1,
+            "gap": 4,
+            "margin_y": 10,
+            "border_color": "#ede5da",
+            "selected_color": "#ede5da",
+            "selected_text_color": "#0f294b",
+            "hover_color": "#ffffff",
+            "label_color": "#ffffff",
+            "label_size": 12
+          }
+        },
+        "variant_picker_tcCihG": {
+          "type": "_product-variant-picker",
+          "settings": {
+            "variant_type": "swatches",
+            "show_size_guide": false,
+            "size_guide_label": "Guia de Medidas",
+            "size_guide_page": "{{ closest.product.metafields.custom.tabela_medidas.value }}"
+          },
+          "blocks": {}
+        },
+        "buy_buttons_LcQGtR": {
+          "type": "_product-buy-buttons",
+          "settings": {
+            "show_dynamic_checkout": false,
+            "show_gift_card_recipient": false,
+            "show_wishlist": false,
+            "show_compare": false
+          },
+          "blocks": {}
+        },
+        "product_custom_name_button_ya3Yfz": {
+          "type": "_product-custom-name-button",
+          "name": "Botão nome na camisa",
+          "settings": {
+            "enable_button": true,
+            "button_mode": "personalization",
+            "button_label": "Quero meu nome na Camisa (+R$29,90)",
+            "whatsapp_number": "553432194697",
+            "perso_variant_id": "53224470479145",
+            "perso_price": "29,90",
+            "collections": [
+              "camisas-uv50-femininas",
+              "camisas-uv50-masculinas"
+            ]
+          },
+          "blocks": {}
+        },
+        "product_whatsapp_cta_QD4eY3": {
+          "type": "_product-whatsapp-cta",
+          "name": "Torneira de Lead",
+          "settings": {
+            "enable_button": true,
+            "divider_text": "Ou",
+            "button_text": "[whatsapp] Comprar pelo WhatsApp",
+            "text_color": "#ffffff",
+            "whatsapp_number": "553432194697",
+            "whatsapp_message": "Vim da loja online e tenho interesse nesse produto:",
+            "append_product_link": true,
+            "enable_schedule": true,
+            "hours_start": "08:00",
+            "hours_end": "17:15",
+            "collections": []
+          },
+          "blocks": {}
+        },
+        "brk_apps_agro_bundle_addon_qKaPkE": {
+          "type": "shopify://apps/brk-apps-agro/blocks/bundle-addon/019f0471-1a7f-7d87-ace2-a886cbd950ee",
+          "settings": {
+            "title_size": 15,
+            "border_radius": 12,
+            "margin_y": 16,
+            "border_color": "#e1e3e5",
+            "accent_color": "#085b47",
+            "label_bg": "#085b47",
+            "label_text_color": "#ffffff"
+          }
+        },
+        "product_benefits_hWMhBF": {
+          "type": "_product-benefits",
+          "name": "Benefícios do produto",
+          "settings": {
+            "heading": "",
+            "collapsible": false,
+            "open_default": true,
+            "show_border": true,
+            "border_radius": 1,
+            "bold_text": false,
+            "layout": "icon_left",
+            "display": "list",
+            "columns_mobile": 2,
+            "icon_size": 40
+          },
+          "blocks": {}
+        },
+        "brk_trust_buybox": {
+          "type": "_brk-trust",
+          "name": "BRK Trust (buy box)",
+          "settings": {
+            "accent_color": "#ede5da",
+            "t1_icon": "lock",
+            "t1_title": "Compra 100% Segura",
+            "t2_icon": "refresh",
+            "t2_title": "1ª Troca Grátis",
+            "t3_icon": "medal",
+            "t3_title": "Qualidade Garantida",
+            "t4_icon": "truck",
+            "t4_title": "Frete Fixo R$9,90",
+            "t5_icon": "tag",
+            "t5_title": "",
+            "show_production_deadline": false,
+            "producao": "10",
+            "algodao": "1",
+            "imediato": "0"
+          },
+          "blocks": {}
+        },
+        "brk_specs_buybox": {
+          "type": "_brk-specs",
+          "name": "BRK Especificações (buy box)",
+          "settings": {
+            "accent_color": "#ede5da",
+            "heading": "Detalhes técnicos",
+            "open": true,
+            "mf_namespace": "brk",
+            "show_sku": false,
+            "sku_label": "Código",
+            "show_prazo": true,
+            "prazo_label": "Prazo de Produção",
+            "prazo_imediato_label": "Envio Imediato",
+            "prazo_padrao": "10",
+            "s1_icon": "tag",
+            "s1_label": "Marca",
+            "s1_value": "",
+            "s1_mf": "marca",
+            "s2_icon": "cloud",
+            "s2_label": "Material",
+            "s2_value": "",
+            "s2_mf": "material",
+            "s3_icon": "scissors",
+            "s3_label": "Modelo",
+            "s3_value": "",
+            "s3_mf": "modelo",
+            "s4_icon": "sparkle",
+            "s4_label": "Detalhes",
+            "s4_value": "",
+            "s4_mf": "detalhes",
+            "s5_icon": "sun",
+            "s5_label": "",
+            "s5_value": "",
+            "s5_mf": "",
+            "s6_icon": "boot",
+            "s6_label": "",
+            "s6_value": "",
+            "s6_mf": "",
+            "s7_icon": "medal",
+            "s7_label": "",
+            "s7_value": "",
+            "s7_mf": "",
+            "s8_icon": "refresh",
+            "s8_label": "",
+            "s8_value": "",
+            "s8_mf": ""
+          },
+          "blocks": {}
+        },
+        "delivery_return_iJHeMD": {
+          "type": "_product-delivery-return",
+          "name": "Prazo de Disponibilidade + Cupom",
+          "settings": {
+            "delivery_design": "vertical",
+            "disable_outline": true,
+            "delivery_content_icon": "none",
+            "delivery_content": "",
+            "discount_content_icon": "none",
+            "discount_content": "",
+            "return_content_icon": "none",
+            "return_content": "",
+            "show_production_deadline": false,
+            "producao": "10",
+            "algodao": "1",
+            "imediato": "0"
+          },
+          "blocks": {}
+        },
+        "brk_ugc_buybox": {
+          "type": "_brk-ugc",
+          "name": "BRK Prova Social",
+          "disabled": true,
+          "settings": {
+            "accent_color": "#085b47",
+            "eyebrow": "",
+            "heading": "Quem usa, recomenda",
+            "v1_src": "https://cdn.shopify.com/videos/c/o/v/f771b820581b4e3c957f2fb850c771f6.mp4",
+            "v1_product": "",
+            "v2_src": "https://cdn.shopify.com/videos/c/o/v/b9df390658e7441dad50c4daed971906.mp4",
+            "v2_product": "",
+            "v3_src": "https://cdn.shopify.com/videos/c/o/v/f17ec86cb3674b09a9a8a6b786ab20aa.mp4",
+            "v3_product": "",
+            "v4_src": "https://cdn.shopify.com/videos/c/o/v/08b459b3a33544f9b47528a1b340cb1e.mp4",
+            "v4_product": "",
+            "v5_src": "",
+            "v5_product": "",
+            "v6_src": "",
+            "v6_product": ""
+          },
+          "blocks": {}
+        },
+        "frete_no_produto_shipping_calc_mfbXjr": {
+          "type": "shopify://apps/frete-no-produto/blocks/shipping_calc/86063d43-a133-4046-bbed-b9bfb712ccba",
+          "disabled": true,
+          "settings": {
+            "shipping_calculator": true,
+            "show_localization": true,
+            "background_color_container": "rgba(0,0,0,0)",
+            "background_header": "#fafafa",
+            "background_local": "#fafafa",
+            "btnshipping": "#085b47",
+            "color_text": "#efe9da",
+            "color_shipping": "#085b47",
+            "color_ship_name": "#000000",
+            "color_shipping_date": "#000000",
+            "padding_inner": 0,
+            "padding_external": 12,
+            "space_top": 0,
+            "height_input": 45,
+            "border_radius": 0,
+            "text_btn": "Consultar",
+            "text_title": "Calcule o Frete",
+            "placeholder": "Digite seu CEP",
+            "pickup": "",
+            "dont_show_products": [],
+            "show_dont_know_cep": false,
+            "dont_know_cep_text": "Não sei meu CEP",
+            "no_rates_message": "Chame nossa equipe no WhatsApp para cotar"
+          }
+        },
+        "product_grouped_6epkNf": {
+          "type": "_product-grouped",
+          "settings": {
+            "heading": ""
+          },
+          "blocks": {}
+        },
+        "more_colors_3zmxGq": {
+          "type": "_product-more-colors",
+          "settings": {
+            "heading": "",
+            "image_width": 40
+          },
+          "blocks": {}
+        },
+        "product_collapsible_row_HB7ApJ": {
+          "type": "_product-collapsible-row",
+          "disabled": true,
+          "settings": {
+            "heading": "ficha técnica",
+            "content": "<p>SKU: [product_sku]</p>",
+            "use_product_description": false,
+            "open": true
+          },
+          "blocks": {}
+        },
+        "product_collapsible_row_PancQ9": {
+          "type": "_product-collapsible-row",
+          "disabled": true,
+          "settings": {
+            "heading": "detalhes técnicos",
+            "content": "<p>SKU: </p>",
+            "use_product_description": true,
+            "open": true
+          },
+          "blocks": {}
+        },
+        "product_collapsible_row_zirPk7": {
+          "type": "_product-collapsible-row",
+          "disabled": true,
+          "settings": {
+            "heading": "ficha técnica",
+            "content": "<p>SKU: </p>",
+            "use_product_description": true,
+            "open": true
+          },
+          "blocks": {}
+        },
+        "brk_description_buybox": {
+          "type": "_brk-description",
+          "settings": {
+            "show_divider": true
+          },
+          "blocks": {}
+        },
+        "brk_size_guide": {
+          "type": "_brk-size-guide",
+          "settings": {},
+          "blocks": {}
+        },
+        "brk_official_badge": {
+          "type": "_brk-official-badge",
+          "settings": {
+            "show_divider": true,
+            "text": "Produto Oficial",
+            "logo_width": 182,
+            "spacing": 40,
+            "logo_spacing": 24
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "badges_RwfTMp",
+        "title_G6tU8U",
+        "product_meta_kiKPhW",
+        "judge_me_reviews_preview_badge_nzUTHB",
+        "review_and_sold_AAbJC9",
+        "price_VJ4N8m",
+        "brk_description_buybox",
+        "brk_apps_agro_combined_listing_6xbDqi",
+        "brk_size_guide",
+        "variant_picker_tcCihG",
+        "buy_buttons_LcQGtR",
+        "product_custom_name_button_ya3Yfz",
+        "product_whatsapp_cta_QD4eY3",
+        "brk_official_badge",
+        "brk_apps_agro_bundle_addon_qKaPkE",
+        "product_benefits_hWMhBF",
+        "brk_trust_buybox",
+        "brk_specs_buybox",
+        "delivery_return_iJHeMD",
+        "brk_ugc_buybox",
+        "frete_no_produto_shipping_calc_mfbXjr",
+        "product_grouped_6epkNf",
+        "more_colors_3zmxGq",
+        "product_collapsible_row_HB7ApJ",
+        "product_collapsible_row_PancQ9",
+        "product_collapsible_row_zirPk7"
+      ],
+      "custom_css": [
+        ".product-detail__title {display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; font-size: 2.29rem;}"
+      ],
+      "name": "Informações do Produto",
+      "settings": {
+        "section_width": "fluid_container",
+        "color_scheme": "scheme-0f294b-chapeus-importados",
+        "enable_sticky_content_on_desktop": true,
+        "enable_skeleton_loading": false,
+        "desktop_media_width": 40,
+        "desktop_layout": "thumbnail_bottom",
+        "thumbnail_size": 100,
+        "media_border_radius": 5,
+        "show_media_arrows": true,
+        "image_zoom": "open_lightbox",
+        "enable_video_looping": false,
+        "enable_video_autoplay": false,
+        "buttons_border_radius": 10,
+        "enable_frequently_bought_together": false,
+        "enable_on_desktop": false,
+        "enable_on_mobile": true,
+        "enable_choose_options_on_mobile": true,
+        "mobile_options": "hidden_thumbnail",
+        "mobile_pagination_style": "solid_dots",
+        "mobile_media_layout": "carousel",
+        "padding_top": 28,
+        "padding_bottom": 28,
+        "reset_spacing": true,
+        "brk_premium_style": true,
+        "brk_premium_gap": 28,
+        "brk_premium_gap_sm": 14
+      }
+    },
+    "brk_benefits": {
+      "type": "brk-product-benefits",
+      "blocks": {
+        "b_uv1": {
+          "type": "benefit",
+          "settings": {
+            "icon": "sun",
+            "title": "Proteção UV50+",
+            "text": "Bloqueia até 98% dos raios UVA/UVB",
+            "presets": "uv50"
+          }
+        },
+        "b_uv2": {
+          "type": "benefit",
+          "settings": {
+            "icon": "dry",
+            "title": "Secagem Rápida",
+            "text": "Evapora o suor e mantém você seco",
+            "presets": "uv50"
+          }
+        },
+        "b_uv3": {
+          "type": "benefit",
+          "settings": {
+            "icon": "feather",
+            "title": "Leve e Respirável",
+            "text": "Toque macio, fresco o dia todo",
+            "presets": "uv50"
+          }
+        },
+        "b_uv4": {
+          "type": "benefit",
+          "settings": {
+            "icon": "ruler",
+            "title": "Modelagem Ergonômica",
+            "text": "Liberdade de movimento no campo",
+            "presets": "uv50"
+          }
+        },
+        "b_jn1": {
+          "type": "benefit",
+          "settings": {
+            "icon": "cotton",
+            "title": "100% Algodão",
+            "text": "Fibra natural, resistente e confortável",
+            "presets": "jeans"
+          }
+        },
+        "b_jn2": {
+          "type": "benefit",
+          "settings": {
+            "icon": "ruler",
+            "title": "Modelagem Cowboy",
+            "text": "Corte tradicional, caimento perfeito",
+            "presets": "jeans"
+          }
+        },
+        "b_jn3": {
+          "type": "benefit",
+          "settings": {
+            "icon": "boot",
+            "title": "Feita para Bota/Botina",
+            "text": "Barra e caimento pensados pro uso com botas",
+            "presets": "jeans"
+          }
+        },
+        "b_jn4": {
+          "type": "benefit",
+          "settings": {
+            "icon": "seam",
+            "title": "Costura Reforçada",
+            "text": "Bolsos e pontos de tensão reforçados",
+            "presets": "jeans"
+          }
+        }
+      },
+      "block_order": [
+        "b_uv1",
+        "b_uv2",
+        "b_uv3",
+        "b_uv4",
+        "b_jn1",
+        "b_jn2",
+        "b_jn3",
+        "b_jn4"
+      ],
+      "disabled": true,
+      "name": "BRK Benefícios",
+      "settings": {
+        "bg_color": "#efefe8",
+        "accent_color": "#085b47",
+        "eyebrow_color": "#a06a24",
+        "eyebrow": "Roupas feitas para o campo",
+        "heading": "",
+        "mf_namespace": "brk",
+        "preset_metafield": "beneficios_preset",
+        "default_preset": "uv50"
+      }
+    },
+    "product_brk_description": {
+      "type": "product-metafield-description",
+      "name": "Descrição detalhada",
+      "settings": {
+        "section_width": "container",
+        "color_scheme": "",
+        "accent_color": "#085b47",
+        "heading": "Descrição do produto",
+        "metafield_namespace": "brk",
+        "metafield_key": "descricao",
+        "open": true,
+        "padding_top": 15,
+        "padding_bottom": 15,
+        "reset_spacing": true
+      },
+      "disabled": true
+    },
+    "product-set": {
+      "type": "product-set",
+      "disabled": true,
+      "settings": {
+        "section_width": "container",
+        "color_scheme": "",
+        "heading": "Combination Styles",
+        "description": "",
+        "header_size": "medium",
+        "header_alignment": "left",
+        "items_per_row": 2,
+        "column_gap": 30,
+        "show_arrow": false,
+        "carousel_pagination": "show_dots",
+        "infinite": false,
+        "autoplay": true,
+        "autorotate_speed": 5,
+        "reveal": false,
+        "items_per_row_mobile": 1,
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": false
+      }
+    },
+    "divider_E3r6ih": {
+      "type": "divider",
+      "settings": {
+        "section_width": "full_width",
+        "border_height": 1,
+        "border_color": "#ebebeb",
+        "reset_spacing": true
+      }
+    },
+    "scrolling_text_b38KNQ": {
+      "type": "scrolling-text",
+      "blocks": {
+        "scrolling_text_dEP8jr": {
+          "type": "scrolling_text",
+          "settings": {
+            "content": "Free returns within 30 days"
+          }
+        },
+        "scrolling_text_bPAypi": {
+          "type": "scrolling_text",
+          "settings": {
+            "content": "Unlimited delivery for only $175"
+          }
+        }
+      },
+      "block_order": [
+        "scrolling_text_dEP8jr",
+        "scrolling_text_bPAypi"
+      ],
+      "disabled": true,
+      "custom_css": [],
+      "settings": {
+        "section_width": "full_width",
+        "color_scheme": "scheme-c78bfb21-5aff-497b-be68-98f01962f564",
+        "direction": "left",
+        "icon_between_item": "star",
+        "icon_width": 20,
+        "speed": 10,
+        "space_between_text": 65,
+        "font_size": 20,
+        "font_weight": "subheading_weight",
+        "uppercase": false,
+        "use_heading_font": false,
+        "padding_top": 30,
+        "padding_bottom": 30,
+        "reset_spacing": true
+      }
+    },
+    "divider_TKLM6L": {
+      "type": "divider",
+      "settings": {
+        "section_width": "container",
+        "border_height": 1,
+        "border_color": "#ebebeb",
+        "reset_spacing": false
+      }
+    },
+    "related_products": {
+      "type": "related-products",
+      "name": "Produtos Relacionados",
+      "settings": {
+        "section_width": "container",
+        "color_scheme": "",
+        "heading": "Conheça outros produtos",
+        "description": "",
+        "header_size": "small",
+        "header_alignment": "center",
+        "items_to_show": 4,
+        "items_per_row": 4,
+        "column_gap": 30,
+        "items_per_row_mobile": 1.5,
+        "padding_top": 25,
+        "padding_bottom": 25,
+        "reset_spacing": true
+      }
+    },
+    "divider_HtLXd3": {
+      "type": "divider",
+      "disabled": true,
+      "settings": {
+        "section_width": "container",
+        "border_height": 1,
+        "border_color": "#ebebeb",
+        "reset_spacing": true
+      }
+    },
+    "divider_cftdT4": {
+      "type": "divider",
+      "settings": {
+        "section_width": "full_width",
+        "border_height": 20,
+        "border_color": "#fff",
+        "reset_spacing": false
+      }
+    },
+    "1785433041f7474707": {
+      "type": "apps",
+      "blocks": {
+        "judge_me_reviews_review_widget_itdQpc": {
+          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "review_data": "real_data",
+            "max_width": 1200,
+            "show_shop_reviews": true,
+            "empty_state": "empty_widget"
+          }
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_review_widget_itdQpc"
+      ],
+      "settings": {}
+    },
+    "divider_TXWjaf": {
+      "type": "divider",
+      "settings": {
+        "section_width": "full_width",
+        "border_height": 20,
+        "border_color": "#fff",
+        "reset_spacing": false
+      }
+    },
+    "products_recently_viewed_GdCNUL": {
+      "type": "products-recently-viewed",
+      "name": "Vistos Recentemente",
+      "settings": {
+        "section_width": "container",
+        "color_scheme": "",
+        "heading": "Vistos Recentemente",
+        "description": "",
+        "header_size": "medium",
+        "header_alignment": "center",
+        "items_to_show": 8,
+        "items_per_row": 4,
+        "column_gap": 10,
+        "show_arrow": true,
+        "carousel_pagination": "show_dots_on_mobile",
+        "infinite": false,
+        "autoplay": false,
+        "autorotate_speed": 5,
+        "reveal": false,
+        "items_per_row_mobile": 1.5,
+        "padding_top": 25,
+        "padding_bottom": 25,
+        "reset_spacing": false
+      }
+    },
+    "faq_XdwEqr": {
+      "type": "faq",
+      "blocks": {
+        "faq_items_6RdhPw": {
+          "type": "faq-items",
+          "name": "Proteção UV50",
+          "settings": {
+            "faq_title": "Os produtos da BRK possuem proteção solar real?",
+            "faq_content": "Sim. Nossas camisas contam com a tecnologia <strong>UV50+</strong>, que bloqueia até 98% dos raios UVA e UVB. Essa proteção é aplicada diretamente nas fibras do tecido, o que garante que a eficácia não saia nas lavagens, mantendo você seguro durante toda a vida útil da peça."
+          }
+        },
+        "faq_items_8mzNcp": {
+          "type": "faq-items",
+          "name": "Tecidos das Camisas",
+          "settings": {
+            "faq_title": "Diferencial do tecido das camisas BRK",
+            "faq_content": "Utilizamos tecidos de alta tecnologia, que permite a rápida evaporação do suor, mantendo o corpo seco e em temperatura agradável, mesmo em atividades sob sol intenso ou práticas esportivas."
+          }
+        },
+        "faq_items_HdXrjb": {
+          "type": "faq-items",
+          "name": "Tamanho Ideal",
+          "settings": {
+            "faq_title": "Como escolher o tamanho ideal?",
+            "faq_content": "Em cada página de produto, disponibilizamos uma <strong>Tabela de Medidas</strong>. Recomendamos comparar as medidas de uma peça que você já usa com os nossos valores."
+          }
+        },
+        "faq_items_UfycVM": {
+          "type": "faq-items",
+          "name": "Cores das Camisas",
+          "settings": {
+            "faq_title": "As camisas desbotam com o tempo?",
+            "faq_content": "Não. Utilizamos um processo de sublimação de alta definição. Isso garante que as estampas e cores permaneçam vivas e vibrantes mesmo após diversas lavagens e exposição prolongada ao sol."
+          }
+        },
+        "faq_items_PnHg3k": {
+          "type": "faq-items",
+          "name": "Formas de Pagamento",
+          "settings": {
+            "faq_title": "Quais são as formas de pagamento e prazos de entrega?",
+            "faq_content": "Aceitamos as principais bandeiras de cartão de crédito (com parcelamento) e PIX. O prazo de entrega varia de acordo com a sua região e a modalidade de frete escolhida no carrinho."
+          }
+        },
+        "faq_items_dDbzqB": {
+          "type": "faq-items",
+          "settings": {
+            "faq_title": "Posso trocar o produto se não servir?",
+            "faq_content": "Se você recebeu um produto e não ficou satisfeito ou ele simplesmente não serviu, é possível fazer a solicitação devolução para estorno <strong>em até 7 dias corridos após a entrega</strong>. Para isso, o produto deverá estar em sua embalagem original, sem indícios de uso e com todos os itens e acessórios recebidos. Para os casos de insatisfação com o produto adquirido, solicite a troca, através do nosso Portal de Trocas e Devoluções, pelo endereço <a href=\"https://brkagro.troque.app.br/\" target=\"_blank\">https://brkagro.troque.app.br/</a>"
+          }
+        }
+      },
+      "block_order": [
+        "faq_items_6RdhPw",
+        "faq_items_8mzNcp",
+        "faq_items_HdXrjb",
+        "faq_items_UfycVM",
+        "faq_items_PnHg3k",
+        "faq_items_dDbzqB"
+      ],
+      "name": "t:sections.faq.presets.name",
+      "settings": {
+        "section_width": "container",
+        "color_scheme": "default",
+        "heading": "Perguntas Frequentes",
+        "description": "",
+        "header_size": "medium",
+        "header_alignment": "center",
+        "padding_top": 35,
+        "padding_bottom": 35,
+        "reset_spacing": true
+      }
+    },
+    "custom_liquid_gbRHwy": {
+      "type": "custom-liquid",
+      "name": "Descrição Produto",
+      "settings": {
+        "section_width": "container",
+        "color_scheme": "default",
+        "custom_liquid": "{{ product.description }}",
+        "padding_top": 15,
+        "padding_bottom": 15,
+        "reset_spacing": true
+      },
+      "disabled": true
+    },
+    "brk_brand_story": {
+      "type": "brk-brand-story",
+      "name": "História da marca + cards",
+      "blocks": {
+        "icon_1": {
+          "type": "icon",
+          "settings": {
+            "icon": "diamond",
+            "text": "Qualidade\npremium"
+          }
+        },
+        "icon_2": {
+          "type": "icon",
+          "settings": {
+            "icon": "hat",
+            "text": "Essência\nwestern"
+          }
+        },
+        "icon_3": {
+          "type": "icon",
+          "settings": {
+            "icon": "badge",
+            "text": "De 50 anos\nde tradição"
+          }
+        },
+        "icon_4": {
+          "type": "icon",
+          "settings": {
+            "icon": "globe",
+            "text": "Produto\nimportado"
+          }
+        },
+        "card_estilo": {
+          "type": "card",
+          "settings": {
+            "title": "Estilo e durabilidade",
+            "text": "<p>Referência em autenticidade e resistência, a marca traz em sua coleção masculina o verdadeiro espírito western.</p><p>Este chapéu é uma peça atemporal e versátil, projetada para encarar o ritmo bruto do dia a dia com a mesma naturalidade com que se destaca em noites e ocasiões especiais.</p>",
+            "mf_namespace": "brk",
+            "mf_key": "",
+            "open": false,
+            "image_match": "-8",
+            "image_position": 0,
+            "image_focal": "object-position: center top;"
+          }
+        },
+        "card_estrutura": {
+          "type": "card",
+          "settings": {
+            "title": "Estrutura e conforto",
+            "text": "",
+            "mf_namespace": "brk",
+            "mf_key": "estrutura_conforto",
+            "open": false,
+            "image_match": "-02",
+            "image_position": 0,
+            "image_focal": "object-position: center center;"
+          }
+        },
+        "card_qualidade": {
+          "type": "card",
+          "settings": {
+            "title": "Qualidade garantida",
+            "text": "<p>Desde 1972, a American Hat Makers dedica-se à confecção artesanal e seleção de chapéus excepcionais, unindo tradição e atenção meticulosa aos detalhes em peças feitas com os melhores materiais do mercado.</p><p>E agora, você encontra e adquire os produtos oficiais da marca <strong>diretamente com a BRK AGRO</strong>.</p>",
+            "mf_namespace": "brk",
+            "mf_key": "",
+            "open": false,
+            "image_match": "-7",
+            "image_position": 0,
+            "image_focal": "object-position: center center;"
+          }
+        }
+      },
+      "block_order": [
+        "icon_1",
+        "icon_2",
+        "icon_3",
+        "icon_4",
+        "card_estilo",
+        "card_estrutura",
+        "card_qualidade"
+      ],
+      "settings": {
+        "section_width": "container",
+        "color_scheme": "default",
+        "accent_color": "#0f294b",
+        "subheading": "American Hat Makers",
+        "heading": "Tradição desde 1972",
+        "padding_top": 56,
+        "padding_bottom": 56
+      }
+    }
+  },
+  "order": [
+    "breadcrumb",
+    "main",
+    "brk_brand_story",
+    "brk_benefits",
+    "product_brk_description",
+    "product-set",
+    "divider_E3r6ih",
+    "scrolling_text_b38KNQ",
+    "divider_TKLM6L",
+    "related_products",
+    "divider_HtLXd3",
+    "divider_cftdT4",
+    "1785433041f7474707",
+    "divider_TXWjaf",
+    "products_recently_viewed_GdCNUL",
+    "faq_XdwEqr",
+    "custom_liquid_gbRHwy"
+  ]
+}
