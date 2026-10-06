@@ -75,6 +75,13 @@
           },
           "blocks": {}
         },
+        "brk_description_buybox": {
+          "type": "_brk-description",
+          "settings": {
+            "show_divider": true
+          },
+          "blocks": {}
+        },
         "brk_apps_agro_combined_listing_6xbDqi": {
           "type": "shopify://apps/brk-apps-agro/blocks/combined-listing/019f0471-1a7f-7d87-ace2-a886cbd950ee",
           "settings": {
@@ -92,6 +99,30 @@
             "label_color": "#ffffff",
             "label_size": 12
           }
+        },
+        "brk_size_guide": {
+          "type": "_brk-size-guide",
+          "settings": {
+            "brk_size_guide": true,
+            "button_label": "Guia de tamanhos",
+            "popup_title": "Guia de tamanhos",
+            "color_primary": "#0f294b",
+            "color_highlight": "#ede5da",
+            "heading": "Descubra seu tamanho",
+            "step_1": "Utilize uma fita métrica.",
+            "step_2": "Posicione a fita ao redor da cabeça, passando logo acima das orelhas e pelo centro da testa.",
+            "step_3": "Anote a medida em centímetro. Esse será o tamanho ideal do seu chapéu.",
+            "tip_label": "Dica",
+            "tip_text": "Se sua medida ficar entre dois tamanhos, <strong>escolha o maior</strong> para garantir mais conforto.",
+            "note": "Caso não tenha fita métrica, utilize um barbante ou cordão e meça o comprimento com uma régua.",
+            "col_1": "Tamanho",
+            "col_1_sub": "Internacional / BR",
+            "show_flags": true,
+            "col_2": "Circunferência (cm)",
+            "col_3": "Tamanho (US)",
+            "rows": "XS (PP) | 52 – 53 cm | 6 ½\nSM (P) | 54 – 55 cm | 6 ⅞\nMD (M) | 56 – 57 cm | 7 ⅛\nLG (G) | 58 – 59 cm | 7 ⅜\nXL (GG) | 60 – 61 cm | 7 ⅝"
+          },
+          "blocks": {}
         },
         "variant_picker_tcCihG": {
           "type": "_product-variant-picker",
@@ -145,6 +176,18 @@
             "hours_start": "08:00",
             "hours_end": "17:15",
             "collections": []
+          },
+          "blocks": {}
+        },
+        "brk_official_badge": {
+          "type": "_brk-official-badge",
+          "settings": {
+            "show_divider": true,
+            "text": "Produto Oficial",
+            "logo_width": 182,
+            "link": "",
+            "spacing": 40,
+            "logo_spacing": 24
           },
           "blocks": {}
         },
@@ -366,31 +409,6 @@
             "open": true
           },
           "blocks": {}
-        },
-        "brk_description_buybox": {
-          "type": "_brk-description",
-          "settings": {
-            "show_divider": true
-          },
-          "blocks": {}
-        },
-        "brk_size_guide": {
-          "type": "_brk-size-guide",
-          "settings": {
-            "button_label": "Guia de tamanho"
-          },
-          "blocks": {}
-        },
-        "brk_official_badge": {
-          "type": "_brk-official-badge",
-          "settings": {
-            "show_divider": true,
-            "text": "Produto Oficial",
-            "logo_width": 182,
-            "spacing": 40,
-            "logo_spacing": 24
-          },
-          "blocks": {}
         }
       },
       "block_order": [
@@ -428,6 +446,9 @@
       "settings": {
         "section_width": "fluid_container",
         "color_scheme": "scheme-0f294b-chapeus-importados",
+        "brk_premium_style": true,
+        "brk_premium_gap": 28,
+        "brk_premium_gap_sm": 14,
         "enable_sticky_content_on_desktop": true,
         "enable_skeleton_loading": false,
         "desktop_media_width": 40,
@@ -448,10 +469,103 @@
         "mobile_media_layout": "carousel",
         "padding_top": 28,
         "padding_bottom": 28,
-        "reset_spacing": true,
-        "brk_premium_style": true,
-        "brk_premium_gap": 28,
-        "brk_premium_gap_sm": 14
+        "reset_spacing": true
+      }
+    },
+    "brk_brand_story": {
+      "type": "brk-brand-story",
+      "blocks": {
+        "icon_1": {
+          "type": "icon",
+          "settings": {
+            "icon": "globe",
+            "text": "Produto\nimportado",
+            "text_mobile": ""
+          }
+        },
+        "icon_2": {
+          "type": "icon",
+          "settings": {
+            "icon": "hat",
+            "text": "Essência\nwestern",
+            "text_mobile": ""
+          }
+        },
+        "icon_3": {
+          "type": "icon",
+          "settings": {
+            "icon": "badge",
+            "text": "De 50 anos\nde tradição",
+            "text_mobile": "50 anos de\ntradição"
+          }
+        },
+        "icon_4": {
+          "type": "icon",
+          "settings": {
+            "icon": "shield",
+            "text": "Resistência\ne proteção",
+            "text_mobile": ""
+          }
+        },
+        "card_estilo": {
+          "type": "card",
+          "settings": {
+            "title": "Estilo e durabilidade",
+            "text": "<p>Referência em autenticidade e resistência, a marca traz em sua coleção masculina o verdadeiro espírito western.</p><p>Este chapéu é uma peça atemporal e versátil, projetada para encarar o ritmo bruto do dia a dia com a mesma naturalidade com que se destaca em noites e ocasiões especiais.</p>",
+            "mf_namespace": "brk",
+            "mf_key": "",
+            "open": false,
+            "image_match": "-8",
+            "image_position": 0,
+            "image_focal": "object-position: center top;"
+          }
+        },
+        "card_estrutura": {
+          "type": "card",
+          "settings": {
+            "title": "Estrutura e conforto",
+            "text": "",
+            "mf_namespace": "brk",
+            "mf_key": "estrutura_conforto",
+            "open": false,
+            "image_match": "-02",
+            "image_position": 0,
+            "image_focal": "object-position: center center;"
+          }
+        },
+        "card_qualidade": {
+          "type": "card",
+          "settings": {
+            "title": "Qualidade garantida",
+            "text": "<p>Desde 1972, a American Hat Makers dedica-se à confecção artesanal e seleção de chapéus excepcionais, unindo tradição e atenção meticulosa aos detalhes em peças feitas com os melhores materiais do mercado.</p><p>E agora, você encontra e adquire os produtos oficiais da marca <strong>diretamente com a BRK AGRO</strong>.</p>",
+            "mf_namespace": "brk",
+            "mf_key": "",
+            "open": false,
+            "image_match": "-7",
+            "image_position": 0,
+            "image_focal": "object-position: center center;"
+          }
+        }
+      },
+      "block_order": [
+        "icon_1",
+        "icon_2",
+        "icon_3",
+        "icon_4",
+        "card_estilo",
+        "card_estrutura",
+        "card_qualidade"
+      ],
+      "name": "História da marca + cards",
+      "settings": {
+        "section_width": "container",
+        "color_scheme": "default",
+        "accent_color": "#0f294b",
+        "subheading": "American Hat Makers",
+        "heading": "Tradição desde 1972",
+        "text": "<p>Na AHM, os chapéus são produzidos apenas com as melhores matérias-primas do mercado, incluindo couro legítimo, palha nobre, lã e feltro de alta densidade. O catálogo da marca abrange modelos em diversos formatos, medidas e tonalidades, desenvolvidos sob medida para atender às expectativas dos clientes mais exigentes.</p><p>Cada peça é confeccionada artesanalmente de acordo com os rigorosos padrões de excelência construídos ao longo de três gerações e mais de 50 anos de história na chapelaria tradicional.</p>",
+        "padding_top": 56,
+        "padding_bottom": 56
       }
     },
     "brk_benefits": {
@@ -555,6 +669,7 @@
     },
     "product_brk_description": {
       "type": "product-metafield-description",
+      "disabled": true,
       "name": "Descrição detalhada",
       "settings": {
         "section_width": "container",
@@ -567,8 +682,7 @@
         "padding_top": 15,
         "padding_bottom": 15,
         "reset_spacing": true
-      },
-      "disabled": true
+      }
     },
     "product-set": {
       "type": "product-set",
@@ -815,6 +929,7 @@
     },
     "custom_liquid_gbRHwy": {
       "type": "custom-liquid",
+      "disabled": true,
       "name": "Descrição Produto",
       "settings": {
         "section_width": "container",
@@ -823,102 +938,6 @@
         "padding_top": 15,
         "padding_bottom": 15,
         "reset_spacing": true
-      },
-      "disabled": true
-    },
-    "brk_brand_story": {
-      "type": "brk-brand-story",
-      "name": "História da marca + cards",
-      "blocks": {
-        "icon_1": {
-          "type": "icon",
-          "settings": {
-            "icon": "globe",
-            "text": "Produto\nimportado",
-            "text_mobile": ""
-          }
-        },
-        "icon_2": {
-          "type": "icon",
-          "settings": {
-            "icon": "hat",
-            "text": "Essência\nwestern",
-            "text_mobile": ""
-          }
-        },
-        "icon_3": {
-          "type": "icon",
-          "settings": {
-            "icon": "badge",
-            "text": "De 50 anos\nde tradição",
-            "text_mobile": "50 anos de\ntradição"
-          }
-        },
-        "icon_4": {
-          "type": "icon",
-          "settings": {
-            "icon": "shield",
-            "text": "Resistência\ne proteção",
-            "text_mobile": ""
-          }
-        },
-        "card_estilo": {
-          "type": "card",
-          "settings": {
-            "title": "Estilo e durabilidade",
-            "text": "<p>Referência em autenticidade e resistência, a marca traz em sua coleção masculina o verdadeiro espírito western.</p><p>Este chapéu é uma peça atemporal e versátil, projetada para encarar o ritmo bruto do dia a dia com a mesma naturalidade com que se destaca em noites e ocasiões especiais.</p>",
-            "mf_namespace": "brk",
-            "mf_key": "",
-            "open": false,
-            "image_match": "-8",
-            "image_position": 0,
-            "image_focal": "object-position: center top;"
-          }
-        },
-        "card_estrutura": {
-          "type": "card",
-          "settings": {
-            "title": "Estrutura e conforto",
-            "text": "",
-            "mf_namespace": "brk",
-            "mf_key": "estrutura_conforto",
-            "open": false,
-            "image_match": "-02",
-            "image_position": 0,
-            "image_focal": "object-position: center center;"
-          }
-        },
-        "card_qualidade": {
-          "type": "card",
-          "settings": {
-            "title": "Qualidade garantida",
-            "text": "<p>Desde 1972, a American Hat Makers dedica-se à confecção artesanal e seleção de chapéus excepcionais, unindo tradição e atenção meticulosa aos detalhes em peças feitas com os melhores materiais do mercado.</p><p>E agora, você encontra e adquire os produtos oficiais da marca <strong>diretamente com a BRK AGRO</strong>.</p>",
-            "mf_namespace": "brk",
-            "mf_key": "",
-            "open": false,
-            "image_match": "-7",
-            "image_position": 0,
-            "image_focal": "object-position: center center;"
-          }
-        }
-      },
-      "block_order": [
-        "icon_1",
-        "icon_2",
-        "icon_3",
-        "icon_4",
-        "card_estilo",
-        "card_estrutura",
-        "card_qualidade"
-      ],
-      "settings": {
-        "section_width": "container",
-        "color_scheme": "default",
-        "accent_color": "#0f294b",
-        "subheading": "American Hat Makers",
-        "heading": "Tradição desde 1972",
-        "padding_top": 56,
-        "padding_bottom": 56
       }
     }
   },
