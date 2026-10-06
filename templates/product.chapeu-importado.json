@@ -446,6 +446,7 @@
       "settings": {
         "section_width": "fluid_container",
         "color_scheme": "scheme-0f294b-chapeus-importados",
+        "breadcrumb_mobile_in_header": false,
         "brk_premium_style": true,
         "brk_premium_gap": 28,
         "brk_premium_gap_sm": 14,
