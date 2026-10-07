@@ -282,6 +282,9 @@
   {% if scroll_animation %}
     </motion-items-effect>
   {% endif %}
+  {%- if section_st.show_catalog_button and search.performed and search_products != blank -%}
+    {%- render 'search-catalog-button', terms: terms -%}
+  {%- endif -%}
 </section>
 
 {% schema %}
@@ -289,6 +292,13 @@
   "name": "t:sections.search-main.name",
   "class": "section",
   "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_catalog_button",
+      "label": "Mostrar botão \"Gerar catálogo\" (desktop)",
+      "info": "Gera imagens com os produtos e preços da busca atual, para o time de vendas.",
+      "default": true
+    },
     {
       "type": "select",
       "id": "section_width",
