@@ -46,7 +46,7 @@
             <div class="header-search header-search__mega color-default flex-1">
               {%- liquid
                 if top_search
-                  render 'top-search-header' | type: 'header_mega'
+                  render 'top-search-header', type: 'header_mega'
                 endif
               -%}
             </div>
@@ -67,13 +67,13 @@
               </svg>
               {%- liquid
                 if my_account
-                  render 'my-account' | type : 'header_mega'
+                  render 'my-account', type: 'header_mega'
                 endif
                 if wishlist
                   render 'wishlist'
                 endif
                 if minicart and theme_st.enable_catalog_mode == false
-                  render 'minicart_header' | type: 'header_mega'
+                  render 'minicart_header', type: 'header_mega'
                 endif
               -%}
             </div>
@@ -90,7 +90,7 @@
           <div class="header__menu border-top-1025 flex justify-between" style="--section-pt: 0; --section-pb: 0;">
             <div class="header__menu-nav">
               {%- liquid
-                render 'horizontal-menu' | show_language : show_language
+                render 'horizontal-menu', show_language: show_language
               -%}
             </div>
             <div class="header-information relative z-1 flex justify-between align-center fs-14">
@@ -102,7 +102,7 @@
               %}
               {% liquid
                 if recently_viewed
-                  render 'recently-viewed' | type: 'header_mega'
+                  render 'recently-viewed', type: 'header_mega'
                 endif
               %}
             </div>
@@ -868,3 +868,25 @@
   ]
 }
 {% endschema %}
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "                  render 'top-search-header' | type: 'header_mega'"
+  to: "                  render 'top-search-header', type: 'header_mega'"
+  position: 2449..2514
+- from: "                  render 'my-account' | type : 'header_mega'"
+  to: "                  render 'my-account', type: 'header_mega'"
+  position: 9735..9793
+- from: "                  render 'minicart_header' | type: 'header_mega'"
+  to: "                  render 'minicart_header', type: 'header_mega'"
+  position: 9972..10035
+- from: 'render ''horizontal-menu'' | show_language : show_language'
+  to: 'render ''horizontal-menu'', show_language: show_language'
+  position: 10949..11003
+- from: "                  render 'recently-viewed' | type: 'header_mega'"
+  to: "                  render 'recently-viewed', type: 'header_mega'"
+  position: 11411..11474
+{% endcomment %}
