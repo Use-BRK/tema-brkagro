@@ -153,3 +153,21 @@
 .brk-premium .jdgm-preview-badge .jdgm-prev-badge__stars .jdgm-star::before {
   color: var(--color-text) !important;
 }
+
+/* Galeria mobile: paginação (bolinhas) mais compacta para não cobrir a foto */
+@media screen and (max-width: 767.98px) {
+  .brk-premium .product-detail__media media-gallery .swiper-pagination.product-media-pagination--solid {
+    bottom: 10px;
+    height: 16px;
+    padding: 0 4px;
+    border-radius: 8px;
+  }
+  .brk-premium .product-detail__media media-gallery .swiper-pagination.product-media-pagination--solid .swiper-pagination-bullet {
+    width: 14px;
+    height: 16px;
+  }
+  .brk-premium .product-detail__media media-gallery .swiper-pagination.product-media-pagination--solid .swiper-pagination-bullet::before {
+    width: 5px;
+    height: 5px;
+  }
+}

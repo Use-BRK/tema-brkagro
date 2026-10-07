@@ -2,6 +2,40 @@
 {%- if section.settings.brk_premium_style -%}
   {{ 'brk-pdp-premium.css' | asset_url | stylesheet_tag }}
 {%- endif -%}
+{%- if section.settings.brk_header_style -%}
+  {%- comment -%} Header e topbar com esquemas próprios só nas páginas que usam este template. {%- endcomment -%}
+  {%- style -%}
+    .shopify-section-group-header-group .topbar {
+      {% render 'brk-scheme-vars', scheme: section.settings.brk_topbar_scheme %}
+    }
+    html body #topbar.topbar {
+      background: var(--color-background) !important;
+      --topbar-shipping-text: var(--color-text);
+      --topbar-shipping-accent: var(--color-text);
+    }
+    .shopify-section-group-header-group .topbar .topbar-copy-btn {
+      background: var(--color-text);
+      border-color: var(--color-text);
+      color: var(--color-background);
+    }
+    .shopify-section-group-header-group header.header {
+      {% render 'brk-scheme-vars', scheme: section.settings.brk_header_scheme %}
+    }
+    .shopify-section-group-header-group header.header .h-count {
+      background: var(--color-text);
+      color: var(--color-background);
+    }
+    {%- if section.settings.brk_header_logo != blank %}
+      .shopify-section-group-header-group header.header .header__logo img {
+        content: url({{ section.settings.brk_header_logo | image_url: width: 600 }});
+      }
+    {%- elsif section.settings.brk_header_logo_color == 'text' %}
+      .shopify-section-group-header-group header.header .header__logo img {
+        filter: brightness(0) invert(1);
+      }
+    {%- endif %}
+  {%- endstyle -%}
+{%- endif -%}
 {%- liquid
   assign theme_st = settings
   assign section_st = section.settings
@@ -715,6 +749,45 @@
       "step": 2,
       "unit": "px",
       "default": 14
+    },
+    {
+      "type": "header",
+      "content": "Header e topbar (só neste template)"
+    },
+    {
+      "type": "checkbox",
+      "id": "brk_header_style",
+      "label": "Usar cores próprias no header e na topbar",
+      "info": "Aplica os esquemas abaixo ao header e à topbar apenas nas páginas que usam este template.",
+      "default": false
+    },
+    {
+      "type": "color_scheme",
+      "id": "brk_header_scheme",
+      "label": "Esquema do header",
+      "default": "default"
+    },
+    {
+      "type": "color_scheme",
+      "id": "brk_topbar_scheme",
+      "label": "Esquema da topbar",
+      "default": "default"
+    },
+    {
+      "type": "select",
+      "id": "brk_header_logo_color",
+      "label": "Cor do logo",
+      "options": [
+        { "value": "original", "label": "Original" },
+        { "value": "text", "label": "Branco" }
+      ],
+      "default": "original"
+    },
+    {
+      "type": "image_picker",
+      "id": "brk_header_logo",
+      "label": "Logo alternativo (opcional)",
+      "info": "Substitui o logo do header neste template. Tem prioridade sobre a cor do logo."
     },
     {
       "type": "checkbox",

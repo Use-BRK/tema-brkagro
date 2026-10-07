@@ -470,7 +470,11 @@
         "mobile_media_layout": "carousel",
         "padding_top": 28,
         "padding_bottom": 28,
-        "reset_spacing": true
+        "reset_spacing": true,
+        "brk_header_style": true,
+        "brk_header_scheme": "scheme-0f294b-chapeus-importados",
+        "brk_topbar_scheme": "scheme-ffffff-chapeus-topbar",
+        "brk_header_logo_color": "text"
       }
     },
     "brk_brand_story": {
