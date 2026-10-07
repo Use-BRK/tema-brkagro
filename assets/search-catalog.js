@@ -7,8 +7,8 @@
   const btn = document.querySelector('[data-search-catalog]');
   if (!btn) return;
 
-  const GREEN = '#085b47';
-  const CREAM = '#efe9da';
+  const GREEN = btn.dataset.accent || '#085b47';
+  const CREAM = btn.dataset.background || '#efe9da';
   const TEXT = '#111111';
   const MUTED = '#8a8a8a';
 
