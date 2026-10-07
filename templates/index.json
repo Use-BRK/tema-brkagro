@@ -134,13 +134,13 @@
         },
         "slider_item_K3DbMk": {
           "type": "slider_item",
-          "name": "Apache",
+          "name": "Facas de Churrasco",
           "disabled": true,
           "settings": {
-            "image": "shopify://shop_images/BANNER_APACHE_e7356957-76c2-4151-98fe-f5eca270270f.jpg",
-            "image_mobile": "shopify://shop_images/MOBILE_APACHE_5e01a1fe-183f-4317-b1ab-82937f16a9d3.jpg",
+            "image": "shopify://shop_images/DESK_2.png",
+            "image_mobile": "shopify://shop_images/mobile_faca.png",
             "overlay_opacity": 0,
-            "link_banner": "shopify://collections/apache",
+            "link_banner": "shopify://collections/facas-de-churrasco",
             "slider_effect": "fade-in-right",
             "subheading": "",
             "heading": "",
