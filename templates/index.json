@@ -15,12 +15,11 @@
         "slider_item_D43AJr": {
           "type": "slider_item",
           "name": "Rotativo",
-          "disabled": true,
           "settings": {
-            "image": "shopify://shop_images/Desk.png",
-            "image_mobile": "shopify://shop_images/Mobile_1.png",
+            "image": "shopify://shop_images/DESK_1.png",
+            "image_mobile": "shopify://shop_images/MOB.png",
             "overlay_opacity": 0,
-            "link_banner": "shopify://collections/envio-imediato-22",
+            "link_banner": "shopify://collections/brasil-patriota-2026",
             "slider_effect": "fade-in-right",
             "subheading": "",
             "heading": "",
