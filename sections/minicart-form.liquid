@@ -49,8 +49,7 @@
   <free-ship-progress-bar
     data-order="{{ cart.items_subtotal_price }}"
     data-fe-amount="{{ shipping_rate }}"
-    data-fe-unavaiable="{{ 'general.cart.free_shipping' | t }}"
-    data-fe-avaiable="{{ 'general.cart.free_shipping_avaiable' | t }}"
+    {% render 'free-shipping-bar-texts' %}
     class="block cart_shipping cart_threshold{% if action_after_add_cart == 'open_drawer' %} grey-bg{% endif %} border-bottom{% if action_after_add_cart != 'show_popup' %} border-top{% endif %} px-30 pt-30 pb-10{% if cart.items.size > 0 and items_subtotal_price >= shipping_price %} cart_shipping_free{% endif %}"
   >
     <div class="progress-bar cart_bar_w relative rounded-10">

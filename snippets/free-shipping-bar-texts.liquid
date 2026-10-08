@@ -1,0 +1,19 @@
+{%- comment -%}
+  Atributos de texto da barra de frete (free-ship-progress-bar).
+  Usa os textos do personalizador (Configurações do tema > Carrinho) e cai
+  nas traduções general.cart.free_shipping / free_shipping_avaiable se vazios
+  (o filtro t já escapa chaves sem _html, por isso só os settings levam escape).
+  {{ amount }} (ou {{ price }}) é trocado pelo valor que falta via theme.js.
+{%- endcomment -%}
+{%- liquid
+  assign fe_unavailable = 'general.cart.free_shipping' | t
+  if settings.free_shipping_unavailable_text != blank
+    assign fe_unavailable = settings.free_shipping_unavailable_text | replace: '{{ price }}', '{{ amount }}' | replace: '{{ amount }}', '<span class="price">{{ amount }}</span>' | escape
+  endif
+
+  assign fe_available = 'general.cart.free_shipping_avaiable' | t
+  if settings.free_shipping_available_text != blank
+    assign fe_available = settings.free_shipping_available_text | escape
+  endif
+-%}
+data-fe-unavaiable="{{ fe_unavailable }}" data-fe-avaiable="{{ fe_available }}"

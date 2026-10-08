@@ -971,8 +971,7 @@
                 <free-ship-progress-bar
                   data-order="{{ cart.items_subtotal_price }}"
                   data-fe-amount="{{ shipping_rate }}"
-                  data-fe-unavaiable="{{ 'general.cart.free_shipping' | t }}"
-                  data-fe-avaiable="{{ 'general.cart.free_shipping_avaiable' | t }}"
+                  {% render 'free-shipping-bar-texts' %}
                   class="block cart_shipping cart_threshold border-0 border-bottom mt-15 pb-25{% if items_subtotal_price >= shipping_price %} cart_shipping_free{% endif %}"
                 >
                   <div class="progress-bar cart_bar_w relative rounded-10">

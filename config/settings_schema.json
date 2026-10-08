@@ -1517,6 +1517,20 @@
         "info": "t:settings_schema.cart.settings.free_shipping.free_shipping_minimum.info"
       },
       {
+        "type": "inline_richtext",
+        "id": "free_shipping_unavailable_text",
+        "label": "Texto antes de atingir o valor",
+        "info": "Use {{ amount }} para mostrar quanto falta. Se vazio, usa o conteúdo padrão do tema.",
+        "default": "Adicione {{ amount }} para aproveitar <strong>Frete Fixo R$ 9,90!</strong>"
+      },
+      {
+        "type": "inline_richtext",
+        "id": "free_shipping_available_text",
+        "label": "Texto ao atingir o valor",
+        "info": "Se vazio, usa o conteúdo padrão do tema.",
+        "default": "Parabéns! Você ganhou <strong>Frete Fixo R$ 9,90</strong>!"
+      },
+      {
         "type": "header",
         "content": "Barra de brindes"
       },

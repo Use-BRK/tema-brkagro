@@ -1931,9 +1931,8 @@ class ProgressBar extends HTMLElement {
     if (order >= min_by_currency) {
       title.innerHTML = fe_avaiable;
     } else {
-      const ammount = "{{ amount }}";
       title.innerHTML = fe_unavaiable.replace(
-        ammount.trim(),
+        /\{\{\s*(amount|price)\s*\}\}/,
         Shopify.formatMoney(
           (min_by_currency - order) * 100,
           cartStrings.money_format
