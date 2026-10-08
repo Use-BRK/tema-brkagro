@@ -1,0 +1,28 @@
+{%- layout none -%}
+{%- comment -%}
+  Endpoint JSON usado pelo botão "Gerar catálogo" da página de busca (assets/search-catalog.js).
+  Acessado via /search?q=...&view=catalogo&page=N — respeita filtros e ordenação da URL.
+{%- endcomment -%}
+{%- paginate search.results by 50 -%}
+  {
+    "page": {{ paginate.current_page | default: 1 }},
+    "pages": {{ paginate.pages | default: 1 }},
+    "products": [
+      {%- assign first_item = true -%}
+      {%- for product in search.results -%}
+        {%- if product.object_type != 'product' or product.tags contains 'VIP' or product.available == false -%}
+          {%- continue -%}
+        {%- endif -%}
+        {%- unless first_item -%},{%- endunless -%}
+        {%- assign first_item = false -%}
+        {
+          "title": {{ product.title | json }},
+          "image": {% if product.featured_image %}{{ product.featured_image | image_url: width: 500 | json }}{% else %}null{% endif %},
+          "price": {{ product.price | money | json }},
+          "compare_at_price": {% if product.compare_at_price > product.price %}{{ product.compare_at_price | money | json }}{% else %}null{% endif %},
+          "price_varies": {{ product.price_varies | json }}
+        }
+      {%- endfor -%}
+    ]
+  }
+{%- endpaginate -%}

@@ -382,6 +382,20 @@ class CustomNameModal extends HTMLElement {
 
     if (buyBtn) { buyBtn.disabled = true; buyBtn.dataset.loading = "true"; }
     try {
+      // Brindes/add-ons do app BRK Bundles marcados na página: o modal não submete o
+      // form do produto, então pede os itens à API do app ANTES de adicionar a camisa
+      // (o limite por carrinho é calculado sem ela) e os adiciona DEPOIS que ela entrou.
+      const bundles = window.BRKBundles;
+      let bundleItems = [];
+      if (bundles && typeof bundles.prepareAddons === "function") {
+        try {
+          bundleItems = await bundles.prepareAddons({ quantity: 1 });
+        } catch (e) {
+          bundleItems = [];
+        }
+        if (bundleItems === null) return; // fechou o popup do bundle → cancela
+      }
+
       // Uma request só (FormData): camisa + PE1198 aninhado (parent_id = variant da camisa)
       // + PNG (file property) + properties de texto.
       const blob = await this.exportPng();
@@ -403,6 +417,9 @@ class CustomNameModal extends HTMLElement {
       const r2 = await fetch(this.root + "cart/add.js", { method: "POST", headers: { Accept: "application/json" }, body: fd });
       const d2 = await r2.json();
       if (!r2.ok) throw new Error((d2 && d2.description) || "Erro ao adicionar ao carrinho");
+
+      // Add-ons do bundle (falha aqui não desfaz a compra da camisa)
+      if (bundleItems.length) await bundles.addAddons(bundleItems);
 
       this.close();
       // Atualiza o conteúdo do minicart e abre o drawer (sem redirecionar pro /cart)
