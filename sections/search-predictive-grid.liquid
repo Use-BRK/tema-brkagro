@@ -36,6 +36,7 @@
     endcapture
     assign needles = needle_text | split: ' '
     assign ignored_words = 'com,para,pra,das,dos' | split: ','
+    assign spec_keys = 'material,material_lamina,material_cabo,composicao,tecido,tecnologia,protecao,marca,modelo,detalhes,bainha,itens_inclusos,recursos' | split: ','
     assign matched_ids = ','
     assign matched_count = 0
     for product in results
@@ -46,6 +47,11 @@
           echo ' ' | append: variant.title | append: ' ' | append: variant.sku
         endfor
         echo ' ' | append: product.description | strip_html
+        # Especificações da PDP (blocks/_brk-specs, namespace brk): ex. material_lamina "Aço inox".
+        for spec_key in spec_keys
+          echo ' '
+          echo product.metafields.brk[spec_key]
+        endfor
       endcapture
       capture haystack
         render 'search-fold', text: haystack
