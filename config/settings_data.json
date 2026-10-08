@@ -91,7 +91,7 @@
     "show_message_when_remove": false,
     "action_after_add_cart": "open_drawer",
     "show_on_minicart_cart_page": true,
-    "free_shipping_minimum": "1",
+    "free_shipping_minimum": "10",
     "show_gift_bar": false,
     "gift_threshold_1": "250",
     "gift_product_1": "pulseira-de-silicone-brk-eu-sou-do-agro",
