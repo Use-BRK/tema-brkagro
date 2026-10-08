@@ -184,10 +184,11 @@
     </script>
     <style>
       .brk-breadcrumbs {
+        --brk-bc-space: 1.6rem;
         display: flex; flex-wrap: nowrap; align-items: center; gap: .6rem;
-        /* respiro igual em cima e embaixo: o topo já vem do padding-top da seção, então o
-           espaço até a foto repete esse mesmo valor */
-        padding-top: 0; margin-bottom: calc(var(--section-pt) * 1px); overflow: hidden;
+        /* respiro igual em cima e embaixo: em cima = padding-top da seção + --brk-bc-space,
+           embaixo (até a foto) repete a mesma soma */
+        padding-top: var(--brk-bc-space); margin-bottom: calc(var(--section-pt) * 1px + var(--brk-bc-space)); overflow: hidden;
         font-family: var(--body-font); font-size: 1.3rem; line-height: 1.4;
       }
       .brk-breadcrumbs a,
@@ -200,7 +201,7 @@
         white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
       }
       @media (max-width: 767px) {
-        .brk-breadcrumbs { font-size: 1.2rem; gap: .5rem; }
+        .brk-breadcrumbs { --brk-bc-space: 1.2rem; font-size: 1.2rem; gap: .5rem; }
       }
       /* Estado mobile: breadcrumb movido para dentro do header (abaixo da linha do logo) */
       .brk-breadcrumbs--in-header {
