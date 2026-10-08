@@ -27,6 +27,44 @@
       endif
     endif
     assign search_result = theme_st.search_result
+
+    # A busca livre da Shopify completa com resultados semânticos sem relação (ex.: "inox" => camisas).
+    # Mantém só produtos que contêm todas as palavras digitadas (parcial vale: "boti" => botina);
+    # se nenhum contiver (ex.: erro de digitação), mostra o resultado original.
+    capture needle_text
+      render 'search-fold', text: search_terms
+    endcapture
+    assign needles = needle_text | split: ' '
+    assign ignored_words = 'com,para,pra,das,dos' | split: ','
+    assign matched_ids = ','
+    assign matched_count = 0
+    for product in results
+      capture haystack
+        echo product.title | append: ' ' | append: product.type | append: ' ' | append: product.vendor | append: ' '
+        echo product.tags | join: ' '
+        for variant in product.variants
+          echo ' ' | append: variant.title | append: ' ' | append: variant.sku
+        endfor
+        echo ' ' | append: product.description | strip_html
+      endcapture
+      capture haystack
+        render 'search-fold', text: haystack
+      endcapture
+      assign all_found = true
+      for needle in needles
+        if needle.size <= 2 or ignored_words contains needle
+          continue
+        endif
+        unless haystack contains needle
+          assign all_found = false
+          break
+        endunless
+      endfor
+      if all_found
+        assign matched_ids = matched_ids | append: product.id | append: ','
+        assign matched_count = matched_count | plus: 1
+      endif
+    endfor
   -%}
   <div
     class="search-list-item{% if search_type == 'default' or search_type == 'popup' %} mt-25{% endif %}{% if search_result == 'all' and search_type != 'drawer' %}{% if predictive_search.resources.pages.size > 0 or predictive_search.resources.articles.size > 0 or predictive_search.resources.collections.size > 0 %}  flex gap-30 flex-wrap{% endif %}{% endif %}"
@@ -73,10 +111,18 @@
           class="search-results-list{% if search_type == 'default' or search_type == 'popup' %} grid grid-cols gap-15 gap-lg-20{% endif %}"
           style="{% if search_type == 'default' or search_type == 'popup' %}--col-number: 1;--col-tablet: 1;--col-desktop-small:3;--col-desktop: 5;{% endif %}"
         >
-          {%- for product in results limit: 5 -%}
-            {%- if product.tags contains 'VIP' -%}
+          {%- assign shown = 0 -%}
+          {%- for product in results -%}
+            {%- if shown >= 5 or product.tags contains 'VIP' -%}
               {%- continue -%}
             {%- endif -%}
+            {%- assign product_key = ',' | append: product.id | append: ',' -%}
+            {%- if matched_count > 0 -%}
+              {%- unless matched_ids contains product_key -%}
+                {%- continue -%}
+              {%- endunless -%}
+            {%- endif -%}
+            {%- assign shown = shown | plus: 1 -%}
             {% render 'product-item',
               card_product: product,
               section_id: section.id,

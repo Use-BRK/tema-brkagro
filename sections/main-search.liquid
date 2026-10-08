@@ -15,10 +15,39 @@
   if search_products == blank
     assign enable_filtering = false
   endif
-  assign terms = search.terms | escape
+  capture terms
+    render 'search-raw-terms', terms: search.terms
+  endcapture
   assign scroll_animation = settings.scroll_animation
   assign search_result = settings.search_result
+
+  # Busca por campos (assets/search-rewrite.js): 'plain' = termo livre, vira consulta por campos;
+  # 'empty' = consulta por campos sem resultado, volta pra busca livre.
+  assign search_rewrite = ''
+  if search.performed and search.terms != blank
+    if search.terms contains '(title:'
+      if search.results_count == 0
+        assign search_rewrite = 'empty'
+      endif
+    else
+      unless search.terms contains ':'
+        assign search_rewrite = 'plain'
+      endunless
+    endif
+  endif
 -%}
+{%- if search_rewrite != blank -%}
+  {%- comment -%} Esconde só até o search-rewrite.js decidir; seções trocadas via AJAX (filtros) não escondem. {%- endcomment -%}
+  <style>
+    html:not(.brk-search-ready) .is-search-rewriting .page-title h1,
+    html:not(.brk-search-ready) .is-search-rewriting #productgridcontainer { visibility: hidden; }
+    /* Busca aproximada (sf=1): só a 1ª página, sem contagem — o resto é ruído semântico. */
+    html.brk-search-approx #toolbar-amount,
+    html.brk-search-approx #productgridcontainer .pagination,
+    html.brk-search-approx #productgridcontainer .pagination-loadmore { display: none !important; }
+  </style>
+  <noscript><style>.is-search-rewriting .page-title h1, .is-search-rewriting #productgridcontainer { visibility: visible !important; }</style></noscript>
+{%- endif -%}
 {% liquid
   assign enable_rtl = settings.rtl
   assign iso_code = request.locale.iso_code
@@ -38,8 +67,14 @@
 {% if enable_filtering and filter_layout == 'vertical' %}--col-width: 27rem;--col-gap: 3rem;{% endif %} {% if enable_filtering and filter_layout == 'vertical' and section_width != 'default' %}--col-gap-desktop: 6rem;{% endif %}{% if enable_filtering and filter_layout == 'vertical' and section_width == 'default' %}--col-gap: 3rem;{% endif %}  --section-pt: {{ section_st.padding_top }}; --section-pb: {{ section_st.padding_bottom }};
 {%- endcapture -%}
 <section
-  class="section{% if section_st.padding_top < 30 %} pt-min{% endif %}{% if section_st.padding_bottom < 30 %} pb-min{% endif %} sec__collection-main {{ scroll_animation }}"
+  class="section{% if section_st.padding_top < 30 %} pt-min{% endif %}{% if section_st.padding_bottom < 30 %} pb-min{% endif %} sec__collection-main {{ scroll_animation }}{% if search_rewrite != blank %} is-search-rewriting{% endif %}"
   data-section-id="{{ section.id }}"
+  {% if search.performed %}
+    data-search-raw="{{ terms }}"
+  {% endif %}
+  {% if search_rewrite != blank %}
+    data-search-rewrite="{{ search_rewrite }}"
+  {% endif %}
   style="{{ style_padding | strip | strip_newlines }}"
 >
   {%- if enable_filtering and filter_layout == 'drawer' -%}
@@ -90,7 +125,7 @@
                   class="pl-44-impo ssearch__input field__input border-0 pr-60 overflow-hidden w-full"
                   type="search"
                   name="q"
-                  value="{{ search.terms | escape }}"
+                  value="{{ terms }}"
                   placeholder="{{ 'general.search.search' | t }}"
                   maxlength="128"
                   role="combobox"

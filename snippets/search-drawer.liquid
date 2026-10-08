@@ -70,7 +70,7 @@
           type="search"
           name="q"
           id="search-template"
-          value="{{ search.terms | escape }}"
+          value="{% render 'search-raw-terms', terms: search.terms %}"
           placeholder="{{ 'general.search.search' | t }}"
           maxlength="128"
           role="combobox"
