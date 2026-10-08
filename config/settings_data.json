@@ -92,6 +92,7 @@
     "action_after_add_cart": "open_drawer",
     "show_on_minicart_cart_page": true,
     "free_shipping_minimum": "10",
+    "free_shipping_unavailable_text": "Adicione +1 produto e ganhe <strong>Frete Fixo R$ 9,90!</strong>",
     "show_gift_bar": false,
     "gift_threshold_1": "250",
     "gift_product_1": "pulseira-de-silicone-brk-eu-sou-do-agro",
