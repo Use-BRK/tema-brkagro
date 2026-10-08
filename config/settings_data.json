@@ -82,16 +82,16 @@
     "swatch_item_type": "variant_images",
     "color_swatch_trigger": "Color, Colour, Cor",
     "size_trigger": "Size, Taglia, Tamanho",
-    "search_type": "drawer",
+    "search_type": "default",
     "search_result": "products",
     "enable_search_suggestion": true,
     "popular_key_word": "botina, calça jeans, bonés, camisa de botão",
     "collection_suggestion": "barra-de-busca",
     "show_search_price": false,
-    "show_message_when_remove": true,
+    "show_message_when_remove": false,
     "action_after_add_cart": "open_drawer",
-    "show_on_minicart_cart_page": false,
-    "free_shipping_minimum": "199",
+    "show_on_minicart_cart_page": true,
+    "free_shipping_minimum": "1",
     "show_gift_bar": false,
     "gift_threshold_1": "250",
     "gift_product_1": "pulseira-de-silicone-brk-eu-sou-do-agro",
@@ -188,7 +188,9 @@
           "title_txJBrx": {
             "type": "_product-title",
             "settings": {
-              "show_vendor": false
+              "show_vendor": false,
+              "title_size_desktop": 23,
+              "title_size_mobile": 23
             },
             "blocks": {}
           },
