@@ -367,6 +367,15 @@
             "label": "Calça Jeans"
           }
         },
+        "card_NTW9YG": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/Card_BRK_AGRO_Facas_1.png",
+            "collection": "facas-de-churrasco",
+            "link": "",
+            "label": ""
+          }
+        },
         "card_7tezkD": {
           "type": "card",
           "name": "Bonés",
@@ -390,6 +399,7 @@
         "card_AyYQxG": {
           "type": "card",
           "name": "Camisas Work",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/Card_BRK_AGRO_Work.webp",
             "collection": "camisas-work",
@@ -420,6 +430,7 @@
       },
       "block_order": [
         "card_Az3eRR",
+        "card_NTW9YG",
         "card_7tezkD",
         "card_jHmrEj",
         "card_AyYQxG",
