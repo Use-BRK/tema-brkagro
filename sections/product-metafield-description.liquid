@@ -20,7 +20,7 @@
     style="{{ style | strip | strip_newlines }}"
   >
     <div class="{{ section_width }}">
-      <details class="brk-desc"{% if section_st.open %} open{% endif %}>
+      <details class="brk-desc{% if template.suffix == 'faca' %} brk-desc--faca{% endif %}"{% if section_st.open %} open{% endif %}>
         <summary class="brk-desc__head">
           <span class="brk-desc__title">{{ section_st.heading }}</span>
           <span class="brk-desc__toggle" aria-hidden="true"></span>
@@ -70,6 +70,12 @@
 .sec__metafield-description .brk-desc__body > :first-child { margin-top: 0; }
 .sec__metafield-description .brk-desc__body > :last-child { margin-bottom: 0; }
 .sec__metafield-description .brk-desc__body a { color: var(--brk-accent); }
+/* Facas (template product.faca): o HTML do metafield traz <style> próprio com seletores #id; !important vence */
+.sec__metafield-description .brk-desc--faca .brk-desc__body h2,
+.sec__metafield-description .brk-desc--faca .brk-desc__body h3 { font-size: 20px !important; }
+.sec__metafield-description .brk-desc--faca .brk-desc__body [class*="subtitle"] { font-size: 16px !important; }
+.sec__metafield-description .brk-desc--faca .brk-desc__body p,
+.sec__metafield-description .brk-desc--faca .brk-desc__body li { font-size: 12px !important; }
 @keyframes brk-desc-reveal { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: translateY(0); } }
 @media (prefers-reduced-motion: reduce) {
   .sec__metafield-description .brk-desc__body { animation: none; }
