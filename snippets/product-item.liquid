@@ -633,11 +633,20 @@
                 assign size_limit = 2
               endif
               assign size_rest = size_count | minus: size_limit
+              # No mobile, 3 tamanhos com nomes longos (ex.: "SM (P)") não cabem no card: mostra 2 + "+1"
+              assign size_chars = card_sizes | join: '' | size
+              assign size_mobile_collapse = false
+              if size_count == 3 and size_chars > 10
+                assign size_mobile_collapse = true
+              endif
             -%}
             <ul class="product-item__sizes" aria-label="{{ card_size_option.name | escape }}">
               {%- for value in card_sizes limit: size_limit -%}
-                <li class="product-item__size">{{ value | escape }}</li>
+                <li class="product-item__size{% if size_mobile_collapse and forloop.last %} product-item__size--desktop{% endif %}">{{ value | escape }}</li>
               {%- endfor -%}
+              {%- if size_mobile_collapse -%}
+                <li class="product-item__size product-item__size--more product-item__size--mobile" aria-label="Mais 1 tamanho">+1</li>
+              {%- endif -%}
               {%- if size_rest > 0 -%}
                 <li class="product-item__size product-item__size--more" aria-label="Mais {{ size_rest }} tamanhos">+{{ size_rest }}</li>
               {%- endif -%}

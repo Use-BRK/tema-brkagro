@@ -274,12 +274,24 @@ review-product.inline-loading:after {
     padding: 0;
   }
 }
+/* 3 tamanhos longos: no desktop mostra os 3; no mobile troca o 3º por "+1" */
+.product-item__size--mobile {
+  display: none;
+}
 /* Mobile: tamanhos sempre numa linha só (sem quebrar a lista nem o texto da pílula) */
 @media (max-width: 749.98px) {
   .product-item__sizes {
     --size-gap: 0.4rem;
     flex-wrap: nowrap;
     overflow: hidden;
+    min-width: 0;
+    max-width: 100%;
+  }
+  .product-item__size--desktop {
+    display: none;
+  }
+  .product-item__size--mobile {
+    display: inline-flex;
   }
   .product-item__size {
     flex-shrink: 0;
