@@ -31,8 +31,8 @@
           "settings": {
             "timer_font_size": 24,
             "label_font_size": 10,
-            "start_date": "2026-10-10",
-            "start_time": "00:01",
+            "start_date": "",
+            "start_time": "",
             "end_date": "2026-10-10",
             "end_time": "23:59",
             "expired_message": "",
