@@ -57,7 +57,7 @@
     "imported_badge_text": "🇺🇸 IMPORTADO",
     "imported_badge_color": "#FFFFFF",
     "imported_badge_background": "#000000",
-    "scarcity_threshold": 5,
+    "scarcity_threshold": 10,
     "product_style": "standard",
     "show_quick_view": false,
     "show_wishlist": false,
