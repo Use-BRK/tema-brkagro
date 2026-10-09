@@ -887,6 +887,41 @@
       },
       {
         "type": "header",
+        "content": "Badge Produto Importado",
+        "info": "Aparece nos produtos que tiverem a tag abaixo (ex.: chapéus American Hat)."
+      },
+      {
+        "type": "checkbox",
+        "id": "show_imported_badge",
+        "label": "Mostrar badge Produto Importado",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "imported_badge_tag",
+        "label": "Tag que ativa a badge",
+        "default": "Importado"
+      },
+      {
+        "type": "text",
+        "id": "imported_badge_text",
+        "label": "Texto da badge",
+        "default": "🇺🇸 PRODUTO IMPORTADO"
+      },
+      {
+        "type": "color",
+        "id": "imported_badge_color",
+        "label": "Cor do texto",
+        "default": "#ffffff"
+      },
+      {
+        "type": "color",
+        "id": "imported_badge_background",
+        "label": "Cor de fundo",
+        "default": "#000000"
+      },
+      {
+        "type": "header",
         "content": "Medidor de escassez",
         "info": "Aparece no rodapé da imagem do produto (vitrines e coleções) quando o estoque somado de todas as variantes rastreadas fica igual ou abaixo do limite."
       },
