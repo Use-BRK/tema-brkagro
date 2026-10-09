@@ -55,6 +55,7 @@
     "sold_out_background": "#666666",
     "custom_badge_background": "#002776",
     "imported_badge_text": "🇺🇸 IMPORTADO",
+    "imported_badge_emoji_size": 120,
     "imported_badge_color": "#FFFFFF",
     "imported_badge_background": "#000000",
     "scarcity_threshold": 10,
