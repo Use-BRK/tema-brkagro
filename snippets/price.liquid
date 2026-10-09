@@ -95,6 +95,17 @@
       </small>
     {% endif %}
   </div>
+{%- elsif max_parcelas == 10 and num_parcelas >= 3 and theme_st.show_card_installment != false -%}
+  {%- comment -%} Card dos chapéus importados (10x): linha 1 = parcela em destaque + "em Nx"; linha 2 = "ou R$ X à vista" {%- endcomment -%}
+  <div class="card-product-price card-product-price--importado {{ class }} relative">
+    <div class="price-importado__row">
+      <span class="price heading_weight price-same-style">{{ valor_parcela | money }}</span>
+      <span class="price-importado__times">em {{ num_parcelas }}x</span>
+    </div>
+    <div class="price-importado__cash">
+      ou <strong>{{ money_price }}</strong> à vista
+    </div>
+  </div>
 {%- else -%}
 
 <div class="card-product-price {{ class }} flex align-center flex-wrap gap-5 relative">

@@ -1364,6 +1364,33 @@ input.option-disabled + .miniatura-swatch {
   flex: 0 0 100%;
 }
 
+/* Card dos chapéus importados (10x): parcela em destaque + "em 10x"; abaixo "ou R$ X à vista" */
+.card-product-price--importado {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+.card-product-price--importado .price-importado__row {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0 5px;
+  line-height: 1.15;
+}
+.card-product-price--importado .price-importado__times {
+  font-size: 1.2rem;
+  color: #6b6b6b;
+}
+.card-product-price--importado .price-importado__cash {
+  font-size: 1.2rem;
+  line-height: 1.2;
+  color: #6b6b6b;
+}
+.card-product-price--importado .price-importado__cash strong {
+  font-weight: 500;
+  color: #4a4a4a;
+}
+
 /* ---- PDP mobile: sale badge no canto superior esquerdo da imagem ----
    No mobile a sale badge (.sale_badge--inside-price) sai da linha de preço
    e vai para o topo-esquerdo da imagem do produto, como nas vitrines.
