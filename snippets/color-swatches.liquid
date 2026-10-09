@@ -168,7 +168,7 @@
               for="Option-{{ section.id }}-{{ forloop.index0 }}"
             >
               {{ option.name }}:
-              <span data-option-name="{{ option.name }}" class="option_value heading-style capitalize">
+              <span data-option-name="{{ option.name }}" class="option_value heading-style">
                 {{- op_value -}}
               </span>
             </div>
@@ -262,7 +262,7 @@
         <fieldset class="js product-form__input flex flex-wrap mb-25 mx-0 p-0 border-0{% if is_color_option == true %} product-form__input_color{% if settings.enable_color_swatches %} gap-20{% else %} gap-10{% endif %}{% else %} gap-10{% endif %}{% if option_size contains option_name_nospace %} product-form__input_size{% endif %}">
           <div class="form__label gap-10 w-full lh-normal flex gap-15 justify-between">
             <span>
-              {{- option.name }}: <span class="option_value heading-style capitalize">{{ op_value }}</span></span
+              {{- option.name }}: <span class="option_value heading-style">{{ op_value }}</span></span
             >
 
             {%- if option_size contains option_name_nospace -%}
@@ -351,7 +351,7 @@
         <fieldset class="js product-form__input flex flex-wrap mb-20 mx-0 p-0 border-0{% if is_color_option == true %} product-form__input_color gap-20{% else %} gap-10{% endif %}{% if option_size contains option_name_nospace %} product-form__input_size{% endif %}">
           <div class="form__label gap-10 w-full lh-normal flex gap-15 justify-between">
             <span>
-              {{- option.name }}: <span class="option_value heading-style capitalize">{{ op_value }}</span></span
+              {{- option.name }}: <span class="option_value heading-style">{{ op_value }}</span></span
             >
             {%- if option_size contains option_name_nospace -%}
               {%- if block.settings.show_size_guide -%}

@@ -274,7 +274,7 @@ review-product.inline-loading:after {
     padding: 0;
   }
 }
-/* 3 tamanhos longos: no desktop mostra os 3; no mobile troca o 3º por "+1" */
+/* Tamanhos que não cabem no card mobile: escondidos no mobile e trocados por "+N" (cálculo em product-item.liquid) */
 .product-item__size--mobile {
   display: none;
 }

@@ -633,22 +633,44 @@
                 assign size_limit = 2
               endif
               assign size_rest = size_count | minus: size_limit
-              # No mobile, 3 tamanhos com nomes longos (ex.: "SM (P)") não cabem no card: mostra 2 + "+1"
-              assign size_chars = card_sizes | join: '' | size
-              assign size_mobile_collapse = false
-              if size_count == 3 and size_chars > 10
-                assign size_mobile_collapse = true
+              # No mobile o card é estreito (~150px): estima a largura de cada pílula pelo nº de
+              # caracteres (décimos de px: 6px/caractere + 16px de padding + 4px de gap) e mostra só
+              # as que cabem, reservando espaço pro "+N". Ex.: "1 a 2 Anos" +6, "SM (P) MD (M) +1".
+              assign size_mobile_budget = 1480
+              assign size_mobile_used = 0
+              assign size_mobile_limit = 0
+              for value in card_sizes limit: size_limit
+                assign size_w = value.size | times: 60 | plus: 200
+                assign size_left = size_count | minus: forloop.index
+                assign size_reserve = 0
+                if size_left > 0
+                  assign size_reserve = 280
+                endif
+                assign size_try = size_mobile_used | plus: size_w | plus: size_reserve
+                if size_try > size_mobile_budget
+                  break
+                endif
+                assign size_mobile_used = size_mobile_used | plus: size_w
+                assign size_mobile_limit = forloop.index
+              endfor
+              if size_mobile_limit < 1
+                assign size_mobile_limit = 1
+              endif
+              assign size_mobile_rest = size_count | minus: size_mobile_limit
+              assign size_mobile_differs = false
+              if size_mobile_limit < size_limit
+                assign size_mobile_differs = true
               endif
             -%}
             <ul class="product-item__sizes" aria-label="{{ card_size_option.name | escape }}">
               {%- for value in card_sizes limit: size_limit -%}
-                <li class="product-item__size{% if size_mobile_collapse and forloop.last %} product-item__size--desktop{% endif %}">{{ value | escape }}</li>
+                <li class="product-item__size{% if forloop.index > size_mobile_limit %} product-item__size--desktop{% endif %}">{{ value | escape }}</li>
               {%- endfor -%}
-              {%- if size_mobile_collapse -%}
-                <li class="product-item__size product-item__size--more product-item__size--mobile" aria-label="Mais 1 tamanho">+1</li>
-              {%- endif -%}
               {%- if size_rest > 0 -%}
-                <li class="product-item__size product-item__size--more" aria-label="Mais {{ size_rest }} tamanhos">+{{ size_rest }}</li>
+                <li class="product-item__size product-item__size--more{% if size_mobile_differs %} product-item__size--desktop{% endif %}" aria-label="Mais {{ size_rest }} tamanhos">+{{ size_rest }}</li>
+              {%- endif -%}
+              {%- if size_mobile_differs -%}
+                <li class="product-item__size product-item__size--more product-item__size--mobile" aria-label="Mais {{ size_mobile_rest }} tamanhos">+{{ size_mobile_rest }}</li>
               {%- endif -%}
             </ul>
           {%- endif -%}
