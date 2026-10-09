@@ -274,6 +274,25 @@ review-product.inline-loading:after {
     padding: 0;
   }
 }
+/* Mobile: tamanhos sempre numa linha só (sem quebrar a lista nem o texto da pílula) */
+@media (max-width: 749.98px) {
+  .product-item__sizes {
+    --size-gap: 0.4rem;
+    flex-wrap: nowrap;
+    overflow: hidden;
+  }
+  .product-item__size {
+    flex-shrink: 0;
+    height: 2.4rem;
+    padding: 0 0.8rem;
+    font-size: 1.1rem;
+    white-space: nowrap;
+  }
+  .product-item__size--more {
+    width: 2.4rem;
+    padding: 0;
+  }
+}
 /* "Pronta Entrega" discreto abaixo do preco/parcelamento do card */
 .product-item__shipping-note {
   display: flex;
