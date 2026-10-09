@@ -906,28 +906,7 @@
         "type": "text",
         "id": "imported_badge_text",
         "label": "Texto da badge",
-        "info": "Se o texto começar com um emoji (ex.: 🇺🇸), o tamanho dele é controlado separado logo abaixo.",
         "default": "🇺🇸 PRODUTO IMPORTADO"
-      },
-      {
-        "type": "range",
-        "id": "imported_badge_emoji_size",
-        "label": "Tamanho do emoji",
-        "min": 100,
-        "max": 250,
-        "step": 5,
-        "unit": "%",
-        "default": 100
-      },
-      {
-        "type": "range",
-        "id": "imported_badge_text_size",
-        "label": "Tamanho do texto",
-        "min": 80,
-        "max": 150,
-        "step": 5,
-        "unit": "%",
-        "default": 100
       },
       {
         "type": "color",
