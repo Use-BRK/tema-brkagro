@@ -45,6 +45,7 @@
         "slider_item_D43AJr": {
           "type": "slider_item",
           "name": "Rotativo",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/DESK_1.png",
             "image_mobile": "shopify://shop_images/MOB.png",
@@ -75,6 +76,7 @@
         "slider_item_rYBq93": {
           "type": "slider_item",
           "name": "Nossa Senhora",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/banner_desktop.png",
             "image_mobile": "shopify://shop_images/MOBILE_18a38775-0712-4515-be31-c0aef534d26d.png",
@@ -105,6 +107,7 @@
         "slider_item_nrmHUV": {
           "type": "slider_item",
           "name": "Infantis + Livro",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/Desk_ecfcb221-1f70-4a2b-80f9-a5938eb7f89c.png",
             "image_mobile": "shopify://shop_images/Mobile_4d1e7b66-6fbc-4b7b-b6a0-ffeef418e870.png",
