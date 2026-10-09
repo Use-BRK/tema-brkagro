@@ -227,12 +227,34 @@
         </div>
       {%- endif -%}
       {%- if show_imported_badge -%}
-        {%- comment -%} Badge Produto Importado: Configurações do tema > Badges > Badge Produto Importado {%- endcomment -%}
+        {%- comment -%}
+          Badge Produto Importado: Configurações do tema > Badges > Badge Produto Importado.
+          Se a 1ª palavra do texto não tiver letras nem números (ex.: 🇺🇸), ela vira o emoji com tamanho próprio.
+        {%- endcomment -%}
+        {%- liquid
+          assign imported_text = settings.imported_badge_text | default: '🇺🇸 PRODUTO IMPORTADO' | strip
+          assign imported_emoji = ''
+          assign imported_first = imported_text | split: ' ' | first
+          assign imported_first_up = imported_first | upcase
+          assign imported_first_down = imported_first | downcase
+          assign imported_first_digits = imported_first | remove: '0' | remove: '1' | remove: '2' | remove: '3' | remove: '4' | remove: '5' | remove: '6' | remove: '7' | remove: '8' | remove: '9'
+          if imported_first_up == imported_first_down and imported_first_digits == imported_first
+            assign imported_emoji = imported_first
+            assign imported_text = imported_text | remove_first: imported_first | strip
+          endif
+          assign imported_emoji_size = settings.imported_badge_emoji_size | default: 100
+          assign imported_text_size = settings.imported_badge_text_size | default: 100
+        -%}
         <div
           class="product__badges-custom product__badges-imported product__badges-inner align-self-start px-15 inline-flex content-center subheading_weight text-center lh-normal"
-          style="--badges-color: {{ settings.imported_badge_color | default: '#ffffff' }};--badges-bg: {{ settings.imported_badge_background | default: '#000000' }};"
+          style="--badges-color: {{ settings.imported_badge_color | default: '#ffffff' }};--badges-bg: {{ settings.imported_badge_background | default: '#000000' }};align-items: center;"
         >
-          {{ settings.imported_badge_text | default: '🇺🇸 PRODUTO IMPORTADO' | escape }}
+          {%- if imported_emoji != blank -%}
+            <span class="product__badges-imported-emoji" style="font-size: {{ imported_emoji_size }}%;line-height: 1;">{{ imported_emoji | escape }}</span>
+          {%- endif -%}
+          {%- if imported_text != blank -%}
+            <span class="product__badges-imported-text" style="font-size: {{ imported_text_size }}%;">{{ imported_text | escape }}</span>
+          {%- endif -%}
         </div>
       {%- endif -%}
       {%- if sale and show_sale and sale_badge_type != 'scrolling' -%}
