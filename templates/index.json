@@ -12,12 +12,12 @@
     "slideshow_8KKtNU": {
       "type": "slideshow",
       "blocks": {
-        "slider_item_D43AJr": {
+        "slider_item_MMEAVn": {
           "type": "slider_item",
-          "name": "Rotativo",
+          "name": "Chapéus",
           "settings": {
-            "image": "shopify://shop_images/DESK_1.png",
-            "image_mobile": "shopify://shop_images/MOB.png",
+            "image": "shopify://shop_images/BANNER_ESQUENTA_10.10_4cdfe2db-28d5-420c-9998-a7bcef65cc50.jpg",
+            "image_mobile": "shopify://shop_images/MOBILE_ESQUENTA_10.10.jpg",
             "overlay_opacity": 0,
             "link_banner": "shopify://collections/brasil-patriota-2026",
             "slider_effect": "fade-in-right",
@@ -42,14 +42,14 @@
             "content_alignment_mobile": "center"
           }
         },
-        "slider_item_MMEAVn": {
+        "slider_item_D43AJr": {
           "type": "slider_item",
-          "name": "Chapéus",
+          "name": "Rotativo",
           "settings": {
-            "image": "shopify://shop_images/Banner_Chapeus_Home_desktop_3123afdd-5a55-4842-8270-e66dae51fe8b.png",
-            "image_mobile": "shopify://shop_images/Banner_Chapeus_Home_mobile_a930d3f0-8a40-4741-9bea-ebf9193450c9.png",
+            "image": "shopify://shop_images/DESK_1.png",
+            "image_mobile": "shopify://shop_images/MOB.png",
             "overlay_opacity": 0,
-            "link_banner": "shopify://collections/chapeus-importados",
+            "link_banner": "shopify://collections/brasil-patriota-2026",
             "slider_effect": "fade-in-right",
             "subheading": "",
             "heading": "",
@@ -135,6 +135,7 @@
         "slider_item_K3DbMk": {
           "type": "slider_item",
           "name": "Facas de Churrasco",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/DESK_2.png",
             "image_mobile": "shopify://shop_images/mobile_faca.png",
@@ -164,8 +165,8 @@
         }
       },
       "block_order": [
-        "slider_item_D43AJr",
         "slider_item_MMEAVn",
+        "slider_item_D43AJr",
         "slider_item_rYBq93",
         "slider_item_nrmHUV",
         "slider_item_K3DbMk"
@@ -367,6 +368,15 @@
             "label": "Calça Jeans"
           }
         },
+        "card_NTW9YG": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/Card_BRK_AGRO_Facas_1.png",
+            "collection": "facas-de-churrasco",
+            "link": "",
+            "label": ""
+          }
+        },
         "card_7tezkD": {
           "type": "card",
           "name": "Bonés",
@@ -390,6 +400,7 @@
         "card_AyYQxG": {
           "type": "card",
           "name": "Camisas Work",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/Card_BRK_AGRO_Work.webp",
             "collection": "camisas-work",
@@ -420,6 +431,7 @@
       },
       "block_order": [
         "card_Az3eRR",
+        "card_NTW9YG",
         "card_7tezkD",
         "card_jHmrEj",
         "card_AyYQxG",

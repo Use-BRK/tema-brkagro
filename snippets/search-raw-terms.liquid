@@ -1,0 +1,20 @@
+{%- comment -%}
+  Devolve (já escapado) o termo que o cliente digitou a partir da consulta por campos
+  montada por assets/search-rewrite.js: "(title:botina OR ...) AND (title:preta OR ...)" => "botina preta".
+  Consultas comuns saem como vieram.
+  Render: {% render 'search-raw-terms', terms: search.terms %}
+{%- endcomment -%}
+{%- liquid
+  if terms contains '(title:'
+    assign parts = terms | split: '(title:'
+    for part in parts offset: 1
+      assign word = part | split: ' OR ' | first | strip
+      echo word | escape
+      unless forloop.last
+        echo ' '
+      endunless
+    endfor
+  else
+    echo terms | escape
+  endif
+-%}

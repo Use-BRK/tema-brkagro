@@ -32,7 +32,7 @@
           "settings": {
             "show_vendor": false,
             "title_size_desktop": 21,
-            "title_size_mobile": 20
+            "title_size_mobile": 17
           },
           "blocks": {}
         },
@@ -400,6 +400,14 @@
       "settings": {
         "section_width": "fluid_container",
         "color_scheme": "scheme-accf3b11-ba40-4a3e-bafb-243ece6683ec",
+        "breadcrumb_mobile_in_header": false,
+        "brk_premium_style": false,
+        "brk_premium_gap": 28,
+        "brk_premium_gap_sm": 14,
+        "brk_header_style": false,
+        "brk_header_scheme": "",
+        "brk_topbar_scheme": "",
+        "brk_header_logo_color": "original",
         "enable_sticky_content_on_desktop": true,
         "enable_skeleton_loading": false,
         "desktop_media_width": 40,

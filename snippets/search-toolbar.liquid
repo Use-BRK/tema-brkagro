@@ -28,7 +28,8 @@
   {%- if number_products_per_page and search.results.size > 0 -%}
     <div class="toolbar-amount hidden block-1025" id="toolbar-amount">
       {%- if search.results_count -%}
-        {{ 'templates.search.results_with_count' | t: terms: search.terms, count: search.results_count }}
+        {%- capture raw_terms -%}{%- render 'search-raw-terms', terms: search.terms -%}{%- endcapture -%}
+        {{ 'templates.search.results_with_count' | t: terms: raw_terms, count: search.results_count }}
       {%- elsif search.products_count == search.all_products_count -%}
         {{ 'products.facets.product_count_simple' | t: count: search.products_count }}
       {%- else -%}
