@@ -1365,10 +1365,17 @@ input.option-disabled + .miniatura-swatch {
 }
 
 /* Card dos chapéus importados (10x): parcela em destaque + "em 10x"; abaixo "ou R$ X à vista" */
-.card-product-price--importado {
+.card-product-price.card-product-price--importado,
+.product-item .card-product-price.card-product-price--importado {
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   gap: 1px;
+}
+.card-product-price--importado .price-importado__row,
+.card-product-price--importado .price-importado__cash {
+  flex: 0 0 auto;
+  width: 100%;
 }
 .card-product-price--importado .price-importado__row {
   display: flex;
