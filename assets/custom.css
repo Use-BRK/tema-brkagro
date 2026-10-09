@@ -1395,7 +1395,7 @@ input.option-disabled + .miniatura-swatch {
 }
 /* respiro entre o "à vista" e os tamanhos = mesmo respiro entre título e preço */
 .product-item__information:has(.card-product-price--importado) .product-item__sizes {
-  margin-top: calc(var(--size-gap) - 0.4rem);
+  margin-top: calc(var(--size-gap) + 0.1rem);
 }
 .card-product-price--importado .price-importado__cash strong {
   font-weight: 500;
