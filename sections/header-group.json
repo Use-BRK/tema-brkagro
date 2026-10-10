@@ -19,9 +19,9 @@
           "settings": {
             "highlight": "10",
             "line_1": "% OFF",
-            "line_2": "no site",
-            "highlight_size": 45,
-            "lines_size": 18,
+            "line_2": "camisas BRK",
+            "highlight_size": 39,
+            "lines_size": 17,
             "hidden_on_mobile": false
           }
         },
@@ -39,8 +39,8 @@
             "switch_to_slider": true,
             "custom_colors": true,
             "bg_color": "#151414",
-            "text_color": "#FFFFFF",
-            "timer_color": "#FFFFFF",
+            "text_color": "#ffffff",
+            "timer_color": "#ffffff",
             "hidden_on_mobile": false
           }
         },
