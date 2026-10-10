@@ -16,8 +16,8 @@
           "type": "slider_item",
           "name": "Chapéus",
           "settings": {
-            "image": "shopify://shop_images/BANNER_ESQUENTA_10.10_4cdfe2db-28d5-420c-9998-a7bcef65cc50.jpg",
-            "image_mobile": "shopify://shop_images/MOBILE_ESQUENTA_10.10.jpg",
+            "image": "shopify://shop_images/BANNER_10.10_49b91c0e-337b-4789-93c6-12718f6f0952.jpg",
+            "image_mobile": "shopify://shop_images/MOBILE_10.10.jpg",
             "overlay_opacity": 0,
             "link_banner": "shopify://collections/brasil-patriota-2026",
             "slider_effect": "fade-in-right",
