@@ -55,7 +55,6 @@
     "sold_out_background": "#666666",
     "custom_badge_background": "#002776",
     "imported_badge_text": "🇺🇸 IMPORTADO",
-    "imported_badge_emoji_size": 120,
     "imported_badge_color": "#FFFFFF",
     "imported_badge_background": "#000000",
     "scarcity_threshold": 10,
@@ -96,8 +95,9 @@
     "show_message_when_remove": false,
     "action_after_add_cart": "open_drawer",
     "show_on_minicart_cart_page": true,
-    "free_shipping_minimum": "10",
-    "free_shipping_unavailable_text": "Adicione +1 produto e ganhe <strong>Frete Fixo R$ 9,90!</strong>",
+    "free_shipping_minimum": "299",
+    "free_shipping_unavailable_text": "Compre mais {{ amount }} e ganhe <strong>Frete GRÁTIS!</strong>",
+    "free_shipping_available_text": "Parabéns! Você ganhou <strong>FRETE GRÁTIS</strong>",
     "show_gift_bar": false,
     "gift_threshold_1": "250",
     "gift_product_1": "pulseira-de-silicone-brk-eu-sou-do-agro",
@@ -165,6 +165,7 @@
     "enable_whatsapp_button": true,
     "whatsapp_button_number": "553432194697",
     "whatsapp_button_bottom": 80,
+    "imported_badge_emoji_size": 120,
     "rate_color": "#ea0606",
     "sections": {
       "custom-colors": {
