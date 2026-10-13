@@ -17,10 +17,10 @@
           "name": "Chapéus",
           "disabled": true,
           "settings": {
-            "image": "shopify://shop_images/BANNER_10.10_49b91c0e-337b-4789-93c6-12718f6f0952.jpg",
-            "image_mobile": "shopify://shop_images/MOBILE_10.10.jpg",
+            "image": "shopify://shop_images/Banner_Chapeus_Home_desktop_3123afdd-5a55-4842-8270-e66dae51fe8b.png",
+            "image_mobile": "shopify://shop_images/Banner_Chapeus_Home_mobile_a930d3f0-8a40-4741-9bea-ebf9193450c9.png",
             "overlay_opacity": 0,
-            "link_banner": "shopify://collections/brasil-patriota-2026",
+            "link_banner": "shopify://collections/chapeus-importados",
             "slider_effect": "fade-in-right",
             "subheading": "",
             "heading": "",
