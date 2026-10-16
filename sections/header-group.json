@@ -16,10 +16,11 @@
       "blocks": {
         "countdown_text_XF7cFC": {
           "type": "countdown_text",
+          "disabled": true,
           "settings": {
-            "highlight": "R$20",
-            "line_1": "ㅤ",
-            "line_2": "OFF",
+            "highlight": "",
+            "line_1": "",
+            "line_2": "",
             "highlight_size": 34,
             "lines_size": 31,
             "hidden_on_mobile": false
@@ -28,13 +29,14 @@
         "shipping_countdown_F86tnm": {
           "type": "shipping_countdown",
           "name": "Timer",
+          "disabled": true,
           "settings": {
             "timer_font_size": 24,
             "label_font_size": 10,
             "start_date": "",
             "start_time": "",
-            "end_date": "2026-10-18",
-            "end_time": "23:59",
+            "end_date": "",
+            "end_time": "",
             "expired_message": "",
             "switch_to_slider": true,
             "custom_colors": true,
