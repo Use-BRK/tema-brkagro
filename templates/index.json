@@ -16,8 +16,8 @@
           "type": "slider_item",
           "name": "Rotativo",
           "settings": {
-            "image": "shopify://shop_images/DESK_1.png",
-            "image_mobile": "shopify://shop_images/MOB.png",
+            "image": "shopify://shop_images/DESK_3.png",
+            "image_mobile": "shopify://shop_images/MOBILE_2.png",
             "overlay_opacity": 0,
             "link_banner": "shopify://collections/brasil-patriota-2026",
             "slider_effect": "fade-in-right",
