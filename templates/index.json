@@ -12,36 +12,6 @@
     "slideshow_8KKtNU": {
       "type": "slideshow",
       "blocks": {
-        "slider_item_MMEAVn": {
-          "type": "slider_item",
-          "name": "Chapéus",
-          "settings": {
-            "image": "shopify://shop_images/Banner_Chapeus_Home_desktop_3123afdd-5a55-4842-8270-e66dae51fe8b.png",
-            "image_mobile": "shopify://shop_images/Banner_Chapeus_Home_mobile_a930d3f0-8a40-4741-9bea-ebf9193450c9.png",
-            "overlay_opacity": 0,
-            "link_banner": "shopify://collections/chapeus-importados",
-            "slider_effect": "fade-in-right",
-            "subheading": "",
-            "heading": "",
-            "description": "",
-            "first_button_label": "",
-            "first_button_link": "",
-            "first_button_style": false,
-            "second_button_label": "",
-            "second_button_link": "",
-            "second_button_style": false,
-            "content_alignment": "center",
-            "content_position": "top-center",
-            "content_width": "full_width",
-            "content_max_width": 100,
-            "content_padding_block": 40,
-            "content_padding_inline": 0,
-            "show_content_background": false,
-            "content_background": "#ffffff",
-            "content_box_opacity": 100,
-            "content_alignment_mobile": "center"
-          }
-        },
         "slider_item_D43AJr": {
           "type": "slider_item",
           "name": "Rotativo",
@@ -102,6 +72,37 @@
             "content_alignment_mobile": "center"
           }
         },
+        "slider_item_MMEAVn": {
+          "type": "slider_item",
+          "name": "Chapéus",
+          "disabled": true,
+          "settings": {
+            "image": "shopify://shop_images/Banner_Chapeus_Home_desktop_3123afdd-5a55-4842-8270-e66dae51fe8b.png",
+            "image_mobile": "shopify://shop_images/Banner_Chapeus_Home_mobile_a930d3f0-8a40-4741-9bea-ebf9193450c9.png",
+            "overlay_opacity": 0,
+            "link_banner": "shopify://collections/chapeus-importados",
+            "slider_effect": "fade-in-right",
+            "subheading": "",
+            "heading": "",
+            "description": "",
+            "first_button_label": "",
+            "first_button_link": "",
+            "first_button_style": false,
+            "second_button_label": "",
+            "second_button_link": "",
+            "second_button_style": false,
+            "content_alignment": "center",
+            "content_position": "top-center",
+            "content_width": "full_width",
+            "content_max_width": 100,
+            "content_padding_block": 40,
+            "content_padding_inline": 0,
+            "show_content_background": false,
+            "content_background": "#ffffff",
+            "content_box_opacity": 100,
+            "content_alignment_mobile": "center"
+          }
+        },
         "slider_item_nrmHUV": {
           "type": "slider_item",
           "name": "Infantis + Livro",
@@ -135,6 +136,7 @@
         "slider_item_K3DbMk": {
           "type": "slider_item",
           "name": "Facas de Churrasco",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/DESK_2.png",
             "image_mobile": "shopify://shop_images/mobile_faca.png",
@@ -164,9 +166,9 @@
         }
       },
       "block_order": [
-        "slider_item_MMEAVn",
         "slider_item_D43AJr",
         "slider_item_rYBq93",
+        "slider_item_MMEAVn",
         "slider_item_nrmHUV",
         "slider_item_K3DbMk"
       ],
