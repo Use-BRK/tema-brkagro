@@ -90,11 +90,11 @@
           "type": "story",
           "name": "Calça",
           "settings": {
-            "local_video": "shopify://files/videos/COMPILADO_VIDEOS_LIVE.mp4",
-            "heading": "1° Oferta Agro",
-            "cta_text": "Comprar agora",
+            "local_video": "shopify://files/videos/calca-story.mp4",
+            "heading": "Calça Jeans para o Agro",
+            "cta_text": "Ver Tamanhos",
             "product": "",
-            "collection": "envios-imediatos"
+            "collection": "calcas-jeans"
           }
         }
       },
