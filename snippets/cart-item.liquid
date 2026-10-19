@@ -38,17 +38,35 @@
   assign brk_limited = false
   assign brk_max = 0
   assign brk_live = shop.metafields.brk_bundles.live.value
-  if brk_live
+  comment
+    Vitrine v2 (brk_bundles.live_index com `on`): o bundle da linha vem direto do
+    registro dele (campo `storefront`, mesmo formato do `live`), sem varrer o `live`.
+  endcomment
+  assign brk_ix = shop.metafields.brk_bundles.live_index.value
+  assign brk_v2 = false
+  if brk_ix and brk_ix.on and brk_ix.mo != blank
+    assign brk_v2 = true
+  endif
+  if brk_live or brk_v2
     assign brk_own_bundle = item.properties['_brk_bundle']
     assign brk_own_item = item.properties['_brk_bundle_item'] | append: ''
     assign brk_own_label = ''
     assign brk_per = 0
     assign brk_per_trigger = false
     if brk_own_bundle != blank
-      for brk_b in brk_live
-        if brk_b.id != brk_own_bundle
-          continue
-        endif
+      assign brk_b = nil
+      if brk_v2
+        assign brk_h = brk_own_bundle | downcase | replace: '_', '-'
+        assign brk_b = shop.metaobjects[brk_ix.mo][brk_h].storefront.value
+      else
+        for brk_x in brk_live
+          if brk_x.id == brk_own_bundle
+            assign brk_b = brk_x
+            break
+          endif
+        endfor
+      endif
+      if brk_b
         for brk_a in brk_b.addons
           assign brk_a_pid = brk_a.productId | append: ''
           if brk_a_pid != brk_own_item
@@ -70,7 +88,7 @@
             endif
           endif
         endfor
-      endfor
+      endif
     endif
 
     comment
@@ -99,13 +117,19 @@
           assign brk_other_units = brk_other_units | plus: brk_line.quantity
         endif
       endif
-      for brk_b in brk_live
-        if brk_b.id != brk_line_bundle
-          continue
-        endif
-        unless brk_b.exemption and brk_b.showAddonDiscount
-          continue
-        endunless
+      assign brk_b = nil
+      if brk_v2
+        assign brk_h = brk_line_bundle | downcase | replace: '_', '-'
+        assign brk_b = shop.metaobjects[brk_ix.mo][brk_h].storefront.value
+      else
+        for brk_x in brk_live
+          if brk_x.id == brk_line_bundle
+            assign brk_b = brk_x
+            break
+          endif
+        endfor
+      endif
+      if brk_b and brk_b.exemption and brk_b.showAddonDiscount
         for brk_a in brk_b.addons
           assign brk_a_pid = brk_a.productId | append: ''
           if brk_a_pid != brk_line_item
@@ -122,7 +146,7 @@
             assign brk_before = brk_before | plus: brk_line.final_line_price
           endif
         endfor
-      endfor
+      endif
     endfor
 
     if brk_per > 0
