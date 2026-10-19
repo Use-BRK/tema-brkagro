@@ -293,26 +293,6 @@
         "disabled": false,
         "settings": {}
       },
-      "17730292167556765394": {
-        "type": "shopify://apps/pagbrasil-app-companion/blocks/app_embedded_extra_info/356201f0-7b27-4511-ac69-c1627db6da45",
-        "disabled": false,
-        "settings": {}
-      },
-      "15184704725445319147": {
-        "type": "shopify://apps/pagbrasil-app-companion/blocks/app_embedded_pagshield/356201f0-7b27-4511-ac69-c1627db6da45",
-        "disabled": false,
-        "settings": {}
-      },
-      "4893908813801555860": {
-        "type": "shopify://apps/pagbrasil-app-companion/blocks/app_embedded_pagstream/356201f0-7b27-4511-ac69-c1627db6da45",
-        "disabled": false,
-        "settings": {}
-      },
-      "10574872756031941262": {
-        "type": "shopify://apps/pagbrasil-app-companion/blocks/app_embedded_pagshield_mithoficial/356201f0-7b27-4511-ac69-c1627db6da45",
-        "disabled": false,
-        "settings": {}
-      },
       "14591349720731162389": {
         "type": "shopify://apps/koin/blocks/app-embed/02895843-ca31-4ee5-82a1-bfd81a36a58d",
         "disabled": true,
@@ -349,6 +329,26 @@
       "848591003871763955": {
         "type": "shopify://apps/shortly/blocks/app-embed-block/4c3d9aaa-3566-4200-9c43-34b476f6332a",
         "disabled": false,
+        "settings": {}
+      },
+      "15184704725445319147": {
+        "type": "shopify://apps/pagbrasil-app-companion/blocks/app_embedded_pagshield/356201f0-7b27-4511-ac69-c1627db6da45",
+        "disabled": true,
+        "settings": {}
+      },
+      "17730292167556765394": {
+        "type": "shopify://apps/pagbrasil-app-companion/blocks/app_embedded_extra_info/356201f0-7b27-4511-ac69-c1627db6da45",
+        "disabled": true,
+        "settings": {}
+      },
+      "10574872756031941262": {
+        "type": "shopify://apps/pagbrasil-app-companion/blocks/app_embedded_pagshield_mithoficial/356201f0-7b27-4511-ac69-c1627db6da45",
+        "disabled": true,
+        "settings": {}
+      },
+      "4893908813801555860": {
+        "type": "shopify://apps/pagbrasil-app-companion/blocks/app_embedded_pagstream/356201f0-7b27-4511-ac69-c1627db6da45",
+        "disabled": true,
         "settings": {}
       }
     },
