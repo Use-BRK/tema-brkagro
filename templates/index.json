@@ -12,6 +12,36 @@
     "slideshow_8KKtNU": {
       "type": "slideshow",
       "blocks": {
+        "slider_item_KtbKfz": {
+          "type": "slider_item",
+          "name": "Rotativo",
+          "settings": {
+            "image": "shopify://shop_images/Banner_Desktop_2.png",
+            "image_mobile": "shopify://shop_images/Mobile_4.png",
+            "overlay_opacity": 0,
+            "link_banner": "shopify://collections/brasil-patriota-2026",
+            "slider_effect": "fade-up",
+            "subheading": "Subheading",
+            "heading": "Image slide",
+            "description": "<p>Tell your brand's story through images</p>",
+            "first_button_label": "Button label",
+            "first_button_link": "",
+            "first_button_style": false,
+            "second_button_label": "",
+            "second_button_link": "",
+            "second_button_style": false,
+            "content_alignment": "left",
+            "content_position": "bottom-left",
+            "content_width": "container",
+            "content_max_width": 100,
+            "content_padding_block": 60,
+            "content_padding_inline": 30,
+            "show_content_background": false,
+            "content_background": "#ffffff",
+            "content_box_opacity": 100,
+            "content_alignment_mobile": "left"
+          }
+        },
         "slider_item_rYBq93": {
           "type": "slider_item",
           "name": "Nossa Senhora",
@@ -134,6 +164,7 @@
         }
       },
       "block_order": [
+        "slider_item_KtbKfz",
         "slider_item_rYBq93",
         "slider_item_MMEAVn",
         "slider_item_nrmHUV",
