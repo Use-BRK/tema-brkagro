@@ -464,11 +464,20 @@
             "link": "",
             "collection_title": "Femininas"
           }
+        },
+        "collection_BDmiNQ": {
+          "type": "collection",
+          "settings": {
+            "collection": "",
+            "link": "shopify://collections/botinas-de-trabalho",
+            "collection_title": "Trabalho"
+          }
         }
       },
       "block_order": [
         "collection_tpCKAk",
-        "collection_yyNLMj"
+        "collection_yyNLMj",
+        "collection_BDmiNQ"
       ],
       "custom_css": [],
       "name": "Novas Botinas",
