@@ -3700,7 +3700,7 @@ class VariantRadiosBundle extends SwatchInit {
               window.variantStrings.save ? window.variantStrings.save : "Save"
             } ${prd}`;
           } else if (typePercent) {
-            dsale.innerHTML = -percent.toFixed(0) + "%";
+            dsale.innerHTML = Math.round(percent) + "% OFF";
           }
         }
       } else {
@@ -6059,7 +6059,7 @@ class SwatchFunctions extends SwatchInit {
               window.variantStrings.save ? window.variantStrings.save : "Save"
             } ${prd}`;
           } else if (saleBadgeType === "percent") {
-            elementsale.innerHTML = -percent.toFixed(0) + "%";
+            elementsale.innerHTML = Math.round(percent) + "% OFF";
           } else {
             elementsale.innerHTML = `${
               window.variantStrings.sale ? window.variantStrings.sale : "Sale"
@@ -6078,7 +6078,7 @@ class SwatchFunctions extends SwatchInit {
               window.variantStrings.save ? window.variantStrings.save : "Save"
             } ${prd}`;
           } else if (saleBadgeType === "percent") {
-            dsale.innerHTML = -percent.toFixed(0) + "%";
+            dsale.innerHTML = Math.round(percent) + "% OFF";
           } else {
             dsale.innerHTML = `${
               window.variantStrings.sale ? window.variantStrings.sale : "Sale"
