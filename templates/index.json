@@ -210,26 +210,25 @@
         "collection_3frNWE": {
           "type": "collection",
           "settings": {
-            "collection": "",
-            "link": "https://www.brkagro.com.br/collections/brasil-patriota-2026?filter.p.m.custom.genero=Masculino",
-            "collection_title": "Masculinas"
+            "collection": "essenciais-sem-estampa",
+            "link": "",
+            "collection_title": "Lisas Essenciais"
           }
         },
         "collection_btxCia": {
           "type": "collection",
           "settings": {
-            "collection": "",
-            "link": "https://www.brkagro.com.br/collections/brasil-patriota-2026?filter.p.m.custom.genero=Feminino",
-            "collection_title": "Femininas"
+            "collection": "agricultura-1",
+            "link": "",
+            "collection_title": "Agricultura"
           }
         },
         "collection_P7y9m3": {
           "type": "collection",
-          "disabled": true,
           "settings": {
-            "collection": "camisas-de-botao-country",
+            "collection": "brasil-patriota-2026",
             "link": "",
-            "collection_title": ""
+            "collection_title": "Brasil"
           }
         }
       },
@@ -242,14 +241,14 @@
         ".collection-tab__ta {flex-wrap: nowrap; gap: clamp(7px, 2.2vw, 15px);}",
         ".collection-tab__ta .collection-tab__tab-item {flex: 0 1 auto; min-width: 0; padding-left: clamp(10px, 3.2vw, 20px); padding-right: clamp(10px, 3.2vw, 20px); font-size: clamp(13px, 4vw, 15px);}"
       ],
-      "name": "Destaques da semana",
+      "name": "Vitrine",
       "settings": {
         "section_width": "stretch_width",
         "color_scheme": "scheme-accf3b11-ba40-4a3e-bafb-243ece6683ec",
-        "heading": "Brasil Patriota 🇧🇷",
+        "heading": "Camisas UV50",
         "description": "",
         "show_view_all_button": true,
-        "header_size": "medium",
+        "header_size": "small",
         "heading_font_size": 35,
         "header_alignment": "right",
         "tab_header_style": "horizontal",
