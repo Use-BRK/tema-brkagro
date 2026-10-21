@@ -114,7 +114,8 @@
               "colecao-brasil",
               "brasil-patriota-2026",
               "envios-imediatos",
-              "envio-imediato-22"
+              "envio-imediato-22",
+              "agricultura-1"
             ]
           }
         },
@@ -139,7 +140,6 @@
         }
       },
       "block_order": [
-        "boot_filter_xA4dC3",
         "gender_filter_WjhFKQ",
         "size_filter_beBB4b",
         "filter_giBtHK"
