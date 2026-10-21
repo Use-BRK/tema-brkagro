@@ -23,6 +23,46 @@
     ]
   },
   {
+    "name": "BRK — Personalizar no carrinho",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "Mostra \"Personalizar com nome\" nas camisas do minicart que ainda não têm personalização. Abre o mesmo modal da página do produto e anexa o PE1198 à camisa (se a linha tiver mais de 1 unidade, separa 1)."
+      },
+      {
+        "type": "checkbox",
+        "id": "cnm_cart_enable",
+        "label": "Ativar no minicart",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "cnm_cart_label",
+        "label": "Texto do link",
+        "default": "Personalizar com nome"
+      },
+      {
+        "type": "text",
+        "id": "cnm_cart_collections",
+        "label": "Collections aptas (handles, separados por vírgula)",
+        "default": "camisas-uv50-femininas,camisas-uv50-masculinas,agro-kids",
+        "info": "Mesmas collections do bloco \"Botão nome na camisa\" da página do produto."
+      },
+      {
+        "type": "text",
+        "id": "cnm_cart_variant_id",
+        "label": "ID da variante de personalização (PE1198)",
+        "default": "53224470479145"
+      },
+      {
+        "type": "text",
+        "id": "cnm_cart_price",
+        "label": "Preço exibido (apenas texto)",
+        "default": "29,90"
+      }
+    ]
+  },
+  {
     "name": "t:settings_schema.purchase_code.name",
     "settings": [
       {

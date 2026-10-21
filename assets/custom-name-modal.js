@@ -5,7 +5,13 @@
  * - Zoom/pan no preview.
  * - "Comprar Personalizada": add em 2 passos (camisa -> PE1198 nested com PNG + properties).
  * Sem dependências externas. Mockups e config vêm de data-attributes do <custom-name-modal>.
+ * Modo carrinho (data-cart-mode, snippets/cart-custom-name-modal.liquid): anexa o PE1198 a uma
+ * camisa que já está no minicart. Na página do produto o arquivo é incluído 2x (bloco + snippet
+ * global): o guard abaixo faz só a 1ª inclusão rodar.
  */
+(function () {
+if (window.__brkCnmLoaded) return;
+window.__brkCnmLoaded = true;
 // Conectores de nomes compostos (ficam em minúsculo e grudam na palavra seguinte na quebra)
 const NAME_CONNECTORS = new Set(["da", "de", "do", "das", "dos", "e", "di", "du", "del", "la", "le", "van", "von"]);
 
@@ -38,15 +44,21 @@ class CustomNameModal extends HTMLElement {
     this.acceptInput = this.querySelector(".cnm__accept");
     this.buyBtn = this.querySelector(".cnm__buy");
 
-    this.preloadImages();
+    // data-lazy (modal do minicart, presente em todas as páginas): mockups e fonte só ao abrir
+    this.lazy = this.hasAttribute("data-lazy");
+    if (!this.lazy) this.preloadImages();
     this.bindEvents();
+
+    // Modo carrinho: o modal fica fora do <cart-notification>; sem isso, o clique
+    // dentro dele conta como "fora do drawer" e fecha o minicart por trás.
+    if (this.hasAttribute("data-cart-mode")) this.addEventListener("click", (e) => e.stopPropagation());
 
     // defaults
     this.setSide("frente");
     const activeMode = this.querySelector("[data-mode].active") || this.querySelector("[data-mode]");
     if (activeMode) this.setMode(activeMode.dataset.mode, activeMode);
     this.syncBuyEnabled();
-    this.ensureFontThenDraw();
+    if (!this.lazy) this.ensureFontThenDraw();
   }
 
   maxLen() { return this.state.mode === "company" ? 30 : 20; }
@@ -276,9 +288,40 @@ class CustomNameModal extends HTMLElement {
     // de qualquer ancestral com transform/contain (era o que jogava o topo sob o header).
     if (this.parentElement !== document.body) document.body.appendChild(this);
     this.syncSizeFromProduct(); // abre já no tamanho escolhido na página (sem descasar)
+    if (this.lazy && !this._lazyLoaded) {
+      this._lazyLoaded = true;
+      if (!document.querySelector('link[href*="family=Oswald"]')) {
+        const font = document.createElement("link");
+        font.rel = "stylesheet";
+        font.href = "https://fonts.googleapis.com/css2?family=Oswald:wght@600&display=swap";
+        document.head.appendChild(font);
+      }
+      this.preloadImages();
+    }
     this.hidden = false;
     document.documentElement.style.overflow = "hidden";
     this.ensureFontThenDraw();
+  }
+
+  /* Modo carrinho: abre para uma linha do minicart (dados do link .cnm-cart-open-js). */
+  openForLine(line) {
+    this._line = line;
+    const info = this.querySelector(".cnm__cart-product");
+    if (info) info.textContent = [line.title, line.variantTitle].filter(Boolean).join(" — ");
+    const split = this.querySelector(".cnm__cart-split");
+    if (split) split.hidden = !(line.quantity > 1);
+    // cada camisa começa do zero (Nome, Frente, campo vazio)
+    if (this.nameInput) this.nameInput.value = "";
+    this.state.name = "";
+    const nameMode = this.querySelector('[data-mode="name"]');
+    if (nameMode) this.setMode("name", nameMode);
+    this.setSide("frente");
+    if (this.counter) this.counter.textContent = `0/${this.maxLen()}`;
+    if (this.acceptInput) this.acceptInput.checked = false;
+    const msg = this.querySelector(".cnm__msg");
+    if (msg) msg.hidden = true;
+    this.syncBuyEnabled();
+    this.open();
   }
 
   // Dados das variantes (id + options) embutidos no bloco.
@@ -376,6 +419,7 @@ class CustomNameModal extends HTMLElement {
     if (!name) { this.flash("Digite o nome (até 20 caracteres)."); this.nameInput && this.nameInput.focus(); return; }
     if (!this.state.posKey) { this.flash("Escolha a posição."); return; }
     if (this.acceptInput && !this.acceptInput.checked) { this.flash("Você precisa aceitar os termos de personalização."); return; }
+    if (this.hasAttribute("data-cart-mode")) return this.buyForCartLine(name);
     const shirtId = this.getShirtVariantId();
     if (!shirtId) { this.flash("Selecione as opções do produto."); return; }
     if (!this.cfg.variantId) { this.flash("Produto de personalização não configurado."); return; }
@@ -413,6 +457,8 @@ class CustomNameModal extends HTMLElement {
       fd.append("items[1][properties][Local]", this.state.side === "frente" ? "Frente" : "Costas");
       fd.append("items[1][properties][Posição]", this.state.posLabel || "");
       if (blob) fd.append("items[1][properties][Arte]", blob, "personalizacao.png");
+      // origem da personalização (oculta no checkout, vai pro pedido): produto | minicart
+      fd.append("items[1][properties][_origem]", "produto");
 
       const r2 = await fetch(this.root + "cart/add.js", { method: "POST", headers: { Accept: "application/json" }, body: fd });
       const d2 = await r2.json();
@@ -440,6 +486,90 @@ class CustomNameModal extends HTMLElement {
     }
   }
 
+  /* Modo carrinho: tira 1 unidade da camisa do carrinho e a devolve como linha
+     própria com o PE1198 aninhado (vale para 1 ou N unidades).
+     - A camisa nova leva a property oculta _brk_perso (valor único): sem ela o
+       Shopify soma na linha igual que já existe e o nome ficaria preso a todas as
+       unidades. O app da Intelipost regrava as properties das linhas a cada mudança
+       no carrinho (_Preço com desconto), o que troca as keys e funde linhas iguais;
+       a property única mantém a personalizada separada.
+     - Ordem: adiciona primeiro (se falhar, nada mudou) e só depois baixa 1 unidade
+       da linha original, localizada no /cart.js na hora (a key do minicart pode ter
+       mudado). Se não der para baixar, desfaz a linha nova. */
+  async buyForCartLine(name) {
+    const line = this._line;
+    const buyBtn = this.querySelector(".cnm__buy");
+    if (!line || !line.variantId) { this.flash("Não foi possível identificar a camisa no carrinho."); return; }
+    if (!this.cfg.variantId) { this.flash("Produto de personalização não configurado."); return; }
+
+    if (buyBtn) { buyBtn.disabled = true; buyBtn.dataset.loading = "true"; }
+    const postJson = (path, data) =>
+      fetch(this.root + path, { method: "POST", headers: { "Content-Type": "application/json", Accept: "application/json" }, body: JSON.stringify(data) });
+    const getCart = () => fetch(this.root + "cart.js", { cache: "no-store", headers: { Accept: "application/json" } }).then((r) => r.json());
+    // linha "simples" da camisa: mesma variante, sem pai/filho (= ainda sem PE1198), fora de bundle/brinde
+    const findSource = (cart) => {
+      const items = (cart && cart.items) || [];
+      const parentKeys = new Set(items.filter((i) => i.parent_relationship).map((i) => i.parent_relationship.parent_key));
+      const ok = items.filter((i) => {
+        const p = i.properties || {};
+        return String(i.variant_id) === String(line.variantId) && !i.parent_relationship && !parentKeys.has(i.key) &&
+          !p._brk_bundle && p._brk_gift_progress !== "true";
+      });
+      return ok.find((i) => i.key === line.key) || ok[0] || null;
+    };
+    try {
+      const before = await getCart();
+      if (!findSource(before)) throw new Error("Essa camisa não está mais disponível para personalizar no carrinho.");
+
+      const tag = String(Date.now());
+      const blob = await this.exportPng();
+      const fd = new FormData();
+      fd.append("items[0][id]", String(line.variantId));
+      fd.append("items[0][quantity]", "1");
+      fd.append("items[0][properties][_brk_perso]", tag);
+      fd.append("items[1][id]", String(this.cfg.variantId));
+      fd.append("items[1][quantity]", "1");
+      fd.append("items[1][parent_id]", String(line.variantId));
+      if (line.sku) fd.append("items[1][properties][Produto]", line.sku);
+      fd.append("items[1][properties][Tipo]", this.state.modeLabel);
+      fd.append("items[1][properties][Nome]", name);
+      fd.append("items[1][properties][Local]", this.state.side === "frente" ? "Frente" : "Costas");
+      fd.append("items[1][properties][Posição]", this.state.posLabel || "");
+      if (blob) fd.append("items[1][properties][Arte]", blob, "personalizacao.png");
+      fd.append("items[1][properties][_origem]", "minicart");
+      const r = await fetch(this.root + "cart/add.js", { method: "POST", headers: { Accept: "application/json" }, body: fd });
+      const d = await r.json().catch(() => ({}));
+      if (!r.ok) throw new Error((d && d.description) || "Erro ao adicionar a personalização");
+
+      // baixa 1 unidade da linha original (2 tentativas: a key pode mudar no meio)
+      let reduced = false;
+      for (let attempt = 0; attempt < 2 && !reduced; attempt++) {
+        const src = findSource(await getCart());
+        if (!src) break;
+        const rc = await postJson("cart/change.js", { id: src.key, quantity: src.quantity - 1 });
+        reduced = rc.ok;
+      }
+      if (!reduced) {
+        const added = ((await getCart()).items || []).find((i) => (i.properties || {})._brk_perso === tag);
+        if (added) { try { await postJson("cart/change.js", { id: added.key, quantity: 0 }); } catch (e) {} }
+        throw new Error("O carrinho mudou. Tente novamente.");
+      }
+
+      this._line = null;
+      this.close();
+    } catch (e) {
+      this.flash((e && e.message) || "Não foi possível adicionar a personalização.");
+    } finally {
+      if (buyBtn) delete buyBtn.dataset.loading;
+      this.syncBuyEnabled();
+      // atualiza o minicart mesmo em erro (a linha pode ter mudado)
+      const cn = document.querySelector("cart-notification");
+      if (cn && typeof cn.refreshMinicartSection === "function") {
+        try { await cn.refreshMinicartSection(); } catch (e) {}
+      }
+    }
+  }
+
   flash(msg) {
     const el = this.querySelector(".cnm__msg");
     if (el) { el.textContent = msg; el.hidden = false; }
@@ -457,3 +587,21 @@ document.addEventListener("click", (e) => {
   const modal = sel && document.querySelector(sel);
   if (modal && typeof modal.open === "function") modal.open();
 });
+
+// Abertura pelo minicart: link .cnm-cart-open-js (snippets/cart-item.liquid) → #cnm-cart
+document.addEventListener("click", (e) => {
+  const trigger = e.target.closest(".cnm-cart-open-js");
+  if (!trigger) return;
+  e.preventDefault();
+  const modal = document.getElementById("cnm-cart");
+  if (!modal || typeof modal.openForLine !== "function") return;
+  modal.openForLine({
+    key: trigger.dataset.lineKey,
+    variantId: trigger.dataset.variantId,
+    quantity: Number(trigger.dataset.quantity) || 1,
+    sku: trigger.dataset.sku || "",
+    title: trigger.dataset.title || "",
+    variantTitle: trigger.dataset.variantTitle || "",
+  });
+});
+})();

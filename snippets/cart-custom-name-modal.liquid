@@ -1,0 +1,175 @@
+{% doc %}
+  Modal de personalização aberto pelo link "Personalizar com nome" do minicart
+  (snippets/cart-item.liquid). Mesmo custom-name-modal da página do produto, em
+  modo carrinho: sem seletor de variante (a camisa já está no carrinho) e anexa
+  o PE1198 à linha. Mockups/fonte só carregam ao abrir (data-lazy).
+
+  @example
+  {% render 'cart-custom-name-modal' %}
+{% enddoc %}
+{%- assign cnm_cart_price = settings.cnm_cart_price | default: '29,90' -%}
+<script src="{{ 'custom-name-modal.js' | asset_url }}" defer="defer"></script>
+
+<custom-name-modal
+  id="cnm-cart"
+  hidden
+  class="cnm"
+  data-cart-mode
+  data-lazy
+  data-variant-id="{{ settings.cnm_cart_variant_id | default: '53224470479145' }}"
+  data-price="{{ cnm_cart_price }}"
+  data-mockup-frente="https://cdn.shopify.com/s/files/1/0887/2083/4857/files/MOCKUP_FRENTE.png"
+  data-mockup-costas="https://cdn.shopify.com/s/files/1/0887/2083/4857/files/MOCKUP_COSTAS.png"
+  data-positions='{"frente":{"peito_esquerdo":{"cx":0.6,"cy":0.324,"maxW":0.16},"peito_direito":{"cx":0.389,"cy":0.323,"maxW":0.16}},"costas":{"costas_cima":{"cx":0.512,"cy":0.221,"maxW":0.31},"costas_baixo":{"cx":0.513,"cy":0.815,"maxW":0.31}}}'
+>
+  <div class="cnm__overlay"></div>
+  <div class="cnm__dialog" role="dialog" aria-modal="true" aria-label="Personalizar camisa">
+    <button type="button" class="cnm__close" aria-label="Fechar">&times;</button>
+    <h3 class="cnm__title">Personalize sua camisa</h3>
+    <p class="cnm__cart-product"></p>
+
+    <div class="cnm__stage">
+      <canvas class="cnm__canvas" width="1080" height="1080"></canvas>
+      <div class="cnm__zoom">
+        <button type="button" class="cnm__zoom-out" aria-label="Diminuir zoom">&minus;</button>
+        <button type="button" class="cnm__zoom-in" aria-label="Aumentar zoom">+</button>
+      </div>
+    </div>
+    <p class="cnm__illustrative">*Imagem meramente ilustrativa</p>
+
+    <div class="cnm__field">
+      <span class="cnm__label">O que personalizar:</span>
+      <div class="cnm__modes">
+        <button type="button" data-mode="name" class="active">Nome</button>
+        <button type="button" data-mode="company">Nome da Empresa</button>
+      </div>
+    </div>
+
+    <div class="cnm__field">
+      <label class="cnm__label cnm__name-label" for="cnm-name-cart">Nome:</label>
+      <div class="cnm__name-wrap">
+        <textarea id="cnm-name-cart" maxlength="20" rows="1" class="cnm__name" placeholder="Digite o nome" autocomplete="off"></textarea>
+        <span class="cnm__counter">0/20</span>
+      </div>
+    </div>
+
+    <div class="cnm__field">
+      <span class="cnm__label">Local:</span>
+      <div class="cnm__sides">
+        <button type="button" data-side="frente">FRENTE</button>
+        <button type="button" data-side="costas">COSTAS</button>
+      </div>
+    </div>
+
+    <div class="cnm__field">
+      <span class="cnm__label">Posição:</span>
+      <div class="cnm__positions" data-positions="frente">
+        <button type="button" data-pos-key="peito_esquerdo" data-pos-label="Peito Esquerdo">Peito Esquerdo</button>
+        <button type="button" data-pos-key="peito_direito" data-pos-label="Peito Direito">Peito Direito</button>
+      </div>
+      <div class="cnm__positions" data-positions="costas" hidden>
+        <button type="button" data-pos-key="costas_cima" data-pos-label="Costas Cima">Costas Cima</button>
+        <button type="button" data-pos-key="costas_baixo" data-pos-label="Costas Baixo">Costas Baixo</button>
+      </div>
+    </div>
+
+    <div class="cnm__disclaimer">
+      <p class="cnm__disclaimer-strong"><strong>A entrega do produto personalizado tem um prazo de 15 dias úteis.</strong></p>
+      <p>Vamos utilizar uma fonte padrão com alguma cor selecionada da camisa, não vamos escrever em laranja em uma parte da camisa que é laranja, em função de preservar o design da camisa.</p>
+      <p>O designer mantém os elementos visuais da camisa — nenhum texto da arte é removido para inserir o nome. Se o nome ficar no mesmo local de algum elemento, ele será adaptado pelo designer.</p>
+      <p>Não é possível trocar um produto personalizado.</p>
+      <p>Camisas de envio imediato (ou FULL) não podem ser personalizadas, uma vez que já estão produzidas.</p>
+      <p class="cnm__cart-split" hidden>Esta camisa está com mais de 1 unidade no carrinho: a personalização vale para 1 unidade, que passa a aparecer separada.</p>
+    </div>
+
+    <p class="cnm__hint-up">Arraste pra cima para ver sua camisa</p>
+
+    <label class="cnm__terms">
+      <input type="checkbox" class="cnm__accept">
+      <span>Aceito os termos de personalização</span>
+    </label>
+
+    <p class="cnm__msg" hidden></p>
+    <button type="button" class="cnm__buy btn btn-primary w-full no-underline" disabled>
+      Adicionar personalização (R$ {{ cnm_cart_price }})
+    </button>
+  </div>
+</custom-name-modal>
+
+{% stylesheet %}
+  .cnm-cart-link {
+    display: inline-flex; align-items: center; gap: 4px;
+    margin-top: 6px; padding: 0; border: 0; background: none; cursor: pointer;
+    font-size: 1.2rem; line-height: 1.3; color: #085b47;
+    text-decoration: underline; text-underline-offset: 2px;
+  }
+  .cnm-cart-link:hover { opacity: .8; }
+  .cnm__cart-product { margin: -8px 0 14px; font-size: 13px; color: #555; }
+  .cnm__cart-split { color: #333 !important; font-weight: 600; }
+
+  custom-name-modal[hidden] { display: none; }
+  .cnm {
+    position: fixed; inset: 0; z-index: 100000;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .cnm__overlay { position: absolute; inset: 0; background: rgba(0,0,0,.6); }
+  .cnm__dialog {
+    position: relative; background: #fff; width: min(560px, 94vw); max-height: 92vh;
+    overflow-y: auto; border-radius: 12px; padding: 24px; box-shadow: 0 20px 60px rgba(0,0,0,.3);
+  }
+  .cnm__close {
+    position: absolute; top: 10px; right: 12px;
+    background: none; border: 0; font-size: 28px; line-height: 1; cursor: pointer; color: #111;
+  }
+  .cnm__title { margin: 0 0 16px; font-size: 1.4rem; }
+  .cnm__field { margin-bottom: 14px; }
+  .cnm__label { display: block; font-weight: 600; margin-bottom: 6px; }
+  .cnm__name-wrap { position: relative; }
+  .cnm__name {
+    width: 100%; min-height: 44px; padding: 11px 56px 11px 14px;
+    border: 1px solid #ccc; border-radius: 8px; font-size: 16px;
+    font-family: inherit; line-height: 1.3; resize: none; display: block;
+  }
+  .cnm__counter { position: absolute; right: 12px; top: 14px; font-size: 12px; color: #888; }
+  .cnm__modes, .cnm__sides, .cnm__positions { display: flex; gap: 10px; }
+  .cnm__modes button {
+    flex: 1; height: 42px; border: 1px solid #ccc; border-radius: 8px;
+    background: #fff; cursor: pointer; font-weight: 600; color: #111;
+  }
+  .cnm__modes button.active, .cnm__sides button.active { background: #085b47; color: #fff; border-color: #085b47; }
+  .cnm__sides button {
+    flex: 1; height: 44px; border: 1px solid #ccc; border-radius: 8px;
+    background: #fff; cursor: pointer; font-weight: 700; letter-spacing: .04em; color: #111;
+  }
+  .cnm__stage {
+    position: relative; width: 100%; aspect-ratio: 1 / 1; overflow: hidden;
+    background: #f3f3f3; border-radius: 10px; margin-bottom: 14px;
+  }
+  .cnm__canvas { width: 100%; height: 100%; display: block; transform-origin: center center; will-change: transform; }
+  .cnm__zoom { position: absolute; right: 10px; bottom: 10px; display: flex; gap: 6px; }
+  .cnm__zoom button {
+    width: 36px; height: 36px; border-radius: 50%; border: 0; background: rgba(0,0,0,.65);
+    color: #fff; font-size: 20px; line-height: 1; cursor: pointer;
+  }
+  .cnm__positions[hidden] { display: none; }
+  .cnm__positions button {
+    flex: 1; height: 42px; border: 1px solid #ccc; border-radius: 8px; background: #fff; cursor: pointer; color: #111;
+  }
+  .cnm__positions button.active { border-color: #085b47; box-shadow: 0 0 0 2px #085b4733; font-weight: 600; }
+  .cnm__illustrative { margin: -6px 0 14px; font-size: 11px; color: #999; text-align: center; }
+  .cnm__disclaimer {
+    background: #f5f5f5; border: 1px solid #e3e3e3; border-radius: 8px;
+    padding: 10px 12px; margin: 4px 0 12px;
+  }
+  .cnm__disclaimer p { color: #6a6a6a; font-size: 11.5px; line-height: 1.4; margin: 0 0 8px; }
+  .cnm__disclaimer p:last-child { margin-bottom: 0; }
+  .cnm__disclaimer p[hidden] { display: none; }
+  .cnm__disclaimer .cnm__disclaimer-strong strong { color: #333; }
+  .cnm__hint-up { color: #085b47; font-size: 12px; font-weight: 600; text-align: center; margin: 0 0 10px; }
+  .cnm__terms { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; cursor: pointer; font-weight: 600; }
+  .cnm__terms input { width: 18px; height: 18px; flex: 0 0 auto; }
+  .cnm__msg { color: #c0392b; margin: 8px 0; font-size: 14px; }
+  .cnm__buy { margin-top: 8px; }
+  .cnm__buy[data-loading] { opacity: .7; pointer-events: none; }
+  .cnm__buy:disabled { opacity: .5; cursor: not-allowed; }
+{% endstylesheet %}

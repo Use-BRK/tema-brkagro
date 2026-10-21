@@ -226,6 +226,9 @@
     -%}
     {% section 'top-search' %}
     {%- render 'minicart' -%}
+    {%- if settings.cnm_cart_enable -%}
+      {%- render 'cart-custom-name-modal' -%}
+    {%- endif -%}
     {%- render 'scripts-tag' -%}
     {%- render 'sprite-svg' -%}
     {%- render 'content-bottom' -%}
