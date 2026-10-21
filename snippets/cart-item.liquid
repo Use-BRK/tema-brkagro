@@ -221,43 +221,6 @@
       endif
     endif
   endif
-
-  comment
-    "Personalizar com nome" no minicart (settings BRK — Personalizar no carrinho).
-    Mesma regra do botão da página do produto: collection apta e nenhuma variante
-    FULL. Some em linha filha, brinde, add-on de bundle e camisa que já tem PE1198.
-  endcomment
-  assign cnm_show = false
-  if theme_st.cnm_cart_enable and item.parent_relationship == blank and is_gift_progress_item == false and is_shipping_protection_item == false
-    assign cnm_sku_up = item.sku | upcase
-    if item.properties['_brk_bundle'] == blank and cnm_sku_up != 'PE1198'
-      assign cnm_handles = theme_st.cnm_cart_collections | remove: ' ' | split: ','
-      assign cnm_item_handles = item.product.collections | map: 'handle'
-      for cnm_h in cnm_handles
-        if cnm_item_handles contains cnm_h
-          assign cnm_show = true
-          break
-        endif
-      endfor
-      if cnm_show
-        for cnm_v in item.product.variants
-          assign cnm_v_sku = cnm_v.sku | upcase
-          if cnm_v_sku contains 'FULL'
-            assign cnm_show = false
-            break
-          endif
-        endfor
-      endif
-      if cnm_show
-        for cnm_line in cart.items
-          if cnm_line.parent_relationship.parent.key == item.key
-            assign cnm_show = false
-            break
-          endif
-        endfor
-      endif
-    endif
-  endif
 -%}
 <div
   id="minicart__product-{{ item.key }}"
@@ -327,20 +290,7 @@
           {%- endfor -%}
           {%- if item.properties.size != 0 -%}</div>{%- endif -%}
         </div>
-        {%- if cnm_show -%}
-          <button
-            type="button"
-            class="cnm-cart-link cnm-cart-open-js"
-            data-line-key="{{ item.key }}"
-            data-variant-id="{{ item.variant_id }}"
-            data-quantity="{{ item.quantity }}"
-            data-sku="{{ item.sku | escape }}"
-            data-title="{{ item.product.title | escape }}"
-            data-variant-title="{% unless item.product.has_only_default_variant %}{{ item.variant.title | escape }}{% endunless %}"
-          >
-            {{ theme_st.cnm_cart_label | default: 'Personalizar com nome' }}
-          </button>
-        {%- endif -%}
+        {%- render 'cnm-cart-link', item: item, is_gift: is_gift_progress_item, is_shipping_protection: is_shipping_protection_item -%}
       </div>
       {% if hidden_price == false %}
         <div class="minicart__item-prices flex flex-column align-end flex-shrink-0">

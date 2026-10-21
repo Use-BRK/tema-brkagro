@@ -493,9 +493,11 @@ class CustomNameModal extends HTMLElement {
        unidades. O app da Intelipost regrava as properties das linhas a cada mudança
        no carrinho (_Preço com desconto), o que troca as keys e funde linhas iguais;
        a property única mantém a personalizada separada.
-     - Ordem: adiciona primeiro (se falhar, nada mudou) e só depois baixa 1 unidade
-       da linha original, localizada no /cart.js na hora (a key do minicart pode ter
-       mudado). Se não der para baixar, desfaz a linha nova. */
+     - Ordem: baixa 1 unidade da linha original (localizada no /cart.js na hora: a
+       key do minicart pode ter mudado) e só depois adiciona a personalizada. Ao
+       contrário, o Intelipost (que relê o carrinho após cada add e regrava as linhas
+       com a quantidade que leu) devolvia a unidade retirada. Se o add falhar, a
+       unidade volta; no fim confere a quantidade e corrige se foi revertida. */
   async buyForCartLine(name) {
     const line = this._line;
     const buyBtn = this.querySelector(".cnm__buy");
@@ -517,10 +519,24 @@ class CustomNameModal extends HTMLElement {
       });
       return ok.find((i) => i.key === line.key) || ok[0] || null;
     };
+    const wait = (ms) => new Promise((res) => setTimeout(res, ms));
     try {
-      const before = await getCart();
-      if (!findSource(before)) throw new Error("Essa camisa não está mais disponível para personalizar no carrinho.");
+      const src0 = findSource(await getCart());
+      if (!src0) throw new Error("Essa camisa não está mais disponível para personalizar no carrinho.");
+      const expected = src0.quantity - 1;
 
+      // 1) baixa 1 unidade da linha original
+      const rc = await postJson("cart/change.js", { id: src0.key, quantity: expected });
+      if (!rc.ok) throw new Error("O carrinho mudou. Tente novamente.");
+      const restore = async () => {
+        try {
+          const src = findSource(await getCart());
+          if (src) await postJson("cart/change.js", { id: src.key, quantity: src.quantity + 1 });
+          else await postJson("cart/add.js", { items: [{ id: Number(line.variantId), quantity: 1 }] });
+        } catch (e) {}
+      };
+
+      // 2) adiciona a camisa personalizada (linha própria) + PE1198
       const tag = String(Date.now());
       const blob = await this.exportPng();
       const fd = new FormData();
@@ -537,22 +553,27 @@ class CustomNameModal extends HTMLElement {
       fd.append("items[1][properties][Posição]", this.state.posLabel || "");
       if (blob) fd.append("items[1][properties][Arte]", blob, "personalizacao.png");
       fd.append("items[1][properties][_origem]", "minicart");
-      const r = await fetch(this.root + "cart/add.js", { method: "POST", headers: { Accept: "application/json" }, body: fd });
-      const d = await r.json().catch(() => ({}));
-      if (!r.ok) throw new Error((d && d.description) || "Erro ao adicionar a personalização");
-
-      // baixa 1 unidade da linha original (2 tentativas: a key pode mudar no meio)
-      let reduced = false;
-      for (let attempt = 0; attempt < 2 && !reduced; attempt++) {
-        const src = findSource(await getCart());
-        if (!src) break;
-        const rc = await postJson("cart/change.js", { id: src.key, quantity: src.quantity - 1 });
-        reduced = rc.ok;
+      let r;
+      try {
+        r = await fetch(this.root + "cart/add.js", { method: "POST", headers: { Accept: "application/json" }, body: fd });
+      } catch (e) {
+        await restore();
+        throw e;
       }
-      if (!reduced) {
-        const added = ((await getCart()).items || []).find((i) => (i.properties || {})._brk_perso === tag);
-        if (added) { try { await postJson("cart/change.js", { id: added.key, quantity: 0 }); } catch (e) {} }
-        throw new Error("O carrinho mudou. Tente novamente.");
+      const d = await r.json().catch(() => ({}));
+      if (!r.ok) {
+        await restore();
+        throw new Error((d && d.description) || "Erro ao adicionar a personalização");
+      }
+
+      // 3) confere: o Intelipost pode regravar a linha original com a quantidade antiga
+      if (expected > 0) {
+        for (let attempt = 0; attempt < 2; attempt++) {
+          await wait(1200);
+          const src = findSource(await getCart());
+          if (!src || src.quantity <= expected) break;
+          await postJson("cart/change.js", { id: src.key, quantity: expected });
+        }
       }
 
       this._line = null;
@@ -562,11 +583,39 @@ class CustomNameModal extends HTMLElement {
     } finally {
       if (buyBtn) delete buyBtn.dataset.loading;
       this.syncBuyEnabled();
-      // atualiza o minicart mesmo em erro (a linha pode ter mudado)
+      // atualiza o minicart (e a página /cart) mesmo em erro (a linha pode ter mudado)
       const cn = document.querySelector("cart-notification");
       if (cn && typeof cn.refreshMinicartSection === "function") {
         try { await cn.refreshMinicartSection(); } catch (e) {}
       }
+      await this.refreshCartPage();
+    }
+  }
+
+  /* Página /cart (sections/main-cart-items): re-renderiza os itens como o próprio
+     tema faz (assets/cart.js, CartItems.splitBrkAddon). Fora do /cart não faz nada. */
+  async refreshCartPage() {
+    const items = document.querySelector("cart-items");
+    const main = document.getElementById("main-cart-items");
+    if (!items || !main || typeof items.getSectionsToRender !== "function") return;
+    try {
+      const sectionId = items.getSectionsToRender()[0].section;
+      const [html, cart] = await Promise.all([
+        fetch(`${window.location.pathname}?section_id=${sectionId}`, { cache: "no-store" }).then((r) => r.text()),
+        fetch(this.root + "cart.json", { cache: "no-store" }).then((r) => r.json()),
+      ]);
+      if (typeof CartUtils === "undefined") { window.location.reload(); return; }
+      CartUtils.updateCartCount(cart.item_count);
+      CartUtils.updateHeaderTotalPrice(cart);
+      CartUtils.updateFreeShippingBar(cart.items_subtotal_price);
+      CartUtils.updateCartUI({
+        parsedState: { ...cart, sections: { [sectionId]: html } },
+        sectionsToRender: items.getSectionsToRender(),
+        cartInstance: items,
+        totalsSelector: ".cart-info .totals",
+      });
+    } catch (e) {
+      window.location.reload();
     }
   }
 

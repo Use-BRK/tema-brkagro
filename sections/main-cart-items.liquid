@@ -568,6 +568,7 @@
                               </dl>
                               <p class="product-option my-0">{{ item.selling_plan_allocation.selling_plan.name }}</p>
                             {% endif %}
+                            {%- render 'cnm-cart-link', item: item, is_gift: is_gift_progress_item, is_shipping_protection: is_shipping_protection_item -%}
                             <ul
                               class="discounts list-unstyled fs-small light-dark-grey"
                               role="list"
