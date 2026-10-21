@@ -213,6 +213,7 @@
             "show_prazo": true,
             "prazo_label": "Prazo de Envio",
             "prazo_imediato_label": "Pronta Entrega",
+            "prazo_sufixo": "+ Frete escolhido",
             "prazo_padrao": "10",
             "s1_icon": "cotton",
             "s1_label": "Composição",
@@ -341,6 +342,7 @@
       "settings": {
         "section_width": "fluid_container",
         "color_scheme": "scheme-accf3b11-ba40-4a3e-bafb-243ece6683ec",
+        "show_breadcrumb": false,
         "breadcrumb_mobile_in_header": false,
         "brk_premium_style": false,
         "brk_premium_gap": 28,
