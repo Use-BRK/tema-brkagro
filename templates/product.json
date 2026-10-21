@@ -211,7 +211,7 @@
             "show_sku": false,
             "sku_label": "Código",
             "show_prazo": true,
-            "prazo_label": "Prazo de Produção",
+            "prazo_label": "Prazo de Produção (não incluso prazo da entrega)",
             "prazo_imediato_label": "Pronta entrega",
             "prazo_padrao": "10",
             "s1_icon": "cotton",
