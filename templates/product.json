@@ -268,29 +268,6 @@
           },
           "blocks": {}
         },
-        "brk_ugc_buybox": {
-          "type": "_brk-ugc",
-          "name": "BRK Prova Social",
-          "disabled": true,
-          "settings": {
-            "accent_color": "#085b47",
-            "eyebrow": "",
-            "heading": "Quem usa, recomenda",
-            "v1_src": "https://cdn.shopify.com/videos/c/o/v/f771b820581b4e3c957f2fb850c771f6.mp4",
-            "v1_product": "",
-            "v2_src": "https://cdn.shopify.com/videos/c/o/v/b9df390658e7441dad50c4daed971906.mp4",
-            "v2_product": "",
-            "v3_src": "https://cdn.shopify.com/videos/c/o/v/f17ec86cb3674b09a9a8a6b786ab20aa.mp4",
-            "v3_product": "",
-            "v4_src": "https://cdn.shopify.com/videos/c/o/v/08b459b3a33544f9b47528a1b340cb1e.mp4",
-            "v4_product": "",
-            "v5_src": "",
-            "v5_product": "",
-            "v6_src": "",
-            "v6_product": ""
-          },
-          "blocks": {}
-        },
         "frete_no_produto_shipping_calc_mfbXjr": {
           "type": "shopify://apps/frete-no-produto/blocks/shipping_calc/86063d43-a133-4046-bbed-b9bfb712ccba",
           "disabled": true,
@@ -334,39 +311,6 @@
             "image_width": 40
           },
           "blocks": {}
-        },
-        "product_collapsible_row_HB7ApJ": {
-          "type": "_product-collapsible-row",
-          "disabled": true,
-          "settings": {
-            "heading": "ficha técnica",
-            "content": "<p>SKU: [product_sku]</p>",
-            "use_product_description": false,
-            "open": true
-          },
-          "blocks": {}
-        },
-        "product_collapsible_row_PancQ9": {
-          "type": "_product-collapsible-row",
-          "disabled": true,
-          "settings": {
-            "heading": "detalhes técnicos",
-            "content": "<p>SKU: </p>",
-            "use_product_description": true,
-            "open": true
-          },
-          "blocks": {}
-        },
-        "product_collapsible_row_zirPk7": {
-          "type": "_product-collapsible-row",
-          "disabled": true,
-          "settings": {
-            "heading": "ficha técnica",
-            "content": "<p>SKU: </p>",
-            "use_product_description": true,
-            "open": true
-          },
-          "blocks": {}
         }
       },
       "block_order": [
@@ -386,13 +330,9 @@
         "brk_trust_buybox",
         "brk_specs_buybox",
         "delivery_return_iJHeMD",
-        "brk_ugc_buybox",
         "frete_no_produto_shipping_calc_mfbXjr",
         "product_grouped_6epkNf",
-        "more_colors_3zmxGq",
-        "product_collapsible_row_HB7ApJ",
-        "product_collapsible_row_PancQ9",
-        "product_collapsible_row_zirPk7"
+        "more_colors_3zmxGq"
       ],
       "custom_css": [
         ".product-detail__title {display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; font-size: 2.29rem;}"
