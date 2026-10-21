@@ -96,6 +96,15 @@
     }
   }
   @media screen and (max-width: 1024.98px) {
+    /* Ajuste fino da altura dos ícones (menu, wishlist, busca, carrinho) p/ alinhar com o logo.
+       position/top em vez de transform: transform quebraria drawers position:fixed lá dentro */
+    {%- if section_st.mobile_icons_offset_y != 0 %}
+    .header__inner .header__menu,
+    .header__inner .header__action {
+      position: relative;
+      top: {{ section_st.mobile_icons_offset_y }}px;
+    }
+    {%- endif %}
     /* Com a barra de busca fixa ativa, esconde o ícone de busca dos actions no mobile */
     .has-mobile-search-bar .header__action .header_search {
       display: none;
@@ -697,6 +706,17 @@
       "label": "Exibir wishlist no header mobile",
       "info": "Exibe o ícone ao lado do menu hamburguer",
       "default": true
+    },
+    {
+      "type": "range",
+      "id": "mobile_icons_offset_y",
+      "label": "Posição vertical dos ícones no mobile",
+      "info": "Default: 0px. Negativo sobe, positivo desce. Use para alinhar os ícones com o logo.",
+      "min": -15,
+      "max": 15,
+      "step": 1,
+      "unit": "px",
+      "default": 0
     },
     {
       "type": "checkbox",
