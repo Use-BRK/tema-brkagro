@@ -88,24 +88,6 @@
     "main": {
       "type": "main-collection-product",
       "blocks": {
-        "boot_filter_xA4dC3": {
-          "type": "boot_filter",
-          "settings": {
-            "eyebrow": "Escolha sua botina",
-            "label_1": "Masculinas",
-            "link_1": "shopify://collections/botinas-masculinas",
-            "label_2": "Femininas",
-            "link_2": "shopify://collections/botinas-femininas",
-            "label_3": "Trabalho",
-            "link_3": "shopify://collections/botinas-de-trabalho",
-            "filter_collection_list": [
-              "botinas",
-              "botinas-de-trabalho",
-              "botinas-femininas",
-              "botinas-masculinas"
-            ]
-          }
-        },
         "gender_filter_WjhFKQ": {
           "type": "gender_filter",
           "settings": {

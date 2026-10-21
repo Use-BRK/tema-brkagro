@@ -30,12 +30,14 @@
       assign prazo_dias = mf_disp.value | plus: 0
     endif
     if product.tags contains 'prazo_imediato' or prazo_dias <= 0
-      assign prazo_text = st.prazo_imediato_label | default: 'Pronta entrega'
+      assign prazo_text = st.prazo_imediato_label | default: 'Pronta Entrega'
     elsif prazo_dias == 1
-      assign prazo_text = '1 dia útil'
+      assign prazo_text = '1 dia útil de produção'
     else
-      assign prazo_text = prazo_dias | append: ' dias úteis'
+      assign prazo_text = prazo_dias | append: ' dias úteis de produção'
     endif
+    assign prazo_sufixo = st.prazo_sufixo | default: '+ Frete escolhido'
+    assign prazo_text = prazo_text | append: ' ' | append: prazo_sufixo
     assign has_rows = true
   endif
 
@@ -82,12 +84,14 @@
           <div class="brk-bbspecs__row brk-bbspecs__row--prazo">
             <dt class="brk-bbspecs__label">
               <span class="brk-bbspecs__icon">
-                <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
-                  <path d="M15.3125 5.6875L14.4375 6.5625M2.625 18.375C2.04166 17.7917 5.47896 12.9182 12.9369 3.75463C13.2027 3.42818 13.5329 3.16005 13.907 2.96697C14.2811 2.77389 14.691 2.66 15.1111 2.63243C15.5311 2.60486 15.9524 2.66419 16.3485 2.80672C16.7446 2.94924 17.1071 3.17191 17.4133 3.46081C17.7195 3.7497 17.9629 4.09863 18.1282 4.48579C18.2935 4.87296 18.3772 5.29004 18.3741 5.71101C18.371 6.13198 18.2811 6.54778 18.1101 6.93245C17.9391 7.31713 17.6906 7.66242 17.3801 7.94675C8.12729 15.4823 3.20891 18.9583 2.625 18.375Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                  <path d="M14.875 6.125C12.8336 3.79137 11.8125 2.625 10.5 2.625C9.1875 2.625 8.75 3.5 8.75 4.375C8.75 7.875 15.8909 11.7302 14 14C13.076 15.1095 11.0574 15.1244 8.96875 14.707M5.02162 13.4969C3.80275 13.0025 1.75 11.8125 1.75 10.5M17.0625 8.3125L18.375 9.625" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <svg width="21" height="21" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+                  <g stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M41.26,67.13h19.26M60.52,67.13h3.85M60.52,67.13c0,3.06,1.22,6,3.38,8.17,2.17,2.17,5.11,3.38,8.17,3.38s6-1.22,8.17-3.38c2.17-2.17,3.38-5.11,3.38-8.17M64.37,67.13v-34.66M64.37,67.13h19.26M64.37,32.47v-7.7c0-2.04-.81-4-2.26-5.45-1.44-1.44-3.4-2.26-5.45-2.26H18.15c-2.04,0-4,.81-5.45,2.26-1.44,1.44-2.26,3.4-2.26,5.45v38.51c0,1.02.41,2,1.13,2.72.72.72,1.7,1.13,2.72,1.13h3.85M64.37,32.47h7.7c4.09,0,8,1.62,10.89,4.51,2.89,2.89,4.51,6.81,4.51,10.89v7.7M87.48,55.58v7.7c0,1.02-.41,2-1.13,2.72-.72.72-1.7,1.13-2.72,1.13M87.48,55.58h-7.7"/>
+                    <path d="M41.26,67.13c0,6.38-5.17,11.55-11.55,11.55s-11.55-5.17-11.55-11.55,5.17-11.55,11.55-11.55,11.55,5.17,11.55,11.55Z"/>
+                  </g>
                 </svg>
               </span>
-              <span>{{ st.prazo_label | default: 'Prazo de Produção' }}</span>
+              <span>{{ st.prazo_label | default: 'Prazo de Envio' }}</span>
             </dt>
             <dd class="brk-bbspecs__value">{{ prazo_text }}</dd>
           </div>
@@ -184,7 +188,7 @@
   .brk-bbspecs__icon { color: var(--brk-green); line-height: 0; flex: 0 0 auto; }
   .brk-bbspecs__icon svg { width: 1.7rem; height: 1.7rem; display: block; }
   .brk-bbspecs__value {
-    margin: 0; text-align: left; font-family: var(--body-font); font-weight: 600;
+    margin: 0; text-align: right; font-family: var(--body-font); font-weight: 600;
     font-size: 1.3rem; color: #2c2f2b; line-height: 1.35; overflow-wrap: anywhere;
   }
   .brk-bbspecs__rte { padding: 0 1.8rem 1.4rem; font-size: 1.3rem; }
@@ -212,11 +216,12 @@
     { "type": "checkbox", "id": "show_sku", "label": "Mostrar código (SKU)", "default": true },
     { "type": "text", "id": "sku_label", "label": "Rótulo do SKU", "default": "Código" },
 
-    { "type": "header", "content": "Prazo de produção (topo)" },
+    { "type": "header", "content": "Prazo de envio (topo)" },
     { "type": "paragraph", "content": "Lê custom.disponibilidade (dias úteis). Tag prazo_imediato ou valor 0 = pronta entrega. Sem metafield, usa o prazo padrão." },
-    { "type": "checkbox", "id": "show_prazo", "label": "Mostrar prazo de produção", "default": true },
-    { "type": "text", "id": "prazo_label", "label": "Rótulo", "default": "Prazo de Produção" },
-    { "type": "text", "id": "prazo_imediato_label", "label": "Texto para envio imediato", "default": "Pronta entrega" },
+    { "type": "checkbox", "id": "show_prazo", "label": "Mostrar prazo de envio", "default": true },
+    { "type": "text", "id": "prazo_label", "label": "Rótulo", "default": "Prazo de Envio" },
+    { "type": "text", "id": "prazo_imediato_label", "label": "Texto para pronta entrega", "default": "Pronta Entrega" },
+    { "type": "text", "id": "prazo_sufixo", "label": "Complemento do prazo", "default": "+ Frete escolhido" },
     { "type": "text", "id": "prazo_padrao", "label": "Prazo padrão (dias úteis)", "default": "10" },
 
     { "type": "header", "content": "Linha 1" },

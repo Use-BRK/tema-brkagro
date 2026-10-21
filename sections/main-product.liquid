@@ -135,6 +135,7 @@
         assign bc_col = product.collections.first
       endif
     -%}
+    {%- if section.settings.show_breadcrumb -%}
     <nav class="brk-breadcrumbs" id="brk-breadcrumbs" aria-label="breadcrumb">
       <a href="{{ routes.root_url }}">{{ 'general.breadcrumb.home' | t | default: 'Início' }}</a>
       {%- if bc_ctx_col and bc_ctx_col.url != blank -%}
@@ -144,6 +145,8 @@
       <span class="brk-breadcrumbs__sep" aria-hidden="true">›</span>
       <span class="brk-breadcrumbs__current" aria-current="page">{{ product.title | truncate: 48 }}</span>
     </nav>
+    {%- endif -%}
+    {%- comment -%} JSON-LD sempre renderizado (SEO), independente do breadcrumb visível {%- endcomment -%}
     {%- liquid
       assign bc_home_url = request.origin | append: routes.root_url
       assign bc_prod_url = request.origin | append: product.url
@@ -182,6 +185,7 @@
       ]
     }
     </script>
+    {%- if section.settings.show_breadcrumb -%}
     <style>
       .brk-breadcrumbs {
         --brk-bc-space: 1.6rem;
@@ -316,6 +320,7 @@
         }
       })();
     </script>
+    {%- endif -%}
   {%- endif -%}
   <div
     class="flex flex-cols gap flex-wrap main-product"
@@ -716,6 +721,13 @@
       "id": "color_scheme",
       "label": "t:sections.all.color_scheme.label",
       "default": "scheme-1"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_breadcrumb",
+      "label": "Mostrar breadcrumb",
+      "info": "Desmarcado: esconde o breadcrumb da página. O dado estruturado (JSON-LD) continua para o Google.",
+      "default": true
     },
     {
       "type": "checkbox",
