@@ -223,8 +223,17 @@
             "collection_title": "Agricultura"
           }
         },
+        "collection_NF8iU7": {
+          "type": "collection",
+          "settings": {
+            "collection": "botinas-masculinas",
+            "link": "",
+            "collection_title": "Botinas"
+          }
+        },
         "collection_P7y9m3": {
           "type": "collection",
+          "disabled": true,
           "settings": {
             "collection": "brasil-patriota-2026",
             "link": "",
@@ -235,6 +244,7 @@
       "block_order": [
         "collection_3frNWE",
         "collection_btxCia",
+        "collection_NF8iU7",
         "collection_P7y9m3"
       ],
       "custom_css": [
