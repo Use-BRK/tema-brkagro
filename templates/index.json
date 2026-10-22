@@ -281,23 +281,14 @@
     "banner_carousel_iVEDMG": {
       "type": "banner-carousel",
       "blocks": {
-        "card_Az3eRR": {
+        "card_j4crXK": {
           "type": "card",
-          "name": "Calças Jeans",
+          "name": "Botinas",
           "settings": {
-            "image": "shopify://shop_images/Card_BRK_AGRO_Calca.webp",
-            "collection": "calcas-jeans",
+            "image": "shopify://shop_images/Card_BRK_AGRO_Botinas_b2c8c85d-4f97-41a2-b766-48189687ea3b.webp",
+            "collection": "botinas",
             "link": "",
-            "label": "Calça Jeans"
-          }
-        },
-        "card_NTW9YG": {
-          "type": "card",
-          "settings": {
-            "image": "shopify://shop_images/Card_BRK_AGRO_Facas_1.png",
-            "collection": "facas-de-churrasco",
-            "link": "",
-            "label": ""
+            "label": "Botinas"
           }
         },
         "card_7tezkD": {
@@ -320,6 +311,25 @@
             "label": "Óculos de Sol"
           }
         },
+        "card_Az3eRR": {
+          "type": "card",
+          "name": "Calças Jeans",
+          "settings": {
+            "image": "shopify://shop_images/Card_BRK_AGRO_Calca.webp",
+            "collection": "calcas-jeans",
+            "link": "",
+            "label": "Calça Jeans"
+          }
+        },
+        "card_NTW9YG": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/Card_BRK_AGRO_Facas_1.png",
+            "collection": "facas-de-churrasco",
+            "link": "",
+            "label": ""
+          }
+        },
         "card_AyYQxG": {
           "type": "card",
           "name": "Camisas Work",
@@ -329,16 +339,6 @@
             "collection": "camisas-work",
             "link": "",
             "label": "Camisas Work"
-          }
-        },
-        "card_j4crXK": {
-          "type": "card",
-          "name": "Botinas",
-          "settings": {
-            "image": "shopify://shop_images/Card_BRK_AGRO_Botinas_b2c8c85d-4f97-41a2-b766-48189687ea3b.webp",
-            "collection": "botinas",
-            "link": "",
-            "label": "Botinas"
           }
         },
         "card_w8XfBY": {
@@ -353,12 +353,12 @@
         }
       },
       "block_order": [
-        "card_Az3eRR",
-        "card_NTW9YG",
+        "card_j4crXK",
         "card_7tezkD",
         "card_jHmrEj",
+        "card_Az3eRR",
+        "card_NTW9YG",
         "card_AyYQxG",
-        "card_j4crXK",
         "card_w8XfBY"
       ],
       "name": "Banner Carousel",
