@@ -520,6 +520,7 @@ class CustomNameModal extends HTMLElement {
       return ok.find((i) => i.key === line.key) || ok[0] || null;
     };
     const wait = (ms) => new Promise((res) => setTimeout(res, ms));
+    let ok = false;
     try {
       const src0 = findSource(await getCart());
       if (!src0) throw new Error("Essa camisa não está mais disponível para personalizar no carrinho.");
@@ -577,6 +578,7 @@ class CustomNameModal extends HTMLElement {
       }
 
       this._line = null;
+      ok = true;
       this.close();
     } catch (e) {
       this.flash((e && e.message) || "Não foi possível adicionar a personalização.");
@@ -588,13 +590,13 @@ class CustomNameModal extends HTMLElement {
       if (cn && typeof cn.refreshMinicartSection === "function") {
         try { await cn.refreshMinicartSection(); } catch (e) {}
       }
-      await this.refreshCartPage();
+      await this.refreshCartPage(ok);
     }
   }
 
   /* Página /cart (sections/main-cart-items): re-renderiza os itens como o próprio
      tema faz (assets/cart.js, CartItems.splitBrkAddon). Fora do /cart não faz nada. */
-  async refreshCartPage() {
+  async refreshCartPage(ok) {
     const items = document.querySelector("cart-items");
     const main = document.getElementById("main-cart-items");
     if (!items || !main || typeof items.getSectionsToRender !== "function") return;
@@ -604,7 +606,9 @@ class CustomNameModal extends HTMLElement {
         fetch(`${window.location.pathname}?section_id=${sectionId}`, { cache: "no-store" }).then((r) => r.text()),
         fetch(this.root + "cart.json", { cache: "no-store" }).then((r) => r.json()),
       ]);
-      if (typeof CartUtils === "undefined") { window.location.reload(); return; }
+      // tema sem CartUtils (Glozin 2.5): recarrega, como o próprio cart.js faz; em erro não
+      // recarrega para o cliente ver a mensagem no modal
+      if (typeof CartUtils === "undefined") { if (ok) window.location.reload(); return; }
       CartUtils.updateCartCount(cart.item_count);
       CartUtils.updateHeaderTotalPrice(cart);
       CartUtils.updateFreeShippingBar(cart.items_subtotal_price);
@@ -615,7 +619,7 @@ class CustomNameModal extends HTMLElement {
         totalsSelector: ".cart-info .totals",
       });
     } catch (e) {
-      window.location.reload();
+      if (ok) window.location.reload();
     }
   }
 
