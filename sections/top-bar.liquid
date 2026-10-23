@@ -167,15 +167,13 @@
       line-height: 1;
       color: var(--topbar-shipping-text, inherit);
     }
-    /* Texto do timer. Tamanhos: no mobile 20% maiores, limitados pela largura da tela. */
+    /* Texto do timer. Mobile tem tamanhos próprios (px numa tela de 390px; em telas menores encolhe proporcionalmente). */
     #topbar .topbar-cd-text {
-      --cd-big-fs: min(11vw, calc(var(--cd-big, 40px) * 1.2));
-      --cd-lines-fs: min(4.4vw, calc(var(--cd-lines, 15px) * 1.2));
+      --cd-big-fs: min(calc(var(--cd-big-m, 28) * 1px), calc(var(--cd-big-m, 28) * 100vw / 390));
+      --cd-lines-fs: min(calc(var(--cd-lines-m, 12) * 1px), calc(var(--cd-lines-m, 12) * 100vw / 390));
       gap: 0.35em;
     }
     #topbar .topbar-cd-text--stacked {
-      --cd-big-fs: min(7.6vw, calc(var(--cd-big, 40px) * 1.2));
-      --cd-lines-fs: min(3vw, calc(var(--cd-lines, 15px) * 1.2));
       flex-direction: column;
       align-items: flex-start;
       gap: calc(var(--cd-lines-fs) * 0.1);
@@ -206,8 +204,8 @@
     #topbar .topbar-cd-text__l2 { font-weight: var(--cd-l2-w, 800); }
     /* Timer. --cd-ls = espaço entre dígitos; --cd-sep-gap = espaço ao redor do ":" (ambos em fração do número). */
     #topbar .topbar-shipping {
-      --cd-num-fs: min(5.6vw, calc(var(--cd-num, 26px) * 1.2));
-      --cd-cap-fs: min(2.2vw, calc(var(--cd-cap, 8px) * 1.2));
+      --cd-num-fs: min(calc(var(--cd-num-m, 22) * 1px), calc(var(--cd-num-m, 22) * 100vw / 390));
+      --cd-cap-fs: min(calc(var(--cd-cap-m, 9) * 1px), calc(var(--cd-cap-m, 9) * 100vw / 390));
       --cd-ls-fs: calc(var(--cd-ls, 0.04) * 0.5 * var(--cd-num-fs));
       --cd-sep-pad: calc(var(--cd-sep-gap, 0.3) * 0.35 * var(--cd-num-fs));
     }
@@ -262,8 +260,7 @@
         justify-content: center;
         gap: var(--cd-gap-desktop, 70px);
       }
-      #topbar .topbar-cd-text,
-      #topbar .topbar-cd-text--stacked {
+      #topbar .topbar-cd-text {
         --cd-big-fs: var(--cd-big, 40px);
         --cd-lines-fs: var(--cd-lines, 15px);
       }
@@ -606,7 +603,7 @@
                   class="topbar-item topbar-cd-text{% if block_st.layout == 'stacked' %} topbar-cd-text--stacked{% endif %}{% if block_st.hidden_on_mobile %} hidden block-1025{% endif %}"
                   data-topbar-timer-part
                   {% unless tb_timer_visible %}hidden{% endunless %}
-                  style="--cd-big: {{ block_st.highlight_size }}px; --cd-lines: {{ block_st.lines_size }}px; --cd-l1-w: {{ block_st.line_1_weight }}; --cd-l2-w: {{ block_st.line_2_weight }};"
+                  style="--cd-big: {{ block_st.highlight_size }}px; --cd-lines: {{ block_st.lines_size }}px; --cd-big-m: {{ block_st.highlight_size_mobile }}; --cd-lines-m: {{ block_st.lines_size_mobile }}; --cd-l1-w: {{ block_st.line_1_weight }}; --cd-l2-w: {{ block_st.line_2_weight }};"
                 >
                   {%- capture cd_big -%}
                     {%- if block_st.highlight != blank -%}
@@ -648,7 +645,7 @@
                 data-expired-message="{{ block_st.expired_message | escape }}"
                 data-switch-slider="{% if block_st.switch_to_slider %}true{% else %}false{% endif %}"
                 {% unless tb_timer_visible and tb_has_windows %}hidden{% endunless %}
-                style="--cd-num: {{ block_st.timer_font_size }}px; --cd-cap: {{ block_st.label_font_size }}px; --cd-num-w: {{ block_st.number_weight }}; --cd-ls: {{ block_st.digit_spacing | divided_by: 100.0 }}; --cd-sep-gap: {{ block_st.separator_spacing | divided_by: 100.0 }}; --cd-sep-size: {{ block_st.separator_size | divided_by: 100.0 }};"
+                style="--cd-num: {{ block_st.timer_font_size }}px; --cd-cap: {{ block_st.label_font_size }}px; --cd-num-m: {{ block_st.timer_font_size_mobile }}; --cd-cap-m: {{ block_st.label_font_size_mobile }}; --cd-num-w: {{ block_st.number_weight }}; --cd-ls: {{ block_st.digit_spacing | divided_by: 100.0 }}; --cd-sep-gap: {{ block_st.separator_spacing | divided_by: 100.0 }}; --cd-sep-size: {{ block_st.separator_size | divided_by: 100.0 }};"
               >
                 {%- if tb_has_windows -%}
                   <div class="topbar-shipping__timer-row">
@@ -1239,7 +1236,7 @@
       "settings": [
         {
           "type": "paragraph",
-          "content": "Fica ao lado do bloco 'Timer' e some junto com ele. Cores no bloco 'Timer'. Tamanhos são do desktop; no mobile ficam 20% maiores e se ajustam à tela."
+          "content": "Fica ao lado do bloco 'Timer' e some junto com ele. Cores no bloco 'Timer'."
         },
         {
           "type": "select",
@@ -1272,7 +1269,7 @@
         {
           "type": "range",
           "id": "highlight_size",
-          "label": "Tamanho do destaque",
+          "label": "Tamanho do destaque (desktop)",
           "min": 20,
           "max": 80,
           "step": 1,
@@ -1282,12 +1279,33 @@
         {
           "type": "range",
           "id": "lines_size",
-          "label": "Tamanho das linhas",
+          "label": "Tamanho das linhas (desktop)",
           "min": 10,
           "max": 32,
           "step": 1,
           "unit": "px",
           "default": 15
+        },
+        {
+          "type": "range",
+          "id": "highlight_size_mobile",
+          "label": "Tamanho do destaque (mobile)",
+          "info": "Tamanho numa tela de 390px. Em celulares menores encolhe na mesma proporção, junto com o timer.",
+          "min": 12,
+          "max": 60,
+          "step": 1,
+          "unit": "px",
+          "default": 28
+        },
+        {
+          "type": "range",
+          "id": "lines_size_mobile",
+          "label": "Tamanho das linhas (mobile)",
+          "min": 8,
+          "max": 30,
+          "step": 1,
+          "unit": "px",
+          "default": 12
         },
         {
           "type": "select",
@@ -1345,7 +1363,7 @@
         {
           "type": "range",
           "id": "timer_font_size",
-          "label": "Tamanho dos números",
+          "label": "Tamanho dos números (desktop)",
           "min": 14,
           "max": 60,
           "step": 1,
@@ -1355,12 +1373,33 @@
         {
           "type": "range",
           "id": "label_font_size",
-          "label": "Tamanho de HORAS / MINUTOS / SEGUNDOS",
+          "label": "Tamanho de HORAS / MINUTOS / SEGUNDOS (desktop)",
           "min": 6,
           "max": 20,
           "step": 1,
           "unit": "px",
           "default": 8
+        },
+        {
+          "type": "range",
+          "id": "timer_font_size_mobile",
+          "label": "Tamanho dos números (mobile)",
+          "info": "Tamanho numa tela de 390px. Em celulares menores encolhe na mesma proporção, junto com o texto.",
+          "min": 12,
+          "max": 50,
+          "step": 1,
+          "unit": "px",
+          "default": 22
+        },
+        {
+          "type": "range",
+          "id": "label_font_size_mobile",
+          "label": "Tamanho de HORAS / MINUTOS / SEGUNDOS (mobile)",
+          "min": 6,
+          "max": 16,
+          "step": 1,
+          "unit": "px",
+          "default": 9
         },
         {
           "type": "select",
