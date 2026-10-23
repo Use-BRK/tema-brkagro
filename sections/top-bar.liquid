@@ -167,11 +167,26 @@
       line-height: 1;
       color: var(--topbar-shipping-text, inherit);
     }
+    /* Texto do timer. Tamanhos: no mobile 20% maiores, limitados pela largura da tela. */
     #topbar .topbar-cd-text {
+      --cd-big-fs: min(11vw, calc(var(--cd-big, 40px) * 1.2));
+      --cd-lines-fs: min(4.4vw, calc(var(--cd-lines, 15px) * 1.2));
       gap: 0.35em;
     }
+    #topbar .topbar-cd-text--stacked {
+      --cd-big-fs: min(7.6vw, calc(var(--cd-big, 40px) * 1.2));
+      --cd-lines-fs: min(3vw, calc(var(--cd-lines, 15px) * 1.2));
+      flex-direction: column;
+      align-items: flex-start;
+      gap: calc(var(--cd-lines-fs) * 0.1);
+    }
+    #topbar .topbar-cd-text__row {
+      display: flex;
+      align-items: baseline;
+      gap: calc(var(--cd-lines-fs) * 0.3);
+    }
     #topbar .topbar-cd-text__big {
-      font-size: min(11vw, calc(var(--cd-big, 40px) * 1.2));
+      font-size: var(--cd-big-fs);
       font-weight: 800;
       letter-spacing: -0.02em;
       line-height: 0.9;
@@ -179,9 +194,22 @@
     #topbar .topbar-cd-text__lines {
       display: flex;
       flex-direction: column;
-      font-size: min(4.4vw, calc(var(--cd-lines, 15px) * 1.2));
       line-height: 1.05;
+    }
+    #topbar .topbar-cd-text__l1,
+    #topbar .topbar-cd-text__l2 {
+      font-size: var(--cd-lines-fs);
       letter-spacing: 0.01em;
+      line-height: 1.05;
+    }
+    #topbar .topbar-cd-text__l1 { font-weight: var(--cd-l1-w, 800); }
+    #topbar .topbar-cd-text__l2 { font-weight: var(--cd-l2-w, 800); }
+    /* Timer. --cd-ls = espaço entre dígitos; --cd-sep-gap = espaço ao redor do ":" (ambos em fração do número). */
+    #topbar .topbar-shipping {
+      --cd-num-fs: min(5.6vw, calc(var(--cd-num, 26px) * 1.2));
+      --cd-cap-fs: min(2.2vw, calc(var(--cd-cap, 8px) * 1.2));
+      --cd-ls-fs: calc(var(--cd-ls, 0.04) * 0.5 * var(--cd-num-fs));
+      --cd-sep-pad: calc(var(--cd-sep-gap, 0.3) * 0.35 * var(--cd-num-fs));
     }
     #topbar .topbar-shipping__countdown {
       display: flex;
@@ -195,24 +223,35 @@
     }
     #topbar .topbar-shipping__num {
       min-width: 2ch;
+      /* padding à esquerda = letter-spacing, para o número ficar centrado sobre a legenda */
+      padding-left: var(--cd-ls-fs);
       text-align: center;
-      font-size: min(7.4vw, calc(var(--cd-num, 26px) * 1.2));
-      font-weight: 800;
+      font-size: var(--cd-num-fs);
+      font-weight: var(--cd-num-w, 800);
       font-variant-numeric: tabular-nums;
-      letter-spacing: 0.04em;
+      letter-spacing: var(--cd-ls-fs);
+      line-height: 1;
       color: var(--topbar-shipping-accent, inherit);
     }
     #topbar .topbar-shipping__cap {
-      font-size: min(2.3vw, calc(var(--cd-cap, 8px) * 1.2));
+      font-size: var(--cd-cap-fs);
       font-weight: 400 !important;
       letter-spacing: 0.02em;
       text-transform: uppercase;
     }
+    /* ":" centrado na altura dos números */
     #topbar .topbar-shipping__sep {
-      padding: 0 0.3em;
-      font-size: min(6.3vw, calc(var(--cd-num, 26px) * 1.02));
+      display: flex;
+      align-items: center;
+      height: var(--cd-num-fs);
+      padding: 0 var(--cd-sep-pad);
+      font-size: calc(var(--cd-num-fs) * var(--cd-sep-size, 0.85));
       font-weight: 800;
-      line-height: 1.1;
+      letter-spacing: 0;
+      line-height: 1;
+    }
+    #topbar .topbar-shipping__sep > span {
+      transform: translateY(-0.06em);
     }
     #topbar .topbar-shipping__expired {
       font-weight: var(--heading-weight, 700);
@@ -221,13 +260,19 @@
     @media (min-width: 1025px) {
       #topbar .topbar__section-inner:has(> .topbar-cd-text:not([hidden]), > topbar-shipping-timer:not([hidden])) {
         justify-content: center;
-        gap: 70px;
+        gap: var(--cd-gap-desktop, 70px);
       }
-      #topbar .topbar-cd-text__big { font-size: var(--cd-big, 40px); }
-      #topbar .topbar-cd-text__lines { font-size: var(--cd-lines, 15px); }
-      #topbar .topbar-shipping__num { font-size: var(--cd-num, 26px); }
-      #topbar .topbar-shipping__cap { font-size: var(--cd-cap, 8px); }
-      #topbar .topbar-shipping__sep { font-size: calc(var(--cd-num, 26px) * 0.85); }
+      #topbar .topbar-cd-text,
+      #topbar .topbar-cd-text--stacked {
+        --cd-big-fs: var(--cd-big, 40px);
+        --cd-lines-fs: var(--cd-lines, 15px);
+      }
+      #topbar .topbar-shipping {
+        --cd-num-fs: var(--cd-num, 26px);
+        --cd-cap-fs: var(--cd-cap, 8px);
+        --cd-ls-fs: calc(var(--cd-ls, 0.04) * var(--cd-num-fs));
+        --cd-sep-pad: calc(var(--cd-sep-gap, 0.3) * var(--cd-num-fs));
+      }
     }
     /* Link da barra (config da seção): cobre a barra inteira; links/botões dos blocos continuam clicáveis por cima */
     #topbar.topbar--linked {
@@ -554,19 +599,35 @@
               {%- endif -%}
             {%- when 'countdown_text' -%}
               {%- if block_st.highlight != blank or block_st.line_1 != blank or block_st.line_2 != blank -%}
+                {%- style -%}
+                  #topbar { --cd-gap-desktop: {{ block_st.gap_desktop }}px; }
+                {%- endstyle -%}
                 <div
-                  class="topbar-item topbar-cd-text{% if block_st.hidden_on_mobile %} hidden block-1025{% endif %}"
+                  class="topbar-item topbar-cd-text{% if block_st.layout == 'stacked' %} topbar-cd-text--stacked{% endif %}{% if block_st.hidden_on_mobile %} hidden block-1025{% endif %}"
                   data-topbar-timer-part
                   {% unless tb_timer_visible %}hidden{% endunless %}
-                  style="--cd-big: {{ block_st.highlight_size }}px; --cd-lines: {{ block_st.lines_size }}px;"
+                  style="--cd-big: {{ block_st.highlight_size }}px; --cd-lines: {{ block_st.lines_size }}px; --cd-l1-w: {{ block_st.line_1_weight }}; --cd-l2-w: {{ block_st.line_2_weight }};"
                 >
-                  {%- if block_st.highlight != blank -%}
-                    <span class="topbar-cd-text__big">{{ block_st.highlight | escape }}</span>
+                  {%- capture cd_big -%}
+                    {%- if block_st.highlight != blank -%}
+                      <span class="topbar-cd-text__big">{{ block_st.highlight | escape }}</span>
+                    {%- endif -%}
+                  {%- endcapture -%}
+                  {%- capture cd_l1 -%}
+                    {%- if block_st.line_1 != blank -%}<span class="topbar-cd-text__l1">{{ block_st.line_1 | escape }}</span>{%- endif -%}
+                  {%- endcapture -%}
+                  {%- capture cd_l2 -%}
+                    {%- if block_st.line_2 != blank -%}<span class="topbar-cd-text__l2">{{ block_st.line_2 | escape }}</span>{%- endif -%}
+                  {%- endcapture -%}
+                  {%- if block_st.layout == 'stacked' -%}
+                    {%- if cd_big != blank or cd_l1 != blank -%}
+                      <span class="topbar-cd-text__row">{{ cd_big }}{{ cd_l1 }}</span>
+                    {%- endif -%}
+                    {{ cd_l2 }}
+                  {%- else -%}
+                    {{ cd_big }}
+                    <span class="topbar-cd-text__lines">{{ cd_l1 }}{{ cd_l2 }}</span>
                   {%- endif -%}
-                  <span class="topbar-cd-text__lines">
-                    {%- if block_st.line_1 != blank -%}<span>{{ block_st.line_1 | escape }}</span>{%- endif -%}
-                    {%- if block_st.line_2 != blank -%}<span>{{ block_st.line_2 | escape }}</span>{%- endif -%}
-                  </span>
                 </div>
               {%- endif -%}
             {%- when 'shipping_countdown' -%}
@@ -587,7 +648,7 @@
                 data-expired-message="{{ block_st.expired_message | escape }}"
                 data-switch-slider="{% if block_st.switch_to_slider %}true{% else %}false{% endif %}"
                 {% unless tb_timer_visible and tb_has_windows %}hidden{% endunless %}
-                style="--cd-num: {{ block_st.timer_font_size }}px; --cd-cap: {{ block_st.label_font_size }}px;"
+                style="--cd-num: {{ block_st.timer_font_size }}px; --cd-cap: {{ block_st.label_font_size }}px; --cd-num-w: {{ block_st.number_weight }}; --cd-ls: {{ block_st.digit_spacing | divided_by: 100.0 }}; --cd-sep-gap: {{ block_st.separator_spacing | divided_by: 100.0 }}; --cd-sep-size: {{ block_st.separator_size | divided_by: 100.0 }};"
               >
                 {%- if tb_has_windows -%}
                   <div class="topbar-shipping__timer-row">
@@ -815,7 +876,7 @@
               '</span>'
             );
           })
-          .join('<span class="topbar-shipping__sep">:</span>');
+          .join('<span class="topbar-shipping__sep"><span>:</span></span>');
       }
     }
     customElements.define('topbar-shipping-timer', TopbarShippingTimer);
@@ -1181,22 +1242,32 @@
           "content": "Fica ao lado do bloco 'Timer' e some junto com ele. Cores no bloco 'Timer'. Tamanhos são do desktop; no mobile ficam 20% maiores e se ajustam à tela."
         },
         {
+          "type": "select",
+          "id": "layout",
+          "label": "Disposição",
+          "default": "stacked",
+          "options": [
+            { "value": "stacked", "label": "Destaque + Linha 1 em cima, Linha 2 embaixo" },
+            { "value": "side", "label": "Destaque ao lado das duas linhas" }
+          ]
+        },
+        {
           "type": "text",
           "id": "highlight",
           "label": "Destaque",
-          "default": "22"
+          "default": "R$20"
         },
         {
           "type": "text",
           "id": "line_1",
           "label": "Linha 1",
-          "default": "% OFF"
+          "default": "OFF EM"
         },
         {
           "type": "text",
           "id": "line_2",
           "label": "Linha 2",
-          "default": "PRODUTOS"
+          "default": "CAMISAS SELECIONADAS"
         },
         {
           "type": "range",
@@ -1217,6 +1288,42 @@
           "step": 1,
           "unit": "px",
           "default": 15
+        },
+        {
+          "type": "select",
+          "id": "line_1_weight",
+          "label": "Peso da Linha 1",
+          "default": "800",
+          "options": [
+            { "value": "400", "label": "Normal" },
+            { "value": "500", "label": "Médio" },
+            { "value": "600", "label": "Semi-negrito" },
+            { "value": "700", "label": "Negrito" },
+            { "value": "800", "label": "Extra-negrito" }
+          ]
+        },
+        {
+          "type": "select",
+          "id": "line_2_weight",
+          "label": "Peso da Linha 2",
+          "default": "400",
+          "options": [
+            { "value": "400", "label": "Normal" },
+            { "value": "500", "label": "Médio" },
+            { "value": "600", "label": "Semi-negrito" },
+            { "value": "700", "label": "Negrito" },
+            { "value": "800", "label": "Extra-negrito" }
+          ]
+        },
+        {
+          "type": "range",
+          "id": "gap_desktop",
+          "label": "Espaço entre texto e timer (desktop)",
+          "min": 20,
+          "max": 200,
+          "step": 5,
+          "unit": "px",
+          "default": 100
         },
         {
           "type": "checkbox",
@@ -1254,6 +1361,52 @@
           "step": 1,
           "unit": "px",
           "default": 8
+        },
+        {
+          "type": "select",
+          "id": "number_weight",
+          "label": "Peso dos números",
+          "default": "500",
+          "options": [
+            { "value": "400", "label": "Normal" },
+            { "value": "500", "label": "Médio" },
+            { "value": "600", "label": "Semi-negrito" },
+            { "value": "700", "label": "Negrito" },
+            { "value": "800", "label": "Extra-negrito" }
+          ]
+        },
+        {
+          "type": "range",
+          "id": "digit_spacing",
+          "label": "Espaço entre os dígitos",
+          "info": "Em % do tamanho do número. No mobile fica pela metade.",
+          "min": 0,
+          "max": 60,
+          "step": 2,
+          "unit": "%",
+          "default": 30
+        },
+        {
+          "type": "range",
+          "id": "separator_spacing",
+          "label": "Espaço ao redor do \":\"",
+          "info": "Em % do tamanho do número. No mobile fica 65% menor.",
+          "min": 0,
+          "max": 120,
+          "step": 5,
+          "unit": "%",
+          "default": 60
+        },
+        {
+          "type": "range",
+          "id": "separator_size",
+          "label": "Tamanho do \":\"",
+          "info": "Em % do tamanho do número.",
+          "min": 40,
+          "max": 100,
+          "step": 5,
+          "unit": "%",
+          "default": 70
         },
         {
           "type": "text",
