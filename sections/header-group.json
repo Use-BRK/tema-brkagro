@@ -40,7 +40,7 @@
             "timer_font_size_mobile": 26,
             "label_font_size_mobile": 9,
             "number_weight": "600",
-            "digit_spacing": 26,
+            "digit_spacing": 24,
             "separator_spacing": 60,
             "separator_size": 70,
             "start_date": "",
