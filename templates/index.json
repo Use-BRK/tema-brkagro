@@ -228,71 +228,6 @@
         "reset_spacing": false
       }
     },
-    "banner_packery_waf64X": {
-      "type": "banner-packery",
-      "blocks": {
-        "group_image_overlay_heQ89m": {
-          "type": "_group-image-overlay",
-          "settings": {
-            "color_scheme": "",
-            "image_link": "",
-            "overlay_opacity": 0,
-            "content_alignment": "start",
-            "content_position": "top-left",
-            "content_padding_block": 30,
-            "content_padding_inline": 30
-          },
-          "blocks": {}
-        },
-        "group_image_overlay_9PHXcM": {
-          "type": "_group-image-overlay",
-          "settings": {
-            "color_scheme": "",
-            "image_link": "",
-            "overlay_opacity": 0,
-            "content_alignment": "start",
-            "content_position": "top-left",
-            "content_padding_block": 30,
-            "content_padding_inline": 30
-          },
-          "blocks": {}
-        },
-        "group_image_overlay_yF4kEh": {
-          "type": "_group-image-overlay",
-          "settings": {
-            "color_scheme": "",
-            "image_link": "",
-            "overlay_opacity": 0,
-            "content_alignment": "start",
-            "content_position": "top-left",
-            "content_padding_block": 30,
-            "content_padding_inline": 30
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": [
-        "group_image_overlay_heQ89m",
-        "group_image_overlay_9PHXcM",
-        "group_image_overlay_yF4kEh"
-      ],
-      "disabled": true,
-      "name": "t:sections.banner-packery.name",
-      "settings": {
-        "section_width": "fluid_container",
-        "color_scheme": "",
-        "heading": "",
-        "description": "",
-        "show_view_all_button": false,
-        "view_all_url": "",
-        "header_size": "medium",
-        "header_alignment": "left",
-        "column_gap": 30,
-        "padding_top": 0,
-        "padding_bottom": 0,
-        "reset_spacing": false
-      }
-    },
     "collection_tab_kENEYA": {
       "type": "collection-tab",
       "blocks": {
@@ -375,6 +310,76 @@
         "reset_spacing": true,
         "show_stock_strip": true,
         "stock_strip_threshold": 9
+      }
+    },
+    "banner_packery_waf64X": {
+      "type": "banner-packery",
+      "blocks": {
+        "group_image_overlay_heQ89m": {
+          "type": "_group-image-overlay",
+          "settings": {
+            "color_scheme": "",
+            "image": "shopify://shop_images/Banner_secao_KIT_AGRO.png",
+            "mobile_image": "shopify://shop_images/Banner_secao_KIT_AGRO.png",
+            "image_link": "shopify://collections/kits-camisas-e-botinas",
+            "overlay_opacity": 0,
+            "content_alignment": "start",
+            "content_position": "top-left",
+            "content_padding_block": 30,
+            "content_padding_inline": 30
+          },
+          "blocks": {}
+        },
+        "group_image_overlay_9PHXcM": {
+          "type": "_group-image-overlay",
+          "settings": {
+            "color_scheme": "",
+            "image": "shopify://shop_images/Banner_mais_vendidas_desktop.png",
+            "mobile_image": "shopify://shop_images/Banner_mais_vendidas.png",
+            "image_link": "shopify://collections/mais-vendidos",
+            "overlay_opacity": 0,
+            "content_alignment": "start",
+            "content_position": "top-left",
+            "content_padding_block": 30,
+            "content_padding_inline": 30
+          },
+          "blocks": {}
+        },
+        "group_image_overlay_yF4kEh": {
+          "type": "_group-image-overlay",
+          "settings": {
+            "color_scheme": "",
+            "image": "shopify://shop_images/Banner_secao_Fe_no_Agro_desktop_desktop.png",
+            "mobile_image": "shopify://shop_images/Banner_Secao__Fe_no_Agro_mobile.png",
+            "image_link": "shopify://collections/sao-bento-e-nossa-senhora-1",
+            "overlay_opacity": 0,
+            "content_alignment": "start",
+            "content_position": "top-left",
+            "content_padding_block": 30,
+            "content_padding_inline": 30
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "group_image_overlay_heQ89m",
+        "group_image_overlay_9PHXcM",
+        "group_image_overlay_yF4kEh"
+      ],
+      "name": "t:sections.banner-packery.name",
+      "settings": {
+        "section_width": "fluid_container",
+        "color_scheme": "",
+        "heading": "",
+        "description": "",
+        "show_view_all_button": false,
+        "view_all_url": "",
+        "header_size": "medium",
+        "header_alignment": "left",
+        "column_gap": 30,
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": true
       }
     },
     "banner_carousel_iVEDMG": {
@@ -460,7 +465,7 @@
         "card_AyYQxG",
         "card_w8XfBY"
       ],
-      "name": "Banner Carousel",
+      "name": "Carrossel de Coleções",
       "settings": {
         "heading": "",
         "header_size": "h3",
@@ -800,10 +805,10 @@
   "order": [
     "slideshow_8KKtNU",
     "collection_overview_EqEWTR",
-    "banner_packery_waf64X",
     "collection_tab_kENEYA",
-    "banner_carousel_iVEDMG",
+    "banner_packery_waf64X",
     "collection_tab_gcdBTy",
+    "banner_carousel_iVEDMG",
     "collection_tab_9R4n9j",
     "divider_kpy84P",
     "icon_box_LjTRcj",
