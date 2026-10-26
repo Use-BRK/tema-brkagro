@@ -12,44 +12,14 @@
     "slideshow_8KKtNU": {
       "type": "slideshow",
       "blocks": {
-        "slider_item_KtbKfz": {
+        "slider_item_MMEAVn": {
           "type": "slider_item",
-          "name": "Rotativo",
+          "name": "Lisas e Essenciais",
           "settings": {
-            "image": "shopify://shop_images/Banner_Desktop_2.png",
-            "image_mobile": "shopify://shop_images/Mobile_4.png",
+            "image": "shopify://shop_images/Lisas_Essenciais_Desktop.png",
+            "image_mobile": "shopify://shop_images/Lisas_Essenciais_Mobile.png",
             "overlay_opacity": 0,
-            "link_banner": "shopify://collections/brasil-patriota-2026",
-            "slider_effect": "fade-in-right",
-            "subheading": "",
-            "heading": "",
-            "description": "",
-            "first_button_label": "",
-            "first_button_link": "",
-            "first_button_style": false,
-            "second_button_label": "",
-            "second_button_link": "",
-            "second_button_style": false,
-            "content_alignment": "left",
-            "content_position": "bottom-left",
-            "content_width": "container",
-            "content_max_width": 100,
-            "content_padding_block": 60,
-            "content_padding_inline": 30,
-            "show_content_background": false,
-            "content_background": "#ffffff",
-            "content_box_opacity": 100,
-            "content_alignment_mobile": "left"
-          }
-        },
-        "slider_item_nrmHUV": {
-          "type": "slider_item",
-          "name": "Botinas",
-          "settings": {
-            "image": "shopify://shop_images/Botinas_bidensidade_Desktop.png",
-            "image_mobile": "shopify://shop_images/Botinas_bidensidade_Mobile.png",
-            "overlay_opacity": 0,
-            "link_banner": "shopify://collections/botinas-de-trabalho",
+            "link_banner": "shopify://collections/essenciais-sem-estampa",
             "slider_effect": "fade-in-right",
             "subheading": "",
             "heading": "",
@@ -72,14 +42,14 @@
             "content_alignment_mobile": "center"
           }
         },
-        "slider_item_MMEAVn": {
+        "slider_item_nrmHUV": {
           "type": "slider_item",
-          "name": "Lisas e Essenciais",
+          "name": "Botinas",
           "settings": {
-            "image": "shopify://shop_images/Lisas_Essenciais_Desktop.png",
-            "image_mobile": "shopify://shop_images/Lisas_Essenciais_Mobile.png",
+            "image": "shopify://shop_images/Botinas_bidensidade_Desktop.png",
+            "image_mobile": "shopify://shop_images/Botinas_bidensidade_Mobile.png",
             "overlay_opacity": 0,
-            "link_banner": "shopify://collections/essenciais-sem-estampa",
+            "link_banner": "shopify://collections/botinas-de-trabalho",
             "slider_effect": "fade-in-right",
             "subheading": "",
             "heading": "",
@@ -165,9 +135,8 @@
         }
       },
       "block_order": [
-        "slider_item_KtbKfz",
-        "slider_item_nrmHUV",
         "slider_item_MMEAVn",
+        "slider_item_nrmHUV",
         "slider_item_rYBq93",
         "slider_item_K3DbMk"
       ],
@@ -203,6 +172,124 @@
         "padding_top": 0,
         "padding_bottom": 0,
         "reset_spacing": true
+      }
+    },
+    "collection_overview_EqEWTR": {
+      "type": "collection-overview",
+      "blocks": {
+        "content_item_ygJjfd": {
+          "type": "content_item",
+          "settings": {
+            "image_link": "",
+            "heading": "Eco Vero Collection",
+            "heading_font_size": 18,
+            "heading_font_weight": "heading_weight",
+            "heading_uppercase": true
+          }
+        },
+        "content_item_UcNxqw": {
+          "type": "content_item",
+          "settings": {
+            "image_link": "",
+            "heading": "Eco Vero Collection",
+            "heading_font_size": 18,
+            "heading_font_weight": "heading_weight",
+            "heading_uppercase": true
+          }
+        }
+      },
+      "block_order": [
+        "content_item_ygJjfd",
+        "content_item_UcNxqw"
+      ],
+      "name": "t:sections.collection_overview.name",
+      "settings": {
+        "section_width": "fluid_container",
+        "color_scheme": "",
+        "heading": "What are you looking for?",
+        "subheading": "",
+        "description": "<p>Tops Collection</p>",
+        "header_size": "medium",
+        "header_alignment": "center",
+        "first_button_label": "",
+        "first_button_link": "",
+        "first_button_type": "primary",
+        "show_image": false,
+        "image_width_heading": 150,
+        "column_gap": 60,
+        "vertical_align": "center",
+        "child_width": 50,
+        "position": "right",
+        "image_ratio": "adapt",
+        "custom_ratio": "",
+        "padding_top": 60,
+        "padding_bottom": 60,
+        "reset_spacing": false
+      }
+    },
+    "banner_packery_waf64X": {
+      "type": "banner-packery",
+      "blocks": {
+        "group_image_overlay_heQ89m": {
+          "type": "_group-image-overlay",
+          "settings": {
+            "color_scheme": "",
+            "image_link": "",
+            "overlay_opacity": 0,
+            "content_alignment": "start",
+            "content_position": "top-left",
+            "content_padding_block": 30,
+            "content_padding_inline": 30
+          },
+          "blocks": {}
+        },
+        "group_image_overlay_9PHXcM": {
+          "type": "_group-image-overlay",
+          "settings": {
+            "color_scheme": "",
+            "image_link": "",
+            "overlay_opacity": 0,
+            "content_alignment": "start",
+            "content_position": "top-left",
+            "content_padding_block": 30,
+            "content_padding_inline": 30
+          },
+          "blocks": {}
+        },
+        "group_image_overlay_yF4kEh": {
+          "type": "_group-image-overlay",
+          "settings": {
+            "color_scheme": "",
+            "image_link": "",
+            "overlay_opacity": 0,
+            "content_alignment": "start",
+            "content_position": "top-left",
+            "content_padding_block": 30,
+            "content_padding_inline": 30
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "group_image_overlay_heQ89m",
+        "group_image_overlay_9PHXcM",
+        "group_image_overlay_yF4kEh"
+      ],
+      "disabled": true,
+      "name": "t:sections.banner-packery.name",
+      "settings": {
+        "section_width": "fluid_container",
+        "color_scheme": "",
+        "heading": "",
+        "description": "",
+        "show_view_all_button": false,
+        "view_all_url": "",
+        "header_size": "medium",
+        "header_alignment": "left",
+        "column_gap": 30,
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "reset_spacing": false
       }
     },
     "collection_tab_kENEYA": {
@@ -711,6 +798,8 @@
   },
   "order": [
     "slideshow_8KKtNU",
+    "collection_overview_EqEWTR",
+    "banner_packery_waf64X",
     "collection_tab_kENEYA",
     "banner_carousel_iVEDMG",
     "collection_tab_gcdBTy",
