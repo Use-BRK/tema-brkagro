@@ -202,6 +202,7 @@
         "content_item_ygJjfd",
         "content_item_UcNxqw"
       ],
+      "disabled": true,
       "name": "t:sections.collection_overview.name",
       "settings": {
         "section_width": "fluid_container",
