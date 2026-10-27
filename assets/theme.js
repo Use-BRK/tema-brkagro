@@ -3684,9 +3684,7 @@ class VariantRadiosBundle extends SwatchInit {
           );
           elementsale.style.setProperty("--badges-color", saleColor);
           elementsale.style.setProperty("--badges-bg", saleBg);
-          elementsale.innerHTML = `${
-            window.variantStrings.save ? window.variantStrings.save : "Save"
-          } ${prd}`;
+          elementsale.innerHTML = `R$${Math.floor(percent / 100)}&nbsp;OFF`; // "R$30 OFF", igual ao product-badges.liquid
           if (dsoldout) {
             label.insertBefore(elementsale, dsoldout);
           } else if (dpreorder) {
@@ -3696,9 +3694,7 @@ class VariantRadiosBundle extends SwatchInit {
           }
         } else {
           if (typePrice) {
-            dsale.innerHTML = `${
-              window.variantStrings.save ? window.variantStrings.save : "Save"
-            } ${prd}`;
+            dsale.innerHTML = `R$${Math.floor(percent / 100)}&nbsp;OFF`; // "R$30 OFF", igual ao product-badges.liquid
           } else if (typePercent) {
             dsale.innerHTML = Math.round(percent) + "% OFF";
           }
@@ -6055,9 +6051,7 @@ class SwatchFunctions extends SwatchInit {
           elementsale.style.setProperty("--badges-color", saleColor);
           elementsale.style.setProperty("--badges-bg", saleBg);
           if (saleBadgeType === "price") {
-            elementsale.innerHTML = `${
-              window.variantStrings.save ? window.variantStrings.save : "Save"
-            } ${prd}`;
+            elementsale.innerHTML = `R$${Math.floor(percent / 100)}&nbsp;OFF`; // "R$30 OFF", igual ao product-badges.liquid
           } else if (saleBadgeType === "percent") {
             elementsale.innerHTML = Math.round(percent) + "% OFF";
           } else {
@@ -6074,9 +6068,7 @@ class SwatchFunctions extends SwatchInit {
           }
         } else {
           if (saleBadgeType === "price") {
-            dsale.innerHTML = `${
-              window.variantStrings.save ? window.variantStrings.save : "Save"
-            } ${prd}`;
+            dsale.innerHTML = `R$${Math.floor(percent / 100)}&nbsp;OFF`; // "R$30 OFF", igual ao product-badges.liquid
           } else if (saleBadgeType === "percent") {
             dsale.innerHTML = Math.round(percent) + "% OFF";
           } else {
