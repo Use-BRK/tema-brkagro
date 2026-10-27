@@ -75,6 +75,7 @@
         "slider_item_rYBq93": {
           "type": "slider_item",
           "name": "Nossa Senhora",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/banner_desktop.png",
             "image_mobile": "shopify://shop_images/MOBILE_18a38775-0712-4515-be31-c0aef534d26d.png",
@@ -104,11 +105,10 @@
         },
         "slider_item_K3DbMk": {
           "type": "slider_item",
-          "name": "Facas de Churrasco",
-          "disabled": true,
+          "name": "Chapeu",
           "settings": {
-            "image": "shopify://shop_images/DESK_2.png",
-            "image_mobile": "shopify://shop_images/mobile_faca.png",
+            "image": "shopify://shop_images/Banner_Chapeus_Home_desktop_3123afdd-5a55-4842-8270-e66dae51fe8b.png",
+            "image_mobile": "shopify://shop_images/Banner_Chapeus_Home_mobile.png",
             "overlay_opacity": 0,
             "link_banner": "shopify://collections/facas-de-churrasco",
             "slider_effect": "fade-in-right",
@@ -367,7 +367,7 @@
         "group_image_overlay_yF4kEh"
       ],
       "custom_css": [
-        ".banner__media {border-radius:10px;}"
+        ".banner__media {border-radius: 10px;}"
       ],
       "name": "t:sections.banner-packery.name",
       "settings": {
