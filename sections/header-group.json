@@ -18,7 +18,7 @@
           "type": "countdown_text",
           "settings": {
             "layout": "stacked",
-            "highlight": "R$20",
+            "highlight": "R$30",
             "line_1": "OFF em",
             "line_2": "Camisas selecionadas",
             "highlight_size": 30,
@@ -45,7 +45,7 @@
             "separator_size": 70,
             "start_date": "",
             "start_time": "",
-            "end_date": "2026-11-1",
+            "end_date": "2026-11-01",
             "end_time": "23:59",
             "expired_message": "",
             "switch_to_slider": true,
