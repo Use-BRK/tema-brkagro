@@ -249,8 +249,9 @@
         {% endcomment %}
           {%- assign p = compare_at_price | minus: price -%}
           {% if sale_badge_type == 'price' %}
-            {{ 'products.product.save' | t }}
+            {% comment %} {{ 'products.product.save' | t }} {% endcomment %}
             {{- p | money -}}
+            OFF
           {% elsif sale_badge_type == 'percent' %}
             {%- if p > 0 -%}
               {%- assign p = p | times: 100.0 | divided_by: compare_at_price | round -%}
