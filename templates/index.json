@@ -12,6 +12,36 @@
     "slideshow_8KKtNU": {
       "type": "slideshow",
       "blocks": {
+        "slider_item_N78qVx": {
+          "type": "slider_item",
+          "name": "BLACKBLACKBLACKBLACKBLACK",
+          "settings": {
+            "image": "shopify://shop_images/BANNER_ESQUENTA_BLACK.jpg",
+            "image_mobile": "shopify://shop_images/69ef29d7-2240-4a43-83c9-2c168f2cfe36.png",
+            "overlay_opacity": 0,
+            "link_banner": "shopify://collections/envios-imediatos",
+            "slider_effect": "fade-in-right",
+            "subheading": "",
+            "heading": "",
+            "description": "",
+            "first_button_label": "",
+            "first_button_link": "",
+            "first_button_style": false,
+            "second_button_label": "",
+            "second_button_link": "",
+            "second_button_style": false,
+            "content_alignment": "center",
+            "content_position": "top-center",
+            "content_width": "full_width",
+            "content_max_width": 100,
+            "content_padding_block": 40,
+            "content_padding_inline": 0,
+            "show_content_background": false,
+            "content_background": "#ffffff",
+            "content_box_opacity": 100,
+            "content_alignment_mobile": "center"
+          }
+        },
         "slider_item_MMEAVn": {
           "type": "slider_item",
           "name": "Lisas e Essenciais",
@@ -136,6 +166,7 @@
         }
       },
       "block_order": [
+        "slider_item_N78qVx",
         "slider_item_MMEAVn",
         "slider_item_nrmHUV",
         "slider_item_rYBq93",
@@ -271,6 +302,64 @@
         "collection_btxCia",
         "collection_NF8iU7",
         "collection_P7y9m3"
+      ],
+      "disabled": true,
+      "custom_css": [
+        ".collection-tab__ta {flex-wrap: nowrap; gap: clamp(7px, 2.2vw, 15px);}",
+        ".collection-tab__ta .collection-tab__tab-item {flex: 0 1 auto; min-width: 0; padding-left: clamp(10px, 3.2vw, 20px); padding-right: clamp(10px, 3.2vw, 20px); font-size: clamp(13px, 4vw, 15px);}"
+      ],
+      "name": "Vitrine",
+      "settings": {
+        "section_width": "stretch_width",
+        "color_scheme": "scheme-accf3b11-ba40-4a3e-bafb-243ece6683ec",
+        "heading": "Camisas UV50",
+        "description": "",
+        "show_view_all_button": true,
+        "header_size": "small",
+        "heading_font_size": 35,
+        "header_alignment": "right",
+        "tab_header_style": "horizontal",
+        "horizontal_tab_style": "fill",
+        "tab_header_postion": "horizontal_header",
+        "inline_header_tabs": false,
+        "display_mode": "carousel",
+        "items_to_show": 24,
+        "items_per_row": 5,
+        "column_gap": 10,
+        "show_arrow": true,
+        "carousel_pagination": "disable",
+        "infinite": false,
+        "autoplay": false,
+        "autorotate_speed": 2,
+        "reveal": false,
+        "rows": 1,
+        "show_load_more_button": false,
+        "button_label": "Ver mais",
+        "use_outline_button_style": true,
+        "carousel_on_mobile": true,
+        "items_per_row_mobile": 1.5,
+        "padding_top": 50,
+        "padding_bottom": 50,
+        "reset_spacing": true,
+        "show_stock_strip": true,
+        "stock_strip_threshold": 9
+      }
+    },
+    "collection_tab_KRDaRe": {
+      "type": "collection-tab",
+      "blocks": {
+        "collection_JKC3aP": {
+          "type": "collection",
+          "name": "Black",
+          "settings": {
+            "collection": "envios-imediatos",
+            "link": "",
+            "collection_title": "R$30 OFF 🔥"
+          }
+        }
+      },
+      "block_order": [
+        "collection_JKC3aP"
       ],
       "custom_css": [
         ".collection-tab__ta {flex-wrap: nowrap; gap: clamp(7px, 2.2vw, 15px);}",
@@ -810,6 +899,7 @@
     "slideshow_8KKtNU",
     "collection_overview_EqEWTR",
     "collection_tab_kENEYA",
+    "collection_tab_KRDaRe",
     "banner_packery_waf64X",
     "collection_tab_gcdBTy",
     "banner_carousel_iVEDMG",
