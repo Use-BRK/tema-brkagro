@@ -50,7 +50,7 @@
             "expired_message": "",
             "switch_to_slider": true,
             "custom_colors": true,
-            "bg_color": "#0f6049",
+            "bg_color": "#000000",
             "text_color": "#ffffff",
             "timer_color": "#ffffff",
             "hidden_on_mobile": false
