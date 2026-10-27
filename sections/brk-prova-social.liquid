@@ -1,0 +1,651 @@
+{%- comment -%}
+  BRK AGRO — Prova social: carrossel de vídeos em autoplay (mudos, em loop). Port do BRKFISHING.
+  Cada bloco é um GRUPO de até 6 vídeos com regras de segmentação:
+   - Produtos específicos  -> o produto escolhido sempre casa (ignora as regras abaixo).
+   - SKU começa com        -> algum SKU de variante começa com um dos prefixos (ex.: C0, CASUAL).
+   - Nome começa com       -> o título começa com um dos termos; ignora acento e maiúsculas ("bone" = "Boné").
+   - Tags                  -> o produto tem uma das tags (ex.: Cavalos, Cavalos 2026).
+   - Regras preenchidas se somam (E); dentro de cada regra, os termos separados por vírgula valem qualquer um (OU).
+   - Excluir SKUs          -> derruba o grupo se algum SKU começar com um desses prefixos (ex.: CMB).
+  Grupo desligado ou sem vídeo é ignorado. Modo "primeiro": o 1º grupo que casar (ordem dos blocos);
+  modo "todos": junta os vídeos dos grupos que casarem, até o limite de vídeos.
+{%- endcomment -%}
+{%- liquid
+  assign st = section.settings
+  assign product = product | default: closest.product
+  assign max_videos = st.max_videos | default: 8
+
+  comment
+    Chaves do produto, montadas uma vez para cada regra virar um "contains":
+    |SKU1|SKU2|  ·  |titulo-handleizado  ·  |tag-a|tag-b|
+  endcomment
+  capture sku_hay
+    echo '|'
+    for v in product.variants
+      echo v.sku | strip | upcase | append: '|'
+    endfor
+  endcapture
+  assign title_hay = product.title | handleize | prepend: '|'
+  capture tag_hay
+    echo '|'
+    for t in product.tags
+      echo t | handleize | append: '|'
+    endfor
+  endcapture
+
+  assign matched = ''
+  assign matched_names = ''
+  for b in section.blocks
+    if b.settings.enabled == false
+      continue
+    endif
+
+    assign has_video = false
+    for i in (1..6)
+      assign vid_key = 'video_' | append: i
+      if b.settings[vid_key] != blank
+        assign has_video = true
+        break
+      endif
+    endfor
+    unless has_video
+      continue
+    endunless
+
+    assign ok = false
+    for p in b.settings.products
+      if p.id == product.id
+        assign ok = true
+        break
+      endif
+    endfor
+
+    unless ok
+      assign rules = 0
+      assign fails = 0
+
+      if b.settings.sku_prefixes != blank
+        assign rules = rules | plus: 1
+        assign hit = false
+        assign terms = b.settings.sku_prefixes | upcase | split: ','
+        for raw in terms
+          assign needle = raw | strip | prepend: '|'
+          if needle != '|' and sku_hay contains needle
+            assign hit = true
+            break
+          endif
+        endfor
+        unless hit
+          assign fails = fails | plus: 1
+        endunless
+      endif
+
+      if b.settings.title_prefixes != blank
+        assign rules = rules | plus: 1
+        assign hit = false
+        assign terms = b.settings.title_prefixes | split: ','
+        for raw in terms
+          assign needle = raw | handleize | prepend: '|'
+          if needle != '|' and title_hay contains needle
+            assign hit = true
+            break
+          endif
+        endfor
+        unless hit
+          assign fails = fails | plus: 1
+        endunless
+      endif
+
+      if b.settings.tags != blank
+        assign rules = rules | plus: 1
+        assign hit = false
+        assign terms = b.settings.tags | split: ','
+        for raw in terms
+          assign needle = raw | handleize | prepend: '|' | append: '|'
+          if needle != '||' and tag_hay contains needle
+            assign hit = true
+            break
+          endif
+        endfor
+        unless hit
+          assign fails = fails | plus: 1
+        endunless
+      endif
+
+      if rules > 0 and fails == 0
+        assign ok = true
+      endif
+    endunless
+
+    if ok and b.settings.exclude_skus != blank
+      assign terms = b.settings.exclude_skus | upcase | split: ','
+      for raw in terms
+        assign needle = raw | strip | prepend: '|'
+        if needle != '|' and sku_hay contains needle
+          assign ok = false
+          break
+        endif
+      endfor
+    endif
+
+    if ok
+      assign matched = matched | append: forloop.index0 | append: ','
+      assign group_name = b.settings.title | default: 'Grupo sem nome'
+      assign matched_names = matched_names | append: group_name | append: ' · '
+      if st.match_mode != 'all'
+        break
+      endif
+    endif
+  endfor
+  assign matched_ids = matched | split: ','
+-%}
+
+{%- if request.design_mode -%}
+  <div class="brk-social__editor-hint">
+    {%- if matched_ids.size > 0 -%}
+      <strong>Prova social (só no editor):</strong> exibindo {{ matched_names | remove_last: ' · ' }}
+    {%- else -%}
+      <strong>Prova social oculta neste produto:</strong> nenhum grupo ligado, com vídeo, casa com ele.
+      SKUs: {{ sku_hay | remove_first: '|' | split: '|' | slice: 0, 4 | join: ', ' }}
+      {%- if product.tags.size > 0 %} · Tags: {{ product.tags | join: ', ' }}{% endif -%}
+    {%- endif -%}
+  </div>
+{%- endif -%}
+
+{%- if matched_ids.size > 0 -%}
+  <brk-social-proof
+    class="brk-social"
+    style="--section-pt: {{ st.padding_top }}px; --section-pb: {{ st.padding_bottom }}px; --brk-social-accent: {{ st.accent_color }}; --brk-social-eyebrow: {{ st.eyebrow_color }};"
+  >
+    {%- if st.eyebrow != blank or st.title != blank -%}
+      <motion-element
+        data-motion="{{ settings.scroll_animation }}"
+        {% if settings.scroll_animation == 'none' %}hold{% endif %}
+        class="section__header brk-social__head block text-center"
+      >
+        {%- if st.eyebrow != blank -%}<span class="brk-social__eyebrow">{{ st.eyebrow }}</span>{%- endif -%}
+        {%- if st.title != blank -%}
+          <h2 class="section__header-heading heading-letter-spacing mt-0 mb-0">{{ st.title }}</h2>
+        {%- endif -%}
+      </motion-element>
+    {%- endif -%}
+    <div class="brk-social__track">
+      {%- assign shown = 0 -%}
+      {%- for group in section.blocks -%}
+        {%- assign idx = forloop.index0 | append: '' -%}
+        {%- unless matched_ids contains idx -%}{%- continue -%}{%- endunless -%}
+        {%- for i in (1..6) -%}
+          {%- liquid
+            if shown >= max_videos
+              break
+            endif
+            assign vid_key = 'video_' | append: i
+            assign vid = group.settings[vid_key]
+            if vid == blank
+              continue
+            endif
+
+            comment
+              Fonte mp4 mais leve com pelo menos 480px de largura (cards têm ~300px)
+            endcomment
+            assign vid_src = nil
+            for s in vid.sources
+              if s.format != 'mp4'
+                continue
+              endif
+              if vid_src == nil
+                assign vid_src = s
+              elsif s.width >= 480 and vid_src.width < 480
+                assign vid_src = s
+              elsif s.width >= 480 and s.width < vid_src.width
+                assign vid_src = s
+              elsif vid_src.width < 480 and s.width > vid_src.width
+                assign vid_src = s
+              endif
+            endfor
+            if vid_src == nil
+              continue
+            endif
+            assign shown = shown | plus: 1
+
+            comment
+              @ do influencer: campo do grupo; se vazio, usa o texto alternativo do vídeo quando começa com @
+            endcomment
+            assign inf_key = 'influencer_' | append: i
+            assign inf = group.settings[inf_key] | strip | remove: '@'
+            if inf == blank
+              assign vid_alt = vid.alt | strip
+              assign alt_first = vid_alt | slice: 0
+              if alt_first == '@'
+                assign inf = vid_alt | split: ' ' | first | remove: '@'
+              endif
+            endif
+
+            comment
+              Produto do card: o escolhido no vídeo ou, se vazio, o próprio produto da página
+            endcomment
+            assign prod_key = 'product_' | append: i
+            assign card_product = group.settings[prod_key] | default: product
+          -%}
+          <div class="brk-social__card" {{ group.shopify_attributes }}>
+            {%- if inf != blank -%}
+              <span class="brk-social__influencer">
+                @{{ inf }}
+                <svg class="brk-social__verified" viewBox="0 0 24 24" aria-label="Verificado" role="img">
+                  <path fill="#1d9bf0" d="M22.5 12.5c0-1.58-.88-2.95-2.18-3.65.15-.44.23-.91.23-1.4 0-2.21-1.71-3.99-3.82-3.99-.47 0-.92.08-1.34.25C14.79 2.38 13.49 1.5 12 1.5s-2.79.88-3.39 2.21c-.42-.17-.87-.25-1.34-.25-2.11 0-3.82 1.78-3.82 3.99 0 .49.08.96.23 1.4-1.3.7-2.18 2.07-2.18 3.65 0 1.5.79 2.8 1.97 3.53-.03.24-.05.48-.05.72 0 2.21 1.71 3.99 3.82 3.99.47 0 .92-.09 1.34-.25.6 1.33 1.9 2.21 3.39 2.21s2.79-.88 3.39-2.21c.42.16.87.25 1.34.25 2.11 0 3.82-1.78 3.82-3.99 0-.24-.02-.48-.05-.72 1.17-.73 1.97-2.03 1.97-3.53z"/>
+                  <path fill="#fff" d="M10.54 16.2 6.8 12.46l1.41-1.41 2.26 2.26 4.8-5.23 1.47 1.35z"/>
+                </svg>
+              </span>
+            {%- endif -%}
+            <video
+              class="brk-social__video"
+              muted
+              loop
+              playsinline
+              preload="none"
+              {% if vid.preview_image %}data-poster="{{ vid.preview_image | image_url: width: 600 }}"{% endif %}
+              aria-label="{{ vid.alt | default: st.title | escape }}"
+            >
+              <source src="{{ vid_src.url }}" type="{{ vid_src.mime_type }}">
+            </video>
+            {%- if card_product -%}
+              <a class="brk-social__product" href="{{ card_product.url }}" draggable="false">
+                {%- if card_product.featured_image -%}
+                  {{-
+                    card_product.featured_image
+                    | image_url: width: 120
+                    | image_tag:
+                      class: 'brk-social__product-img',
+                      loading: 'lazy',
+                      width: 48,
+                      height: 48,
+                      draggable: 'false',
+                      alt: card_product.featured_image.alt
+                  -}}
+                {%- endif -%}
+                <span class="brk-social__product-info">
+                  <span class="brk-social__product-title">{{ card_product.title }}</span>
+                  <span class="brk-social__product-price">
+                    {%- if card_product.compare_at_price > card_product.price -%}
+                      <s>{{ card_product.compare_at_price | money }}</s>
+                    {%- endif -%}
+                    {{ card_product.price | money }}
+                  </span>
+                </span>
+              </a>
+            {%- endif -%}
+          </div>
+        {%- endfor -%}
+      {%- endfor -%}
+    </div>
+  </brk-social-proof>
+{%- endif -%}
+
+{% javascript %}
+  if (!customElements.get('brk-social-proof')) {
+    customElements.define('brk-social-proof', class extends HTMLElement {
+      // Custom element: reinicia sozinho quando o editor re-renderiza a seção
+      connectedCallback() {
+        const track = this.querySelector('.brk-social__track');
+        const videos = [...this.querySelectorAll('.brk-social__video')];
+        if (!track || !videos.length) return;
+        const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        // Posters só quando a seção chega perto da tela, para não disputar banda com a galeria
+        this.posterIo = new IntersectionObserver((entries, io) => {
+          if (!entries.some((e) => e.isIntersecting)) return;
+          io.disconnect();
+          videos.forEach((v) => {
+            if (v.dataset.poster) { v.poster = v.dataset.poster; v.removeAttribute('data-poster'); }
+          });
+        }, { rootMargin: '400px 0px' });
+        this.posterIo.observe(this);
+
+        // Toca só os vídeos visíveis; pausa os que saem. Com "reduzir movimento", só toca no toque.
+        if (reduceMotion) {
+          track.classList.add('is-manual');
+          videos.forEach((v) => v.parentElement.addEventListener('click', (e) => {
+            if (e.target.closest('a')) return;
+            v.paused ? v.play().catch(() => {}) : v.pause();
+          }));
+        } else {
+          this.playIo = new IntersectionObserver((entries) => {
+            entries.forEach((e) => {
+              if (e.isIntersecting) e.target.play().catch(() => {});
+              else e.target.pause();
+            });
+          }, { threshold: 0.25 });
+          videos.forEach((v) => this.playIo.observe(v));
+        }
+
+        // Desktop: começa centralizado (cards cortados nas duas pontas)
+        if (matchMedia('(min-width: 768px)').matches) {
+          track.scrollLeft = (track.scrollWidth - track.clientWidth) / 2;
+        }
+
+        // Arrastar com o mouse; o ponteiro só é capturado depois que vira arraste
+        let startX = 0, startScroll = 0, down = false, moved = false;
+        track.addEventListener('pointerdown', (e) => {
+          if (e.pointerType !== 'mouse') return;
+          down = true; moved = false; startX = e.clientX; startScroll = track.scrollLeft;
+        });
+        track.addEventListener('pointermove', (e) => {
+          if (!down) return;
+          const dx = e.clientX - startX;
+          if (!moved && Math.abs(dx) > 4) {
+            moved = true;
+            track.classList.add('is-dragging');
+            track.setPointerCapture(e.pointerId);
+          }
+          if (moved) track.scrollLeft = startScroll - dx;
+        });
+        const end = () => {
+          if (!down) return;
+          down = false;
+          if (moved) {
+            const left = track.scrollLeft;
+            track.classList.remove('is-dragging');
+            track.scrollLeft = left;
+          }
+        };
+        track.addEventListener('pointerup', end);
+        track.addEventListener('pointercancel', end);
+        // Clique no card de produto não conta se foi um arraste
+        track.addEventListener('click', (e) => {
+          if (moved) { e.preventDefault(); e.stopPropagation(); moved = false; }
+        }, true);
+      }
+
+      disconnectedCallback() {
+        this.posterIo?.disconnect();
+        this.playIo?.disconnect();
+      }
+    });
+  }
+{% endjavascript %}
+
+{% stylesheet %}
+  .brk-social {
+    --brk-social-accent: #085b47;
+    --brk-social-eyebrow: #a06a24;
+    --brk-social-text: var(--color-heading, #111);
+    --brk-social-radius: 5px;
+    --brk-social-gap: 1.2rem;
+    display: block;
+    padding-top: var(--section-pt);
+    padding-bottom: var(--section-pb);
+    overflow-x: clip;
+    /* Pula a renderização enquanto está fora da tela; "auto" lembra a altura real depois da 1ª vez */
+    content-visibility: auto;
+    contain-intrinsic-size: auto 540px;
+  }
+  /* Cabeçalho no padrão do tema (section__header) com o eyebrow dos blocos BRK */
+  .brk-social__head {
+    margin: 0 1.6rem 2rem;
+  }
+  .brk-social__eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin-bottom: 0.6rem;
+    font-family: var(--body-font);
+    font-size: 1.2rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--brk-social-eyebrow);
+  }
+  .brk-social__eyebrow::before,
+  .brk-social__eyebrow::after {
+    content: '';
+    width: 2.6rem;
+    height: 1px;
+    background: currentColor;
+    opacity: 0.6;
+  }
+  .brk-social__track {
+    display: flex;
+    gap: var(--brk-social-gap);
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-padding: 0 1.6rem;
+    padding: 0 1.6rem;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  .brk-social__track::-webkit-scrollbar {
+    display: none;
+  }
+  .brk-social__track.is-dragging {
+    scroll-snap-type: none;
+    cursor: grabbing;
+    user-select: none;
+  }
+  .brk-social__card {
+    position: relative;
+    flex: 0 0 78%;
+    aspect-ratio: 3 / 4;
+    border-radius: var(--brk-social-radius);
+    overflow: hidden;
+    background: #f4efe4;
+    scroll-snap-align: start;
+  }
+  .brk-social__track.is-manual .brk-social__card {
+    cursor: pointer;
+  }
+  .brk-social__video {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none;
+  }
+  .brk-social__influencer {
+    position: absolute;
+    top: 1.2rem;
+    left: 1.2rem;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    max-width: calc(100% - 2.4rem);
+    padding: 0.6rem 1rem;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.72);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    font-family: var(--body-font);
+    font-size: 1.3rem;
+    font-weight: 600;
+    line-height: 1;
+    color: var(--brk-social-text);
+    pointer-events: none;
+  }
+  .brk-social__verified {
+    width: 1.5rem;
+    height: 1.5rem;
+    flex: none;
+  }
+  .brk-social__product {
+    position: absolute;
+    left: 1rem;
+    right: 1rem;
+    bottom: 1rem;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.8rem;
+    border-radius: var(--brk-social-radius);
+    background: rgba(255, 255, 255, 0.72);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    color: var(--brk-social-text);
+    text-decoration: none;
+  }
+  .brk-social__product-img {
+    width: 4.8rem;
+    height: 4.8rem;
+    flex: none;
+    border-radius: 3px;
+    object-fit: cover;
+    background: #fff;
+  }
+  .brk-social__product-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    min-width: 0;
+    font-family: var(--body-font);
+  }
+  .brk-social__product-title {
+    font-size: 1.3rem;
+    line-height: 1.25;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .brk-social__product-price {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--brk-social-accent);
+  }
+  .brk-social__product-price s {
+    margin-right: 0.4rem;
+    font-weight: 400;
+    color: #6b665b;
+  }
+  .brk-social__editor-hint {
+    max-width: 120rem;
+    margin: 1.2rem auto;
+    padding: 1.2rem;
+    border: 1px dashed #c4c4c4;
+    font-family: var(--body-font);
+    font-size: 1.3rem;
+    color: #6b665b;
+  }
+  @media (min-width: 768px) {
+    .brk-social {
+      --brk-social-gap: 1.8rem;
+      contain-intrinsic-size: auto 560px;
+    }
+    .brk-social__head {
+      margin-bottom: 3.3rem;
+    }
+    /* respiro nas pontas: sem isso o 1º/último card encosta na borda da página */
+    .brk-social__track {
+      padding: 0 3rem;
+      scroll-padding: 0 3rem;
+    }
+    .brk-social__card {
+      flex-basis: clamp(200px, 21vw, 320px);
+      scroll-snap-align: center;
+      cursor: grab;
+    }
+    /* Poucos vídeos que cabem na tela: centraliza sem rolagem */
+    .brk-social__track::before,
+    .brk-social__track::after {
+      content: '';
+      flex: 1 0 0;
+      margin-left: calc(var(--brk-social-gap) * -1);
+    }
+    .brk-social__track::after {
+      margin-left: 0;
+      margin-right: calc(var(--brk-social-gap) * -1);
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "BRK Prova social",
+  "tag": "section",
+  "class": "sec__brk-social",
+  "enabled_on": {
+    "templates": ["product"]
+  },
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Um grupo de vídeos por linha de produto. No editor, uma faixa tracejada mostra qual grupo está aparecendo neste produto (ou os SKUs e tags dele, quando nenhum casa)."
+    },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Quem usa, aprova" },
+    { "type": "text", "id": "title", "label": "Título", "default": "Feito para quem vive o agro de verdade" },
+    {
+      "type": "select",
+      "id": "match_mode",
+      "label": "Quando mais de um grupo casar",
+      "options": [
+        { "value": "first", "label": "Mostrar só o primeiro (ordem dos blocos)" },
+        { "value": "all", "label": "Juntar os vídeos de todos" }
+      ],
+      "default": "first",
+      "info": "No modo \"primeiro\", deixe os grupos específicos (tags, nome) acima dos genéricos (ex.: SKU C0)."
+    },
+    { "type": "range", "id": "max_videos", "label": "Máximo de vídeos", "min": 2, "max": 12, "step": 1, "default": 8 },
+    { "type": "color", "id": "accent_color", "label": "Cor de destaque (preço)", "default": "#085b47" },
+    { "type": "color", "id": "eyebrow_color", "label": "Cor do eyebrow", "default": "#a06a24" },
+    { "type": "range", "id": "padding_top", "label": "Espaço acima", "min": 0, "max": 100, "step": 5, "unit": "px", "default": 35 },
+    { "type": "range", "id": "padding_bottom", "label": "Espaço abaixo", "min": 0, "max": 100, "step": 5, "unit": "px", "default": 35 }
+  ],
+  "blocks": [
+    {
+      "type": "video_group",
+      "name": "Grupo de vídeos",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Nome do grupo", "info": "Só para organizar o editor (ex.: Bonés, Camisas Cavalos)" },
+        { "type": "checkbox", "id": "enabled", "label": "Grupo ligado", "default": true },
+        { "type": "header", "content": "Onde aparece" },
+        {
+          "type": "paragraph",
+          "content": "Regras preenchidas precisam casar todas; dentro de cada regra, vírgula = qualquer um dos termos."
+        },
+        { "type": "text", "id": "sku_prefixes", "label": "SKU começa com", "info": "Ex.: C0  ou  CASUAL, CF  ou  CBTML, CBTMC" },
+        { "type": "text", "id": "title_prefixes", "label": "Nome do produto começa com", "info": "Ignora acento e maiúsculas. Ex.: Boné  ou  Camiseta" },
+        { "type": "text", "id": "tags", "label": "Tem alguma das tags", "info": "Tag inteira. Ex.: Cavalos, Cavalos 2026" },
+        { "type": "text", "id": "exclude_skus", "label": "Não aparece se SKU começa com", "info": "Ex.: CMB (tira as Camisas Work de um grupo CM)" },
+        {
+          "type": "product_list",
+          "id": "products",
+          "label": "Produtos específicos",
+          "limit": 50,
+          "info": "Sempre mostram este grupo, mesmo sem casar com as regras"
+        },
+        { "type": "header", "content": "Vídeo 1" },
+        { "type": "video", "id": "video_1", "label": "Vídeo 1" },
+        { "type": "text", "id": "influencer_1", "label": "@ do influencer", "info": "Se vazio, usa o texto alternativo do vídeo quando ele começa com @" },
+        { "type": "product", "id": "product_1", "label": "Produto do card", "info": "Se vazio, usa o produto da própria página" },
+        { "type": "header", "content": "Vídeo 2" },
+        { "type": "video", "id": "video_2", "label": "Vídeo 2" },
+        { "type": "text", "id": "influencer_2", "label": "@ do influencer" },
+        { "type": "product", "id": "product_2", "label": "Produto do card" },
+        { "type": "header", "content": "Vídeo 3" },
+        { "type": "video", "id": "video_3", "label": "Vídeo 3" },
+        { "type": "text", "id": "influencer_3", "label": "@ do influencer" },
+        { "type": "product", "id": "product_3", "label": "Produto do card" },
+        { "type": "header", "content": "Vídeo 4" },
+        { "type": "video", "id": "video_4", "label": "Vídeo 4" },
+        { "type": "text", "id": "influencer_4", "label": "@ do influencer" },
+        { "type": "product", "id": "product_4", "label": "Produto do card" },
+        { "type": "header", "content": "Vídeo 5" },
+        { "type": "video", "id": "video_5", "label": "Vídeo 5" },
+        { "type": "text", "id": "influencer_5", "label": "@ do influencer" },
+        { "type": "product", "id": "product_5", "label": "Produto do card" },
+        { "type": "header", "content": "Vídeo 6" },
+        { "type": "video", "id": "video_6", "label": "Vídeo 6" },
+        { "type": "text", "id": "influencer_6", "label": "@ do influencer" },
+        { "type": "product", "id": "product_6", "label": "Produto do card" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "BRK Prova social",
+      "blocks": [
+        { "type": "video_group" }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -743,6 +743,206 @@
         "padding_bottom": 15,
         "reset_spacing": true
       }
+    },
+    "brk_prova_social": {
+      "type": "brk-prova-social",
+      "blocks": {
+        "group_01": {
+          "type": "video_group",
+          "settings": {
+            "title": "Bonés",
+            "enabled": true,
+            "sku_prefixes": "",
+            "title_prefixes": "Boné",
+            "tags": "",
+            "exclude_skus": ""
+          }
+        },
+        "group_02": {
+          "type": "video_group",
+          "settings": {
+            "title": "Óculos",
+            "enabled": true,
+            "sku_prefixes": "",
+            "title_prefixes": "Óculos",
+            "tags": "",
+            "exclude_skus": ""
+          }
+        },
+        "group_03": {
+          "type": "video_group",
+          "settings": {
+            "title": "Camisas Cavalos",
+            "enabled": true,
+            "sku_prefixes": "C0",
+            "title_prefixes": "",
+            "tags": "Cavalos, Cavalos 2026, Rodeio e Vaquejada",
+            "exclude_skus": ""
+          }
+        },
+        "group_04": {
+          "type": "video_group",
+          "settings": {
+            "title": "Camisas Fé (São Bento / N. Senhora)",
+            "enabled": true,
+            "sku_prefixes": "C0",
+            "title_prefixes": "",
+            "tags": "São Bento, Nossa Senhora, São Bento e Nossa Senhora, Nossa Senhora 2026, Peregrinação",
+            "exclude_skus": ""
+          }
+        },
+        "group_05": {
+          "type": "video_group",
+          "settings": {
+            "title": "Camisas Tratores e Máquinas",
+            "enabled": true,
+            "sku_prefixes": "C0",
+            "title_prefixes": "",
+            "tags": "Tratores e Máquinas, Máquinas Pesadas, Máquinas Pesadas - Fem, Maquinário Pesado, Drone de Agricultura",
+            "exclude_skus": ""
+          }
+        },
+        "group_06": {
+          "type": "video_group",
+          "settings": {
+            "title": "Camisas Pecuária / Gado",
+            "enabled": true,
+            "sku_prefixes": "C0",
+            "title_prefixes": "",
+            "tags": "Pecuária, Gado, Gado de Corte, Gado Leiteiro, Meninos da Pecuária",
+            "exclude_skus": ""
+          }
+        },
+        "group_07": {
+          "type": "video_group",
+          "settings": {
+            "title": "Camisas Camuflado e Caça",
+            "enabled": true,
+            "sku_prefixes": "C0",
+            "title_prefixes": "",
+            "tags": "Camuflado e Caça",
+            "exclude_skus": ""
+          }
+        },
+        "group_08": {
+          "type": "video_group",
+          "settings": {
+            "title": "Camisas Femininas UV",
+            "enabled": true,
+            "sku_prefixes": "C0",
+            "title_prefixes": "",
+            "tags": "Feminino",
+            "exclude_skus": ""
+          }
+        },
+        "group_09": {
+          "type": "video_group",
+          "settings": {
+            "title": "Camisas Kids",
+            "enabled": true,
+            "sku_prefixes": "CI",
+            "title_prefixes": "",
+            "tags": "",
+            "exclude_skus": ""
+          }
+        },
+        "group_10": {
+          "type": "video_group",
+          "settings": {
+            "title": "Camisas com Capuz",
+            "enabled": true,
+            "sku_prefixes": "HYB, CCPBR",
+            "title_prefixes": "",
+            "tags": "",
+            "exclude_skus": ""
+          }
+        },
+        "group_11": {
+          "type": "video_group",
+          "settings": {
+            "title": "Camisetas Casual",
+            "enabled": true,
+            "sku_prefixes": "CASUAL, CF, PM",
+            "title_prefixes": "",
+            "tags": "",
+            "exclude_skus": ""
+          }
+        },
+        "group_12": {
+          "type": "video_group",
+          "settings": {
+            "title": "Raglan / Segunda pele",
+            "enabled": true,
+            "sku_prefixes": "RAGLAN",
+            "title_prefixes": "",
+            "tags": "",
+            "exclude_skus": ""
+          }
+        },
+        "group_13": {
+          "type": "video_group",
+          "settings": {
+            "title": "Camisas de Botão / Work",
+            "enabled": true,
+            "sku_prefixes": "CBTML, CBTMC, CMB",
+            "title_prefixes": "",
+            "tags": "",
+            "exclude_skus": ""
+          }
+        },
+        "group_14": {
+          "type": "video_group",
+          "settings": {
+            "title": "Camisas Manga Curta",
+            "enabled": true,
+            "sku_prefixes": "CM",
+            "title_prefixes": "",
+            "tags": "",
+            "exclude_skus": "CMB"
+          }
+        },
+        "group_15": {
+          "type": "video_group",
+          "settings": {
+            "title": "Camisas Brasil Patriota",
+            "enabled": true,
+            "sku_prefixes": "BP",
+            "title_prefixes": "",
+            "tags": "",
+            "exclude_skus": ""
+          }
+        },
+        "group_16": {
+          "type": "video_group",
+          "settings": {
+            "title": "Camisas UV (todas C0)",
+            "enabled": true,
+            "sku_prefixes": "C0",
+            "title_prefixes": "",
+            "tags": "",
+            "exclude_skus": ""
+          }
+        }
+      },
+      "block_order": [
+        "group_01",
+        "group_02",
+        "group_03",
+        "group_04",
+        "group_05",
+        "group_06",
+        "group_07",
+        "group_08",
+        "group_09",
+        "group_10",
+        "group_11",
+        "group_12",
+        "group_13",
+        "group_14",
+        "group_15",
+        "group_16"
+      ],
+      "settings": {}
     }
   },
   "order": [
@@ -750,6 +950,7 @@
     "main",
     "brk_benefits",
     "product_brk_description",
+    "brk_prova_social",
     "product-set",
     "divider_E3r6ih",
     "scrolling_text_b38KNQ",
