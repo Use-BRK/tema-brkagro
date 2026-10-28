@@ -1040,6 +1040,7 @@
         "type": "text",
         "id": "scarcity_text_single",
         "label": "Texto (1 unidade)",
+        "info": "Também usado na tarja \"Restam XX unidades\" quando sobra só 1.",
         "default": "Última unidade"
       }
     ]

@@ -45,7 +45,7 @@
       assign stock_strip_count = '0' | append: stock_strip_count
     endif
     if stock_strip_total == 1
-      assign stock_strip_label = 'Resta ' | append: stock_strip_count | append: ' unidade'
+      assign stock_strip_label = settings.scarcity_text_single | default: 'Última unidade' | escape
     else
       assign stock_strip_label = 'Restam ' | append: stock_strip_count | append: ' unidades'
     endif
