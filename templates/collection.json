@@ -179,7 +179,7 @@
         ],
         "show_card_sizes": true,
         "show_stock_strip": true,
-        "stock_strip_threshold": 9,
+        "stock_strip_threshold": 10,
         "stock_strip_collections": [
           "envios-imediatos",
           "brasil-patriota-2026"

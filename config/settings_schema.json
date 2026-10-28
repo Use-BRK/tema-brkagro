@@ -962,6 +962,54 @@
       },
       {
         "type": "header",
+        "content": "Badge Quase Acabando",
+        "info": "Automática: aparece quando o estoque somado de todas as variantes fica dentro da faixa abaixo. Abaixo do mínimo, quem aparece é a tarja \"Restam XX unidades\". Não aparece em produtos sem rastreio de estoque ou que vendem sem estoque."
+      },
+      {
+        "type": "checkbox",
+        "id": "show_low_stock_badge",
+        "label": "Mostrar badge Quase Acabando",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "low_stock_badge_text",
+        "label": "Texto da badge",
+        "default": "🔥 QUASE ACABANDO"
+      },
+      {
+        "type": "text",
+        "id": "low_stock_badge_product_type",
+        "label": "Só em tipos de produto que contenham",
+        "info": "Ex.: \"Camis\" pega Camisa Agro, Camiseta Agro e Camisa Work. Deixe vazio para todos os produtos.",
+        "default": "Camis"
+      },
+      {
+        "type": "number",
+        "id": "low_stock_badge_min",
+        "label": "Estoque mínimo",
+        "default": 11
+      },
+      {
+        "type": "number",
+        "id": "low_stock_badge_max",
+        "label": "Estoque máximo",
+        "default": 30
+      },
+      {
+        "type": "color",
+        "id": "low_stock_badge_color",
+        "label": "Cor do texto",
+        "default": "#ffffff"
+      },
+      {
+        "type": "color",
+        "id": "low_stock_badge_background",
+        "label": "Cor de fundo",
+        "default": "#000000"
+      },
+      {
+        "type": "header",
         "content": "Medidor de escassez",
         "info": "Aparece no rodapé da imagem do produto (vitrines e coleções) quando o estoque somado de todas as variantes rastreadas fica igual ou abaixo do limite."
       },

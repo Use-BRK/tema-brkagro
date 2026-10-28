@@ -182,6 +182,29 @@
       assign show_imported_badge = true
     endif
   endif
+  # Badge "Quase Acabando" automática por estoque: Configurações do tema > Badges > Badge Quase Acabando
+  assign show_low_stock_badge = false
+  if settings.show_low_stock_badge and card_product.available
+    assign low_stock_type = settings.low_stock_badge_product_type | strip
+    if low_stock_type == blank or card_product.type contains low_stock_type
+      assign low_stock_min = settings.low_stock_badge_min | default: 11
+      assign low_stock_max = settings.low_stock_badge_max | default: 30
+      assign low_stock_total = 0
+      assign low_stock_tracked = true
+      for low_stock_variant in card_product.variants
+        if low_stock_variant.inventory_management == blank or low_stock_variant.inventory_policy == 'continue'
+          assign low_stock_tracked = false
+          break
+        endif
+        if low_stock_variant.inventory_quantity > 0
+          assign low_stock_total = low_stock_total | plus: low_stock_variant.inventory_quantity
+        endif
+      endfor
+      if low_stock_tracked and low_stock_total >= low_stock_min and low_stock_total <= low_stock_max
+        assign show_low_stock_badge = true
+      endif
+    endif
+  endif
 -%}
 {%- if sale
   or sold_out
@@ -192,6 +215,7 @@
   or show_envio_imediato_badge
   or card_product.tags contains 'VIP'
   or show_imported_badge
+  or show_low_stock_badge
 -%}
   {% if show_product_badges %}
     <div
@@ -217,6 +241,15 @@
           {{ card_product.metafields.custom.custom_product_badge }}
         </div>
       {% endif %}
+      {%- if show_low_stock_badge -%}
+        {%- comment -%} Badge Quase Acabando: Configurações do tema > Badges > Badge Quase Acabando {%- endcomment -%}
+        <div
+          class="product__badges-custom product__badges-low-stock product__badges-inner align-self-start px-15 inline-flex content-center subheading_weight text-center lh-normal"
+          style="--badges-color: {{ settings.low_stock_badge_color | default: '#ffffff' }};--badges-bg: {{ settings.low_stock_badge_background | default: '#000000' }};"
+        >
+          {{ settings.low_stock_badge_text | default: '🔥 QUASE ACABANDO' | escape }}
+        </div>
+      {%- endif -%}
       {%- if card_product.tags contains 'VIP' -%}
         {%- comment -%} Badge VIP: cores em Configurações do tema > Badges > Badge VIP {%- endcomment -%}
         <div
