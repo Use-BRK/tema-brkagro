@@ -1322,6 +1322,28 @@ input.option-disabled + .miniatura-swatch {
   width: 11px;
   height: 11px;
 }
+/* Mobile: cards em 2 colunas, badges menores para não tampar a foto */
+@media (max-width: 749.98px) {
+  .product-item .product__badges {
+    top: 4px;
+    left: 4px;
+    --gap: 2 !important;
+  }
+  .product-item .product__badges-inner {
+    padding-block: 1px !important;
+    padding-inline: 4px !important;
+    font-size: 7.5px !important;
+    border-radius: 2px;
+    letter-spacing: 0;
+  }
+  .product-item .product__badges-inner svg {
+    width: 9px;
+    height: 9px;
+  }
+  [dir="rtl"] .product-item .product__badges {
+    right: 4px;
+  }
+}
 [dir="rtl"] .product-item .product__badges {
   left: auto;
   right: 6px;
