@@ -15,10 +15,9 @@
         "slider_item_N78qVx": {
           "type": "slider_item",
           "name": "BLACKBLACKBLACKBLACKBLACK",
-          "disabled": true,
           "settings": {
-            "image": "shopify://shop_images/BANNER_ESQUENTA_BLACK.jpg",
-            "image_mobile": "shopify://shop_images/69ef29d7-2240-4a43-83c9-2c168f2cfe36.png",
+            "image": "shopify://shop_images/BANNER_ESQUENTA_BRK.jpg",
+            "image_mobile": "shopify://shop_images/MOBILE_ESQUENTA_BRK.jpg",
             "overlay_opacity": 0,
             "link_banner": "shopify://collections/envios-imediatos",
             "slider_effect": "fade-in-right",
