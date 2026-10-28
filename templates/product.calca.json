@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "breadcrumb": {
@@ -381,17 +390,29 @@
             "video_1": "shopify://files/videos/Gabriela Renata.MOV",
             "influencer_1": "@gabrielarenata.nunes",
             "product_1": "",
+            "collection_1": "",
+            "collection_text_1": "Conheça a coleção",
             "video_2": "shopify://files/videos/Gabriela Renata 2.MOV",
             "influencer_2": "@gabrielarenata.nunes",
             "product_2": "",
+            "collection_2": "",
+            "collection_text_2": "Conheça a coleção",
             "influencer_3": "",
             "product_3": "",
+            "collection_3": "",
+            "collection_text_3": "Conheça a coleção",
             "influencer_4": "",
             "product_4": "",
+            "collection_4": "",
+            "collection_text_4": "Conheça a coleção",
             "influencer_5": "",
             "product_5": "",
+            "collection_5": "",
+            "collection_text_5": "Conheça a coleção",
             "influencer_6": "",
-            "product_6": ""
+            "product_6": "",
+            "collection_6": "",
+            "collection_text_6": "Conheça a coleção"
           }
         },
         "video_group_giHttA": {
@@ -407,18 +428,30 @@
             "video_1": "shopify://files/videos/edmilson_do_agro_ (1).mp4",
             "influencer_1": "@edimilson_do_agro_",
             "product_1": "",
+            "collection_1": "",
+            "collection_text_1": "Conheça a coleção",
             "video_2": "shopify://files/videos/Dailson Neiva.MOV",
             "influencer_2": "@dailsonneiva",
             "product_2": "",
+            "collection_2": "",
+            "collection_text_2": "Conheça a coleção",
             "video_3": "shopify://files/videos/Feed agro.mp4",
             "influencer_3": "@nanfelixg",
             "product_3": "",
+            "collection_3": "",
+            "collection_text_3": "Conheça a coleção",
             "influencer_4": "",
             "product_4": "",
+            "collection_4": "",
+            "collection_text_4": "Conheça a coleção",
             "influencer_5": "",
             "product_5": "",
+            "collection_5": "",
+            "collection_text_5": "Conheça a coleção",
             "influencer_6": "",
-            "product_6": ""
+            "product_6": "",
+            "collection_6": "",
+            "collection_text_6": "Conheça a coleção"
           }
         },
         "video_group_h93Cxx": {
@@ -434,21 +467,33 @@
             "video_1": "shopify://files/videos/BOTINA_MORGAN_INDIV.mp4",
             "influencer_1": "@brkagro_ofc",
             "product_1": "botina-masculina-morgan-whisky-brk-agro",
+            "collection_1": "",
+            "collection_text_1": "Conheça a coleção",
             "video_2": "shopify://files/videos/botina_Desert_INDIV.mp4",
             "influencer_2": "@brkagro_ofc",
             "product_2": "botina-masculina-desert-areia-brk-agro",
+            "collection_2": "",
+            "collection_text_2": "Conheça a coleção",
             "video_3": "shopify://files/videos/botina_mustang_indiv.mp4",
             "influencer_3": "@brkagro_ofc",
             "product_3": "botina-masculina-mustang-whisky-brk-agro",
+            "collection_3": "",
+            "collection_text_3": "Conheça a coleção",
             "video_4": "shopify://files/videos/botina_dallas_INDIV.mp4",
             "influencer_4": "@brkagro_ofc",
             "product_4": "botina-feminina-dallas-all-black-brk-agro",
+            "collection_4": "",
+            "collection_text_4": "Conheça a coleção",
             "video_5": "shopify://files/videos/botina_stella_indiv.mp4",
             "influencer_5": "@brkagro_ofc",
             "product_5": "botina-feminina-stella-chocolate-brk-agro",
+            "collection_5": "",
+            "collection_text_5": "Conheça a coleção",
             "video_6": "shopify://files/videos/botina_montana_indiv.mp4",
             "influencer_6": "@brkagro_ofc",
-            "product_6": "botina-feminina-montana-canela-brk-agro"
+            "product_6": "botina-feminina-montana-canela-brk-agro",
+            "collection_6": "",
+            "collection_text_6": "Conheça a coleção"
           }
         },
         "group_02": {
@@ -463,16 +508,28 @@
             "products": [],
             "influencer_1": "",
             "product_1": "",
+            "collection_1": "",
+            "collection_text_1": "Conheça a coleção",
             "influencer_2": "",
             "product_2": "",
+            "collection_2": "",
+            "collection_text_2": "Conheça a coleção",
             "influencer_3": "",
             "product_3": "",
+            "collection_3": "",
+            "collection_text_3": "Conheça a coleção",
             "influencer_4": "",
             "product_4": "",
+            "collection_4": "",
+            "collection_text_4": "Conheça a coleção",
             "influencer_5": "",
             "product_5": "",
+            "collection_5": "",
+            "collection_text_5": "Conheça a coleção",
             "influencer_6": "",
-            "product_6": ""
+            "product_6": "",
+            "collection_6": "",
+            "collection_text_6": "Conheça a coleção"
           }
         },
         "group_16": {
@@ -488,21 +545,33 @@
             "video_1": "shopify://files/videos/Joao Victor Pinto.mp4",
             "influencer_1": "@joaovp.moraes",
             "product_1": "",
+            "collection_1": "",
+            "collection_text_1": "Conheça a coleção",
             "video_2": "shopify://files/videos/Érico Valente.MOV",
             "influencer_2": "@erico_valente",
             "product_2": "",
+            "collection_2": "",
+            "collection_text_2": "Conheça a coleção",
             "video_3": "shopify://files/videos/amandabaquero_ (1).mp4",
             "influencer_3": "@amandabaquero_",
             "product_3": "",
+            "collection_3": "",
+            "collection_text_3": "Conheça a coleção",
             "video_4": "shopify://files/videos/ledianesalake.mp4",
             "influencer_4": "@ledianesalake",
             "product_4": "",
+            "collection_4": "",
+            "collection_text_4": "Conheça a coleção",
             "video_5": "shopify://files/videos/eduardatosatto.mp4",
             "influencer_5": "@eduardatosatto",
             "product_5": "",
+            "collection_5": "",
+            "collection_text_5": "Conheça a coleção",
             "video_6": "shopify://files/videos/Mariana Bagio.mov",
             "influencer_6": "@marianabaggiofurtado",
-            "product_6": ""
+            "product_6": "",
+            "collection_6": "",
+            "collection_text_6": "Conheça a coleção"
           }
         }
       },
@@ -522,6 +591,225 @@
         "eyebrow_color": "#a06a24",
         "padding_top": 35,
         "padding_bottom": 35
+      }
+    },
+    "brk_highlights": {
+      "type": "brk-pdp-highlights",
+      "blocks": {
+        "tile_video": {
+          "type": "tile",
+          "settings": {
+            "video": "shopify://files/videos/calca-faixa-video.mp4",
+            "image_position": 0,
+            "mf_image": "",
+            "image_focal": "object-position: center center;",
+            "show_mobile": true,
+            "label_small": "",
+            "label_large": ""
+          }
+        },
+        "tile_campo": {
+          "type": "tile",
+          "settings": {
+            "image": "shopify://shop_images/calca-faixa-campo.png",
+            "image_position": 0,
+            "mf_image": "",
+            "image_focal": "object-position: center center;",
+            "show_mobile": true,
+            "label_small": "Para o",
+            "label_large": "Campo"
+          }
+        },
+        "tile_cidade": {
+          "type": "tile",
+          "settings": {
+            "image": "shopify://shop_images/recorte-faixa-cidade.png",
+            "image_position": 0,
+            "mf_image": "",
+            "image_focal": "object-position: center center;",
+            "show_mobile": true,
+            "label_small": "Para a",
+            "label_large": "Cidade"
+          }
+        },
+        "tile_lugares": {
+          "type": "tile",
+          "settings": {
+            "image": "shopify://shop_images/recorte-faixa-todos-os-lugares.png",
+            "image_position": 0,
+            "mf_image": "",
+            "image_focal": "object-position: center center;",
+            "show_mobile": true,
+            "label_small": "Para todos os",
+            "label_large": "Lugares"
+          }
+        }
+      },
+      "block_order": [
+        "tile_video",
+        "tile_campo",
+        "tile_cidade",
+        "tile_lugares"
+      ],
+      "settings": {
+        "section_width": "container",
+        "color_scheme": "",
+        "show_desktop": true,
+        "show_mobile": true,
+        "text_color": "#505050",
+        "eyebrow": "Feita para",
+        "heading": "Vestir a rotina",
+        "text": "<p>A Calça Jeans BRK Agro foi desenvolvida para quem busca resistência, conforto e durabilidade no dia a dia. Produzida em tecido 100% algodão, possui estrutura encorpada e costuras reforçadas para acompanhar a rotina no campo.</p><p>Com lavagem premium e modelagem country, oferece um visual autêntico e caimento ideal para o uso com botinas. A combinação perfeita entre funcionalidade, qualidade e estilo.</p>",
+        "accent_font": "noto_serif_n7",
+        "tile_ratio": "0.81",
+        "tile_radius": 18,
+        "label_bg": "#f2ecdc",
+        "label_opacity": 85,
+        "label_text": "#26180c",
+        "mobile_layout": "mixed",
+        "tile_ratio_mobile": "0.65",
+        "mf_namespace": "brk",
+        "mf_eyebrow": "",
+        "mf_heading": "",
+        "mf_text": "",
+        "padding_top": 36,
+        "padding_bottom": 24
+      }
+    },
+    "brk_cards": {
+      "type": "brk-pdp-cards",
+      "blocks": {
+        "card_algodao": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/recorte-card-algodao.png",
+            "image_position": 0,
+            "image_focal": "object-position: center center;",
+            "title": "Tecido 100% algodão",
+            "text": "<p>Tecido encorpado com costuras reforçadas, oferecendo resistência, conforto e durabilidade para acompanhar sua rotina.</p>",
+            "mf_image": "",
+            "mf_text": ""
+          }
+        },
+        "card_lavagem": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/recorte-card-lavagem.png",
+            "image_position": 0,
+            "image_focal": "object-position: center center;",
+            "title": "Lavagem premium",
+            "text": "<p>Acabamento especial que valoriza a tonalidade do jeans, proporcionando um visual sofisticado e autêntico.</p>",
+            "mf_image": "",
+            "mf_text": ""
+          }
+        },
+        "card_modelagem": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/recorte-card-modelagem.png",
+            "image_position": 0,
+            "image_focal": "object-position: center center;",
+            "title": "Modelagem country",
+            "text": "<p>Corte desenvolvido para oferecer conforto e caimento perfeito sobre a botina, unindo estilo e tradição country.</p>",
+            "mf_image": "",
+            "mf_text": ""
+          }
+        }
+      },
+      "block_order": [
+        "card_algodao",
+        "card_lavagem",
+        "card_modelagem"
+      ],
+      "settings": {
+        "section_width": "container",
+        "color_scheme": "",
+        "show_desktop": true,
+        "show_mobile": false,
+        "heading": "",
+        "columns": 3,
+        "image_ratio": "1.56",
+        "media_bg": "#f0f0f0",
+        "text_color": "#505050",
+        "mobile_carousel": true,
+        "mf_namespace": "brk",
+        "padding_top": 32,
+        "padding_bottom": 40
+      }
+    },
+    "brk_comparison": {
+      "type": "brk-pdp-comparison",
+      "blocks": {
+        "row_1": {
+          "type": "row",
+          "settings": {
+            "label": "Tecido",
+            "brand_value": "Encorpado",
+            "other_value": "Fino"
+          }
+        },
+        "row_2": {
+          "type": "row",
+          "settings": {
+            "label": "Composição",
+            "brand_value": "100% Algodão",
+            "other_value": "Variada"
+          }
+        },
+        "row_3": {
+          "type": "row",
+          "settings": {
+            "label": "Costura",
+            "brand_value": "Reforçada",
+            "other_value": "Convencional"
+          }
+        },
+        "row_4": {
+          "type": "row",
+          "settings": {
+            "label": "Modelagem",
+            "brand_value": "Reta Western",
+            "other_value": "Casual"
+          }
+        },
+        "row_5": {
+          "type": "row",
+          "settings": {
+            "label": "Barra para botina",
+            "brand_value": "Adaptado",
+            "other_value": "Nem sempre"
+          }
+        }
+      },
+      "block_order": [
+        "row_1",
+        "row_2",
+        "row_3",
+        "row_4",
+        "row_5"
+      ],
+      "settings": {
+        "section_width": "container",
+        "show_desktop": true,
+        "show_mobile": true,
+        "heading": "",
+        "image": "shopify://shop_images/calca-comparativo.png",
+        "image_position": 0,
+        "image_overlap": 48,
+        "image_mobile": false,
+        "band_mobile": false,
+        "col_label": "Característica",
+        "col_brand": "Jeans BRK",
+        "col_other": "Jeans comum",
+        "show_icons": true,
+        "band_bg": "#f2f2ee",
+        "table_bg": "#0d5c45",
+        "highlight_bg": "#446860",
+        "table_text": "#ffffff",
+        "mf_namespace": "brk",
+        "mf_image": "",
+        "padding_top": 24,
+        "padding_bottom": 56
       }
     },
     "brk_benefits": {
@@ -877,164 +1165,15 @@
         "padding_bottom": 15,
         "reset_spacing": true
       }
-    },
-    "brk_highlights": {
-      "type": "brk-pdp-highlights",
-      "blocks": {
-        "tile_video": {
-          "type": "tile",
-          "settings": {
-            "video": "shopify://files/videos/calca-faixa-video.mp4"
-          }
-        },
-        "tile_campo": {
-          "type": "tile",
-          "settings": {
-            "image": "shopify://shop_images/calca-faixa-campo.png",
-            "label_small": "Para o",
-            "label_large": "Campo"
-          }
-        },
-        "tile_cidade": {
-          "type": "tile",
-          "settings": {
-            "image": "shopify://shop_images/recorte-faixa-cidade.png",
-            "label_small": "Para a",
-            "label_large": "Cidade"
-          }
-        },
-        "tile_lugares": {
-          "type": "tile",
-          "settings": {
-            "image": "shopify://shop_images/recorte-faixa-todos-os-lugares.png",
-            "label_small": "Para todos os",
-            "label_large": "Lugares"
-          }
-        }
-      },
-      "block_order": [
-        "tile_video",
-        "tile_campo",
-        "tile_cidade",
-        "tile_lugares"
-      ],
-      "settings": {
-        "eyebrow": "Feita para",
-        "heading": "Vestir a rotina",
-        "text": "<p>A Calça Jeans BRK Agro foi desenvolvida para quem busca resistência, conforto e durabilidade no dia a dia. Produzida em tecido 100% algodão, possui estrutura encorpada e costuras reforçadas para acompanhar a rotina no campo.</p><p>Com lavagem premium e modelagem country, oferece um visual autêntico e caimento ideal para o uso com botinas. A combinação perfeita entre funcionalidade, qualidade e estilo.</p>",
-        "accent_font": "noto_serif_n7",
-        "padding_top": 56,
-        "padding_bottom": 24,
-        "mobile_layout": "mixed",
-        "tile_ratio_mobile": "0.65"
-      }
-    },
-    "brk_cards": {
-      "type": "brk-pdp-cards",
-      "blocks": {
-        "card_algodao": {
-          "type": "card",
-          "settings": {
-            "image": "shopify://shop_images/recorte-card-algodao.png",
-            "title": "Tecido 100% algodão",
-            "text": "<p>Tecido encorpado com costuras reforçadas, oferecendo resistência, conforto e durabilidade para acompanhar sua rotina.</p>"
-          }
-        },
-        "card_lavagem": {
-          "type": "card",
-          "settings": {
-            "image": "shopify://shop_images/recorte-card-lavagem.png",
-            "title": "Lavagem premium",
-            "text": "<p>Acabamento especial que valoriza a tonalidade do jeans, proporcionando um visual sofisticado e autêntico.</p>"
-          }
-        },
-        "card_modelagem": {
-          "type": "card",
-          "settings": {
-            "image": "shopify://shop_images/recorte-card-modelagem.png",
-            "title": "Modelagem country",
-            "text": "<p>Corte desenvolvido para oferecer conforto e caimento perfeito sobre a botina, unindo estilo e tradição country.</p>"
-          }
-        }
-      },
-      "block_order": [
-        "card_algodao",
-        "card_lavagem",
-        "card_modelagem"
-      ],
-      "settings": {
-        "padding_top": 32,
-        "padding_bottom": 40,
-        "show_mobile": false
-      }
-    },
-    "brk_comparison": {
-      "type": "brk-pdp-comparison",
-      "blocks": {
-        "row_1": {
-          "type": "row",
-          "settings": {
-            "label": "Tecido",
-            "brand_value": "Encorpado",
-            "other_value": "Fino"
-          }
-        },
-        "row_2": {
-          "type": "row",
-          "settings": {
-            "label": "Composição",
-            "brand_value": "100% Algodão",
-            "other_value": "Variada"
-          }
-        },
-        "row_3": {
-          "type": "row",
-          "settings": {
-            "label": "Costura",
-            "brand_value": "Reforçada",
-            "other_value": "Convencional"
-          }
-        },
-        "row_4": {
-          "type": "row",
-          "settings": {
-            "label": "Modelagem",
-            "brand_value": "Reta Western",
-            "other_value": "Casual"
-          }
-        },
-        "row_5": {
-          "type": "row",
-          "settings": {
-            "label": "Barra para botina",
-            "brand_value": "Adaptado",
-            "other_value": "Nem sempre"
-          }
-        }
-      },
-      "block_order": [
-        "row_1",
-        "row_2",
-        "row_3",
-        "row_4",
-        "row_5"
-      ],
-      "settings": {
-        "image": "shopify://shop_images/calca-comparativo.png",
-        "padding_top": 24,
-        "padding_bottom": 56,
-        "image_mobile": false,
-        "band_mobile": false
-      }
     }
   },
   "order": [
     "breadcrumb",
     "main",
+    "brk_prova_social",
     "brk_highlights",
     "brk_cards",
     "brk_comparison",
-    "brk_prova_social",
     "brk_benefits",
     "product-set",
     "divider_E3r6ih",
