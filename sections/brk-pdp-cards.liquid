@@ -1,0 +1,226 @@
+{%- comment -%}
+  BRK Descrição · Cards — grade de cards com foto, título e texto (ex.: Tecido 100% algodão / Lavagem premium).
+  Cada card escolhe a imagem assim (primeira que existir):
+  1. imagem de um metafield do produto (tipo arquivo);
+  2. imagem escolhida no editor;
+  3. foto do produto na posição informada da galeria.
+  O texto do card também pode vir de um metafield do produto, com o texto do bloco como reserva.
+{%- endcomment -%}
+{%- liquid
+  assign st = section.settings
+  assign product = product | default: closest.product
+  assign mf_ns = st.mf_namespace | default: 'brk'
+
+  assign visible_classes = ''
+  unless st.show_desktop
+    assign visible_classes = visible_classes | append: ' brk-cards--hide-desktop'
+  endunless
+  unless st.show_mobile
+    assign visible_classes = visible_classes | append: ' brk-cards--hide-mobile'
+  endunless
+-%}
+{%- if section.blocks.size > 0 -%}
+  <div
+    class="section brk-cards color-{{ st.color_scheme }} gradient{{ visible_classes }}"
+    style="
+      --brk-cards-pt: {{ st.padding_top }}px; --brk-cards-pb: {{ st.padding_bottom }}px;
+      --brk-cards-cols: {{ st.columns }}; --brk-cards-ratio: {{ st.image_ratio }};
+      --brk-cards-media-bg: {{ st.media_bg }};
+      {% if st.text_color != blank %}--brk-cards-text: {{ st.text_color }};{% endif %}
+    "
+  >
+    <div class="{{ st.section_width }}">
+      {%- if st.heading != blank -%}
+        <h2 class="brk-cards__heading">{{ st.heading }}</h2>
+      {%- endif -%}
+      <ul class="brk-cards__grid{% if st.mobile_carousel %} brk-cards__grid--carousel{% endif %}" role="list">
+        {%- for block in section.blocks -%}
+          {%- liquid
+            assign bs = block.settings
+            assign card_image = blank
+            if product != blank and bs.mf_image != blank
+              assign card_image = product.metafields[mf_ns][bs.mf_image].value
+            endif
+            if card_image == blank
+              assign card_image = bs.image
+            endif
+            if card_image == blank and product != blank and bs.image_position > 0
+              assign media_index = bs.image_position | minus: 1
+              assign card_image = product.media[media_index].preview_image
+            endif
+
+            assign card_text = bs.text
+            if product != blank and bs.mf_text != blank
+              assign mf_value = product.metafields[mf_ns][bs.mf_text]
+              if mf_value != blank
+                assign card_text = mf_value.value | newline_to_br | strip_newlines
+                assign card_text = '<p>' | append: card_text | append: '</p>' | replace: '<br /><br />', '</p><p>'
+              endif
+            endif
+          -%}
+          <li class="brk-cards__card" {{ block.shopify_attributes }}>
+            <div class="brk-cards__media">
+              {%- if card_image != blank -%}
+                {{
+                  card_image
+                  | image_url: width: 1200
+                  | image_tag:
+                    loading: 'lazy',
+                    widths: '360, 540, 720, 900, 1200',
+                    sizes: '(min-width: 990px) 33vw, 80vw',
+                    alt: bs.title,
+                    style: bs.image_focal
+                }}
+              {%- else -%}
+                {{ 'product-apparel-1' | placeholder_svg_tag: 'brk-cards__placeholder' }}
+              {%- endif -%}
+            </div>
+            <div class="brk-cards__body">
+              {%- if bs.title != blank -%}
+                <h3 class="brk-cards__title">{{ bs.title }}</h3>
+              {%- endif -%}
+              {%- if card_text != blank -%}
+                <div class="brk-cards__text">{{ card_text }}</div>
+              {%- endif -%}
+            </div>
+          </li>
+        {%- endfor -%}
+      </ul>
+    </div>
+  </div>
+{%- endif -%}
+
+{% stylesheet %}
+  /* Tamanhos em vw seguem o Figma (frame desktop de 1920px). */
+  .brk-cards { padding-top: var(--brk-cards-pt); padding-bottom: var(--brk-cards-pb); color: var(--brk-cards-text, var(--color-text)); }
+  .brk-cards__heading {
+    margin: 0 0 3.2rem; text-align: center; font-size: 2.4rem; font-weight: 600;
+    text-transform: uppercase; letter-spacing: .02em; color: var(--color-heading);
+  }
+  .brk-cards__grid {
+    list-style: none; margin: 0; padding: 0;
+    display: grid; grid-template-columns: repeat(var(--brk-cards-cols), minmax(0, 1fr)); gap: 2.4rem;
+  }
+  .brk-cards__card {
+    display: flex; flex-direction: column; overflow: hidden;
+    border: 1px solid rgba(var(--color-text-rgb), .2); border-radius: 8px; background: var(--color-background);
+  }
+  .brk-cards__media { aspect-ratio: var(--brk-cards-ratio); overflow: hidden; background: var(--brk-cards-media-bg); }
+  .brk-cards__media img,
+  .brk-cards__media svg { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .brk-cards__body { padding: clamp(1.6rem, 1.2vw, 2.4rem) clamp(1.6rem, 2.2vw, 4.4rem) clamp(2.4rem, 2.6vw, 5rem); text-align: center; }
+  .brk-cards__title {
+    margin: 0 0 1em; font-size: clamp(1.4rem, 1.3vw, 2.5rem); font-weight: 600; line-height: 1;
+    text-transform: uppercase; letter-spacing: 0; color: inherit;
+  }
+  .brk-cards__text { font-size: clamp(1.3rem, 1.3vw, 2.5rem); font-weight: 400; line-height: 1.2; }
+  .brk-cards__text p { margin: 0 0 1em; }
+  .brk-cards__text p:last-child { margin-bottom: 0; }
+
+  @media (min-width: 750px) {
+    .brk-cards--hide-desktop { display: none; }
+  }
+  @media (min-width: 1200px) {
+    .brk-cards__grid { gap: 3.2rem; }
+  }
+  @media (max-width: 749.98px) {
+    .brk-cards--hide-mobile { display: none; }
+    .brk-cards__heading { font-size: 2rem; margin-bottom: 2.4rem; }
+    .brk-cards__grid { grid-template-columns: 1fr; gap: 1.6rem; }
+    .brk-cards__grid--carousel {
+      display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none;
+      margin-inline: calc(-1 * var(--bs-gutter-x, 1.5rem)); padding-inline: var(--bs-gutter-x, 1.5rem);
+      scroll-padding-inline: var(--bs-gutter-x, 1.5rem);
+    }
+    .brk-cards__grid--carousel::-webkit-scrollbar { display: none; }
+    .brk-cards__grid--carousel .brk-cards__card { flex: 0 0 78%; scroll-snap-align: start; }
+    .brk-cards__body { padding: 1.6rem 1.6rem 2rem; }
+    .brk-cards__title { font-size: 4.267vw; }
+    .brk-cards__text { font-size: 3.733vw; }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "BRK Descrição · Cards",
+  "tag": "section",
+  "class": "brk-cards-section",
+  "settings": [
+    {
+      "type": "select",
+      "id": "section_width",
+      "label": "t:sections.all.section_width.label",
+      "options": [
+        { "value": "container", "label": "t:sections.all.section_width.container.label" },
+        { "value": "fluid_container", "label": "t:sections.all.section_width.fluid_container.label" },
+        { "value": "stretch_width", "label": "t:sections.all.section_width.stretch_width.label" },
+        { "value": "full_width", "label": "t:sections.all.section_width.full_width.label" }
+      ],
+      "default": "container"
+    },
+    { "type": "color_scheme", "id": "color_scheme", "label": "t:sections.all.color_scheme.label", "default": "scheme-1" },
+    { "type": "checkbox", "id": "show_desktop", "label": "Mostrar no desktop", "default": true },
+    { "type": "checkbox", "id": "show_mobile", "label": "Mostrar no mobile", "default": true },
+    { "type": "text", "id": "heading", "label": "Título (opcional)" },
+    { "type": "range", "id": "columns", "label": "Cards por linha no desktop", "min": 2, "max": 4, "step": 1, "default": 3 },
+    {
+      "type": "select",
+      "id": "image_ratio",
+      "label": "Formato da foto",
+      "options": [
+        { "value": "1.56", "label": "Paisagem (como no Figma)" },
+        { "value": "1.33", "label": "Paisagem 4:3" },
+        { "value": "1", "label": "Quadrado" },
+        { "value": "0.8", "label": "Retrato 4:5" }
+      ],
+      "default": "1.56"
+    },
+    { "type": "color", "id": "media_bg", "label": "Fundo atrás da foto", "default": "#f0f0f0" },
+    { "type": "color", "id": "text_color", "label": "Cor dos textos", "info": "Vazio = cor do esquema de cores.", "default": "#505050" },
+    { "type": "checkbox", "id": "mobile_carousel", "label": "Carrossel de arrastar no mobile", "info": "Desligado: um card embaixo do outro.", "default": true },
+    { "type": "header", "content": "Troca por produto (opcional)" },
+    { "type": "text", "id": "mf_namespace", "label": "Metafield: namespace", "default": "brk" },
+    { "type": "header", "content": "Espaçamento" },
+    { "type": "range", "id": "padding_top", "label": "Espaço acima", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 32 },
+    { "type": "range", "id": "padding_bottom", "label": "Espaço abaixo", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 56 }
+  ],
+  "blocks": [
+    {
+      "type": "card",
+      "name": "Card",
+      "limit": 8,
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Imagem" },
+        { "type": "number", "id": "image_position", "label": "Foto do produto: posição na galeria", "info": "Reserva quando não há imagem (1 = primeira). 0 = desligado.", "default": 0 },
+        {
+          "type": "select",
+          "id": "image_focal",
+          "label": "Enquadramento",
+          "options": [
+            { "value": "object-position: center center;", "label": "Centro" },
+            { "value": "object-position: center top;", "label": "Topo" },
+            { "value": "object-position: center bottom;", "label": "Base" }
+          ],
+          "default": "object-position: center center;"
+        },
+        { "type": "text", "id": "title", "label": "Título", "default": "Tecido 100% algodão" },
+        { "type": "richtext", "id": "text", "label": "Texto", "default": "<p>Tecido encorpado com costuras reforçadas, oferecendo resistência, conforto e durabilidade para acompanhar sua rotina.</p>" },
+        { "type": "header", "content": "Troca por produto (opcional)" },
+        { "type": "text", "id": "mf_image", "label": "Metafield de imagem", "info": "Chave de um metafield do tipo arquivo. Troca a foto só naquele produto." },
+        { "type": "text", "id": "mf_text", "label": "Metafield de texto", "info": "Chave de um metafield de texto. Troca o texto só naquele produto." }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "BRK Descrição · Cards",
+      "blocks": [
+        { "type": "card" },
+        { "type": "card", "settings": { "title": "Lavagem premium", "text": "<p>Acabamento especial que valoriza a tonalidade do jeans, proporcionando um visual sofisticado e autêntico.</p>" } },
+        { "type": "card", "settings": { "title": "Modelagem country", "text": "<p>Corte desenvolvido para oferecer conforto e caimento perfeito sobre a botina, unindo estilo e tradição country.</p>" } }
+      ]
+    }
+  ],
+  "enabled_on": { "templates": ["product"] }
+}
+{% endschema %}

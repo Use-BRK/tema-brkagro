@@ -1,0 +1,230 @@
+{%- comment -%}
+  BRK Descrição · Tabela — foto do produto "saindo" de uma faixa colorida + tabela comparativa (ex.: Jeans BRK x Jeans comum).
+  Cada linha da tabela é um bloco. A coluna do meio (produto BRK) leva ✓ e fica destacada; a da direita leva ✕.
+  Foto: imagem de um metafield do produto (tipo arquivo) → imagem do editor → foto do produto na posição da galeria.
+{%- endcomment -%}
+{%- liquid
+  assign st = section.settings
+  assign product = product | default: closest.product
+  assign mf_ns = st.mf_namespace | default: 'brk'
+  assign rows = section.blocks | where: 'type', 'row'
+
+  assign compare_image = blank
+  if product != blank and st.mf_image != blank
+    assign compare_image = product.metafields[mf_ns][st.mf_image].value
+  endif
+  if compare_image == blank
+    assign compare_image = st.image
+  endif
+  if compare_image == blank and product != blank and st.image_position > 0
+    assign media_index = st.image_position | minus: 1
+    assign compare_image = product.media[media_index].preview_image
+  endif
+
+  assign visible_classes = ''
+  unless st.show_desktop
+    assign visible_classes = visible_classes | append: ' brk-cmp--hide-desktop'
+  endunless
+  unless st.show_mobile
+    assign visible_classes = visible_classes | append: ' brk-cmp--hide-mobile'
+  endunless
+  unless st.image_mobile
+    assign visible_classes = visible_classes | append: ' brk-cmp--no-image-mobile'
+  endunless
+  unless st.band_mobile
+    assign visible_classes = visible_classes | append: ' brk-cmp--no-band-mobile'
+  endunless
+-%}
+{%- if rows.size > 0 -%}
+  <div
+    class="section brk-cmp{{ visible_classes }}{% if compare_image == blank %} brk-cmp--no-image{% endif %}"
+    style="
+      --brk-cmp-pt: {{ st.padding_top }}px; --brk-cmp-pb: {{ st.padding_bottom }}px;
+      --brk-cmp-band: {{ st.band_bg }}; --brk-cmp-overlap: {{ st.image_overlap }}px;
+      --brk-cmp-table: {{ st.table_bg }}; --brk-cmp-highlight: {{ st.highlight_bg }}; --brk-cmp-text: {{ st.table_text }};
+    "
+  >
+    <div class="brk-cmp__band">
+      <div class="{{ st.section_width }}">
+        <div class="brk-cmp__layout">
+          {%- if compare_image != blank -%}
+            <div class="brk-cmp__media">
+              {{
+                compare_image
+                | image_url: width: 1400
+                | image_tag:
+                  loading: 'lazy',
+                  widths: '400, 600, 800, 1000, 1400',
+                  sizes: '(min-width: 990px) 40vw, 70vw',
+                  alt: compare_image.alt | default: product.title
+              }}
+            </div>
+          {%- endif -%}
+          <div class="brk-cmp__table-wrap">
+            {%- if st.heading != blank -%}
+              <h2 class="brk-cmp__heading">{{ st.heading }}</h2>
+            {%- endif -%}
+            <table class="brk-cmp__table">
+              <thead>
+                <tr>
+                  <th scope="col">{{ st.col_label }}</th>
+                  <th scope="col" class="brk-cmp__hl">{{ st.col_brand }}</th>
+                  <th scope="col">{{ st.col_other }}</th>
+                </tr>
+              </thead>
+              <tbody>
+                {%- for block in rows -%}
+                  <tr {{ block.shopify_attributes }}>
+                    <th scope="row">{{ block.settings.label }}</th>
+                    <td class="brk-cmp__hl">
+                      {%- if st.show_icons -%}
+                        <svg class="brk-cmp__icon" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m2.5 8.5 3.6 3.6 7.4-8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                      {%- endif -%}
+                      <span>{{ block.settings.brand_value }}</span>
+                    </td>
+                    <td>
+                      {%- if st.show_icons -%}
+                        <svg class="brk-cmp__icon" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m3.5 3.5 9 9m0-9-9 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                      {%- endif -%}
+                      <span>{{ block.settings.other_value }}</span>
+                    </td>
+                  </tr>
+                {%- endfor -%}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{%- endif -%}
+
+{% stylesheet %}
+  .brk-cmp { padding-top: calc(var(--brk-cmp-pt) + var(--brk-cmp-overlap)); padding-bottom: var(--brk-cmp-pb); }
+  .brk-cmp--no-image { padding-top: var(--brk-cmp-pt); }
+  .brk-cmp__band { background: var(--brk-cmp-band); padding: 4.8rem 0; }
+  .brk-cmp__layout { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 6fr); gap: 4rem; align-items: center; }
+  .brk-cmp--no-image .brk-cmp__layout { grid-template-columns: minmax(0, 1fr); max-width: 80rem; margin: 0 auto; }
+  .brk-cmp__media { margin-top: calc(-4.8rem - var(--brk-cmp-overlap)); margin-bottom: -4.8rem; align-self: stretch; display: flex; align-items: center; }
+  .brk-cmp__media img { width: 100%; height: auto; display: block; filter: drop-shadow(0 18px 24px rgba(0, 0, 0, .18)); }
+  .brk-cmp__heading {
+    margin: 0 0 2rem; font-size: 2.2rem; font-weight: 600; text-transform: uppercase;
+    letter-spacing: .02em; color: var(--color-heading, #222);
+  }
+  .brk-cmp__table {
+    width: 100%; border-collapse: separate; border-spacing: 0; overflow: hidden; border-radius: 16px;
+    background: var(--brk-cmp-table); color: var(--brk-cmp-text); line-height: 1.31; table-layout: auto;
+    font-size: clamp(1.3rem, 1.55vw, 3rem); /* Figma: 29.78px no frame de 1920px */
+  }
+  .brk-cmp__table th,
+  .brk-cmp__table td {
+    padding: .5em 1.2em; text-align: left; font-weight: 400; color: inherit;
+    border: 0; border-bottom: 1px solid rgba(255, 255, 255, .22);
+  }
+  .brk-cmp__table tbody tr:last-child th,
+  .brk-cmp__table tbody tr:last-child td { border-bottom: 0; }
+  .brk-cmp__table thead th { border-bottom-color: rgba(255, 255, 255, .55); }
+  .brk-cmp__table thead th { font-weight: 700; text-transform: uppercase; text-align: center; font-size: inherit; letter-spacing: 0; }
+  .brk-cmp__table .brk-cmp__hl { background: var(--brk-cmp-highlight); }
+  .brk-cmp__table td { white-space: nowrap; }
+  .brk-cmp__table td > * { vertical-align: middle; }
+  .brk-cmp__icon { width: .85em; height: .85em; margin-right: .35em; display: inline-block; flex: 0 0 auto; }
+
+  @media (min-width: 750px) {
+    .brk-cmp--hide-desktop { display: none; }
+  }
+  @media (min-width: 1200px) {
+    .brk-cmp__band { padding: 6rem 0; }
+    .brk-cmp__media { margin-top: calc(-6rem - var(--brk-cmp-overlap)); margin-bottom: -6rem; }
+    .brk-cmp__table { border-radius: 20px; }
+  }
+  @media (max-width: 989.98px) {
+    .brk-cmp__table td { white-space: normal; }
+  }
+  @media (max-width: 749.98px) {
+    .brk-cmp--hide-mobile { display: none; }
+    .brk-cmp { padding-top: var(--brk-cmp-pt); }
+    .brk-cmp__band { padding: 3.2rem 0; }
+    .brk-cmp__layout { grid-template-columns: minmax(0, 1fr); gap: 2.4rem; }
+    .brk-cmp__media { margin: 0 auto; max-width: 26rem; }
+    .brk-cmp--no-image-mobile .brk-cmp__media { display: none; }
+    .brk-cmp--no-band-mobile .brk-cmp__band { background: transparent; padding: 0; }
+    .brk-cmp__table thead th:not(.brk-cmp__hl) { font-weight: 400; }
+    .brk-cmp__heading { font-size: 1.8rem; text-align: center; }
+    .brk-cmp__table { font-size: 2.93vw; border-radius: 10px; } /* Figma: 11px no frame de 375px */
+    .brk-cmp__table th,
+    .brk-cmp__table td { padding: .85em .65em; white-space: nowrap; }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "BRK Descrição · Tabela",
+  "tag": "section",
+  "class": "brk-cmp-section",
+  "settings": [
+    {
+      "type": "select",
+      "id": "section_width",
+      "label": "t:sections.all.section_width.label",
+      "options": [
+        { "value": "container", "label": "t:sections.all.section_width.container.label" },
+        { "value": "fluid_container", "label": "t:sections.all.section_width.fluid_container.label" },
+        { "value": "stretch_width", "label": "t:sections.all.section_width.stretch_width.label" },
+        { "value": "full_width", "label": "t:sections.all.section_width.full_width.label" }
+      ],
+      "default": "container"
+    },
+    { "type": "checkbox", "id": "show_desktop", "label": "Mostrar no desktop", "default": true },
+    { "type": "checkbox", "id": "show_mobile", "label": "Mostrar no mobile", "default": true },
+    { "type": "text", "id": "heading", "label": "Título acima da tabela (opcional)" },
+    { "type": "header", "content": "Foto" },
+    { "type": "image_picker", "id": "image", "label": "Imagem", "info": "De preferência PNG com fundo transparente." },
+    { "type": "number", "id": "image_position", "label": "Foto do produto: posição na galeria", "info": "Reserva quando não há imagem (1 = primeira). 0 = desligado.", "default": 0 },
+    { "type": "range", "id": "image_overlap", "label": "Quanto a foto sai da faixa (acima)", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 48 },
+    { "type": "checkbox", "id": "image_mobile", "label": "Mostrar a foto no mobile", "default": true },
+    { "type": "checkbox", "id": "band_mobile", "label": "Mostrar a faixa de fundo no mobile", "default": true },
+    { "type": "header", "content": "Tabela" },
+    { "type": "text", "id": "col_label", "label": "Coluna 1", "default": "Característica" },
+    { "type": "text", "id": "col_brand", "label": "Coluna 2 (destaque, com ✓)", "default": "Jeans BRK" },
+    { "type": "text", "id": "col_other", "label": "Coluna 3 (com ✕)", "default": "Jeans comum" },
+    { "type": "checkbox", "id": "show_icons", "label": "Mostrar ✓ e ✕", "default": true },
+    { "type": "header", "content": "Cores" },
+    { "type": "color", "id": "band_bg", "label": "Faixa de fundo", "default": "#f2f2ee" },
+    { "type": "color", "id": "table_bg", "label": "Fundo da tabela", "default": "#0d5c45" },
+    { "type": "color", "id": "highlight_bg", "label": "Coluna em destaque", "default": "#446860" },
+    { "type": "color", "id": "table_text", "label": "Texto da tabela", "default": "#ffffff" },
+    { "type": "header", "content": "Troca por produto (opcional)" },
+    { "type": "text", "id": "mf_namespace", "label": "Metafield: namespace", "default": "brk" },
+    { "type": "text", "id": "mf_image", "label": "Metafield de imagem", "info": "Chave de um metafield do tipo arquivo. Troca a foto só naquele produto." },
+    { "type": "header", "content": "Espaçamento" },
+    { "type": "range", "id": "padding_top", "label": "Espaço acima", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 24 },
+    { "type": "range", "id": "padding_bottom", "label": "Espaço abaixo", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 56 }
+  ],
+  "blocks": [
+    {
+      "type": "row",
+      "name": "Linha",
+      "limit": 12,
+      "settings": [
+        { "type": "text", "id": "label", "label": "Característica", "default": "Tecido" },
+        { "type": "text", "id": "brand_value", "label": "Produto BRK", "default": "Encorpado" },
+        { "type": "text", "id": "other_value", "label": "Comum", "default": "Fino" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "BRK Descrição · Tabela",
+      "blocks": [
+        { "type": "row" },
+        { "type": "row", "settings": { "label": "Composição", "brand_value": "100% Algodão", "other_value": "Variada" } },
+        { "type": "row", "settings": { "label": "Costura", "brand_value": "Reforçada", "other_value": "Convencional" } },
+        { "type": "row", "settings": { "label": "Modelagem", "brand_value": "Reta Western", "other_value": "Casual" } },
+        { "type": "row", "settings": { "label": "Barra para botina", "brand_value": "Adaptado", "other_value": "Nem sempre" } }
+      ]
+    }
+  ],
+  "enabled_on": { "templates": ["product"] }
+}
+{% endschema %}

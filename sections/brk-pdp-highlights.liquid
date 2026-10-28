@@ -1,0 +1,374 @@
+{%- comment -%}
+  BRK Descrição · Destaques — título em duas linhas, texto e uma faixa de mídias (imagem ou vídeo) com selo.
+  Feito para a descrição rica de produto (ex.: template product.calca), mas serve para qualquer categoria.
+
+  Troca opcional por produto (metafields):
+  - Seção: título, linha de destaque e texto podem vir de metafields do produto (chaves nas configurações).
+  - Mídia: cada bloco pode ler uma imagem de um metafield do tipo arquivo; se vazio, usa a imagem/vídeo do bloco
+    e, por último, a foto do produto na posição informada.
+  No mobile a faixa vira carrossel de arrastar (opcional).
+{%- endcomment -%}
+{%- liquid
+  assign st = section.settings
+  assign product = product | default: closest.product
+  assign mf_ns = st.mf_namespace | default: 'brk'
+
+  assign eyebrow = st.eyebrow
+  assign heading = st.heading
+  assign text = st.text
+  if product != blank
+    if st.mf_eyebrow != blank and product.metafields[mf_ns][st.mf_eyebrow] != blank
+      assign eyebrow = product.metafields[mf_ns][st.mf_eyebrow].value
+    endif
+    if st.mf_heading != blank and product.metafields[mf_ns][st.mf_heading] != blank
+      assign heading = product.metafields[mf_ns][st.mf_heading].value
+    endif
+    if st.mf_text != blank and product.metafields[mf_ns][st.mf_text] != blank
+      assign text = product.metafields[mf_ns][st.mf_text].value | newline_to_br | strip_newlines
+      assign text = '<p>' | append: text | append: '</p>' | replace: '<br /><br />', '</p><p>'
+    endif
+  endif
+
+  assign visible_classes = ''
+  unless st.show_desktop
+    assign visible_classes = visible_classes | append: ' brk-hl--hide-desktop'
+  endunless
+  unless st.show_mobile
+    assign visible_classes = visible_classes | append: ' brk-hl--hide-mobile'
+  endunless
+
+  assign label_alpha = st.label_opacity | divided_by: 100.0
+  assign label_bg = st.label_bg | color_modify: 'alpha', label_alpha
+-%}
+{%- if st.accent_font != blank -%}
+  <style>
+    {{ st.accent_font | font_face: font_display: 'swap' }}
+    #shopify-section-{{ section.id }} .brk-hl {
+      --brk-hl-accent-font: {{ st.accent_font.family }}, {{ st.accent_font.fallback_families }};
+      --brk-hl-accent-weight: {{ st.accent_font.weight }};
+    }
+  </style>
+{%- endif -%}
+<div
+  class="section brk-hl color-{{ st.color_scheme }} gradient{{ visible_classes }}"
+  style="
+    --brk-hl-pt: {{ st.padding_top }}px; --brk-hl-pb: {{ st.padding_bottom }}px;
+    --brk-hl-ratio: {{ st.tile_ratio }}; --brk-hl-ratio-mobile: {{ st.tile_ratio_mobile }};
+    --brk-hl-radius: {{ st.tile_radius }}px;
+    --brk-hl-label-bg: {{ label_bg }}; --brk-hl-label-text: {{ st.label_text }};
+    {% if st.text_color != blank %}--brk-hl-text: {{ st.text_color }};{% endif %}
+  "
+>
+  <div class="{{ st.section_width }}">
+    {%- if eyebrow != blank or heading != blank or text != blank -%}
+      <div class="brk-hl__intro">
+        {%- if eyebrow != blank or heading != blank -%}
+          <h2 class="brk-hl__heading">
+            {%- if eyebrow != blank -%}<span class="brk-hl__eyebrow">{{ eyebrow }}</span>{%- endif -%}
+            {%- if heading != blank -%}<span class="brk-hl__accent">{{ heading }}</span>{%- endif -%}
+          </h2>
+        {%- endif -%}
+        {%- if text != blank -%}
+          <div class="brk-hl__text">{{ text }}</div>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+    {%- if section.blocks.size > 0 -%}
+      {%- comment -%}
+        Vídeos e fotos são montados em dois grupos: no layout "mixed" do mobile os vídeos ficam em cima e as fotos
+        num carrossel. No desktop o trilho usa display: contents e o "order" mantém a ordem dos blocos na grade.
+      {%- endcomment -%}
+      {%- capture video_tiles -%}{%- endcapture -%}
+      {%- capture photo_tiles -%}{%- endcapture -%}
+      {%- for block in section.blocks -%}
+          {%- liquid
+            assign bs = block.settings
+            assign tile_image = blank
+            assign tile_video = bs.video
+            if product != blank and bs.mf_image != blank
+              assign tile_image = product.metafields[mf_ns][bs.mf_image].value
+            endif
+            if tile_image != blank
+              assign tile_video = blank
+            else
+              assign tile_image = bs.image
+            endif
+            if tile_image == blank and tile_video == blank and product != blank and bs.image_position > 0
+              assign media_index = bs.image_position | minus: 1
+              assign tile_image = product.media[media_index].preview_image
+            endif
+            assign alt = bs.label_small | append: ' ' | append: bs.label_large | strip
+          -%}
+          {%- capture tile_html -%}
+          <div
+            class="brk-hl__tile{% if tile_video != blank %} brk-hl__tile--video{% endif %}{% unless bs.show_mobile %} brk-hl__tile--hide-mobile{% endunless %}"
+            style="order: {{ forloop.index }};"
+            {{ block.shopify_attributes }}
+          >
+            <div class="brk-hl__media">
+              {%- if tile_video != blank -%}
+                {{
+                  tile_video
+                  | video_tag:
+                    image_size: '900x',
+                    autoplay: true,
+                    loop: true,
+                    muted: true,
+                    playsinline: true,
+                    controls: false,
+                    preload: 'metadata',
+                    class: 'brk-hl__video'
+                }}
+              {%- elsif tile_image != blank -%}
+                {{
+                  tile_image
+                  | image_url: width: 1200
+                  | image_tag:
+                    loading: 'lazy',
+                    widths: '360, 540, 720, 900, 1200',
+                    sizes: '(min-width: 990px) 25vw, 75vw',
+                    alt: alt,
+                    style: bs.image_focal
+                }}
+              {%- else -%}
+                {{ 'lifestyle-1' | placeholder_svg_tag: 'brk-hl__placeholder' }}
+              {%- endif -%}
+            </div>
+            {%- if bs.label_small != blank or bs.label_large != blank -%}
+              <p class="brk-hl__label">
+                {%- if bs.label_small != blank -%}<span class="brk-hl__label-small">{{ bs.label_small }}</span>{%- endif -%}
+                {%- if bs.label_large != blank -%}<span class="brk-hl__label-large">{{ bs.label_large }}</span>{%- endif -%}
+              </p>
+            {%- endif -%}
+          </div>
+          {%- endcapture -%}
+          {%- if tile_video != blank -%}
+            {%- assign video_tiles = video_tiles | append: tile_html -%}
+          {%- else -%}
+            {%- assign photo_tiles = photo_tiles | append: tile_html -%}
+          {%- endif -%}
+      {%- endfor -%}
+      <div
+        class="brk-hl__tiles brk-hl__tiles--{{ st.mobile_layout }}"
+        style="--brk-hl-count: {{ section.blocks.size }};"
+      >
+        {{- video_tiles -}}
+        {%- if photo_tiles != blank -%}
+          <div class="brk-hl__rail">{{ photo_tiles }}</div>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+  </div>
+</div>
+
+{% stylesheet %}
+  /* Tamanhos em vw seguem o Figma: frame desktop de 1920px e mobile de 375px. */
+  .brk-hl { padding-top: var(--brk-hl-pt); padding-bottom: var(--brk-hl-pb); color: var(--brk-hl-text, var(--color-text)); }
+  .brk-hl__intro { max-width: min(67vw, 128.8rem); margin: 0 auto clamp(3.2rem, 3.4vw, 6.4rem); text-align: center; }
+  .brk-hl__heading { margin: 0 0 1.25em; color: inherit; line-height: 1; text-transform: uppercase; font-size: inherit; }
+  .brk-hl__eyebrow {
+    display: block; font-family: var(--body-font); font-weight: 400; letter-spacing: 0;
+    font-size: clamp(1.6rem, 1.3vw, 2.5rem); line-height: 1.23;
+  }
+  .brk-hl__accent {
+    display: block; font-family: var(--brk-hl-accent-font, serif); font-weight: var(--brk-hl-accent-weight, 700);
+    font-size: clamp(2rem, 1.65vw, 3.2rem); line-height: .94;
+  }
+  .brk-hl__text { font-size: clamp(1.4rem, 1.05vw, 2rem); font-weight: 400; line-height: 1.2; }
+  .brk-hl__text p { margin: 0 0 1.2em; }
+  .brk-hl__text p:last-child { margin-bottom: 0; }
+
+  .brk-hl__tiles {
+    display: grid; grid-template-columns: repeat(var(--brk-hl-count), minmax(0, 1fr)); gap: 2rem;
+  }
+  .brk-hl__rail { display: contents; }
+  .brk-hl__tile { position: relative; border-radius: var(--brk-hl-radius); overflow: hidden; aspect-ratio: var(--brk-hl-ratio); }
+  .brk-hl__media { position: absolute; inset: 0; background: rgba(var(--color-text-rgb), .06); }
+  .brk-hl__media img,
+  .brk-hl__media video,
+  .brk-hl__media svg { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .brk-hl__label {
+    position: absolute; left: 0; bottom: 8%; margin: 0;
+    padding: .25em max(1.2rem, 1.1vw) .15em;
+    background: var(--brk-hl-label-bg); color: var(--brk-hl-label-text); text-transform: uppercase; line-height: 1;
+  }
+  .brk-hl__label-small { display: block; font-family: var(--body-font); font-weight: 400; font-size: clamp(1.3rem, 1.365vw, 2.6rem); }
+  .brk-hl__label-large {
+    display: block; font-family: var(--brk-hl-accent-font, serif); font-weight: var(--brk-hl-accent-weight, 700);
+    font-size: clamp(1.9rem, 2.047vw, 3.9rem); line-height: .92;
+  }
+
+  @media (min-width: 750px) {
+    .brk-hl--hide-desktop { display: none; }
+  }
+  @media (min-width: 1200px) {
+    .brk-hl__tiles { gap: 2.4rem; }
+  }
+  @media (max-width: 749.98px) {
+    .brk-hl--hide-mobile { display: none; }
+    .brk-hl__intro { max-width: 81.6vw; margin-bottom: 2.4rem; } /* Figma: caixa de 306px no frame de 375px */
+    .brk-hl__eyebrow { font-size: 5.8vw; }
+    .brk-hl__accent { font-size: 5.8vw; }
+    .brk-hl__text { font-size: 3.85vw; }
+    .brk-hl__tile { aspect-ratio: var(--brk-hl-ratio-mobile, var(--brk-hl-ratio)); }
+    .brk-hl__tile--hide-mobile { display: none; }
+    .brk-hl__label { padding-inline: 1.6rem; }
+    .brk-hl__label-small { font-size: 4.2vw; }
+    .brk-hl__label-large { font-size: 5.6vw; }
+    .brk-hl__tiles--stack .brk-hl__label-small { font-size: 6.4vw; }
+    .brk-hl__tiles--stack .brk-hl__label-large { font-size: 8.3vw; }
+    .brk-hl__tiles--mixed .brk-hl__label-small { font-size: 5.4vw; }
+    .brk-hl__tiles--mixed .brk-hl__label-large { font-size: 7vw; }
+    .brk-hl__tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.2rem; }
+    .brk-hl__tiles--stack,
+    .brk-hl__tiles--mixed { grid-template-columns: minmax(0, 1fr); gap: 1.6rem; }
+    .brk-hl__tiles--carousel,
+    .brk-hl__tiles--mixed .brk-hl__rail {
+      display: flex; gap: 1.2rem; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none;
+      margin-inline: calc(-1 * var(--bs-gutter-x, 1.5rem)); padding-inline: var(--bs-gutter-x, 1.5rem);
+      scroll-padding-inline: var(--bs-gutter-x, 1.5rem);
+    }
+    .brk-hl__tiles--mixed .brk-hl__rail { order: 9999; }
+    .brk-hl__tiles--carousel::-webkit-scrollbar,
+    .brk-hl__tiles--mixed .brk-hl__rail::-webkit-scrollbar { display: none; }
+    .brk-hl__tiles--carousel .brk-hl__tile { flex: 0 0 72%; scroll-snap-align: start; }
+    .brk-hl__tiles--mixed .brk-hl__rail .brk-hl__tile { flex: 0 0 84%; scroll-snap-align: start; }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "BRK Descrição · Destaques",
+  "tag": "section",
+  "class": "brk-hl-section",
+  "settings": [
+    {
+      "type": "select",
+      "id": "section_width",
+      "label": "t:sections.all.section_width.label",
+      "options": [
+        { "value": "container", "label": "t:sections.all.section_width.container.label" },
+        { "value": "fluid_container", "label": "t:sections.all.section_width.fluid_container.label" },
+        { "value": "stretch_width", "label": "t:sections.all.section_width.stretch_width.label" },
+        { "value": "full_width", "label": "t:sections.all.section_width.full_width.label" }
+      ],
+      "default": "container"
+    },
+    { "type": "color_scheme", "id": "color_scheme", "label": "t:sections.all.color_scheme.label", "default": "scheme-1" },
+    { "type": "checkbox", "id": "show_desktop", "label": "Mostrar no desktop", "default": true },
+    { "type": "checkbox", "id": "show_mobile", "label": "Mostrar no mobile", "default": true },
+    { "type": "header", "content": "Texto" },
+    { "type": "color", "id": "text_color", "label": "Cor do título e do texto", "info": "Vazio = cor do esquema de cores.", "default": "#505050" },
+    { "type": "text", "id": "eyebrow", "label": "Título: linha fina", "default": "Feita para" },
+    { "type": "text", "id": "heading", "label": "Título: linha de destaque", "default": "Vestir a rotina" },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Texto",
+      "default": "<p>A Calça Jeans BRK Agro foi desenvolvida para quem busca resistência, conforto e durabilidade no dia a dia.</p>"
+    },
+    {
+      "type": "font_picker",
+      "id": "accent_font",
+      "label": "Fonte do destaque",
+      "info": "Usada na linha de destaque do título e na linha grande dos selos.",
+      "default": "noto_serif_n7"
+    },
+    { "type": "header", "content": "Faixa de mídias" },
+    {
+      "type": "select",
+      "id": "tile_ratio",
+      "label": "Formato das mídias",
+      "options": [
+        { "value": "0.81", "label": "Retrato (como no Figma)" },
+        { "value": "0.75", "label": "Retrato 3:4" },
+        { "value": "1", "label": "Quadrado" },
+        { "value": "0.5625", "label": "Vertical 9:16" }
+      ],
+      "default": "0.81"
+    },
+    { "type": "range", "id": "tile_radius", "label": "Arredondamento", "min": 0, "max": 32, "step": 2, "unit": "px", "default": 18 },
+    { "type": "color", "id": "label_bg", "label": "Fundo do selo", "default": "#f2ecdc" },
+    { "type": "range", "id": "label_opacity", "label": "Opacidade do fundo do selo", "min": 0, "max": 100, "step": 5, "unit": "%", "default": 85 },
+    { "type": "color", "id": "label_text", "label": "Texto do selo", "default": "#26180c" },
+    {
+      "type": "select",
+      "id": "mobile_layout",
+      "label": "Layout no mobile",
+      "options": [
+        { "value": "mixed", "label": "Vídeo em cima + fotos em carrossel (como no Figma)" },
+        { "value": "stack", "label": "Uma embaixo da outra" },
+        { "value": "carousel", "label": "Carrossel de arrastar" },
+        { "value": "grid", "label": "Grade 2 por linha" }
+      ],
+      "default": "mixed"
+    },
+    {
+      "type": "select",
+      "id": "tile_ratio_mobile",
+      "label": "Formato das mídias no mobile",
+      "options": [
+        { "value": "0.65", "label": "Retrato alto (como no Figma)" },
+        { "value": "0.81", "label": "Retrato (igual ao desktop)" },
+        { "value": "0.75", "label": "Retrato 3:4" },
+        { "value": "1", "label": "Quadrado" }
+      ],
+      "default": "0.65"
+    },
+    { "type": "header", "content": "Troca por produto (opcional)" },
+    {
+      "type": "paragraph",
+      "content": "Se o produto tiver estes metafields preenchidos, eles substituem o texto acima só naquele produto. Deixe vazio para não usar."
+    },
+    { "type": "text", "id": "mf_namespace", "label": "Metafield: namespace", "default": "brk" },
+    { "type": "text", "id": "mf_eyebrow", "label": "Metafield: linha fina", "info": "Ex.: descricao_titulo_fino" },
+    { "type": "text", "id": "mf_heading", "label": "Metafield: linha de destaque", "info": "Ex.: descricao_titulo" },
+    { "type": "text", "id": "mf_text", "label": "Metafield: texto", "info": "Ex.: descricao_texto (texto de várias linhas)" },
+    { "type": "header", "content": "Espaçamento" },
+    { "type": "range", "id": "padding_top", "label": "Espaço acima", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 56 },
+    { "type": "range", "id": "padding_bottom", "label": "Espaço abaixo", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 56 }
+  ],
+  "blocks": [
+    {
+      "type": "tile",
+      "name": "Mídia com selo",
+      "limit": 6,
+      "settings": [
+        { "type": "paragraph", "content": "Ordem: imagem do metafield → vídeo → imagem → foto do produto na posição da galeria." },
+        { "type": "video", "id": "video", "label": "Vídeo (opcional)", "info": "Toca sozinho, sem som e em loop." },
+        { "type": "image_picker", "id": "image", "label": "Imagem" },
+        { "type": "number", "id": "image_position", "label": "Foto do produto: posição na galeria", "info": "Reserva quando não há vídeo nem imagem (1 = primeira). 0 = desligado.", "default": 0 },
+        { "type": "text", "id": "mf_image", "label": "Metafield de imagem (opcional)", "info": "Chave de um metafield do tipo arquivo, no namespace da seção. Troca a imagem só naquele produto." },
+        {
+          "type": "select",
+          "id": "image_focal",
+          "label": "Enquadramento",
+          "options": [
+            { "value": "object-position: center center;", "label": "Centro" },
+            { "value": "object-position: center top;", "label": "Topo" },
+            { "value": "object-position: center bottom;", "label": "Base" }
+          ],
+          "default": "object-position: center center;"
+        },
+        { "type": "checkbox", "id": "show_mobile", "label": "Mostrar no mobile", "default": true },
+        { "type": "header", "content": "Selo" },
+        { "type": "text", "id": "label_small", "label": "Linha fina", "info": "Ex.: Para o" },
+        { "type": "text", "id": "label_large", "label": "Linha de destaque", "info": "Ex.: Campo" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "BRK Descrição · Destaques",
+      "blocks": [
+        { "type": "tile" },
+        { "type": "tile", "settings": { "label_small": "Para o", "label_large": "Campo" } },
+        { "type": "tile", "settings": { "label_small": "Para a", "label_large": "Cidade" } },
+        { "type": "tile", "settings": { "label_small": "Para todos os", "label_large": "Lugares" } }
+      ]
+    }
+  ],
+  "enabled_on": { "templates": ["product"] }
+}
+{% endschema %}
