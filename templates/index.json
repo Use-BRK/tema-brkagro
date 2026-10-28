@@ -45,6 +45,7 @@
         "slider_item_MMEAVn": {
           "type": "slider_item",
           "name": "Lisas e Essenciais",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/Lisas_Essenciais_Desktop.png",
             "image_mobile": "shopify://shop_images/Lisas_Essenciais_Mobile.png",
