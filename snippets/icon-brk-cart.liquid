@@ -1,0 +1,21 @@
+{%- comment -%}
+  Ícone de carrinho BRK (botão de compra e botão fixo). Herda a cor do texto do botão (currentColor).
+  Uso: {% render 'icon-brk-cart', class: 'minha-classe', size: 18 %}
+{%- endcomment -%}
+{%- assign icon_size = size | default: 18 -%}
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="27 29 146 146"
+  width="{{ icon_size }}"
+  height="{{ icon_size }}"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="10"
+  stroke-linejoin="round"
+  aria-hidden="true"
+  focusable="false"
+  {% if class != blank %}class="{{ class }}"{% endif %}
+>
+  <path d="M53.86,63.32h100.31c2.03,0,4.04.43,5.9,1.25,1.86.82,3.52,2.03,4.89,3.54,1.36,1.51,2.4,3.28,3.03,5.21.64,1.93.86,3.97.66,6l-4.36,43.64c-.36,3.59-2.04,6.92-4.71,9.34-2.68,2.42-6.15,3.76-9.76,3.76h-69.46c-3.36,0-6.63-1.16-9.23-3.3-2.6-2.13-4.38-5.1-5.04-8.4l-12.21-61.04Z"/>
+  <path stroke-linecap="round" d="M53.86,63.32l-5.89-23.59c-.39-1.57-1.3-2.97-2.58-3.97-1.28-1-2.85-1.54-4.47-1.54h-8.87M75.68,165.15h14.55M133.87,165.15h14.55"/>
+</svg>
