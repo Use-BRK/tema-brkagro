@@ -403,6 +403,63 @@
             "product_6": ""
           }
         },
+        "video_group_giHttA": {
+          "type": "video_group",
+          "settings": {
+            "title": "Calças",
+            "enabled": true,
+            "sku_prefixes": "CALCA",
+            "title_prefixes": "Calça",
+            "tags": "",
+            "exclude_skus": "",
+            "products": [],
+            "video_1": "shopify://files/videos/edmilson_do_agro_ (1).mp4",
+            "influencer_1": "@edimilson_do_agro_",
+            "product_1": "",
+            "video_2": "shopify://files/videos/Dailson Neiva.MOV",
+            "influencer_2": "@dailsonneiva",
+            "product_2": "",
+            "video_3": "shopify://files/videos/Feed agro.mp4",
+            "influencer_3": "@nanfelixg",
+            "product_3": "",
+            "influencer_4": "",
+            "product_4": "",
+            "influencer_5": "",
+            "product_5": "",
+            "influencer_6": "",
+            "product_6": ""
+          }
+        },
+        "video_group_h93Cxx": {
+          "type": "video_group",
+          "settings": {
+            "title": "Botinas",
+            "enabled": true,
+            "sku_prefixes": "BT",
+            "title_prefixes": "Botina",
+            "tags": "",
+            "exclude_skus": "",
+            "products": [],
+            "video_1": "shopify://files/videos/BOTINA_MORGAN_INDIV.mp4",
+            "influencer_1": "@brkagro_ofc",
+            "product_1": "botina-masculina-morgan-whisky-brk-agro",
+            "video_2": "shopify://files/videos/botina_Desert_INDIV.mp4",
+            "influencer_2": "@brkagro_ofc",
+            "product_2": "botina-masculina-desert-areia-brk-agro",
+            "video_3": "shopify://files/videos/botina_mustang_indiv.mp4",
+            "influencer_3": "@brkagro_ofc",
+            "product_3": "botina-masculina-mustang-whisky-brk-agro",
+            "video_4": "shopify://files/videos/botina_dallas_INDIV.mp4",
+            "influencer_4": "@brkagro_ofc",
+            "product_4": "botina-feminina-dallas-all-black-brk-agro",
+            "video_5": "shopify://files/videos/botina_stella_indiv.mp4",
+            "influencer_5": "@brkagro_ofc",
+            "product_5": "botina-feminina-stella-chocolate-brk-agro",
+            "video_6": "shopify://files/videos/botina_montana_indiv.mp4",
+            "influencer_6": "@brkagro_ofc",
+            "product_6": "botina-feminina-montana-canela-brk-agro"
+          }
+        },
         "group_02": {
           "type": "video_group",
           "settings": {
@@ -460,6 +517,8 @@
       },
       "block_order": [
         "group_01",
+        "video_group_giHttA",
+        "video_group_h93Cxx",
         "group_02",
         "group_16"
       ],
