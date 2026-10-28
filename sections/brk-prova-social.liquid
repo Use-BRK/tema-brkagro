@@ -221,11 +221,21 @@
               endif
             endif
 
-            comment
-              Produto do card: o escolhido no vídeo ou, se vazio, o próprio produto da página
-            endcomment
             assign prod_key = 'product_' | append: i
-            assign card_product = group.settings[prod_key] | default: product
+            assign collection_key = 'collection_' | append: i
+            assign collection_text_key = 'collection_text_' | append: i
+            assign card_product = group.settings[prod_key]
+            assign card_collection = group.settings[collection_key]
+            assign card_url = card_product.url
+            assign card_title = card_product.title
+            assign card_image = card_product.featured_image
+            if card_collection != blank
+              assign card_url = card_collection.url
+              assign card_title = card_collection.title
+              assign collection_product = card_collection.products | first
+              assign card_image = collection_product.images | first
+              assign collection_text = group.settings[collection_text_key]
+            endif
           -%}
           <div class="brk-social__card" {{ group.shopify_attributes }}>
             {%- if inf != blank -%}
@@ -246,13 +256,13 @@
               {% if vid.preview_image %}data-poster="{{ vid.preview_image | image_url: width: 600 }}"{% endif %}
               aria-label="{{ vid.alt | default: st.title | escape }}"
             >
-              <source src="{{ vid_src.url }}" type="{{ vid_src.mime_type }}">
+              <source data-src="{{ vid_src.url }}" type="{{ vid_src.mime_type }}">
             </video>
-            {%- if card_product -%}
-              <a class="brk-social__product" href="{{ card_product.url }}" draggable="false">
-                {%- if card_product.featured_image -%}
+            {%- if card_collection != blank or card_product != blank -%}
+              <a class="brk-social__product" href="{{ card_url }}" draggable="false">
+                {%- if card_image != blank -%}
                   {{-
-                    card_product.featured_image
+                    card_image
                     | image_url: width: 120
                     | image_tag:
                       class: 'brk-social__product-img',
@@ -260,17 +270,23 @@
                       width: 48,
                       height: 48,
                       draggable: 'false',
-                      alt: card_product.featured_image.alt
+                      alt: card_image.alt
                   -}}
                 {%- endif -%}
                 <span class="brk-social__product-info">
-                  <span class="brk-social__product-title">{{ card_product.title }}</span>
-                  <span class="brk-social__product-price">
-                    {%- if card_product.compare_at_price > card_product.price -%}
-                      <s>{{ card_product.compare_at_price | money }}</s>
+                  <span class="brk-social__product-title">{{ card_title | escape }}</span>
+                  {%- if card_collection != blank -%}
+                    {%- if collection_text != blank -%}
+                      <span class="brk-social__product-price">{{ collection_text | escape }}</span>
                     {%- endif -%}
-                    {{ card_product.price | money }}
-                  </span>
+                  {%- else -%}
+                    <span class="brk-social__product-price">
+                      {%- if card_product.compare_at_price > card_product.price -%}
+                        <s>{{ card_product.compare_at_price | money }}</s>
+                      {%- endif -%}
+                      {{ card_product.price | money }}
+                    </span>
+                  {%- endif -%}
                 </span>
               </a>
             {%- endif -%}
@@ -290,32 +306,50 @@
         const videos = [...this.querySelectorAll('.brk-social__video')];
         if (!track || !videos.length) return;
         const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+        this.videos = videos;
+        const visibleVideos = new Set();
+        const loadVideo = (video) => {
+          const source = video.querySelector('source[data-src]');
+          if (!source) return;
+          source.src = source.dataset.src;
+          source.removeAttribute('data-src');
+          video.load();
+        };
+        const playVideo = (video) => {
+          if (document.hidden) return;
+          loadVideo(video);
+          video.play().catch(() => {});
+        };
 
-        // Posters só quando a seção chega perto da tela, para não disputar banda com a galeria
-        this.posterIo = new IntersectionObserver((entries, io) => {
-          if (!entries.some((e) => e.isIntersecting)) return;
-          io.disconnect();
-          videos.forEach((v) => {
-            if (v.dataset.poster) { v.poster = v.dataset.poster; v.removeAttribute('data-poster'); }
+        this.playIo = new IntersectionObserver((entries) => {
+          entries.forEach(({ target: video, isIntersecting, intersectionRatio }) => {
+            if (!isIntersecting || intersectionRatio < 0.25) {
+              visibleVideos.delete(video);
+              video.pause();
+              return;
+            }
+            visibleVideos.add(video);
+            if (video.dataset.poster) {
+              video.poster = video.dataset.poster;
+              video.removeAttribute('data-poster');
+            }
+            if (!reduceMotion) playVideo(video);
           });
-        }, { rootMargin: '400px 0px' });
-        this.posterIo.observe(this);
+        }, { rootMargin: '0px', threshold: [0, 0.25] });
+        videos.forEach((video) => this.playIo.observe(video));
 
-        // Toca só os vídeos visíveis; pausa os que saem. Com "reduzir movimento", só toca no toque.
+        this.visibilityHandler = () => {
+          if (document.hidden) videos.forEach((video) => video.pause());
+          else if (!reduceMotion) visibleVideos.forEach(playVideo);
+        };
+        document.addEventListener('visibilitychange', this.visibilityHandler);
+
         if (reduceMotion) {
           track.classList.add('is-manual');
           videos.forEach((v) => v.parentElement.addEventListener('click', (e) => {
             if (e.target.closest('a')) return;
-            v.paused ? v.play().catch(() => {}) : v.pause();
+            v.paused ? playVideo(v) : v.pause();
           }));
-        } else {
-          this.playIo = new IntersectionObserver((entries) => {
-            entries.forEach((e) => {
-              if (e.isIntersecting) e.target.play().catch(() => {});
-              else e.target.pause();
-            });
-          }, { threshold: 0.25 });
-          videos.forEach((v) => this.playIo.observe(v));
         }
 
         // Desktop: começa centralizado (cards cortados nas duas pontas)
@@ -357,8 +391,9 @@
       }
 
       disconnectedCallback() {
-        this.posterIo?.disconnect();
         this.playIo?.disconnect();
+        document.removeEventListener('visibilitychange', this.visibilityHandler);
+        this.videos?.forEach((video) => video.pause());
       }
     });
   }
@@ -615,27 +650,39 @@
         { "type": "header", "content": "Vídeo 1" },
         { "type": "video", "id": "video_1", "label": "Vídeo 1" },
         { "type": "text", "id": "influencer_1", "label": "@ do influencer", "info": "Se vazio, usa o texto alternativo do vídeo quando ele começa com @" },
-        { "type": "product", "id": "product_1", "label": "Produto do card", "info": "Se vazio, usa o produto da própria página" },
+        { "type": "product", "id": "product_1", "label": "Produto do card", "info": "Sem produto ou coleção, a barrinha fica oculta." },
+        { "type": "collection", "id": "collection_1", "label": "Coleção do card", "info": "Tem prioridade sobre o produto. Usa a primeira foto do primeiro produto da coleção." },
+        { "type": "text", "id": "collection_text_1", "label": "Texto da coleção", "default": "Conheça a coleção" },
         { "type": "header", "content": "Vídeo 2" },
         { "type": "video", "id": "video_2", "label": "Vídeo 2" },
         { "type": "text", "id": "influencer_2", "label": "@ do influencer" },
         { "type": "product", "id": "product_2", "label": "Produto do card" },
+        { "type": "collection", "id": "collection_2", "label": "Coleção do card", "info": "Tem prioridade sobre o produto. Usa a primeira foto do primeiro produto da coleção." },
+        { "type": "text", "id": "collection_text_2", "label": "Texto da coleção", "default": "Conheça a coleção" },
         { "type": "header", "content": "Vídeo 3" },
         { "type": "video", "id": "video_3", "label": "Vídeo 3" },
         { "type": "text", "id": "influencer_3", "label": "@ do influencer" },
         { "type": "product", "id": "product_3", "label": "Produto do card" },
+        { "type": "collection", "id": "collection_3", "label": "Coleção do card", "info": "Tem prioridade sobre o produto. Usa a primeira foto do primeiro produto da coleção." },
+        { "type": "text", "id": "collection_text_3", "label": "Texto da coleção", "default": "Conheça a coleção" },
         { "type": "header", "content": "Vídeo 4" },
         { "type": "video", "id": "video_4", "label": "Vídeo 4" },
         { "type": "text", "id": "influencer_4", "label": "@ do influencer" },
         { "type": "product", "id": "product_4", "label": "Produto do card" },
+        { "type": "collection", "id": "collection_4", "label": "Coleção do card", "info": "Tem prioridade sobre o produto. Usa a primeira foto do primeiro produto da coleção." },
+        { "type": "text", "id": "collection_text_4", "label": "Texto da coleção", "default": "Conheça a coleção" },
         { "type": "header", "content": "Vídeo 5" },
         { "type": "video", "id": "video_5", "label": "Vídeo 5" },
         { "type": "text", "id": "influencer_5", "label": "@ do influencer" },
         { "type": "product", "id": "product_5", "label": "Produto do card" },
+        { "type": "collection", "id": "collection_5", "label": "Coleção do card", "info": "Tem prioridade sobre o produto. Usa a primeira foto do primeiro produto da coleção." },
+        { "type": "text", "id": "collection_text_5", "label": "Texto da coleção", "default": "Conheça a coleção" },
         { "type": "header", "content": "Vídeo 6" },
         { "type": "video", "id": "video_6", "label": "Vídeo 6" },
         { "type": "text", "id": "influencer_6", "label": "@ do influencer" },
-        { "type": "product", "id": "product_6", "label": "Produto do card" }
+        { "type": "product", "id": "product_6", "label": "Produto do card" },
+        { "type": "collection", "id": "collection_6", "label": "Coleção do card", "info": "Tem prioridade sobre o produto. Usa a primeira foto do primeiro produto da coleção." },
+        { "type": "text", "id": "collection_text_6", "label": "Texto da coleção", "default": "Conheça a coleção" }
       ]
     }
   ],
