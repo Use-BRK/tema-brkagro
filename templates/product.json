@@ -374,6 +374,106 @@
         "reset_spacing": true
       }
     },
+    "brk_prova_social": {
+      "type": "brk-prova-social",
+      "blocks": {
+        "group_01": {
+          "type": "video_group",
+          "settings": {
+            "title": "Bonés",
+            "enabled": true,
+            "sku_prefixes": "",
+            "title_prefixes": "Boné",
+            "tags": "",
+            "exclude_skus": "",
+            "products": [],
+            "video_1": "shopify://files/videos/Gabriela Renata.MOV",
+            "influencer_1": "@gabrielarenata.nunes",
+            "product_1": "",
+            "video_2": "shopify://files/videos/Gabriela Renata 2.MOV",
+            "influencer_2": "@gabrielarenata.nunes",
+            "product_2": "",
+            "influencer_3": "",
+            "product_3": "",
+            "influencer_4": "",
+            "product_4": "",
+            "influencer_5": "",
+            "product_5": "",
+            "influencer_6": "",
+            "product_6": ""
+          }
+        },
+        "group_02": {
+          "type": "video_group",
+          "settings": {
+            "title": "Óculos",
+            "enabled": true,
+            "sku_prefixes": "",
+            "title_prefixes": "Óculos",
+            "tags": "",
+            "exclude_skus": "",
+            "products": [],
+            "influencer_1": "",
+            "product_1": "",
+            "influencer_2": "",
+            "product_2": "",
+            "influencer_3": "",
+            "product_3": "",
+            "influencer_4": "",
+            "product_4": "",
+            "influencer_5": "",
+            "product_5": "",
+            "influencer_6": "",
+            "product_6": ""
+          }
+        },
+        "group_16": {
+          "type": "video_group",
+          "settings": {
+            "title": "Camisas UV",
+            "enabled": true,
+            "sku_prefixes": "C0, CASUAL, CF, BP, ADV, CADV,",
+            "title_prefixes": "Camis",
+            "tags": "",
+            "exclude_skus": "CMB, CM",
+            "products": [],
+            "video_1": "shopify://files/videos/Joao Victor Pinto.mp4",
+            "influencer_1": "@joaovp.moraes",
+            "product_1": "",
+            "video_2": "shopify://files/videos/Érico Valente.MOV",
+            "influencer_2": "@erico_valente",
+            "product_2": "",
+            "video_3": "shopify://files/videos/amandabaquero_ (1).mp4",
+            "influencer_3": "@amandabaquero_",
+            "product_3": "",
+            "video_4": "shopify://files/videos/ledianesalake.mp4",
+            "influencer_4": "@ledianesalake",
+            "product_4": "",
+            "video_5": "shopify://files/videos/eduardatosatto.mp4",
+            "influencer_5": "@eduardatosatto",
+            "product_5": "",
+            "video_6": "shopify://files/videos/Mariana Bagio.mov",
+            "influencer_6": "@marianabaggiofurtado",
+            "product_6": ""
+          }
+        }
+      },
+      "block_order": [
+        "group_01",
+        "group_02",
+        "group_16"
+      ],
+      "settings": {
+        "eyebrow": "Quem usa, aprova",
+        "title": "Feito para quem vive o agro de verdade",
+        "match_mode": "first",
+        "max_videos": 8,
+        "accent_color": "#085b47",
+        "eyebrow_color": "#a06a24",
+        "padding_top": 35,
+        "padding_bottom": 35
+      }
+    },
     "brk_benefits": {
       "type": "brk-product-benefits",
       "blocks": {
@@ -743,214 +843,14 @@
         "padding_bottom": 15,
         "reset_spacing": true
       }
-    },
-    "brk_prova_social": {
-      "type": "brk-prova-social",
-      "blocks": {
-        "group_01": {
-          "type": "video_group",
-          "settings": {
-            "title": "Bonés",
-            "enabled": true,
-            "sku_prefixes": "",
-            "title_prefixes": "Boné",
-            "tags": "",
-            "exclude_skus": ""
-          }
-        },
-        "group_02": {
-          "type": "video_group",
-          "settings": {
-            "title": "Óculos",
-            "enabled": true,
-            "sku_prefixes": "",
-            "title_prefixes": "Óculos",
-            "tags": "",
-            "exclude_skus": ""
-          }
-        },
-        "group_03": {
-          "type": "video_group",
-          "settings": {
-            "title": "Camisas Cavalos",
-            "enabled": true,
-            "sku_prefixes": "C0",
-            "title_prefixes": "",
-            "tags": "Cavalos, Cavalos 2026, Rodeio e Vaquejada",
-            "exclude_skus": ""
-          }
-        },
-        "group_04": {
-          "type": "video_group",
-          "settings": {
-            "title": "Camisas Fé (São Bento / N. Senhora)",
-            "enabled": true,
-            "sku_prefixes": "C0",
-            "title_prefixes": "",
-            "tags": "São Bento, Nossa Senhora, São Bento e Nossa Senhora, Nossa Senhora 2026, Peregrinação",
-            "exclude_skus": ""
-          }
-        },
-        "group_05": {
-          "type": "video_group",
-          "settings": {
-            "title": "Camisas Tratores e Máquinas",
-            "enabled": true,
-            "sku_prefixes": "C0",
-            "title_prefixes": "",
-            "tags": "Tratores e Máquinas, Máquinas Pesadas, Máquinas Pesadas - Fem, Maquinário Pesado, Drone de Agricultura",
-            "exclude_skus": ""
-          }
-        },
-        "group_06": {
-          "type": "video_group",
-          "settings": {
-            "title": "Camisas Pecuária / Gado",
-            "enabled": true,
-            "sku_prefixes": "C0",
-            "title_prefixes": "",
-            "tags": "Pecuária, Gado, Gado de Corte, Gado Leiteiro, Meninos da Pecuária",
-            "exclude_skus": ""
-          }
-        },
-        "group_07": {
-          "type": "video_group",
-          "settings": {
-            "title": "Camisas Camuflado e Caça",
-            "enabled": true,
-            "sku_prefixes": "C0",
-            "title_prefixes": "",
-            "tags": "Camuflado e Caça",
-            "exclude_skus": ""
-          }
-        },
-        "group_08": {
-          "type": "video_group",
-          "settings": {
-            "title": "Camisas Femininas UV",
-            "enabled": true,
-            "sku_prefixes": "C0",
-            "title_prefixes": "",
-            "tags": "Feminino",
-            "exclude_skus": ""
-          }
-        },
-        "group_09": {
-          "type": "video_group",
-          "settings": {
-            "title": "Camisas Kids",
-            "enabled": true,
-            "sku_prefixes": "CI",
-            "title_prefixes": "",
-            "tags": "",
-            "exclude_skus": ""
-          }
-        },
-        "group_10": {
-          "type": "video_group",
-          "settings": {
-            "title": "Camisas com Capuz",
-            "enabled": true,
-            "sku_prefixes": "HYB, CCPBR",
-            "title_prefixes": "",
-            "tags": "",
-            "exclude_skus": ""
-          }
-        },
-        "group_11": {
-          "type": "video_group",
-          "settings": {
-            "title": "Camisetas Casual",
-            "enabled": true,
-            "sku_prefixes": "CASUAL, CF, PM",
-            "title_prefixes": "",
-            "tags": "",
-            "exclude_skus": ""
-          }
-        },
-        "group_12": {
-          "type": "video_group",
-          "settings": {
-            "title": "Raglan / Segunda pele",
-            "enabled": true,
-            "sku_prefixes": "RAGLAN",
-            "title_prefixes": "",
-            "tags": "",
-            "exclude_skus": ""
-          }
-        },
-        "group_13": {
-          "type": "video_group",
-          "settings": {
-            "title": "Camisas de Botão / Work",
-            "enabled": true,
-            "sku_prefixes": "CBTML, CBTMC, CMB",
-            "title_prefixes": "",
-            "tags": "",
-            "exclude_skus": ""
-          }
-        },
-        "group_14": {
-          "type": "video_group",
-          "settings": {
-            "title": "Camisas Manga Curta",
-            "enabled": true,
-            "sku_prefixes": "CM",
-            "title_prefixes": "",
-            "tags": "",
-            "exclude_skus": "CMB"
-          }
-        },
-        "group_15": {
-          "type": "video_group",
-          "settings": {
-            "title": "Camisas Brasil Patriota",
-            "enabled": true,
-            "sku_prefixes": "BP",
-            "title_prefixes": "",
-            "tags": "",
-            "exclude_skus": ""
-          }
-        },
-        "group_16": {
-          "type": "video_group",
-          "settings": {
-            "title": "Camisas UV (todas C0)",
-            "enabled": true,
-            "sku_prefixes": "C0",
-            "title_prefixes": "",
-            "tags": "",
-            "exclude_skus": ""
-          }
-        }
-      },
-      "block_order": [
-        "group_01",
-        "group_02",
-        "group_03",
-        "group_04",
-        "group_05",
-        "group_06",
-        "group_07",
-        "group_08",
-        "group_09",
-        "group_10",
-        "group_11",
-        "group_12",
-        "group_13",
-        "group_14",
-        "group_15",
-        "group_16"
-      ],
-      "settings": {}
     }
   },
   "order": [
     "breadcrumb",
     "main",
+    "brk_prova_social",
     "brk_benefits",
     "product_brk_description",
-    "brk_prova_social",
     "product-set",
     "divider_E3r6ih",
     "scrolling_text_b38KNQ",
