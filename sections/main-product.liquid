@@ -483,8 +483,9 @@
               <a
                 href="#product-detail__media"
                 class="btn btn-primary w-full hidden-md text-center inline-flex content-center no-underline"
-                style="--btn-padding-x: 2.5rem;"
+                style="--btn-padding-x: 2.5rem; gap: 0.6rem;"
               >
+                {%- render 'icon-brk-cart', size: 15 -%}
                 {{- 'products.product.sticky_choose_options' | t -}}
               </a>
             {%- endif -%}
