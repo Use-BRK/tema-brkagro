@@ -694,7 +694,7 @@
         "card_lavagem": {
           "type": "card",
           "settings": {
-            "image": "shopify://shop_images/recorte-card-lavagem-v2.jpg",
+            "image": "shopify://shop_images/recorte-card-lavagem.png",
             "image_position": 0,
             "image_focal": "object-position: center center;",
             "title": "Lavagem premium",
