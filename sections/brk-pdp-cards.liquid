@@ -5,6 +5,7 @@
   2. imagem escolhida no editor;
   3. foto do produto na posição informada da galeria.
   O texto do card também pode vir de um metafield do produto, com o texto do bloco como reserva.
+  Um card pode sumir em produtos cujo título contenha um trecho (ex.: "Manga Curta"); os demais se centralizam.
 {%- endcomment -%}
 {%- liquid
   assign st = section.settings
@@ -18,14 +19,26 @@
   unless st.show_mobile
     assign visible_classes = visible_classes | append: ' brk-cards--hide-mobile'
   endunless
+
+  assign product_title = product.title | downcase
+  assign hidden_blocks = ''
+  assign visible_count = 0
+  for block in section.blocks
+    assign hide_term = block.settings.hide_if_title_contains | strip | downcase
+    if product != blank and hide_term != blank and product_title contains hide_term
+      assign hidden_blocks = hidden_blocks | append: '|' | append: block.id | append: '|'
+    else
+      assign visible_count = visible_count | plus: 1
+    endif
+  endfor
 -%}
-{%- if section.blocks.size > 0 -%}
+{%- if visible_count > 0 -%}
   <div
     class="section brk-cards color-{{ st.color_scheme }} gradient{{ visible_classes }}"
     style="
       --brk-cards-pt: {{ st.padding_top }}px; --brk-cards-pb: {{ st.padding_bottom }}px;
       --brk-cards-cols: {{ st.columns }}; --brk-cards-ratio: {{ st.image_ratio }};
-      --brk-cards-tracks: {{ section.blocks.size | at_most: st.columns }};
+      --brk-cards-tracks: {{ visible_count | at_most: st.columns }};
       --brk-cards-media-bg: {{ st.media_bg }};
       {% if st.text_color != blank %}--brk-cards-text: {{ st.text_color }};{% endif %}
     "
@@ -36,6 +49,8 @@
       {%- endif -%}
       <ul class="brk-cards__grid{% if st.mobile_carousel %} brk-cards__grid--carousel{% endif %}" role="list">
         {%- for block in section.blocks -%}
+          {%- assign block_key = '|' | append: block.id | append: '|' -%}
+          {%- if hidden_blocks contains block_key -%}{%- continue -%}{%- endif -%}
           {%- liquid
             assign bs = block.settings
             assign card_image = blank
@@ -214,7 +229,8 @@
         { "type": "richtext", "id": "text", "label": "Texto", "default": "<p>Tecido encorpado com costuras reforçadas, oferecendo resistência, conforto e durabilidade para acompanhar sua rotina.</p>" },
         { "type": "header", "content": "Troca por produto (opcional)" },
         { "type": "text", "id": "mf_image", "label": "Metafield de imagem", "info": "Chave de um metafield do tipo arquivo. Troca a foto só naquele produto." },
-        { "type": "text", "id": "mf_text", "label": "Metafield de texto", "info": "Chave de um metafield de texto. Troca o texto só naquele produto." }
+        { "type": "text", "id": "mf_text", "label": "Metafield de texto", "info": "Chave de um metafield de texto. Troca o texto só naquele produto." },
+        { "type": "text", "id": "hide_if_title_contains", "label": "Esconder se o título do produto contiver", "info": "Ex.: Manga Curta. Vazio = aparece em todos os produtos." }
       ]
     }
   ],
