@@ -5,9 +5,20 @@
   assign background_image = section_st.background_image
   assign show_collection_image = section_st.show_collection_image
 
+  # Prioridade: imagem principal da coleção > metafields brk.collection_banner_* > imagem de fundo da seção
   assign image_bg = background_image
-  if show_collection_image and collection.image != blank
-    assign image_bg = collection.image
+  assign image_bg_mobile = nil
+  if show_collection_image
+    assign banner_desktop = collection.metafields.brk.collection_banner_desktop.value
+    assign banner_mobile = collection.metafields.brk.collection_banner_mobile.value
+    if collection.image != blank
+      assign image_bg = collection.image
+    elsif banner_desktop != blank or banner_mobile != blank
+      assign image_bg = banner_desktop | default: banner_mobile
+      if banner_mobile != blank and banner_desktop != blank
+        assign image_bg_mobile = banner_mobile
+      endif
+    endif
   endif
   assign alt = image_bg.alt | default: collection.title | escape
   assign height = section_st.height
@@ -25,7 +36,7 @@
   </style>
 {%- endif -%}
 {%- capture style -%}
-  --section-pt: {{ section_st.padding_top }}; --section-pb: {{ section_st.padding_bottom }};{%- if image_bg != blank %}{% if height == 'adapt' or height == 'contain' %}--aspect-ratio: {{ image_bg.aspect_ratio }}{% endif %}{% endif %};--overlay-opacity: {{ section_st.overlay_opacity }}%;
+  --section-pt: {{ section_st.padding_top }}; --section-pb: {{ section_st.padding_bottom }};{%- if image_bg != blank %}{% if height == 'adapt' or height == 'contain' %}--aspect-ratio: {{ image_bg.aspect_ratio }}{% if image_bg_mobile != blank %};--aspect-ratio-mb: {{ image_bg_mobile.aspect_ratio }}{% endif %}{% endif %}{% endif %};--overlay-opacity: {{ section_st.overlay_opacity }}%;
 {%- endcapture -%}
 {%- if section.blocks.size > 0 -%}
   <div
@@ -38,13 +49,37 @@
           {%- assign image_class = 'background-heading absolute inset-0 z--1 pointer-none w-full h-full object-position-center '
             | append: object_fit
           -%}
-          {% render 'responsive-image',
-            type: 'banner',
-            container: section_width,
-            image: image_bg,
-            image_alt: alt,
-            class: image_class
-          %}
+          {%- if image_bg_mobile != blank -%}
+            {%- comment -%} O snippet responsive-image não aplica `class` no ramo <picture>, por isso o picture é montado aqui {%- endcomment -%}
+            <picture class="absolute inset-0 z--1 pointer-none w-full h-full">
+              <source
+                media="(max-width: 767px)"
+                srcset="{{ image_bg_mobile | image_url: width: 480 }} 480w, {{ image_bg_mobile | image_url: width: 750 }} 750w, {{ image_bg_mobile | image_url: width: 1100 }} 1100w"
+                sizes="100vw"
+                width="{{ image_bg_mobile.width }}"
+                height="{{ image_bg_mobile.height }}"
+              >
+              {{-
+                image_bg
+                | image_url: width: image_bg.width
+                | image_tag:
+                  loading: 'eager',
+                  fetchpriority: 'high',
+                  sizes: '100vw',
+                  widths: '3840, 3000, 2400, 1920, 1500, 1370, 1100, 720',
+                  class: image_class,
+                  alt: alt
+              -}}
+            </picture>
+          {%- else -%}
+            {% render 'responsive-image',
+              type: 'banner',
+              container: section_width,
+              image: image_bg,
+              image_alt: alt,
+              class: image_class
+            %}
+          {%- endif -%}
         {% endif %}
       </div>
     {% endif %}
