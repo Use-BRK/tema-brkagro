@@ -37,7 +37,6 @@
       assign prazo_text = prazo_dias | append: ' dias úteis de produção'
     endif
     assign prazo_sufixo = st.prazo_sufixo | default: '+ Frete escolhido'
-    assign prazo_text = prazo_text | append: ' ' | append: prazo_sufixo
     assign has_rows = true
   endif
 
@@ -93,7 +92,10 @@
               </span>
               <span>{{ st.prazo_label | default: 'Prazo de Envio' }}</span>
             </dt>
-            <dd class="brk-bbspecs__value">{{ prazo_text }}</dd>
+            <dd class="brk-bbspecs__value">
+              {%- unless product.tags contains 'prazo_imediato' -%}{% render 'brk-prazo-help', dias: prazo_dias, uid: block.id %}{%- endunless -%}
+              {{- prazo_text }} <span class="brk-bbspecs__sufixo">{{ prazo_sufixo }}</span>
+            </dd>
           </div>
         {%- endif -%}
         {%- for i in (1..8) -%}
@@ -201,6 +203,9 @@
     .brk-bbspecs__label { gap: .7rem; }
     .brk-bbspecs__label, .brk-bbspecs__value { font-size: 1.24rem; }
     .brk-bbspecs__icon svg { width: 1.6rem; height: 1.6rem; }
+    .brk-bbspecs__row--prazo { grid-template-columns: auto minmax(0, 1fr); }
+    .brk-bbspecs__row--prazo .brk-bbspecs__label { white-space: nowrap; }
+    .brk-bbspecs__sufixo { display: block; }
   }
 </style>
 {% schema %}

@@ -1,0 +1,149 @@
+{%- comment -%}
+  BRK — "?" ao lado do prazo de produção que abre o modal "Por que nossos produtos precisam de X dias úteis".
+  Textos e cor em Configurações do tema > Modal do prazo de produção.
+  Params: dias (número de dias úteis), uid (id único, ex.: block.id). Sem dias (ou 0 = pronta entrega) não renderiza.
+  Uso: {% render 'brk-prazo-help', dias: prazo_dias, uid: block.id %}
+{%- endcomment -%}
+{%- liquid
+  assign ph_dias = dias | plus: 0
+  assign ph_show = true
+  if settings.prazo_modal_enable == false or ph_dias <= 0
+    assign ph_show = false
+  endif
+  if ph_dias == 1
+    assign ph_dias_txt = '1 dia útil'
+  else
+    assign ph_dias_txt = ph_dias | append: ' dias úteis'
+  endif
+  assign ph_id = 'BrkPrazoModal-' | append: uid
+  assign ph_title = settings.prazo_modal_title | default: 'Por que nossos produtos precisam de <strong>[dias]</strong> para serem produzidos?' | replace: '[dias]', ph_dias_txt
+-%}
+{%- if ph_show -%}
+<button type="button" class="brk-prazo-q" data-brk-prazo-open="{{ ph_id }}" aria-haspopup="dialog" aria-label="Por que {{ ph_dias_txt }} de produção?">
+  <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true" focusable="false"><circle cx="8" cy="8" r="8" fill="currentColor"/><path d="M6.1 6.1a1.95 1.95 0 0 1 3.8.6c0 1.3-1.9 1.6-1.9 2.6" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/><circle cx="8" cy="11.6" r=".95" fill="#fff"/></svg>
+</button>
+<dialog class="brk-prazo-modal" id="{{ ph_id }}" aria-labelledby="{{ ph_id }}-t" style="--brk-pm: {{ settings.prazo_modal_color | default: '#085b47' }};">
+  <div class="brk-prazo-modal__box">
+    <span class="brk-prazo-modal__qicon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg>
+    </span>
+    <h2 class="brk-prazo-modal__title" id="{{ ph_id }}-t">{{ ph_title }}</h2>
+    {%- if settings.prazo_modal_sub != blank -%}
+      <p class="brk-prazo-modal__sub">{{ settings.prazo_modal_sub }}</p>
+    {%- endif -%}
+    <ol class="brk-prazo-modal__steps">
+      {%- for i in (1..3) -%}
+        {%- liquid
+          assign kt = 'prazo_modal_s' | append: i | append: '_title'
+          assign kx = 'prazo_modal_s' | append: i | append: '_text'
+        -%}
+        {%- if settings[kt] != blank -%}
+          <li class="brk-prazo-modal__step">
+            <span class="brk-prazo-modal__icon" aria-hidden="true">
+              {%- case i -%}
+                {%- when 1 -%}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8 12 3 3 8v8l9 5 9-5Z"/><path d="m3 8 9 5 9-5M12 13v8M7.5 5.5l9 5"/></svg>
+                {%- when 2 -%}<svg viewBox="-4 0 36 34" fill="currentColor" stroke="none"><rect x="10.6" y="0" width="3.6" height="6" rx="1.8"/><rect x="0" y="4" width="24.6" height="3.7" rx="1.85"/><path d="M2.3 7.5h20.1l.4 4.6L2 9.7Z"/><path d="M1.7 12.6l21.2 2.6v4.6L1.6 17.2Z"/><path d="M1.7 19.7l28.4 3.6a1.9 1.9 0 0 1 0 3.8L23.7 26.3H2.3Z"/><rect x="0" y="26.1" width="24.6" height="3.7" rx="1.85"/><rect x="10.6" y="28" width="3.6" height="6" rx="1.8"/></svg>
+                {%- else -%}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5 14.6 4.4 17.8 4.2 18.8 7.3 21.4 9.2 20.4 12.3 21.4 15.4 18.8 17.3 17.8 20.4 14.6 20.2 12 22.1 9.4 20.2 6.2 20.4 5.2 17.3 2.6 15.4 3.6 12.3 2.6 9.2 5.2 7.3 6.2 4.2 9.4 4.4Z"/><path d="m8.5 12.3 2.4 2.4 4.6-4.6"/></svg>
+              {%- endcase -%}
+            </span>
+            <div>
+              <h3 class="brk-prazo-modal__stitle">{{ settings[kt] }}</h3>
+              {%- if settings[kx] != blank -%}<p class="brk-prazo-modal__stext">{{ settings[kx] }}</p>{%- endif -%}
+            </div>
+          </li>
+        {%- endif -%}
+      {%- endfor -%}
+    </ol>
+    <button type="button" class="brk-prazo-modal__btn" data-brk-prazo-close>{{ settings.prazo_modal_btn | default: 'Entendi' }}</button>
+  </div>
+</dialog>
+<style>
+  .brk-prazo-q {
+    display: inline-flex; vertical-align: -0.2em; margin: 0 .5em 0 0; padding: 0; border: 0; background: none;
+    color: {{ settings.prazo_modal_icon_color | default: '#8a8d88' }}; cursor: pointer; line-height: 0; border-radius: 50%;
+  }
+  .brk-prazo-q:hover { opacity: .8; }
+  .brk-prazo-q:focus-visible { outline: 2px solid currentColor; outline-offset: 2px; }
+  .brk-prazo-modal {
+    width: min(576px, calc(100vw - 32px)); max-height: calc(100dvh - 32px); padding: 0; border: 0;
+    border-radius: 22px; background: #f1f1f0; color: var(--brk-pm); box-shadow: 0 24px 60px rgba(0,0,0,.25);
+    text-align: left; overflow: auto;
+  }
+  .brk-prazo-modal::backdrop { background: rgba(0,0,0,.45); }
+  .brk-prazo-modal[open] { animation: brk-prazo-in .22s ease; }
+  @keyframes brk-prazo-in { from { opacity: 0; transform: translateY(8px) scale(.98); } to { opacity: 1; transform: none; } }
+  .brk-prazo-modal__box { padding: 40px 32px 36px; display: flex; flex-direction: column; align-items: center; }
+  .brk-prazo-modal__qicon { width: 52px; height: 52px; color: var(--brk-pm); }
+  .brk-prazo-modal__qicon svg { width: 100%; height: 100%; display: block; }
+  .brk-prazo-modal__title {
+    margin: 16px 0 0; max-width: 470px; text-align: center; font-size: 24px; line-height: 1.3; font-weight: 500;
+    color: var(--brk-pm); text-transform: none; font-style: normal; letter-spacing: 0;
+  }
+  .brk-prazo-modal__title strong { font-weight: 700; color: inherit; white-space: nowrap; }
+  .brk-prazo-modal__sub strong { color: #4a4a4a; }
+  .brk-prazo-modal__sub { margin: 12px 0 0; max-width: 340px; text-align: center; font-size: 14px; line-height: 1.4; color: #6f6f6f; }
+  .brk-prazo-modal__sub p { margin: 0; }
+  .brk-prazo-modal__steps { list-style: none; margin: 28px 0 0; padding: 0; width: 100%; max-width: 440px; }
+  .brk-prazo-modal__step { position: relative; display: flex; align-items: center; gap: 30px; padding-bottom: 24px; }
+  .brk-prazo-modal__step:last-child { padding-bottom: 0; }
+  .brk-prazo-modal__step:not(:first-child)::before,
+  .brk-prazo-modal__step:not(:last-child)::after {
+    content: ""; position: absolute; left: 31px; width: 2px; transform: translateX(-50%);
+    background: color-mix(in srgb, var(--brk-pm) 60%, #fff);
+  }
+  .brk-prazo-modal__step:not(:first-child)::before { top: -1px; height: calc((100% - 24px) / 2 + 1px); }
+  .brk-prazo-modal__step:not(:last-child)::after { top: calc((100% - 24px) / 2); bottom: 0; }
+  .brk-prazo-modal__step:last-child:not(:first-child)::before { height: calc(50% + 1px); }
+  .brk-prazo-modal__icon {
+    position: relative; z-index: 1; flex: 0 0 auto; width: 62px; height: 62px; border-radius: 50%; display: grid; place-items: center;
+    background: color-mix(in srgb, var(--brk-pm) 60%, #fff); color: #fff;
+  }
+  .brk-prazo-modal__icon svg { width: 32px; height: 32px; }
+  .brk-prazo-modal__stitle {
+    margin: 6px 0 4px; font-size: 20px; line-height: 1.25; font-weight: 600; color: var(--brk-pm);
+    text-transform: none; font-style: normal; letter-spacing: 0;
+  }
+  .brk-prazo-modal__stext { margin: 0; font-size: 13px; line-height: 1.4; color: var(--brk-pm); }
+  .brk-prazo-modal__btn {
+    margin-top: 44px; min-width: 183px; padding: 10px 32px; border: 0; border-radius: 999px; cursor: pointer;
+    background: var(--brk-pm); color: #fff; font-size: 20px; font-weight: 600; line-height: 1.1;
+  }
+  .brk-prazo-modal__btn:hover { filter: brightness(1.1); }
+  @media (max-width: 480px) {
+    .brk-prazo-modal { width: calc(100vw - 24px); border-radius: 18px; }
+    .brk-prazo-modal__box { padding: 22px 14px 20px; }
+    .brk-prazo-modal__qicon { width: 36px; height: 36px; }
+    .brk-prazo-modal__title { margin-top: 10px; font-size: 18px; }
+    .brk-prazo-modal__sub { margin-top: 6px; font-size: 12px; }
+    .brk-prazo-modal__steps { margin-top: 16px; }
+    .brk-prazo-modal__step { gap: 12px; padding-bottom: 10px; }
+    .brk-prazo-modal__step:not(:first-child)::before,
+    .brk-prazo-modal__step:not(:last-child)::after { left: 21px; }
+    .brk-prazo-modal__step:not(:first-child)::before { height: calc((100% - 10px) / 2 + 1px); }
+    .brk-prazo-modal__step:not(:last-child)::after { top: calc((100% - 10px) / 2); }
+    .brk-prazo-modal__step:last-child:not(:first-child)::before { height: calc(50% + 1px); }
+    .brk-prazo-modal__icon { width: 42px; height: 42px; }
+    .brk-prazo-modal__icon svg { width: 21px; height: 21px; }
+    .brk-prazo-modal__stitle { margin: 1px 0 2px; font-size: 15.5px; }
+    .brk-prazo-modal__stext { font-size: 11px; line-height: 1.35; }
+    .brk-prazo-modal__btn { margin-top: 18px; min-width: 150px; padding: 9px 24px; font-size: 16px; }
+  }
+</style>
+<script>
+  if (!window.brkPrazoHelp) {
+    window.brkPrazoHelp = true;
+    document.addEventListener('click', function (e) {
+      var open = e.target.closest('[data-brk-prazo-open]');
+      if (open) {
+        e.preventDefault();
+        e.stopPropagation();
+        var d = document.getElementById(open.getAttribute('data-brk-prazo-open'));
+        if (d && !d.open) d.showModal();
+        return;
+      }
+      var d2 = e.target.closest('.brk-prazo-modal');
+      if (d2 && (e.target === d2 || e.target.closest('[data-brk-prazo-close]'))) d2.close();
+    }, true);
+  }
+</script>
+{%- endif -%}

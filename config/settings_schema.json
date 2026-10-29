@@ -2262,5 +2262,23 @@
         "default": 20
       }
     ]
+  },
+  {
+    "name": "Modal do prazo de produção",
+    "settings": [
+      { "type": "paragraph", "content": "Ícone \"?\" ao lado do prazo nos Detalhes técnicos da página de produto. Some em produtos de pronta entrega." },
+      { "type": "checkbox", "id": "prazo_modal_enable", "label": "Mostrar ícone e modal", "default": true },
+      { "type": "color", "id": "prazo_modal_color", "label": "Cor do modal", "default": "#085b47" },
+      { "type": "color", "id": "prazo_modal_icon_color", "label": "Cor do ícone \"?\"", "default": "#8a8d88" },
+      { "type": "inline_richtext", "id": "prazo_modal_title", "label": "Título", "info": "[dias] vira o prazo do produto (ex.: 10 dias úteis).", "default": "Por que nossos produtos precisam de <strong>[dias]</strong> para serem produzidos?" },
+      { "type": "inline_richtext", "id": "prazo_modal_sub", "label": "Subtítulo", "default": "Cada etapa é feita <strong>com muito carinho</strong> para entregar a melhor experiência até você!" },
+      { "type": "text", "id": "prazo_modal_s1_title", "label": "Etapa 1 — título", "default": "Produtos sob encomenda" },
+      { "type": "textarea", "id": "prazo_modal_s1_text", "label": "Etapa 1 — texto", "default": "Iniciamos a fabricação da peça para você logo após a confirmação do seu pedido." },
+      { "type": "text", "id": "prazo_modal_s2_title", "label": "Etapa 2 — título", "default": "Fabricação própria" },
+      { "type": "textarea", "id": "prazo_modal_s2_text", "label": "Etapa 2 — texto", "default": "A BRK controla cada etapa de fabricação: do desenvolvimento do tecido e do design à costura e estampagem, tudo feito com muito cuidado para você." },
+      { "type": "text", "id": "prazo_modal_s3_title", "label": "Etapa 3 — título", "default": "Qualidade garantida" },
+      { "type": "textarea", "id": "prazo_modal_s3_text", "label": "Etapa 3 — texto", "default": "Cada etapa é feita com muito carinho para entregar a melhor experiência até você." },
+      { "type": "text", "id": "prazo_modal_btn", "label": "Texto do botão", "default": "Entendi" }
+    ]
   }
 ]
