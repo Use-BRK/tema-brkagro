@@ -446,22 +446,6 @@
         "default_preset": "uv50"
       }
     },
-    "product_brk_description": {
-      "type": "product-metafield-description",
-      "name": "Descrição detalhada",
-      "settings": {
-        "section_width": "container",
-        "color_scheme": "",
-        "accent_color": "#085b47",
-        "heading": "Descrição do produto",
-        "metafield_namespace": "brk",
-        "metafield_key": "descricao",
-        "open": true,
-        "padding_top": 15,
-        "padding_bottom": 15,
-        "reset_spacing": true
-      }
-    },
     "product-set": {
       "type": "product-set",
       "disabled": true,
@@ -716,13 +700,310 @@
         "padding_bottom": 15,
         "reset_spacing": true
       }
+    },
+    "brk_prova_social": {
+      "type": "brk-prova-social",
+      "blocks": {
+        "group_01": {
+          "type": "video_group",
+          "settings": {
+            "title": "Bonés",
+            "enabled": true,
+            "sku_prefixes": "",
+            "title_prefixes": "Boné",
+            "tags": "",
+            "exclude_skus": "",
+            "products": [],
+            "video_1": "shopify://files/videos/Gabriela Renata.MOV",
+            "influencer_1": "@gabrielarenata.nunes",
+            "product_1": "",
+            "video_2": "shopify://files/videos/Gabriela Renata 2.MOV",
+            "influencer_2": "@gabrielarenata.nunes",
+            "product_2": "",
+            "influencer_3": "",
+            "product_3": "",
+            "influencer_4": "",
+            "product_4": "",
+            "influencer_5": "",
+            "product_5": "",
+            "influencer_6": "",
+            "product_6": ""
+          }
+        },
+        "video_group_giHttA": {
+          "type": "video_group",
+          "settings": {
+            "title": "Calças",
+            "enabled": true,
+            "sku_prefixes": "CALCA",
+            "title_prefixes": "Calça",
+            "tags": "",
+            "exclude_skus": "",
+            "products": [],
+            "video_1": "shopify://files/videos/edmilson_do_agro_ (1).mp4",
+            "influencer_1": "@edimilson_do_agro_",
+            "product_1": "",
+            "video_2": "shopify://files/videos/Dailson Neiva.MOV",
+            "influencer_2": "@dailsonneiva",
+            "product_2": "",
+            "video_3": "shopify://files/videos/Feed agro.mp4",
+            "influencer_3": "@nanfelixg",
+            "product_3": "",
+            "influencer_4": "",
+            "product_4": "",
+            "influencer_5": "",
+            "product_5": "",
+            "influencer_6": "",
+            "product_6": ""
+          }
+        },
+        "video_group_h93Cxx": {
+          "type": "video_group",
+          "settings": {
+            "title": "Botinas",
+            "enabled": true,
+            "sku_prefixes": "BT",
+            "title_prefixes": "Botina",
+            "tags": "",
+            "exclude_skus": "",
+            "products": [],
+            "video_1": "shopify://files/videos/BOTINA_MORGAN_INDIV.mp4",
+            "influencer_1": "@brkagro_ofc",
+            "product_1": "botina-masculina-morgan-whisky-brk-agro",
+            "video_2": "shopify://files/videos/botina_Desert_INDIV.mp4",
+            "influencer_2": "@brkagro_ofc",
+            "product_2": "botina-masculina-desert-areia-brk-agro",
+            "video_3": "shopify://files/videos/botina_mustang_indiv.mp4",
+            "influencer_3": "@brkagro_ofc",
+            "product_3": "botina-masculina-mustang-whisky-brk-agro",
+            "video_4": "shopify://files/videos/botina_dallas_INDIV.mp4",
+            "influencer_4": "@brkagro_ofc",
+            "product_4": "botina-feminina-dallas-all-black-brk-agro",
+            "video_5": "shopify://files/videos/botina_stella_indiv.mp4",
+            "influencer_5": "@brkagro_ofc",
+            "product_5": "botina-feminina-stella-chocolate-brk-agro",
+            "video_6": "shopify://files/videos/botina_montana_indiv.mp4",
+            "influencer_6": "@brkagro_ofc",
+            "product_6": "botina-feminina-montana-canela-brk-agro"
+          }
+        },
+        "group_02": {
+          "type": "video_group",
+          "settings": {
+            "title": "Óculos",
+            "enabled": true,
+            "sku_prefixes": "",
+            "title_prefixes": "Óculos",
+            "tags": "",
+            "exclude_skus": "",
+            "products": [],
+            "influencer_1": "",
+            "product_1": "",
+            "influencer_2": "",
+            "product_2": "",
+            "influencer_3": "",
+            "product_3": "",
+            "influencer_4": "",
+            "product_4": "",
+            "influencer_5": "",
+            "product_5": "",
+            "influencer_6": "",
+            "product_6": ""
+          }
+        },
+        "group_16": {
+          "type": "video_group",
+          "settings": {
+            "title": "Camisas UV",
+            "enabled": true,
+            "sku_prefixes": "C0, CASUAL, CF, BP, ADV, CADV,",
+            "title_prefixes": "Camis",
+            "tags": "",
+            "exclude_skus": "CMB, CM",
+            "products": [],
+            "video_1": "shopify://files/videos/Joao Victor Pinto.mp4",
+            "influencer_1": "@joaovp.moraes",
+            "product_1": "",
+            "video_2": "shopify://files/videos/Érico Valente.MOV",
+            "influencer_2": "@erico_valente",
+            "product_2": "",
+            "video_3": "shopify://files/videos/amandabaquero_ (1).mp4",
+            "influencer_3": "@amandabaquero_",
+            "product_3": "",
+            "video_4": "shopify://files/videos/ledianesalake.mp4",
+            "influencer_4": "@ledianesalake",
+            "product_4": "",
+            "video_5": "shopify://files/videos/eduardatosatto.mp4",
+            "influencer_5": "@eduardatosatto",
+            "product_5": "",
+            "video_6": "shopify://files/videos/Mariana Bagio.mov",
+            "influencer_6": "@marianabaggiofurtado",
+            "product_6": ""
+          }
+        }
+      },
+      "block_order": [
+        "group_01",
+        "video_group_giHttA",
+        "video_group_h93Cxx",
+        "group_02",
+        "group_16"
+      ],
+      "settings": {
+        "eyebrow": "Quem usa, aprova",
+        "title": "Feito para quem vive o agro de verdade",
+        "match_mode": "first",
+        "max_videos": 8,
+        "accent_color": "#085b47",
+        "eyebrow_color": "#a06a24",
+        "padding_top": 35,
+        "padding_bottom": 35
+      }
+    },
+    "brk_highlights": {
+      "type": "brk-pdp-highlights",
+      "blocks": {
+        "tile_dia": {
+          "type": "tile",
+          "settings": {
+            "image": "shopify://shop_images/botina-fem-faixa-dia.jpg",
+            "desktop_width": 175,
+            "mobile_featured": true,
+            "image_position": 0,
+            "mf_image": "",
+            "image_focal": "object-position: center center;",
+            "show_mobile": true,
+            "label_small": "",
+            "label_large": ""
+          }
+        },
+        "tile_agro": {
+          "type": "tile",
+          "settings": {
+            "image": "shopify://shop_images/botina-fem-faixa-agro.jpg",
+            "image_position": 0,
+            "mf_image": "",
+            "image_focal": "object-position: center center;",
+            "show_mobile": true,
+            "label_small": "Para o",
+            "label_large": "Agro"
+          }
+        },
+        "tile_noite": {
+          "type": "tile",
+          "settings": {
+            "image": "shopify://shop_images/botina-fem-faixa-noite.jpg",
+            "image_position": 0,
+            "mf_image": "",
+            "image_focal": "object-position: center center;",
+            "show_mobile": true,
+            "label_small": "Para a",
+            "label_large": "Noite"
+          }
+        },
+        "tile_rodeio": {
+          "type": "tile",
+          "settings": {
+            "image": "shopify://shop_images/botina-fem-faixa-rodeio.jpg",
+            "image_position": 0,
+            "mf_image": "",
+            "image_focal": "object-position: center center;",
+            "show_mobile": true,
+            "label_small": "Para o",
+            "label_large": "Rodeio"
+          }
+        }
+      },
+      "block_order": [
+        "tile_dia",
+        "tile_agro",
+        "tile_noite",
+        "tile_rodeio"
+      ],
+      "settings": {
+        "section_width": "container",
+        "color_scheme": "",
+        "show_desktop": true,
+        "show_mobile": true,
+        "text_color": "#505050",
+        "eyebrow": "BRK AGRO",
+        "heading": "Botinas",
+        "text": "<p>A coleção de Botinas BRK Agro combina resistência, conforto e autenticidade para quem vive a essência do campo. Com design inspirado no estilo country, são perfeitas para acompanhar a rotina de quem valoriza qualidade e personalidade em cada detalhe.</p><p>Do trabalho no campo aos momentos de lazer, nossas botinas oferecem versatilidade e estilo para diferentes ocasiões. Feitas para quem carrega o orgulho de ser agro em cada passo.</p>",
+        "accent_font": "mona_sans_n7",
+        "label_font": "noto_serif_n7",
+        "tile_ratio": "0.81",
+        "tile_radius": 18,
+        "label_bg": "#f2ecdc",
+        "label_opacity": 85,
+        "label_text": "#26180c",
+        "mobile_layout": "mixed",
+        "tile_ratio_mobile": "0.65",
+        "mf_namespace": "brk",
+        "mf_eyebrow": "",
+        "mf_heading": "",
+        "mf_text": "",
+        "padding_top": 36,
+        "padding_bottom": 24,
+        "heading_uppercase": false,
+        "accent_scale": 190
+      }
+    },
+    "brk_cards": {
+      "type": "brk-pdp-cards",
+      "blocks": {
+        "card_couro": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/botina-fem-card-couro.jpg",
+            "image_position": 0,
+            "image_focal": "object-position: center center;",
+            "title": "Couro legítimo",
+            "text": "<p>Produzidas em couro legítimo, oferecendo resistência, durabilidade e acabamento premium, além de autenticidade e estilo para sua rotina no campo ou na cidade.</p>",
+            "mf_image": "",
+            "mf_text": ""
+          }
+        },
+        "card_palmilha": {
+          "type": "card",
+          "settings": {
+            "image": "shopify://shop_images/botina-fem-card-palmilha.jpg",
+            "image_position": 0,
+            "image_focal": "object-position: center center;",
+            "title": "Palmilha com PU ativo",
+            "text": "<p>A palmilha com PU Ativo oferece maciez, amortecimento e absorção de impactos, ajudando a reduzir o cansaço durante o uso prolongado.</p>",
+            "mf_image": "",
+            "mf_text": ""
+          }
+        }
+      },
+      "block_order": [
+        "card_couro",
+        "card_palmilha"
+      ],
+      "settings": {
+        "section_width": "container",
+        "color_scheme": "",
+        "show_desktop": true,
+        "show_mobile": true,
+        "heading": "",
+        "columns": 3,
+        "image_ratio": "1.56",
+        "media_bg": "#f2f2f2",
+        "text_color": "#505050",
+        "mobile_carousel": false,
+        "mf_namespace": "brk",
+        "padding_top": 32,
+        "padding_bottom": 40
+      }
     }
   },
   "order": [
     "breadcrumb",
     "main",
+    "brk_prova_social",
+    "brk_highlights",
+    "brk_cards",
     "brk_benefits",
-    "product_brk_description",
     "product-set",
     "divider_E3r6ih",
     "scrolling_text_b38KNQ",

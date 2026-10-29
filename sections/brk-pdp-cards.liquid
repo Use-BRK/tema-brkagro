@@ -25,6 +25,7 @@
     style="
       --brk-cards-pt: {{ st.padding_top }}px; --brk-cards-pb: {{ st.padding_bottom }}px;
       --brk-cards-cols: {{ st.columns }}; --brk-cards-ratio: {{ st.image_ratio }};
+      --brk-cards-tracks: {{ section.blocks.size | at_most: st.columns }};
       --brk-cards-media-bg: {{ st.media_bg }};
       {% if st.text_color != blank %}--brk-cards-text: {{ st.text_color }};{% endif %}
     "
@@ -99,7 +100,13 @@
   }
   .brk-cards__grid {
     list-style: none; margin: 0; padding: 0;
-    display: grid; grid-template-columns: repeat(var(--brk-cards-cols), minmax(0, 1fr)); gap: 2.4rem;
+    --brk-cards-gap: 2.4rem;
+    /* Cada card ocupa 1/colunas da largura; com menos cards que colunas, eles ficam centralizados. */
+    display: grid; gap: var(--brk-cards-gap); justify-content: center;
+    grid-template-columns: repeat(
+      var(--brk-cards-tracks, var(--brk-cards-cols)),
+      calc((100% - (var(--brk-cards-cols) - 1) * var(--brk-cards-gap)) / var(--brk-cards-cols))
+    );
   }
   .brk-cards__card {
     display: flex; flex-direction: column; overflow: hidden;
@@ -121,7 +128,7 @@
     .brk-cards--hide-desktop { display: none; }
   }
   @media (min-width: 1200px) {
-    .brk-cards__grid { gap: 3.2rem; }
+    .brk-cards__grid { --brk-cards-gap: 3.2rem; }
   }
   @media (max-width: 749.98px) {
     .brk-cards--hide-mobile { display: none; }

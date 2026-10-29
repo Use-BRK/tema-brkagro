@@ -40,12 +40,23 @@
   assign label_alpha = st.label_opacity | divided_by: 100.0
   assign label_bg = st.label_bg | color_modify: 'alpha', label_alpha
 -%}
-{%- if st.accent_font != blank -%}
+{%- if st.accent_font != blank or st.label_font != blank -%}
   <style>
+    {%- if st.accent_font != blank %}
     {{ st.accent_font | font_face: font_display: 'swap' }}
+    {%- endif %}
+    {%- if st.label_font != blank and st.label_font != st.accent_font %}
+    {{ st.label_font | font_face: font_display: 'swap' }}
+    {%- endif %}
     #shopify-section-{{ section.id }} .brk-hl {
+      {%- if st.accent_font != blank %}
       --brk-hl-accent-font: {{ st.accent_font.family }}, {{ st.accent_font.fallback_families }};
       --brk-hl-accent-weight: {{ st.accent_font.weight }};
+      {%- endif %}
+      {%- if st.label_font != blank %}
+      --brk-hl-label-font: {{ st.label_font.family }}, {{ st.label_font.fallback_families }};
+      --brk-hl-label-weight: {{ st.label_font.weight }};
+      {%- endif %}
     }
   </style>
 {%- endif -%}
@@ -81,6 +92,7 @@
         num carrossel. No desktop o trilho usa display: contents e o "order" mantém a ordem dos blocos na grade.
       {%- endcomment -%}
       {%- capture video_tiles -%}{%- endcapture -%}
+      {%- capture tile_cols -%}{%- endcapture -%}
       {%- capture photo_tiles -%}{%- endcapture -%}
       {%- for block in section.blocks -%}
           {%- liquid
@@ -100,11 +112,18 @@
               assign tile_image = product.media[media_index].preview_image
             endif
             assign alt = bs.label_small | append: ' ' | append: bs.label_large | strip
+            assign tile_featured = false
+            if tile_video != blank or bs.mobile_featured
+              assign tile_featured = true
+            endif
+            assign tile_width = bs.desktop_width | default: 100
+            assign tile_fr = tile_width | divided_by: 100.0
+            assign tile_cols = tile_cols | append: 'minmax(0, ' | append: tile_fr | append: 'fr) '
           -%}
           {%- capture tile_html -%}
           <div
-            class="brk-hl__tile{% if tile_video != blank %} brk-hl__tile--video{% endif %}{% unless bs.show_mobile %} brk-hl__tile--hide-mobile{% endunless %}"
-            style="order: {{ forloop.index }};"
+            class="brk-hl__tile{% if tile_video != blank %} brk-hl__tile--video{% endif %}{% if tile_width > 100 %} brk-hl__tile--wide{% endif %}{% if tile_featured and tile_video == blank and tile_image != blank %} brk-hl__tile--featured-photo{% endif %}{% unless bs.show_mobile %} brk-hl__tile--hide-mobile{% endunless %}"
+            style="order: {{ forloop.index }};{% if tile_featured and tile_video == blank and tile_image != blank %} --brk-hl-tile-ratio: {{ tile_image.aspect_ratio }};{% endif %}"
             {{ block.shopify_attributes }}
           >
             <div class="brk-hl__media">
@@ -144,7 +163,7 @@
             {%- endif -%}
           </div>
           {%- endcapture -%}
-          {%- if tile_video != blank -%}
+          {%- if tile_featured -%}
             {%- assign video_tiles = video_tiles | append: tile_html -%}
           {%- else -%}
             {%- assign photo_tiles = photo_tiles | append: tile_html -%}
@@ -152,7 +171,7 @@
       {%- endfor -%}
       <div
         class="brk-hl__tiles brk-hl__tiles--{{ st.mobile_layout }}"
-        style="--brk-hl-count: {{ section.blocks.size }};"
+        style="--brk-hl-count: {{ section.blocks.size }}; --brk-hl-cols: {{ tile_cols | strip }};"
       >
         {{- video_tiles -}}
         {%- if photo_tiles != blank -%}
@@ -182,10 +201,14 @@
   .brk-hl__text p:last-child { margin-bottom: 0; }
 
   .brk-hl__tiles {
-    display: grid; grid-template-columns: repeat(var(--brk-hl-count), minmax(0, 1fr)); gap: 2rem;
+    display: grid; grid-template-columns: var(--brk-hl-cols, repeat(var(--brk-hl-count), minmax(0, 1fr))); gap: 2rem;
   }
   .brk-hl__rail { display: contents; }
   .brk-hl__tile { position: relative; border-radius: var(--brk-hl-radius); overflow: hidden; aspect-ratio: var(--brk-hl-ratio); }
+  /* Bloco mais largo no desktop acompanha a altura dos outros em vez de crescer pela proporção. */
+  @media screen and (min-width: 750px) {
+    .brk-hl__tile--wide { aspect-ratio: auto; }
+  }
   .brk-hl__media { position: absolute; inset: 0; background: rgba(var(--color-text-rgb), .06); }
   .brk-hl__media img,
   .brk-hl__media video,
@@ -197,7 +220,9 @@
   }
   .brk-hl__label-small { display: block; font-family: var(--body-font); font-weight: 400; font-size: clamp(1.3rem, 1.365vw, 2.6rem); }
   .brk-hl__label-large {
-    display: block; font-family: var(--brk-hl-accent-font, serif); font-weight: var(--brk-hl-accent-weight, 700);
+    display: block;
+    font-family: var(--brk-hl-label-font, var(--brk-hl-accent-font, serif));
+    font-weight: var(--brk-hl-label-weight, var(--brk-hl-accent-weight, 700));
     font-size: clamp(1.9rem, 2.047vw, 3.9rem); line-height: .92;
   }
 
@@ -214,6 +239,7 @@
     .brk-hl__accent { font-size: calc(5.8vw * var(--brk-hl-accent-scale, 1)); }
     .brk-hl__text { font-size: 3.85vw; }
     .brk-hl__tile { aspect-ratio: var(--brk-hl-ratio-mobile, var(--brk-hl-ratio)); }
+    .brk-hl__tile--featured-photo { aspect-ratio: var(--brk-hl-tile-ratio); }
     .brk-hl__tile--hide-mobile { display: none; }
     .brk-hl__label { padding-inline: 1.6rem; }
     .brk-hl__label-small { font-size: 4.2vw; }
@@ -276,7 +302,14 @@
       "type": "font_picker",
       "id": "accent_font",
       "label": "Fonte do destaque",
-      "info": "Usada na linha de destaque do título e na linha grande dos selos.",
+      "info": "Usada na linha de destaque do título.",
+      "default": "noto_serif_n7"
+    },
+    {
+      "type": "font_picker",
+      "id": "label_font",
+      "label": "Fonte do selo",
+      "info": "Usada na linha grande dos selos das mídias.",
       "default": "noto_serif_n7"
     },
     { "type": "header", "content": "Faixa de mídias" },
@@ -356,6 +389,8 @@
           "default": "object-position: center center;"
         },
         { "type": "checkbox", "id": "show_mobile", "label": "Mostrar no mobile", "default": true },
+        { "type": "checkbox", "id": "mobile_featured", "label": "No mobile: em cima, fora do carrossel", "info": "Vídeos já ficam em cima. Para foto, mantém a proporção da própria imagem.", "default": false },
+        { "type": "range", "id": "desktop_width", "label": "Largura no desktop", "info": "100% = igual aos outros. Acima disso o bloco fica mais largo e acompanha a altura dos demais.", "min": 100, "max": 250, "step": 5, "unit": "%", "default": 100 },
         { "type": "header", "content": "Selo" },
         { "type": "text", "id": "label_small", "label": "Linha fina", "info": "Ex.: Para o" },
         { "type": "text", "id": "label_large", "label": "Linha de destaque", "info": "Ex.: Campo" }
