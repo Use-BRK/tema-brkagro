@@ -57,13 +57,14 @@
     --brk-hl-radius: {{ st.tile_radius }}px;
     --brk-hl-label-bg: {{ label_bg }}; --brk-hl-label-text: {{ st.label_text }};
     {% if st.text_color != blank %}--brk-hl-text: {{ st.text_color }};{% endif %}
+    --brk-hl-accent-scale: {{ st.accent_scale | default: 100 | divided_by: 100.0 }};
   "
 >
   <div class="{{ st.section_width }}">
     {%- if eyebrow != blank or heading != blank or text != blank -%}
       <div class="brk-hl__intro">
         {%- if eyebrow != blank or heading != blank -%}
-          <h2 class="brk-hl__heading">
+          <h2 class="brk-hl__heading{% unless st.heading_uppercase %} brk-hl__heading--normal-case{% endunless %}">
             {%- if eyebrow != blank -%}<span class="brk-hl__eyebrow">{{ eyebrow }}</span>{%- endif -%}
             {%- if heading != blank -%}<span class="brk-hl__accent">{{ heading }}</span>{%- endif -%}
           </h2>
@@ -167,13 +168,14 @@
   .brk-hl { padding-top: var(--brk-hl-pt); padding-bottom: var(--brk-hl-pb); color: var(--brk-hl-text, var(--color-text)); }
   .brk-hl__intro { max-width: min(67vw, 128.8rem); margin: 0 auto clamp(3.2rem, 3.4vw, 6.4rem); text-align: center; }
   .brk-hl__heading { margin: 0 0 1.25em; color: inherit; line-height: 1; text-transform: uppercase; font-size: inherit; }
+  .brk-hl__heading--normal-case { text-transform: none; }
   .brk-hl__eyebrow {
     display: block; font-family: var(--body-font); font-weight: 400; letter-spacing: 0;
     font-size: clamp(1.6rem, 1.3vw, 2.5rem); line-height: 1.23;
   }
   .brk-hl__accent {
     display: block; font-family: var(--brk-hl-accent-font, serif); font-weight: var(--brk-hl-accent-weight, 700);
-    font-size: clamp(2rem, 1.65vw, 3.2rem); line-height: .94;
+    font-size: calc(clamp(2rem, 1.65vw, 3.2rem) * var(--brk-hl-accent-scale, 1)); line-height: .94;
   }
   .brk-hl__text { font-size: clamp(1.4rem, 1.05vw, 2rem); font-weight: 400; line-height: 1.2; }
   .brk-hl__text p { margin: 0 0 1.2em; }
@@ -209,7 +211,7 @@
     .brk-hl--hide-mobile { display: none; }
     .brk-hl__intro { max-width: 81.6vw; margin-bottom: 2.4rem; } /* Figma: caixa de 306px no frame de 375px */
     .brk-hl__eyebrow { font-size: 5.8vw; }
-    .brk-hl__accent { font-size: 5.8vw; }
+    .brk-hl__accent { font-size: calc(5.8vw * var(--brk-hl-accent-scale, 1)); }
     .brk-hl__text { font-size: 3.85vw; }
     .brk-hl__tile { aspect-ratio: var(--brk-hl-ratio-mobile, var(--brk-hl-ratio)); }
     .brk-hl__tile--hide-mobile { display: none; }
@@ -262,6 +264,8 @@
     { "type": "color", "id": "text_color", "label": "Cor do título e do texto", "info": "Vazio = cor do esquema de cores.", "default": "#505050" },
     { "type": "text", "id": "eyebrow", "label": "Título: linha fina", "default": "Feita para" },
     { "type": "text", "id": "heading", "label": "Título: linha de destaque", "default": "Vestir a rotina" },
+    { "type": "checkbox", "id": "heading_uppercase", "label": "Título em caixa alta", "default": true },
+    { "type": "range", "id": "accent_scale", "label": "Tamanho da linha de destaque", "min": 100, "max": 300, "step": 10, "unit": "%", "default": 100 },
     {
       "type": "richtext",
       "id": "text",
