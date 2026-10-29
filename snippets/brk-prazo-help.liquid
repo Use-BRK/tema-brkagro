@@ -2,6 +2,7 @@
   BRK — "?" ao lado do prazo de produção que abre o modal "Por que nossos produtos precisam de X dias úteis".
   Textos e cor em Configurações do tema > Modal do prazo de produção.
   Params: dias (número de dias úteis), uid (id único, ex.: block.id). Sem dias (ou 0 = pronta entrega) não renderiza.
+  Opcional: button_only: true (só o "?", abre o modal já renderizado com o mesmo uid), class (classe extra no "?").
   Uso: {% render 'brk-prazo-help', dias: prazo_dias, uid: block.id %}
 {%- endcomment -%}
 {%- liquid
@@ -19,9 +20,10 @@
   assign ph_title = settings.prazo_modal_title | default: 'Por que nossos produtos precisam de <strong>[dias]</strong> para serem produzidos?' | replace: '[dias]', ph_dias_txt
 -%}
 {%- if ph_show -%}
-<button type="button" class="brk-prazo-q" data-brk-prazo-open="{{ ph_id }}" aria-haspopup="dialog" aria-label="Por que {{ ph_dias_txt }} de produção?">
+<button type="button" class="brk-prazo-q {{ class }}" data-brk-prazo-open="{{ ph_id }}" aria-haspopup="dialog" aria-label="Por que {{ ph_dias_txt }} de produção?">
   <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true" focusable="false"><circle cx="8" cy="8" r="8" fill="currentColor"/><path d="M6.1 6.1a1.95 1.95 0 0 1 3.8.6c0 1.3-1.9 1.6-1.9 2.6" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/><circle cx="8" cy="11.6" r=".95" fill="#fff"/></svg>
 </button>
+{%- unless button_only -%}
 <dialog class="brk-prazo-modal" id="{{ ph_id }}" aria-labelledby="{{ ph_id }}-t" style="--brk-pm: {{ settings.prazo_modal_color | default: '#085b47' }};">
   <div class="brk-prazo-modal__box">
     <span class="brk-prazo-modal__qicon" aria-hidden="true">
@@ -86,6 +88,7 @@
   .brk-prazo-modal__steps { list-style: none; margin: 28px 0 0; padding: 0; width: 100%; max-width: 440px; }
   .brk-prazo-modal__step { position: relative; display: flex; align-items: center; gap: 30px; padding-bottom: 24px; }
   .brk-prazo-modal__step:last-child { padding-bottom: 0; }
+  .brk-prazo-modal__step > div { display: flex; flex-direction: column; justify-content: center; }
   .brk-prazo-modal__step:not(:first-child)::before,
   .brk-prazo-modal__step:not(:last-child)::after {
     content: ""; position: absolute; left: 31px; width: 2px; transform: translateX(-50%);
@@ -110,23 +113,22 @@
   }
   .brk-prazo-modal__btn:hover { filter: brightness(1.1); }
   @media (max-width: 480px) {
-    .brk-prazo-modal { width: calc(100vw - 24px); border-radius: 18px; }
-    .brk-prazo-modal__box { padding: 22px 14px 20px; }
-    .brk-prazo-modal__qicon { width: 36px; height: 36px; }
-    .brk-prazo-modal__title { margin-top: 10px; font-size: 18px; }
-    .brk-prazo-modal__sub { margin-top: 6px; font-size: 12px; }
-    .brk-prazo-modal__steps { margin-top: 16px; }
-    .brk-prazo-modal__step { gap: 12px; padding-bottom: 10px; }
+    .brk-prazo-modal__box { padding: 28px 20px 24px; }
+    .brk-prazo-modal__qicon { width: 44px; height: 44px; }
+    .brk-prazo-modal__title { font-size: 20px; }
+    .brk-prazo-modal__sub { font-size: 13px; }
+    .brk-prazo-modal__steps { margin-top: 22px; }
+    .brk-prazo-modal__step { gap: 16px; padding-bottom: 18px; }
     .brk-prazo-modal__step:not(:first-child)::before,
-    .brk-prazo-modal__step:not(:last-child)::after { left: 21px; }
-    .brk-prazo-modal__step:not(:first-child)::before { height: calc((100% - 10px) / 2 + 1px); }
-    .brk-prazo-modal__step:not(:last-child)::after { top: calc((100% - 10px) / 2); }
+    .brk-prazo-modal__step:not(:last-child)::after { left: 24px; }
+    .brk-prazo-modal__step:not(:first-child)::before { height: calc((100% - 18px) / 2 + 1px); }
+    .brk-prazo-modal__step:not(:last-child)::after { top: calc((100% - 18px) / 2); }
     .brk-prazo-modal__step:last-child:not(:first-child)::before { height: calc(50% + 1px); }
-    .brk-prazo-modal__icon { width: 42px; height: 42px; }
-    .brk-prazo-modal__icon svg { width: 21px; height: 21px; }
-    .brk-prazo-modal__stitle { margin: 1px 0 2px; font-size: 15.5px; }
-    .brk-prazo-modal__stext { font-size: 11px; line-height: 1.35; }
-    .brk-prazo-modal__btn { margin-top: 18px; min-width: 150px; padding: 9px 24px; font-size: 16px; }
+    .brk-prazo-modal__icon { width: 48px; height: 48px; }
+    .brk-prazo-modal__icon svg { width: 24px; height: 24px; }
+    .brk-prazo-modal__stitle { margin-top: 2px; font-size: 17px; }
+    .brk-prazo-modal__stext { font-size: 12px; }
+    .brk-prazo-modal__btn { margin-top: 28px; font-size: 17px; }
   }
 </style>
 <script>
@@ -138,7 +140,17 @@
         e.preventDefault();
         e.stopPropagation();
         var d = document.getElementById(open.getAttribute('data-brk-prazo-open'));
-        if (d && !d.open) d.showModal();
+        if (d && !d.open) {
+          d.showModal();
+          // 1ª e última etapa com a mesma altura: ícones (centralizados no texto) ficam equidistantes
+          var t = d.querySelectorAll('.brk-prazo-modal__step > div');
+          if (t.length > 2) {
+            var a = t[0], z = t[t.length - 1];
+            a.style.minHeight = z.style.minHeight = '';
+            var h = Math.max(a.offsetHeight, z.offsetHeight) + 'px';
+            a.style.minHeight = z.style.minHeight = h;
+          }
+        }
         return;
       }
       var d2 = e.target.closest('.brk-prazo-modal');
@@ -146,4 +158,5 @@
     }, true);
   }
 </script>
+{%- endunless -%}
 {%- endif -%}

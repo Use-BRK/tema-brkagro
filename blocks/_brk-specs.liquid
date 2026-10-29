@@ -91,9 +91,10 @@
                 </svg>
               </span>
               <span>{{ st.prazo_label | default: 'Prazo de Envio' }}</span>
+              {%- unless product.tags contains 'prazo_imediato' -%}{% render 'brk-prazo-help', dias: prazo_dias, uid: block.id, button_only: true, class: 'brk-prazo-q--mobile' %}{%- endunless -%}
             </dt>
             <dd class="brk-bbspecs__value">
-              {%- unless product.tags contains 'prazo_imediato' -%}{% render 'brk-prazo-help', dias: prazo_dias, uid: block.id %}{%- endunless -%}
+              {%- unless product.tags contains 'prazo_imediato' -%}{% render 'brk-prazo-help', dias: prazo_dias, uid: block.id, class: 'brk-prazo-q--desktop' %}{%- endunless -%}
               {{- prazo_text }} <span class="brk-bbspecs__sufixo">{{ prazo_sufixo }}</span>
             </dd>
           </div>
@@ -194,6 +195,9 @@
     font-size: 1.3rem; color: #2c2f2b; line-height: 1.35; overflow-wrap: anywhere;
   }
   .brk-bbspecs__rte { padding: 0 1.8rem 1.4rem; font-size: 1.3rem; }
+  /* "?" do prazo (snippet brk-prazo-help): desktop antes do texto do prazo, mobile ao lado do rótulo */
+  .brk-bbspecs__label .brk-prazo-q { margin: 0 0 0 -.2rem; }
+  .brk-bbspecs__row .brk-prazo-q--mobile { display: none; }
   @media (max-width: 480px) {
     .brk-bbspecs__acc { border-radius: 12px; }
     .brk-bbspecs__head { padding: 1.3rem 1.4rem; }
@@ -206,6 +210,8 @@
     .brk-bbspecs__row--prazo { grid-template-columns: auto minmax(0, 1fr); }
     .brk-bbspecs__row--prazo .brk-bbspecs__label { white-space: nowrap; }
     .brk-bbspecs__sufixo { display: block; }
+    .brk-bbspecs__row .brk-prazo-q--mobile { display: inline-flex; }
+    .brk-bbspecs__row .brk-prazo-q--desktop { display: none; }
   }
 </style>
 {% schema %}
