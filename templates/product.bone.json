@@ -353,7 +353,7 @@
         "brk_header_logo_color": "original",
         "enable_sticky_content_on_desktop": true,
         "enable_skeleton_loading": false,
-        "desktop_media_width": 40,
+        "desktop_media_width": 50,
         "desktop_layout": "thumbnail_bottom",
         "thumbnail_size": 100,
         "media_border_radius": 5,

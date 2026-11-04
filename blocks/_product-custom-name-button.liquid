@@ -43,6 +43,8 @@
   assign perso_variant_id = block_st.perso_variant_id | default: '53224470479145'
   assign perso_price = block_st.perso_price | default: '29,90'
   assign button_mode = block_st.button_mode | default: 'whatsapp'
+  # Preço vai à direita (perso_price); um "(R$...)" no texto do botão é descartado
+  assign cnm_label = button_label | split: ' (' | first | strip
 
   comment
     WhatsApp: monta a URL com mensagem pré-preenchida + link do produto
@@ -69,7 +71,7 @@
           target="_blank"
           rel="noopener"
           class="btn btn-primary w-full product-form__submit word-wrap relative no-underline custom-name-button__link"
-          style="--btn-padding-x: 1.4rem;"
+          style="--btn-padding-x: 1.8rem;"
           data-cnm-track
           data-product-id="{{ product.id }}"
           data-product-title="{{ product.title | escape }}"
@@ -77,9 +79,10 @@
           data-product-url="{{ product_url | escape }}"
           data-button-text="{{ button_label | escape }}"
         >
-          <span class="btn-label hidden-on-load inline-flex align-center content-center gap-10 custom-name-button__label">
-            <img class="custom-name-button__icon" src="https://cdn.shopify.com/s/files/1/0887/2083/4857/files/customize_cinza.svg" alt="" width="16" height="16" loading="lazy">
-            <span>{{ button_label }}</span>
+          <span class="btn-label hidden-on-load flex align-center gap-10 custom-name-button__label">
+            <svg class="custom-name-button__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 20h9"/><path d="M16.376 3.622a1 1 0 0 1 3.002 3.002L7.368 18.635a2 2 0 0 1-.855.506l-2.872.838a.5.5 0 0 1-.62-.62l.838-2.872a2 2 0 0 1 .506-.854z"/></svg>
+            <span class="custom-name-button__text">{{ cnm_label }}</span>
+            <span class="custom-name-button__price">R${{ perso_price }}</span>
           </span>
         </a>
       </div>
@@ -130,11 +133,12 @@
         type="button"
         class="btn btn-primary w-full product-form__submit word-wrap relative no-underline custom-name-button__link cnm-open-js"
         data-target="#cnm-{{ block.id }}"
-        style="--btn-padding-x: 1.4rem;"
+        style="--btn-padding-x: 1.8rem;"
       >
-        <span class="btn-label inline-flex align-center content-center gap-10 custom-name-button__label">
-          <img class="custom-name-button__icon" src="https://cdn.shopify.com/s/files/1/0887/2083/4857/files/customize_cinza.svg" alt="" width="16" height="16" loading="lazy">
-          <span>{{ button_label }}</span>
+        <span class="btn-label flex align-center gap-10 custom-name-button__label">
+          <svg class="custom-name-button__icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 20h9"/><path d="M16.376 3.622a1 1 0 0 1 3.002 3.002L7.368 18.635a2 2 0 0 1-.855.506l-2.872.838a.5.5 0 0 1-.62-.62l.838-2.872a2 2 0 0 1 .506-.854z"/></svg>
+          <span class="custom-name-button__text">{{ cnm_label }}</span>
+          <span class="custom-name-button__price">R${{ perso_price }}</span>
         </span>
       </button>
     </div>
@@ -261,8 +265,10 @@
 
 {% stylesheet %}
   .custom-name-button__link { min-height: 5.6rem; box-sizing: border-box; /* mesma altura do botão Adicionar à Sacola */ line-height: 1.15; white-space: normal; }
-  .custom-name-button__label { max-width: 100%; text-align: center; font-weight: 500; }
+  .custom-name-button__label { width: 100%; max-width: 100%; text-align: left; font-size: 1.4rem; font-weight: 400; }
   .custom-name-button__icon { flex: 0 0 auto; }
+  .custom-name-button__text { min-width: 0; }
+  .custom-name-button__price { margin-left: auto; font-weight: 700; white-space: nowrap; }
 
   /* ---------- Modal ---------- */
   custom-name-modal[hidden] { display: none; }

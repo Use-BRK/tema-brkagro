@@ -116,6 +116,19 @@
     {{ 'photoswipe.css' | asset_url | stylesheet_tag }}
   {% endif %}
   <script src="{{ 'photoswipe-init.js' | asset_url }}" defer="defer" type="module"></script>
+  {%- comment -%} Respiro lateral no desktop (igual Fishing): limita a largura do produto e do breadcrumb. 1800 = sem limite. {%- endcomment -%}
+  {%- assign desk_max = section.settings.desktop_max_width | default: 1800 -%}
+  {%- if desk_max < 1800 -%}
+    <style>
+      @media (min-width: 1025px) {
+        #shopify-section-{{ section.id }} .sec__featured-product > .{{ section_width }},
+        body.product .breadcrumbs > div {
+          width: 90%;
+          max-width: calc({{ desk_max }}px + var(--bs-gutter-x) * 2);
+        }
+      }
+    </style>
+  {%- endif -%}
   {% if enable_skeleton_loading == true %}
     {{ 'skeleton.css' | asset_url | stylesheet_tag }}
     <skeleton-page class="{{ section_width }} skeleton  block">
@@ -485,7 +498,7 @@
                 class="btn btn-primary w-full hidden-md text-center inline-flex content-center no-underline"
                 style="--btn-padding-x: 2.5rem; gap: 0.6rem;"
               >
-                {%- render 'icon-brk-cart', size: 15 -%}
+                {%- render 'icon-brk-cart', size: 18 -%}
                 {{- 'products.product.sticky_choose_options' | t -}}
               </a>
             {%- endif -%}
@@ -716,6 +729,17 @@
           "label": "t:sections.all.section_width.full_width.label"
         }
       ]
+    },
+    {
+      "type": "range",
+      "id": "desktop_max_width",
+      "label": "Largura máxima no desktop",
+      "info": "Cria o respiro branco nas laterais em telas grandes (só desktop). 1800 = sem limite.",
+      "min": 900,
+      "max": 1800,
+      "step": 10,
+      "unit": "px",
+      "default": 1200
     },
     {
       "type": "color_scheme",
