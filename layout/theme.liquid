@@ -195,6 +195,15 @@
     {% endif %}
     {% render 'meta-tags' %}
     {% render 'structured-data' %}
+    <script>
+      // Bloqueia o "script customizado" do edrone (externals/custom/<app_id>/*.js), feito
+      // para outro tema: procura campos de newsletter que não existem aqui e acumula um
+      // listener de teclado a cada clique. O edrone só carrega esse script (e o CSS custom)
+      // quando a config dele preenche window._edrone_custom; aqui a variável fica sempre
+      // vazia. O setter vazio evita TypeError na atribuição do edrone, então o resto
+      // (popups, tracking) segue normal.
+      Object.defineProperty(window, '_edrone_custom', { configurable: false, get: function () {}, set: function () {} });
+    </script>
     {{ content_for_header }}
     <script>
       document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
