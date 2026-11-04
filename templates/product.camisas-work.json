@@ -871,8 +871,6 @@
     },
     "brk_highlights": {
       "type": "brk-pdp-highlights",
-      "blocks": {},
-      "block_order": [],
       "settings": {
         "section_width": "container",
         "color_scheme": "",
@@ -881,6 +879,8 @@
         "text_color": "#505050",
         "eyebrow": "BRK AGRO",
         "heading": "Camisas Work",
+        "heading_uppercase": false,
+        "accent_scale": 150,
         "text": "<p>As Camisas Work BRK Agro foram desenvolvidas para quem precisa de conforto, resistência e praticidade na rotina. Com design funcional, tecido confortável e detalhes pensados para o dia a dia, são ideais para acompanhar os desafios de quem vive e trabalha no campo.</p><p>Versáteis e cheias de personalidade, combinam o estilo country com a funcionalidade que o trabalho exige. Do campo à cidade, oferecem liberdade de movimento, praticidade e autenticidade em qualquer ocasião.</p>",
         "accent_font": "mona_sans_n7",
         "tile_ratio": "0.81",
@@ -895,9 +895,7 @@
         "mf_heading": "",
         "mf_text": "",
         "padding_top": 36,
-        "padding_bottom": 24,
-        "heading_uppercase": false,
-        "accent_scale": 150
+        "padding_bottom": 24
       }
     },
     "brk_cards": {

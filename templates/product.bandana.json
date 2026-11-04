@@ -871,8 +871,6 @@
     },
     "brk_highlights": {
       "type": "brk-pdp-highlights",
-      "blocks": {},
-      "block_order": [],
       "settings": {
         "section_width": "container",
         "color_scheme": "",
@@ -881,6 +879,8 @@
         "text_color": "#505050",
         "eyebrow": "BRK AGRO",
         "heading": "Bandana",
+        "heading_uppercase": false,
+        "accent_scale": 190,
         "text": "<p>As bandanas BRK Agro combinam proteção, conforto e versatilidade para quem enfrenta os desafios do dia a dia no campo. Com tecido leve e ajuste confortável, são ideais para acompanhar sua rotina, oferecendo praticidade e estilo em diferentes situações.</p><p>Do trabalho aos momentos de lazer, nossas bandanas são acessórios indispensáveis para quem valoriza liberdade de movimento e autenticidade. Perfeitas para complementar seu visual country com a personalidade de quem vive o agro.</p>",
         "accent_font": "mona_sans_n7",
         "tile_ratio": "0.81",
@@ -895,9 +895,7 @@
         "mf_heading": "",
         "mf_text": "",
         "padding_top": 36,
-        "padding_bottom": 24,
-        "heading_uppercase": false,
-        "accent_scale": 190
+        "padding_bottom": 24
       }
     },
     "brk_cards": {
