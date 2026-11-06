@@ -889,8 +889,6 @@
     },
     "brk_highlights": {
       "type": "brk-pdp-highlights",
-      "blocks": {},
-      "block_order": [],
       "settings": {
         "section_width": "container",
         "color_scheme": "",
@@ -899,6 +897,8 @@
         "text_color": "#505050",
         "eyebrow": "BRK AGRO",
         "heading": "Bonés",
+        "heading_uppercase": false,
+        "accent_scale": 190,
         "text": "<p>Os bonés BRK Agro combinam estilo, conforto e autenticidade para quem carrega a essência do campo no dia a dia. Com visual moderno e inspiração no universo country, são acessórios que complementam o estilo de quem vive e valoriza o agro.</p><p>Versáteis e cheios de personalidade, nossos bonés são ideais para acompanhar você no trabalho, nos momentos de lazer ou em qualquer ocasião. Mais do que um acessório, são uma forma de expressar seu orgulho pelo agro.</p>",
         "accent_font": "mona_sans_n7",
         "tile_ratio": "0.81",
@@ -913,9 +913,7 @@
         "mf_heading": "",
         "mf_text": "",
         "padding_top": 36,
-        "padding_bottom": 24,
-        "heading_uppercase": false,
-        "accent_scale": 190
+        "padding_bottom": 24
       }
     },
     "brk_cards": {

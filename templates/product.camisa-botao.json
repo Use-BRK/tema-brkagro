@@ -871,8 +871,6 @@
     },
     "brk_highlights": {
       "type": "brk-pdp-highlights",
-      "blocks": {},
-      "block_order": [],
       "settings": {
         "section_width": "container",
         "color_scheme": "",
@@ -881,6 +879,8 @@
         "text_color": "#505050",
         "eyebrow": "BRK AGRO",
         "heading": "Camisas de Botão",
+        "heading_uppercase": false,
+        "accent_scale": 150,
         "text": "<p>As Camisas de Botão BRK Agro unem tradição, conforto e estilo para quem vive o campo com personalidade. Com modelagem anatômica e acabamento caprichado, garantem caimento impecável do trabalho à cidade.</p><p>Versáteis e elegantes, são ideais para diferentes ocasiões, do dia a dia na fazenda aos encontros e eventos. Qualidade e autenticidade em cada detalhe.</p>",
         "accent_font": "mona_sans_n7",
         "tile_ratio": "0.81",
@@ -895,9 +895,7 @@
         "mf_heading": "",
         "mf_text": "",
         "padding_top": 36,
-        "padding_bottom": 24,
-        "heading_uppercase": false,
-        "accent_scale": 150
+        "padding_bottom": 24
       }
     },
     "brk_cards": {

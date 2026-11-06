@@ -871,8 +871,6 @@
     },
     "brk_highlights": {
       "type": "brk-pdp-highlights",
-      "blocks": {},
-      "block_order": [],
       "settings": {
         "section_width": "container",
         "color_scheme": "",
@@ -881,6 +879,8 @@
         "text_color": "#505050",
         "eyebrow": "BRK AGRO",
         "heading": "Óculos de Sol",
+        "heading_uppercase": false,
+        "accent_scale": 190,
         "text": "<p>Desenvolvidos para quem vive a rotina do campo e enfrenta o sol forte todos os dias. Os óculos de sol BRK Agro entregam proteção, nitidez e conforto para quem precisa enxergar melhor, reagir mais rápido e manter alta performance em qualquer atividade no agro.</p>",
         "accent_font": "mona_sans_n7",
         "tile_ratio": "0.81",
@@ -895,9 +895,7 @@
         "mf_heading": "",
         "mf_text": "",
         "padding_top": 36,
-        "padding_bottom": 24,
-        "heading_uppercase": false,
-        "accent_scale": 190
+        "padding_bottom": 24
       }
     },
     "brk_cards": {

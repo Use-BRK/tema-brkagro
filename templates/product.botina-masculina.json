@@ -871,8 +871,6 @@
     },
     "brk_highlights": {
       "type": "brk-pdp-highlights",
-      "blocks": {},
-      "block_order": [],
       "settings": {
         "section_width": "container",
         "color_scheme": "",
@@ -881,6 +879,8 @@
         "text_color": "#505050",
         "eyebrow": "BRK AGRO",
         "heading": "Botinas",
+        "heading_uppercase": false,
+        "accent_scale": 190,
         "text": "<p>As botinas masculinas BRK Agro unem resistência, conforto e estilo para quem vive a rotina do campo. Produzidas em couro legítimo, com design country e acabamento premium, acompanham você do trabalho aos momentos de lazer.</p><p>Versáteis e duráveis, são feitas para quem não abre mão de qualidade e carrega o orgulho de ser agro em cada passo.</p>",
         "accent_font": "mona_sans_n7",
         "tile_ratio": "0.81",
@@ -895,9 +895,7 @@
         "mf_heading": "",
         "mf_text": "",
         "padding_top": 36,
-        "padding_bottom": 24,
-        "heading_uppercase": false,
-        "accent_scale": 190
+        "padding_bottom": 24
       }
     },
     "brk_cards": {

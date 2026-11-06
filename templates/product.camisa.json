@@ -595,8 +595,6 @@
     },
     "brk_highlights": {
       "type": "brk-pdp-highlights",
-      "blocks": {},
-      "block_order": [],
       "settings": {
         "section_width": "container",
         "color_scheme": "",
@@ -605,6 +603,8 @@
         "text_color": "#505050",
         "eyebrow": "Tecnologia",
         "heading": "Xtech Pro ®",
+        "heading_uppercase": false,
+        "accent_scale": 190,
         "text": "<p>O XTech Pro® é um tecido tecnológico de alta performance <strong>desenvolvido pela BRK</strong> para oferecer o máximo de conforto, proteção e durabilidade. Sua tecnologia proporciona <strong>toque ultragelado, alta respirabilidade, secagem ultrarrápida e ação antibacteriana</strong>, ajudando a evitar odores mesmo durante o uso prolongado.</p><p>Leve, resistente e com <strong>proteção solar UV50+ homologada pelo SENAI</strong>, que bloqueia até 98% dos raios UVA e UVB, o XTech Pro® foi desenvolvido para acompanhar quem vive intensamente cada momento, garantindo liberdade de movimento e conforto em diferentes condições.</p>",
         "accent_font": "mona_sans_n7",
         "tile_ratio": "0.81",
@@ -619,9 +619,7 @@
         "mf_heading": "",
         "mf_text": "",
         "padding_top": 36,
-        "padding_bottom": 24,
-        "heading_uppercase": false,
-        "accent_scale": 190
+        "padding_bottom": 24
       }
     },
     "brk_cards": {
