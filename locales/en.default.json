@@ -839,6 +839,12 @@
       "password_link": "Enter using password"
     }
   },
+  "brk_reviews": {
+    "count": {
+      "one": "{{ count }} review",
+      "other": "{{ count }} reviews"
+    }
+  },
   "locksmith": {
     "forms": {
       "submit_button_text": "Continue",

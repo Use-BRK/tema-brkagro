@@ -1,3 +1,49 @@
+.product-detail__meta:has(.product-detail__rating) {
+  opacity: 1;
+}
+
+.product-detail__meta .product-detail__sku-rating {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+}
+
+.product-detail__sku-rating .product__sku {
+  color: #a6a6a6;
+  font-size: 16px;
+  font-weight: 400;
+  overflow-wrap: anywhere;
+  min-width: 0;
+}
+
+.product-detail__sku-rating .product-detail__rating {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  gap: 0.35em;
+  margin-left: auto;
+  color: #085b47;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.product-detail__sku-rating .product-detail__rating:hover {
+  color: #3a9e35;
+}
+
+.product-detail__rating-star {
+  width: 1em;
+  height: 1em;
+}
+
+.product-detail__meta:has(.product-detail__rating) ~ .shopify-app-block:has(.jdgm-preview-badge) {
+  display: none;
+}
+
 body .jdgm-rev-widg {
   --jdgm-secondary-color: var(--color-border);
   --btn-bg: var(--color-white);

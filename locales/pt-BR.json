@@ -8,6 +8,12 @@
  * ------------------------------------------------------------
  */
 {
+  "brk_reviews": {
+    "count": {
+      "one": "{{ count }} review",
+      "other": "{{ count }} reviews"
+    }
+  },
   "accessibility": {
     "skip_to_text": "Pular para o conteúdo",
     "refresh_page": "A escolha de uma seleção resulta em uma atualização completa da página.",

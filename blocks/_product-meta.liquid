@@ -17,14 +17,14 @@
     </li>
   {% endif %}
   {% if block_st.show_sku %}
-    <li class="mb-2">
-      {% comment %} <span class="product-detail__meta-label inline-block">{{- 'products.product.general.sku' | t }}:</span> {% endcomment %}
+    <li class="product-detail__sku-rating mb-2">
       <span
         class="product__sku product-detail__meta-value heading-color no-underline{% if product.selected_or_first_available_variant.sku.size == 0 %} visibility-hidden{% endif %}"
         role="status"
       >
         {{- product.selected_or_first_available_variant.sku | default: 'N/A' -}}
       </span>
+      {% render 'product-rating-summary', product: product %}
     </li>
   {% endif %}
   {% if block_st.show_available %}

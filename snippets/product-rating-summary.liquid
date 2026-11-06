@@ -1,0 +1,30 @@
+{% doc %}
+  Renders the product rating, falling back to the store rating for unrated products.
+  @param {product} product - Product whose rating is displayed.
+{% enddoc %}
+{%- liquid
+  assign review_count = 0
+  assign review_badge = product.metafields.judgeme.badge | append: '' | replace: '"', "'"
+  if review_badge contains 'data-number-of-reviews'
+    assign review_count = review_badge | split: "data-number-of-reviews='" | last | split: "'" | first | plus: 0
+    assign review_average = review_badge | split: "data-average-rating='" | last | split: "'" | first | plus: 0 | round: 1
+  endif
+  if review_count == 0 and shop.metafields.judgeme.all_reviews_count != blank
+    assign review_count = shop.metafields.judgeme.all_reviews_count | plus: 0
+    assign review_average = shop.metafields.judgeme.all_reviews_rating | plus: 0 | round: 1
+  endif
+  assign average_integer = review_average | floor
+  if review_average == average_integer
+    assign review_average = average_integer
+  endif
+  assign review_average = review_average | append: '' | replace: '.', ','
+-%}
+{%- if review_count > 0 -%}
+  <a href="#judgeme_product_reviews" class="product-detail__rating no-underline">
+    <svg class="product-detail__rating-star" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <path fill="currentColor" d="M12 2.5l2.94 6.26 6.86.83-5.06 4.72 1.3 6.79L12 17.77l-6.04 3.33 1.3-6.79L2.2 9.59l6.86-.83L12 2.5z"/>
+    </svg>
+    <span class="product-detail__rating-avg">{{ review_average }}</span>
+    <span class="product-detail__rating-count">({{ 'brk_reviews.count' | t: count: review_count }})</span>
+  </a>
+{%- endif -%}
