@@ -16,8 +16,8 @@
           "type": "slider_item",
           "name": "BLACKBLACKBLACKBLACKBLACK",
           "settings": {
-            "image": "shopify://shop_images/BANNER_ESQUENTA_BRK.jpg",
-            "image_mobile": "shopify://shop_images/MOBILE_ESQUENTA_BRK.jpg",
+            "image": "shopify://shop_images/BANNER_BLACK_NOVEMBER.jpg",
+            "image_mobile": "shopify://shop_images/MOBILE_BLACK_NOVEMBER.jpg",
             "overlay_opacity": 0,
             "link_banner": "shopify://collections/envios-imediatos",
             "slider_effect": "fade-in-right",
