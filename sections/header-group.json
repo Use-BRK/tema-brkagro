@@ -56,6 +56,15 @@
             "hidden_on_mobile": false
           }
         },
+        "free_shipping_black": {
+          "type": "free_shipping",
+          "settings": {
+            "text": "Frete grátis na compra de qualquer camisa Black",
+            "link": "",
+            "show_icon": true,
+            "hidden_on_mobile": false
+          }
+        },
         "text_slider_LFaC38": {
           "type": "text_slider",
           "settings": {
@@ -85,6 +94,7 @@
       "block_order": [
         "countdown_text_XF7cFC",
         "shipping_countdown_F86tnm",
+        "free_shipping_black",
         "text_slider_LFaC38"
       ],
       "custom_css": [

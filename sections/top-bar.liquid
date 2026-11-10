@@ -627,6 +627,8 @@
                   {%- endif -%}
                 </div>
               {%- endif -%}
+            {%- when 'free_shipping' -%}
+              {%- render 'topbar-free-shipping', block: block -%}
             {%- when 'shipping_countdown' -%}
               {%- if block_st.custom_colors -%}
                 {%- style -%}
@@ -1011,6 +1013,36 @@
   ],
   "max_blocks": 4,
   "blocks": [
+    {
+      "type": "free_shipping",
+      "name": "Frete grátis",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Texto",
+          "default": "Frete grátis na compra de qualquer camisa Black"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link (opcional)"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_icon",
+          "label": "Mostrar ícone de frete",
+          "default": true
+        },
+        {
+          "type": "checkbox",
+          "id": "hidden_on_mobile",
+          "label": "t:sections.top-bar.blocks.hidden_on_mobile.label",
+          "default": false
+        }
+      ]
+    },
     {
       "type": "store_information",
       "name": "t:sections.top-bar.blocks.store_information.name",

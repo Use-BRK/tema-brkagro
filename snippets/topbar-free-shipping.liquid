@@ -1,0 +1,61 @@
+{% doc %}
+  Renders the independent free shipping announcement in the top bar.
+  @param {block} block - The free shipping block and its settings.
+{% enddoc %}
+
+{%- if block.settings.text != blank -%}
+  <div
+    class="topbar-item topbar-free-shipping{% if block.settings.hidden_on_mobile %} hidden block-1025{% endif %}"
+    {{ block.shopify_attributes }}
+  >
+    {%- if block.settings.link != blank -%}
+      <a class="topbar-free-shipping__content" href="{{ block.settings.link }}">
+    {%- else -%}
+      <div class="topbar-free-shipping__content">
+    {%- endif -%}
+      {%- if block.settings.show_icon -%}
+        {%- render 'topbar-compact-icon', icon: 'truck' -%}
+      {%- endif -%}
+      <span>{{ block.settings.text | escape }}</span>
+    {%- if block.settings.link != blank -%}
+      </a>
+    {%- else -%}
+      </div>
+    {%- endif -%}
+  </div>
+{%- endif -%}
+
+{% stylesheet %}
+  #topbar .topbar-free-shipping {
+    flex: 0 1 auto;
+    min-width: 0;
+    color: var(--topbar-shipping-text, inherit);
+  }
+
+  #topbar .topbar-free-shipping__content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    color: inherit;
+    text-align: center;
+    line-height: 1.35;
+  }
+
+  #topbar .topbar-free-shipping__content > span {
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+
+  @media (max-width: 1024px) {
+    #topbar .topbar__section-inner:has(> .topbar-item.topbar-free-shipping:not(.hidden)) {
+      flex-wrap: wrap;
+      row-gap: 8px;
+    }
+
+    #topbar .topbar-free-shipping {
+      flex-basis: 100%;
+      order: 1;
+    }
+  }
+{% endstylesheet %}
