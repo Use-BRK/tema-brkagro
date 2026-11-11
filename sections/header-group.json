@@ -23,7 +23,7 @@
             "line_2": "camisas da Black",
             "badge_top": "+ FRETE",
             "badge_bottom": "GRátis",
-            "badge_style": "filled",
+            "badge_style": "outline",
             "highlight_size": 30,
             "lines_size": 20,
             "highlight_size_mobile": 19,
