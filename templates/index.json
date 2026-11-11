@@ -16,8 +16,8 @@
           "type": "slider_item",
           "name": "11.11",
           "settings": {
-            "image": "shopify://shop_images/BANNER_BLACK_NOVEMBER.jpg",
-            "image_mobile": "shopify://shop_images/MOBILE_BLACK_NOVEMBER.jpg",
+            "image": "shopify://shop_images/BANNER_BOOSTER_11-11.jpg",
+            "image_mobile": "shopify://shop_images/MOBILE_BOOSTER_11-11.jpg",
             "overlay_opacity": 0,
             "link_banner": "shopify://collections/envios-imediatos",
             "slider_effect": "fade-in-right",
