@@ -155,8 +155,8 @@
     /* Enquanto o timer está visível, os dois blocos ficam lado a lado numa linha só. */
     #topbar .topbar__section-inner:has(> .topbar-cd-text:not([hidden]), > topbar-shipping-timer:not([hidden])) {
       flex-wrap: nowrap;
-      justify-content: space-evenly;
-      gap: 12px;
+      justify-content: space-between;
+      gap: min(12px, 1.5vw);
     }
     #topbar .topbar-cd-text,
     #topbar .topbar-shipping {
@@ -171,9 +171,14 @@
     #topbar .topbar-cd-text {
       --cd-big-fs: min(calc(var(--cd-big-m, 28) * 1px), calc(var(--cd-big-m, 28) * 100vw / 390));
       --cd-lines-fs: min(calc(var(--cd-lines-m, 12) * 1px), calc(var(--cd-lines-m, 12) * 100vw / 390));
+      gap: calc(var(--cd-lines-fs) * 0.8);
+    }
+    #topbar .topbar-cd-text__body {
+      display: flex;
+      align-items: center;
       gap: 0.35em;
     }
-    #topbar .topbar-cd-text--stacked {
+    #topbar .topbar-cd-text--stacked .topbar-cd-text__body {
       flex-direction: column;
       align-items: flex-start;
       gap: calc(var(--cd-lines-fs) * 0.1);
@@ -202,6 +207,34 @@
     }
     #topbar .topbar-cd-text__l1 { font-weight: var(--cd-l1-w, 800); }
     #topbar .topbar-cd-text__l2 { font-weight: var(--cd-l2-w, 800); }
+    /* Selo quadrado ao lado do texto (ex.: "+ FRETE" em cima de "GRÁTIS") */
+    #topbar .topbar-cd-badge {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      gap: calc(var(--cd-lines-fs) * 0.12);
+      padding: calc(var(--cd-lines-fs) * 0.4) calc(var(--cd-lines-fs) * 0.5);
+      border: 1.5px solid var(--topbar-shipping-text, currentColor);
+      border-radius: calc(var(--cd-lines-fs) * 0.3);
+      font-size: var(--cd-lines-fs);
+      font-weight: 800;
+      line-height: 1;
+      text-align: center;
+      white-space: nowrap;
+    }
+    #topbar .topbar-cd-badge--filled {
+      background: var(--topbar-shipping-text, currentColor);
+      color: var(--cd-badge-text, #000);
+    }
+    #topbar .topbar-cd-badge__top,
+    #topbar .topbar-cd-badge__bottom {
+      display: inline-block;
+      font-size: 1em;
+      letter-spacing: 0.02em;
+      white-space: pre;
+    }
     /* Timer. --cd-ls = espaço entre dígitos; --cd-sep-gap = espaço ao redor do ":" (ambos em fração do número). */
     #topbar .topbar-shipping {
       --cd-num-fs: min(calc(var(--cd-num-m, 22) * 1px), calc(var(--cd-num-m, 22) * 100vw / 390));
@@ -616,14 +649,22 @@
                   {%- capture cd_l2 -%}
                     {%- if block_st.line_2 != blank -%}<span class="topbar-cd-text__l2">{{ block_st.line_2 | escape }}</span>{%- endif -%}
                   {%- endcapture -%}
-                  {%- if block_st.layout == 'stacked' -%}
-                    {%- if cd_big != blank or cd_l1 != blank -%}
-                      <span class="topbar-cd-text__row">{{ cd_big }}{{ cd_l1 }}</span>
+                  <span class="topbar-cd-text__body">
+                    {%- if block_st.layout == 'stacked' -%}
+                      {%- if cd_big != blank or cd_l1 != blank -%}
+                        <span class="topbar-cd-text__row">{{ cd_big }}{{ cd_l1 }}</span>
+                      {%- endif -%}
+                      {{ cd_l2 }}
+                    {%- else -%}
+                      {{ cd_big }}
+                      <span class="topbar-cd-text__lines">{{ cd_l1 }}{{ cd_l2 }}</span>
                     {%- endif -%}
-                    {{ cd_l2 }}
-                  {%- else -%}
-                    {{ cd_big }}
-                    <span class="topbar-cd-text__lines">{{ cd_l1 }}{{ cd_l2 }}</span>
+                  </span>
+                  {%- if block_st.badge_top != blank or block_st.badge_bottom != blank -%}
+                    <span class="topbar-cd-badge topbar-cd-badge--{{ block_st.badge_style | default: 'filled' }}">
+                      {%- if block_st.badge_top != blank -%}<span class="topbar-cd-badge__top">{{ block_st.badge_top | escape }}</span>{%- endif -%}
+                      {%- if block_st.badge_bottom != blank -%}<span class="topbar-cd-badge__bottom">{{ block_st.badge_bottom | escape }}</span>{%- endif -%}
+                    </span>
                   {%- endif -%}
                 </div>
               {%- endif -%}
@@ -633,6 +674,7 @@
               {%- if block_st.custom_colors -%}
                 {%- style -%}
                   #topbar {
+                    {%- if block_st.bg_color != blank -%}--cd-badge-text: {{ block_st.bg_color }};{%- endif -%}
                     {%- if block_st.text_color != blank -%}--topbar-shipping-text: {{ block_st.text_color }};{%- endif -%}
                     {%- if block_st.timer_color != blank -%}--topbar-shipping-accent: {{ block_st.timer_color }};{%- endif -%}
                   }
@@ -728,6 +770,41 @@
       });
     });
   });
+
+  // Selo do "Texto do timer": as duas linhas ficam com a mesma largura (bordas alinhadas),
+  // abrindo o espaço entre as letras da linha mais curta.
+  (function () {
+    function fitBadge(badge) {
+      var top = badge.querySelector('.topbar-cd-badge__top');
+      var bottom = badge.querySelector('.topbar-cd-badge__bottom');
+      if (!top || !bottom) return;
+      [top, bottom].forEach(function (el) {
+        el.style.letterSpacing = '';
+        el.style.marginRight = '';
+      });
+      var wTop = top.getBoundingClientRect().width;
+      var wBottom = bottom.getBoundingClientRect().width;
+      if (!wTop || !wBottom) return;
+      var narrow = wTop < wBottom ? top : bottom;
+      var chars = narrow.textContent.trim().length;
+      if (chars < 2) return;
+      var extra = Math.abs(wTop - wBottom) / (chars - 1);
+      var base = parseFloat(getComputedStyle(narrow).letterSpacing) || 0;
+      narrow.style.letterSpacing = base + extra + 'px';
+      narrow.style.marginRight = -extra + 'px';
+    }
+    function fitAll() {
+      document.querySelectorAll('#topbar .topbar-cd-badge').forEach(fitBadge);
+    }
+    fitAll();
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitAll);
+    var t;
+    window.addEventListener('resize', function () {
+      clearTimeout(t);
+      t = setTimeout(fitAll, 100);
+    });
+    document.addEventListener('shopify:section:load', fitAll);
+  })();
 
   if (!customElements.get('topbar-shipping-timer')) {
     class TopbarShippingTimer extends HTMLElement {
@@ -1297,6 +1374,36 @@
           "id": "line_2",
           "label": "Linha 2",
           "default": "CAMISAS SELECIONADAS"
+        },
+        {
+          "type": "header",
+          "content": "Selo ao lado do texto (opcional)"
+        },
+        {
+          "type": "paragraph",
+          "content": "Quadradinho entre o texto e o timer (ex.: + FRETE / GRÁTIS). Some junto com o timer. Para tirar, apague as duas linhas."
+        },
+        {
+          "type": "text",
+          "id": "badge_top",
+          "label": "Selo — linha de cima",
+          "info": "Ex.: + FRETE"
+        },
+        {
+          "type": "text",
+          "id": "badge_bottom",
+          "label": "Selo — linha de baixo",
+          "info": "Ex.: GRÁTIS"
+        },
+        {
+          "type": "select",
+          "id": "badge_style",
+          "label": "Estilo do selo",
+          "default": "filled",
+          "options": [
+            { "value": "filled", "label": "Preenchido (fundo na cor do texto)" },
+            { "value": "outline", "label": "Só contorno" }
+          ]
         },
         {
           "type": "range",
