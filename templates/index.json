@@ -14,7 +14,38 @@
       "blocks": {
         "slider_item_N78qVx": {
           "type": "slider_item",
+          "name": "11.11",
+          "settings": {
+            "image": "shopify://shop_images/BANNER_BLACK_NOVEMBER.jpg",
+            "image_mobile": "shopify://shop_images/MOBILE_BLACK_NOVEMBER.jpg",
+            "overlay_opacity": 0,
+            "link_banner": "shopify://collections/envios-imediatos",
+            "slider_effect": "fade-in-right",
+            "subheading": "",
+            "heading": "",
+            "description": "",
+            "first_button_label": "",
+            "first_button_link": "",
+            "first_button_style": false,
+            "second_button_label": "",
+            "second_button_link": "",
+            "second_button_style": false,
+            "content_alignment": "center",
+            "content_position": "top-center",
+            "content_width": "full_width",
+            "content_max_width": 100,
+            "content_padding_block": 40,
+            "content_padding_inline": 0,
+            "show_content_background": false,
+            "content_background": "#ffffff",
+            "content_box_opacity": 100,
+            "content_alignment_mobile": "center"
+          }
+        },
+        "slider_item_tRWWjQ": {
+          "type": "slider_item",
           "name": "BLACKBLACKBLACKBLACKBLACK",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/BANNER_BLACK_NOVEMBER.jpg",
             "image_mobile": "shopify://shop_images/MOBILE_BLACK_NOVEMBER.jpg",
@@ -169,6 +200,7 @@
       },
       "block_order": [
         "slider_item_N78qVx",
+        "slider_item_tRWWjQ",
         "slider_item_MMEAVn",
         "slider_item_nrmHUV",
         "slider_item_rYBq93",
