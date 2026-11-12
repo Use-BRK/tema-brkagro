@@ -69,6 +69,26 @@ class GiftProgressBar extends HTMLElement {
     });
   }
 
+  // Add-ons do BRK Bundles (`_brk_bundle`) cujo produto que os puxou
+  // (`_brk_bundle_trigger`) saiu do carrinho: saem junto, em vez de ficarem sem
+  // o desconto do bundle. Linhas antigas sem `_brk_bundle_trigger` ficam.
+  static getOrphanBundleLines(cart) {
+    if (!cart || !Array.isArray(cart.items)) return [];
+
+    const productIds = new Set();
+    cart.items.forEach((item) => {
+      if (!(item.properties || {})._brk_bundle) {
+        productIds.add(String(item.product_id));
+      }
+    });
+
+    return cart.items.filter((item) => {
+      const props = item.properties || {};
+      if (!props._brk_bundle || !props._brk_bundle_trigger) return false;
+      return !productIds.has(String(props._brk_bundle_trigger));
+    });
+  }
+
   static getSectionsToRender() {
     const sections = [];
     if (document.getElementById("minicart-form")) {
@@ -170,7 +190,10 @@ class GiftProgressBar extends HTMLElement {
   }
 
   static enforceGiftEligibility(cart) {
-    const invalidGiftLines = GiftProgressBar.getInvalidGiftLines(cart);
+    const invalidGiftLines = [
+      ...GiftProgressBar.getInvalidGiftLines(cart),
+      ...GiftProgressBar.getOrphanBundleLines(cart),
+    ];
     if (!invalidGiftLines.length) return Promise.resolve(cart);
     if (GiftProgressBar.giftCleanupPromise) return GiftProgressBar.giftCleanupPromise;
 
