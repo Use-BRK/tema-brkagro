@@ -15,6 +15,7 @@
         "slider_item_N78qVx": {
           "type": "slider_item",
           "name": "11.11",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/70f628fc-4644-4555-8abd-96b0d1656ace.png",
             "image_mobile": "shopify://shop_images/b09dbf63-44af-4d37-b7f6-2a752d89b99e.png",
@@ -45,7 +46,6 @@
         "slider_item_tRWWjQ": {
           "type": "slider_item",
           "name": "BLACKBLACKBLACKBLACKBLACK",
-          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/BANNER_BLACK_NOVEMBER.jpg",
             "image_mobile": "shopify://shop_images/MOBILE_BLACK_NOVEMBER.jpg",
@@ -76,7 +76,6 @@
         "slider_item_MMEAVn": {
           "type": "slider_item",
           "name": "Lisas e Essenciais",
-          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/Lisas_Essenciais_Desktop.png",
             "image_mobile": "shopify://shop_images/Lisas_Essenciais_Mobile.png",
@@ -107,7 +106,6 @@
         "slider_item_nrmHUV": {
           "type": "slider_item",
           "name": "Botinas",
-          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/Botinas_bidensidade_Desktop.png",
             "image_mobile": "shopify://shop_images/Botinas_bidensidade_Mobile.png",
