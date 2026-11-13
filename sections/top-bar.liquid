@@ -27,20 +27,42 @@
       width: 3rem;
       height: 3rem;
     }
-    @media (min-width: 1024px) {
-      #topbar slide-section {
-        padding-left: 4rem;
-      }
-      #topbar .text-slide {
-        width: 50%;
-        flex: 0 0 auto;
-        max-width: 40rem;
-        margin: unset;
-      }
+    /* Text slider centralizado; setas nas laterais do texto */
+    #topbar .text-slide .swiper-slide {
+      justify-content: center;
+      text-align: center;
     }
-    @media (max-width: 1024px) {
-      #topbar .swiper-slide {
-        justify-content: center;
+    #topbar .text-slide .swiper-action {
+      background: none;
+    }
+    #topbar .text-slide .swiper-arrow.swiper-arrow {
+      color: var(--tb-arrow, rgb(var(--color-text-rgb)));
+      opacity: 1;
+      transition: opacity 0.2s;
+    }
+    #topbar .text-slide .swiper-arrow.swiper-arrow:hover {
+      opacity: 0.7;
+    }
+    @media (min-width: 1024px) {
+      #topbar .text-slide {
+        width: 100%;
+        max-width: 64rem;
+        margin: 0 auto;
+      }
+      #topbar .text-slide slide-section {
+        padding: 0 3rem;
+      }
+      #topbar .text-slide .swiper-action {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0;
+        pointer-events: none;
+      }
+      #topbar .text-slide .swiper-arrow {
+        pointer-events: auto;
       }
     }
     #topbar .px-15 {
@@ -574,7 +596,7 @@
               {%- else -%}
               <div
                 class="topbar-item w-full text-slide tb-slider-fs{% if block_st.hidden_on_mobile %} hidden block-1025{% endif %}{{ slider_switch_class }}"
-                style="--tb-fs: {{ block_st.font_size | default: section_st.font_size }}; --tb-fs-m: {{ block_st.font_size_mobile | default: section_st.font_size }};"
+                style="--tb-fs: {{ block_st.font_size | default: section_st.font_size }}; --tb-fs-m: {{ block_st.font_size_mobile | default: section_st.font_size }};{% if block_st.arrow_color != blank %} --tb-arrow: {{ block_st.arrow_color }};{% endif %}"
                 {{ slider_switch_attr }}
               >
                 <slide-section
@@ -591,7 +613,7 @@
                   data-spacing="0"
                   style="--color-dark: transparent;--swiper-navigation-color: currentColor; --col-gap: 0;--swiper-navigation-sides-offset: 1rem;"
                 >
-                  <div class="swiper-action gradient show-arrow static absolute-lg align-center left-0 inset-y-0 z-3 flex gap-20 pe-1025-25 pe-0">
+                  <div class="swiper-action show-arrow static absolute-lg align-center left-0 inset-y-0 z-3 flex gap-20 pe-1025-25 pe-0">
                     <div
                       class="swiper-arrow swiper-button-prev original-style visible absolute left-10 static-lg-impo transform-md-none transition"
                       style="--swiper-navigation-sides-offset: 1rem;--swiper-width: 0.5rem;"
@@ -611,7 +633,7 @@
                   </div>
                   <div class="swiper-wrapper">
                     {%- if block_st.text1 != blank -%}
-                      <div class="swiper-slide flex align-center text-center text-lg-start lh-normal">
+                      <div class="swiper-slide flex align-center text-center lh-normal">
                         <div class="px-15">
                           {%- render 'topbar-compact-icon', icon: block_st.icon1, icon_image: block_st.icon_image1 -%}
                           {{- block_st.text1 -}}
@@ -622,7 +644,7 @@
                       </div>
                     {% endif %}
                     {%- if block_st.text2 != blank -%}
-                      <div class="swiper-slide flex align-center text-center text-lg-start lh-normal">
+                      <div class="swiper-slide flex align-center text-center lh-normal">
                         <div class="px-15">
                           {%- render 'topbar-compact-icon', icon: block_st.icon2, icon_image: block_st.icon_image2 -%}
                           {{- block_st.text2 -}}
@@ -633,7 +655,7 @@
                       </div>
                     {% endif %}
                     {%- if block_st.text3 != blank -%}
-                      <div class="swiper-slide flex align-center text-center text-lg-start lh-normal">
+                      <div class="swiper-slide flex align-center text-center lh-normal">
                         <div class="px-15">
                           {%- render 'topbar-compact-icon', icon: block_st.icon3, icon_image: block_st.icon_image3 -%}
                           {{- block_st.text3 -}}
@@ -1336,6 +1358,12 @@
           "label": "t:sections.top-bar.blocks.text_slider.settings.change_every.label",
           "unit": "s",
           "default": 3
+        },
+        {
+          "type": "color",
+          "id": "arrow_color",
+          "label": "Cor das setas",
+          "info": "Setas que trocam entre os textos. Vazio = mesma cor do texto."
         },
         {
           "type": "checkbox",
