@@ -1030,6 +1030,32 @@ html.mobile-menu-drawer-open .section-header {
   color: var(--mmd-acc-ink);
 }
 
+/* ---- Item com fundo escuro (ex.: "Black November") — cores no bloco Menu ---- */
+.mmd-acc__item--dark {
+  margin: 2px 12px 8px;
+}
+.mmd-acc__item--dark > .mmd-acc__head--link,
+.mmd-acc__item--dark > .mmd-acc__head-row {
+  background: var(--mmd-dark-bg, #000);
+  border-radius: 10px;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+.mmd-acc__item--dark .mmd-acc__head,
+.mmd-acc__item--dark .mmd-acc__head-title {
+  color: var(--mmd-dark-text, #fff);
+}
+.mmd-acc__item--dark .mmd-acc__chevron,
+.mmd-acc__item--dark .mmd-acc__plus {
+  color: var(--mmd-dark-accent, #fff);
+  opacity: 1;
+}
+.mmd-acc__item--dark::after,
+.mmd-acc__item--dark > .mmd-acc__head--link::before,
+.mmd-acc__item--dark > .mmd-acc__head-row::before {
+  display: none;
+}
+
 /* ---- Rodapé — botões arredondados e com respiro ---- */
 .mobile-menu-drawer__footer a[class*="btn-"] {
   border-radius: 12px;

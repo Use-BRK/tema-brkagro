@@ -85,6 +85,10 @@
                 assign text_size = block.settings.text_size | default: 100
                 assign highlight_item = block.settings.highlight_item | downcase | strip
                 assign highlight_color = block.settings.highlight_item_color
+                assign dark_item = block.settings.dark_item | downcase | strip
+                assign dark_bg = block.settings.dark_item_bg
+                assign dark_text = block.settings.dark_item_text
+                assign dark_accent = block.settings.dark_item_accent
 
                 comment
                   Build a map of label assignments from block settings.
@@ -335,6 +339,10 @@
                     if highlight_item != blank and l1_lower == highlight_item
                       assign l1_hot = true
                     endif
+                    assign l1_dark = false
+                    if dark_item != blank and l1_lower contains dark_item
+                      assign l1_dark = true
+                    endif
                     assign l1_has_children = false
                     if link.links.size > 0
                       assign l1_has_children = true
@@ -359,14 +367,14 @@
                     endfor
                   -%}
                   {%- if l1_has_children == false -%}
-                    <li class="mmd-acc__item mmd-acc__item--l1 mmd-acc__item--link{% if l1_hot %} mmd-acc__item--hot{% endif %}">
+                    <li class="mmd-acc__item mmd-acc__item--l1 mmd-acc__item--link{% if l1_hot %} mmd-acc__item--hot{% endif %}{% if l1_dark %} mmd-acc__item--dark{% endif %}"{% if l1_dark %} style="--mmd-dark-bg: {{ dark_bg }}; --mmd-dark-text: {{ dark_text }}; --mmd-dark-accent: {{ dark_accent }};"{% endif %}>
                       <a href="{{ link.url }}" class="mmd-acc__head mmd-acc__head--link">
                         <span class="mmd-acc__head-title">{{ l1_clean }}</span>
                         <span class="mmd-acc__chevron" aria-hidden="true"><svg width="7" height="12" viewBox="0 0 8 14" fill="none"><path d="M1 1l6 6-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
                       </a>
                     </li>
                   {%- else -%}
-                    <li class="mmd-acc__item mmd-acc__item--l1 mmd-acc__item--collapsible mobile-menu-drawer__item--has-children{% if l1_hot %} mmd-acc__item--hot{% endif %}">
+                    <li class="mmd-acc__item mmd-acc__item--l1 mmd-acc__item--collapsible mobile-menu-drawer__item--has-children{% if l1_hot %} mmd-acc__item--hot{% endif %}{% if l1_dark %} mmd-acc__item--dark{% endif %}"{% if l1_dark %} style="--mmd-dark-bg: {{ dark_bg }}; --mmd-dark-text: {{ dark_text }}; --mmd-dark-accent: {{ dark_accent }};"{% endif %}>
                       <div class="mobile-menu-drawer__link-row mmd-acc__head-row">
                         <button type="button" class="mmd-acc__head mmd-acc__head--toggle mobile-menu-drawer__link--parent-toggle" data-parent-toggle="mmd-{{ section.id }}-{{ forloop.index }}">
                           <span class="mmd-acc__head-title">{{ l1_clean }}</span>
@@ -1056,6 +1064,34 @@
           "id": "highlight_item_color",
           "label": "Highlight color",
           "default": "#D02E2E"
+        },
+        {
+          "type": "header",
+          "content": "Item com fundo escuro"
+        },
+        {
+          "type": "text",
+          "id": "dark_item",
+          "label": "Item do menu com fundo escuro",
+          "info": "Parte do título do item (ex.: Black November). Vale no modo design do menu mobile."
+        },
+        {
+          "type": "color",
+          "id": "dark_item_bg",
+          "label": "Fundo",
+          "default": "#000000"
+        },
+        {
+          "type": "color",
+          "id": "dark_item_text",
+          "label": "Texto",
+          "default": "#FFFFFF"
+        },
+        {
+          "type": "color",
+          "id": "dark_item_accent",
+          "label": "Seta / ícone",
+          "default": "#FFFFFF"
         },
         {
           "type": "header",
