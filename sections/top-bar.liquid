@@ -127,9 +127,27 @@
     }
     #topbar .topbar-compact__icon {
       flex-shrink: 0;
-      width: 16px;
-      height: 16px;
+      width: 1.35em;
+      height: 1.35em;
       display: block;
+      object-fit: contain;
+    }
+    /* ---- Text slider: tamanho da fonte próprio (mobile / desktop) ---- */
+    #topbar .tb-slider-fs {
+      font-size: calc(var(--tb-fs-m) * 1px);
+    }
+    @media (min-width: 1025px) {
+      #topbar .tb-slider-fs {
+        font-size: calc(var(--tb-fs) * 1px);
+      }
+    }
+    /* Ícone antes do texto de cada slide */
+    #topbar .text-slide .topbar-compact__icon {
+      display: inline-block;
+      vertical-align: middle;
+      margin-right: 0.45em;
+      position: relative;
+      top: -0.08em;
     }
     @media (min-width: 1025px) {
       #topbar .topbar-compact__grid {
@@ -141,10 +159,6 @@
         padding: 0 24px;
         white-space: nowrap;
         font-size: inherit;
-      }
-      #topbar .topbar-compact__icon {
-        width: 18px;
-        height: 18px;
       }
     }
     /* ---- Timer: bloco "Texto do timer" + bloco "Timer" ---- */
@@ -529,7 +543,8 @@
             {%- when 'text_slider' -%}
               {%- if block_st.compact_mode -%}
                 <div
-                  class="topbar-item w-full topbar-compact{% if block_st.hidden_on_mobile %} hidden block-1025{% endif %}{{ slider_switch_class }}"
+                  class="topbar-item w-full topbar-compact tb-slider-fs{% if block_st.hidden_on_mobile %} hidden block-1025{% endif %}{{ slider_switch_class }}"
+                  style="--tb-fs: {{ block_st.font_size | default: section_st.font_size }}; --tb-fs-m: {{ block_st.font_size_mobile | default: section_st.font_size }};"
                   {{ slider_switch_attr }}
                 >
                   <div class="topbar-compact__grid">
@@ -538,6 +553,7 @@
                         assign k_text = 'compact_text_' | append: i
                         assign k_icon = 'compact_icon_' | append: i
                         assign k_iurl = 'compact_icon_url_' | append: i
+                        assign k_iimg = 'compact_icon_image_' | append: i
                         assign k_link = 'compact_link_' | append: i
                         assign c_text = block_st[k_text]
                         assign c_link = block_st[k_link]
@@ -548,7 +564,7 @@
                         {%- else -%}
                           <div class="topbar-compact__cell">
                         {%- endif -%}
-                          {%- render 'topbar-compact-icon', icon: block_st[k_icon], icon_url: block_st[k_iurl] -%}
+                          {%- render 'topbar-compact-icon', icon: block_st[k_icon], icon_url: block_st[k_iurl], icon_image: block_st[k_iimg] -%}
                           <span>{{ c_text }}</span>
                         {%- if c_link != blank -%}</a>{%- else -%}</div>{%- endif -%}
                       {%- endif -%}
@@ -557,7 +573,8 @@
                 </div>
               {%- else -%}
               <div
-                class="topbar-item w-full text-slide{% if block_st.hidden_on_mobile %} hidden block-1025{% endif %}{{ slider_switch_class }}"
+                class="topbar-item w-full text-slide tb-slider-fs{% if block_st.hidden_on_mobile %} hidden block-1025{% endif %}{{ slider_switch_class }}"
+                style="--tb-fs: {{ block_st.font_size | default: section_st.font_size }}; --tb-fs-m: {{ block_st.font_size_mobile | default: section_st.font_size }};"
                 {{ slider_switch_attr }}
               >
                 <slide-section
@@ -596,6 +613,7 @@
                     {%- if block_st.text1 != blank -%}
                       <div class="swiper-slide flex align-center text-center text-lg-start lh-normal">
                         <div class="px-15">
+                          {%- render 'topbar-compact-icon', icon: block_st.icon1, icon_image: block_st.icon_image1 -%}
                           {{- block_st.text1 -}}
                           {%- if block_st.coupon1_enabled and block_st.coupon1 != blank -%}
                             <button class="topbar-copy-btn" type="button" data-coupon="{{ block_st.coupon1 | escape }}" aria-label="Copiar cupom {{ block_st.coupon1 | escape }}">COPIAR</button>
@@ -606,6 +624,7 @@
                     {%- if block_st.text2 != blank -%}
                       <div class="swiper-slide flex align-center text-center text-lg-start lh-normal">
                         <div class="px-15">
+                          {%- render 'topbar-compact-icon', icon: block_st.icon2, icon_image: block_st.icon_image2 -%}
                           {{- block_st.text2 -}}
                           {%- if block_st.coupon2_enabled and block_st.coupon2 != blank -%}
                             <button class="topbar-copy-btn" type="button" data-coupon="{{ block_st.coupon2 | escape }}" aria-label="Copiar cupom {{ block_st.coupon2 | escape }}">COPIAR</button>
@@ -616,6 +635,7 @@
                     {%- if block_st.text3 != blank -%}
                       <div class="swiper-slide flex align-center text-center text-lg-start lh-normal">
                         <div class="px-15">
+                          {%- render 'topbar-compact-icon', icon: block_st.icon3, icon_image: block_st.icon_image3 -%}
                           {{- block_st.text3 -}}
                           {%- if block_st.coupon3_enabled and block_st.coupon3 != blank -%}
                             <button class="topbar-copy-btn" type="button" data-coupon="{{ block_st.coupon3 | escape }}" aria-label="Copiar cupom {{ block_st.coupon3 | escape }}">COPIAR</button>
@@ -1209,6 +1229,27 @@
           "default": false
         },
         {
+          "type": "select",
+          "id": "icon1",
+          "label": "Ícone do Texto 1",
+          "default": "none",
+          "options": [
+            { "value": "none", "label": "Nenhum" },
+            { "value": "truck", "label": "Caminhão (frete)" },
+            { "value": "bolt", "label": "Raio (envio imediato)" },
+            { "value": "tag", "label": "Etiqueta (desconto/cupom)" },
+            { "value": "gift", "label": "Presente" },
+            { "value": "lock", "label": "Cadeado (compra segura)" },
+            { "value": "card", "label": "Cartão (parcelamento)" }
+          ]
+        },
+        {
+          "type": "image_picker",
+          "id": "icon_image1",
+          "label": "Ícone do Texto 1 — imagem própria (opcional)",
+          "info": "Escolha um arquivo em Conteúdo > Arquivos. Substitui o ícone acima."
+        },
+        {
           "type": "inline_richtext",
           "id": "text2",
           "label": "t:sections.top-bar.blocks.text_slider.settings.text_2.label",
@@ -1225,6 +1266,27 @@
           "id": "coupon2_enabled",
           "label": "Ativar botão de copiar cupom (Texto 2)",
           "default": false
+        },
+        {
+          "type": "select",
+          "id": "icon2",
+          "label": "Ícone do Texto 2",
+          "default": "none",
+          "options": [
+            { "value": "none", "label": "Nenhum" },
+            { "value": "truck", "label": "Caminhão (frete)" },
+            { "value": "bolt", "label": "Raio (envio imediato)" },
+            { "value": "tag", "label": "Etiqueta (desconto/cupom)" },
+            { "value": "gift", "label": "Presente" },
+            { "value": "lock", "label": "Cadeado (compra segura)" },
+            { "value": "card", "label": "Cartão (parcelamento)" }
+          ]
+        },
+        {
+          "type": "image_picker",
+          "id": "icon_image2",
+          "label": "Ícone do Texto 2 — imagem própria (opcional)",
+          "info": "Escolha um arquivo em Conteúdo > Arquivos. Substitui o ícone acima."
         },
         {
           "type": "inline_richtext",
@@ -1245,6 +1307,27 @@
           "default": false
         },
         {
+          "type": "select",
+          "id": "icon3",
+          "label": "Ícone do Texto 3",
+          "default": "none",
+          "options": [
+            { "value": "none", "label": "Nenhum" },
+            { "value": "truck", "label": "Caminhão (frete)" },
+            { "value": "bolt", "label": "Raio (envio imediato)" },
+            { "value": "tag", "label": "Etiqueta (desconto/cupom)" },
+            { "value": "gift", "label": "Presente" },
+            { "value": "lock", "label": "Cadeado (compra segura)" },
+            { "value": "card", "label": "Cartão (parcelamento)" }
+          ]
+        },
+        {
+          "type": "image_picker",
+          "id": "icon_image3",
+          "label": "Ícone do Texto 3 — imagem própria (opcional)",
+          "info": "Escolha um arquivo em Conteúdo > Arquivos. Substitui o ícone acima."
+        },
+        {
           "type": "range",
           "id": "change_every",
           "min": 3,
@@ -1258,6 +1341,31 @@
           "type": "checkbox",
           "id": "hidden_on_mobile",
           "label": "t:sections.top-bar.blocks.hidden_on_mobile.label"
+        },
+        {
+          "type": "header",
+          "content": "Tamanho da fonte"
+        },
+        {
+          "type": "range",
+          "id": "font_size",
+          "min": 10,
+          "max": 24,
+          "step": 1,
+          "unit": "px",
+          "label": "Tamanho da fonte (desktop)",
+          "default": 12
+        },
+        {
+          "type": "range",
+          "id": "font_size_mobile",
+          "min": 10,
+          "max": 20,
+          "step": 1,
+          "unit": "px",
+          "label": "Tamanho da fonte (mobile)",
+          "info": "Vale para o slider e para a versão compacta. O ícone acompanha o tamanho.",
+          "default": 12
         },
         {
           "type": "header",
@@ -1281,8 +1389,12 @@
           "default": "truck",
           "options": [
             { "value": "none", "label": "Nenhum" },
-            { "value": "truck", "label": "Caminhão" },
-            { "value": "bolt", "label": "Raio (envio imediato)" }
+            { "value": "truck", "label": "Caminhão (frete)" },
+            { "value": "bolt", "label": "Raio (envio imediato)" },
+            { "value": "tag", "label": "Etiqueta (desconto/cupom)" },
+            { "value": "gift", "label": "Presente" },
+            { "value": "lock", "label": "Cadeado (compra segura)" },
+            { "value": "card", "label": "Cartão (parcelamento)" }
           ]
         },
         {
@@ -1290,6 +1402,12 @@
           "id": "compact_icon_url_1",
           "label": "Ícone 1 — URL personalizada (opcional)",
           "info": "Se preenchido, usa esta imagem/SVG no lugar do ícone acima."
+        },
+        {
+          "type": "image_picker",
+          "id": "compact_icon_image_1",
+          "label": "Ícone 1 — imagem própria (opcional)",
+          "info": "Escolha um arquivo em Conteúdo > Arquivos. Substitui os ícones acima."
         },
         {
           "type": "text",
@@ -1314,8 +1432,12 @@
           "default": "bolt",
           "options": [
             { "value": "none", "label": "Nenhum" },
-            { "value": "truck", "label": "Caminhão" },
-            { "value": "bolt", "label": "Raio (envio imediato)" }
+            { "value": "truck", "label": "Caminhão (frete)" },
+            { "value": "bolt", "label": "Raio (envio imediato)" },
+            { "value": "tag", "label": "Etiqueta (desconto/cupom)" },
+            { "value": "gift", "label": "Presente" },
+            { "value": "lock", "label": "Cadeado (compra segura)" },
+            { "value": "card", "label": "Cartão (parcelamento)" }
           ]
         },
         {
@@ -1323,6 +1445,12 @@
           "id": "compact_icon_url_2",
           "label": "Ícone 2 — URL personalizada (opcional)",
           "info": "Se preenchido, usa esta imagem/SVG no lugar do ícone acima."
+        },
+        {
+          "type": "image_picker",
+          "id": "compact_icon_image_2",
+          "label": "Ícone 2 — imagem própria (opcional)",
+          "info": "Escolha um arquivo em Conteúdo > Arquivos. Substitui os ícones acima."
         },
         {
           "type": "text",

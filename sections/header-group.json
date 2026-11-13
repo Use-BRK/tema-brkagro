@@ -73,6 +73,8 @@
             "coupon3_enabled": false,
             "change_every": 3,
             "hidden_on_mobile": false,
+            "font_size": 14,
+            "font_size_mobile": 13,
             "compact_mode": true,
             "compact_icon_1": "truck",
             "compact_icon_url_1": "",
