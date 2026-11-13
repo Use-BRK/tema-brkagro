@@ -230,7 +230,7 @@
         "menu_mobile_background": "#0f6049",
         "show_search": true,
         "logo_offset_y_desktop": -4,
-        "search_width_desktop": 380,
+        "search_width_desktop": 340,
         "show_mobile_search_bar": true,
         "show_account_icon": true,
         "show_wishlist_icon": true,
