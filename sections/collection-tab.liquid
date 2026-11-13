@@ -94,6 +94,31 @@
     margin-top: 4px;
     color: #666666;
   }
+  {%- if section_st.tabs_single_row_mobile %}
+  @media (max-width: 767.98px) {
+    #shopify-section-{{ section.id }} .collection-tab__ta {
+      flex-wrap: nowrap;
+      width: 100%;
+      gap: 6px;
+      overflow: visible;
+    }
+    #shopify-section-{{ section.id }} .collection-tab__ta .collection-tab__tab-item {
+      flex: 1 1 0;
+      min-width: 0;
+      padding-left: 2px;
+      padding-right: 2px;
+    }
+    #shopify-section-{{ section.id }} .btn_view-all {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+  @media (max-width: 349.98px) {
+    #shopify-section-{{ section.id }} .collection-tab__ta .collection-tab__tab-item {
+      font-size: 13.5px;
+    }
+  }
+  {%- endif %}
   @media (min-width: 1025px) {
     .sec__collection-tab .section__header-heading--stacked,
     .sec__collection-tab .section__header-heading-sub {
@@ -854,6 +879,13 @@
         }
       ],
       "default": "fill"
+    },
+    {
+      "type": "checkbox",
+      "id": "tabs_single_row_mobile",
+      "label": "Abas na mesma linha no mobile",
+      "info": "As abas dividem a largura igualmente e o \"Ver tudo\" fica embaixo delas.",
+      "default": false
     },
     {
       "type": "select",

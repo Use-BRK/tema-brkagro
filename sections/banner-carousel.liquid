@@ -20,6 +20,7 @@
     --bc-gap: {{ st.column_gap }}px;
     --bc-radius: {{ st.card_radius }}px;
     --section-pt: {{ st.padding_top }}px; --section-pb: {{ st.padding_bottom }}px;
+    --section-pt-mobile: {{ st.padding_top_mobile | default: st.padding_top }}px; --section-pb-mobile: {{ st.padding_bottom_mobile | default: st.padding_bottom }}px;
   {%- endcapture -%}
   <div
     class="section sec__banner-carousel color-{{ st.color_scheme }} gradient{% if st.padding_top < 30 %} pt-min{% endif %}{% if st.padding_bottom < 30 %} pb-min{% endif %}"
@@ -285,6 +286,26 @@
       "type": "range",
       "id": "padding_bottom",
       "label": "Espaço abaixo",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "label": "Espaço acima (mobile)",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "label": "Espaço abaixo (mobile)",
       "min": 0,
       "max": 100,
       "step": 2,

@@ -81,3 +81,10 @@
   margin-top: 14px;
   text-align: center;
 }
+
+@media (max-width: 767.98px) {
+  .sec__banner-carousel {
+    padding-top: var(--section-pt-mobile, var(--section-pt, 30px));
+    padding-bottom: var(--section-pb-mobile, var(--section-pb, 30px));
+  }
+}
