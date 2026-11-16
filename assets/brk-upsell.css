@@ -1,0 +1,260 @@
+/* ==========================================================================
+   BRK Upsell — seção de upsell do minicart (acima do rodapé) e da página do
+   carrinho (snippets/brk-upsell.liquid + assets/brk-upsell.js). Mesmo visual
+   minimalista das linhas do carrinho (brk-cart.css).
+   ========================================================================== */
+
+.brk-upsell {
+  --bu-ink: var(--color-heading, #111);
+  --bu-muted: #7a7f87;
+  --bu-line: #ececec;
+  --bu-soft: #f4f5f7;
+  --bu-accent: var(--btn-primary-bg-color, #135ed1);
+  --bu-accent-ink: var(--btn-primary-color, #fff);
+  --bu-sale: #d1352b;
+  --bu-radius: 1rem;
+  display: block;
+  color: var(--bu-ink);
+}
+
+.brk-upsell__head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1.2rem;
+  margin-bottom: 1rem;
+}
+.brk-upsell__heading { min-width: 0; }
+.brk-upsell__title {
+  margin: 0;
+  color: var(--bu-ink);
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+.brk-upsell__desc {
+  margin: 0.2rem 0 0;
+  color: var(--bu-muted);
+  font-size: 1.25rem;
+  line-height: 1.4;
+}
+
+.brk-upsell__nav { display: flex; flex: 0 0 auto; gap: 0.6rem; }
+.brk-upsell__arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.8rem;
+  height: 2.8rem;
+  padding: 0;
+  border: 1px solid var(--bu-line);
+  border-radius: 50%;
+  background: #fff;
+  color: var(--bu-ink);
+  cursor: pointer;
+  transition: border-color 0.2s, opacity 0.2s;
+}
+.brk-upsell__arrow:hover:not(:disabled) { border-color: var(--bu-ink); }
+.brk-upsell__arrow:disabled { opacity: 0.35; cursor: default; }
+.brk-upsell[data-scrollable="false"] .brk-upsell__nav { display: none; }
+
+.brk-upsell__track {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+.brk-upsell__track::-webkit-scrollbar { display: none; }
+
+.brk-upsell__card {
+  position: relative;
+  display: grid;
+  scroll-snap-align: start;
+  min-width: 0;
+  border: 1px solid var(--bu-line);
+  border-radius: var(--bu-radius);
+  background: #fff;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.brk-upsell__card:hover { border-color: #d6d8dc; box-shadow: 0 2px 10px rgba(17, 17, 17, 0.06); }
+
+.brk-upsell__media {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  border-radius: 0.8rem;
+  background: var(--bu-soft);
+  aspect-ratio: 1 / 1;
+}
+.brk-upsell__media img,
+.brk-upsell__media svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  object-fit: cover;
+}
+.brk-upsell__badge {
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 99rem;
+  background: var(--bu-sale);
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.brk-upsell__info { display: flex; flex-direction: column; gap: 0.3rem; min-width: 0; }
+.brk-upsell__name {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  color: var(--bu-ink) !important;
+  font-size: 1.3rem;
+  font-weight: 500;
+  line-height: 1.35;
+  text-decoration: none !important;
+}
+.brk-upsell__name:hover { text-decoration: underline !important; }
+.brk-upsell__price { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0 0.6rem; font-size: 1.3rem; }
+.brk-upsell__compare { color: var(--bu-muted); font-size: 1.2rem; }
+.brk-upsell__final { color: var(--bu-ink); font-weight: 600; }
+.brk-upsell__final.is-sale { color: var(--bu-sale); }
+
+.brk-upsell__variant {
+  width: 100%;
+  max-width: 100%;
+  height: 3rem;
+  min-height: 0;
+  margin-top: 0.2rem;
+  padding: 0 2.4rem 0 0.8rem;
+  border: 1px solid var(--bu-line);
+  border-radius: 0.6rem;
+  background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' fill='none'%3E%3Cpath d='m1 1 4 4 4-4' stroke='%23111' stroke-width='1.4' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat right 0.9rem center;
+  color: var(--bu-ink);
+  font-size: 1.2rem;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.brk-upsell__add {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 3.4rem;
+  padding: 0 1.2rem;
+  border: 0;
+  border-radius: 99rem;
+  background: var(--bu-accent);
+  color: var(--bu-accent-ink);
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.1s;
+}
+.brk-upsell__add:hover { opacity: 0.9; }
+.brk-upsell__add:active { transform: scale(0.97); }
+.brk-upsell__add:disabled { opacity: 0.55; cursor: default; }
+.brk-upsell__add-icon { flex: 0 0 auto; }
+.brk-upsell__spinner {
+  display: none;
+  width: 1.4rem;
+  height: 1.4rem;
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: brk-upsell-spin 0.7s linear infinite;
+}
+.brk-upsell__add.is-loading .brk-upsell__add-label,
+.brk-upsell__add.is-loading .brk-upsell__add-icon { visibility: hidden; }
+.brk-upsell__add.is-loading .brk-upsell__spinner { position: absolute; display: block; }
+.brk-upsell__add.is-added { background: #1f8a4c; }
+@keyframes brk-upsell-spin { to { transform: rotate(360deg); } }
+
+.brk-upsell__error {
+  grid-column: 1 / -1;
+  margin: 0;
+  color: var(--bu-sale);
+  font-size: 1.15rem;
+  line-height: 1.35;
+}
+.brk-upsell .visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* ── Minicart: faixa compacta acima do rodapé (cards horizontais) ── */
+.brk-upsell--minicart {
+  padding: 1.4rem 3rem 1.6rem;
+  border-top: 1px solid var(--bu-line);
+  background: #fff;
+}
+.brk-upsell--minicart .brk-upsell__card {
+  flex: 0 0 calc(100% - 3.2rem);
+  grid-template-columns: 6.4rem minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 0 1rem;
+  padding: 0.8rem;
+}
+.brk-upsell--minicart[data-count="1"] .brk-upsell__card { flex-basis: 100%; }
+.brk-upsell--minicart .brk-upsell__media { width: 6.4rem; aspect-ratio: 1 / 1; }
+.brk-upsell--minicart .brk-upsell__add-label { display: none; }
+.brk-upsell--minicart .brk-upsell__add { width: 3.4rem; padding: 0; }
+.brk-upsell--minicart .brk-upsell__badge { top: 0.3rem; left: 0.3rem; padding: 0 0.5rem; font-size: 1rem; }
+@media (min-width: 768px) {
+  .brk-upsell--minicart .brk-upsell__add-label { display: inline; }
+  .brk-upsell--minicart .brk-upsell__add { width: auto; padding: 0 1.2rem; }
+  .brk-upsell--minicart .brk-upsell__add-icon { display: none; }
+}
+@media (max-width: 767px) {
+  .brk-upsell--minicart { padding: 1.2rem 1.5rem 1.4rem; }
+  .brk-upsell--minicart .brk-upsell__title { font-size: 1.4rem; }
+  .brk-upsell--minicart .brk-upsell__desc { display: none; }
+  .brk-upsell--minicart .brk-upsell__card { grid-template-columns: 5.6rem minmax(0, 1fr) auto; }
+  .brk-upsell--minicart .brk-upsell__media { width: 5.6rem; }
+}
+
+/* ── Página do carrinho: vitrine abaixo dos itens (cards verticais) ── */
+.brk-upsell--cart {
+  margin-top: 3rem;
+  padding: 2rem;
+  border-radius: 1.2rem;
+  background: var(--bu-soft);
+}
+.brk-upsell--cart .brk-upsell__title { font-size: 1.8rem; }
+.brk-upsell--cart .brk-upsell__desc { font-size: 1.35rem; }
+.brk-upsell--cart .brk-upsell__head { margin-bottom: 1.4rem; }
+.brk-upsell--cart .brk-upsell__track { gap: 1.2rem; }
+.brk-upsell--cart .brk-upsell__card {
+  flex: 0 0 calc((100% - 3 * 1.2rem) / 4);
+  grid-template-rows: auto 1fr auto;
+  gap: 0.8rem;
+  padding: 1rem;
+}
+.brk-upsell--cart .brk-upsell__add { width: 100%; }
+.brk-upsell--cart .brk-upsell__add-icon { display: none; }
+@media (max-width: 1024px) {
+  .brk-upsell--cart .brk-upsell__card { flex-basis: calc((100% - 2 * 1.2rem) / 3); }
+}
+@media (max-width: 767px) {
+  .brk-upsell--cart { margin-top: 2.4rem; padding: 1.6rem 1.5rem; }
+  .brk-upsell--cart .brk-upsell__title { font-size: 1.6rem; }
+  .brk-upsell--cart .brk-upsell__card { flex-basis: calc((100% - 1.2rem) / 2.2); }
+}

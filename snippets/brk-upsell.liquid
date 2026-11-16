@@ -1,0 +1,303 @@
+{%- comment -%}
+  BRK Upsell — seção de upsell do minicart (acima do rodapé) e da página do carrinho.
+
+  Parâmetro: placement: 'minicart' | 'cart'
+
+  As campanhas vêm do shop metafield `brk_upsell.live` (JSON gravado pelo app BRK Apps,
+  rota /app/upsell), só as ativas, já na ordem de prioridade:
+    { v, c: [{ id, n, t, d, b, mx, mc, cp, dm, dv, a, cc, cg, ci, cm, h }] }
+      t/d/b: título, descrição e texto do botão; mx: quantos produtos mostrar
+      mc/cp: aparece no minicart / no carrinho; dm/dv: desconto ('p' %, 'f' R$) e valor
+      a: qualquer produto dispara; cc ",id," coleções; cg "|tag|" tags (minúsculas);
+      ci ",id," produtos; cm [{ n, k, v }] metafields; h: handles dos produtos oferecidos
+  Vale a PRIMEIRA campanha cujo gatilho algum item do carrinho atende (itens que vieram do
+  próprio upsell, com a property `_brk_upsell`, não contam). Os produtos já no carrinho ou
+  esgotados ficam de fora. O desconto real é aplicado pela function do app no carrinho e
+  no checkout; aqui o preço com desconto é só a vitrine.
+
+  Adicionar ao carrinho, carrossel e eventos do Microsoft Clarity: assets/brk-upsell.js.
+{%- endcomment -%}
+{%- liquid
+  assign bu_live = shop.metafields.brk_upsell.live.value
+  assign bu_camp = nil
+  if bu_live and bu_live.c and cart.item_count > 0
+    assign bu_cart_handles = '|'
+    assign bu_has_base = false
+    for bu_item in cart.items
+      assign bu_cart_handles = bu_cart_handles | append: bu_item.product.handle | append: '|'
+      if bu_item.properties['_brk_upsell'] == blank
+        assign bu_has_base = true
+      endif
+    endfor
+
+    if bu_has_base
+      for bu_c in bu_live.c
+        if placement == 'cart' and bu_c.cp != 1
+          continue
+        endif
+        if placement != 'cart' and bu_c.mc != 1
+          continue
+        endif
+        if bu_c.h == blank
+          continue
+        endif
+
+        assign bu_match = false
+        if bu_c.a == 1
+          assign bu_match = true
+        else
+          for bu_item in cart.items
+            if bu_item.properties['_brk_upsell'] != blank
+              continue
+            endif
+            assign bu_p = bu_item.product
+
+            if bu_c.ci != blank
+              assign bu_needle = ',' | append: bu_p.id | append: ','
+              if bu_c.ci contains bu_needle
+                assign bu_match = true
+                break
+              endif
+            endif
+
+            if bu_c.cc != blank
+              for bu_col in bu_p.collections
+                assign bu_needle = ',' | append: bu_col.id | append: ','
+                if bu_c.cc contains bu_needle
+                  assign bu_match = true
+                  break
+                endif
+              endfor
+              if bu_match
+                break
+              endif
+            endif
+
+            if bu_c.cg != blank
+              for bu_tag in bu_p.tags
+                assign bu_needle = bu_tag | downcase | prepend: '|' | append: '|'
+                if bu_c.cg contains bu_needle
+                  assign bu_match = true
+                  break
+                endif
+              endfor
+              if bu_match
+                break
+              endif
+            endif
+
+            for bu_m in bu_c.cm
+              assign bu_mf = bu_p.metafields[bu_m.n][bu_m.k]
+              if bu_mf == blank
+                continue
+              endif
+              if bu_m.v == blank
+                assign bu_match = true
+                break
+              endif
+              assign bu_want = bu_m.v | downcase | strip
+              if bu_mf.type contains 'list.'
+                for bu_v in bu_mf.value
+                  assign bu_vs = bu_v | append: '' | downcase | strip
+                  if bu_vs == bu_want
+                    assign bu_match = true
+                    break
+                  endif
+                endfor
+              else
+                assign bu_vs = bu_mf.value | append: '' | downcase | strip
+                if bu_vs == bu_want
+                  assign bu_match = true
+                endif
+              endif
+              if bu_match
+                break
+              endif
+            endfor
+            if bu_match
+              break
+            endif
+          endfor
+        endif
+
+        if bu_match
+          assign bu_camp = bu_c
+          break
+        endif
+      endfor
+    endif
+  endif
+-%}
+
+{%- if bu_camp -%}
+  {%- liquid
+    assign bu_max = bu_camp.mx | default: 4 | plus: 0
+    assign bu_shown = 0
+    assign bu_lookups = 0
+    assign bu_dv = bu_camp.dv | default: 0 | plus: 0
+    assign bu_slug = bu_camp.n | handleize | replace: '-', '_' | slice: 0, 40
+    if bu_camp.dm == 'p'
+      assign bu_dv_int = bu_dv | round
+      if bu_dv_int == bu_dv
+        assign bu_badge = bu_dv_int | prepend: '-' | append: '%'
+      else
+        assign bu_badge = bu_dv | append: '' | replace: '.', ',' | prepend: '-' | append: '%'
+      endif
+    elsif bu_camp.dm == 'f'
+      assign bu_dv_cents = bu_dv | times: 100 | round
+      assign bu_badge = bu_dv_cents | money_without_trailing_zeros | prepend: '-'
+    else
+      assign bu_badge = ''
+    endif
+  -%}
+  {%- capture bu_cards -%}
+    {%- for bu_h in bu_camp.h -%}
+      {%- if bu_shown >= bu_max or bu_lookups >= 12 -%}{%- break -%}{%- endif -%}
+      {%- assign bu_needle = bu_h | prepend: '|' | append: '|' -%}
+      {%- if bu_cart_handles contains bu_needle -%}{%- continue -%}{%- endif -%}
+      {%- assign bu_lookups = bu_lookups | plus: 1 -%}
+      {%- assign bu_prod = all_products[bu_h] -%}
+      {%- if bu_prod == blank or bu_prod.available == false -%}{%- continue -%}{%- endif -%}
+      {%- assign bu_shown = bu_shown | plus: 1 -%}
+      {%- assign bu_var = bu_prod.selected_or_first_available_variant -%}
+      {%- assign bu_multi = false -%}
+      {%- if bu_prod.has_only_default_variant == false and bu_prod.variants.size > 1 -%}{%- assign bu_multi = true -%}{%- endif -%}
+      {%- liquid
+        assign bu_base = bu_var.price
+        if bu_camp.dm == 'p'
+          assign bu_off = bu_base | times: bu_dv | divided_by: 100 | round
+          assign bu_final = bu_base | minus: bu_off
+        elsif bu_camp.dm == 'f'
+          assign bu_final = bu_base | minus: bu_dv_cents
+        else
+          assign bu_final = bu_base
+        endif
+        if bu_final < 0
+          assign bu_final = 0
+        endif
+        assign bu_compare = bu_base
+        if bu_final == bu_base and bu_var.compare_at_price > bu_base
+          assign bu_compare = bu_var.compare_at_price
+        endif
+      -%}
+      <div
+        class="brk-upsell__card"
+        role="listitem"
+        data-product-id="{{ bu_prod.id }}"
+        data-handle="{{ bu_prod.handle }}"
+        data-position="{{ bu_shown }}"
+      >
+        <a
+          class="brk-upsell__media"
+          href="{{ bu_prod.url }}"
+          data-upsell-action="product_click"
+          tabindex="-1"
+          aria-hidden="true"
+        >
+          {%- if bu_var.featured_image or bu_prod.featured_image -%}
+            {%- assign bu_img = bu_var.featured_image | default: bu_prod.featured_image -%}
+            <img
+              src="{{ bu_img | image_url: width: 240 }}"
+              srcset="{{ bu_img | image_url: width: 120 }} 120w, {{ bu_img | image_url: width: 240 }} 240w, {{ bu_img | image_url: width: 400 }} 400w"
+              sizes="(min-width: 1025px) 180px, 120px"
+              alt="{{ bu_prod.title | escape }}"
+              width="240"
+              height="{{ 240 | divided_by: bu_img.aspect_ratio | round }}"
+              loading="lazy"
+            >
+          {%- else -%}
+            {{ 'product-1' | placeholder_svg_tag: 'brk-upsell__placeholder' }}
+          {%- endif -%}
+          {%- if bu_badge != blank -%}<span class="brk-upsell__badge">{{ bu_badge }}</span>{%- endif -%}
+        </a>
+        <div class="brk-upsell__info">
+          <a class="brk-upsell__name" href="{{ bu_prod.url }}" data-upsell-action="product_click">{{ bu_prod.title }}</a>
+          <div class="brk-upsell__price" aria-live="polite">
+            {%- if bu_compare > bu_final -%}<s class="brk-upsell__compare" data-upsell-compare>{{ bu_compare | money }}</s>{%- endif -%}
+            <span class="brk-upsell__final{% if bu_compare > bu_final %} is-sale{% endif %}" data-upsell-final>{{ bu_final | money }}</span>
+          </div>
+          {%- if bu_multi -%}
+            <label class="visually-hidden" for="BrkUpsell-{{ placement }}-{{ bu_prod.id }}">{{ bu_prod.options | join: ' / ' }}</label>
+            <select
+              id="BrkUpsell-{{ placement }}-{{ bu_prod.id }}"
+              class="brk-upsell__variant"
+              data-upsell-variant
+            >
+              {%- for bu_v in bu_prod.variants -%}
+                {%- liquid
+                  assign bu_vb = bu_v.price
+                  if bu_camp.dm == 'p'
+                    assign bu_voff = bu_vb | times: bu_dv | divided_by: 100 | round
+                    assign bu_vf = bu_vb | minus: bu_voff
+                  elsif bu_camp.dm == 'f'
+                    assign bu_vf = bu_vb | minus: bu_dv_cents
+                  else
+                    assign bu_vf = bu_vb
+                  endif
+                  if bu_vf < 0
+                    assign bu_vf = 0
+                  endif
+                  assign bu_vc = bu_vb
+                  if bu_vf == bu_vb and bu_v.compare_at_price > bu_vb
+                    assign bu_vc = bu_v.compare_at_price
+                  endif
+                -%}
+                <option
+                  value="{{ bu_v.id }}"
+                  data-final="{{ bu_vf | money | escape }}"
+                  data-compare="{% if bu_vc > bu_vf %}{{ bu_vc | money | escape }}{% endif %}"
+                  {% unless bu_v.available %}disabled{% endunless %}
+                  {% if bu_v.id == bu_var.id %}selected{% endif %}
+                >
+                  {{- bu_v.title }}{% unless bu_v.available %} — esgotado{% endunless -%}
+                </option>
+              {%- endfor -%}
+            </select>
+          {%- endif -%}
+        </div>
+        <button
+          type="button"
+          class="brk-upsell__add"
+          data-upsell-add
+          data-variant-id="{{ bu_var.id }}"
+          aria-label="{{ bu_camp.b | default: 'Adicionar' | escape }}: {{ bu_prod.title | escape }}"
+        >
+          <span class="brk-upsell__add-label">{{ bu_camp.b | default: 'Adicionar' }}</span>
+          <svg class="brk-upsell__add-icon" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M7 1.5v11M1.5 7h11" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          <span class="brk-upsell__spinner" aria-hidden="true"></span>
+        </button>
+        <p class="brk-upsell__error" role="alert" hidden></p>
+      </div>
+    {%- endfor -%}
+  {%- endcapture -%}
+
+  {%- if bu_shown > 0 -%}
+    <brk-upsell
+      class="brk-upsell brk-upsell--{{ placement }}"
+      data-campaign="{{ bu_camp.id | escape }}"
+      data-campaign-slug="{{ bu_slug | escape }}"
+      data-placement="{{ placement }}"
+      data-count="{{ bu_shown }}"
+    >
+      <div class="brk-upsell__head">
+        <div class="brk-upsell__heading">
+          {%- if bu_camp.t != blank -%}<p class="brk-upsell__title">{{ bu_camp.t }}</p>{%- endif -%}
+          {%- if bu_camp.d != blank -%}<p class="brk-upsell__desc">{{ bu_camp.d }}</p>{%- endif -%}
+        </div>
+        {%- if bu_shown > 1 -%}
+          <div class="brk-upsell__nav">
+            <button type="button" class="brk-upsell__arrow" data-upsell-nav="prev" aria-label="Anterior" disabled>
+              <svg width="8" height="12" viewBox="0 0 8 12" fill="none" aria-hidden="true"><path d="M6.5 1 1.5 6l5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <button type="button" class="brk-upsell__arrow" data-upsell-nav="next" aria-label="Próximo">
+              <svg width="8" height="12" viewBox="0 0 8 12" fill="none" aria-hidden="true"><path d="m1.5 1 5 5-5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+        {%- endif -%}
+      </div>
+      <div class="brk-upsell__track" role="list" data-upsell-track>
+        {{- bu_cards -}}
+      </div>
+    </brk-upsell>
+  {%- endif -%}
+{%- endif -%}

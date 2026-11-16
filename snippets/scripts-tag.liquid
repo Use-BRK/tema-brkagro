@@ -9,6 +9,8 @@
 <script src="{{ 'tingle.js' | asset_url }}" defer="defer"></script>
 <script src="{{ 'cart-components.js' | asset_url }}" defer="defer"></script>
 <script src="{{ 'theme.js' | asset_url }}"  defer="defer" type="module"></script>
+{%- comment -%} BRK Upsell (minicart e carrinho): global porque a seção chega por HTML re-renderizado {%- endcomment -%}
+<script src="{{ 'brk-upsell.js' | asset_url }}" defer="defer"></script>
 <script src="{{ 'gift-progress-bar.js' | asset_url }}" defer="defer"></script>
 <script src="{{ 'search-rewrite.js' | asset_url }}" defer="defer"></script>
 {%- case t -%}
