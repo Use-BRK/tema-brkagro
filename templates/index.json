@@ -12,13 +12,12 @@
     "slideshow_8KKtNU": {
       "type": "slideshow",
       "blocks": {
-        "slider_item_N78qVx": {
+        "slider_item_tRWWjQ": {
           "type": "slider_item",
-          "name": "11.11",
-          "disabled": true,
+          "name": "BLACKBLACKBLACKBLACKBLACK",
           "settings": {
-            "image": "shopify://shop_images/70f628fc-4644-4555-8abd-96b0d1656ace.png",
-            "image_mobile": "shopify://shop_images/b09dbf63-44af-4d37-b7f6-2a752d89b99e.png",
+            "image": "shopify://shop_images/BANNER_BLACK_NOVEMBER.jpg",
+            "image_mobile": "shopify://shop_images/MOBILE_BLACK_NOVEMBER.jpg",
             "overlay_opacity": 0,
             "link_banner": "shopify://collections/envios-imediatos",
             "slider_effect": "fade-in-right",
@@ -43,14 +42,14 @@
             "content_alignment_mobile": "center"
           }
         },
-        "slider_item_tRWWjQ": {
+        "slider_item_N78qVx": {
           "type": "slider_item",
-          "name": "BLACKBLACKBLACKBLACKBLACK",
+          "name": "Safra de ouro",
           "settings": {
-            "image": "shopify://shop_images/BANNER_BLACK_NOVEMBER.jpg",
-            "image_mobile": "shopify://shop_images/MOBILE_BLACK_NOVEMBER.jpg",
+            "image": "shopify://shop_images/BANNER_SAFRA_DE_OURO.jpg",
+            "image_mobile": "shopify://shop_images/MOBILE_SAFRA_DE_OURO.jpg",
             "overlay_opacity": 0,
-            "link_banner": "shopify://collections/envios-imediatos",
+            "link_banner": "shopify://collections/safra-de-ouro",
             "slider_effect": "fade-in-right",
             "subheading": "",
             "heading": "",
@@ -197,8 +196,8 @@
         }
       },
       "block_order": [
-        "slider_item_N78qVx",
         "slider_item_tRWWjQ",
+        "slider_item_N78qVx",
         "slider_item_MMEAVn",
         "slider_item_nrmHUV",
         "slider_item_rYBq93",
