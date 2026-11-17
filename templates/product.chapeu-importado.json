@@ -440,7 +440,9 @@
         "product_collapsible_row_zirPk7"
       ],
       "custom_css": [
-        ".product-detail__title {display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; font-size: 2.29rem;}"
+        ".product-detail__title {display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; font-size: 2.29rem;}",
+        ".product-detail__sku-rating .product-detail__rating, .product-detail__sku-rating .product-detail__rating:hover {color: #ffffff;}",
+        ".product-detail__meta .product-detail__sku-rating {justify-content: flex-start; gap: 0.5rem 1.6rem;} .product-detail__sku-rating .product-detail__rating {margin-left: 0;}"
       ],
       "name": "Informações do Produto",
       "settings": {
@@ -500,8 +502,8 @@
           "type": "icon",
           "settings": {
             "icon": "badge",
-            "text": "De 50 anos\nde tradição",
-            "text_mobile": "50 anos de\ntradição"
+            "text": "Mais de 50 anos\nde tradição",
+            "text_mobile": "Mais de 50 anos\nde tradição"
           }
         },
         "icon_4": {
