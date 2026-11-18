@@ -433,7 +433,8 @@
         "reset_spacing": true,
         "show_stock_strip": true,
         "stock_strip_threshold": 10
-      }
+      },
+      "disabled": true
     },
     "banner_packery_waf64X": {
       "type": "banner-packery",
@@ -930,12 +931,96 @@
         "padding_bottom": 20,
         "reset_spacing": true
       }
+    },
+    "brk_collection_cards": {
+      "type": "brk-collection-cards",
+      "blocks": {
+        "card_camisas_uv50_masculinas": {
+          "type": "collection_card",
+          "settings": {
+            "collection": "camisas-uv50-masculinas",
+            "title": "Camisas Masculinas",
+            "photo_product": "camisa-agro-brk-camu-verde-long-horn-com-protecao-solar-uv50-1",
+            "photo_index": 1
+          }
+        },
+        "card_camisas_uv50_femininas": {
+          "type": "collection_card",
+          "settings": {
+            "collection": "camisas-uv50-femininas",
+            "title": "Camisas Femininas",
+            "photo_product": "camisa-agro-feminina-brk-wild-horse-bege-com-protecao-solar-uv50",
+            "photo_index": 1
+          }
+        },
+        "card_botinas": {
+          "type": "collection_card",
+          "settings": {
+            "collection": "botinas",
+            "title": "Botinas",
+            "photo_product": "botina-masculina-brk-agro-couro-legitimo-chocolate",
+            "photo_index": 3
+          }
+        },
+        "card_bones": {
+          "type": "collection_card",
+          "settings": {
+            "collection": "bones",
+            "title": "Bonés",
+            "photo_product": "ba0148-bone-brk-agro-taurus-preto-02",
+            "photo_index": 2
+          }
+        },
+        "card_calcas_jeans": {
+          "type": "collection_card",
+          "settings": {
+            "collection": "calcas-jeans",
+            "title": "Calças",
+            "photo_product": "calca-masculina-brk-badlands-jeans",
+            "photo_index": 2,
+            "zoom": 140,
+            "focus_x": 55,
+            "focus_y": 66
+          }
+        },
+        "card_camisas_de_botao_country": {
+          "type": "collection_card",
+          "settings": {
+            "collection": "camisas-de-botao-country",
+            "title": "Camisas de Botão",
+            "photo_product": "camisa-brk-m-l-western-preto-branco",
+            "photo_index": 2
+          }
+        },
+        "card_oculos": {
+          "type": "collection_card",
+          "settings": {
+            "collection": "oculos-de-sol",
+            "title": "Óculos",
+            "photo_product": "oculos-de-sol-aviador-black-steel",
+            "photo_index": 2
+          }
+        }
+      },
+      "block_order": [
+        "card_camisas_uv50_masculinas",
+        "card_camisas_uv50_femininas",
+        "card_botinas",
+        "card_bones",
+        "card_calcas_jeans",
+        "card_oculos",
+        "card_camisas_de_botao_country"
+      ],
+      "settings": {
+        "default_tag": ""
+      }
     }
   },
   "order": [
     "slideshow_8KKtNU",
     "collection_overview_EqEWTR",
     "collection_tab_kENEYA",
+    "brk_collection_cards",
     "collection_tab_KRDaRe",
     "banner_packery_waf64X",
     "collection_tab_gcdBTy",

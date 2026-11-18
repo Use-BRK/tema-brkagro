@@ -1,0 +1,260 @@
+{%- comment -%}
+  BRK Collection Cards — vitrine de cards que levam para coleções (ex.: Black November por categoria).
+  Cada card é um bloco: coleção + imagem opcional (sem imagem = foto do 1º produto da coleção) + título + selo.
+  Carrossel de uma linha (desktop com setas, mobile com rolagem lateral).
+{%- endcomment -%}
+{%- liquid
+  assign s = section.settings
+  assign pct = settings.promo2_percent | default: 40 | append: '%'
+-%}
+<style>
+  #brk-cc-{{ section.id }} {
+    --cc-bg: {{ s.bg_color }};
+    --cc-text: {{ s.text_color }};
+    --cc-accent: {{ s.accent_color }};
+    --cc-cream: {{ s.cream_color }};
+    --cc-cols: {{ s.columns_desktop }};
+    --cc-gap: {{ s.gap }}px;
+    background: var(--cc-bg);
+    color: var(--cc-text);
+    padding: {{ s.padding_top }}px 0 {{ s.padding_bottom }}px;
+  }
+  #brk-cc-{{ section.id }} { position: relative; }
+  #brk-cc-{{ section.id }} .cc__anchor { position: absolute; top: 0; scroll-margin-top: 140px; }
+  #brk-cc-{{ section.id }} .cc__wrap { {% if s.full_width %}max-width: none; padding: 0;{% else %}max-width: 1440px; margin: 0 auto; padding: 0 24px;{% endif %} }
+  #brk-cc-{{ section.id }} .cc__head { {% if s.full_width %}padding: 0 24px;{% endif %} }
+  #brk-cc-{{ section.id }} .cc__stage { position: relative; }
+  #brk-cc-{{ section.id }} .cc__head { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; margin-bottom: 22px; }
+  #brk-cc-{{ section.id }} .cc__eyebrow {
+    display: inline-block; margin-bottom: 10px; padding: 5px 10px; border-radius: 4px;
+    background: var(--cc-accent); color: var(--cc-cream);
+    font-family: var(--heading-font, inherit);
+    font-size: 11px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase;
+  }
+  #brk-cc-{{ section.id }} .cc__title {
+    margin: 0; font-family: var(--heading-font, inherit);
+    font-size: clamp(26px, 3vw, 38px); line-height: 1.1; font-weight: 500; letter-spacing: -0.02em; color: var(--cc-text);
+  }
+  #brk-cc-{{ section.id }} .cc__title em { font-style: normal; font-weight: 600; color: var(--cc-text); background: linear-gradient(transparent 58%, var(--cc-cream) 58%, var(--cc-cream) 92%, transparent 92%); padding: 0 .08em; }
+  #brk-cc-{{ section.id }} .cc__sub { margin: 8px 0 0; font-size: 15px; opacity: .7; }
+  #brk-cc-{{ section.id }} .cc__arrow {
+    position: absolute; top: 50%; z-index: 3;
+    width: clamp(3.5rem, 5vw, 5rem); height: clamp(3.5rem, 5vw, 5rem);
+    transform: translateY(-50%);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--cc-accent, #111214); cursor: pointer;
+  }
+  #brk-cc-{{ section.id }} .cc__arrow--prev { left: 20px; }
+  #brk-cc-{{ section.id }} .cc__arrow--next { right: 20px; }
+  #brk-cc-{{ section.id }} .cc__arrow svg { width: 10px; height: 10px; }
+  #brk-cc-{{ section.id }} .cc__arrow[disabled] { opacity: 0; visibility: hidden; }
+  #brk-cc-{{ section.id }} .cc__grid {
+    display: flex; gap: var(--cc-gap);
+    overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth;
+    scrollbar-width: none;
+  }
+  #brk-cc-{{ section.id }} .cc__grid::-webkit-scrollbar { display: none; }
+  #brk-cc-{{ section.id }} .cc__card {
+    position: relative; display: block; overflow: hidden;
+    flex: 0 0 calc((100% - (var(--cc-cols) - 1) * var(--cc-gap)) / var(--cc-cols));
+    scroll-snap-align: start;
+    height: {{ s.height_desktop }}vh;
+    min-height: 460px;
+    border-radius: {{ s.radius }}px;
+    background: var(--cc-accent);
+    color: #fff; text-decoration: none;
+    isolation: isolate;
+  }
+  #brk-cc-{{ section.id }} .cc__img {
+    position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+    object-position: var(--fx, 50%) var(--fy, 50%);
+    transform-origin: var(--fx, 50%) var(--fy, 50%);
+    transform: scale(var(--z, 1));
+    transition: transform .6s cubic-bezier(.2,.7,.2,1);
+  }
+  #brk-cc-{{ section.id }} .cc__card::after {
+    content: ""; position: absolute; inset: 0; z-index: 1;
+    background: linear-gradient(180deg, rgba(17,18,20,0) 40%, rgba(17,18,20,.5) 66%, rgba(17,18,20,.92) 100%);
+  }
+  #brk-cc-{{ section.id }} .cc__card:hover .cc__img { transform: scale(calc(var(--z, 1) * 1.05)); }
+  #brk-cc-{{ section.id }} .cc__tag {
+    position: absolute; top: 12px; left: 12px; z-index: 2;
+    padding: 5px 9px; border-radius: 4px;
+    background: var(--cc-accent); color: var(--cc-cream);
+    font-family: var(--heading-font, inherit);
+    font-size: 11px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; line-height: 1;
+  }
+  #brk-cc-{{ section.id }} .cc__body { position: absolute; left: 0; right: 0; bottom: 0; z-index: 2; display: flex; flex-direction: column; align-items: flex-start; padding: 28px 26px 26px; }
+  #brk-cc-{{ section.id }} .cc__name {
+    display: block; margin: 0; font-family: var(--heading-font, inherit);
+    font-size: clamp(30px, 2.8vw, 48px); line-height: 1; font-weight: 600; letter-spacing: -0.02em; color: #fff;
+    text-shadow: 0 2px 18px rgba(0,0,0,.35);
+  }
+  #brk-cc-{{ section.id }} .cc__cta {
+    display: inline-flex; align-items: center; gap: 6px; margin-top: 10px;
+    font-size: 12px; font-weight: 500; color: var(--cc-cream);
+    border-bottom: 1px solid var(--cc-cream); padding-bottom: 2px;
+  }
+  #brk-cc-{{ section.id }} .cc__cta span { transition: transform .25s; }
+  #brk-cc-{{ section.id }} .cc__card:hover .cc__cta span { transform: translateX(4px); }
+  #brk-cc-{{ section.id }} .cc__note { margin: 16px 0 0; font-size: 12px; opacity: .6; text-align: center; }
+  @media (max-width: 989px) {
+    #brk-cc-{{ section.id }} { --cc-gap: 10px; }
+    #brk-cc-{{ section.id }} .cc__wrap { padding: 0; }
+    #brk-cc-{{ section.id }} .cc__head { padding: 0 16px; margin-bottom: 16px; }
+    #brk-cc-{{ section.id }} .cc__arrow { display: none; }
+    #brk-cc-{{ section.id }} .cc__sub { font-size: 14px; }
+    #brk-cc-{{ section.id }} .cc__grid { padding: 0 16px 4px; scroll-padding-left: 16px; scroll-behavior: auto; }
+    #brk-cc-{{ section.id }} .cc__card { flex: 0 0 {{ s.mobile_card_width }}%; height: {{ s.height_mobile }}vh; min-height: 380px; }
+    #brk-cc-{{ section.id }} .cc__name { font-size: 28px; }
+    #brk-cc-{{ section.id }} .cc__body { padding: 14px 14px 13px; }
+    #brk-cc-{{ section.id }} .cc__note { padding: 0 16px; }
+  }
+</style>
+
+<section id="brk-cc-{{ section.id }}" class="brk-collection-cards">
+  {%- if s.anchor != blank -%}<span id="{{ s.anchor | handleize }}" class="cc__anchor" aria-hidden="true"></span>{%- endif -%}
+  <div class="cc__wrap">
+    {%- if s.eyebrow != blank or s.title != blank or s.subtitle != blank -%}
+      <div class="cc__head">
+        <div>
+          {%- if s.eyebrow != blank -%}<span class="cc__eyebrow">{{ s.eyebrow | escape }}</span>{%- endif -%}
+          {%- if s.title != blank -%}<h2 class="cc__title">{{ s.title | replace: '[percent]', pct }}</h2>{%- endif -%}
+          {%- if s.subtitle != blank -%}<p class="cc__sub">{{ s.subtitle | replace: '[percent]', pct | escape }}</p>{%- endif -%}
+        </div>
+      </div>
+    {%- endif -%}
+    <div class="cc__stage">
+    {%- if section.blocks.size > s.columns_desktop -%}
+      <button type="button" class="cc__arrow cc__arrow--prev swiper-arrow transition bg-white btn-hover inline-flex content-center border rounded-50 overflow-hidden" data-cc-prev aria-label="Anterior" disabled>
+        <svg width="6" height="11" fill="none" aria-hidden="true"><use href="#icon-back" /></svg>
+      </button>
+      <button type="button" class="cc__arrow cc__arrow--next swiper-arrow transition bg-white btn-hover inline-flex content-center border rounded-50 overflow-hidden" data-cc-next aria-label="Próximo">
+        <svg width="6" height="11" fill="none" aria-hidden="true"><use href="#icon-next" /></svg>
+      </button>
+    {%- endif -%}
+    <div class="cc__grid" data-cc-track>
+      {%- for block in section.blocks -%}
+        {%- liquid
+          assign b = block.settings
+          assign col = b.collection
+          assign img = b.image
+          if img == blank and b.photo_product != blank
+            assign ph_i = b.photo_index | default: 1 | minus: 1
+            assign img = b.photo_product.images[ph_i] | default: b.photo_product.featured_image
+          endif
+          if img == blank and col != blank
+            for p in col.products limit: 6
+              if p.featured_image != blank and p.available
+                assign img = p.featured_image
+                break
+              endif
+            endfor
+          endif
+          assign name = b.title | default: col.title
+          assign url = b.link | default: col.url
+          assign tag = b.tag | default: s.default_tag | replace: '[percent]', pct
+        -%}
+        <a class="cc__card" href="{{ url | default: '#' }}" style="--z: {{ b.zoom | default: 100 | divided_by: 100.0 }}; --fx: {{ b.focus_x | default: 50 }}%; --fy: {{ b.focus_y | default: 50 }}%;" {{ block.shopify_attributes }}>
+          {%- if img != blank -%}
+            {{ img | image_url: width: 1200 | image_tag: class: 'cc__img', loading: 'lazy', widths: '540, 720, 900, 1200', sizes: '(min-width: 990px) 30vw, 80vw', alt: name }}
+          {%- endif -%}
+          {%- if tag != blank -%}<span class="cc__tag">{{ tag | escape }}</span>{%- endif -%}
+          <span class="cc__body">
+            <span class="cc__name">{{ name | escape }}</span>
+            {%- if s.cta != blank -%}<span class="cc__cta">{{ s.cta | escape }} <span>→</span></span>{%- endif -%}
+          </span>
+        </a>
+      {%- endfor -%}
+    </div>
+    </div>
+    {%- if s.note != blank -%}<p class="cc__note">{{ s.note | escape }}</p>{%- endif -%}
+  </div>
+</section>
+<script>
+  (function () {
+    var root = document.getElementById('brk-cc-{{ section.id }}');
+    if (!root) return;
+    var track = root.querySelector('[data-cc-track]');
+    var prev = root.querySelector('[data-cc-prev]');
+    var next = root.querySelector('[data-cc-next]');
+    if (!track || !prev || !next) return;
+    function step() {
+      var card = track.querySelector('.cc__card');
+      var gap = parseFloat(getComputedStyle(track).columnGap) || 0;
+      return card ? card.getBoundingClientRect().width + gap : track.clientWidth;
+    }
+    function update() {
+      prev.disabled = track.scrollLeft <= 2;
+      next.disabled = track.scrollLeft + track.clientWidth >= track.scrollWidth - 2;
+    }
+    prev.addEventListener('click', function () { track.scrollBy({ left: -step(), behavior: 'smooth' }); });
+    next.addEventListener('click', function () { track.scrollBy({ left: step(), behavior: 'smooth' }); });
+    track.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    update();
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Cards de coleções",
+  "tag": "div",
+  "class": "section-brk-collection-cards",
+  "settings": [
+    { "type": "paragraph", "content": "[percent] vira o desconto de Configurações do tema > Promo 2ª peça." },
+    { "type": "text", "id": "anchor", "label": "Âncora (link direto)", "info": "Link para esta seção: /#ancora. Ex.: black → /#black.", "default": "black" },
+    { "type": "text", "id": "eyebrow", "label": "Selo", "default": "Black November" },
+    { "type": "inline_richtext", "id": "title", "label": "Título", "info": "Itálico = cor de destaque.", "default": "2ª peça com <em>[percent] OFF</em>" },
+    { "type": "text", "id": "subtitle", "label": "Subtítulo", "default": "Escolha a categoria e monte o seu par." },
+    { "type": "text", "id": "default_tag", "label": "Selo dos cards (padrão)", "info": "Cada card pode ter o seu. Vazio = sem selo.", "default": "2ª peça [percent] OFF" },
+    { "type": "text", "id": "cta", "label": "Texto do link", "default": "Ver coleção" },
+    { "type": "text", "id": "note", "label": "Observação", "default": "Válido apenas para peças da mesma categoria." },
+    { "type": "header", "content": "Layout" },
+    { "type": "range", "id": "columns_desktop", "label": "Cards visíveis (desktop)", "min": 2, "max": 6, "step": 1, "default": 4 },
+    { "type": "range", "id": "mobile_card_width", "label": "Largura do card no mobile", "min": 40, "max": 92, "step": 2, "unit": "%", "default": 80 },
+    { "type": "checkbox", "id": "full_width", "label": "Encostar nas bordas da tela", "default": true },
+    { "type": "range", "id": "height_desktop", "label": "Altura dos cards (desktop)", "info": "Em % da altura da tela.", "min": 40, "max": 95, "step": 1, "unit": "%", "default": 64 },
+    { "type": "range", "id": "height_mobile", "label": "Altura dos cards (mobile)", "info": "Em % da altura da tela.", "min": 40, "max": 90, "step": 1, "unit": "%", "default": 52 },
+    { "type": "range", "id": "radius", "label": "Arredondamento", "min": 0, "max": 24, "step": 2, "unit": "px", "default": 0 },
+    { "type": "range", "id": "gap", "label": "Espaço entre os cards", "min": 0, "max": 24, "step": 2, "unit": "px", "default": 4 },
+    { "type": "header", "content": "Cores e espaçamento" },
+    { "type": "color", "id": "bg_color", "label": "Fundo", "default": "#ffffff" },
+    { "type": "color", "id": "text_color", "label": "Texto", "default": "#111214" },
+    { "type": "color", "id": "accent_color", "label": "Destaque (selo, setas)", "default": "#111214" },
+    { "type": "color", "id": "cream_color", "label": "Cor de realce (amarelo)", "default": "#f6cb27" },
+    { "type": "range", "id": "padding_top", "label": "Espaço acima", "min": 0, "max": 100, "step": 4, "unit": "px", "default": 48 },
+    { "type": "range", "id": "padding_bottom", "label": "Espaço abaixo", "min": 0, "max": 100, "step": 4, "unit": "px", "default": 48 }
+  ],
+  "blocks": [
+    {
+      "type": "collection_card",
+      "name": "Card de coleção",
+      "settings": [
+        { "type": "collection", "id": "collection", "label": "Coleção" },
+        { "type": "image_picker", "id": "image", "label": "Imagem", "info": "Tem prioridade. Ideal: retrato (720x900)." },
+        { "type": "product", "id": "photo_product", "label": "Ou: usar a foto de um produto", "info": "Sem imagem e sem produto = foto do 1º produto disponível da coleção." },
+        { "type": "range", "id": "photo_index", "label": "Qual foto do produto", "min": 1, "max": 10, "step": 1, "default": 1 },
+        { "type": "range", "id": "zoom", "label": "Zoom da foto", "min": 100, "max": 250, "step": 5, "unit": "%", "default": 100 },
+        { "type": "range", "id": "focus_x", "label": "Foco horizontal", "info": "0 = esquerda, 100 = direita.", "min": 0, "max": 100, "step": 1, "unit": "%", "default": 50 },
+        { "type": "range", "id": "focus_y", "label": "Foco vertical", "info": "0 = topo, 100 = base.", "min": 0, "max": 100, "step": 1, "unit": "%", "default": 50 },
+        { "type": "text", "id": "title", "label": "Título", "info": "Vazio = nome da coleção." },
+        { "type": "text", "id": "tag", "label": "Selo", "info": "Vazio = selo padrão da seção." },
+        { "type": "url", "id": "link", "label": "Link", "info": "Vazio = link da coleção." }
+      ]
+    }
+  ],
+  "max_blocks": 12,
+  "presets": [
+    {
+      "name": "Cards de coleções",
+      "blocks": [
+        { "type": "collection_card" },
+        { "type": "collection_card" },
+        { "type": "collection_card" },
+        { "type": "collection_card" }
+      ]
+    }
+  ]
+}
+{% endschema %}

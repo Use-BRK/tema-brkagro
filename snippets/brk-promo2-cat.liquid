@@ -1,0 +1,51 @@
+{%- comment -%}
+  Promo 2ª peça — devolve o número da categoria (1–10) do produto, ou nada se não participa.
+  Uso: {%- capture cat -%}{%- render 'brk-promo2-cat', product: produto -%}{%- endcapture -%}
+  Config: Configurações do tema > Promo 2ª peça.
+  Vale a categoria de número menor quando o produto está em mais de uma.
+{%- endcomment -%}
+{%- liquid
+  if settings.promo2_enable and product != blank
+    assign p2_type = product.type | downcase | strip
+    assign p2_out = false
+    if p2_type != blank
+      assign p2_ex_types = settings.promo2_exclude_types | downcase | split: ','
+      for p2_t in p2_ex_types
+        assign p2_ts = p2_t | strip
+        if p2_ts != blank and p2_ts == p2_type
+          assign p2_out = true
+          break
+        endif
+      endfor
+    endif
+
+    unless p2_out
+      assign p2_ids = product.collections | map: 'id' | join: ',' | prepend: ',' | append: ','
+      for p2_c in settings.promo2_exclude
+        assign p2_needle = ',' | append: p2_c.id | append: ','
+        if p2_ids contains p2_needle
+          assign p2_out = true
+          break
+        endif
+      endfor
+    endunless
+
+    unless p2_out
+      assign p2_found = ''
+      for n in (1..10)
+        assign p2_key = 'promo2_cat' | append: n | append: '_collections'
+        for p2_c in settings[p2_key]
+          assign p2_needle = ',' | append: p2_c.id | append: ','
+          if p2_ids contains p2_needle
+            assign p2_found = n
+            break
+          endif
+        endfor
+        if p2_found != ''
+          break
+        endif
+      endfor
+      echo p2_found
+    endunless
+  endif
+-%}

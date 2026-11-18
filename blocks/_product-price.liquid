@@ -12,11 +12,21 @@
 >
   {%- render 'price', scope: 'detail', product: product, class: 'price-large', show_badges: true -%}
 </div>
+{%- if block_st.show_promo2 != false -%}
+  {%- render 'brk-promo2-pdp', product: product -%}
+{%- endif -%}
 {% schema %}
 {
   "name": "t:blocks.product.price.name",
   "tag": null,
   "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_promo2",
+      "label": "Mostrar quadro da promo 2ª peça",
+      "info": "Textos em Configurações do tema > Promo 2ª peça.",
+      "default": true
+    },
     {
       "type": "header",
       "content": "Preço"

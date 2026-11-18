@@ -1,0 +1,126 @@
+{%- comment -%}
+  Promo 2ª peça — aviso no minicart e no carrinho (re-renderiza junto com o carrinho).
+  Parâmetro: placement: 'minicart' | 'cart'
+  Uma linha só: sem par fechado = "adicione mais 1 peça"; com par = só o valor economizado.
+  A economia é uma estimativa igual à regra do desconto da Shopify (Compre X, ganhe Y):
+  a cada 2 peças da mesma categoria, a mais barata leva o desconto.
+{%- endcomment -%}
+{%- if settings.promo2_enable and settings.promo2_cart_enable and cart.item_count > 0 -%}
+  {%- liquid
+    assign p2_pct = settings.promo2_percent | default: 40
+    assign p2_pct_label = p2_pct | append: '%'
+    assign p2_entries = ''
+    for p2_item in cart.items
+      capture p2_cat
+        render 'brk-promo2-cat', product: p2_item.product
+      endcapture
+      assign p2_cat = p2_cat | strip
+      if p2_cat == blank
+        continue
+      endif
+      assign p2_padded = '000000000' | append: p2_item.original_price | slice: -9, 9
+      assign p2_qty = p2_item.quantity
+      if p2_qty > 60
+        assign p2_qty = 60
+      endif
+      for i in (1..p2_qty)
+        assign p2_entries = p2_entries | append: p2_cat | append: '|' | append: p2_padded | append: ','
+      endfor
+    endfor
+    assign p2_entries = p2_entries | split: ','
+    assign p2_total_saving = 0
+  -%}
+  {%- if p2_entries.size > 0 -%}
+    {%- liquid
+      assign p2_has_odd = false
+      assign p2_odd_cat = ''
+      for n in (1..10)
+        assign p2_prefix = n | append: ''
+        assign p2_prices = ''
+        for e in p2_entries
+          assign e_parts = e | split: '|'
+          if e_parts[0] == p2_prefix
+            assign p2_prices = p2_prices | append: e_parts[1] | append: ','
+          endif
+        endfor
+        if p2_prices == ''
+          continue
+        endif
+        assign p2_list = p2_prices | split: ',' | sort
+        assign p2_pairs = p2_list.size | divided_by: 2
+        assign p2_odd = p2_list.size | modulo: 2
+        if p2_odd == 1
+          assign p2_has_odd = true
+          if p2_odd_cat == ''
+            assign p2_odd_cat = p2_prefix
+          endif
+        endif
+        for p in p2_list limit: p2_pairs
+          assign p2_cents = p | plus: 0
+          assign p2_s = p2_cents | times: p2_pct | divided_by: 100.0 | round
+          assign p2_total_saving = p2_total_saving | plus: p2_s
+        endfor
+      endfor
+    -%}
+    {%- comment -%}
+      Uma linha só: com algum par fechado mostra só a economia; sem par, convida a levar mais 1 peça.
+    {%- endcomment -%}
+    {%- if p2_total_saving > 0 -%}
+      {%- capture p2_money -%}<span class="brk-promo2-nowrap" data-p2-amount data-cents="{{ p2_total_saving }}">{{ p2_total_saving | money }}</span>{%- endcapture -%}
+      {%- assign p2_msg = settings.promo2_cart_total | replace: '[economia]', p2_money -%}
+      {%- assign p2_state = 'is-done' -%}
+    {%- elsif p2_has_odd -%}
+      {%- assign p2_msg = settings.promo2_cart_odd | replace: '[percent]', p2_pct_label | replace: ' <strong>', '<br><strong>' -%}
+      {%- assign p2_state = 'is-open' -%}
+      {%- liquid
+        # Botão: coleção da categoria sem par, a partir da peça mais recente dela no carrinho
+        # (ex.: camisa feminina -> coleção feminina). Link fixo da categoria tem prioridade.
+        assign p2_lk = 'promo2_cat' | append: p2_odd_cat | append: '_link'
+        assign p2_ck = 'promo2_cat' | append: p2_odd_cat | append: '_collections'
+        assign p2_link = settings[p2_lk]
+        if p2_link == blank
+          for p2_ci in cart.items
+            capture p2_cc
+              render 'brk-promo2-cat', product: p2_ci.product
+            endcapture
+            assign p2_cc = p2_cc | strip
+            if p2_cc != p2_odd_cat
+              continue
+            endif
+            assign p2_ci_ids = p2_ci.product.collections | map: 'id' | join: ',' | prepend: ',' | append: ','
+            for p2_col in settings[p2_ck]
+              assign p2_needle = ',' | append: p2_col.id | append: ','
+              if p2_ci_ids contains p2_needle
+                assign p2_link = p2_col.url
+                break
+              endif
+            endfor
+            break
+          endfor
+        endif
+        if p2_link == blank
+          assign p2_link = settings[p2_ck].first.url
+        endif
+      -%}
+    {%- else -%}
+      {%- assign p2_msg = '' -%}
+    {%- endif -%}
+    {%- if p2_msg != blank -%}
+      <div
+        class="brk-promo2-cart brk-promo2-cart--{{ placement }} brk-promo2-cart--{{ settings.promo2_pdp_style | default: 'dark' }} {{ p2_state }}"
+        data-p2-saving="{{ p2_total_saving }}"
+        style="--p2-color: {{ settings.promo2_color }}; --p2-text: {{ settings.promo2_text_color }};"
+      >
+        {%- if p2_total_saving > 0 and settings.promo2_cart_unlock != blank -%}
+          <p class="brk-promo2-cart__msg brk-promo2-cart__msg--unlock" aria-hidden="true"><span>{{ settings.promo2_cart_unlock | replace: '[percent]', p2_pct_label }}</span></p>
+        {%- endif -%}
+        <div class="brk-promo2-cart__row-main">
+          <p class="brk-promo2-cart__msg brk-promo2-cart__msg--main" aria-live="polite">{{ p2_msg }}</p>
+          {%- if p2_state == 'is-open' and p2_link != blank and settings.promo2_cart_button != blank -%}
+            <a class="brk-promo2-cart__btn" href="{{ p2_link }}">{{ settings.promo2_cart_button | escape }} →</a>
+          {%- endif -%}
+        </div>
+      </div>
+    {%- endif -%}
+  {%- endif -%}
+{%- endif -%}

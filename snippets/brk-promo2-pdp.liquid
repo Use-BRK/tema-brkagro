@@ -1,0 +1,32 @@
+{%- comment -%}
+  Promo 2ª peça — quadro abaixo do preço na página do produto.
+  Parâmetro: product. Textos/cores: Configurações do tema > Promo 2ª peça.
+{%- endcomment -%}
+{%- capture p2_cat -%}{%- render 'brk-promo2-cat', product: product -%}{%- endcapture -%}
+{%- assign p2_cat = p2_cat | strip -%}
+{%- if p2_cat != blank and product.available -%}
+  {%- liquid
+    assign p2_pct = settings.promo2_percent | default: 40
+    assign p2_pct_label = p2_pct | append: '%'
+    assign p2_key = 'promo2_cat' | append: p2_cat | append: '_singular'
+    assign p2_singular = settings[p2_key] | default: 'peça'
+    assign p2_price = product.selected_or_first_available_variant.price
+    assign p2_off = p2_price | times: p2_pct | divided_by: 100.0 | round
+    assign p2_price2 = p2_price | minus: p2_off
+    assign p2_avg = p2_price | plus: p2_price2 | divided_by: 2.0 | round
+    assign p2_title = settings.promo2_pdp_title | replace: '[percent]', p2_pct_label | replace: '[singular]', p2_singular
+  -%}
+  {%- capture p2_price2_money -%}<span class="brk-promo2-nowrap">{{ p2_price2 | money }}</span>{%- endcapture -%}
+  {%- capture p2_off_money -%}<span class="brk-promo2-nowrap">{{ p2_off | money }}</span>{%- endcapture -%}
+  {%- capture p2_avg_money -%}<span class="brk-promo2-nowrap">{{ p2_avg | money }}</span>{%- endcapture -%}
+  {%- assign p2_line = settings.promo2_pdp_line | replace: '[percent]', p2_pct_label | replace: '[singular]', p2_singular | replace: '[preco2]', p2_price2_money | replace: '[media]', p2_avg_money | replace: '[economia]', p2_off_money -%}
+  <div class="brk-promo2-pdp brk-promo2-pdp--{{ settings.promo2_pdp_style | default: 'dark' }}" style="--p2-color: {{ settings.promo2_color }}; --p2-text: {{ settings.promo2_text_color }};">
+    {%- assign p2_tag = settings.promo2_pdp_tag | default: '[percent] OFF' | replace: '[percent]', p2_pct_label -%}
+    <span class="brk-promo2-pdp__tag">{{ p2_tag | escape }}</span>
+    <div class="brk-promo2-pdp__body">
+      {%- if p2_title != blank -%}<p class="brk-promo2-pdp__title">{{ p2_title }}</p>{%- endif -%}
+      {%- if p2_line != blank -%}<p class="brk-promo2-pdp__line">{{ p2_line }}</p>{%- endif -%}
+      {%- if settings.promo2_pdp_note != blank -%}<p class="brk-promo2-pdp__note">{{ settings.promo2_pdp_note | escape }}</p>{%- endif -%}
+    </div>
+  </div>
+{%- endif -%}

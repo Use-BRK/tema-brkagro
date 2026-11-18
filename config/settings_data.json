@@ -553,7 +553,88 @@
           "button_link_hover_color": "#ede5da"
         }
       }
-    }
+    },
+    "promo2_enable": true,
+    "promo2_percent": 40,
+    "promo2_exclude": [
+      "kits-promocionais",
+      "kits-camisas-e-botinas",
+      "kit-uniformes-uv50",
+      "kit-algodao",
+      "kit-camisas-basicas"
+    ],
+    "promo2_exclude_types": "Kit",
+    "promo2_cat1_singular": "camisa Work",
+    "promo2_cat1_collections": [
+      "camisas-work"
+    ],
+    "promo2_cat1_link": "",
+    "promo2_cat2_singular": "camisa de botão",
+    "promo2_cat2_collections": [
+      "camisas-de-botao-country",
+      "camisas-de-botao-country-femininas",
+      "camisas-de-botao-masculinas"
+    ],
+    "promo2_cat2_link": "",
+    "promo2_cat3_singular": "camisa",
+    "promo2_cat3_collections": [
+      "camisas-uv50-masculinas",
+      "camisas-uv50-femininas",
+      "camisas-uv50-infantil",
+      "camisetas-algodao",
+      "manga-longa-masculino",
+      "manga-curta",
+      "camisas-longhorn"
+    ],
+    "promo2_cat3_link": "",
+    "promo2_cat4_singular": "calça",
+    "promo2_cat4_collections": [
+      "calcas-jeans"
+    ],
+    "promo2_cat4_link": "",
+    "promo2_cat5_singular": "botina",
+    "promo2_cat5_collections": [
+      "botinas",
+      "botinas-masculinas",
+      "botinas-femininas",
+      "botinas-de-trabalho"
+    ],
+    "promo2_cat5_link": "",
+    "promo2_cat6_singular": "boné",
+    "promo2_cat6_collections": [
+      "bones",
+      "bones-e-chapeus"
+    ],
+    "promo2_cat6_link": "",
+    "promo2_cat7_singular": "chapéu",
+    "promo2_cat7_collections": [
+      "chapeus-importados"
+    ],
+    "promo2_cat7_link": "",
+    "promo2_cat8_singular": "óculos",
+    "promo2_cat8_collections": [
+      "oculos-de-sol",
+      "oculos-de-sol-feminino"
+    ],
+    "promo2_cat8_link": "",
+    "promo2_cat9_singular": "bandana",
+    "promo2_cat9_collections": [
+      "bandanas",
+      "bandanas-tubeneck",
+      "bandanas-premium",
+      "bandana-premium"
+    ],
+    "promo2_cat9_link": "",
+    "promo2_cat10_singular": "luva",
+    "promo2_cat10_collections": [
+      "luva-esportiva"
+    ],
+    "promo2_cat10_link": "",
+    "promo2_badge_enable": false,
+    "promo2_pdp_line": "Você economiza <strong>[economia]</strong>",
+    "promo2_pdp_note": "Válido apenas para peças da mesma categoria.",
+    "promo2_pdp_style": "dark",
+    "promo2_pdp_tag": "BLACK NOVEMBER"
   },
   "presets": {
     "Default": {}

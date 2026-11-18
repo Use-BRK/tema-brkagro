@@ -756,6 +756,7 @@
                 </table>
               </form>
               {%- comment -%} Dentro do <cart-items>: re-renderiza junto quando o carrinho muda {%- endcomment -%}
+              {%- render 'brk-promo2-cart', placement: 'cart' -%}
               {%- render 'brk-upsell', placement: 'cart' -%}
             {% endif %}
             {%- if cart != empty -%}

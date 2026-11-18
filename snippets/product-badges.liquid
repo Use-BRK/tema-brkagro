@@ -174,6 +174,17 @@
       assign show_envio_imediato_badge = true
     endif
   endif
+  # Selo da promo 2ª peça: Configurações do tema > Promo 2ª peça
+  assign show_promo2_badge = false
+  if settings.promo2_enable and settings.promo2_badge_enable and type == 'product_item'
+    capture promo2_cat
+      render 'brk-promo2-cat', product: card_product
+    endcapture
+    assign promo2_cat = promo2_cat | strip
+    if promo2_cat != blank
+      assign show_promo2_badge = true
+    endif
+  endif
   # Badge "Produto Importado": Configurações do tema > Badges > Badge Produto Importado
   assign show_imported_badge = false
   assign imported_badge_tag = settings.imported_badge_tag | strip
@@ -216,6 +227,7 @@
   or card_product.tags contains 'VIP'
   or show_imported_badge
   or show_low_stock_badge
+  or show_promo2_badge
 -%}
   {% if show_product_badges %}
     <div
@@ -241,6 +253,15 @@
           {{ card_product.metafields.custom.custom_product_badge }}
         </div>
       {% endif %}
+      {%- if show_promo2_badge -%}
+        {%- assign promo2_pct = settings.promo2_percent | default: 40 | append: '%' -%}
+        <div
+          class="product__badges-custom product__badges-promo2 product__badges-inner align-self-start px-15 inline-flex content-center subheading_weight text-center lh-normal"
+          style="--badges-color: {{ settings.promo2_text_color }};--badges-bg: {{ settings.promo2_color }};"
+        >
+          {{ settings.promo2_badge_text | replace: '[percent]', promo2_pct | escape }}
+        </div>
+      {%- endif -%}
       {%- if show_low_stock_badge -%}
         {%- comment -%} Badge Quase Acabando: Configurações do tema > Badges > Badge Quase Acabando {%- endcomment -%}
         <div

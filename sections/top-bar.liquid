@@ -330,6 +330,43 @@
       font-weight: var(--heading-weight, 700);
       white-space: nowrap;
     }
+    /* Texto do timer: selo em cima, frase embaixo */
+    #topbar .topbar-cd-text__bs { display: flex; flex-direction: column; align-items: flex-start; gap: calc(var(--cd-lines-fs) * 0.35); }
+    #topbar .topbar-cd-text__bs-pill {
+      display: inline-block;
+      padding: calc(var(--cd-lines-fs) * 0.22) calc(var(--cd-lines-fs) * 0.55);
+      border-radius: 3px;
+      background: var(--topbar-shipping-text, #fff);
+      color: var(--cd-badge-text, #000);
+      font-family: var(--heading-font, inherit);
+      font-size: calc(var(--cd-lines-fs) * 0.72);
+      font-weight: 600 !important;
+      letter-spacing: 0.14em !important;
+      line-height: 1;
+      text-transform: uppercase;
+    }
+    #topbar .topbar-cd-text__bs-pills { display: flex; flex-wrap: nowrap; gap: calc(var(--cd-lines-fs) * 0.35); }
+    #topbar .topbar-cd-text__bs-pill--tag { background: var(--cd-tag-bg); color: var(--cd-tag-text); letter-spacing: 0.1em; }
+    #topbar .topbar-cd-text__bs-line { font-family: var(--heading-font, inherit); font-size: var(--cd-big-fs); font-weight: 600 !important; line-height: 1; letter-spacing: -0.01em !important; text-transform: none; }
+    #topbar .topbar-cd-text__bs-hl { color: var(--cd-hl, inherit); }
+    #topbar .topbar-cd-text__bs-sub { font-size: calc(var(--cd-lines-fs) * 0.8); font-weight: 400; opacity: 0.75; line-height: 1; }
+    /* Timer em caixinhas (bloco "Timer" > Estilo dos números) */
+    #topbar .topbar-shipping--boxed .topbar-shipping__countdown { gap: calc(var(--cd-num-fs) * 0.25); }
+    #topbar .topbar-shipping--boxed .topbar-shipping__sep { display: none; }
+    #topbar .topbar-shipping--boxed .topbar-shipping__unit {
+      gap: calc(var(--cd-num-fs) * 0.12);
+      min-width: calc(var(--cd-num-fs) * 2.1);
+      padding: calc(var(--cd-num-fs) * 0.22) calc(var(--cd-num-fs) * 0.22) calc(var(--cd-num-fs) * 0.16);
+      border-radius: calc(var(--cd-num-fs) * 0.35);
+      background: color-mix(in srgb, var(--topbar-shipping-accent, #fff) 14%, transparent);
+    }
+    #topbar .topbar-shipping--boxed .topbar-shipping__num { padding-left: 0; letter-spacing: 0; }
+    #topbar .topbar-shipping--boxed .topbar-shipping__cap { letter-spacing: 0.06em; opacity: 0.8; }
+    /* Mobile: selo escondido (bloco "Texto do timer") */
+    @media (max-width: 1024px) {
+      #topbar .topbar-cd-badge--hide-m { display: none !important; }
+      #topbar .topbar-shipping--boxed .topbar-shipping__cap { font-size: 7px; }
+    }
     @media (min-width: 1025px) {
       #topbar .topbar__section-inner:has(> .topbar-cd-text:not([hidden]), > topbar-shipping-timer:not([hidden])) {
         justify-content: center;
@@ -697,6 +734,33 @@
                   {%- capture cd_l2 -%}
                     {%- if block_st.line_2 != blank -%}<span class="topbar-cd-text__l2">{{ block_st.line_2 | escape }}</span>{%- endif -%}
                   {%- endcapture -%}
+                  {%- if block_st.layout == 'badge_stacked' -%}
+                    <span class="topbar-cd-text__bs"{% if block_st.highlight_color != blank %} style="--cd-hl: {{ block_st.highlight_color }};"{% endif %}>
+                      {%- liquid
+                        assign bs_tag = false
+                        if block_st.extra_tag != blank
+                          assign bs_today = 'now' | date: '%Y-%m-%d'
+                          assign bs_tag_date = block_st.extra_tag_date | strip
+                          if bs_tag_date == blank or bs_tag_date == bs_today
+                            assign bs_tag = true
+                          endif
+                        endif
+                      -%}
+                      <span class="topbar-cd-text__bs-pills">
+                        {%- if block_st.badge_top != blank or block_st.badge_bottom != blank -%}
+                          <span class="topbar-cd-text__bs-pill">{{ block_st.badge_top | escape }}{% if block_st.badge_top != blank and block_st.badge_bottom != blank %}&nbsp;{% endif %}{{ block_st.badge_bottom | escape }}</span>
+                        {%- endif -%}
+                        {%- if bs_tag -%}
+                          <span class="topbar-cd-text__bs-pill topbar-cd-text__bs-pill--tag" style="--cd-tag-bg: {{ block_st.extra_tag_bg | default: '#7ddc8f' }}; --cd-tag-text: {{ block_st.extra_tag_text_color | default: '#000000' }};">{{ block_st.extra_tag | escape }}</span>
+                        {%- endif -%}
+                      </span>
+                      <span class="topbar-cd-text__bs-line">
+                        {%- if block_st.line_1 != blank -%}{{ block_st.line_1 | escape }}&nbsp;{%- endif -%}
+                        {%- if block_st.highlight != blank -%}<span class="topbar-cd-text__bs-hl">{{ block_st.highlight | escape }}</span>{%- endif -%}
+                      </span>
+                      {%- if block_st.line_2 != blank -%}<span class="topbar-cd-text__bs-sub">{{ block_st.line_2 | escape }}</span>{%- endif -%}
+                    </span>
+                  {%- else -%}
                   <span class="topbar-cd-text__body">
                     {%- if block_st.layout == 'stacked' -%}
                       {%- if cd_big != blank or cd_l1 != blank -%}
@@ -709,10 +773,11 @@
                     {%- endif -%}
                   </span>
                   {%- if block_st.badge_top != blank or block_st.badge_bottom != blank -%}
-                    <span class="topbar-cd-badge topbar-cd-badge--{{ block_st.badge_style | default: 'filled' }}">
+                    <span class="topbar-cd-badge topbar-cd-badge--{{ block_st.badge_style | default: 'filled' }}{% if block_st.badge_hidden_on_mobile %} topbar-cd-badge--hide-m{% endif %}">
                       {%- if block_st.badge_top != blank -%}<span class="topbar-cd-badge__top">{{ block_st.badge_top | escape }}</span>{%- endif -%}
                       {%- if block_st.badge_bottom != blank -%}<span class="topbar-cd-badge__bottom">{{ block_st.badge_bottom | escape }}</span>{%- endif -%}
                     </span>
+                  {%- endif -%}
                   {%- endif -%}
                 </div>
               {%- endif -%}
@@ -732,7 +797,7 @@
                 {%- endstyle -%}
               {%- endif -%}
               <topbar-shipping-timer
-                class="topbar-item topbar-shipping{% if block_st.hidden_on_mobile %} hidden block-1025{% endif %}"
+                class="topbar-item topbar-shipping{% if block_st.mobile_style == 'boxed' %} topbar-shipping--boxed{% endif %}{% if block_st.hidden_on_mobile %} hidden block-1025{% endif %}"
                 data-windows='{{ tb_windows_json | strip | strip_newlines }}'
                 data-expired-message="{{ block_st.expired_message | escape }}"
                 data-switch-slider="{% if block_st.switch_to_slider %}true{% else %}false{% endif %}"
@@ -1506,6 +1571,12 @@
       "limit": 1,
       "settings": [
         {
+          "type": "checkbox",
+          "id": "badge_hidden_on_mobile",
+          "label": "Esconder o selo no mobile",
+          "default": false
+        },
+        {
           "type": "paragraph",
           "content": "Fica ao lado do bloco 'Timer' e some junto com ele. Cores no bloco 'Timer'."
         },
@@ -1516,8 +1587,39 @@
           "default": "stacked",
           "options": [
             { "value": "stacked", "label": "Destaque + Linha 1 em cima, Linha 2 embaixo" },
-            { "value": "side", "label": "Destaque ao lado das duas linhas" }
+            { "value": "side", "label": "Destaque ao lado das duas linhas" },
+            { "value": "badge_stacked", "label": "Selo em cima, frase embaixo (Linha 1 + Destaque)" }
           ]
+        },
+        {
+          "type": "color",
+          "id": "highlight_color",
+          "label": "Cor do destaque",
+          "info": "Vazio = cor do texto."
+        },
+        {
+          "type": "text",
+          "id": "extra_tag",
+          "label": "Tag extra (ao lado do selo)",
+          "info": "Só na disposição \"Selo em cima, frase embaixo\". Ex.: FRETE GRÁTIS."
+        },
+        {
+          "type": "text",
+          "id": "extra_tag_date",
+          "label": "Mostrar a tag só no dia",
+          "info": "AAAA-MM-DD, no fuso da loja. Vazio = sempre."
+        },
+        {
+          "type": "color",
+          "id": "extra_tag_bg",
+          "label": "Fundo da tag",
+          "default": "#7ddc8f"
+        },
+        {
+          "type": "color",
+          "id": "extra_tag_text_color",
+          "label": "Texto da tag",
+          "default": "#000000"
         },
         {
           "type": "text",
@@ -1657,6 +1759,16 @@
       "name": "Timer",
       "limit": 1,
       "settings": [
+        {
+          "type": "select",
+          "id": "mobile_style",
+          "label": "Estilo dos números",
+          "default": "plain",
+          "options": [
+            { "value": "plain", "label": "Números com \":\"" },
+            { "value": "boxed", "label": "Números em caixinhas" }
+          ]
+        },
         {
           "type": "paragraph",
           "content": "O tempo é calculado no fuso da loja e roda ao vivo no navegador. Formato de data: AAAA-MM-DD. Formato de hora: HH:MM."
