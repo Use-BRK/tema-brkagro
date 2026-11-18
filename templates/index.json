@@ -19,7 +19,7 @@
             "image": "shopify://shop_images/FULLBANNER_BRKAGRO_AMARELO.gif",
             "image_mobile": "shopify://shop_images/MOBILE_AMARELO.gif",
             "overlay_opacity": 0,
-            "link_banner": "/#black",
+            "link_banner": "shopify://pages/black-week",
             "slider_effect": "fade-in-right",
             "subheading": "",
             "heading": "",
