@@ -380,6 +380,147 @@
         "stock_strip_threshold": 10
       }
     },
+    "brk_collection_cards": {
+      "type": "brk-collection-cards",
+      "blocks": {
+        "card_camisas_uv50_masculinas": {
+          "type": "collection_card",
+          "settings": {
+            "collection": "camisas-uv50-masculinas",
+            "photo_product": "camisa-agro-brk-camu-verde-long-horn-com-protecao-solar-uv50-1",
+            "photo_index": 1,
+            "zoom": 100,
+            "focus_x": 50,
+            "focus_y": 50,
+            "title": "Camisas Masculinas",
+            "tag": "",
+            "link": ""
+          }
+        },
+        "card_camisas_uv50_femininas": {
+          "type": "collection_card",
+          "settings": {
+            "collection": "camisas-uv50-femininas",
+            "photo_product": "camisa-agro-feminina-brk-wild-horse-bege-com-protecao-solar-uv50",
+            "photo_index": 1,
+            "zoom": 100,
+            "focus_x": 50,
+            "focus_y": 50,
+            "title": "Camisas Femininas",
+            "tag": "",
+            "link": ""
+          }
+        },
+        "card_botinas": {
+          "type": "collection_card",
+          "settings": {
+            "collection": "botinas",
+            "photo_product": "botina-masculina-brk-agro-couro-legitimo-chocolate",
+            "photo_index": 3,
+            "zoom": 100,
+            "focus_x": 50,
+            "focus_y": 50,
+            "title": "Botinas",
+            "tag": "",
+            "link": ""
+          }
+        },
+        "card_bones": {
+          "type": "collection_card",
+          "settings": {
+            "collection": "bones",
+            "photo_product": "ba0148-bone-brk-agro-taurus-preto-02",
+            "photo_index": 2,
+            "zoom": 100,
+            "focus_x": 50,
+            "focus_y": 50,
+            "title": "Bonés",
+            "tag": "",
+            "link": ""
+          }
+        },
+        "card_calcas_jeans": {
+          "type": "collection_card",
+          "settings": {
+            "collection": "calcas-jeans",
+            "photo_product": "calca-masculina-brk-badlands-jeans",
+            "photo_index": 2,
+            "zoom": 140,
+            "focus_x": 55,
+            "focus_y": 66,
+            "title": "Calças",
+            "tag": "",
+            "link": ""
+          }
+        },
+        "card_oculos": {
+          "type": "collection_card",
+          "settings": {
+            "collection": "oculos-de-sol",
+            "photo_product": "oculos-de-sol-aviador-black-steel",
+            "photo_index": 2,
+            "zoom": 100,
+            "focus_x": 50,
+            "focus_y": 50,
+            "title": "Óculos",
+            "tag": "",
+            "link": ""
+          }
+        },
+        "card_camisas_de_botao_country": {
+          "type": "collection_card",
+          "settings": {
+            "collection": "camisas-de-botao-country",
+            "photo_product": "camisa-brk-m-l-western-preto-branco",
+            "photo_index": 2,
+            "zoom": 100,
+            "focus_x": 50,
+            "focus_y": 50,
+            "title": "Camisas de Botão",
+            "tag": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "card_camisas_uv50_masculinas",
+        "card_camisas_uv50_femininas",
+        "card_botinas",
+        "card_bones",
+        "card_calcas_jeans",
+        "card_oculos",
+        "card_camisas_de_botao_country"
+      ],
+      "settings": {
+        "anchor": "black",
+        "eyebrow": "Black Week",
+        "title": "2ª peça com <em>[percent] OFF</em>",
+        "subtitle": "Escolha a categoria e monte o seu par.",
+        "chips": "",
+        "head_style": "simple",
+        "default_tag": "",
+        "cta": "Ver coleção",
+        "note": "Válido apenas para peças da mesma categoria.",
+        "layout": "carousel",
+        "columns_mobile": "2",
+        "height_mobile_grid": 34,
+        "columns_desktop": 4,
+        "mobile_card_width": 80,
+        "full_width": true,
+        "height_desktop": 64,
+        "height_mobile": 52,
+        "radius": 0,
+        "gap": 4,
+        "fill_link": "",
+        "fill_bg": "#111214",
+        "bg_color": "#ffffff",
+        "text_color": "#111214",
+        "accent_color": "#111214",
+        "cream_color": "#f6cb27",
+        "padding_top": 48,
+        "padding_bottom": 48
+      }
+    },
     "collection_tab_KRDaRe": {
       "type": "collection-tab",
       "blocks": {
@@ -396,6 +537,7 @@
       "block_order": [
         "collection_JKC3aP"
       ],
+      "disabled": true,
       "custom_css": [
         ".collection-tab__ta {flex-wrap: nowrap; gap: clamp(7px, 2.2vw, 15px);}",
         ".collection-tab__ta .collection-tab__tab-item {flex: 0 1 auto; min-width: 0; padding-left: clamp(10px, 3.2vw, 20px); padding-right: clamp(10px, 3.2vw, 20px); font-size: clamp(13px, 4vw, 15px);}"
@@ -436,8 +578,7 @@
         "reset_spacing": true,
         "show_stock_strip": true,
         "stock_strip_threshold": 10
-      },
-      "disabled": true
+      }
     },
     "banner_packery_waf64X": {
       "type": "banner-packery",
@@ -933,89 +1074,6 @@
         "padding_top": 20,
         "padding_bottom": 20,
         "reset_spacing": true
-      }
-    },
-    "brk_collection_cards": {
-      "type": "brk-collection-cards",
-      "blocks": {
-        "card_camisas_uv50_masculinas": {
-          "type": "collection_card",
-          "settings": {
-            "collection": "camisas-uv50-masculinas",
-            "title": "Camisas Masculinas",
-            "photo_product": "camisa-agro-brk-camu-verde-long-horn-com-protecao-solar-uv50-1",
-            "photo_index": 1
-          }
-        },
-        "card_camisas_uv50_femininas": {
-          "type": "collection_card",
-          "settings": {
-            "collection": "camisas-uv50-femininas",
-            "title": "Camisas Femininas",
-            "photo_product": "camisa-agro-feminina-brk-wild-horse-bege-com-protecao-solar-uv50",
-            "photo_index": 1
-          }
-        },
-        "card_botinas": {
-          "type": "collection_card",
-          "settings": {
-            "collection": "botinas",
-            "title": "Botinas",
-            "photo_product": "botina-masculina-brk-agro-couro-legitimo-chocolate",
-            "photo_index": 3
-          }
-        },
-        "card_bones": {
-          "type": "collection_card",
-          "settings": {
-            "collection": "bones",
-            "title": "Bonés",
-            "photo_product": "ba0148-bone-brk-agro-taurus-preto-02",
-            "photo_index": 2
-          }
-        },
-        "card_calcas_jeans": {
-          "type": "collection_card",
-          "settings": {
-            "collection": "calcas-jeans",
-            "title": "Calças",
-            "photo_product": "calca-masculina-brk-badlands-jeans",
-            "photo_index": 2,
-            "zoom": 140,
-            "focus_x": 55,
-            "focus_y": 66
-          }
-        },
-        "card_camisas_de_botao_country": {
-          "type": "collection_card",
-          "settings": {
-            "collection": "camisas-de-botao-country",
-            "title": "Camisas de Botão",
-            "photo_product": "camisa-brk-m-l-western-preto-branco",
-            "photo_index": 2
-          }
-        },
-        "card_oculos": {
-          "type": "collection_card",
-          "settings": {
-            "collection": "oculos-de-sol",
-            "title": "Óculos",
-            "photo_product": "oculos-de-sol-aviador-black-steel",
-            "photo_index": 2
-          }
-        }
-      },
-      "block_order": [
-        "card_camisas_uv50_masculinas",
-        "card_camisas_uv50_femininas",
-        "card_botinas",
-        "card_bones",
-        "card_calcas_jeans",
-        "card_oculos",
-        "card_camisas_de_botao_country"
-      ],
-      "settings": {
-        "default_tag": ""
       }
     }
   },
