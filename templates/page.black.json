@@ -60,6 +60,15 @@
             "photo_index": 2
           }
         },
+        "card_infantil": {
+          "type": "collection_card",
+          "settings": {
+            "collection": "agro-kids",
+            "title": "Infantil",
+            "photo_product": "camisa-uv50-agro-infantil-brk-mini-boiadeira",
+            "photo_index": 1
+          }
+        },
         "card_oculos": {
           "type": "collection_card",
           "settings": {
@@ -73,14 +82,23 @@
       "block_order": [
         "card_camisas_uv50_masculinas",
         "card_camisas_uv50_femininas",
+        "card_calcas_jeans",
         "card_botinas",
         "card_bones",
-        "card_calcas_jeans",
         "card_oculos",
-        "card_camisas_de_botao_country"
+        "card_camisas_de_botao_country",
+        "card_infantil"
       ],
       "settings": {
         "default_tag": "",
+        "head_style": "hero",
+        "eyebrow": "Black November",
+        "title": "2ª peça com <em>[percent] OFF</em>",
+        "subtitle": "Escolha a categoria, leve duas peças e a segunda sai com desconto.",
+        "chips": "",
+        "note": "",
+        "bg_color": "#101113",
+        "text_color": "#ffffff",
         "layout": "mobile_grid",
         "anchor": "",
         "columns_desktop": 4,
@@ -89,7 +107,6 @@
         "height_mobile_grid": 34,
         "padding_top": 32,
         "padding_bottom": 56,
-        "fill_image": "shopify://shop_images/MOBILE_AMARELO.gif",
         "fill_bg": "#101113"
       }
     }

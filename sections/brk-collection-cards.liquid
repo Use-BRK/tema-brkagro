@@ -133,17 +133,56 @@
     {%- endif -%}
   }
   {%- endif -%}
+  {%- if s.head_style == 'hero' -%}
+  #brk-cc-{{ section.id }} .cc__head { display: block; text-align: center; margin: 0 auto 36px; padding: 8px 24px 0; max-width: 980px; }
+  #brk-cc-{{ section.id }} .cc__eyebrow {
+    display: flex; justify-content: center; align-items: center; gap: 14px; margin-bottom: 18px; padding: 0; border-radius: 0;
+    background: none; color: var(--cc-cream); font-size: 13px; letter-spacing: .32em;
+  }
+  #brk-cc-{{ section.id }} .cc__eyebrow::before, #brk-cc-{{ section.id }} .cc__eyebrow::after { content: ""; width: 44px; height: 1px; background: currentColor; opacity: .7; }
+  #brk-cc-{{ section.id }} .cc__title { font-size: clamp(44px, 5.4vw, 80px); line-height: .98; font-weight: 600; letter-spacing: -0.035em; text-transform: none; }
+  #brk-cc-{{ section.id }} .cc__title em { display: inline-block; background: none; padding: 0; color: var(--cc-cream); }
+  #brk-cc-{{ section.id }} .cc__sub { margin: 16px auto 0; max-width: 560px; font-size: 17px; line-height: 1.45; opacity: .78; }
+  #brk-cc-{{ section.id }} .cc__chips { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin: 22px 0 0; padding: 0; list-style: none; }
+  #brk-cc-{{ section.id }} .cc__chips li {
+    display: inline-flex; align-items: center; gap: 7px; padding: 7px 13px; border: 1px solid rgba(246,203,39,.45); border-radius: 999px;
+    font-size: 13px; font-weight: 500; line-height: 1.2; color: var(--cc-text);
+  }
+  #brk-cc-{{ section.id }} .cc__chips li::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--cc-cream); flex: none; }
+  {%- comment -%} Topo destaque (página Black): faixa do rodapé escura e linha amarela antes do rodapé {%- endcomment -%}
+  .shopify-section-group-footer-group .sec__icon-box { background: {{ s.bg_color }}; }
+  .shopify-section-group-footer-group footer.footer { border-top: 3px solid {{ s.cream_color }}; }
+  #brk-cc-{{ section.id }} .cc__note span { background: none; border: 1px solid rgba(246,203,39,.45); color: var(--cc-cream); padding: 6px 12px; border-radius: 999px; }
+  @media (max-width: 989px) {
+    #brk-cc-{{ section.id }} { padding-top: 28px; }
+    #brk-cc-{{ section.id }} .cc__head { padding: 0 20px; margin-bottom: 28px; }
+    #brk-cc-{{ section.id }} .cc__head > div > :last-child { margin-bottom: 0; }
+    #brk-cc-{{ section.id }} .cc__eyebrow { font-size: 11px; line-height: 1; letter-spacing: .26em; gap: 10px; margin-bottom: 12px; }
+    #brk-cc-{{ section.id }} .cc__eyebrow::before, #brk-cc-{{ section.id }} .cc__eyebrow::after { width: 24px; }
+    #brk-cc-{{ section.id }} .cc__title { font-size: clamp(34px, 10.5vw, 46px); line-height: 1.02; }
+    #brk-cc-{{ section.id }} .cc__title em { display: block; font-size: 1.32em; line-height: 1; margin-top: 2px; }
+    #brk-cc-{{ section.id }} .cc__sub { margin-top: 12px; font-size: 15px; }
+    #brk-cc-{{ section.id }} .cc__chips { gap: 6px; margin-top: 16px; }
+    #brk-cc-{{ section.id }} .cc__chips li { padding: 6px 10px; font-size: 12px; }
+  }
+  {%- endif -%}
 </style>
 
 <section id="brk-cc-{{ section.id }}" class="brk-collection-cards">
   {%- if s.anchor != blank -%}<span id="{{ s.anchor | handleize }}" class="cc__anchor" aria-hidden="true"></span>{%- endif -%}
   <div class="cc__wrap">
-    {%- if s.eyebrow != blank or s.title != blank or s.subtitle != blank -%}
+    {%- if s.eyebrow != blank or s.title != blank or s.subtitle != blank or s.chips != blank -%}
       <div class="cc__head">
         <div>
           {%- if s.eyebrow != blank -%}<span class="cc__eyebrow">{{ s.eyebrow | escape }}</span>{%- endif -%}
           {%- if s.title != blank -%}<h2 class="cc__title">{{ s.title | replace: '[percent]', pct }}</h2>{%- endif -%}
           {%- if s.subtitle != blank -%}<p class="cc__sub">{{ s.subtitle | replace: '[percent]', pct | escape }}</p>{%- endif -%}
+          {%- if s.chips != blank -%}
+            <ul class="cc__chips">
+              {%- assign chips = s.chips | replace: '[percent]', pct | split: '|' -%}
+              {%- for c in chips -%}{%- assign c = c | strip -%}{%- if c != blank -%}<li>{{ c | escape }}</li>{%- endif -%}{%- endfor -%}
+            </ul>
+          {%- endif -%}
         </div>
       </div>
     {%- endif -%}
@@ -235,6 +274,8 @@
     { "type": "text", "id": "eyebrow", "label": "Selo", "default": "Black November" },
     { "type": "inline_richtext", "id": "title", "label": "Título", "info": "Itálico = cor de destaque.", "default": "2ª peça com <em>[percent] OFF</em>" },
     { "type": "text", "id": "subtitle", "label": "Subtítulo", "default": "Escolha a categoria e monte o seu par." },
+    { "type": "text", "id": "chips", "label": "Regras em destaque", "info": "Separe com |. Ex.: Até 27/11 | Mesma categoria. Vazio = não mostra." },
+    { "type": "select", "id": "head_style", "label": "Estilo do topo", "default": "simple", "options": [ { "value": "simple", "label": "Simples (à esquerda)" }, { "value": "hero", "label": "Destaque (centralizado, grande)" } ] },
     { "type": "text", "id": "default_tag", "label": "Selo dos cards (padrão)", "info": "Cada card pode ter o seu. Vazio = sem selo.", "default": "2ª peça [percent] OFF" },
     { "type": "text", "id": "cta", "label": "Texto do link", "default": "Ver coleção" },
     { "type": "text", "id": "note", "label": "Observação", "default": "Válido apenas para peças da mesma categoria." },
