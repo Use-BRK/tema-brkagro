@@ -295,7 +295,33 @@
       {% if hidden_price == false %}
         <div class="minicart__item-prices flex flex-column align-end flex-shrink-0">
           {%- assign current_variant = item.variant -%}
-          {%- if item.original_price != brk_final -%}
+          {%- if item.quantity > 1 -%}
+            {% comment %} Mais de 1 unidade: total da linha (soma com o Subtotal) + "2 × R$ 101,94" {% endcomment %}
+            {%- assign brk_compare_line = current_variant.compare_at_price | times: item.quantity -%}
+            {%- if item.original_line_price != brk_final_line -%}
+              <span class="minicart__item-price heading_weight primary-color">
+                {% if show_currency_code %}{{ brk_final_line | money_with_currency }}{% else %}{{ brk_final_line | money }}{% endif %}
+              </span>
+              <s class="minicart__item-original-price fs-small">
+                {% if show_currency_code %}{{ item.original_line_price | money_with_currency }}{% else %}{{ item.original_line_price | money }}{% endif %}
+              </s>
+            {%- elsif current_variant.compare_at_price > current_variant.price -%}
+              <span class="minicart__item-price heading_weight primary-color">
+                {% if show_currency_code %}{{ brk_final_line | money_with_currency }}{% else %}{{ brk_final_line | money }}{% endif %}
+              </span>
+              <s class="minicart__item-original-price fs-small">
+                {% if show_currency_code %}{{ brk_compare_line | money_with_currency }}{% else %}{{ brk_compare_line | money }}{% endif %}
+              </s>
+            {%- else -%}
+              <span class="minicart__item-price heading-style">
+                {% if show_currency_code %}{{ brk_final_line | money_with_currency }}{% else %}{{ brk_final_line | money }}{% endif %}
+              </span>
+            {%- endif -%}
+            <span class="minicart__item-unit fs-small light-dark-grey">
+              {{ item.quantity }} ×
+              {% if show_currency_code %}{{ brk_final | money_with_currency }}{% else %}{{ brk_final | money }}{% endif %}
+            </span>
+          {%- elsif item.original_price != brk_final -%}
             <span class="minicart__item-price heading_weight primary-color">
               {% if show_currency_code %}{{ brk_final | money_with_currency }}{% else %}{{ brk_final | money }}{% endif %}
             </span>
@@ -351,7 +377,7 @@
             <path fill-rule="evenodd" clip-rule="evenodd" d="M7 0h3a2 2 0 012 2v3a1 1 0 01-.3.7l-6 6a1 1 0 01-1.4 0l-4-4a1 1 0 010-1.4l6-6A1 1 0 017 0zm2 2a1 1 0 102 0 1 1 0 00-2 0z" fill="currentColor">
           </svg>
           {{ discount.discount_application.title }}
-          (-{{ discount.amount | money }})
+          (-{{ discount.amount | money }}{% if item.quantity > 1 %} nas {{ item.quantity }} peças{% endif %})
         </li>
       {%- endfor -%}
     </ul>

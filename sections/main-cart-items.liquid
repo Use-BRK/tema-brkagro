@@ -150,15 +150,14 @@
                       >
                         {{ 'general.cart.headings.price' | t }}
                       </th>
-                      {% if show_quantity %}
-                        <th
-                          class="cart-items__heading--wide small-hide caption-with-letter-spacing h6 border-0 border-bottom text-start pb-15"
-                          colspan="1"
-                          scope="col"
-                        >
-                          {{ 'general.cart.headings.quantity' | t }}
-                        </th>
-                      {% endif %}
+                      {% comment %} Quantidade no carrinho independe de show_quantity_input (esse setting controla só a PDP), como no minicart {% endcomment %}
+                      <th
+                        class="cart-items__heading--wide small-hide caption-with-letter-spacing h6 border-0 border-bottom text-start pb-15"
+                        colspan="1"
+                        scope="col"
+                      >
+                        {{ 'general.cart.headings.quantity' | t }}
+                      </th>
                       <th
                         class="small-hide right caption-with-letter-spacing h6 text-end border-0 border-0 border-bottom pb-15"
                         colspan="1"
@@ -603,7 +602,7 @@
                                     <path fill-rule="evenodd" clip-rule="evenodd" d="M7 0h3a2 2 0 012 2v3a1 1 0 01-.3.7l-6 6a1 1 0 01-1.4 0l-4-4a1 1 0 010-1.4l6-6A1 1 0 017 0zm2 2a1 1 0 102 0 1 1 0 00-2 0z" fill="currentColor">
                                   </svg>
                                   {{ discount.discount_application.title }}
-                                  (-{{ discount.amount | money }})
+                                  (-{{ discount.amount | money }}{% if item.quantity > 1 %} nas {{ item.quantity }} peças{% endif %})
                                 </li>
                               {%- endfor -%}
                             </ul>
@@ -645,7 +644,7 @@
                             {% endif %}
                           </div>
                         </td>
-                        {% if show_quantity %}
+                        {% comment %} Sempre visível (antes dependia de show_quantity_input, que é da PDP) {% endcomment %}
                           <td
                             class="cart-item__quantity border-0 border-bottom py-30 px-10"
                             data-title="{{ 'general.cart.headings.quantity' | t }}"
@@ -699,7 +698,6 @@
                               {% endif %}
                             </div>
                           </td>
-                        {% endif %}
                         <td
                           class="cart-item__totals text-md-end small-hide border-0 border-bottom py-30 px-10 cart-item__totals-{{ item.index | plus: 1 }}"
                           data-title="{{ 'general.cart.headings.total' | t }}"
@@ -727,6 +725,20 @@
                                 {% endif %}
                               </span>
                             {% endif %}
+                            {%- if item.quantity > 1 or item.original_line_price != brk_final_line -%}
+                              {% comment %} No celular a coluna Preço some: abaixo do total, o preço cheio riscado (com desconto) e "2 × R$ 101,94" {% endcomment %}
+                              <div class="cart-item__unit-note fs-small light-dark-grey">
+                                {%- if item.original_line_price != brk_final_line -%}
+                                  <s>{% if settings.currency_code_enabled %}{{ item.original_line_price | money_with_currency }}{% else %}{{ item.original_line_price | money }}{% endif %}</s>
+                                {%- endif -%}
+                                {%- if item.quantity > 1 -%}
+                                  <span>
+                                    {{ item.quantity }} ×
+                                    {% if settings.currency_code_enabled %}{{ brk_final | money_with_currency }}{% else %}{{ brk_final | money }}{% endif %}
+                                  </span>
+                                {%- endif -%}
+                              </div>
+                            {%- endif -%}
 
                             {%- if item.variant.available and item.unit_price_measurement -%}
                               <div class="unit-price caption">
