@@ -97,7 +97,13 @@
   }
   #brk-cc-{{ section.id }} .cc__cta span { transition: transform .25s; }
   #brk-cc-{{ section.id }} .cc__card:hover .cc__cta span { transform: translateX(4px); }
-  #brk-cc-{{ section.id }} .cc__note { margin: 16px 0 0; font-size: 12px; opacity: .6; text-align: center; }
+  #brk-cc-{{ section.id }} .cc__fill { display: none; }
+  #brk-cc-{{ section.id }} .cc__note { margin: 16px 0 0; text-align: center; }
+  #brk-cc-{{ section.id }} .cc__note span {
+    display: inline-block; padding: 4px 9px; border-radius: 3px;
+    background: var(--cc-accent); color: var(--cc-cream);
+    font-family: var(--heading-font, inherit); font-size: 11px; font-weight: 600; letter-spacing: .02em; line-height: 1.3;
+  }
   @media (max-width: 989px) {
     #brk-cc-{{ section.id }} { --cc-gap: 10px; }
     #brk-cc-{{ section.id }} .cc__wrap { padding: 0; }
@@ -110,6 +116,23 @@
     #brk-cc-{{ section.id }} .cc__body { padding: 14px 14px 13px; }
     #brk-cc-{{ section.id }} .cc__note { padding: 0 16px; }
   }
+  {%- if s.layout == 'grid' -%}
+  #brk-cc-{{ section.id }} .cc__grid { display: grid; grid-template-columns: repeat(var(--cc-cols), minmax(0, 1fr)); overflow: visible; scroll-snap-type: none; }
+  #brk-cc-{{ section.id }} .cc__card { flex: none; }
+  {%- endif -%}
+  {%- if s.layout == 'grid' or s.layout == 'mobile_grid' -%}
+  @media (max-width: 989px) {
+    #brk-cc-{{ section.id }} .cc__grid { display: grid; overflow: visible; scroll-snap-type: none; grid-template-columns: repeat({{ s.columns_mobile }}, minmax(0, 1fr)); padding: 0 16px; }
+    #brk-cc-{{ section.id }} .cc__fill { display: block; position: relative; overflow: hidden; border-radius: {{ s.radius }}px; background: {{ s.fill_bg }}; }
+    #brk-cc-{{ section.id }} .cc__fill img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; }
+    #brk-cc-{{ section.id }} .cc__card { flex: none; height: {{ s.height_mobile_grid }}vh; min-height: {% if s.columns_mobile == '1' %}380{% else %}240{% endif %}px; }
+    {%- if s.columns_mobile != '1' -%}
+    #brk-cc-{{ section.id }} .cc__name { font-size: 22px; }
+    #brk-cc-{{ section.id }} .cc__body { padding: 12px 12px 11px; }
+    #brk-cc-{{ section.id }} .cc__cta { margin-top: 6px; font-size: 11px; }
+    {%- endif -%}
+  }
+  {%- endif -%}
 </style>
 
 <section id="brk-cc-{{ section.id }}" class="brk-collection-cards">
@@ -125,7 +148,7 @@
       </div>
     {%- endif -%}
     <div class="cc__stage">
-    {%- if section.blocks.size > s.columns_desktop -%}
+    {%- if s.layout != 'grid' and section.blocks.size > s.columns_desktop -%}
       <button type="button" class="cc__arrow cc__arrow--prev swiper-arrow transition bg-white btn-hover inline-flex content-center border rounded-50 overflow-hidden" data-cc-prev aria-label="Anterior" disabled>
         <svg width="6" height="11" fill="none" aria-hidden="true"><use href="#icon-back" /></svg>
       </button>
@@ -166,9 +189,14 @@
           </span>
         </a>
       {%- endfor -%}
+      {%- if s.fill_image != blank and s.layout != 'carousel' -%}
+        {%- if s.fill_link != blank -%}<a class="cc__fill" href="{{ s.fill_link }}">{%- else -%}<div class="cc__fill">{%- endif -%}
+          {{ s.fill_image | image_url: width: 720 | image_tag: loading: 'lazy', widths: '360, 540, 720', sizes: '50vw', alt: s.fill_image.alt | default: 'Black Week BRK' }}
+        {%- if s.fill_link != blank -%}</a>{%- else -%}</div>{%- endif -%}
+      {%- endif -%}
     </div>
     </div>
-    {%- if s.note != blank -%}<p class="cc__note">{{ s.note | escape }}</p>{%- endif -%}
+    {%- if s.note != blank -%}<p class="cc__note"><span>{{ s.note | escape }}</span></p>{%- endif -%}
   </div>
 </section>
 <script>
@@ -211,13 +239,20 @@
     { "type": "text", "id": "cta", "label": "Texto do link", "default": "Ver coleção" },
     { "type": "text", "id": "note", "label": "Observação", "default": "Válido apenas para peças da mesma categoria." },
     { "type": "header", "content": "Layout" },
-    { "type": "range", "id": "columns_desktop", "label": "Cards visíveis (desktop)", "min": 2, "max": 6, "step": 1, "default": 4 },
+    { "type": "select", "id": "layout", "label": "Formato", "default": "carousel", "options": [ { "value": "carousel", "label": "Carrossel (uma linha)" }, { "value": "grid", "label": "Grade (todos os cards)" }, { "value": "mobile_grid", "label": "Carrossel no desktop, grade no mobile" } ] },
+    { "type": "select", "id": "columns_mobile", "label": "Colunas no mobile (grade)", "default": "2", "options": [ { "value": "1", "label": "1" }, { "value": "2", "label": "2" } ] },
+    { "type": "range", "id": "height_mobile_grid", "label": "Altura dos cards no mobile (grade)", "info": "Em % da altura da tela.", "min": 20, "max": 90, "step": 1, "unit": "%", "default": 34 },
+    { "type": "range", "id": "columns_desktop", "label": "Colunas / cards visíveis (desktop)", "min": 2, "max": 6, "step": 1, "default": 4 },
     { "type": "range", "id": "mobile_card_width", "label": "Largura do card no mobile", "min": 40, "max": 92, "step": 2, "unit": "%", "default": 80 },
     { "type": "checkbox", "id": "full_width", "label": "Encostar nas bordas da tela", "default": true },
     { "type": "range", "id": "height_desktop", "label": "Altura dos cards (desktop)", "info": "Em % da altura da tela.", "min": 40, "max": 95, "step": 1, "unit": "%", "default": 64 },
     { "type": "range", "id": "height_mobile", "label": "Altura dos cards (mobile)", "info": "Em % da altura da tela.", "min": 40, "max": 90, "step": 1, "unit": "%", "default": 52 },
     { "type": "range", "id": "radius", "label": "Arredondamento", "min": 0, "max": 24, "step": 2, "unit": "px", "default": 0 },
     { "type": "range", "id": "gap", "label": "Espaço entre os cards", "min": 0, "max": 24, "step": 2, "unit": "px", "default": 4 },
+    { "type": "header", "content": "Imagem para completar a grade (mobile)" },
+    { "type": "image_picker", "id": "fill_image", "label": "Imagem", "info": "Aparece depois do último card, só na grade do mobile. Use quando sobrar um espaço vazio." },
+    { "type": "url", "id": "fill_link", "label": "Link da imagem" },
+    { "type": "color", "id": "fill_bg", "label": "Fundo atrás da imagem", "default": "#111214" },
     { "type": "header", "content": "Cores e espaçamento" },
     { "type": "color", "id": "bg_color", "label": "Fundo", "default": "#ffffff" },
     { "type": "color", "id": "text_color", "label": "Texto", "default": "#111214" },

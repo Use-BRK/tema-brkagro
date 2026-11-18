@@ -634,7 +634,8 @@
     "promo2_pdp_line": "Você economiza <strong>[economia]</strong>",
     "promo2_pdp_note": "Válido apenas para peças da mesma categoria.",
     "promo2_pdp_style": "dark",
-    "promo2_pdp_tag": "BLACK NOVEMBER"
+    "promo2_pdp_tag": "BLACK NOVEMBER",
+    "promo2_pdp_title": "Escolha 2 produtos e ganhe <strong>[percent] OFF no 2º</strong>!"
   },
   "presets": {
     "Default": {}
