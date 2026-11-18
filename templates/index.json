@@ -16,8 +16,8 @@
           "type": "slider_item",
           "name": "BLACKBLACKBLACKBLACKBLACK",
           "settings": {
-            "image": "shopify://shop_images/BANNER_BLACK_NOVEMBER.jpg",
-            "image_mobile": "shopify://shop_images/MOBILE_BLACK_NOVEMBER.jpg",
+            "image": "shopify://shop_images/FULLBANNER_BRKAGRO_AMARELO.gif",
+            "image_mobile": "shopify://shop_images/MOBILE_AMARELO.gif",
             "overlay_opacity": 0,
             "link_banner": "shopify://collections/envios-imediatos",
             "slider_effect": "fade-in-right",
@@ -45,6 +45,7 @@
         "slider_item_N78qVx": {
           "type": "slider_item",
           "name": "Safra de ouro",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/BANNER_SAFRA_DE_OURO.jpg",
             "image_mobile": "shopify://shop_images/MOBILE_SAFRA_DE_OURO.jpg",
@@ -75,6 +76,7 @@
         "slider_item_MMEAVn": {
           "type": "slider_item",
           "name": "Lisas e Essenciais",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/Lisas_Essenciais_Desktop.png",
             "image_mobile": "shopify://shop_images/Lisas_Essenciais_Mobile.png",
@@ -105,6 +107,7 @@
         "slider_item_nrmHUV": {
           "type": "slider_item",
           "name": "Botinas",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/Botinas_bidensidade_Desktop.png",
             "image_mobile": "shopify://shop_images/Botinas_bidensidade_Mobile.png",

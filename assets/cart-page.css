@@ -20,6 +20,22 @@ cart-remove-button .underline {
 .js-contents .caption-large a:not(:hover) {
   color: var(--color-heading);
 }
+/* "2 × R$ 101,94": só no celular (no desktop a coluna Preço já mostra o unitário) */
+.cart-item__unit-note {
+  display: none;
+}
+@media screen and (max-width: 767.98px) {
+  .cart-item__unit-note {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 0.6rem;
+  }
+  /* <dd> do total com desconto tinha a margem padrão (40px) e desalinhava do resto */
+  .cart-item__totals .cart-item__discounted-prices,
+  .cart-item__totals .cart-item__discounted-prices dd {
+    margin: 0;
+  }
+}
 @media screen and (min-width: 1025px) {
   .cart-item__details {
     width: 35%;
