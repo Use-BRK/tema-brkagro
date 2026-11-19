@@ -215,6 +215,15 @@
           endif
           assign name = b.title | default: col.title
           assign url = b.link | default: col.url
+          if s.link_sort != blank and s.link_sort != 'none' and url != blank
+            unless url contains 'sort_by='
+              if url contains '?'
+                assign url = url | append: '&sort_by=' | append: s.link_sort
+              else
+                assign url = url | append: '?sort_by=' | append: s.link_sort
+              endif
+            endunless
+          endif
           assign tag = b.tag | default: s.default_tag | replace: '[percent]', pct
         -%}
         <a class="cc__card" href="{{ url | default: '#' }}" style="--z: {{ b.zoom | default: 100 | divided_by: 100.0 }}; --fx: {{ b.focus_x | default: 50 }}%; --fy: {{ b.focus_y | default: 50 }}%;" {{ block.shopify_attributes }}>
@@ -278,6 +287,7 @@
     { "type": "select", "id": "head_style", "label": "Estilo do topo", "default": "simple", "options": [ { "value": "simple", "label": "Simples (à esquerda)" }, { "value": "hero", "label": "Destaque (centralizado, grande)" } ] },
     { "type": "text", "id": "default_tag", "label": "Selo dos cards (padrão)", "info": "Cada card pode ter o seu. Vazio = sem selo.", "default": "2ª peça [percent] OFF" },
     { "type": "text", "id": "cta", "label": "Texto do link", "default": "Ver coleção" },
+    { "type": "select", "id": "link_sort", "label": "Ordem da coleção ao abrir o card", "info": "Vale para todos os cards. Se o link do card já tiver ordem (sort_by), ela é mantida.", "default": "best-selling", "options": [ { "value": "best-selling", "label": "Mais vendidos" }, { "value": "created-descending", "label": "Mais recentes" }, { "value": "price-ascending", "label": "Menor preço" }, { "value": "none", "label": "Padrão da coleção" } ] },
     { "type": "text", "id": "note", "label": "Observação", "default": "Válido apenas para peças da mesma categoria." },
     { "type": "header", "content": "Layout" },
     { "type": "select", "id": "layout", "label": "Formato", "default": "carousel", "options": [ { "value": "carousel", "label": "Carrossel (uma linha)" }, { "value": "grid", "label": "Grade (todos os cards)" }, { "value": "mobile_grid", "label": "Carrossel no desktop, grade no mobile" } ] },
