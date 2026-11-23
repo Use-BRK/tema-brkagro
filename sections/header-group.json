@@ -16,8 +16,15 @@
       "blocks": {
         "countdown_text_XF7cFC": {
           "type": "countdown_text",
+          "disabled": true,
           "settings": {
+            "badge_hidden_on_mobile": false,
             "layout": "badge_stacked",
+            "highlight_color": "#f6cb27",
+            "extra_tag": "+ Frete grátis",
+            "extra_tag_date": "2026-11-27",
+            "extra_tag_bg": "#f6cb27",
+            "extra_tag_text_color": "#111214",
             "highlight": "40% OFF",
             "line_1": "2ª peça com",
             "line_2": "",
@@ -31,19 +38,15 @@
             "line_1_weight": "700",
             "line_2_weight": "400",
             "gap_desktop": 110,
-            "hidden_on_mobile": false,
-            "badge_hidden_on_mobile": false,
-            "highlight_color": "#f6cb27",
-            "extra_tag": "+ Frete grátis",
-            "extra_tag_date": "2026-11-27",
-            "extra_tag_bg": "#f6cb27",
-            "extra_tag_text_color": "#111214"
+            "hidden_on_mobile": false
           }
         },
         "shipping_countdown_F86tnm": {
           "type": "shipping_countdown",
           "name": "Timer",
+          "disabled": true,
           "settings": {
+            "mobile_style": "boxed",
             "timer_font_size": 36,
             "label_font_size": 12,
             "timer_font_size_mobile": 17,
@@ -54,16 +57,15 @@
             "separator_size": 70,
             "start_date": "",
             "start_time": "",
-            "end_date": "2026-11-27",
-            "end_time": "23:59",
+            "end_date": "",
+            "end_time": "",
             "expired_message": "",
             "switch_to_slider": true,
             "custom_colors": true,
             "bg_color": "#111214",
             "text_color": "#ffffff",
             "timer_color": "#ffffff",
-            "hidden_on_mobile": false,
-            "mobile_style": "boxed"
+            "hidden_on_mobile": false
           }
         },
         "text_slider_LFaC38": {
