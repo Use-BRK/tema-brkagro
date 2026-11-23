@@ -136,6 +136,7 @@
         "slider_item_rYBq93": {
           "type": "slider_item",
           "name": "Nossa Senhora",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/banner_desktop.png",
             "image_mobile": "shopify://shop_images/MOBILE_18a38775-0712-4515-be31-c0aef534d26d.png",
