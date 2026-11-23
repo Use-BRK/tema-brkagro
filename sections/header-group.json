@@ -71,7 +71,7 @@
         "text_slider_LFaC38": {
           "type": "text_slider",
           "settings": {
-            "text1": "<strong>BLACK: 2ª PEÇA COM 40% OFF</strong>",
+            "text1": "",
             "coupon1": "",
             "coupon1_enabled": false,
             "icon1": "tag",
