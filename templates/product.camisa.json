@@ -66,6 +66,7 @@
         "price_VJ4N8m": {
           "type": "_product-price",
           "settings": {
+            "show_promo2": false,
             "price_size": 24,
             "price_weight": "600",
             "compare_size": 18,
@@ -341,6 +342,7 @@
       "name": "Informações do Produto",
       "settings": {
         "section_width": "fluid_container",
+        "desktop_max_width": 1200,
         "color_scheme": "scheme-accf3b11-ba40-4a3e-bafb-243ece6683ec",
         "show_breadcrumb": false,
         "breadcrumb_mobile_in_header": false,
@@ -607,6 +609,7 @@
         "accent_scale": 190,
         "text": "<p>O XTech Pro® é um tecido tecnológico de alta performance <strong>desenvolvido pela BRK</strong> para oferecer o máximo de conforto, proteção e durabilidade. Sua tecnologia proporciona <strong>toque ultragelado, alta respirabilidade, secagem ultrarrápida e ação antibacteriana</strong>, ajudando a evitar odores mesmo durante o uso prolongado.</p><p>Leve, resistente e com <strong>proteção solar UV50+ homologada pelo SENAI</strong>, que bloqueia até 98% dos raios UVA e UVB, o XTech Pro® foi desenvolvido para acompanhar quem vive intensamente cada momento, garantindo liberdade de movimento e conforto em diferentes condições.</p>",
         "accent_font": "mona_sans_n7",
+        "label_font": "noto_serif_n7",
         "tile_ratio": "0.81",
         "tile_radius": 18,
         "label_bg": "#f2ecdc",
@@ -634,7 +637,8 @@
             "title": "Proteção UV50+ homologada",
             "text": "<p>Proteção homologada pelo SENAI que bloqueia até 98% dos raios UVA e UVB, oferecendo mais segurança durante a exposição ao sol.</p>",
             "mf_image": "",
-            "mf_text": ""
+            "mf_text": "",
+            "hide_if_title_contains": ""
           }
         },
         "card_gelado": {
@@ -646,7 +650,8 @@
             "title": "Toque ultra gelado",
             "text": "<p>Proporciona uma sensação refrescante em contato com a pele, garantindo conforto térmico e leveza mesmo nos dias mais quentes.</p>",
             "mf_image": "",
-            "mf_text": ""
+            "mf_text": "",
+            "hide_if_title_contains": ""
           }
         },
         "card_secagem": {
@@ -658,7 +663,8 @@
             "title": "Secagem ultrarrápida",
             "text": "<p>Tecnologia que facilita a eliminação da umidade e acelera a secagem do tecido, mantendo o conforto e a sensação de frescor ao longo do dia.</p>",
             "mf_image": "",
-            "mf_text": ""
+            "mf_text": "",
+            "hide_if_title_contains": ""
           }
         }
       },
