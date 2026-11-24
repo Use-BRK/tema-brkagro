@@ -304,6 +304,7 @@
         },
         "collection_btxCia": {
           "type": "collection",
+          "disabled": true,
           "settings": {
             "collection": "agricultura-1",
             "link": "",
