@@ -1892,6 +1892,12 @@
       },
       {
         "type": "checkbox",
+        "id": "cart_upsell_hide_minicart_prices",
+        "label": "Ocultar preços no minicarrinho",
+        "default": false
+      },
+      {
+        "type": "checkbox",
         "id": "cart_upsell_show_cart",
         "label": "Mostrar na página do carrinho",
         "default": false

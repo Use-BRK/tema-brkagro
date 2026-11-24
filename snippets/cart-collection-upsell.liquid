@@ -8,8 +8,10 @@
 {%- liquid
   assign up_context = context | default: 'minicart'
   assign up_enabled = settings.cart_upsell_show_minicart
+  assign up_hide_prices = settings.cart_upsell_hide_minicart_prices
   if up_context == 'cart'
     assign up_enabled = settings.cart_upsell_show_cart
+    assign up_hide_prices = false
   endif
 
   assign up_collection = collections[settings.cart_upsell_collection]
@@ -82,12 +84,14 @@
         </span>
         <span class="cart-upsell__info">
           <span class="cart-upsell__title heading-color">{{ product.title | escape }}</span>
-          <span class="cart-upsell__prices">
-            {%- if up_old_price > up_price -%}
-              <s class="cart-upsell__old">{{ up_old_price | money }}</s>
-            {%- endif -%}
-            <span class="cart-upsell__price">{{ up_price | money }}</span>
-          </span>
+          {%- unless up_hide_prices -%}
+            <span class="cart-upsell__prices">
+              {%- if up_old_price > up_price -%}
+                <s class="cart-upsell__old">{{ up_old_price | money }}</s>
+              {%- endif -%}
+              <span class="cart-upsell__price">{{ up_price | money }}</span>
+            </span>
+          {%- endunless -%}
         </span>
       </a>
       {%- if up_shown >= up_pool -%}{%- break -%}{%- endif -%}
