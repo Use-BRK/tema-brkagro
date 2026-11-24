@@ -96,21 +96,25 @@
 
   {%- if up_shown > 0 -%}
     <div class="cart-upsell cart-upsell--{{ up_context }}">
-      <div class="cart-upsell__head">
-        <span class="cart-upsell__icon" aria-hidden="true">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M20.59 13.41 13.42 20.58a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82Z"/><circle cx="7" cy="7" r="1.5" fill="currentColor"/>
-          </svg>
-        </span>
-        <div class="cart-upsell__texts">
+      {%- if settings.cart_upsell_badge != blank or settings.cart_upsell_heading != blank -%}
+        <div class="cart-upsell__head">
           {%- if settings.cart_upsell_badge != blank -%}
-            <span class="cart-upsell__badge">{{ settings.cart_upsell_badge | escape }}</span>
+            <span class="cart-upsell__icon" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20.59 13.41 13.42 20.58a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82Z"/><circle cx="7" cy="7" r="1.5" fill="currentColor"/>
+              </svg>
+            </span>
           {%- endif -%}
-          {%- if settings.cart_upsell_heading != blank -%}
-            <p class="cart-upsell__heading heading-color">{{ settings.cart_upsell_heading | escape }}</p>
-          {%- endif -%}
+          <div class="cart-upsell__texts">
+            {%- if settings.cart_upsell_badge != blank -%}
+              <span class="cart-upsell__badge">{{ settings.cart_upsell_badge | escape }}</span>
+            {%- endif -%}
+            {%- if settings.cart_upsell_heading != blank -%}
+              <p class="cart-upsell__heading heading-color">{{ settings.cart_upsell_heading | escape }}</p>
+            {%- endif -%}
+          </div>
         </div>
-      </div>
+      {%- endif -%}
       <cart-upsell-list class="cart-upsell__list" data-limit="{{ up_limit }}">
         {{ up_items }}
       </cart-upsell-list>
