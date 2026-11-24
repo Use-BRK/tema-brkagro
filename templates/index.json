@@ -294,6 +294,14 @@
     "collection_tab_kENEYA": {
       "type": "collection-tab",
       "blocks": {
+        "collection_NF8iU7": {
+          "type": "collection",
+          "settings": {
+            "collection": "safra-de-ouro",
+            "link": "",
+            "collection_title": "Safra de Ouro"
+          }
+        },
         "collection_3frNWE": {
           "type": "collection",
           "settings": {
@@ -311,14 +319,6 @@
             "collection_title": "Agricultura"
           }
         },
-        "collection_NF8iU7": {
-          "type": "collection",
-          "settings": {
-            "collection": "safra-de-ouro",
-            "link": "",
-            "collection_title": "Safra de Ouro"
-          }
-        },
         "collection_P7y9m3": {
           "type": "collection",
           "disabled": true,
@@ -330,9 +330,9 @@
         }
       },
       "block_order": [
+        "collection_NF8iU7",
         "collection_3frNWE",
         "collection_btxCia",
-        "collection_NF8iU7",
         "collection_P7y9m3"
       ],
       "custom_css": [
