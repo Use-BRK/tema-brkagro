@@ -227,6 +227,17 @@
     </div>
   </div>
 
+  {%- comment -%} Galeria em tela cheia (abre ao tocar na foto do popup) {%- endcomment -%}
+  <div class="bmk__viewer" data-bmk-viewer data-bmk-viewer-close hidden role="dialog" aria-modal="true" aria-label="Fotos do produto">
+    <div class="bmk__viewer-box">
+    <button type="button" class="bmk__viewer-x" data-bmk-viewer-close aria-label="Fechar">×</button>
+    <div class="bmk__viewer-track" data-bmk-viewer-track></div>
+    <button type="button" class="bmk__viewer-nav is-prev" data-bmk-viewer-nav="-1" aria-label="Foto anterior"></button>
+    <button type="button" class="bmk__viewer-nav is-next" data-bmk-viewer-nav="1" aria-label="Próxima foto"></button>
+    <div class="bmk__viewer-dots" data-bmk-viewer-dots></div>
+    </div>
+  </div>
+
   {%- comment -%} Gaveta de tamanho {%- endcomment -%}
   <div class="bmk__sheet" data-bmk-sheet hidden>
     <div class="bmk__sheet-backdrop" data-bmk-sheet-close></div>

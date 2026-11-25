@@ -23,6 +23,7 @@
   "title": {{ product.title | json }},
   "url": {{ product.url | json }},
   "image": {% if img %}{{ img | image_url: width: 600 | json }}{% else %}null{% endif %},
+  "images": [{%- for im in product.images limit: 10 -%}{{ im | image_url: width: 1400 | json }}{%- unless forloop.last %},{% endunless -%}{%- endfor -%}],
   "ratio": {% if img %}{{ img.aspect_ratio | default: 1 }}{% else %}1{% endif %},
   "image2": {% if img2 %}{{ img2 | image_url: width: 600 | json }}{% else %}null{% endif %},
   "scene": {% if scene %}{{ scene | image_url: width: 600 | json }}{% else %}null{% endif %},

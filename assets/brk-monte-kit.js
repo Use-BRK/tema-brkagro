@@ -36,6 +36,7 @@
     url: "/products/" + p.handle,
     image: p.images?.[0]?.src || null,
     image2: p.images?.[1]?.src || null,
+    images: (p.images || []).slice(0, 10).map((i) => i.src),
     variants: (p.variants || []).map((v) => ({
       id: v.id,
       title: v.title,
@@ -87,6 +88,13 @@
 
       this.addEventListener("click", (e) => this.onClick(e));
       this.addEventListener("keydown", (e) => {
+        const v = this.$("[data-bmk-viewer]");
+        if (v && !v.hidden) {
+          if (e.key === "Escape") return this.closeViewer();
+          if (e.key === "ArrowRight") return this.navViewer(1);
+          if (e.key === "ArrowLeft") return this.navViewer(-1);
+          return;
+        }
         if (e.key === "Escape") this.closeSheet();
       });
       this.render();
@@ -94,6 +102,7 @@
 
     /* ---------- navegação ---------- */
     onClick(e) {
+      if (e.target.matches("[data-bmk-viewer], .bmk__viewer-box, .bmk__viewer-track, .bmk__viewer-slide")) return this.closeViewer();
       const t = e.target.closest("button, [data-bmk-sheet-close]");
       if (!t || !this.contains(t)) return;
       const d = t.dataset;
@@ -112,6 +121,13 @@
       if (d.bmkUp) return this.openSheet("upsell", this.extras.flatMap((e) => e.products).find((p) => p.id === +d.bmkUp));
       if (d.bmkUpRemove) { this.state.upsell.delete(+d.bmkUpRemove); clarity("extra_remover"); return this.render(); }
       if (d.bmkSize) return this.pickSize(+d.bmkSize);
+      if (t.hasAttribute("data-bmk-zoom")) return this.openViewer(this.sheet?.product);
+      if (t.hasAttribute("data-bmk-viewer-close")) return this.closeViewer();
+      if (d.bmkViewerNav) return this.navViewer(+d.bmkViewerNav);
+      if (d.bmkViewerDot !== undefined) {
+        const tr = this.$("[data-bmk-viewer-track]");
+        return tr.scrollTo({ left: +d.bmkViewerDot * tr.clientWidth, behavior: "smooth" });
+      }
       if (t.hasAttribute("data-bmk-sheet-close")) return this.closeSheet();
       if (t.hasAttribute("data-bmk-sheet-confirm")) return this.confirmSheet();
       if (t.hasAttribute("data-bmk-next")) return this.next();
@@ -342,7 +358,7 @@
           if (!items.length) return "";
           return `<div class="bmk__group">
             <div class="bmk__group-head">
-              <h3>${esc(g.title)} <span class="bmk__group-count">${items.length}</span></h3>
+              <h3>${esc(g.title)}</h3>
               ${g.text ? `<p>${esc(g.text)}</p>` : ""}
             </div>
             <div class="bmk__grid bmk__grid--rail">
@@ -491,7 +507,11 @@
       if (only) this.sheet.variant = only;
 
       this.$("[data-bmk-sheet-media]").classList.toggle("is-contain", kind !== "shirt");
-      this.$("[data-bmk-sheet-media]").innerHTML = `<img src="${esc(sized(product.image, 700))}" alt="${esc(product.title)}">`;
+      const nPics = (product.images || []).length || 1;
+      this.$("[data-bmk-sheet-media]").innerHTML = `<button type="button" class="bmk__sheet-zoom" data-bmk-zoom aria-label="Ver fotos de ${esc(product.title)}">
+        <img src="${esc(sized(product.image, 700))}" alt="${esc(product.title)}">
+        <span class="bmk__sheet-expand" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></span>
+      </button>`;
       this.$("[data-bmk-sheet-title]").textContent = product.title;
       this.$("[data-bmk-sheet-label]").textContent = product.variants.length > 1 ? (kind === "boot" ? this.t.number : this.t.size) : "";
       this.$("[data-bmk-sheet-sizes]").innerHTML =
@@ -532,12 +552,57 @@
       this.paintSheet();
     }
     closeSheet() {
+      this.closeViewer();
       const sheet = this.$("[data-bmk-sheet]");
       if (sheet.hidden) return;
       sheet.classList.remove("is-open");
       document.documentElement.classList.remove("bmk-lock");
       setTimeout(() => (sheet.hidden = true), 200);
       this.sheet = null;
+    }
+    /* ---------- galeria em tela cheia ---------- */
+    openViewer(product) {
+      if (!product) return;
+      const pics = product.images && product.images.length ? product.images : [product.image].filter(Boolean);
+      const v = this.$("[data-bmk-viewer]");
+      const track = this.$("[data-bmk-viewer-track]");
+      track.innerHTML = pics
+        .map((src, i) => `<figure class="bmk__viewer-slide"><div class="bmk__viewer-frame">
+          <img src="${esc(sized(src, 1400))}" alt="${esc(product.title)} - foto ${i + 1}"${i > 1 ? ' loading="lazy"' : ""}>
+          <button type="button" class="bmk__viewer-close" data-bmk-viewer-close aria-label="Fechar">×</button>
+          ${i > 0 ? `<button type="button" class="bmk__viewer-arrow is-prev" data-bmk-viewer-nav="-1" aria-label="Foto anterior"></button>` : ""}
+          ${i < pics.length - 1 ? `<button type="button" class="bmk__viewer-arrow is-next" data-bmk-viewer-nav="1" aria-label="Próxima foto"></button>` : ""}
+        </div></figure>`)
+        .join("");
+      this.viewerCount = pics.length;
+      this.$("[data-bmk-viewer-dots]").innerHTML = pics.length > 1
+        ? pics.map((_, i) => `<button type="button" class="bmk__viewer-dot" data-bmk-viewer-dot="${i}" aria-label="Foto ${i + 1}"></button>`).join("")
+        : "";
+      v.classList.toggle("is-single", pics.length < 2);
+      v.hidden = false;
+      requestAnimationFrame(() => v.classList.add("is-open"));
+      track.scrollLeft = 0;
+      this.updateViewerCount();
+      if (!track._bmkScroll) {
+        track._bmkScroll = true;
+        track.addEventListener("scroll", () => this.updateViewerCount(), { passive: true });
+      }
+      clarity("galeria_abrir");
+    }
+    updateViewerCount() {
+      const track = this.$("[data-bmk-viewer-track]");
+      const i = Math.round(track.scrollLeft / Math.max(1, track.clientWidth));
+      this.querySelectorAll("[data-bmk-viewer-dot]").forEach((b, k) => b.classList.toggle("is-active", k === i));
+    }
+    navViewer(dir) {
+      const track = this.$("[data-bmk-viewer-track]");
+      track.scrollBy({ left: dir * track.clientWidth, behavior: "smooth" });
+    }
+    closeViewer() {
+      const v = this.$("[data-bmk-viewer]");
+      if (!v || v.hidden) return;
+      v.classList.remove("is-open");
+      setTimeout(() => (v.hidden = true), 200);
     }
     confirmSheet() {
       const sh = this.sheet;

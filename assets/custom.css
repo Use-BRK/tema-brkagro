@@ -1715,3 +1715,14 @@ product-addons[data-custom-class="size_chart"]:focus-visible {
   .header__action .header_search { width: 128px !important; flex-basis: 128px !important; }
   .navigation__menu-content .horizontal-list > li > menu-item { padding-left: 5px !important; padding-right: 5px !important; }
 }
+/* gaveta mobile: sem linha/sublinhado no item destacado; destaque só no item principal (não no submenu) */
+.mobile-menu-drawer a[href*="/pages/monte-seu-kit"],
+.mobile-menu-drawer a[href*="/pages/monte-seu-kit"] * { text-decoration: none !important; }
+.mobile-menu-drawer a[href*="/pages/monte-seu-kit"]::before { display: none !important; }
+.mobile-menu-drawer a[href*="/pages/monte-seu-kit"]:not(.mmd-acc__head--link):not(.mobile-menu-drawer__link--level-1) {
+  background: none; border-left: 0; color: inherit !important; font-weight: inherit;
+}
+.mobile-menu-drawer a[href*="/pages/monte-seu-kit"]:not(.mmd-acc__head--link):not(.mobile-menu-drawer__link--level-1)::after { content: none; }
+/* desktop: sem o traço de hover do tema no item em pílula */
+.navigation__menu-content a[href*="/pages/monte-seu-kit"]::after,
+.navigation__menu-content a[href*="/pages/monte-seu-kit"]:hover::after { display: none !important; content: none !important; }
