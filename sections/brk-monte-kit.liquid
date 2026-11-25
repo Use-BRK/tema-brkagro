@@ -33,6 +33,12 @@
       "perPage": {{ st.per_page | default: 24 }},
       "afterAdd": {{ st.after_add | json }},
       "bootPhoto": {{ st.boot_photo | json }},
+      "perso": {
+        "enabled": {{ st.perso_enable | json }},
+        "variantId": {{ settings.cnm_cart_variant_id | default: "53224470479145" | json }},
+        "price": {{ settings.cnm_cart_price | default: "29,90" | replace: ",", "." | times: 100 | round }},
+        "modalId": {{ "cnm-kit-" | append: section.id | json }}
+      },
       "shirtCollections": {
         "masculino": {{ st.shirts_masc.handle | json }},
         "feminino": {{ st.shirts_fem.handle | json }}
@@ -227,6 +233,86 @@
     </div>
   </div>
 
+  {%- comment -%} Personalização com nome: o mesmo modal da PDP/carrinho, em modo kit (não compra; devolve os dados) {%- endcomment -%}
+  {%- if st.perso_enable -%}
+    {%- assign cnm_kit_price = settings.cnm_cart_price | default: '29,90' -%}
+    <script src="{{ 'custom-name-modal.js' | asset_url }}" defer="defer"></script>
+    <custom-name-modal
+      id="cnm-kit-{{ section.id }}"
+      hidden
+      class="cnm"
+      data-kit-mode
+      data-lazy
+      data-variant-id="{{ settings.cnm_cart_variant_id | default: '53224470479145' }}"
+      data-price="{{ cnm_kit_price }}"
+      data-mockup-frente="https://cdn.shopify.com/s/files/1/0887/2083/4857/files/MOCKUP_FRENTE.png"
+      data-mockup-costas="https://cdn.shopify.com/s/files/1/0887/2083/4857/files/MOCKUP_COSTAS.png"
+      data-positions='{"frente":{"peito_esquerdo":{"cx":0.6,"cy":0.324,"maxW":0.16},"peito_direito":{"cx":0.389,"cy":0.323,"maxW":0.16}},"costas":{"costas_cima":{"cx":0.512,"cy":0.221,"maxW":0.31},"costas_baixo":{"cx":0.513,"cy":0.815,"maxW":0.31}}}'
+    >
+      <div class="cnm__overlay"></div>
+      <div class="cnm__dialog" role="dialog" aria-modal="true" aria-label="Personalizar camisa">
+        <button type="button" class="cnm__close" aria-label="Fechar">&times;</button>
+        <h3 class="cnm__title">Personalize sua camisa</h3>
+        <p class="cnm__cart-product"></p>
+        <div class="cnm__stage">
+          <canvas class="cnm__canvas" width="1080" height="1080"></canvas>
+          <div class="cnm__zoom">
+            <button type="button" class="cnm__zoom-out" aria-label="Diminuir zoom">&minus;</button>
+            <button type="button" class="cnm__zoom-in" aria-label="Aumentar zoom">+</button>
+          </div>
+        </div>
+        <p class="cnm__illustrative">*Imagem meramente ilustrativa</p>
+        <div class="cnm__field">
+          <span class="cnm__label">O que personalizar:</span>
+          <div class="cnm__modes">
+            <button type="button" data-mode="name" class="active">Nome</button>
+            <button type="button" data-mode="company">Nome da Empresa</button>
+          </div>
+        </div>
+        <div class="cnm__field">
+          <label class="cnm__label cnm__name-label" for="cnm-name-kit-{{ section.id }}">Nome:</label>
+          <div class="cnm__name-wrap">
+            <textarea id="cnm-name-kit-{{ section.id }}" maxlength="20" rows="1" class="cnm__name" placeholder="Digite o nome" autocomplete="off"></textarea>
+            <span class="cnm__counter">0/20</span>
+          </div>
+        </div>
+        <div class="cnm__field">
+          <span class="cnm__label">Local:</span>
+          <div class="cnm__sides">
+            <button type="button" data-side="frente">FRENTE</button>
+            <button type="button" data-side="costas">COSTAS</button>
+          </div>
+        </div>
+        <div class="cnm__field">
+          <span class="cnm__label">Posição:</span>
+          <div class="cnm__positions" data-positions="frente">
+            <button type="button" data-pos-key="peito_esquerdo" data-pos-label="Peito Esquerdo">Peito Esquerdo</button>
+            <button type="button" data-pos-key="peito_direito" data-pos-label="Peito Direito">Peito Direito</button>
+          </div>
+          <div class="cnm__positions" data-positions="costas" hidden>
+            <button type="button" data-pos-key="costas_cima" data-pos-label="Costas Cima">Costas Cima</button>
+            <button type="button" data-pos-key="costas_baixo" data-pos-label="Costas Baixo">Costas Baixo</button>
+          </div>
+        </div>
+        <div class="cnm__disclaimer">
+          <p class="cnm__disclaimer-strong"><strong>A entrega do produto personalizado tem um prazo de 15 dias úteis.</strong></p>
+          <p>Vamos utilizar uma fonte padrão com alguma cor selecionada da camisa, não vamos escrever em laranja em uma parte da camisa que é laranja, em função de preservar o design da camisa.</p>
+          <p>O designer mantém os elementos visuais da camisa — nenhum texto da arte é removido para inserir o nome. Se o nome ficar no mesmo local de algum elemento, ele será adaptado pelo designer.</p>
+          <p>Não é possível trocar um produto personalizado.</p>
+        </div>
+        <p class="cnm__hint-up">Arraste pra cima para ver sua camisa</p>
+        <label class="cnm__terms">
+          <input type="checkbox" class="cnm__accept">
+          <span>Aceito os termos de personalização</span>
+        </label>
+        <p class="cnm__msg" hidden></p>
+        <button type="button" class="cnm__buy btn btn-primary w-full no-underline" disabled>
+          Adicionar ao kit (R$ {{ cnm_kit_price }})
+        </button>
+      </div>
+    </custom-name-modal>
+  {%- endif -%}
+
   {%- comment -%} Galeria em tela cheia (abre ao tocar na foto do popup) {%- endcomment -%}
   <div class="bmk__viewer" data-bmk-viewer data-bmk-viewer-close hidden role="dialog" aria-modal="true" aria-label="Fotos do produto">
     <div class="bmk__viewer-box">
@@ -252,7 +338,22 @@
         {%- if st.size_guide_url != blank -%}
           <a class="bmk__sheet-guide" href="{{ st.size_guide_url }}" target="_blank" rel="noopener">{{ st.size_guide_label }}</a>
         {%- endif -%}
-        <button type="button" class="bmk__btn bmk__btn--primary bmk__btn--block" data-bmk-sheet-confirm disabled></button>
+        <div class="bmk__sheet-actions">
+          <button type="button" class="bmk__btn bmk__btn--primary bmk__btn--block" data-bmk-sheet-confirm disabled></button>
+          {%- if st.perso_enable -%}
+            <button type="button" class="bmk__perso-fab" data-bmk-perso-open hidden aria-label="{{ st.perso_label | escape }}">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20h9"/><path d="M16.376 3.622a1 1 0 0 1 3.002 3.002L7.368 18.635a2 2 0 0 1-.855.506l-2.872.838a.5.5 0 0 1-.62-.62l.838-2.872a2 2 0 0 1 .506-.854z"/></svg>
+            </button>
+          {%- endif -%}
+        </div>
+        {%- if st.perso_enable -%}
+          <button type="button" class="bmk__perso-bar" data-bmk-perso-open hidden>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20h9"/><path d="M16.376 3.622a1 1 0 0 1 3.002 3.002L7.368 18.635a2 2 0 0 1-.855.506l-2.872.838a.5.5 0 0 1-.62-.62l.838-2.872a2 2 0 0 1 .506-.854z"/></svg>
+            <span class="bmk__perso-bar-text">{{ st.perso_label }}</span>
+            <span class="bmk__perso-bar-price">R${{ settings.cnm_cart_price | default: '29,90' }}</span>
+          </button>
+          <div class="bmk__perso-done" data-bmk-perso-done hidden></div>
+        {%- endif -%}
       </div>
     </div>
   </div>
@@ -294,6 +395,8 @@
     { "type": "text", "id": "load_more_label", "label": "Botão carregar mais", "default": "Ver mais camisas" },
     { "type": "text", "id": "size_label", "label": "Rótulo tamanho da camisa", "default": "Escolha o tamanho" },
     { "type": "text", "id": "confirm_shirt_label", "label": "Botão confirmar camisa", "default": "Escolher esta camisa" },
+    { "type": "checkbox", "id": "perso_enable", "label": "Permitir personalizar a camisa com nome", "info": "Usa o mesmo modal e o mesmo produto de personalização do carrinho (Configurações do tema › Personalizar no carrinho). Camisas FULL não mostram a opção.", "default": true },
+    { "type": "text", "id": "perso_label", "label": "Texto do botão de personalizar", "default": "Quero meu nome na camisa" },
     { "type": "url", "id": "size_guide_url", "label": "Link da tabela de medidas" },
     { "type": "text", "id": "size_guide_label", "label": "Texto do link da tabela", "default": "Ver tabela de medidas" },
 

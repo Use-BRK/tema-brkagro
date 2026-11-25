@@ -40,6 +40,7 @@
     variants: (p.variants || []).map((v) => ({
       id: v.id,
       title: v.title,
+      sku: v.sku || "",
       available: !!v.available,
       price: Math.round(parseFloat(v.price) * 100),
       compare: v.compare_at_price ? Math.round(parseFloat(v.compare_at_price) * 100) : 0,
@@ -87,6 +88,10 @@
       this.$ = (sel) => this.querySelector(sel);
 
       this.addEventListener("click", (e) => this.onClick(e));
+      this.perso = this.cfg.perso || { enabled: false };
+      document.addEventListener("cnm:kit-confirm", (e) => {
+        if (e.target && e.target.id === this.perso.modalId) this.onPersoConfirm(e.detail);
+      });
       this.addEventListener("keydown", (e) => {
         const v = this.$("[data-bmk-viewer]");
         if (v && !v.hidden) {
@@ -129,6 +134,9 @@
         return tr.scrollTo({ left: +d.bmkViewerDot * tr.clientWidth, behavior: "smooth" });
       }
       if (t.hasAttribute("data-bmk-sheet-close")) return this.closeSheet();
+      if (t.hasAttribute("data-bmk-perso-open")) return this.openPerso();
+      if (t.hasAttribute("data-bmk-perso-remove")) { if (this.sheet) this.sheet.perso = null; return this.paintPerso(); }
+      if (d.bmkPersoRemoveKit !== undefined) { if (this.state.shirt) this.state.shirt.perso = null; clarity("perso_remover"); return this.render(); }
       if (t.hasAttribute("data-bmk-sheet-confirm")) return this.confirmSheet();
       if (t.hasAttribute("data-bmk-next")) return this.next();
       if (t.hasAttribute("data-bmk-back")) return this.back();
@@ -182,6 +190,7 @@
       const s = this.state;
       let full = 0, pay = 0;
       if (s.shirt) { full += s.shirt.variant.price; pay += s.shirt.variant.price; }
+      if (s.shirt && s.shirt.perso) { full += this.perso.price; pay += this.perso.price; }
       if (s.boot) { full += s.boot.variant.price; pay += s.boot.variant.price; }
       if (s.shirt && s.boot) pay -= s.boot.group.discount;
       s.upsell.forEach((u) => { full += u.variant.price; pay += u.variant.price; });
@@ -484,7 +493,16 @@
             ${step ? `<button type="button" class="bmk__link" data-bmk-edit="${step}">Trocar</button>` : ""}
           </div>
         </div>`;
-      let html = line(s.shirt, "Camisa", 2, "cover") + line(s.boot, "Botina", 3);
+      let html = line(s.shirt, "Camisa", 2, "cover");
+      if (s.shirt.perso) {
+        const p = s.shirt.perso;
+        html += `<div class="bmk__line bmk__line--perso">
+          <span class="bmk__perso-thumb" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.376 3.622a1 1 0 0 1 3.002 3.002L7.368 18.635a2 2 0 0 1-.855.506l-2.872.838a.5.5 0 0 1-.62-.62l.838-2.872a2 2 0 0 1 .506-.854z"/></svg></span>
+          <div class="bmk__line-info"><small>Personalização</small><strong>${esc(p.name)}</strong><span>${esc(p.sideLabel)} · ${esc(p.posLabel)}</span></div>
+          <div class="bmk__line-end"><span>${money(this.perso.price)}</span><button type="button" class="bmk__link" data-bmk-perso-remove-kit>Remover</button></div>
+        </div>`;
+      }
+      html += line(s.boot, "Botina", 3);
       s.upsell.forEach((u) => (html += line(u, "Extra", this.hasUpsell ? 4 : 0)));
       const { full, pay } = this.totals();
       html += `<div class="bmk__totals">
@@ -503,6 +521,7 @@
       const current =
         kind === "shirt" ? this.state.shirt : kind === "boot" ? this.state.boot : this.state.upsell.get(product.id);
       if (current && current.product.id === product.id) this.sheet.variant = current.variant;
+      this.sheet.perso = kind === "shirt" && current && current.product.id === product.id ? current.perso || null : null;
       const only = product.variants.length === 1 && product.variants[0].available ? product.variants[0] : null;
       if (only) this.sheet.variant = only;
 
@@ -524,6 +543,7 @@
               .join("")
           : "";
       this.paintSheet();
+      this.paintPerso();
       sheet.hidden = false;
       document.documentElement.classList.add("bmk-lock");
       requestAnimationFrame(() => sheet.classList.add("is-open"));
@@ -560,6 +580,45 @@
       setTimeout(() => (sheet.hidden = true), 200);
       this.sheet = null;
     }
+    /* ---------- personalização com nome (modal custom-name-modal em modo kit) ---------- */
+    canPerso(product) {
+      if (!this.perso.enabled || !product) return false;
+      return !product.variants.some((v) => /FULL/i.test(v.sku || ""));
+    }
+    paintPerso() {
+      const show = this.sheet && this.sheet.kind === "shirt" && this.canPerso(this.sheet.product);
+      const done = show && this.sheet.perso;
+      this.querySelectorAll("[data-bmk-perso-open]").forEach((b) => (b.hidden = !show || !!done));
+      const box = this.$("[data-bmk-perso-done]");
+      if (!box) return;
+      box.hidden = !done;
+      if (done) {
+        const p = this.sheet.perso;
+        box.innerHTML = `<span class="bmk__perso-done-ico" aria-hidden="true">✓</span>
+          <span class="bmk__perso-done-info"><b>${esc(p.modeLabel)}: ${esc(p.name)}</b><small>${esc(p.sideLabel)} · ${esc(p.posLabel)} · +${money(this.perso.price)}</small></span>
+          <button type="button" class="bmk__link" data-bmk-perso-open>Editar</button>
+          <button type="button" class="bmk__link" data-bmk-perso-remove>Remover</button>`;
+      }
+    }
+    openPerso() {
+      const modal = document.getElementById(this.perso.modalId) || this.querySelector("custom-name-modal");
+      if (!modal || typeof modal.openForLine !== "function" || !this.sheet) return;
+      const p = this.sheet.product;
+      modal.openForLine({ title: p.title, variantTitle: this.sheet.variant ? this.sheet.variant.title : "", quantity: 1 });
+      clarity("perso_abrir");
+    }
+    onPersoConfirm(detail) {
+      if (!detail) return;
+      if (this.sheet && this.sheet.kind === "shirt") {
+        this.sheet.perso = detail;
+        this.paintPerso();
+      } else if (this.state.shirt) {
+        this.state.shirt.perso = detail;
+        this.render();
+      }
+      clarity("perso_ok");
+    }
+
     /* ---------- galeria em tela cheia ---------- */
     openViewer(product) {
       if (!product) return;
@@ -609,6 +668,7 @@
       if (!sh?.variant) return;
       const item = { product: sh.product, variant: sh.variant };
       if (sh.kind === "shirt") {
+        item.perso = sh.perso || null;
         this.state.shirt = item;
         clarity("camisa_ok");
         this.closeSheet();
@@ -636,16 +696,38 @@
       btn.disabled = true;
       btn.classList.add("is-loading");
       const kitId = "K" + Date.now().toString(36).toUpperCase();
-      const items = [
-        { id: s.shirt.variant.id, quantity: 1, properties: { _kit: kitId } },
-        { id: s.boot.variant.id, quantity: 1, properties: { _kit: kitId } },
-        ...[...s.upsell.values()].map((u) => ({ id: u.variant.id, quantity: 1, properties: { _kit_extra: kitId } })),
-      ];
+      const fd = new FormData();
+      let n = 0;
+      const add = (id, props = {}, extra = {}) => {
+        fd.append(`items[${n}][id]`, String(id));
+        fd.append(`items[${n}][quantity]`, "1");
+        Object.entries(extra).forEach(([k, v]) => fd.append(`items[${n}][${k}]`, String(v)));
+        Object.entries(props).forEach(([k, v]) => {
+          if (v instanceof Blob) fd.append(`items[${n}][properties][${k}]`, v, "personalizacao.png");
+          else if (v !== undefined && v !== null && v !== "") fd.append(`items[${n}][properties][${k}]`, String(v));
+        });
+        n++;
+      };
+      add(s.shirt.variant.id, { _kit: kitId });
+      if (s.shirt.perso) {
+        const p = s.shirt.perso;
+        add(this.perso.variantId, {
+          Produto: s.shirt.variant.sku || "",
+          Tipo: p.modeLabel,
+          Nome: p.name,
+          Local: p.sideLabel,
+          "Posição": p.posLabel,
+          Arte: p.blob || null,
+          _origem: "monte-seu-kit",
+        }, { parent_id: s.shirt.variant.id });
+      }
+      add(s.boot.variant.id, { _kit: kitId });
+      s.upsell.forEach((u) => add(u.variant.id, { _kit_extra: kitId }));
       try {
         const r = await fetch((window.routes?.cart_add_url || "/cart/add") + ".js", {
           method: "POST",
-          headers: { "Content-Type": "application/json", Accept: "application/json" },
-          body: JSON.stringify({ items }),
+          headers: { Accept: "application/json" },
+          body: fd,
         });
         const data = await r.json();
         if (!r.ok) throw new Error(data.description || data.message || "erro");
@@ -662,17 +744,25 @@
       }
     }
     // Cupom Compre X Ganhe Y do grupo da botina — mantém os cupons que já estavam no carrinho.
+    // O app da Intelipost regrava as linhas logo depois do add (/cart/change.js) e, se cair junto
+    // com o update do cupom, o cupom some: confere o carrinho e reaplica (até 3 tentativas).
     async applyCode(code) {
       if (!code) return;
+      const has = (cart) => (cart.discount_codes || []).some((d) => (d.code || "").toUpperCase() === code.toUpperCase());
       try {
-        const cart = await fetch("/cart.js").then((r) => r.json());
-        const codes = (cart.discount_codes || []).map((d) => d.code).filter(Boolean);
-        if (codes.some((c) => c.toUpperCase() === code.toUpperCase())) return;
-        await fetch("/cart/update.js", {
-          method: "POST",
-          headers: { "Content-Type": "application/json", Accept: "application/json" },
-          body: JSON.stringify({ discount: [...codes, code].join(",") }),
-        });
+        for (let attempt = 0; attempt < 3; attempt++) {
+          const cart = await fetch("/cart.js").then((r) => r.json());
+          if (has(cart) && attempt > 0) return;
+          if (!has(cart)) {
+            const codes = (cart.discount_codes || []).map((d) => d.code).filter(Boolean);
+            await fetch("/cart/update.js", {
+              method: "POST",
+              headers: { "Content-Type": "application/json", Accept: "application/json" },
+              body: JSON.stringify({ discount: [...codes, code].join(",") }),
+            });
+          }
+          await new Promise((r) => setTimeout(r, 1200));
+        }
       } catch (e) {
         console.error("[brk-monte-kit] cupom", e);
       }

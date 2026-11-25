@@ -5,6 +5,8 @@
  * - Zoom/pan no preview.
  * - "Comprar Personalizada": add em 2 passos (camisa -> PE1198 nested com PNG + properties).
  * Sem dependências externas. Mockups e config vêm de data-attributes do <custom-name-modal>.
+ * Modo kit (data-kit-mode, sections/brk-monte-kit.liquid): não compra — dispara o evento
+ * "cnm:kit-confirm" com nome/local/posição/PNG e o Monte seu Kit adiciona tudo junto no final.
  * Modo carrinho (data-cart-mode, snippets/cart-custom-name-modal.liquid): anexa o PE1198 a uma
  * camisa que já está no minicart. Na página do produto o arquivo é incluído 2x (bloco + snippet
  * global): o guard abaixo faz só a 1ª inclusão rodar.
@@ -379,6 +381,34 @@ class CustomNameModal extends HTMLElement {
     document.documentElement.style.overflow = "";
   }
 
+  /* ---------- Monte seu Kit: devolve a personalização (sem adicionar ao carrinho) ---------- */
+  async confirmForKit(name) {
+    const buyBtn = this.querySelector(".cnm__buy");
+    if (buyBtn) { buyBtn.disabled = true; buyBtn.dataset.loading = "true"; }
+    try {
+      const blob = await this.exportPng();
+      let preview = "";
+      try { preview = this.canvas ? this.canvas.toDataURL("image/jpeg", 0.6) : ""; } catch (e) { preview = ""; }
+      this.dispatchEvent(new CustomEvent("cnm:kit-confirm", {
+        bubbles: true,
+        detail: {
+          name,
+          mode: this.state.mode,
+          modeLabel: this.state.modeLabel,
+          side: this.state.side,
+          sideLabel: this.state.side === "frente" ? "Frente" : "Costas",
+          posKey: this.state.posKey,
+          posLabel: this.state.posLabel || "",
+          blob,
+          preview,
+        },
+      }));
+      this.close();
+    } finally {
+      if (buyBtn) { buyBtn.disabled = false; delete buyBtn.dataset.loading; this.syncBuyEnabled(); }
+    }
+  }
+
   /* ---------- carrinho (2 passos) ---------- */
   getShirtVariantId() {
     // 1) resolve pela seleção de opções no modal (1 grupo por opção: Cor, Tamanho...)
@@ -419,6 +449,7 @@ class CustomNameModal extends HTMLElement {
     if (!name) { this.flash("Digite o nome (até 20 caracteres)."); this.nameInput && this.nameInput.focus(); return; }
     if (!this.state.posKey) { this.flash("Escolha a posição."); return; }
     if (this.acceptInput && !this.acceptInput.checked) { this.flash("Você precisa aceitar os termos de personalização."); return; }
+    if (this.hasAttribute("data-kit-mode")) return this.confirmForKit(name);
     if (this.hasAttribute("data-cart-mode")) return this.buyForCartLine(name);
     const shirtId = this.getShirtVariantId();
     if (!shirtId) { this.flash("Selecione as opções do produto."); return; }
