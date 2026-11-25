@@ -1,0 +1,284 @@
+{
+  "sections": {
+    "main": {
+      "type": "brk-monte-kit",
+      "blocks": {
+        "filtro_m1": {
+          "type": "filter",
+          "settings": {
+            "gender": "masculino",
+            "label": "Mais vendidas",
+            "collection": "mais-vendidos-masculinas"
+          }
+        },
+        "filtro_m2": {
+          "type": "filter",
+          "settings": {
+            "gender": "masculino",
+            "label": "Brasil",
+            "collection": "camisas-do-brasil"
+          }
+        },
+        "filtro_m3": {
+          "type": "filter",
+          "settings": {
+            "gender": "masculino",
+            "label": "Tratores e Máquinas",
+            "collection": "tratores-e-maquinas-femininas-copy"
+          }
+        },
+        "filtro_m4": {
+          "type": "filter",
+          "settings": {
+            "gender": "masculino",
+            "label": "Eu Sou do Agro",
+            "collection": "eu-sou-do-agro-femininas-copy"
+          }
+        },
+        "filtro_m5": {
+          "type": "filter",
+          "settings": {
+            "gender": "masculino",
+            "label": "Força do Agro",
+            "collection": "forca-do-agro-masculinas"
+          }
+        },
+        "filtro_m6": {
+          "type": "filter",
+          "settings": {
+            "gender": "masculino",
+            "label": "São Bento",
+            "collection": "sao-bento-masculino"
+          }
+        },
+        "filtro_m7": {
+          "type": "filter",
+          "settings": {
+            "gender": "masculino",
+            "label": "Camuflado e Caça",
+            "collection": "app-camuflado-e-caca-masc"
+          }
+        },
+        "filtro_m8": {
+          "type": "filter",
+          "settings": {
+            "gender": "masculino",
+            "label": "Cavalos",
+            "collection": "app-cavalos-masc"
+          }
+        },
+        "filtro_m9": {
+          "type": "filter",
+          "settings": {
+            "gender": "masculino",
+            "label": "Pecuária",
+            "collection": "app-pecuaria-masc"
+          }
+        },
+        "filtro_m10": {
+          "type": "filter",
+          "settings": {
+            "gender": "masculino",
+            "label": "Essenciais",
+            "collection": "app-essenciais-masc"
+          }
+        },
+        "filtro_f1": {
+          "type": "filter",
+          "settings": {
+            "gender": "feminino",
+            "label": "Mais vendidas",
+            "collection": "mais-vendidas-femininas"
+          }
+        },
+        "filtro_f2": {
+          "type": "filter",
+          "settings": {
+            "gender": "feminino",
+            "label": "Brasil",
+            "collection": "colecao-brasil-femininas"
+          }
+        },
+        "filtro_f3": {
+          "type": "filter",
+          "settings": {
+            "gender": "feminino",
+            "label": "Cow Print",
+            "collection": "cow-print-femininas"
+          }
+        },
+        "filtro_f4": {
+          "type": "filter",
+          "settings": {
+            "gender": "feminino",
+            "label": "Camufladas",
+            "collection": "camufladas-femininas"
+          }
+        },
+        "filtro_f5": {
+          "type": "filter",
+          "settings": {
+            "gender": "feminino",
+            "label": "Cavalos e Rodeios",
+            "collection": "cavalos-femininas"
+          }
+        },
+        "filtro_f6": {
+          "type": "filter",
+          "settings": {
+            "gender": "feminino",
+            "label": "São Bento e Nossa Senhora",
+            "collection": "sao-bento-e-nossa-senhora-femininas"
+          }
+        },
+        "filtro_f7": {
+          "type": "filter",
+          "settings": {
+            "gender": "feminino",
+            "label": "Tratores e Máquinas",
+            "collection": "tratores-e-maquinas-femininas"
+          }
+        },
+        "filtro_f8": {
+          "type": "filter",
+          "settings": {
+            "gender": "feminino",
+            "label": "Pecuária",
+            "collection": "pecuaria-femininas"
+          }
+        },
+        "filtro_f9": {
+          "type": "filter",
+          "settings": {
+            "gender": "feminino",
+            "label": "Essenciais",
+            "collection": "essenciais-femininas"
+          }
+        },
+        "botas_masc": {
+          "type": "boots",
+          "settings": {
+            "gender": "masculino",
+            "title": "Botinas masculinas",
+            "text": "Couro legítimo, modelos country",
+            "collection": "botinas-masculinas",
+            "discount": 49.9,
+            "code": "MONTESEUKIT-BOTINA"
+          }
+        },
+        "botas_trab": {
+          "type": "boots",
+          "settings": {
+            "gender": "masculino",
+            "title": "Botinas de bidensidade",
+            "text": "Resistentes para o dia a dia no campo",
+            "collection": "botinas-de-trabalho",
+            "discount": 59.9,
+            "code": "MONTESEUKIT-TRAB"
+          }
+        },
+        "botas_fem": {
+          "type": "boots",
+          "settings": {
+            "gender": "feminino",
+            "title": "Botinas femininas",
+            "text": "Couro legítimo, conforto o dia todo",
+            "collection": "botinas-femininas",
+            "discount": 49.9,
+            "code": "MONTESEUKIT-BOTINA"
+          }
+        },
+        "extra_calcas": {
+          "type": "extra",
+          "settings": {
+            "gender": "masculino",
+            "title": "Calças",
+            "text": "Jeans resistente para a lida",
+            "collection": "calcas-jeans",
+            "focus": "center",
+            "zoom": 140
+          }
+        },
+        "extra_oculos_m": {
+          "type": "extra",
+          "settings": {
+            "gender": "masculino",
+            "title": "Óculos",
+            "text": "Proteção para o sol do campo",
+            "collection": "oculos-de-sol",
+            "focus": "top",
+            "image": "shopify://shop_images/oculos-aviador-marrom-humanizado.jpg"
+          }
+        },
+        "extra_oculos_f": {
+          "type": "extra",
+          "settings": {
+            "gender": "feminino",
+            "title": "Óculos",
+            "text": "Proteção para o sol do campo",
+            "collection": "oculos-de-sol-feminino",
+            "focus": "top",
+            "image": "shopify://shop_images/85acbf58-5e8f-463d-9b06-f42a641ff66e.png"
+          }
+        },
+        "extra_bones": {
+          "type": "extra",
+          "settings": {
+            "gender": "todos",
+            "title": "Bonés",
+            "text": "Trucker para fechar o visual",
+            "collection": "bones-e-chapeus",
+            "focus": "top"
+          }
+        }
+      },
+      "block_order": [
+        "filtro_m1",
+        "filtro_m2",
+        "filtro_m3",
+        "filtro_m4",
+        "filtro_m5",
+        "filtro_m6",
+        "filtro_m7",
+        "filtro_m8",
+        "filtro_m9",
+        "filtro_m10",
+        "filtro_f1",
+        "filtro_f2",
+        "filtro_f3",
+        "filtro_f4",
+        "filtro_f5",
+        "filtro_f6",
+        "filtro_f7",
+        "filtro_f8",
+        "filtro_f9",
+        "botas_masc",
+        "botas_trab",
+        "botas_fem",
+        "extra_calcas",
+        "extra_oculos_m",
+        "extra_oculos_f",
+        "extra_bones"
+      ],
+      "settings": {
+        "shirts_masc": "camisas-uv50-masculinas",
+        "shirts_fem": "camisas-uv50-femininas",
+        "upsell_enable": true,
+        "after_add": "drawer",
+        "accent_color": "#085b47",
+        "masc_image": "shopify://shop_images/01_50503259-24e5-4208-a93e-391173cb827d.jpg",
+        "fem_image": "shopify://shop_images/4abce7ee-2865-47b8-a659-0faa899cdf38_fc277095-bc84-4bf9-b606-8ce1cc23e37a.png",
+        "eyebrow": "",
+        "subheading": "<p>Escolha a camisa, a botina e o tamanho.</p>",
+        "step1_short": "Perfil",
+        "step3_text": "Toque na botina e escolha o tamanho",
+        "boot_photo": "scene",
+        "step4_text": "",
+        "hide_whatsapp": true
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

@@ -589,7 +589,7 @@
             "color_scheme": "",
             "image": "shopify://shop_images/Banner_secao_KIT_AGRO.png",
             "mobile_image": "shopify://shop_images/Banner_secao_KIT_AGRO.png",
-            "image_link": "shopify://collections/kits-camisas-e-botinas",
+            "image_link": "/pages/monte-seu-kit",
             "overlay_opacity": 0,
             "content_alignment": "start",
             "content_position": "top-left",

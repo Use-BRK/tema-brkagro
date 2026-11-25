@@ -366,6 +366,8 @@
       {%- for discount in item.line_level_discount_allocations -%}
         {%- assign brk_needle = '|' | append: discount.discount_application.title | append: '|' -%}
         {%- if brk_hide_titles contains brk_needle -%}{%- continue -%}{%- endif -%}
+        {%- comment -%} Compre X Ganhe Y marca o item gatilho com R$ 0,00 — não mostra {%- endcomment -%}
+        {%- if discount.amount == 0 -%}{%- continue -%}{%- endif -%}
         <li class="discounts__discount fs-14 inline-flex align-center gap-5">
           <svg
             aria-hidden="true"
