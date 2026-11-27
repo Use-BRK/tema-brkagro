@@ -1622,9 +1622,27 @@ sticky-add-cart {
     font-weight: 700;
   }
 
-  /* Fundo do mega menu igual ao do header. */
+  /* Título da coluna estilo Fishing: CAIXA ALTA na cor da marca. Os títulos são
+     itens "#" no menu (só agrupam), por isso não são clicáveis. */
+  .submenu-horizontal .menu-list .subchildmenu > li.menu-link.level-1 > menu-item > a[href="#"] {
+    text-transform: uppercase;
+    color: #0f6049;
+    font-size: 1.5rem;
+    letter-spacing: .04em;
+    margin-bottom: .6rem;
+    pointer-events: none;
+    text-decoration: none;
+  }
+
+  /* Subitens em cinza escuro, verde no hover. */
+  .submenu-horizontal .sub-children-menu a { color: #3a3a3a; }
+  .submenu-horizontal .sub-children-menu a:hover { color: #0f6049; }
+
+  /* Fundo do mega menu igual ao do header + linha e sombra suaves. */
   .submenu.submenu-horizontal {
     background: #efefe8;
+    border-top: 1px solid rgba(15, 96, 73, .12);
+    box-shadow: 0 18px 30px -18px rgba(0, 0, 0, .18);
   }
 
   /* Cada lista de subitens (nível-3) sem fundo próprio (transparente). */
@@ -1726,3 +1744,51 @@ product-addons[data-custom-class="size_chart"]:focus-visible {
 /* desktop: sem o traço de hover do tema no item em pílula */
 .navigation__menu-content a[href*="/pages/monte-seu-kit"]::after,
 .navigation__menu-content a[href*="/pages/monte-seu-kit"]:hover::after { display: none !important; content: none !important; }
+
+/* Mega menu: colunas do tamanho do texto (nada quebra linha), espaçamento
+   fluido entre elas e a lista ocupando toda a largura (sem imagem). */
+@media (min-width: 1025px) {
+  .submenu-horizontal.full-width .menu-list {
+    flex: 1 1 auto;
+  }
+  .submenu-horizontal.full-width .menu-list .subchildmenu.grid {
+    grid-template-columns: repeat(var(--col-desktop), max-content);
+    column-gap: clamp(32px, 4vw, 80px);
+  }
+}
+/* Telas largas: colunas começam alinhadas com o 1º item do menu (como na Fishing). */
+@media (min-width: 1440px) {
+  .submenu-horizontal.full-width .fluid_container > .flex {
+    padding-inline-start: 240px;
+  }
+}
+
+/* Destaque de "Mais Vendidas" e "Pronta Entrega" (desktop e mobile): verde e
+   negrito, sem emoji. Pega pelo link da coleção. */
+.submenu-horizontal .sub-children-menu a:is([href*="/collections/mais-vendid"], [href*="envio-imediato"], [href*="envio-full"]),
+.mmd-acc__l3-link:is([href*="/collections/mais-vendid"], [href*="envio-imediato"], [href*="envio-full"]) {
+  color: #0f6049;
+  font-weight: 700;
+}
+
+/* Selo "NOVO" dos lançamentos no mega menu = mesma pílula verde do "Monte seu kit"
+   na gaveta mobile. Troca o ícone SVG (#new#) pela pílula depois do texto. */
+.submenu-horizontal .menu-lead-badge--new { display: none; }
+.submenu-horizontal a:has(> .menu-lead-badge--new)::after,
+.mmd-new-pill {
+  content: "NOVO"; display: inline-flex; align-items: center; margin-left: .8rem; padding: .2rem .7rem;
+  border-radius: 99px; background: #085b47; color: #fff; font-size: 1rem; font-weight: 800;
+  letter-spacing: .06em; line-height: 1.4; text-decoration: none;
+}
+
+/* Gaveta mobile: pílula NOVO menor e na mesma linha do texto (grade de 2 colunas é estreita). */
+.mmd-acc__l3-link:has(.mmd-new-pill) {
+  display: flex; align-items: center; flex-wrap: nowrap; gap: .4rem; width: 100%;
+}
+/* Listas com selo NOVO (Lançamentos) em 1 coluna: o nome aparece inteiro. */
+.mmd-acc__grid-box:has(.mmd-new-pill) {
+  column-count: 1;
+}
+.mmd-acc__l3-link .mmd-new-pill {
+  flex: 0 0 auto; margin-left: auto; padding: .1rem .45rem; font-size: .8rem; letter-spacing: .04em; line-height: 1.3;
+}

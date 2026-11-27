@@ -423,7 +423,7 @@
                                             assign gc_all = true
                                           endif
                                         -%}
-                                        <a href="{{ gc.url }}" class="mmd-acc__l3-link{% if gc_all %} mmd-acc__l3-link--all{% endif %}"><span>{{ gc_clean }}</span>{% if gc_all %}<span class="mmd-acc__l3-arrow" aria-hidden="true">→</span>{% endif %}</a>
+                                        <a href="{{ gc.url }}" class="mmd-acc__l3-link{% if gc_all %} mmd-acc__l3-link--all{% endif %}"><span>{{ gc_clean }}</span>{% if gc.title contains '#new#' %}<span class="mmd-new-pill">NOVO</span>{% endif %}{% if gc_all %}<span class="mmd-acc__l3-arrow" aria-hidden="true">→</span>{% endif %}</a>
                                       {%- endfor -%}
                                     </div>
                                   </div>

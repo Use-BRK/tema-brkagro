@@ -161,17 +161,17 @@
         "menu_promotion_iiUfrK": {
           "type": "menu_promotion",
           "settings": {
-            "text": "Mulheres",
+            "text": "Feminino",
             "open-link-newtab": false,
             "item_label": "unset",
-            "promotion_menu_column": 4,
+            "promotion_menu_column": 5,
             "mega_custom_width": 1250,
             "center_submenu": true,
             "full_width": true,
             "promotion_position": "right",
-            "promotion_image_width": 31,
-            "promotion_image_1": "shopify://shop_images/FEMININO_MENU.jpg",
-            "promotion_link_1": "shopify://collections/o-agro-e-delas",
+            "promotion_image_width": 27,
+            "promotion_image_1": "",
+            "promotion_link_1": "",
             "promotion_link_newtab_1": false,
             "promotion_link_2": "",
             "promotion_link_newtab_2": false
@@ -180,17 +180,55 @@
         "menu_promotion_CyPFrj": {
           "type": "menu_promotion",
           "settings": {
-            "text": "Homens",
+            "text": "Masculino",
             "open-link-newtab": false,
             "item_label": "unset",
             "promotion_menu_column": 5,
             "mega_custom_width": 1250,
             "center_submenu": true,
             "full_width": true,
-            "promotion_position": "left",
+            "promotion_position": "right",
             "promotion_image_width": 27,
-            "promotion_image_1": "shopify://shop_images/MASCULINO_MENU.jpg",
-            "promotion_link_1": "shopify://collections/camuflado-e-caca",
+            "promotion_image_1": "",
+            "promotion_link_1": "",
+            "promotion_link_newtab_1": false,
+            "promotion_link_2": "",
+            "promotion_link_newtab_2": false
+          }
+        },
+        "menu_promotion_infantil": {
+          "type": "menu_promotion",
+          "settings": {
+            "text": "Infantil",
+            "open-link-newtab": false,
+            "item_label": "unset",
+            "promotion_menu_column": 5,
+            "mega_custom_width": 1250,
+            "center_submenu": true,
+            "full_width": true,
+            "promotion_position": "right",
+            "promotion_image_width": 27,
+            "promotion_image_1": "",
+            "promotion_link_1": "",
+            "promotion_link_newtab_1": false,
+            "promotion_link_2": "",
+            "promotion_link_newtab_2": false
+          }
+        },
+        "menu_promotion_acessorios": {
+          "type": "menu_promotion",
+          "settings": {
+            "text": "Acessórios",
+            "open-link-newtab": false,
+            "item_label": "unset",
+            "promotion_menu_column": 5,
+            "mega_custom_width": 1250,
+            "center_submenu": true,
+            "full_width": true,
+            "promotion_position": "right",
+            "promotion_image_width": 27,
+            "promotion_image_1": "",
+            "promotion_link_1": "",
             "promotion_link_newtab_1": false,
             "promotion_link_2": "",
             "promotion_link_newtab_2": false
@@ -198,10 +236,12 @@
         }
       },
       "block_order": [
-        "menu_product_YFcake",
-        "menu_product_mWrUMn",
+        "menu_promotion_CyPFrj",
         "menu_promotion_iiUfrK",
-        "menu_promotion_CyPFrj"
+        "menu_promotion_infantil",
+        "menu_promotion_acessorios",
+        "menu_product_YFcake",
+        "menu_product_mWrUMn"
       ],
       "custom_css": [],
       "settings": {
@@ -217,7 +257,7 @@
         "transparent_mobile": false,
         "transparent_text_icon_color": "#ffffff",
         "transparent_bg_color": "#111111",
-        "mega_menu": "menu",
+        "mega_menu": "menu-novo",
         "dropdowns_animation": "down-to-up",
         "uppercase_first": false,
         "hot": "NOVIDADES",
@@ -259,9 +299,9 @@
         "menu_9XmD4T": {
           "type": "menu",
           "settings": {
-            "menu": "menu",
+            "menu": "menu-novo",
             "text_size": 100,
-            "expanded_items": "Lançamentos",
+            "expanded_items": "",
             "acc_l1_size": 18,
             "acc_l1_weight": "600",
             "acc_l2_size": 15,
@@ -271,7 +311,7 @@
             "show_images": false,
             "highlight_item": "",
             "highlight_item_color": "#d02e2e",
-            "dark_item": "⏱️ Black November",
+            "dark_item": "",
             "dark_item_bg": "#000000",
             "dark_item_text": "#ffffff",
             "dark_item_accent": "#ffffff",
